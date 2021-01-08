@@ -1,0 +1,31 @@
+#+title: Guix patchechs: astronomy
+#+created: <2021-01-04 Mon 23:12:53 GMT>
+#+modified: <2021-01-07 Thu 08:46:49 GMT>
+
+* astromatic software [1/10][10%]
+- https://github.com/astromatic
+- [ ] EyE: small image feature detector using machine learning
+- [ ] MissFITS: FITS file management
+- [ ] PSFEx: PSF modelling and quality assessment
+- [ ] SCAMP: Astrometric calibration and photometric homogenisation
+- [ ] SExtractor: Source extraction
+- [ ] SkyMaker: Image simulation
+- [X] STIFF:[100%]
+  + :author Oleh Malyi <astroclubzp@gmail.com>
+  + :synopsis automated image compositing and conversion
+  + [X] :packed <2021-01-05 Tue>
+  + [X] :patch-sent <2021-01-05 Tue>
+  + [X] :aptch--applied-upstream <2021-01-06 Wed>
+  + [X] :inputs [3/3]
+    - [X] libtiff
+    - [X] zlib
+    - [X] libjpeg-turbo
+- [ ] Stuff: Catalogue simulation
+- [ ] SWarp: Image regridding and co-addition
+- [ ] WeightWatcher: weight-map/flag-map multiplexer and rasteriser
+
+https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
+
+* PLplot
+- http://plplot.sourceforge.net/
+- https://github.com/HazenBabcock/cl-plplot

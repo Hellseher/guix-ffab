@@ -1,0 +1,239 @@
+#+TITLE: Pgloader
+
+* pgloader
+
+- https://issues.guix.gnu.org/44993
+- https://issues.guix.gnu.org/45025
+- https://issues.guix.gnu.org/45107
+- https://issues.guix.gnu.org/45189
+- https://issues.guix.gnu.org/45263
+- https://issues.guix.gnu.org/45324
+- https://issues.guix.gnu.org/45356
+- https://issues.guix.gnu.org/45452
+- https://issues.guix.gnu.org/45602
+- https://issues.guix.gnu.org/45639
+- https://issues.guix.gnu.org/45678
+
+
+- [-] pgloader [30/34] [88%]
+  1. [X] abnf [100%]
+     - [X] :packed <2020-12-05 Sat>
+     - [X] :patch-sent <2020-12-07 Mon>
+     - [X] :patch-applied-upstream <2020-12-11 Fri>
+     - [X] :depends-on [2/2]
+       + [X] esrap
+       + [X] cl-ppcre
+  2. [X] alexandria
+  3. [X] cl-base64
+  4. [X] cl-csv
+  5. [X] cl-fad
+  6. [X] cl-log [100%]
+     - [X] :packed <2020-12-02 Wed>
+     - [X] :patch-sent <2020-12-02 Wed>
+     - [X] :patch-applied-upstream <2020-12-05 Sat>
+  7. [-] cl-markdown [0%]
+     - [ ] :packed
+     - [ ] :patch-sent
+     - [ ] :patch-applied-upstream
+     - [-] :depends-on [5/7]
+       + [ ] asdf-system-connections [0%]
+         - Too old extention for 2012 ASDF 2.26 https://github.com/gwkkwg/asdf-system-connections/pull/2
+         - [ ] :packed <2021-01-06 Wed>
+         - [ ] :patch-sent
+         - [ ] :patch-applied-upstream
+         - [ ] :depends-on [0/0]
+       + [-] dynamic-classes [25%]
+         - https://github.com/gwkkwg/dynamic-classes
+         - [ ] :packed <2021-01-07 Thu>
+         - [ ] :patch-sent
+         - [ ] :patch-applied-upstream
+         - [X] :depends-on [1/1]Э
+           + [X] metatilities-base
+       + [X] anaphora
+       + [X] cl-containers "0.11.5"
+       + [X] cl-ppcre
+       + [X] metabang-bind
+       + [X] metatilities-base "0.6.0"
+  8. [X] cl-mustache [100%]
+     - https://github.com/kanru/cl-mustache
+       - WRONG: https://github.com/osa1/cl-mustache
+     - [X] :packed <2020-12-21 Mon>
+     - [X] :patch-sent <2020-12-21 Mon>
+     - [X] :patch-applied-upstream <2020-12-22 Tue>
+  9. [X] closer-mop
+  10. [-] cl-postgres [25%] - part of Postmodern
+      - [ ] :packed
+      - [ ] :patch-sent
+      - [ ] :patch-applied-upstream
+      - [X] :depends-on [4/4]
+        - [X] md5
+        - [X] split-sequence
+        - [X] cl-base64
+        - [X] uax-15 [100%]
+          + [X] :packed <2020-12-26 Sat>
+          + [X] :patch-sent <2020-12-26 Sat>
+          + [X] :patch-applied-upstream <2020-12-28 Mon>
+          + [X] :depends-on [3/3]
+            - [X] split-sequence
+            - [X] cl-ppcre
+            - [X] uiop - part of ASDF
+  11. [X] cl-ppcre
+  12. [X] command-line-arguments [100%]
+      - https://github.com/fare/command-line-arguments
+      - [X] :packed <2020-12-12 Sat>
+      - [X] :patch-sent <2020-12-12 Sat>
+      - [X] :patch-applied-upstream <2020-12-12 Sat>
+  13. [X] db3 [100%]
+      - [X] :packed <2021-01-03 Sun>
+      - [X] :patch-sent <2021-01-03 Sun>
+      - [X] :patch-applied-upstream <2021-01-04 Mon>
+  14. [X] drakma
+  15. [X] esrap
+  16. [X] flexi-streams
+  17. [X] ixf [100%]
+      - [X] :packed <2021-01-01 Fri>
+      - [X] :patch-sent <2021-01-01 Fri>
+      - [X] :patch-applied-upstream <2021-01-02 Sat>
+      - [X] :depends-on
+        - [X] split-sequence
+        - [X] md5
+        - [X] alexandria
+        - [X] babel
+        - [X] local-time
+        - [X] cl-ppcre
+        - [X] ieee-floats
+  18. [X] local-time
+  19. [X] lparallel
+  20. [X] metabang-bind
+  21. [-] mssql [0%]
+      - [ ] :packed
+      - [ ] :patch-sent
+      - [ ] :patch-applied-upstream
+      - [-] :depends-on [3/4]
+        + [X] cffi
+        + [X] iterate
+        + [ ] garbage-pools
+          - https://github.com/archimag/garbage-pools
+          - [ ] :packed
+          - [ ] :patch-sent
+          - [ ] :patch-applied-upstream
+          - [ ] :depends-on [0/0]
+        + [X] parse-number
+  22. [X] postmodern
+  23. [X] py-configparser [100%]
+      - [X] :packed <2020-12-24 Thu>
+      - [X] :patch-sent <2021-01-05 Tue>
+      - [X] :patch-applied-upstream <2021-01-06 Wed>
+      - [X] :depends-on [1/1]
+        + [X] parse-number
+  24. [X] qmynd [100%]
+      - [X] :packed <2020-12-19 Sat>
+      - [X] :patch-sent <2020-12-19 Sat>
+      - [X] :patch-applied-upstream <2020-12-19 Sat>
+      - [X] :depends-on [6/6]
+        - [X] babel
+        - [X] flexi-streams
+        - [X] ironclad
+        - [X] list-of - part of asdf-finalizers
+          - https://gitlab.common-lisp.net/asdf/asdf-finalizers
+          - [X] :packed <2020-12-15 Tue>
+          - [X] :patch-sent <2020-12-15 Tue>
+          - [X] :patch-applied-upstream <2020-12-19 Sat>
+          - [X] :depends-on [1/1]
+            - [X] asdf-finalizers
+              - [X] :packed <2020-12-15 Tue>
+              - [X] :patch-sent <2020-12-15 Tue>
+              - [X] :patch-applied-upstream <2020-12-19 Sat>
+        - [X] trivial-gray-streams
+        - [X] usocket
+      - [X] :weakly-depends-on [3/3]
+        - [X] chipz
+        - [X] cl+ssl
+        - [X] salza2
+  25. [X] quri
+  26. [ ] simple-date [0%] - part of Postmodern
+      - [ ] :packed
+      - [ ] :patch-sent
+      - [ ] :patch-applied-upstream
+  27. [X] split-sequence
+  28. [X] sqlite
+  29. [X] trivial-backtrace
+  30. [X] uiop
+  31. [X] usocket
+  32. [X] uuid
+  33. [X] yason
+  34. [X] zs3 [100%]
+      - [X] :packed <2020-12-03 Thu>
+      - [X] :patch-sent <2020-12-03 Thu>
+      - [X] :patch-applied-upstream <2020-12-05 Sat>
+      - [X] :depends-on [6/6]
+        + [X] drakma
+        + [X] alexandria
+        + [X] cxml
+        + [X] ironclad
+        + [X] puri
+        + [X] cl-base64
+
+
+* pgloader Debian suggestions dependencies
+- https://github.com/dimitri/ql-to-deb/tree/master/packages
+- https://github.com/dimitri/pgloader/blob/master/debian/control
+
+- [-] pgloader [85%]
+  1. [ ] buildapp (>= 1.5),
+  2. [X] cl-abnf,
+  3. [X] cl-alexandria,
+  4. [X] cl-asdf (>= 3.0.3),
+  5. [X] cl-asdf-finalizers,
+  6. [ ] cl-asdf-system-connections,
+  7. [X] cl-bordeaux-threads (>= 0.8.3),
+  8. [X] cl-cffi (>= 1:0.12.0),
+  9. [X] cl-command-line-arguments,
+  10. [X] cl-csv (>= 20180712),
+  11. [X] cl-db3 (>= 20200212),
+  12. [X] cl-drakma,
+  13. [X] cl-esrap,
+  14. [X] cl-fad,
+  15. [X] cl-flexi-streams,
+  16. [X] cl-interpol,
+  17. [X] cl-ixf,
+  18. [X] cl-local-time,
+  19. [X] cl-log,
+  20. [X] cl-lparallel,
+  21. [ ] cl-markdown,
+  22. [X] cl-md5,
+  23. [X] cl-metabang-bind,
+  24. [ ] cl-mssql,
+  25. [X] cl-mustache,
+  26. [X] cl-plus-ssl (>= 20190204),
+  27. [ ] cl-postmodern,
+  28. [X] cl-ppcre,
+  29. [X] cl-py-configparser,
+  30. [X] cl-qmynd,
+  31. [X] cl-quri,
+  32. [ ] cl-simple-date,
+  33. [X] cl-split-sequence,
+  34. [X] cl-sqlite,
+  35. [X] cl-trivial-backtrace,
+  36. [X] cl-trivial-utf-8,
+  37. [X] cl-unicode,
+  38. [X] cl-usocket,
+  39. [X] cl-utilities,
+  40. [X] cl-uuid,
+  41. [X] cl-yason,
+  42. [X] cl-zs3,
+  43. [X] gawk,
+  44. [X] help2man,
+  45. [ ] python3-sphinx-rtd-theme,
+  46. [X] python3-sphinx,
+  47. [X] sbcl (>= 1.1.13),
+  48. [X] tzdata,
+
+* etc
+
+sbcl-asdf-system-connections
+cl-asdf-system-connections
+ecl-asdf-system-connections
+sbcl-dynamic-classes
+cl-dynamic-classes
+ecl-dynamic-classes

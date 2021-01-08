@@ -1,0 +1,60 @@
+From cf5c96cc8326a11cfcbef8a974f6f2f98b676d8e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=23R=CE=BBatan?= <sharlatanus@gmail.com>
+Date: Fri, 1 Jan 2021 23:27:43 +0000
+Subject: [PATCH] Add new variables sbcl-cl-ixf cl-ixf ecl-cl-ixf
+
+---
+ gnu/packages/lisp-xyz.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 87e130a82e..6362723664 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -10803,6 +10803,43 @@ Inflector module.")
+ (define-public ecl-cl-inflector
+   (sbcl-package->ecl-package sbcl-cl-inflector))
+ 
++(define-public sbcl-cl-ixf
++  (let ((commit "ed26f87e4127e4a9e3aac4ff1e60d1f39cca5183")
++        (revision "1"))
++  (package
++    (name "sbcl-cl-ixf")
++    (version (git-version "0.1.0" revision commit))
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/dimitri/cl-ixf")
++                    (commit commit)))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "1wjdnf4vr9z7lcfc49kl43g6l2i23q9n81siy494k17d766cdvqa"))))
++    (build-system asdf-build-system/sbcl)
++    (inputs
++     `(("split-sequence" ,sbcl-split-sequence)
++       ("md5" ,sbcl-md5)
++       ("alexandria" ,sbcl-alexandria)
++       ("babel" ,sbcl-babel)
++       ("local-time" ,sbcl-local-time)
++       ("cl-ppcre" ,sbcl-cl-ppcre)
++       ("ieee-floats" ,sbcl-ieee-floats)))
++    (arguments
++     `(#:asd-systems '("ixf")))
++    (home-page "https://github.com/dimitri/cl-ixf")
++    (synopsis "Parse IBM Integration Exchange Format (IXF)")
++    (description "Tools to handle IBM PC version of IXF file format.")
++    (license license:public-domain))))
++
++(define-public ecl-cl-ixf
++  (sbcl-package->ecl-package sbcl-cl-ixf))
++
++(define-public cl-ixf
++  (sbcl-package->cl-source-package sbcl-cl-ixf))
++
+ (define-public sbcl-qbase64
+   (package
+     (name "sbcl-qbase64")
+-- 
+2.26.2
+

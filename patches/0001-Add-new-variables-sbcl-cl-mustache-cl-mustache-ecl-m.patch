@@ -1,0 +1,49 @@
+From a09766cff32479ba857d8eb85a12c6f99fb3aecc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=23R=CE=BBatan?= <sharlatanus@gmail.com>
+Date: Mon, 21 Dec 2020 20:29:56 +0000
+Subject: [PATCH] Add new variables sbcl-cl-mustache cl-mustache ecl-mustache
+
+---
+ gnu/packages/lisp-xyz.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index a2a7cf576a..dc2731722b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -2918,6 +2918,32 @@ Lisp, featuring:
+ (define-public ecl-cl-markup
+   (sbcl-package->ecl-package sbcl-cl-markup))
+ 
++(define-public sbcl-cl-mustache
++  (package
++    (name "sbcl-cl-mustache")
++    (version "0.12.1")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/kanru/cl-mustache")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name "cl-mustache" version))
++              (sha256
++               (base32
++                "149xbb6wxq1napliwm9cv729hwcgfnjli6y8hingfixz7f10lhks"))))
++    (build-system asdf-build-system/sbcl)
++    (home-page "https://github.com/kanru/cl-mustache")
++    (synopsis "Common Lisp Mustache Template Renderer")
++    (description "It's a template system implemented for Common Lisp, more
++details on standard available at http://mustache.github.io")
++    (license license:expat)))
++
++(define-public cl-cl-mustache
++  (sbcl-package->cl-source-package sbcl-cl-mustache))
++
++(define-public ecl-cl-mustache
++  (sbcl-package->ecl-package sbcl-cl-mustache))
++
+ (define-public sbcl-cl-css
+   (let ((commit "8fe654c8f0cf95b300718101cce4feb517f78e2f"))
+     (package
+-- 
+2.26.2
+
