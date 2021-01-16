@@ -1,0 +1,52 @@
+From 4f1ee596e190ded04bc9c005c48712d41ea6cad2 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Jan 2021 22:24:17 +0000
+Subject: [PATCH] gnu: Add freetds
+
+* gnu/packages/databases.scm freetds
+
+I add it as producer of `libsybdb.so` library to build
+https://github.com/archimag/cl-mssql
+---
+ gnu/packages/databases.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
+index 6e03724798..48d233a1f6 100644
+--- a/gnu/packages/databases.scm
++++ b/gnu/packages/databases.scm
+@@ -1943,6 +1943,31 @@ module, and nothing else.")
+     (license license:perl-license)
+     (home-page "https://metacpan.org/release/DBD-SQLite")))
+ 
++(define-public freetds
++  (package
++    (name "freetds")
++    (version "1.2.18")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append
++             "ftp://ftp.freetds.org/pub/freetds/stable/" name "-" version ".tar.gz"))
++       (sha256
++        (base32 "1hspvwxwdd1apadsy2b40dpjik8kfwcvdamvhpg3lnm15n02fb50"))))
++    (build-system gnu-build-system)
++    (arguments
++     ;; NOTE: (Sharlatan-20210110213908+0000) some tests require DB connection,
++     ;; disabled for now.
++     `(#:tests? #f))
++    (home-page "http://www.freetds.org/")
++    (synopsis "FreeTDS is a free implementation of Sybase's DB-Library,
++CT-Library, and ODBC libraries")
++    (description
++     "MS SQL and Sybase client library (static libs and headers) FreeTDS is an
++implementation of the Tabular DataStream protocol, used for connecting to MS SQL
++and Sybase servers over TCP/IP.")
++    (license license:lgpl2.0)))
++
+ (define-public perl-mysql-config
+   (package
+     (name "perl-mysql-config")
+-- 
+2.26.2
+

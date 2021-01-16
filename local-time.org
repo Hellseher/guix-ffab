@@ -8,3 +8,6 @@ Building the following 10 packages would ensure 31 dependent packages are rebuil
 #+begin_example
 ./pre-inst-env guix build cl-local-time cl-prometheus ecl-caveman cl-datafly cl-project cl-serapeum cl-mito cl-dexador cl-caveman cl-ledger nyxt
 #+end_example
+
+* Timeline
+-  https://issues.guix.gnu.org/45752
