@@ -11,39 +11,6 @@
              (gnu packages lisp-xyz)
              (ice-9 match))
 
-(define-public sbcl-local-time
-  (let ((commit "da01c15ab72b3dad38530f569aa096b01966b20c")
-        (revision "2"))
-    (package
-     (name "sbcl-local-time")
-     (version (git-version "1.0.6" revision commit))
-     (source
-      (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/dlowe-net/local-time")
-             (commit commit)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "18rkqxrkavvf4ssshfd6iaa1i9bcfy4v8vksbl4ncphx8l7dnywi"))))
-     (build-system asdf-build-system/sbcl)
-     (native-inputs
-      `(("hu.dwim.stefil" ,sbcl-hu.dwim.stefil)))
-     (inputs
-      `(("sbcl-cl-fad" ,sbcl-cl-fad)))
-     (arguments
-      `(#:asd-files '("local-time.asd"
-                      "cl-postgres+local-time.asd")
-        #:asd-systems '("local-time"
-                        "cl-postgres+local-time")))
-     (home-page "https://common-lisp.net/project/local-time/")
-     (synopsis "Time manipulation library for Common Lisp")
-     (description
-      "The LOCAL-TIME library is a Common Lisp library for the manipulation of
-dates and times.  It is based almost entirely upon Erik Naggum's paper \"The
-Long Painful History of Time\".")
-     (license license:expat))))
-
 (define-public sbcl-postmodern
   (package
     (name "sbcl-postmodern")
@@ -58,9 +25,9 @@ Long Painful History of Time\".")
        (sha256
         (base32 "0bfx0hcb9wv47qd334xs0fpmisl75dpvasq1zai210s5wqg0km6d"))))
     (build-system asdf-build-system/sbcl)
+
     (native-inputs
-     `(("fiveam" ,sbcl-fiveam)
-       ("local-time" ,sbcl-local-time)))
+     `(("fiveam" ,sbcl-fiveam)))
     (inputs
      `(("alexandria" ,sbcl-alexandria)
        ("bordeaux-threads" ,sbcl-bordeaux-threads)
@@ -69,12 +36,14 @@ Long Painful History of Time\".")
        ("closer-mop" ,sbcl-closer-mop)
        ("global-vars" ,sbcl-global-vars)
        ("ironclad" ,sbcl-ironclad)
+       ("local-time" ,sbcl-local-time)
        ("md5" ,sbcl-md5)
        ("split-sequence" ,sbcl-split-sequence)
        ("uax-15" ,sbcl-uax-15)
        ("usocket" ,sbcl-usocket)))
     (arguments
-     `(#:asd-systems '("postmodern"
+     `(#:tests? #f
+       #:asd-systems '("postmodern"
                        "cl-postgres"
                        "s-sql"
                        "simple-date")))

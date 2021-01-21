@@ -1,89 +1,100 @@
 (use-modules (guix packages)
              (guix build lisp-utils)
              (guix build-system asdf)
+             (guix build-system gnu)
              (guix download)
              (guix git-download)
              ((guix licenses) #:prefix license:)
              (gnu packages)
              (gnu packages lisp)
+             (gnu packages python)
              (gnu packages lisp-xyz))
-
-(define-public sbcl-cl-log
-  (package
-   (name "sbcl-cl-log")
-   (version "1.0.1")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https//github.com/nicklevine/cl-log")
-           (commit "8f4b766d51e02245c310526cf1e4534ce634f837")))
-     (sha256
-      (base32 "1s8sw34yafh8brdnafbgi77hwbrixcl8fhkshjqzphbqi2nkp4l7"))
-     (file-name (git-file-name "cl-log" version))))
-   (build-system asdf-build-system/sbcl)
-   (synopsis "Common Lisp general purpose logging utility")
-   (description "CL-LOG is a general purpose logging utility, loosely modelled
-in some respects after Gary King's Log5. Its features include: logging to
-several destinations at once, via \"messengers\", each messenger is tailored to
-accept some log messages and reject others, and this tailoring can be changed
-on-the-fly, very rapid processing of messages which are rejected by all
-messengers, fully independent use of the utility by several different
-sub-systems in an application, support for messengers which cl:format text to a
-stream, support for messengers which do not invoke cl:format, timestamps in
-theory accurate to internal-time-units-per-second.")
-   (home-page "https://github.com/nicklevine/cl-log")
-   (license license:expat)))
 
 (define-public pgloader
   (package
     (name "pgloader")
-    (version "v3.6.2")
+    (version "3.6.2")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/dimitri/pgloader")
-                    (commit version)))
+                    (commit (string-append "v" version))))
               (sha256
-               (base32 "0418jzkb6qrfjv9v6f090dzb1rkp3xc2yry5fi7ph8lq4fsppxzl"))
+               (base32"06i1jd2za3ih5caj2b4vzlzags5j65vv8dfdbz0ggdrp40wfd5lh"))
               (file-name (git-file-name name version))))
-    (build-system asdf-build-system/sbcl)
+    (build-system gnu-build-system)
+    (native-inputs
+     `(("buildapp" ,buildapp)
+       ("sbcl" ,sbcl)
+       ("cffi" ,sbcl-cffi)
+       ("python" ,python)))
     (inputs
-     `(("uiop" sbcl-uiop)
-       ("cl-log" ,sbcl-cl-log)
-       ("postmodern" ,sbcl-postmodern)
-       ("cl-postgres" ,sbcl-cl-postgres)
-       ("simple-date" ,sbcl-simple-date)
-       ("qmynd" ,sbcl-qmynd)
-       ("split-sequence" ,sbcl-split-sequence)
+     `(("alexandria" ,sbcl-alexandria)
+       ("cl-abnf" ,sbcl-cl-abnf)
+       ("cl-base64" ,sbcl-cl-base64)
        ("cl-csv" ,sbcl-cl-csv)
        ("cl-fad" ,sbcl-cl-fad)
-       ("lparallel" ,sbcl-lparallel)
-       ("esrap" ,sbcl-esrap)
-       ("alexandria" ,sbcl-alexandria)
-       ("drakma" ,sbcl-drakma)
-       ("flexi-streams" ,sbcl-flexi-streams)
-       ("usocket" ,sbcl-usocket)
-       ("local-time" ,sbcl-local-time)
-       ("command-line-argume" ,sbcl-command-line-argume)
-       ("abnf" ,sbcl-abnf)
-       ("db3" ,sbcl-db3)
-       ("ixf" ,sbcl-ixf)
-       ("py-configparser" ,sbcl-py-configparser)
-       ("sqlite" ,sbcl-sqlite)
-       ("cl-base64" ,sbcl-cl-base64)
-       ("trivial-backtrace" ,sbcl-trivial-backtrace)
+       ("cl-log" ,sbcl-cl-log)
        ("cl-markdown" ,sbcl-cl-markdown)
+       ("cl-mustache" ,sbcl-cl-mustache)
+       ("cl-ppcre" ,sbcl-cl-ppcre)
+       ("cl-sqlite" ,sbcl-cl-sqlite)
+       ("closer-mop" ,sbcl-closer-mop)
+       ("command-line-arguments" ,sbcl-command-line-arguments)
+       ("db3" ,sbcl-db3)
+       ("drakma" ,sbcl-drakma)
+       ("esrap" ,sbcl-esrap)
+       ("flexi-streams" ,sbcl-flexi-streams)
+       ("ixf" ,sbcl-ixf)
+       ("local-time" ,sbcl-local-time)
+       ("lparallel" ,sbcl-lparallel)
        ("metabang-bind" ,sbcl-metabang-bind)
        ("mssql" ,sbcl-mssql)
-       ("uuid" ,sbcl-uuid)
+       ("postmodern" ,sbcl-postmodern)
+       ("py-configparser" ,sbcl-py-configparser)
+       ("qmynd" ,sbcl-qmynd)
        ("quri" ,sbcl-quri)
-       ("cl-ppcre" ,sbcl-cl-ppcre)
-       ("cl-mustache" ,sbcl-cl-mustache)
+       ("split-sequence" ,sbcl-split-sequence)
+       ("trivial-backtrace" ,sbcl-trivial-backtrace)
+       ("usocket" ,sbcl-usocket)
+       ("uuid" ,sbcl-uuid)
        ("yason" ,sbcl-yason)
-       ("closer-mop" ,sbcl-closer-mop)
        ("zs3" ,sbcl-zs3)))
-    (home-page "https://github.com/dimitri/pgloader")
-    (synopsis "Migrate to PostgreSQL in a single command!")
-    (description "")
-    (license license:public-domain)))
+    (arguments
+     ;; NOTE: (Sharlatan-20210119T211511+0000) Testes are disabled due to be
+     ;; dependent on Quicklisp, main build target is `pgloader-standalone' which
+     ;; does not require Quicklisp workarounds. There is no `install' target
+     ;; configured in Makefile.
+     `(#:tests? #f
+       #:strip-binaries? #f
+       #:make-flags
+       (list "pgloader-standalone" "BUILDAPP_SBCL=buildapp")
+       #:phases
+       (modify-phases %standard-phases
+         (delete 'configure)
+         (add-after 'unpack 'set-home
+           (lambda _
+             (setenv "HOME" "/tmp")
+             #t))
+         (add-after 'unpack 'patch-Makefile
+           (lambda _
+             (substitute* "Makefile"
+               (("--sbcl.*") "--sbcl $(CL) --asdf-path . \\\n"))
+             #t))
+         (replace 'install
+           (lambda* (#:key outputs #:allow-other-keys)
+             (let ((bin (string-append (assoc-ref outputs "out") "/bin")))
+               (mkdir-p bin)
+               (install-file "build/bin/pgloader"  bin))
+             #t)))))
+    (home-page "https://pgloader.io/")
+    (synopsis "Migration to PostgreSQL tool")
+    (description
+     "It allows to migrate from CSV, DB3, iXF, SQLite, MS-SQL, MySQL to
+PostgreSQL.")
+    ;; NOTE: (Sharlatan-20210119T212023+0000) It is PostgreSQL license
+    ;; https://www.postgresql.org/about/licence/ a liberal Open Source license,
+    ;; similar to the BSD or MIT licenses.
+    (license license:expat)))
+
+pgloader

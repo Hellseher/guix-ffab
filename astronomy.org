@@ -1,6 +1,6 @@
 #+title: Guix patchechs: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-07 Thu 08:46:49 GMT>
+#+modified: <2021-01-21 Thu 00:52:11 GMT>
 
 * astromatic software [1/10][10%]
 - https://github.com/astromatic
@@ -11,11 +11,11 @@
 - [ ] SExtractor: Source extraction
 - [ ] SkyMaker: Image simulation
 - [X] STIFF:[100%]
-  + :author Oleh Malyi <astroclubzp@gmail.com>
+  + :patch-cpyright Oleh Malyi <astroclubzp@gmail.com>
   + :synopsis automated image compositing and conversion
   + [X] :packed <2021-01-05 Tue>
   + [X] :patch-sent <2021-01-05 Tue>
-  + [X] :aptch--applied-upstream <2021-01-06 Wed>
+  + [X] :paptch-applied-upstream <2021-01-06 Wed>
   + [X] :inputs [3/3]
     - [X] libtiff
     - [X] zlib
@@ -29,3 +29,25 @@ https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
 * PLplot
 - http://plplot.sourceforge.net/
 - https://github.com/HazenBabcock/cl-plplot
+
+* INDI [0%]
+** TODO indi [2/4][50%]
+- https://github.com/indilib/indi
+- [X] :packed <2021-01-21 Thu>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] inputs [9/9]
+  + [X] libusb
+  + [X] libnova
+  + [X] cfitsio
+  + [X] gsl
+  + [X] zlib
+  + [X] libjpeg
+  + [X] libtiff
+  + [X] fftw
+  + [X] curl
+
+- https://github.com/indilib/indi-3rdparty
+
+* ap-i
+  - https://www.ap-i.net/skychart/en/start
