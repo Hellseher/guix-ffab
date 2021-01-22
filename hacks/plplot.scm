@@ -3,6 +3,18 @@
              (gnu packages image)
              (guix git-download)
              (gnu packages)
+             (gnu packages commencement)
+             (gnu packages gcc)
+             (gnu packages python)
+             (gnu packages swig)
+             (gnu packages wxwidgets)
+             (gnu packages tcl)
+             (gnu packages lua)
+             (gnu packages fontutils)
+             (gnu packages ocaml)
+             (gnu packages gtk)
+             (gnu packages maths)
+             (gnu packages pkg-config)
              (gnu packages cmake)
              (guix build-system cmake)
              (guix download)
@@ -24,15 +36,35 @@
     (arguments
      `(#:tests? #f
        #:configure-flags
-       (list "-DCMAKE_RULE_MESSAGES=OFF"
-             "-DUSE_RPATH=OFF"
-             "-DPLD_psttf=OFF"
-             "-DNON_TRANSITIVE=ON"
-             "-DENABLE_tk=ON"
-             "-DENABLE_python=ON"
-             "-DENABLE_ada=ON"
-             "-DBUILD_DOC=ON"
-             "-UCMAKE_INSTALL_LIBDIR")))
+       (let ((out (assoc-ref %outputs "out")))
+         (list
+          "-DBUILD_DOC=ON"
+          "-DCMAKE_RULE_MESSAGES=OFF"
+          "-DENABLE_ada=ON"
+          "-DENABLE_python=ON"
+          "-DNON_TRANSITIVE=ON"
+          "-DPLD_ps=ON"
+          "-DPLD_tk=ON"
+          "-DPLD_psttf=ON"
+          "-DPLD_svg=ON"
+          "-DUSE_RPATH=OFF"
+          (string-append "-DCMAKE_INSTALL_LIBDIR=" out "/lib")
+          (string-append "-DCMAKE_INSTALL_PREFIX=" out)))))
+    (native-inputs
+     `(("pkg-config" ,pkg-config)
+       ("swig" ,swig)))
+    (inputs
+     `(("qhull" ,qhull)
+       ("gfortran" ,gfortran)
+       ("freetype" ,freetype)
+       ("python" ,python)
+       ("wxwidgets" ,wxwidgets)
+       ("lua" ,lua)
+       ("tcllib" ,tcllib)
+       ("tk" ,tk)
+       ("ocaml" ,ocaml)
+       ("pango" ,pango)
+       ("cairo" ,cairo)))
     (home-page "http://plplot.org/")
     (synopsis "The ultimate in cross-platform plotting")
     (description
@@ -43,6 +75,6 @@ software has a clean architecture that is organized as a core C library,
 separate language bindings for that library, and separate device drivers that
 are dynamically loaded by the core library which control how the plots are
 presented in noninteractive and interactive plotting contexts.")
-    (license license:gpl3+)))
+    (license license:lgpl2.0)))
 
 plplot

@@ -1,0 +1,21 @@
+#+TITLE: Issues
+
+- https://issues.guix.gnu.org/44993
+- https://issues.guix.gnu.org/45025
+- https://issues.guix.gnu.org/45107
+- https://issues.guix.gnu.org/45189
+- https://issues.guix.gnu.org/45263
+- https://issues.guix.gnu.org/45324
+- https://issues.guix.gnu.org/45356
+- https://issues.guix.gnu.org/45452
+- https://issues.guix.gnu.org/45602
+- https://issues.guix.gnu.org/45639
+- https://issues.guix.gnu.org/45678
+- https://issues.guix.gnu.org/45719
+- https://issues.guix.gnu.org/45740
+- https://issues.guix.gnu.org/45775
+- https://issues.guix.gnu.org/45846
+- https://issues.guix.gnu.org/45866
+- https://issues.guix.gnu.org/45921
+- https://issues.guix.gnu.org/45996
+- <2021-01-20 Wed> https://issues.guix.gnu.org/46007

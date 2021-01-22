@@ -1,33 +1,79 @@
 #+title: Guix patchechs: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-21 Thu 00:52:11 GMT>
+#+modified: <2021-01-22 Fri 23:13:45 GMT>
 
-* astromatic software [1/10][10%]
+* TODO astromatic software [1/10][10%]
 - https://github.com/astromatic
-- [ ] EyE: small image feature detector using machine learning
-- [ ] MissFITS: FITS file management
-- [ ] PSFEx: PSF modelling and quality assessment
-- [ ] SCAMP: Astrometric calibration and photometric homogenisation
-- [ ] SExtractor: Source extraction
-- [ ] SkyMaker: Image simulation
-- [X] STIFF:[100%]
-  + :patch-cpyright Oleh Malyi <astroclubzp@gmail.com>
-  + :synopsis automated image compositing and conversion
-  + [X] :packed <2021-01-05 Tue>
-  + [X] :patch-sent <2021-01-05 Tue>
-  + [X] :paptch-applied-upstream <2021-01-06 Wed>
-  + [X] :inputs [3/3]
+** TODO eye [/][%]
+- synopsis :: small image feature detector using machine learning
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0]
+** TODO missfits [/][%]
+- synosis :: fits file management
+** TODO psfex [/][%]
+- synosis :: psf modelling and quality assessment
+** TODO scamp [/][%]
+- synosis :: astrometric calibration and photometric homogenisation
+** TODO sextractor [/][%]
+- synosis :: source extraction
+** TODO skymaker [/][%]
+- synosis :: image simulation
+** TODO stuff [/][%]
+- synosis :: catalogue simulation
+** TODO swarp [/][%]
+- synosis :: image regridding and co-addition
+** TODO weightwatcher [/][%]
+- synosis :: weight-map/flag-map multiplexer and rasteriser
+** DONE stiff [4/4] [100%]
+CLOSED: [2021-01-22 Fri 23:03]
+  - :patch-cpyright Oleh Malyi <astroclubzp@gmail.com>
+  - :synopsis automated image compositing and conversion
+  - [X] :packed <2021-01-05 Tue>
+  - [X] :patch-sent <2021-01-05 Tue>
+  - [X] :paptch-applied-upstream <2021-01-06 Wed>
+  - [X] :inputs [3/3]
     - [X] libtiff
     - [X] zlib
     - [X] libjpeg-turbo
-- [ ] Stuff: Catalogue simulation
-- [ ] SWarp: Image regridding and co-addition
-- [ ] WeightWatcher: weight-map/flag-map multiplexer and rasteriser
 
-https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
+* C-Munipack library [/][%]
+- https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
+  - synopsis ::  The extensive set of functions with simple application interface, that provides the
+    complete solution for reduction of images carried out by a CCD camera, aimed at the observation
+    of variable stars.
+  - [X] :packed <2021-01-05 Tue>
+  - [X] :patch-sent <2021-01-05 Tue>
+  - [X] :paptch-applied-upstream <2021-01-06 Wed>
+  - [X] :inputs [3/3]
 
-* PLplot
+* TODO PLplot [0/2][0%]
+** TODO plplot [1/5][20%]
 - http://plplot.sourceforge.net/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] inputs [4/4]
+  - [X] qhull (gnu packages maths)
+  - [X] cairo
+  - [X] pango
+  - [X] freetype
+  - [ ] cgm
+  - [X] gfortran (gnu packages gcc)
+  - [X] gnat
+  - [ ] libgd
+  - [ ] libharu
+  - [X] lua5.1
+  - [X] ocaml
+  - [X] octave
+  - [X] tcl
+  - [X] tk
+  - [X] wxwidgets
+- [X] native-inputs [10/13]
+  + [X] pkg-config
+  - [X] swig
+** TODO cl-plplot [0/4][0%]
 - https://github.com/HazenBabcock/cl-plplot
 
 * INDI [0%]
@@ -49,5 +95,13 @@ https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
 
 - https://github.com/indilib/indi-3rdparty
 
-* ap-i
+* TODO ap-i [0/1][0%]
   - https://www.ap-i.net/skychart/en/start
+  - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
+
+** TODO libpasastro [2/3][66%]
+  - https://github.com/pchev/libpasastro
+  - [X] :packed <2021-01-22 Fri>
+  - [X] :patch-sent <2021-01-22 Fri>
+  - [ ] :paptch-applied-upstream
+    - https://issues.guix.gnu.org/46045

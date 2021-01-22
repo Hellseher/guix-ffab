@@ -60,4 +60,4 @@ flexible, easy to parse, scalable, and stateless.  It supports common DCS
 functions such as remote control, data acquisition, monitoring, and a lot more.")
     (license license:lgpl2.1)))
 
-libindi
+indi
