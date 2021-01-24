@@ -1,0 +1,72 @@
+From 067fecb0a5b64d1dd17dcb0c4ef78687fe030645 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 24 Jan 2021 11:16:36 +0000
+Subject: [PATCH] Add new sextractor
+
+* gnu/packages/astronomy.scm (sextractor): New variable
+---
+ gnu/packages/astronomy.scm | 48 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9485fe600f..65f42df5df 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -156,6 +156,54 @@ header.")
+ programs for the manipulation and analysis of astronomical data.")
+     (license license:gpl3+)))
+ 
++(define-public sextractor
++  (package
++    (name "sextractor")
++    (version "2.25.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/astromatic/sextractor")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0q69n3nyal57h3ik2xirwzrxzljrwy9ivwraxzv9566vi3n4z5mw"))))
++    (build-system gnu-build-system)
++    ;; NOTE: (Sharlatan-20210124T103117+0000): Building with `atlas' is failing
++    ;; due to missing shared library which required on configure phase. Switch
++    ;; build to use `openblas' instead. It requires FFTW with single precision
++    ;; `fftwf'.
++    (arguments
++     `(#:configure-flags
++       (list
++        "--enable-openblas"
++        (string-append
++         "--with-openblas-libdir=" (assoc-ref %build-inputs "openblas") "/lib")
++        (string-append
++         "--with-openblas-incdir=" (assoc-ref %build-inputs "openblas") "/include")
++        (string-append
++         "--with-fftw-libdir=" (assoc-ref %build-inputs "fftw") "/lib")
++        (string-append
++         "--with-fftw-incdir=" (assoc-ref %build-inputs "fftw") "/include"))))
++    (native-inputs
++     `(("autoconf" ,autoconf)
++       ("automake" ,automake)
++       ("libtool" ,libtool)))
++    (inputs
++     `(("openblas" ,openblas)
++       ("fftw" ,fftwf)))
++    (home-page "http://www.astromatic.net/software/sextractor")
++    (synopsis "Extract catalogs of sources from astronomical images")
++    (description
++     "SExtractor is a program that builds a catalogue of objects from an
++astronomical image.  Although it is particularly oriented towards reduction of
++large scale galaxy-survey data, it can perform reasonably well on moderately
++crowded star fields.
++
++This package produces binaries: ldactoasc, sex")
++ (license license:gpl3)))
++
+ (define-public stellarium
+   (package
+     (name "stellarium")
+-- 
+2.30.0
+

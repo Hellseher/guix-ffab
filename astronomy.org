@@ -1,9 +1,10 @@
-#+title: Guix patchechs: astronomy
+#+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-22 Fri 23:13:45 GMT>
+#+modified: <2021-01-24 Sun 11:44:18 GMT>
 
 * TODO astromatic software [1/10][10%]
 - https://github.com/astromatic
+- http://www.astromatic.net/software
 ** TODO eye [/][%]
 - synopsis :: small image feature detector using machine learning
 - [ ] :packed
@@ -16,8 +17,15 @@
 - synosis :: psf modelling and quality assessment
 ** TODO scamp [/][%]
 - synosis :: astrometric calibration and photometric homogenisation
-** TODO sextractor [/][%]
-- synosis :: source extraction
+** TODO sextractor [3/4][75%]
+- synosis :: Extract catalogs of sources from astronomical images
+- [X] :packed <2021-01-23 Sat>
+- [X] :patch-sent <2021-01-24 Sun>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/46072
+- [X] :inputs [2/2]
+  + [X] openblas (gnu/packages/maths.scm:3960:2)
+  + [X] fftwf (gnu/packages/algebra.scm:765:2)
 ** TODO skymaker [/][%]
 - synosis :: image simulation
 ** TODO stuff [/][%]
@@ -26,35 +34,39 @@
 - synosis :: image regridding and co-addition
 ** TODO weightwatcher [/][%]
 - synosis :: weight-map/flag-map multiplexer and rasteriser
-** DONE stiff [4/4] [100%]
+** DONE stiff [3/3] [100%]
 CLOSED: [2021-01-22 Fri 23:03]
-  - :patch-cpyright Oleh Malyi <astroclubzp@gmail.com>
-  - :synopsis automated image compositing and conversion
+  - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
+  - synopsis :: automated image compositing and conversion
   - [X] :packed <2021-01-05 Tue>
   - [X] :patch-sent <2021-01-05 Tue>
   - [X] :paptch-applied-upstream <2021-01-06 Wed>
+    - https://issues.guix.gnu.org/45666
   - [X] :inputs [3/3]
-    - [X] libtiff
-    - [X] zlib
-    - [X] libjpeg-turbo
+    - [X] libtiff (gnu/packages/image.scm:581:2)
+    - [X] zlib (gnu/packages/compression.scm:86:2)
+    - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-* C-Munipack library [/][%]
+* C-Munipack library [0/0][0%]
 - https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
   - synopsis ::  The extensive set of functions with simple application interface, that provides the
     complete solution for reduction of images carried out by a CCD camera, aimed at the observation
     of variable stars.
-  - [X] :packed <2021-01-05 Tue>
-  - [X] :patch-sent <2021-01-05 Tue>
-  - [X] :paptch-applied-upstream <2021-01-06 Wed>
-  - [X] :inputs [3/3]
+  - [ ] :packed
+  - [ ] :patch-sent
+  - [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0]
 
 * TODO PLplot [0/2][0%]
-** TODO plplot [1/5][20%]
+** TODO plplot [1/6][16%]
 - http://plplot.sourceforge.net/
+- synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
+  (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts are
+  installed on a user's computer.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] inputs [4/4]
+- [-] inputs [12/15]
   - [X] qhull (gnu packages maths)
   - [X] cairo
   - [X] pango
@@ -70,11 +82,15 @@ CLOSED: [2021-01-22 Fri 23:03]
   - [X] tcl
   - [X] tk
   - [X] wxwidgets
-- [X] native-inputs [10/13]
+- [X] native-inputs [2/2]
   + [X] pkg-config
-  - [X] swig
+  + [X] swig
 ** TODO cl-plplot [0/4][0%]
 - https://github.com/HazenBabcock/cl-plplot
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] inputs [0/0]
 
 * INDI [0%]
 ** TODO indi [2/4][50%]
@@ -93,7 +109,11 @@ CLOSED: [2021-01-22 Fri 23:03]
   + [X] fftw
   + [X] curl
 
+** TODO indi-3rdparty [0/3][0%]
 - https://github.com/indilib/indi-3rdparty
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
 
 * TODO ap-i [0/1][0%]
   - https://www.ap-i.net/skychart/en/start

@@ -18,4 +18,5 @@
 - https://issues.guix.gnu.org/45866
 - https://issues.guix.gnu.org/45921
 - https://issues.guix.gnu.org/45996
-- <2021-01-20 Wed> https://issues.guix.gnu.org/46007
+- <2021-01-20 Wed> https://issues.guix.gnu.org/46007 <2021-01-23 Sat>
+- <2021-01-22 Fri> https://issues.guix.gnu.org/46045
