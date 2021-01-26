@@ -1,27 +1,29 @@
 #+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-24 Sun 11:44:18 GMT>
+#+modified: <2021-01-26 Tue 10:45:53 GMT>
 
-* TODO astromatic software [1/10][10%]
+* TODO astromatic software [3/10][30%]
 - https://github.com/astromatic
 - http://www.astromatic.net/software
-** TODO eye [/][%]
+** DONE eye [3/3][100%]
+CLOSED: [2021-01-26 Tue 10:02]
 - synopsis :: small image feature detector using machine learning
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [0/0]
+- [X] :packed <2021-01-24 Sun>
+- [X] :patch-sent <2021-01-25 Mon>
+- [X] :paptch-applied-upstream <2021-01-26 Tue>
+  + https://issues.guix.gnu.org/46103
 ** TODO missfits [/][%]
 - synosis :: fits file management
 ** TODO psfex [/][%]
 - synosis :: psf modelling and quality assessment
 ** TODO scamp [/][%]
 - synosis :: astrometric calibration and photometric homogenisation
-** TODO sextractor [3/4][75%]
+** DONE sextractor [4/4][100%]
+CLOSED: [2021-01-25 Mon 17:27]
 - synosis :: Extract catalogs of sources from astronomical images
 - [X] :packed <2021-01-23 Sat>
 - [X] :patch-sent <2021-01-24 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2021-01-25 Mon>
   - https://issues.guix.gnu.org/46072
 - [X] :inputs [2/2]
   + [X] openblas (gnu/packages/maths.scm:3960:2)
@@ -90,7 +92,7 @@ CLOSED: [2021-01-22 Fri 23:03]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] inputs [0/0]
+- [ ] :inputs [0/0]
 
 * INDI [0%]
 ** TODO indi [2/4][50%]
@@ -115,13 +117,34 @@ CLOSED: [2021-01-22 Fri 23:03]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 
-* TODO ap-i [0/1][0%]
-  - https://www.ap-i.net/skychart/en/start
-  - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
+* TODO ap-i [1/5][20%]
 
-** TODO libpasastro [2/3][66%]
-  - https://github.com/pchev/libpasastro
-  - [X] :packed <2021-01-22 Fri>
-  - [X] :patch-sent <2021-01-22 Fri>
-  - [ ] :paptch-applied-upstream
-    - https://issues.guix.gnu.org/46045
+** DONE libpasastro [3/3][100%]
+CLOSED: [2021-01-25 Mon 17:25]
+- https://github.com/pchev/libpasastro
+- [X] :packed <2021-01-22 Fri>
+- [X] :patch-sent <2021-01-22 Fri>
+- [X] :paptch-applied-upstream <2021-01-25 Mon>
+  + https://issues.guix.gnu.org/46045
+
+** TODO skychart [0/4][0%]
+- https://github.com/pchev/skychart
+- synopsis :: SkyChart / Cartes du Ciel Free software to draw sky charts
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [1/2][50%]
+  + [X] fpc (gnu/packages/pascal.scm:56:2)
+  + [ ] lazarus [/][%]
+    - https://lazarus.freepascal.org
+
+** TODO ccdciel [/][%]
+- https://github.com/pchev/ccdciel
+** TODO inistarter [/][%]
+- https://github.com/pchev/indistarter
+** TODO eqmodgui [/][%]
+- https://github.com/pchev/eqmodgui
+
+* etc
+- https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
+- http://www.iausofa.org/current_C.html#Downloads

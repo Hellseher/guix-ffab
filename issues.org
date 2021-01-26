@@ -1,22 +1,29 @@
 #+TITLE: Issues
 
-- https://issues.guix.gnu.org/44993
-- https://issues.guix.gnu.org/45025
-- https://issues.guix.gnu.org/45107
-- https://issues.guix.gnu.org/45189
-- https://issues.guix.gnu.org/45263
-- https://issues.guix.gnu.org/45324
-- https://issues.guix.gnu.org/45356
-- https://issues.guix.gnu.org/45452
-- https://issues.guix.gnu.org/45602
-- https://issues.guix.gnu.org/45639
-- https://issues.guix.gnu.org/45678
-- https://issues.guix.gnu.org/45719
-- https://issues.guix.gnu.org/45740
-- https://issues.guix.gnu.org/45775
-- https://issues.guix.gnu.org/45846
-- https://issues.guix.gnu.org/45866
-- https://issues.guix.gnu.org/45921
-- https://issues.guix.gnu.org/45996
-- <2021-01-20 Wed> https://issues.guix.gnu.org/46007 <2021-01-23 Sat>
-- <2021-01-22 Fri> https://issues.guix.gnu.org/46045
+* Accepted in upstream [24/26][92%]
+- [X] https://issues.guix.gnu.org/44993
+- [X] https://issues.guix.gnu.org/45025
+- [X] https://issues.guix.gnu.org/45107
+- [X] https://issues.guix.gnu.org/45189
+- [X] https://issues.guix.gnu.org/45263
+- [X] https://issues.guix.gnu.org/45324
+- [X] https://issues.guix.gnu.org/45356
+- [X] https://issues.guix.gnu.org/45452
+- [X] https://issues.guix.gnu.org/45602
+- [X] https://issues.guix.gnu.org/45639
+- [X] https://issues.guix.gnu.org/45666
+- [X] https://issues.guix.gnu.org/45678
+- [X] https://issues.guix.gnu.org/45719
+- [X] https://issues.guix.gnu.org/45740
+- [X] https://issues.guix.gnu.org/45775
+- [X] https://issues.guix.gnu.org/45846
+- [X] https://issues.guix.gnu.org/45866
+- [X] https://issues.guix.gnu.org/45921
+- [X] https://issues.guix.gnu.org/45996
+- [X] <2021-01-20 Wed> https://issues.guix.gnu.org/46007 <2021-01-23 Sat>
+- [X] <2021-01-22 Fri> https://issues.guix.gnu.org/46045 <2021-01-25 Mon>
+- [X] <2021-01-24 Sun> https://issues.guix.gnu.org/46072 <2021-01-25 Mon>
+- [X] <2021-01-24 Sun> https://issues.guix.gnu.org/46085 <2021-01-25 Mon>
+- [X] <2021-01-24 Sun> https://issues.guix.gnu.org/46086 <2021-01-25 Mon>
+- [ ] <2021-01-25 Mon> https://issues.guix.gnu.org/46103
+- [ ] <2021-01-25 Mon> https://issues.guix.gnu.org/46105

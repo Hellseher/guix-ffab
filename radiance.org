@@ -1,0 +1,73 @@
+#+TITLE: Radiance
+#+created: <2021-01-25 Mon 13:21:10 GMT>
+#+modified: <2021-01-26 Tue 23:31:18 GMT>
+
+* TODO radiance [0/4][0%]
+- https://github.com/Shirakumo/radiance
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [12/15][80%]
+  - [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
+  - [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
+  - [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
+  - [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
+  - [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
+  - [X] form-fiddle (gnu/packages/lisp-xyz.scm:7134:4)
+  - [X] lambda-fiddle (gnu/packages/lisp-xyz.scm:11629:4)
+  - [X] local-time (gnu/packages/lisp-xyz.scm:4365:4)
+  - [-] modularize-hooks
+    - https://github.com/Shinmera/modularize-hooks
+    - [X] :packed <2021-01-26 Tue>
+    - [X] :patch-sent <2021-01-26 Tue>
+    - [ ] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      + [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
+      + [X] lambda-fiddle (gnu/packages/lisp-xyz.scm:11629:4)
+      + [X] modularize [4/4][100%]
+        - https://github.com/Shinmera/modularize
+        - [X] :packed <2021-01-25 Mon>
+        - [X] :patch-sent <2021-01-25 Mon>
+        - [X] :patch-applied-upstream <2021-01-26 Tue>
+          + https://issues.guix.gnu.org/46105
+        - [X] :inputs [2/2][100%]
+          - [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
+          - [X] trivial-package-local-nicknames (gnu/packages/lisp-xyz.scm:9582:2)
+      + [X] trivial-arguments [3/3][100%]
+        - https://github.com/Shinmera/trivial-arguments
+        - [X] :packed <2021-01-25 Mon>
+        - [X] :patch-sent <2021-01-25 Mon>
+        - [X] :patch-applied-upstream <2021-01-26 Tue>
+          + https://issues.guix.gnu.org/46105
+  - [-] modularize-interfaces
+    - https://github.com/Shinmera/modularize-interfaces
+    - [X] :packed <2021-01-26 Tue>
+    - [X] :patch-sent <2021-01-26 Tue>
+    - [ ] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      - [X] lambda-fiddle (gnu/packages/lisp-xyz.scm:11629:4)
+      - [X] modularize (gnu/packages/lisp-xyz.scm:9753:4)
+      - [X] trivial-arguments (gnu/packages/lisp-xyz.scm:3274:4)
+      - [X] trivial-indent (gnu/packages/lisp-xyz.scm:7030:4)
+  - [X] puri (gnu/packages/lisp-xyz.scm:2408:4)
+  - [X] trivial-indent (gnu/packages/lisp-xyz.scm:7030:4)
+  - [X] trivial-mimes (gnu/packages/lisp-xyz.scm:4397:4)
+  - [X] ubiquitous [4/4][100%]
+    - https://github.com/Shinmera/ubiquitous
+    - [X] :packed <2021-01-25 Mon>
+    - [X] :patch-sent <2021-01-25 Mon>
+    - [X] :patch-applied-upstream <2021-01-26 Tue>
+      - https://issues.guix.gnu.org/46105
+    - [X] :inputs [1/1][100%]
+      + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
+  - [-] deploy [0/4][0%]
+    - https://github.com/Shinmera/deploy
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [-] :inputs [3/5][60%]
+      + [X] cffi (gnu/packages/lisp-xyz.scm:2548:2)
+      + [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
+      + [X] trivial-features (gnu/packages/lisp-xyz.scm:1137:4)
+      + [ ] cl-mpg123
+      + [ ] cl-out123
