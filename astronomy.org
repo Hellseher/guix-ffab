@@ -1,8 +1,8 @@
 #+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-26 Tue 10:45:53 GMT>
+#+modified: <2021-01-27 Wed 22:26:35 GMT>
 
-* TODO astromatic software [3/10][30%]
+* TODO astromatic software [4/10][40%]
 - https://github.com/astromatic
 - http://www.astromatic.net/software
 ** DONE eye [3/3][100%]
@@ -12,12 +12,67 @@ CLOSED: [2021-01-26 Tue 10:02]
 - [X] :patch-sent <2021-01-25 Mon>
 - [X] :paptch-applied-upstream <2021-01-26 Tue>
   + https://issues.guix.gnu.org/46103
-** TODO missfits [/][%]
+** DONE missfits [3/3][100%]
+CLOSED: [2021-01-27 Wed 11:26]
+- http://www.astromatic.net/software/missfits
 - synosis :: fits file management
-** TODO psfex [/][%]
+- [X] :packed <2021-01-26 Tue>
+- [X] :patch-sent <2021-01-27 Wed>
+- [X] :paptch-applied-upstream <2021-01-27 Wed>
+  - https://issues.guix.gnu.org/46121
+** TODO psfex [0/4][0%]
 - synosis :: psf modelling and quality assessment
-** TODO scamp [/][%]
+- http://www.astromatic.net/software/psfex
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [1/2][50%]
+  - [X] fftw
+  - [-] plplot [0/5][0%]
+    + http://plplot.sourceforge.net/
+    + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
+      (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts
+      are installed on a user's computer.
+    + [ ] :packed
+    + [ ] :patch-sent
+    + [ ] :paptch-applied-upstream
+    + [-] inputs [14/15]
+      - [X] qhull (gnu packages maths)
+      - [X] cairo
+      - [X] shapelib [3/3][100%]
+        - https://github.com/OSGeo/shapelib
+        - [X] :packed <2021-01-27 Wed>
+        - [X] :patch-sent (gnu/packages/geo.scm) <2021-01-27 Wed>
+        - [X] :paptch-applied-upstream <2021-01-27 Wed>
+          - https://issues.guix.gnu.org/46141
+      - [X] pango
+      - [X] freetype
+      - [X] gfortran (gnu packages gcc)
+      - [X] gnat
+      - [ ] libgd [0/3][0%]
+        - https://github.com/libgd/libgd
+        - [ ] :packed
+        - [ ] :patch-sent
+        - [ ] :paptch-applied-upstream
+      - [X] libharu (gnu/packages/pdf.scm)
+      - [X] lua5.1
+      - [X] ocaml
+      - [X] octave
+      - [X] tcl
+      - [X] tk
+      - [X] wxwidgets
+    + [-] native-inputs [2/3]
+      + [X] pkg-config
+      + [X] swig
+      + [ ] atlas
+** TODO scamp [0/4][0%]
+- http://www.astromatic.net/software/scamp
 - synosis :: astrometric calibration and photometric homogenisation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  - [ ] plplot
 ** DONE sextractor [4/4][100%]
 CLOSED: [2021-01-25 Mon 17:27]
 - synosis :: Extract catalogs of sources from astronomical images
@@ -27,9 +82,16 @@ CLOSED: [2021-01-25 Mon 17:27]
   - https://issues.guix.gnu.org/46072
 - [X] :inputs [2/2]
   + [X] openblas (gnu/packages/maths.scm:3960:2)
-  + [X] fftwf (gnu/packages/algebra.scm:765:2)
-** TODO skymaker [/][%]
+  + [X] fftwf (gnu/packages/algebra.scm)
+** TODO skymaker [3/4][75%]
+- http://www.astromatic.net/software/skymaker
 - synosis :: image simulation
+- [X] :packed <2021-01-27 Wed>
+- [X] :patch-sent (gnu/packages/astonomy.scm) <2021-01-27 Wed>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/46143
+- [X] :inputs [1/1][100%]
+  + [X] fftwf (gnu/packages/algebra.scm)
 ** TODO stuff [/][%]
 - synosis :: catalogue simulation
 ** TODO swarp [/][%]
@@ -58,41 +120,6 @@ CLOSED: [2021-01-22 Fri 23:03]
   - [ ] :patch-sent
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
-
-* TODO PLplot [0/2][0%]
-** TODO plplot [1/6][16%]
-- http://plplot.sourceforge.net/
-- synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
-  (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts are
-  installed on a user's computer.
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] inputs [12/15]
-  - [X] qhull (gnu packages maths)
-  - [X] cairo
-  - [X] pango
-  - [X] freetype
-  - [ ] cgm
-  - [X] gfortran (gnu packages gcc)
-  - [X] gnat
-  - [ ] libgd
-  - [ ] libharu
-  - [X] lua5.1
-  - [X] ocaml
-  - [X] octave
-  - [X] tcl
-  - [X] tk
-  - [X] wxwidgets
-- [X] native-inputs [2/2]
-  + [X] pkg-config
-  + [X] swig
-** TODO cl-plplot [0/4][0%]
-- https://github.com/HazenBabcock/cl-plplot
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
 
 * INDI [0%]
 ** TODO indi [2/4][50%]

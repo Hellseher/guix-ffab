@@ -1,0 +1,62 @@
+From 36ed03b488ede5707606868aea9b2ef5b303cd1d Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 26 Jan 2021 23:16:20 +0000
+Subject: [PATCH] gnu: Add modularize-hooks
+
+* gnu/packages/lisp-xyz.scm
+  (sbcl-modularize-hooks, cl-modularize-hooks, ecl-modularize-hooks):
+  New variables
+---
+ gnu/packages/lisp-xyz.scm | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 62af10cc7c..12cd9df869 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -9787,6 +9787,42 @@ tie modules together in functionality, hook into each other and so on.")
+ (define-public cl-modularize
+   (sbcl-package->cl-source-package sbcl-modularize))
+ 
++(define-public sbcl-modularize-hooks
++  (let ((commit "e0348ed3ffd59a9ec31ca4ab28289e748bfbf96a")
++        (revision "1"))
++    (package
++      (name "sbcl-modularize-hooks")
++      (version (git-version "1.0.2" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shinmera/modularize-hooks")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "12kjvin8hxidwkzfb7inqv5b6g5qzcssnj9wc497v2ixc56fqdz7"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("modularize" ,sbcl-modularize)
++         ("closer-mop" ,sbcl-closer-mop)
++         ("trivial-arguments" ,sbcl-trivial-arguments)
++         ("lambda-fiddle" ,sbcl-lambda-fiddle)))
++      (home-page "https://shinmera.github.io/modularize-hooks/")
++      (synopsis "Programmatical interfaces extension for Modularize")
++      (description
++       "This is a simple extension to @code{MODULARIZE} that allows modules to
++define and trigger hooks, which other modules can hook on to.
++
++This package produces 1 system: @code{MODULARIZE-HOOKS}")
++      (license license:zlib))))
++
++(define-public ecl-modularize-hooks
++  (sbcl-package->ecl-package sbcl-modularize-hooks))
++
++(define-public cl-modularize-hooks
++  (sbcl-package->cl-source-package sbcl-modularize-hooks))
++
+ (define-public sbcl-moptilities
+   (let ((commit "a436f16b357c96b82397ec018ea469574c10dd41"))
+     (package
+-- 
+2.30.0
+

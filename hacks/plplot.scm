@@ -24,14 +24,15 @@
   (package
     (name "plplot")
     (version "5.15.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://git.code.sf.net/p/plplot/plplot")
-                    (commit (string-append  name "-" version))))
-              (sha256
-               (base32 "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
-              (file-name (git-file-name name version))))
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://git.code.sf.net/p/plplot/plplot")
+             (commit (string-append  name "-" version))))
+       (sha256
+        (base32 "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
+       (file-name (git-file-name name version))))
     (build-system cmake-build-system)
     (arguments
      `(#:tests? #f

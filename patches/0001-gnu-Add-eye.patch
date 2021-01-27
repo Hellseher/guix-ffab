@@ -1,0 +1,47 @@
+From 95776d9dbddf48be560c33df79945f7510787c0b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 25 Jan 2021 17:43:03 +0000
+Subject: [PATCH] gnu: Add eye
+
+* gnu/packages/astronomy.scm (eye): New variable
+---
+ gnu/packages/astronomy.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0e1a55481f..8eb74b44ae 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -88,6 +88,29 @@ in FITS files.")
+     (license (license:non-copyleft "file://License.txt"
+                           "See License.txt in the distribution."))))
+ 
++(define-public eye
++  (package
++    (name "eye")
++    (version "1.4.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append "http://www.astromatic.net/download/"
++                           name "/" name "-" version ".tar.gz"))
++       (sha256
++        (base32 "092qhzcbrkcfidbx4bv9wz42w297n80jk7a6kwyi9a3fjfz81d7k"))))
++    (build-system gnu-build-system)
++    (home-page "http://www.astromatic.net/software/eye")
++    (synopsis "Small image feature detector using machine learning")
++    (description
++     "In EyE (Enhance Your Extraction) an artificial neural network connected to
++pixels of a moving window (retina) is trained to associate these input stimuli
++to the corresponding response in one or several output image(s).  The resulting
++filter can be loaded in SExtractor to operate complex, wildly non-linear filters
++on astronomical images.  Typical applications of EyE include adaptive filtering,
++feature detection and cosmetic corrections.")
++    (license license:gpl3+)))
++
+ (define-public wcslib
+   (package
+     (name "wcslib")
+-- 
+2.30.0
+
