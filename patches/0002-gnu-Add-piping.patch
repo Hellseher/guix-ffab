@@ -1,0 +1,54 @@
+From 31ea489d0fd8a34d3a1c4235491897bc23cb549e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Jan 2021 01:39:25 +0000
+Subject: [PATCH 2/4] gnu: Add piping
+
+* gnu/packages/lisp-xyz.scm (sbcl-piping, cl-piping, ecl-piping): New variables
+---
+ gnu/packages/lisp-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index cd436b7b12..c32b285a2a 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1323,6 +1323,36 @@ and macros, primarily for software projects written in CL by the author.")
+ (define-public ecl-jpl-util
+   (sbcl-package->ecl-package sbcl-jpl-util))
+ 
++(define-public sbcl-piping
++  (let ((commit "c7a4163c00dea7e72bf6ad33d6abac0d5826a656")
++        (revision "1"))
++    (package
++      (name "sbcl-piping")
++      (version (git-version "2.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shinmera/piping/")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0in84qnfkynm36d4n4d6v87vprpi27xrydnga462wfhplji6klv5"))))
++      (build-system asdf-build-system/sbcl)
++      (home-page "https://shinmera.github.io/piping/")
++      (synopsis "Library to enable simple message pipelines")
++      (description
++       "A Common Lisp library to enable simple message pipelines.
++
++This package produces 1 system: @code{PIPING}")
++      (license license:zlib))))
++
++(define-public ecl-piping
++  (sbcl-package->ecl-package sbcl-piping))
++
++(define-public cl-piping
++  (sbcl-package->cl-source-package sbcl-piping))
++
+ (define-public sbcl-jpl-queues
+   (package
+     (name "sbcl-jpl-queues")
+-- 
+2.30.0
+

@@ -1,0 +1,48 @@
+From b785a5a5a0faa6a337de8da194fecbfa445a92e7 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 30 Jan 2021 23:36:46 +0000
+Subject: [PATCH] gnu: Upadate puri to the latest commit
+
+* gnu/packages/lisp-xyz.scm (sbcl-puri)
+  [commmit] updated to the latest which has rafactoring for modern ASDF
+  [revision] 1 -> 2
+---
+ gnu/packages/lisp-xyz.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 83a406c038..4bf4ea5b62 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -2408,8 +2408,8 @@ tester module.")
+   (sbcl-package->ecl-package sbcl-ptester))
+ 
+ (define-public sbcl-puri
+-  (let ((commit "ef5afb9e5286c8e952d4344f019c1a636a717b97")
+-        (revision "1"))
++  (let ((commit "4bbab89d9ccbb26346899d1f496c97604fec567b")
++        (revision "2"))
+     (package
+       (name "sbcl-puri")
+       (version (git-version "1.5.7" revision commit))
+@@ -2417,14 +2417,16 @@ tester module.")
+        (origin
+          (method git-fetch)
+          (uri (git-reference
++               ;; Mirror: https://gitlab.common-lisp.net/pmarek/puri
+                (url "http://git.kpe.io/puri.git")
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+-          (base32 "1vm25pdl92laj72p5vyd538kf3cjy2655z6bdc99h20ana2p231s"))))
++          (base32 "0gq2rsr0aihs0z20v4zqvmdl4szq53b52rh97pvnmwrlbn4mapmd"))))
+       (build-system asdf-build-system/sbcl)
+       (native-inputs
+        `(("ptester" ,sbcl-ptester)))
++      ;; Quickdocs is dead
+       (home-page "http://quickdocs.org/puri/")
+       (synopsis "Portable URI Library")
+       (description
+-- 
+2.30.0
+

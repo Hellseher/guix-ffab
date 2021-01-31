@@ -1,8 +1,10 @@
 #+title: Pgloader
-#+modified: <2021-01-19 Tue 22:30:37 GMT>
+#+modified: <2021-01-31 Sun 00:07:23 GMT>
 
 * DONE pgloader
 CLOSED: [2021-01-19 Tue 22:25]
+
+- https://issues.guix.gnu.org/45996
 
 - https://issues.guix.gnu.org/44993
 - https://issues.guix.gnu.org/45025
@@ -14,16 +16,8 @@ CLOSED: [2021-01-19 Tue 22:25]
 - https://issues.guix.gnu.org/45452
 - https://issues.guix.gnu.org/45602
 - https://issues.guix.gnu.org/45639
-- https://issues.guix.gnu.org/45678
-- https://issues.guix.gnu.org/45719
-- https://issues.guix.gnu.org/45740
-- https://issues.guix.gnu.org/45775
-- https://issues.guix.gnu.org/45846
-- https://issues.guix.gnu.org/45866
-- https://issues.guix.gnu.org/45921
-- https://issues.guix.gnu.org/45996
 
-- [X] pgloader [35/35] [100%]
+- [X] pgloader [3/3] [100%]
   1. [X] abnf [100%]
      - [X] :packed <2020-12-05 Sat>
      - [X] :patch-sent <2020-12-07 Mon>
@@ -36,20 +30,22 @@ CLOSED: [2021-01-19 Tue 22:25]
      - [X] :packed <2021-01-16 Sat>
      - [X] :patch-sent <2021-01-16 Sat>
      - [X] :patch-applied-upstream <2021-01-17 Sun>
+       + https://issues.guix.gnu.org/45921
      - [X] :depends-on [1/1]
        + [X] sbcl
-  4. [X] cl-base64
-  5. [X] cl-csv
-  6. [X] cl-fad
-  7. [X] cl-log [100%]
+- [X] cl-base64
+  1. [X] cl-csv
+  2. [X] cl-fad
+  3. [X] cl-log [100%]
      - [X] :packed <2020-12-02 Wed>
      - [X] :patch-sent <2020-12-02 Wed>
      - [X] :patch-applied-upstream <2020-12-05 Sat>
-  8. [X] cl-markdown [100%]
+  4. [X] cl-markdown [100%]
      - version-0.10.4
      - [X] :packed <2021-01-07 Thu>
      - [X] :patch-sent <2021-01-07 Thu>
      - [X] :patch-applied-upstream <2021-01-08 Fri>
+       + https://issues.guix.gnu.org/45719
      - [X] :depends-on [6/6]
        + [X] dynamic-classes [100%]
          - https://github.com/gwkkwg/dynamic-classes
@@ -63,43 +59,44 @@ CLOSED: [2021-01-19 Tue 22:25]
        + [X] cl-ppcre
        + [X] metabang-bind
        + [X] metatilities-base "0.6.0"
-  9. [X] cl-mustache [100%]
+  5. [X] cl-mustache [100%]
      - https://github.com/kanru/cl-mustache
        - WRONG: https://github.com/osa1/cl-mustache
      - [X] :packed <2020-12-21 Mon>
      - [X] :patch-sent <2020-12-21 Mon>
      - [X] :patch-applied-upstream <2020-12-22 Tue>
-  10. [X] closer-mop
-  11. [X] cl-postgres [100%] - part of Postmodern
-      - [X] :packed <2021-01-14 Thu>
-      - [X] :patch-sent <2021-01-14 Thu>
-      - [X] :patch-applied-upstream <2021-01-15 Fri>
-      - [X] :depends-on [4/4]
-        - [X] md5
-        - [X] split-sequence
-        - [X] cl-base64
-        - [X] uax-15 [100%]
-          + [X] :packed <2020-12-26 Sat>
-          + [X] :patch-sent <2020-12-26 Sat>
-          + [X] :patch-applied-upstream <2020-12-28 Mon>
-          + [X] :depends-on [3/3]
-            - [X] split-sequence
-            - [X] cl-ppcre
-            - [X] uiop - part of ASDF
-  12. [X] cl-ppcre
-  13. [X] command-line-arguments [100%]
-      - https://github.com/fare/command-line-arguments
-      - [X] :packed <2020-12-12 Sat>
-      - [X] :patch-sent <2020-12-12 Sat>
-      - [X] :patch-applied-upstream <2020-12-12 Sat>
-  14. [X] db3 [100%]
+  6. [X] closer-mop
+  7. [X] cl-postgres [100%] - part of Postmodern
+     - [X] :packed <2021-01-14 Thu>
+     - [X] :patch-sent <2021-01-14 Thu>
+       + https://issues.guix.gnu.org/45866
+     - [X] :patch-applied-upstream <2021-01-15 Fri>
+     - [X] :depends-on [4/4]
+       - [X] md5
+       - [X] split-sequence
+       - [X] cl-base64
+       - [X] uax-15 [100%]
+         + [X] :packed <2020-12-26 Sat>
+         + [X] :patch-sent <2020-12-26 Sat>
+         + [X] :patch-applied-upstream <2020-12-28 Mon>
+         + [X] :depends-on [3/3]
+           - [X] split-sequence
+           - [X] cl-ppcre
+           - [X] uiop - part of ASDF
+  8. [X] cl-ppcre
+  9. [X] command-line-arguments [100%]
+     - https://github.com/fare/command-line-arguments
+     - [X] :packed <2020-12-12 Sat>
+     - [X] :patch-sent <2020-12-12 Sat>
+     - [X] :patch-applied-upstream <2020-12-12 Sat>
+  10. [X] db3 [100%]
       - [X] :packed <2021-01-03 Sun>
       - [X] :patch-sent <2021-01-03 Sun>
       - [X] :patch-applied-upstream <2021-01-04 Mon>
-  15. [X] drakma
-  16. [X] esrap
-  17. [X] flexi-streams
-  18. [X] ixf [100%]
+  11. [X] drakma
+  12. [X] esrap
+  13. [X] flexi-streams
+  14. [X] ixf [100%]
       - [X] :packed <2021-01-01 Fri>
       - [X] :patch-sent <2021-01-01 Fri>
       - [X] :patch-applied-upstream <2021-01-02 Sat>
@@ -111,19 +108,21 @@ CLOSED: [2021-01-19 Tue 22:25]
         - [X] local-time
         - [X] cl-ppcre
         - [X] ieee-floats
-  19. [X] local-time
-  20. [X] lparallel
-  21. [X] metabang-bind
-  22. [X] mssql [100%]
+  15. [X] local-time
+  16. [X] lparallel
+  17. [X] metabang-bind
+  18. [X] mssql [100%]
       - [X] :packed <2021-01-13 Wed>
       - [X] :patch-sent <2021-01-13 Wed>
       - [X] :patch-applied-upstream <2021-01-14 Thu>
+        - https://issues.guix.gnu.org/45846
       - [X] :depends-on [5/5]
         + [X] libsybdb
           - https://github.com/FreeTDS/freetds
           - [X] :packed <2021-01-10 Sun>
           - [X] :patch-sent <2021-01-10 Sun>
           - [X] :patch-applied-upstream <2021-01-14 Thu>
+            - https://issues.guix.gnu.org/45775
         + [X] cffi
         + [X] iterate
         + [X] garbage-pools
@@ -131,15 +130,17 @@ CLOSED: [2021-01-19 Tue 22:25]
           - [X] :packed <2021-01-08 Fri>
           - [X] :patch-sent <2021-01-09 Sat>
           - [X] :patch-applied-upstream <2021-01-10 Sun>
+            + https://issues.guix.gnu.org/45740
         + [X] parse-number
-  23. [X] postmodern
-  24. [X] py-configparser [100%]
+  19. [X] postmodern
+  20. [X] py-configparser [100%]
       - [X] :packed <2020-12-24 Thu>
       - [X] :patch-sent <2021-01-05 Tue>
       - [X] :patch-applied-upstream <2021-01-06 Wed>
+        - https://issues.guix.gnu.org/45678
       - [X] :depends-on [1/1]
         + [X] parse-number
-  25. [X] qmynd [100%]
+  21. [X] qmynd [100%]
       - [X] :packed <2020-12-19 Sat>
       - [X] :patch-sent <2020-12-19 Sat>
       - [X] :patch-applied-upstream <2020-12-19 Sat>
@@ -163,19 +164,19 @@ CLOSED: [2021-01-19 Tue 22:25]
         - [X] chipz
         - [X] cl+ssl
         - [X] salza2
-  26. [X] quri
-  27. [X] simple-date [100%] - part of Postmodern
+  22. [X] quri
+  23. [X] simple-date [100%] - part of Postmodern
       - [X] :packed <2021-01-14 Thu>
       - [X] :patch-sent <2021-01-14 Thu>
       - [X] :patch-applied-upstream <2021-01-15 Fri>
-  28. [X] split-sequence
-  29. [X] sqlite
-  30. [X] trivial-backtrace
-  31. [X] uiop
-  32. [X] usocket
-  33. [X] uuid
-  34. [X] yason
-  35. [X] zs3 [100%]
+  24. [X] split-sequence
+  25. [X] sqlite
+  26. [X] trivial-backtrace
+  27. [X] uiop
+  28. [X] usocket
+  29. [X] uuid
+  30. [X] yason
+  31. [X] zs3 [100%]
       - [X] :packed <2020-12-03 Thu>
       - [X] :patch-sent <2020-12-03 Thu>
       - [X] :patch-applied-upstream <2020-12-05 Sat>

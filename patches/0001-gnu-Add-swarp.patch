@@ -1,0 +1,43 @@
+From a7b548d5c4ca5ba6ff9fad061a50813b27d74d61 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 28 Jan 2021 21:20:37 +0000
+Subject: [PATCH] gnu: Add swarp
+
+* gnu/packages/astronomy.scm (swarp): New variable
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6476a18d57..aa6533a117 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -345,6 +345,25 @@ generates object lists in ASCII which can read by the SkyMaker program to produc
+ realistic astronomical fields.  Stuff is part of the EFIGI development project.")
+     (license license:gpl3+)))
+ 
++(define-public swarp
++  (package
++    (name "swarp")
++    (version "2.38.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append "https://www.astromatic.net/download/"
++                           name "/" name "-" version ".tar.gz"))
++       (sha256
++        (base32 "1i670waqp54vin1cn08mqckcggm9zqd69nk7yya2vvqpdizn6jpm"))))
++    (build-system gnu-build-system)
++    (home-page "https://www.astromatic.net/software/swarp")
++    (synopsis "Image regridding and co-addition")
++    (description
++     "SWarp is a program that resamples and co-adds together FITS images using
++any arbitrary astrometric projection defined in the WCS standard.")
++    (license license:gpl3+)))
++
+ (define-public celestia
+   (let ((commit "9dbdf29c4ac3d20afb2d9a80d3dff241ecf81dce"))
+     (package
+-- 
+2.30.0
+

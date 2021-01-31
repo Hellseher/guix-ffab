@@ -1,13 +1,13 @@
 #+TITLE: Radiance
 #+created: <2021-01-25 Mon 13:21:10 GMT>
-#+modified: <2021-01-27 Wed 22:08:53 GMT>
+#+modified: <2021-01-31 Sun 12:35:42 GMT>
 
-* TODO radiance [0/4][0%]
+* TODO radiance [2/4][50%]
 - https://github.com/Shirakumo/radiance
-- [ ] :packed
+- [X] :packed <2021-01-31 Sun>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [14/15][93%]
+- [X] :inputs [15/15][100%]
   - [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
   - [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
   - [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
@@ -62,20 +62,22 @@
       - https://issues.guix.gnu.org/46105
     - [X] :inputs [1/1][100%]
       + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
-  - [-] deploy [0/4][0%]
+  - [X] deploy [4/4][100%]
     - https://github.com/Shinmera/deploy
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [-] :inputs [3/5][60%]
+    - [X] :packed <2021-01-30 Sat>
+    - [X] :patch-sent <2021-01-31 Sun>
+    - [X] :patch-applied-upstream <2021-01-31 Sun>
+      + https://issues.guix.gnu.org/46200
+    - [X] :inputs [5/5][100%]
       + [X] cffi (gnu/packages/lisp-xyz.scm:2548:2)
       + [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
       + [X] trivial-features (gnu/packages/lisp-xyz.scm:1137:4)
-      + [-] cl-out123 [2/4][50%]
+      + [X] cl-out123 [4/4][100%]
         + https://github.com/Shirakumo/cl-out123
         + [X] :packed <2021-01-27 Wed>
-        + [ ] :patch-sent
-        + [ ] :patch-applied-upstream
+        + [X] :patch-sent <2021-01-29 Fri>
+        + [X] :patch-applied-upstream <2021-01-30 Sat>
+          - https://issues.guix.gnu.org/46173
         + [X] :inputs [6/6][100%]
           + [X] libout123 (gnu/packages/mp3.scm mpg123)
           + [X] cffi (gnu/packages/lisp-xyz.scm:2519:2)
@@ -83,30 +85,36 @@
           + [X] trivial-garbage (gnu/packages/lisp-xyz.scm:2760:2)
           + [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
           + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
-      + [-] cl-mpg123 [0/4][0%]
+      + [X] cl-mpg123 [4/4][100%]
         + https://github.com/Shirakumo/cl-mpg123
-        + [ ] :packed
-        + [ ] :patch-sent
-        + [ ] :patch-applied-upstream
-        + [-] :inputs [5/7][71%]
+        + [X] :packed <2021-01-31 Sun>
+        + [X] :patch-sent <2021-01-31 Sun>
+        + [X] :patch-applied-upstream <2021-01-31 Sun>
+          - https://issues.guix.gnu.org/46200
+        + [X] :inputs [7/7][100%]
           - [X] libmpg123 (gnu/packages/mp3.scm mpg123)
           - [X] cffi (gnu/packages/lisp-xyz.scm:2519:2)
           - [X] trivial-features (gnu/packages/lisp-xyz.scm:1137:4)
           - [X] trivial-garbage (gnu/packages/lisp-xyz.scm:2760:2)
           - [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
-          - [ ] cl-out123
-          - [-] verbose [0/4][0%]
+          - [X] cl-out123
+          - [X] verbose [4/4][100%]
             - https://github.com/Shinmera/verbose/
-            - [ ] :packed
-            - [ ] :patch-sent
-            - [ ] :patch-applied-upstream
-            - [-] :inputs [4/5][80%]
+            - [X] :packed <2021-01-30 Sat>
+            - [X] :patch-sent <2021-01-31 Sun>
+            - [X] :patch-applied-upstream <2021-01-31 Sun>
+              - https://issues.guix.gnu.org/46200
+            - [X] :inputs [5/5][100%]
               + [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
-              + [ ] piping [0/3][0%]
+              + [X] piping [3/3][100%]
                 - https://github.com/Shinmera/piping/
-                - [ ] :packed
-                - [ ] :patch-sent
-                - [ ] :patch-applied-upstream
+                - [X] :packed <2021-01-30 Sat>
+                - [X] :patch-sent <2021-01-31 Sun>
+                - [X] :patch-applied-upstream <2021-01-31 Sun>
+                  - https://issues.guix.gnu.org/46200
               + [X] dissect (gnu/packages/lisp-xyz.scm:10055:4)
               + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
               + [X] local-time (gnu/packages/lisp-xyz.scm:4397:4)
+* Modules
+- https://gitlab.com/jason.melbye/r-djula
+- https://github.com/Shirakumo/radiance-contribs

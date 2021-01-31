@@ -1,0 +1,43 @@
+From e8ec4fda81d86a06cb5436f47f7c2649abb4b7e1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 28 Jan 2021 21:09:56 +0000
+Subject: [PATCH] ghu: Add weightwatcher
+
+* gnu/packages/astronomy.scm (weightwatcher): New variable
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 58fefa04a0..4fce2d3530 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -150,6 +150,25 @@ coordinate systems in a @dfn{FITS} (Flexible Image Transport System) image
+ header.")
+     (license license:lgpl3+)))
+ 
++(define-public weightwatcher
++  (package
++    (name "weightwatcher")
++    (version "1.12")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append "https://www.astromatic.net/download/"
++                           name "/" name "-" version ".tar.gz"))
++       (sha256
++        (base32 "1zaqd8d9rpgcwjsp92q3lkfaa22i20gppb91dz34ym54swisjc2p"))))
++    (build-system gnu-build-system)
++    (home-page "https://www.astromatic.net/software/weightwatcher")
++    (synopsis "Weight-map/flag-map multiplexer and rasteriser")
++    (description
++     "Weightwatcher is a program that resamples and co-adds together FITS images using
++any arbitrary astrometric projection defined in the WCS standard.")
++    (license license:gpl3+)))
++
+ (define-public gnuastro
+   (package
+     (name "gnuastro")
+-- 
+2.30.0
+

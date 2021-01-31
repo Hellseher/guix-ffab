@@ -1,0 +1,8 @@
+#+TITLE: Guix Patches: lisp-xyz
+
+* TODO cl-plplot [0/4][0%]
+- https://github.com/HazenBabcock/cl-plplot
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]

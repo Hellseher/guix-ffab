@@ -1,8 +1,8 @@
 #+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-27 Wed 22:26:35 GMT>
+#+modified: <2021-01-31 Sun 13:09:23 GMT>
 
-* TODO astromatic software [4/10][40%]
+* TODO AstrOmatic software [8/10][80%]
 - https://github.com/astromatic
 - http://www.astromatic.net/software
 ** DONE eye [3/3][100%]
@@ -28,43 +28,39 @@ CLOSED: [2021-01-27 Wed 11:26]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [1/2][50%]
   - [X] fftw
-  - [-] plplot [0/5][0%]
+  - [-] plplot [4/5][80%]
     + http://plplot.sourceforge.net/
     + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
       (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts
       are installed on a user's computer.
-    + [ ] :packed
-    + [ ] :patch-sent
+    + [X] :packed <2021-01-28 Thu>
+    + [X] :patch-sent (gnu/packages/maths) <2021-01-28 Thu>
     + [ ] :paptch-applied-upstream
-    + [-] inputs [14/15]
+      - https://issues.guix.gnu.org/46160
+    + [X] inputs [13/13]
+      - [X] cairo (gnu/packages/gtk.scm:123:2)
+      - [X] freetype
+      - [X] gfortran (gnu packages gcc)
+      - gnat (ADA compiler not included)
+      - [X] libgd (gnu/packages/gd.scm:40:2)
+      - [X] libharu (gnu/packages/pdf.scm)
+      - [X] lua5.1
+      - [X] ocaml (gnu/packages/ocaml.scm)
+      - octave  (build took too long with Octave)
+      - [X] pango
       - [X] qhull (gnu packages maths)
-      - [X] cairo
       - [X] shapelib [3/3][100%]
         - https://github.com/OSGeo/shapelib
         - [X] :packed <2021-01-27 Wed>
         - [X] :patch-sent (gnu/packages/geo.scm) <2021-01-27 Wed>
         - [X] :paptch-applied-upstream <2021-01-27 Wed>
           - https://issues.guix.gnu.org/46141
-      - [X] pango
-      - [X] freetype
-      - [X] gfortran (gnu packages gcc)
-      - [X] gnat
-      - [ ] libgd [0/3][0%]
-        - https://github.com/libgd/libgd
-        - [ ] :packed
-        - [ ] :patch-sent
-        - [ ] :paptch-applied-upstream
-      - [X] libharu (gnu/packages/pdf.scm)
-      - [X] lua5.1
-      - [X] ocaml
-      - [X] octave
       - [X] tcl
       - [X] tk
       - [X] wxwidgets
-    + [-] native-inputs [2/3]
+    + [X] native-inputs [2/2]
       + [X] pkg-config
-      + [X] swig
-      + [ ] atlas
+      + [X] swig (gnu/packages/swig.scm)
 ** TODO scamp [0/4][0%]
 - http://www.astromatic.net/software/scamp
 - synosis :: astrometric calibration and photometric homogenisation
@@ -83,21 +79,37 @@ CLOSED: [2021-01-25 Mon 17:27]
 - [X] :inputs [2/2]
   + [X] openblas (gnu/packages/maths.scm:3960:2)
   + [X] fftwf (gnu/packages/algebra.scm)
-** TODO skymaker [3/4][75%]
+** DONE skymaker [4/4][100%]
+CLOSED: [2021-01-28 Thu 13:24]
 - http://www.astromatic.net/software/skymaker
 - synosis :: image simulation
 - [X] :packed <2021-01-27 Wed>
 - [X] :patch-sent (gnu/packages/astonomy.scm) <2021-01-27 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2021-01-28 Thu>
   - https://issues.guix.gnu.org/46143
 - [X] :inputs [1/1][100%]
   + [X] fftwf (gnu/packages/algebra.scm)
-** TODO stuff [/][%]
+** DONE stuff [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: catalogue simulation
-** TODO swarp [/][%]
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
+** DONE swarp [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: image regridding and co-addition
-** TODO weightwatcher [/][%]
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
+** DONE weightwatcher [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: weight-map/flag-map multiplexer and rasteriser
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
 ** DONE stiff [3/3] [100%]
 CLOSED: [2021-01-22 Fri 23:03]
   - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
@@ -111,6 +123,7 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
+
 * C-Munipack library [0/0][0%]
 - https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
   - synopsis ::  The extensive set of functions with simple application interface, that provides the
@@ -121,12 +134,16 @@ CLOSED: [2021-01-22 Fri 23:03]
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
 
-* INDI [0%]
-** TODO indi [2/4][50%]
+* INDI [33%]
+** DONE indi [4/4][100%]
+CLOSED: [2021-01-31 Sun 13:07]
 - https://github.com/indilib/indi
+- synospsis :: INDI is a standard for astronomical instrumentation control. INDI Library is an Open
+  Source POSIX implementation of the Instrument-Neutral-Device-Interface protocol.
 - [X] :packed <2021-01-21 Thu>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2021-01-31 Sun>
+- [X] :paptch-applied-upstream <2021-01-31 Sun>
+  - https://issues.guix.gnu.org/46201
 - [X] inputs [9/9]
   + [X] libusb
   + [X] libnova
@@ -143,6 +160,7 @@ CLOSED: [2021-01-22 Fri 23:03]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
+** TODO indi-service-type
 
 * TODO ap-i [1/5][20%]
 
@@ -162,8 +180,12 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [1/2][50%]
   + [X] fpc (gnu/packages/pascal.scm:56:2)
-  + [ ] lazarus [/][%]
+  + [-] lazarus [0/4][0%]
     - https://lazarus.freepascal.org
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [-] :inputs [0/0][0%]
 
 ** TODO ccdciel [/][%]
 - https://github.com/pchev/ccdciel
@@ -172,6 +194,31 @@ CLOSED: [2021-01-25 Mon 17:25]
 ** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
+* TODO astropy [0/1][0%]
+- https://docs.astropy.org/en/stable/io/fits/
+- https://www.astropy.org/affiliated/
+
+** TODO astropy [0/3][0%]
+- https://github.com/astropy/astropy
+- https://pypi.org/project/astropy/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0][0%]
+  - [ ] jplephem [/][%]
+    - https://github.com/brandon-rhodes/python-jplephem
+
+
+* XEphem [/][%]
+- http://www.clearskyinstitute.com/xephem/
+- synopsis ::
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [1/2][50%]
+
 * etc
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
 - http://www.iausofa.org/current_C.html#Downloads
+- https://ascl.net/1112.014
+- https://rhodesmill.org/skyfield/
