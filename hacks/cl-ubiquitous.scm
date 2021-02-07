@@ -21,7 +21,7 @@
          (sha256
           (base32 "1xlkaqmjcpkiv2xl2s2pvvrv976dlc846wm16s1lj62iy1315i49"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
+      (propogated-inputs
        `(("bordeaux-threads" ,sbcl-bordeaux-threads)))
       (home-page "https://shinmera.github.io/ubiquitous/")
       (synopsis "Provides universal application configuration mechanism")

@@ -1,12 +1,14 @@
 #+TITLE: Radiance
 #+created: <2021-01-25 Mon 13:21:10 GMT>
-#+modified: <2021-01-31 Sun 12:35:42 GMT>
+#+modified: <2021-02-04 Thu 00:28:51 GMT>
 
-* TODO radiance [2/4][50%]
+* DONE radiance [4/4][100%]
+CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
 - [X] :packed <2021-01-31 Sun>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2021-02-02 Tue>
+- [X] :patch-applied-upstream <2021-02-04 Thu>
+  - https://issues.guix.gnu.org/46250
 - [X] :inputs [15/15][100%]
   - [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
   - [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)

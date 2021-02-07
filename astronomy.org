@@ -1,6 +1,6 @@
 #+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-01-31 Sun 13:09:23 GMT>
+#+modified: <2021-02-07 Sun 12:49:34 GMT>
 
 * TODO AstrOmatic software [8/10][80%]
 - https://github.com/astromatic
@@ -203,11 +203,43 @@ CLOSED: [2021-01-25 Mon 17:25]
 - https://pypi.org/project/astropy/
 - [ ] :packed
 - [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-  - [ ] :inputs [0/0][0%]
-  - [ ] jplephem [/][%]
-    - https://github.com/brandon-rhodes/python-jplephem
-
+- [-] :paptch-applied-upstream
+  - [-] :inputs [16/19][84%]
+    + [ ] asdf [0/0][0%]
+      - https://github.com/asdf-format/asdf
+    + [X] beautifulsoup4 (gnu/packages/python-xyz.scm:7694:2)
+    + [X] bleach (gnu/packages/python-xyz.scm:9959:2)
+    + [X] bottleneck (gnu/packages/python-science.scm:413:2)
+    + [X] dask (gnu/packages/python-xyz.scm:19866:2)
+    + [X] h2py (gnu/packages/python-xyz.scm:868:2)
+    + [X] html5lib (gnu/packages/python-web.scm:1061:2)
+    + [X] jplephem [4/4][100%]
+      + https://github.com/brandon-rhodes/python-jplephem
+      + [X] :packed <2021-02-01 Mon>
+      + [X] :patch-sent <2021-02-01 Mon>
+      + [X] :paptch-applied-upstream <2021-02-07 Sun>
+        - https://issues.guix.gnu.org/46237
+      + [X] :inputs [1/1][100%]
+        - [X] numpy
+    + [X] matplotlib
+    + [X] mpmath
+    + [X] numpy
+    + [X] pandas
+    + [ ] pyerfa [0/3][0%]
+      + https://github.com/liberfa/pyerfa
+      + [ ] :packed
+      + [ ] :patch-sent
+      + [ ] :paptch-applied-upstream
+    + [X] pytz ( gnu/packages/time.scm:119:2)
+    + [X] pyyaml
+    + [X] scipy
+    + [X] scipy (gnu/packages/python-science.scm:51:2)
+    + [ ] skyfield [0/3][0%]
+      - https://github.com/skyfielders/python-skyfield
+      - [ ] :packed
+      - [ ] :patch-sent
+      - [ ] :paptch-applied-upstream
+    + [X] sortedcontainers
 
 * XEphem [/][%]
 - http://www.clearskyinstitute.com/xephem/
@@ -217,8 +249,24 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [1/2][50%]
 
+* TODO astoalign [0/4][0%]
+- https://github.com/quatrope/astroalign
+- synopsis ::
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/1][0%]
+  + [-] sep [1/4][25%]
+    - [ ] :packed <2021-02-02 Tue>
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [X] :inputs [2/2][100%]
+      + [X] cython
+      + [X] numpy
+
 * etc
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
 - http://www.iausofa.org/current_C.html#Downloads
 - https://ascl.net/1112.014
 - https://rhodesmill.org/skyfield/
+- https://github.com/esheldon/fitsio

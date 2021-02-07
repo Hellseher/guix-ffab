@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [36/37][97%]
+* Accepted in upstream [45/48][93%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -38,3 +38,14 @@
 - [X] <2021-01-30 Sat> https://issues.guix.gnu.org/46198 <2021-01-31 Sun>
 - [X] <2021-01-31 Sun> https://issues.guix.gnu.org/46200 <2021-01-31 Sun>
 - [X] <2021-01-31 Sun> https://issues.guix.gnu.org/46201 <2021-01-31 Sun>
+- [ ] <2021-02-01 Mon> https://issues.guix.gnu.org/46234
+- [X] <2021-02-01 Mon> https://issues.guix.gnu.org/46237 <2021-02-07 Sun>
+- [X] <2021-02-02 Tue> https://issues.guix.gnu.org/46248 <2021-02-02 Tue>
+- [X] <2021-02-02 Tue> https://issues.guix.gnu.org/46250 <2021-02-04 Thu>
+- [X] <2021-02-02 Tue> https://issues.guix.gnu.org/46251 <2021-02-02 Tue>
+- [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46261 <2021-02-03 Wed>
+- [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46263 <2021-02-03 Wed>
+- [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46264 <2021-02-03 Wed>
+- [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46281 <2021-02-04 Thu>
+- [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46282 <2021-02-04 Thu>
+- [ ] <2021-02-05 Fri> https://issues.guix.gnu.org/46324

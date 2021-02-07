@@ -1,44 +1,26 @@
-From f51a42cecff89d8fc4b892d07d377959122d8f5c Mon Sep 17 00:00:00 2001
+From d4edcdcd71cc2c47caf2511abeb1bf153434d25c Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Thu, 28 Jan 2021 20:37:49 +0000
+Date: Thu, 4 Feb 2021 20:36:32 +0000
 Subject: [PATCH] gnu: Add plplot
 
 * gnu/packages/maths.scm (plplot): New variable
 ---
- gnu/packages/maths.scm | 93 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+ gnu/packages/maths.scm | 60 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
 diff --git a/gnu/packages/maths.scm b/gnu/packages/maths.scm
-index eff1480e62..97027c8039 100644
+index eff1480e62..cfc57734da 100644
 --- a/gnu/packages/maths.scm
 +++ b/gnu/packages/maths.scm
-@@ -42,6 +42,7 @@
- ;;; Copyright © 2020 Vinicius Monego <monego@posteo.net>
- ;;; Copyright © 2020 Simon Tournier <zimon.toutoune@gmail.com>
- ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
-+;;; Copyright © 2021 Sharlatan Hellseher <sharlatanusGmail.com>
- ;;;
- ;;; This file is part of GNU Guix.
- ;;;
-@@ -91,6 +92,7 @@
-   #:use-module (gnu packages flex)
-   #:use-module (gnu packages fltk)
-   #:use-module (gnu packages fontutils)
+@@ -107,6 +107,7 @@
+   #:use-module (gnu packages llvm)
+   #:use-module (gnu packages logging)
+   #:use-module (gnu packages lua)
 +  #:use-module (gnu packages geo)
-   #:use-module (gnu packages gettext)
-   #:use-module (gnu packages gcc)
-   #:use-module (gnu packages gd)
-@@ -117,7 +119,9 @@
-   #:use-module (gnu packages multiprecision)
-   #:use-module (gnu packages netpbm)
-   #:use-module (gnu packages onc-rpc)
-+  #:use-module (gnu packages ocaml)
-   #:use-module (gnu packages pcre)
-+  #:use-module (gnu packages pdf)
-   #:use-module (gnu packages popt)
-   #:use-module (gnu packages perl)
-   #:use-module (gnu packages pkg-config)
-@@ -131,6 +135,7 @@
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages xorg)
+@@ -131,6 +132,7 @@
    #:use-module (gnu packages tbb)
    #:use-module (gnu packages scheme)
    #:use-module (gnu packages shells)
@@ -46,11 +28,14 @@ index eff1480e62..97027c8039 100644
    #:use-module (gnu packages tcl)
    #:use-module (gnu packages texinfo)
    #:use-module (gnu packages tex)
-@@ -5870,6 +5875,94 @@ termination analysis via the automatic synthesis of linear ranking
- functions.")
-     (license license:gpl3+)))
+@@ -954,6 +956,64 @@ plotting engine by third-party applications like Octave.")
+     (license (license:fsf-free
+               "http://gnuplot.cvs.sourceforge.net/gnuplot/gnuplot/Copyright"))))
  
 +(define-public plplot
++  ;; TODO: (Sharlatan-20210204T203350+0000): It needs to be split int some other
++  ;; logical package like plplot-gtk plplot-qt plplot-minimal etc. For now I try
++  ;; to include as much bindings as I could achieve.
 +  (package
 +    (name "plplot")
 +    (version "5.15.0")
@@ -58,89 +43,56 @@ index eff1480e62..97027c8039 100644
 +     (origin
 +       (method git-fetch)
 +       (uri (git-reference
-+             ;; Mirror: https://github.com/PLplot/PLplot
++             ;; Official mirror in case Sourseforge blocks access
++             ;; (url "https://github.com/PLplot/PLplot")
 +             (url "https://git.code.sf.net/p/plplot/plplot")
-+             (commit (string-append  name "-" version))))
++             (commit (string-append name "-" version))))
 +       (sha256
 +        (base32 "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
 +       (file-name (git-file-name name version))))
 +    (build-system cmake-build-system)
 +    (arguments
++     ;; NOTE: (Sharlatan-20210204T120351+0000): Tests failing on examples_cxx
 +     `(#:tests? #f
 +       #:configure-flags
 +       (let ((out (assoc-ref %outputs "out")))
 +         (list
-+          "-DBUILD_DOC=ON"
-+          "-DBUILD_TEST=ON"
++          ;; "-DBUILD_TEST=ON"
++          "-DENABLE_wxwidgets=ON"
 +          "-DCMAKE_BUILD_TYPE=Release"
-+          "-DCMAKE_RULE_MESSAGES=OFF"
-+          "-DENABLE_ada=ON"
-+          "-DENABLE_cxx=ON"
-+          "-DENABLE_d=ON"
-+          "-DENABLE_fortran=ON"
-+          "-DENABLE_lua=ON"
-+          "-DENABLE_ocaml=ON"
-+          "-DENABLE_octave=ON"
-+          "-DENABLE_python=ON"
-+          "-DENABLE_tcl=ON"
-+          "-DENABLE_tkX=ON"
-+          "-DNON_TRANSITIVE=ON"
-+          "-DPLD_cgm=ON"
-+          "-DPLD_ps=ON"
-+          "-DPLD_psttf=OFF"
-+          "-DPLD_svg=ON"
-+          "-DPLD_tk=ON"
-+          "-DUSE_RPATH=OFF"
++          "-DCMAKE_SKIP_BUILD_RPATH=OFF"
 +          (string-append "-DCMAKE_INSTALL_LIBDIR=" out "/lib")
-+          (string-append "-DCMAKE_INSTALL_PREFIX=" out)))
-+       ;; NOTE: (Sharlatan-20210128T120312+0000): failing on example_cxx, I
-+       ;; leave it for someone who has more knowledge in CMake. Tests are
-+       ;; disalbed for now.
-+       ;; #:phases
-+       ;; (modify-phases %standard-phases
-+       ;;   (replace  'check
-+       ;;     (lambda _
-+       ;;       (invoke "ctest"))))
-+       ))
++          (string-append "-DCMAKE_INSTALL_PREFIX=" out)))))
 +    (native-inputs
 +     `(("pkg-config" ,pkg-config)
 +       ("swig" ,swig)))
-+    ;; NOTE: (Sharlatan-20210128T201941+0000): It needs to be reviewed properly, if
-+    ;; octave is included it takes incredibly long time to build `plplot'
 +    (inputs
-+     `(("cairo" ,cairo)
-+       ("freetype" ,freetype)
-+       ("gd" ,gd)
++     `(("freetype", freetype)
 +       ("gfortran" ,gfortran)
-+       ("libharu" ,libharu)
-+       ("lua" ,lua)
-+       ("ocaml" ,ocaml)
++       ("libltdl" ,libltdl)
++       ("lua", lua)
++       ("numpy", python-numpy)
++       ("octave", octave)
 +       ("pango" ,pango)
-+       ("python" ,python)
++       ("perl", perl)
++       ("python", python)
 +       ("qhull" ,qhull)
 +       ("shapelib" ,shapelib)
-+       ("tcllib" ,tcllib)
-+       ("tk" ,tk)
-+       ("wxwidgets" ,wxwidgets)))
++       ("tcl", tcl)
++       ("tk", tk)
++       ("wxwidgets" ,wxwidgets)
++       ("xml-dom" ,perl-xml-dom)
++       ("xml-dom" ,perl-xml-parser)))
 +    (home-page "http://plplot.org/")
-+    (synopsis "Ultimate plotting")
++    (synopsis "Scientific graphics plotting library")
 +    (description
 +     "PLplot is a cross-platform software package for creating scientific plots
-+whose (UTF-8) plot symbols and text are limited in practice only by what
-+Unicode-aware system fonts are installed on a user's computer.  The PLplot
-+software has a clean architecture that is organized as a core C library,
-+separate language bindings for that library, and separate device drivers that
-+are dynamically loaded by the core library which control how the plots are
-+presented in noninteractive and interactive plotting contexts.
-+
-+Output file formats: CGM GIF JPEG PBM PDF PNG PostScript SVG Xfig
-+Interactive platforms: GDI GTK+PyQt Qt Tcl/Tk wxWidgets X
-+Language Bindings: Ada C++ D Fortran Lua OCaml Octave Perl/PDL Python Tcl/Tk")
++whose (UTF-8) plot symbols and text.")
 +    (license license:lgpl2.0))) ; Other terms are in Copyright file
 +
- (define-public speedcrunch
+ (define-public gctp
    (package
-     (name "speedcrunch")
+     (name "gctp")
 -- 
 2.30.0
 

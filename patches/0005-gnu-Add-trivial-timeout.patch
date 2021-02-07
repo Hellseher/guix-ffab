@@ -1,0 +1,59 @@
+From 551eb58e20791838e783136dbaadd2269fd6a04e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Feb 2021 00:15:10 +0000
+Subject: [PATCH 5/5] gnu: Add trivial-timeout
+
+* gnu/packages/lisp-xyz.scm
+  (sbcl-trivial-timeout, cl-trivial-timeout, ecl-trivial-timeout): New variables
+---
+ gnu/packages/lisp-xyz.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 02fb92b9a3..908985865d 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -278,6 +278,40 @@ interactive development model in mind.")
+ (define-public ecl-fiveam
+   (sbcl-package->ecl-package sbcl-fiveam))
+ 
++(define-public sbcl-trivial-timeout
++  (let ((commit "feb869357f40f5e109570fb40abad215fb370c6c")
++        (revision "1"))
++    (package
++      (name "sbcl-trivial-timeout")
++      (version (git-version "0.1.5" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/gwkkwg/trivial-timeout/")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1kninxwvvih9nhh7a9y8lfgi7pdr76675y1clw4ss17vz8fbim5p"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       ;; NOTE: (Sharlatan-20210202T231437+0000): Due to the age of this library
++       ;; tests use some deprecated functionality and keep failing.
++       `(#:tests? #f))
++      (home-page "https://github.com/gwkkwg/trivial-timeout/")
++      (synopsis "OS and Implementation independent access to timeouts")
++      (description
++       "Portable and possibly dangerous timeout library for Common Lisp.
++
++This package provides 1 system: @code{TRIVIAL-TIMEOUT}")
++      (license license:expat))))
++
++(define-public ecl-trivial-timeout
++  (sbcl-package->ecl-package sbcl-trivial-timeout))
++
++(define-public cl-trivial-timeout
++  (sbcl-package->cl-source-package sbcl-trivial-timeout))
++
+ (define-public sbcl-bordeaux-threads
+   (package
+     (name "sbcl-bordeaux-threads")
+-- 
+2.30.0
+

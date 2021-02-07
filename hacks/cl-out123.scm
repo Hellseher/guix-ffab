@@ -37,7 +37,16 @@
                (substitute* "low-level.lisp"
                  (("libout123.so" all) (string-append
                                         (assoc-ref inputs "libout123")
-                                        "/lib/" all))))))))
+                                        "/lib/" all)))))
+           ;; NOTE: (Sharlatan-20210129T134529+0000): ECL package `ext' has no
+           ;; exported macro `without-interrupts' it's moved to `mp' package
+           ;; https://github.com/Shirakumo/cl-out123/issues/2
+           ;; https://gitlab.com/embeddable-common-lisp/ecl/-/blob/develop/src/lsp/mp.lsp
+           (add-after 'unpack 'fix-ecl-package-name
+             (lambda _
+               (substitute* "wrapper.lisp"
+                 (("ext:without-interrupts.*") "mp:without-interrupts\n"))
+               #t)))))
       (inputs
        `(("libout123" ,mpg123)
          ("cffi" ,sbcl-cffi)
@@ -60,4 +69,4 @@ This package produces 1 system: @code{CL-OUT123}")
 (define-public cl-out123
   (sbcl-package->cl-source-package sbcl-cl-out123))
 
-sbcl-cl-out123
+ecl-cl-out123

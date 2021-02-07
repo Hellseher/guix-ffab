@@ -1,4 +1,9 @@
 (use-modules (guix packages)
+             (guix build-system python)
+             (guix git-download)
+             ((guix licenses) #:prefix license:))
+
+(use-modules (guix packages)
              (guix utils)
              (guix build-system asdf)
              (guix build-system trivial)

@@ -20,39 +20,41 @@
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "1hl721xaczxck008ax2y3jpkm509ry1sg3lklh2k76764m3ndrjf"))))
+          (base32 "1hl721xaczxck008ax2y3jpkm509ry1sg3lklh2k76764m3ndrjf"))
+         (modules '((guix build utils)))
+         (snippet
+          '(begin
+             ;; Remove bundled pre-compiled libraries.
+             (delete-file-recursively "static")
+             #t))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       `(#:phases
+       `(#:asd-files '("cl-mpg123.asd" "cl-mpg123-example.asd")
+         #:asd-systems '("cl-mpg123" "cl-mpg123-example")
+         #:phases
          (modify-phases %standard-phases
-           ;; NOTE: (Sharlatan-20210127T215142+0000): Project includes compiled
-           ;; libraries in `static' which are available in Guix under `mpg123'
-           ;; package - removing whole `static' directory.
-           (add-after 'unpack 'clean-up
-             (lambda _
-               (delete-file-recursively "static")
-               #t))
            (add-after 'unpack 'fix-paths
              (lambda* (#:key inputs #:allow-other-keys)
                (substitute* "low-level.lisp"
-                 (("libmpg123.so" all) (string-append
-                                        (assoc-ref inputs "libmpg123")
+                 (("libmpg123.so" all)
+                  (string-append (assoc-ref inputs "libmpg123")
                                         "/lib/" all))))))))
       (inputs
-       `(("libmpg123" ,mpg123)
-         ("cffi" ,sbcl-cffi)
+       `(("cffi" ,sbcl-cffi)
          ("cl-out123" ,sbcl-cl-out123)
+         ("documentation-utils" ,sbcl-documentation-utils)
+         ("libmpg123" ,mpg123)
          ("trivial-features" ,sbcl-trivial-features)
          ("trivial-garbage" ,sbcl-trivial-garbage)
-         ("documentation-utils" ,sbcl-documentation-utils)))
-      (home-page "https://shinmera.github.io/cl-mpg123/")
+         ("verbose" ,sbcl-verbose)))
+      (home-page "https://shirakumo.github.io/cl-mpg123/")
       (synopsis "Bindings to libmpg123, allowing fast MPG1/2/3 decoding")
       (description
        "This is a bindings and wrapper library to @code{libmpg123} allowing for
 convenient, extensive, and fast decoding of MPEG1/2/3 (most prominently mp3)
 files.
 
-This package produces 1 system: @code{CL-MPG123}")
+This package produces 2 systems: @code{CL-MPG123} @code{CL-MPG123-EXAMPLE}")
       (license license:zlib))))
 
 (define-public ecl-cl-mpg123

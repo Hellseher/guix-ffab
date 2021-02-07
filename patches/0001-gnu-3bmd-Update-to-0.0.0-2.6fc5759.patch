@@ -1,0 +1,113 @@
+From ce0a4715044cfe5d75431ed70c76a6586dcc3f3e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 4 Feb 2021 02:52:13 +0000
+Subject: [PATCH] gnu: 3bmd: Update to 0.0.0-2.6fc5759
+
+* gnu/packages/lisp-xyz.scm (sbcl-3bmd)
+  [inputs] add alexandria
+  [aruments] add extansion systems
+  Gentle refactor and extend description
+---
+ gnu/packages/lisp-xyz.scm | 85 ++++++++++++++++++++++++++-------------
+ 1 file changed, 56 insertions(+), 29 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index cecf29b207..36df88ea41 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1683,36 +1683,63 @@ C, C++, Java, Python, Erlang, Haskell, Objective-C, Diff, Webkit.")
+   (sbcl-package->ecl-package sbcl-colorize))
+ 
+ (define-public sbcl-3bmd
+-  (let ((commit "192ea13435b605a96ef607df51317056914cabbd"))
++  (let ((commit "6fc5759448f6f6df6f6df556e020a289a2643288")
++        (revision "2"))
+     (package
+-      (name "sbcl-3bmd")
+-      (version (git-version "0.0.0" "1" commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/3b/3bmd")
+-               (commit commit)))
+-         (sha256
+-          (base32
+-           "1rgv3gi7wf963ikmmpk132wgn0icddf226gq3bmcnk1fr3v9gf2f"))
+-         (file-name (git-file-name "3bmd" version))))
+-      (build-system asdf-build-system/sbcl)
+-      (arguments
+-       ;; FIXME: We need to specify the name because the build-system thinks
+-       ;; "3" is a version marker.
+-       `(#:asd-systems '("3bmd"
+-                         "3bmd-ext-code-blocks")))
+-      (inputs
+-       `(("colorize" ,sbcl-colorize)
+-         ("esrap" ,sbcl-esrap)
+-         ("split-sequence" ,sbcl-split-sequence)))
+-      (synopsis "Markdown processor in Command Lisp using esrap parser")
+-      (description
+-       "Common Lisp Markdown -> HTML converter, using @command{esrap} for
+-parsing, and grammar based on @command{peg-markdown}.")
+-      (home-page "https://github.com/3b/3bmd")
+-      (license license:expat))))
++     (name "sbcl-3bmd")
++     (version (git-version "0.0.0" revision commit))
++     (source
++      (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/3b/3bmd")
++             (commit commit)))
++       (sha256
++        (base32 "1avmbp8xdjlbqpqk7p3vmj7abiw5p3vb5mrxp4wlvgql4sf6z3p4"))
++       (file-name (git-file-name "3bmd" version))))
++     (build-system asdf-build-system/sbcl)
++     (arguments
++      ;; FIXME: #41437 - Build fails when package name starts from a digit
++      `(#:asd-systems
++        '("3bmd"
++          "3bmd-ext-definition-lists"
++          "3bmd-ext-math"
++          "3bmd-ext-tables"
++          "3bmd-ext-wiki-links"
++          "3bmd-youtube"
++          "3bmd-ext-code-blocks")))
++     (inputs
++      `(("colorize" ,sbcl-colorize)
++        ("esrap" ,sbcl-esrap)
++        ("alexandria" ,sbcl-alexandria)
++        ("split-sequence" ,sbcl-split-sequence)))
++     (home-page "https://github.com/3b/3bmd")
++     (synopsis "Markdown processor in Command Lisp using esrap parser")
++     (description
++      "Common Lisp Markdown -> HTML converter, using @command{esrap} for
++parsing, and grammar based on @command{peg-markdown}.
++
++This package provides 7 systems:
++
++@itimize
++@item @code{3BMD} - Markdown processor in CL using esrap parser
++
++@item @code{3BMD-EXT-DEFINITION-LISTS} - Extension to 3bmd implementing \"PHP
++Markdown Extra\" style definition lists
++
++@item @code{3BMD-EXT-MATH} - Extension for 3bmd for handling math markup
++
++@item @code{3BMD-EXT-TABLES} - Extension to 3bmd implementing PHP Markdown Extra
++style tables
++
++@item @code{3BMD-EXT-WIKI-LINKS} - Example extension to 3bmd implementing simple
++wiki-style [[links]]
++
++@item @code{3BMD-YOUTUBE} - Extension for 3bmd for embedding YouTube videos
++
++@item @code{3BMD-EXT-CODE-BLOCKS}
++@end itemize\n")
++     (license license:expat))))
+ 
+ (define-public cl-3bmd
+   (sbcl-package->cl-source-package sbcl-3bmd))
+-- 
+2.30.0
+
