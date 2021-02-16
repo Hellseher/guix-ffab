@@ -1,0 +1,75 @@
+From eff8577bf1512975fac3d3e5f5e1f36a44878f32 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Feb 2021 21:18:18 +0000
+Subject: [PATCH] gnu: Add inrtcl
+
+* gnu/pacages/tcl.scm (incrtcl): New variable.
+---
+ gnu/packages/tcl.scm | 51 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+
+diff --git a/gnu/packages/tcl.scm b/gnu/packages/tcl.scm
+index f17e138bdb..2135b745ef 100644
+--- a/gnu/packages/tcl.scm
++++ b/gnu/packages/tcl.scm
+@@ -95,6 +95,57 @@
+     (description "The Tcl (Tool Command Language) scripting language.")
+     (license license:tcl/tk)))
+ 
++(define-public incrtcl
++  (package
++    (name "incrtcl")
++    (version "4.2.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append
++             "mirror://sourceforge/incrtcl/%5Bincr%20Tcl_Tk%5D-4-source/itcl%20"
++             version "/itcl" version ".tar.gz"))
++       (file-name (string-append name "-" version ".tar.gz"))
++       (sha256
++        (base32 "0w28v0zaraxcq1s9pa6cihqqwqvvwfgz275lks7w4gl7hxjxmasw"))))
++    (build-system gnu-build-system)
++    (arguments
++     `(#:configure-flags
++       (list
++        (string-append
++         "--exec-prefix=" (assoc-ref %outputs "out"))
++        (string-append
++         "--with-tclinclude=" (assoc-ref %build-inputs "tcl") "/include")
++        (string-append
++         "--with-tcl=" (assoc-ref %build-inputs "tcl") "/lib"))
++       #:phases
++       (modify-phases %standard-phases
++         (replace  'check
++           (lambda _
++             (invoke "make" "test")))
++         (add-after 'install 'cleanup-bin-and-lib
++           (lambda* (#:key outputs #:allow-other-keys)
++             ;; NOTE: (Sharlatan-20210213T204336+0000): libraries appearer in
++             ;; "out/lib/itcl{{version}}" and there are no binaries, some extra
++             ;; rename and remove spells are to be applied.
++             (let ((out (assoc-ref outputs "out")))
++               (rmdir
++                (string-append out "/bin"))
++               (rename-file
++                (string-append out "/lib/itcl" ,version) (string-append out "/libtmp"))
++               (rename-file
++                (string-append out "/libtmp") (string-append out "/lib")))
++             #t)))))
++    (native-inputs
++     `(("tcl" ,tcl)))
++    (inputs
++     `(("tcllib" ,tcllib)))
++    (home-page "http://incrtcl.sourceforge.net/")
++    (synopsis "Incr Tcl or itcl OOP extension for Tcl")
++    (description
++     "TCL language extension to support Object-oriented programming paradigm.
++The name echoes C++ of C - incremental Tcl of Tcl.")
++    (license license:public-domain)))
+ 
+ (define-public expect
+   (package
+-- 
+2.30.0
+

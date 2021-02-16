@@ -1,0 +1,58 @@
+From 588107b5e742cb2b5a3e128ce2613e988563566e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 9 Feb 2021 23:06:33 +0000
+Subject: [PATCH 3/4] gnu: Add glsl-spec
+
+* gnu/packages/lisp-xyz.scm
+  (sbcl-glsl-spec, cl-glsl-spec, ecl-glsl-spec): New variables
+---
+ gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 6f00f44ae2..5ca1cfa4c0 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -2648,6 +2648,39 @@ non-consing thread safe queues and fibonacci priority queues.")
+ (define-public ecl-queues
+   (sbcl-package->ecl-package sbcl-queues))
+ 
++(define-public sbcl-glsl-spec
++  (let ((commit "f04476f7da89355ae6856b33283c60ba95c6555d")
++        (revision "1"))
++    (package
++      (name "sbcl-glsl-spec")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/cbaggers/glsl-spec")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "01ipspr22fgfj3w8wq2y81lzrjc4vpfiwnr3dqhjlpzzra46am8c"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:asd-systems '("glsl-spec" "glsl-symbols" "glsl-docs")))
++      (home-page "https://github.com/cbaggers/glsl-spec")
++      (synopsis "Common Lisp GLSL specification as a datastructure")
++      (description
++       "This package contains the specification of all functions and variables
++from GLSLL as data.
++
++This package provides 3 systems: GLSL-SPEC GLSL-SYMBOLS GLSL-DOCS")
++      (license #f))))
++
++(define-public ecl-glsl-spec
++  (sbcl-package->ecl-package sbcl-glsl-spec))
++
++(define-public cl-glsl-spec
++  (sbcl-package->cl-source-package sbcl-glsl-spec))
++
+ (define-public sbcl-cffi
+   (package
+     (name "sbcl-cffi")
+-- 
+2.30.0
+

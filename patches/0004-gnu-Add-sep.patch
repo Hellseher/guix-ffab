@@ -1,0 +1,44 @@
+From 2987afa869ab7955aa8a25a8bb6f74e98f26447e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Feb 2021 15:20:30 +0000
+Subject: [PATCH 4/5] gnu: Add sep
+
+* gnu/packages/astronomy.scm (python-sep): New variable.
+---
+ gnu/packages/astronomy.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 59afe21294..beea02af13 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -812,3 +812,26 @@ astronomy, which is based on the SOFA library published by the International
+ Astronomical Union (IAU).  All C routines are wrapped as Numpy universal
+ functions, so that they can be called with scalar or array inputs.")
+     (license license:bsd-3)))
++
++(define-public python-sep
++  (package
++    (name "python-sep")
++    (version "1.1.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "sep" version))
++       (sha256
++        (base32 "0wxdqn92q1grv8k7xi7h88ac6wnznw4xh5bdlz1vz6za2dgsyj4m"))))
++    (build-system python-build-system)
++    (native-inputs
++     `(("cython" ,python-cython)
++       ("pytest" ,python-pytest)))
++    (inputs
++     `(("numpy" ,python-numpy)))
++    (home-page "https://github.com/kbarbary/sep")
++    (synopsis "Astronomical source extraction and photometry library")
++    (description
++     "SEP makes the core algorithms of Source Extractor available as a library
++of stand-alone functions and classes.")
++    (license license:expat))) ;; it comes with 3 licenses/[BSD, LGPL, MIT]
+-- 
+2.30.0
+

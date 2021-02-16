@@ -1,0 +1,64 @@
+From cd18cda659fc1d933e5720a846471b5db739735b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 9 Feb 2021 23:08:35 +0000
+Subject: [PATCH 4/4] gnu: Add varjo
+
+* gnu/packages/lisp-xyz.scm (sbcl-varjo, cl-varjo, ecl-varjo): New variables
+---
+ gnu/packages/lisp-xyz.scm | 40 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 5ca1cfa4c0..61f0d02a03 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -2681,6 +2681,46 @@ This package provides 3 systems: GLSL-SPEC GLSL-SYMBOLS GLSL-DOCS")
+ (define-public cl-glsl-spec
+   (sbcl-package->cl-source-package sbcl-glsl-spec))
+ 
++(define-public sbcl-varjo
++  (let ((commit "9e77f30220053155d2ef8870ceba157f75e538d4")
++        (revision "1"))
++    (package
++      (name "sbcl-varjo")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/cbaggers/varjo")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1p9x1wj576x5d31yvls9r1avkjkyhri7kyxbjfkg9z93a1w18j9z"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("fiveam" ,sbcl-fiveam)))
++      (inputs
++       `(("documentation-utils" ,sbcl-documentation-utils)
++         ("vas-string-metrics" ,sbcl-vas-string-metrics)
++         ("named-readtables" ,sbcl-named-readtables)
++         ("parse-float" ,sbcl-parse-float)
++         ("alexandria" ,sbcl-alexandria)
++         ("glsl-spec" ,sbcl-glsl-spec)
++         ("cl-ppcre" ,sbcl-cl-ppcre)
++         ("fn" ,sbcl-fn)))
++      (home-page "https://github.com/cbaggers/varjo")
++      (synopsis "Common Lisp to GLSL Language Translator")
++      (description
++       "Varjo is a Lisp to GLSL compiler.  Varjo has no OpenGL dependency as is
++designed to be integrated into other projects.")
++      (license license:bsd-2))))
++
++(define-public ecl-varjo
++  (sbcl-package->ecl-package sbcl-varjo))
++
++(define-public cl-varjo
++  (sbcl-package->cl-source-package sbcl-varjo))
++
+ (define-public sbcl-cffi
+   (package
+     (name "sbcl-cffi")
+-- 
+2.30.0
+

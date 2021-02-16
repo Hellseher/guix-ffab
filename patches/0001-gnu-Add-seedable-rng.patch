@@ -1,0 +1,61 @@
+From d8ac52e9f7cffe0b7fa6dcca8fd18dac9ea3a858 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 15 Feb 2021 21:57:43 +0000
+Subject: [PATCH] gnu: Add seedable-rng
+
+* gnu/packages/lisp-xyz.scm
+  (sbcl-seedable-rng, cl-seedable-rng, ecl-seedable-rng): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index ee2a24f441..0d9dc08a46 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1453,6 +1453,42 @@ This package provides 1 system: @code{CL-PCG}")
+ (define-public cl-pcg
+   (sbcl-package->cl-source-package sbcl-cl-pcg))
+ 
++(define-public sbcl-seedable-rng
++  (let ((commit "aa1a1564b6e07e2698df37c7a98348c4f762cb15")
++        (revision "1"))
++    (package
++      (name "sbcl-seedable-rng")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://git.mfiano.net/mfiano/seedable-rng")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1ldpsbp3qrfzvknclsxj3sdyms1jf9ad20dvh4w0kw3zgahn2nr5"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("cl-pcg" ,sbcl-cl-pcg)
++         ("golden-utils" ,sbcl-golden-utils)
++         ("ironclad" ,sbcl-ironclad)))
++      (home-page "https://git.mfiano.net/mfiano/seedable-rng")
++      (synopsis "Common Lisp random numbers generator")
++      (description
++       "SEEDABLE-RNG provides a convenient means of generating random numbers
++that are seedable with deterministic results across hardware and Common Lisp
++implementations.
++
++This package provides 1 system: @code{SEEDABLE-RNG}")
++      (license license:expat))))
++
++(define-public ecl-seedable-rng
++  (sbcl-package->ecl-package sbcl-seedable-rng))
++
++(define-public cl-seedable-rng
++  (sbcl-package->cl-source-package sbcl-seedable-rng))
++
+ (define-public sbcl-jpl-queues
+   (package
+     (name "sbcl-jpl-queues")
+-- 
+2.30.0
+

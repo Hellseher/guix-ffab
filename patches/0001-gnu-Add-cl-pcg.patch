@@ -1,0 +1,57 @@
+From a6765a4b05af16388b71c2cb5815c01b520e3888 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 15 Feb 2021 21:54:34 +0000
+Subject: [PATCH] gnu: Add cl-pcg
+
+* gnu/packages/lisp-xyz.scm (sbcl-cl-pcg, cl-pcg, ecl-cl-pcg): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 81cbc28d71..ee2a24f441 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1420,6 +1420,39 @@ and macros, primarily for software projects written in CL by the author.")
+ (define-public cl-piping
+   (sbcl-package->cl-source-package sbcl-piping))
+ 
++(define-public sbcl-cl-pcg
++  (let ((commit "8263d85ab0ca17fb05637a4430c2d564456bce8f")
++        (revision "1"))
++    (package
++      (name "sbcl-cl-pcg")
++      (version (git-version "1.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/sjl/cl-pcg")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0s57wvvlvshp1gcp9i9d3qcmqhswnxps3i0y7wbb0v8i1a3p46m4"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("1am" ,sbcl-1am)))
++      (home-page "https://github.com/sjl/cl-pcg")
++      (synopsis "Permuted congruential generators in Common Lisp")
++      (description
++       "A bare-bones Permuted Congruential Generator implementation in pure
++Common Lisp.
++
++This package provides 1 system: @code{CL-PCG}")
++      (license license:expat))))
++
++(define-public ecl-cl-pcg
++  (sbcl-package->ecl-package sbcl-cl-pcg))
++
++(define-public cl-pcg
++  (sbcl-package->cl-source-package sbcl-cl-pcg))
++
+ (define-public sbcl-jpl-queues
+   (package
+     (name "sbcl-jpl-queues")
+-- 
+2.30.0
+

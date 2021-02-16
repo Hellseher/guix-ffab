@@ -1,6 +1,6 @@
 #+title: Guix patches: astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-02-07 Sun 12:49:34 GMT>
+#+modified: <2021-02-16 Tue 23:04:27 GMT>
 
 * TODO AstrOmatic software [8/10][80%]
 - https://github.com/astromatic
@@ -28,7 +28,7 @@ CLOSED: [2021-01-27 Wed 11:26]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [1/2][50%]
   - [X] fftw
-  - [-] plplot [4/5][80%]
+  - [-] plplot [3/5][60%]
     + http://plplot.sourceforge.net/
     + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
       (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts
@@ -37,7 +37,7 @@ CLOSED: [2021-01-27 Wed 11:26]
     + [X] :patch-sent (gnu/packages/maths) <2021-01-28 Thu>
     + [ ] :paptch-applied-upstream
       - https://issues.guix.gnu.org/46160
-    + [X] inputs [13/13]
+    + [-] inputs [14/16]
       - [X] cairo (gnu/packages/gtk.scm:123:2)
       - [X] freetype
       - [X] gfortran (gnu packages gcc)
@@ -45,8 +45,23 @@ CLOSED: [2021-01-27 Wed 11:26]
       - [X] libgd (gnu/packages/gd.scm:40:2)
       - [X] libharu (gnu/packages/pdf.scm)
       - [X] lua5.1
+      - [-] itcl [3/4][3/4]
+        - http://incrtcl.sourceforge.net/
+        - [X] :packed <2021-02-13 Sat>
+        - [X] :patch-sent <2021-02-13 Sat>
+        - [ ] :patch-applied-upstream
+          - https://issues.guix.gnu.org/46497
+        - [X] inputs [2/2]
+          + [X] tcl
+          + [X] tcllib
       - [X] ocaml (gnu/packages/ocaml.scm)
-      - octave  (build took too long with Octave)
+      - [-] camlidl [1/4][25%]
+        - https://github.com/xavierleroy/camlidl
+        - [X] :packed <2021-02-12 Fri>
+        - [ ] :patch-sent
+        - [ ] :paptch-applied-upstream
+        - [ ] :inputs [0/0][0%]
+      - [X] octave
       - [X] pango
       - [X] qhull (gnu packages maths)
       - [X] shapelib [3/3][100%]
@@ -122,7 +137,6 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] libtiff (gnu/packages/image.scm:581:2)
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
-
 
 * C-Munipack library [0/0][0%]
 - https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
@@ -204,13 +218,33 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :packed
 - [ ] :patch-sent
 - [-] :paptch-applied-upstream
-  - [-] :inputs [16/19][84%]
-    + [ ] asdf [0/0][0%]
+  - [-] :inputs [19/24][79%]
+    + [-] asdf [2/4][50%]
       - https://github.com/asdf-format/asdf
+      - [X] :packed <2021-02-07 Sun>
+      - [ ] :patch-sent
+      - [ ] :paptch-applied-upstream
+      - [X] :inputs [7/7][100%]
+        + [X] setuptools-scm
+        + [X] semantic-version >2
+        + [X] packaging
+        + [X] importlib-resources
+        + [X] jsonschema
+        + [X] numpy
+        + [X] pyyaml
     + [X] beautifulsoup4 (gnu/packages/python-xyz.scm:7694:2)
     + [X] bleach (gnu/packages/python-xyz.scm:9959:2)
     + [X] bottleneck (gnu/packages/python-science.scm:413:2)
     + [X] dask (gnu/packages/python-xyz.scm:19866:2)
+    + [-] extension-helpers [3/4][75%]
+      - https://github.com/astropy/extension-helpers
+      - [X] :packed <2021-02-07 Sun>
+      - [X] :patch-sent <2021-02-07 Sun>
+      - [ ] :paptch-applied-upstream
+        - https://issues.guix.gnu.org/46375
+      - [X] :inputs [2/2][100%]
+        - [X] coverage
+        - [X] pytest-cov
     + [X] h2py (gnu/packages/python-xyz.scm:868:2)
     + [X] html5lib (gnu/packages/python-web.scm:1061:2)
     + [X] jplephem [4/4][100%]
@@ -224,49 +258,164 @@ CLOSED: [2021-01-25 Mon 17:25]
     + [X] matplotlib
     + [X] mpmath
     + [X] numpy
+    + [X] ipython
+    + [X] objgraph
     + [X] pandas
-    + [ ] pyerfa [0/3][0%]
+    + [-] pyerfa [2/4][50%]
       + https://github.com/liberfa/pyerfa
-      + [ ] :packed
-      + [ ] :patch-sent
+      + [X] :packed <2021-02-07 Sun>
+      + [X] :patch-sent <2021-02-13 Sat>
       + [ ] :paptch-applied-upstream
+        - https://issues.guix.gnu.org/46492
+      + [-] :inputs [3/4][75%]
+        - [X] pytest
+        - [X] setuptools-scm
+        - [X] numpy
+        - [-] erfa [3/4][75%]
+          - https://github.com/liberfa/erfa
+          - [X] :packed <2021-02-07 Sun>
+          - [X] :patch-sent <2021-02-13 Sat>
+          - [ ] :paptch-applied-upstream
+            - https://issues.guix.gnu.org/46492
+          - [X] :inputs [4/4][100%]
+            + [X] pkg-config
+            + [X] libtool
+            + [X] automake
+            + [X] autoreconf
+    + [-] pytest-astropy [2/4][50%]
+      + https://github.com/astropy/pytest-astropy
+      + [X] :packed <2021-02-07 Sun>
+      + [X] :patch-sent <2021-02-07 Sun>
+      + [ ] :paptch-applied-upstream
+        - https://issues.guix.gnu.org/46375
+      + [-] :inputs [10/11][90%]
+        + [X] attrs (gnu/packages/python-xyz.scm:15365:2)
+        + [X] hypothesis (gnu/packages/check.scm:1930:2)
+        + [X] pytest
+        + [X] pytest-arraydiff
+        + [-] pytest-astropy-header [3/4][75%]
+          - https://github.com/astropy/pytest-astropy-header
+          - [X] :packed <2021-02-07 Sun>
+          - [X] :patch-sent <2021-02-07 Sun>
+          - [ ] :paptch-applied-upstream
+            - https://issues.guix.gnu.org/46375
+          - [X] :inputs [2/2][100%]
+            + [X] pytest
+            + [X] setuptools-scm
+        + [X] pytest-cov
+        + [X] pytest-doctestplus (gnu/packages/python-check.scm:226:2)
+        + [X] pytest-filter-subpackage
+        + [X] pytest-mock
+        + [X] pytest-openfiles
+        + [X] pytest-remotedata
+    + [X] pytest-xdis
     + [X] pytz ( gnu/packages/time.scm:119:2)
     + [X] pyyaml
     + [X] scipy
     + [X] scipy (gnu/packages/python-science.scm:51:2)
-    + [ ] skyfield [0/3][0%]
+    + [-] skyfield [2/4][50%]
       - https://github.com/skyfielders/python-skyfield
-      - [ ] :packed
-      - [ ] :patch-sent
+      - [X] :packed <2021-02-07 Sun>
+      - [X] :patch-sent <2021-02-07 Sun>
       - [ ] :paptch-applied-upstream
+        - https://issues.guix.gnu.org/46375
+      - [-] :inputs [4/5][80%]
+        - [X] certifi
+        - [X] jplephem
+        - [X] numpy
+        - [X] sgp4
+        - [ ] assay [0/3][0%]
+          - https://github.com/brandon-rhodes/assay
+          - [ ] :packed <2021-02-07 Sun>
+          - [ ] :patch-sent
+          - [ ] :paptch-applied-upstream
     + [X] sortedcontainers
 
-* XEphem [/][%]
+* IAUSOFA
+** TODO sofa-c [/][%]
++ http://www.iausofa.org/
++ [ ] :packed
++ [ ] :patch-sent
++ [ ] :paptch-applied-upstream
+
+* TODO linguider [/][%]
+- https://sourceforge.net/projects/linguider/
+
+* TODO XEphem [0/4][0%]
 - http://www.clearskyinstitute.com/xephem/
 - synopsis ::
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [1/2][50%]
+- [ ] :inputs [0/0][0%]
 
-* TODO astoalign [0/4][0%]
+* TODO astroalign [1/4][25%]
 - https://github.com/quatrope/astroalign
 - synopsis ::
-- [ ] :packed
+- [X] :packed <2021-02-13 Sat>
 - [ ] :patch-sent
+  - https://issues.guix.gnu.org/46492
 - [ ] :paptch-applied-upstream
-- [-] :inputs [0/1][0%]
-  + [-] sep [1/4][25%]
-    - [ ] :packed <2021-02-02 Tue>
-    - [ ] :patch-sent
+- [-] :inputs [3/4][75%]
+  - [X] numpy
+  - [X] scikit-image
+  - [X] scipy
+  - [-] sep [3/4][75%]
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-13 Sat>
     - [ ] :paptch-applied-upstream
-    - [X] :inputs [2/2][100%]
+      - https://issues.guix.gnu.org/46492
+    - [X] :inputs [3/3][100%]
       + [X] cython
       + [X] numpy
+      + [X] pytest
 
+* kepler-project [/]
+https://kepler-project.org/users/downloads.html
+
+* ESO [0/3]
+** TODO qfits [2/3][66%]
+  + https://www.eso.org/sci/software/eclipse/qfits/
+  + [X] :packed <2021-02-11 Thu>
+  + [X] :patch-sent <2021-02-13 Sat>
+  + [ ] :paptch-applied-upstream
+    - https://issues.guix.gnu.org/46492
+** TODO eclipse [0/0][0%]
+** TODO skycat [0/1][0%]
+  + [ ] :inputs [0/1][0%]
+    - [ ] wcstools [0/3][0%]
+      - http://tdc-www.harvard.edu/wcstools/
+      - [ ] :packed
+      - [ ] :patch-sent
+      - [ ] :paptch-applied-upstream
+
+* TODO THELI []
+- https://github.com/schirmermischa/THELI
+  + [ ] :packed
+  + [ ] :patch-sent
+  + [ ] :paptch-applied-upstream
+  + [ ] :inputs [/][%]
+
+* TODO GreatAttractor [0/1]
+** TODO stackistry [2/4][50%]
+- https://github.com/GreatAttractor/stackistry
+- [X] :packed <2021-02-16 Tue>
+- [X] :patch-sent <2021-02-16 Tue>
+- [-] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/46575
+- [-] :inputs [2/3][66%]
+  - [-] libskry [2/3][66%]
+    - https://github.com/GreatAttractor/libskry
+    - [X] :packed <2021-02-16 Tue>
+    - [X] :patch-sent <2021-02-16 Tue>
+    - [ ] :paptch-applied-upstream
+      - https://issues.guix.gnu.org/46575
+  - [X] ffmpeg
+  - [X] gtkmm
 * etc
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
 - http://www.iausofa.org/current_C.html#Downloads
 - https://ascl.net/1112.014
 - https://rhodesmill.org/skyfield/
 - https://github.com/esheldon/fitsio
+- https://sites.google.com/cfa.harvard.edu/saoimageds9/download

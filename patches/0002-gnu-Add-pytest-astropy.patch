@@ -1,0 +1,56 @@
+From 5e32122576a1f270b56c9d9cbd9bb07bbdb445a6 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 7 Feb 2021 22:51:24 +0000
+Subject: [PATCH 2/5] gnu: Add pytest-astropy
+
+* gnu/packages/python-check.scm (python-pytest-astropy): New variable
+---
+ gnu/packages/python-check.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 1305567b38..82ed5f56da 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -220,6 +220,38 @@ running pytest.  It can be used with packages that are not affiliated with the
+ Astropy project, but is optimized for use with astropy-related projects.")
+   (license license:bsd-3)))
+ 
++(define-public python-pytest-astropy
++  (package
++    (name "python-pytest-astropy")
++    (version "0.8.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pytest-astropy" version))
++       (sha256
++        (base32 "18j6z6y2fvykmcs5z0mldhhaxxn6wzpnhlm2ps7m8r5z5kmh1631"))))
++    (build-system python-build-system)
++    (arguments
++     ;; No tests provided
++     '(#:tests? #f))
++    (native-inputs
++     `(("attrs" ,python-attrs)
++       ("hypothesis" ,python-hypothesis)
++       ("pytest" ,python-pytest)
++       ("pytest-arraydiff" ,python-pytest-arraydiff)
++       ("pytest-astropy-header" ,python-pytest-astropy-header)
++       ("pytest-cov" ,python-pytest-cov)
++       ("pytest-doctestplus" ,python-pytest-doctestplus)
++       ("pytest-filter-subpackage" ,python-pytest-filter-subpackage)
++       ("pytest-openfiles" ,python-pytest-openfiles)
++       ("pytest-remotedata" ,python-pytest-remotedata)))
++    (home-page "https://github.com/astropy/pytest-astropy")
++    (synopsis "Metapackage for all the testing machinery used by the Astropy Project")
++    (description
++     "This is a meta-package that pulls in the dependencies that are used by
++astropy related packages.")
++    (license license:bsd-3)))
++
+ (define-public python-pytest-arraydiff
+   (package
+     (name "python-pytest-arraydiff")
+-- 
+2.30.0
+

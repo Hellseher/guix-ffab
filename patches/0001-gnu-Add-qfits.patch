@@ -1,0 +1,43 @@
+From 62ef9706e60f24e0160acad4a82d7f62bc6592ba Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Feb 2021 14:30:01 +0000
+Subject: [PATCH 1/5] gnu: Add qfits
+
+* gnu/packages/astronomy.scm (qfits): New variables.
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 07dee4b462..1fc035dd60 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -92,6 +92,25 @@ in FITS files.")
+     (license (license:non-copyleft "file://License.txt"
+                           "See License.txt in the distribution."))))
+ 
++(define-public qfits
++  (package
++    (name "qfits")
++    (version "6.2.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri
++        (string-append "ftp://ftp.eso.org/pub/qfits/qfits-" version ".tar.gz"))
++       (sha256
++        (base32 "0m2b21mim3a7wgfg3ph2w5hv7mdvr03jmmhzipc0wcahijglcw9j"))))
++    (build-system gnu-build-system)
++    (home-page "https://www.eso.org/sci/software/eclipse/qfits/")
++    (synopsis "C library offering access to astronomical FITS files")
++    (description
++     "@code{qfits} is a C library giving access to FITS file internals, both for
++reading and writing.")
++    (license license:gpl3+)))
++
+ (define-public eye
+   (package
+     (name "eye")
+-- 
+2.30.0
+

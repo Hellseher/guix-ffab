@@ -1,0 +1,55 @@
+From d550f12c64e46dad9e3d3de757772acad083f645 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Feb 2021 16:30:48 +0000
+Subject: [PATCH 5/5] gnu: Add astroalign
+
+* gnu/packages/astronomy.scm (python-astroalign): New variable.
+---
+ gnu/packages/astronomy.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index beea02af13..f4dad79d81 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -49,6 +49,7 @@
+   #:use-module (gnu packages pkg-config)
+   #:use-module (gnu packages pretty-print)
+   #:use-module (gnu packages python-check)
++  #:use-module (gnu packages python-science)
+   #:use-module (gnu packages python-xyz)
+   #:use-module (gnu packages qt)
+   #:use-module (gnu packages version-control)
+@@ -835,3 +836,29 @@ functions, so that they can be called with scalar or array inputs.")
+      "SEP makes the core algorithms of Source Extractor available as a library
+ of stand-alone functions and classes.")
+     (license license:expat))) ;; it comes with 3 licenses/[BSD, LGPL, MIT]
++
++(define-public python-astroalign
++  (package
++    (name "python-astroalign")
++    (version "2.3.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "astroalign" version))
++       (sha256
++        (base32 "19qzv3552lgrd9qmj0rxs51wmx485hw04cbf76ds5pin85kfaiy1"))))
++    (build-system python-build-system)
++    (arguments
++     ;; TODO: (Sharlatan-20210213T162940+0000): I could not make tests run
++     `(#:tests? #f))
++    (inputs
++     `(("numpy" ,python-numpy)
++       ("scikit-image" ,python-scikit-image)
++       ("scipy" ,python-scipy)
++       ("sep" ,python-sep)))
++    (home-page "https://astroalign.readthedocs.io/")
++    (synopsis "Astrometric Alignment of Images")
++    (description
++     "ASTROALIGN is a python module that will try to align two stellar
++astronomical images, especially when there is no WCS information available.")
++    (license license:expat)))
+-- 
+2.30.0
+

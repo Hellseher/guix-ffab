@@ -1,0 +1,57 @@
+From c051211da14602b62cc2710ced5f724566142737 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 7 Feb 2021 23:38:58 +0000
+Subject: [PATCH 5/5] gnu: Add skyfield
+
+* gnu/packages/astronomy.scm (python-skyfield): New variable
+---
+ gnu/packages/astronomy.scm | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 07dee4b462..121d6f7881 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -48,6 +48,8 @@
+   #:use-module (gnu packages perl)
+   #:use-module (gnu packages pkg-config)
+   #:use-module (gnu packages pretty-print)
++  #:use-module (gnu packages python-crypto)
++  #:use-module (gnu packages python-science)
+   #:use-module (gnu packages python-xyz)
+   #:use-module (gnu packages qt)
+   #:use-module (gnu packages version-control)
+@@ -726,3 +728,30 @@ more.")
+      "The package is a Python implementation of the mathematics that standard
+ JPL ephemerides use to predict raw (x,y,z) planetary positions.")
+     (license license:expat)))
++
++(define-public python-skyfield
++  (package
++    (name "python-skyfield")
++    (version "1.36")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "skyfield" version))
++       (sha256
++        (base32 "1dm1327a4qv3klj9blrvddbhl72v1fqz52ym9km8qjj9vdkpywh6"))))
++    (build-system python-build-system)
++    (arguments
++     ;; NOTE: (Sharlatan-20210207T163305+0000): tests depend on custom test
++     ;; framework https://github.com/brandon-rhodes/assay
++     `(#:tests? #f))
++    (inputs
++     `(("certifi" ,python-certifi)
++       ("numpy" ,python-numpy)
++       ("sgp4" ,python-sgp4)
++       ("jplephem" ,python-jplephem)))
++    (home-page "https://rhodesmill.org/skyfield/")
++    (synopsis "Elegant astronomy for Python")
++    (description
++     "Skyfield computes positions for the stars, planets, and satellites in
++orbit around the Earth.")
++    (license license:expat)))
+-- 
+2.30.0
+

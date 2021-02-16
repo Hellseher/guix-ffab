@@ -1,0 +1,83 @@
+From 2a01e69e9bccbf5b5cb1a6875a8de4262df1755e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Feb 2021 22:51:19 +0000
+Subject: [PATCH 2/2] gnu: Add stackistry
+
+* gnu/packages/astronomy.scm (stackistry): New variable.
+---
+ gnu/packages/astronomy.scm | 59 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2e7f4dee4a..d6ea036b93 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -284,6 +284,65 @@ astronomical fields.  SkyMaker is part of the EFIGI
+ (@url{https://www.astromatic.net/projects/efigi}) development project.")
+     (license license:gpl3+)))
+ 
++(define-public stackistry
++  (package
++    (name "stackistry")
++    (version "0.3.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/GreatAttractor/stackistry")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0rz29v33n0x0k40hv3v79ym5ylch1v0pbph4i21809gz2al5p7dq"))))
++    (build-system gnu-build-system)
++    (arguments
++     `(#:make-flags
++       (list
++        (string-append
++         "SKRY_INCLUDE_PATH=" (assoc-ref %build-inputs "libskry") "/include")
++        (string-append
++         "SKRY_LIB_PATH=-L" (assoc-ref %build-inputs "libskry") "/lib")
++        (string-append
++         "LIBAV_INCLUDE_PATH=" (assoc-ref %build-inputs "ffmpeg") "/include"))
++       #:phases
++       (modify-phases %standard-phases
++         ;; no configure and tests are provided
++         (delete 'configure)
++         (delete 'check)
++         (replace 'install
++           ;; The Makefile lacks an ‘install’ target.
++           (lambda* (#:key outputs #:allow-other-keys)
++             (let* ((out (assoc-ref outputs "out"))
++                    (bin (string-append out "/bin"))
++                    (icons (string-append out "/icons"))
++                    (lang (string-append out "/lang")))
++               (copy-recursively "bin" bin)
++               ;; FIXME: (Sharlatan-20210216T223419+0000): This part needs to be
++               ;; checked and probably patched in source code to set search path
++               ;; for static files, other way it tries to look at `../'
++               ;; directory which fails after install.
++               (copy-recursively "icons" icons)
++               (copy-recursively "lang" lang))
++             #t)))))
++    (native-inputs
++     `(("pkg-config" ,pkg-config)))
++     (inputs
++      `(("gtkmm" ,gtkmm)
++        ("libskry" ,libskry)
++        ("ffmpeg" ,ffmpeg)))
++     (home-page "https://github.com/GreatAttractor/stackistry")
++     (synopsis "Astronomical lucky imaging/image stacking tool")
++     (description
++      "Stackistry implements the lucky imaging principle of astronomical
++imaging: creating a high-quality still image out of a series of many (possibly
++thousands) low quality ones (blurred, deformed, noisy).  The resulting image
++stack typically requires post-processing, including sharpening (e.g. via
++deconvolution).  Such post-processing is not performed by Stackistry.")
++     (license license:gpl3+)))
++
+ (define-public stellarium
+   (package
+     (name "stellarium")
+-- 
+2.30.0
+

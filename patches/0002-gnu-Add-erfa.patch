@@ -1,0 +1,49 @@
+From 75b993c2a0f56d9371d8eb64c25ffe561e023e30 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Feb 2021 14:39:54 +0000
+Subject: [PATCH 2/5] gnu: Add erfa
+
+* gnu/packages/astronomy.scm (erfa): New variable.
+---
+ gnu/packages/astronomy.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1fc035dd60..8d58d64a1c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -111,6 +111,31 @@ in FITS files.")
+ reading and writing.")
+     (license license:gpl3+)))
+ 
++(define-public erfa
++  (package
++    (name "erfa")
++    (version "1.7.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/liberfa/erfa")
++             (commit (string-append "v" version))))
++       (sha256
++        (base32 "1vsqwvzlk7r8q7nwyb7i710blcfdl5kwcm2va9km07a820nsp84a"))))
++    (build-system gnu-build-system)
++    (native-inputs
++     `(("pkg-config" ,pkg-config)
++       ("libtool" ,libtool)
++       ("automake" ,automake)
++       ("autoreconf" ,autoconf)))
++    (home-page "https://github.com/liberfa/erfa")
++    (synopsis "Essential Routines for Fundamental Astronomy")
++    (description
++     "ERFA is a C library containing key algorithms for astronomy, and is based
++on the SOFA library published by the International Astronomical Union (IAU).")
++    (license license:bsd-3)))
++
+ (define-public eye
+   (package
+     (name "eye")
+-- 
+2.30.0
+
