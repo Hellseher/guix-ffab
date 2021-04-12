@@ -1,0 +1,52 @@
+From 40a7fae65e8b432e48d934079830c85289fbe9dd Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Feb 2021 21:06:07 +0000
+Subject: [PATCH] gnu: Add daemon
+
+* gnu/packages/lisp-xyz.scm (sbcl-daemon, cl-daemon, ecl-daemon): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 9ebd1735ad..88518c8199 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -14614,3 +14614,34 @@ adaptations.")
+ 
+ (define-public cl-radiance
+   (sbcl-package->cl-source-package sbcl-radiance))
++
++(define-public sbcl-daemon
++  (let ((commit "d5652f4332c3cee21e9bf83b9237129605004597")
++        (revision "1"))
++    (package
++      (name "sbcl-daemon")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/snmsts/daemon")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1kdxfnhh9fz34j8qs7pn7mwjz3v33q4v9nh0hqkyzraq5xs2j3f4"))))
++      (build-system asdf-build-system/sbcl)
++      (home-page "https://github.com/snmsts/daemon")
++      (synopsis "Daemonize lisp process")
++      (inputs
++       `(("trivial-features" ,sbcl-trivial-features)))
++      (description
++       "DAEMON provides functionality to daemonize Common Lisp process on UNIX
++like platforms.")
++      (license license:expat))))
++
++(define-public ecl-daemon
++  (sbcl-package->ecl-package sbcl-daemon))
++
++(define-public cl-daemon
++  (sbcl-package->cl-source-package sbcl-daemon))
+-- 
+2.29.2
+

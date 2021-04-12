@@ -1,0 +1,63 @@
+From a23341940072cf4489f7c0b239ce03ce1867b23b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 26 Mar 2021 23:23:04 +0000
+Subject: [PATCH] gnu: Add bodge-utilities
+
+* gnu/packages/lisp-xyz.scm: (sbcl-bodge-utilities, cl-bodge-utilities,
+ecl-bodge-utilities): New variables
+---
+ gnu/packages/lisp-xyz.scm | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 562113366a..d5dcd600b3 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -120,6 +120,44 @@ portable between implementations.")
+ (define-public ecl-alexandria
+   (sbcl-package->ecl-package sbcl-alexandria))
+ 
++(define-public sbcl-bodge-utilities
++  (let ((commit "6304bac4abe06d53579e2c0fc4437d14ff077d9f")
++        (revision "1"))
++    (package
++     (name "sbcl-bodge-utilities")
++     (version (git-version "1.0.0" revision commit))
++     (source
++      (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/borodust/bodge-utilities")
++             (commit commit)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1z1blj05q71vzh323qwyn9p3xs7v0mq2yhwfyzza5libp37wqm3c"))))
++     (build-system asdf-build-system/sbcl)
++     (inputs
++      `(("alexandria" ,sbcl-alexandria)
++        ("cffi" ,sbcl-cffi)
++        ("claw" ,sbcl-claw)
++        ("dissect" ,sbcl-dissect)
++        ("local-time" ,sbcl-local-time)
++        ("log4cl" ,sbcl-log4cl)
++        ("split-sequence" ,sbcl-split-sequence)
++        ("static-vectors" ,sbcl-static-vectors)
++        ("trivial-gray-streams" ,sbcl-trivial-gray-streams)))
++     (home-page "https://github.com/borodust/bodge-utilities")
++     (synopsis "Common Lisp utilities library for CL-BODGE")
++     (description
++      "Common Lisp utilities library for CL-BODGE")
++     (license license:expat))))
++
++(define-public ecl-bodge-utilities
++  (sbcl-package->ecl-package sbcl-bodge-utilities))
++
++(define-public cl-bodge-utilities
++  (sbcl-package->cl-source-package sbcl-bodge-utilities))
++
+ (define-public sbcl-golden-utils
+   (let ((commit "9424419d867d5c2f819196ee41667a818a5058e7")
+         (revision "1"))
+-- 
+2.29.2
+

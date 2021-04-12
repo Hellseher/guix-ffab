@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [54/61][88%]
+* Accepted in upstream [78/81][96%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -49,16 +49,36 @@
 - [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46281 <2021-02-04 Thu>
 - [X] <2021-02-03 Wed> https://issues.guix.gnu.org/46282 <2021-02-04 Thu>
 - [X] <2021-02-05 Fri> https://issues.guix.gnu.org/46324 <2021-02-08 Mon>
-- [ ] <2021-02-07 Sun> https://issues.guix.gnu.org/46375
+- [X] <2021-02-07 Sun> https://issues.guix.gnu.org/46375 <2021-02-19 Fri>
 - [X] <2021-02-09 Tue> https://issues.guix.gnu.org/46382 <2021-02-09 Tue>
 - [X] <2021-02-09 Tue> https://issues.guix.gnu.org/46409 <2021-02-10 Wed>
 - [X] <2021-02-09 Tue> https://issues.guix.gnu.org/46410 <2021-02-10 Wed>
 - [X] <2021-02-09 Tue> https://issues.guix.gnu.org/46412 <2021-02-10 Wed>
 - [X] <2021-02-12 Fri> https://issues.guix.gnu.org/46462 <2021-02-13 Sat>
-- [ ] <2021-02-13 Sat> https://issues.guix.gnu.org/46492
-- [ ] <2021-02-13 Sat> https://issues.guix.gnu.org/46497
+- [X] <2021-02-13 Sat> https://issues.guix.gnu.org/46492 <2021-02-19 Fri>
+- [X] <2021-02-13 Sat> https://issues.guix.gnu.org/46497 <2021-03-06 Sat>
 - [X] <2021-02-15 Mon> https://issues.guix.gnu.org/46546 <2021-02-16 Tue>
 - [X] <2021-02-15 Mon> https://issues.guix.gnu.org/46547 <2021-02-16 Tue>
 - [X] <2021-02-15 Mon> https://issues.guix.gnu.org/46548 <2021-02-16 Tue>
-- [ ] <2021-02-16 Tue> https://issues.guix.gnu.org/46575
-- [ ] <2021-02-16 Tue> https://issues.guix.gnu.org/46576
+- [X] <2021-02-16 Tue> https://issues.guix.gnu.org/46575 <2021-02-19 Fri>
+- [X] <2021-02-16 Tue> https://issues.guix.gnu.org/46576 <2021-02-17 Wed>
+- [X] <2021-02-17 Wed> https://issues.guix.gnu.org/46582 <2021-02-17 Wed>
+- [X] <2021-02-17 Wed> https://issues.guix.gnu.org/46603 <2021-04-11 Sun>
+- [X] <2021-02-17 Wed> https://issues.guix.gnu.org/46604 <2021-02-18 Thu>
+- [X] <2021-02-17 Wed> https://issues.guix.gnu.org/46605 <2021-02-18 Thu>
+- [X] <2021-02-17 Wed> https://issues.guix.gnu.org/46608 <2021-02-18 Thu>
+- [X] <2021-02-18 Thu> https://issues.guix.gnu.org/46624 <2021-02-19 Fri>
+- [X] <2021-02-18 Thu> https://issues.guix.gnu.org/46626 <2021-02-19 Fri>
+- [X] <2021-02-19 Fri> https://issues.guix.gnu.org/46647 <2021-02-21 Sun>
+- [X] <2021-02-20 Sat> https://issues.guix.gnu.org/46648 <2021-02-21 Sun>
+- [X] <2021-02-27 Sat> https://issues.guix.gnu.org/46821 <2021-02-27 Sat>
+- [X] <2021-03-06 Sat> https://issues.guix.gnu.org/46975 <2021-03-10 Wed>
+- [X] <2021-03-11 Thu> https://issues.guix.gnu.org/47078 <2021-03-12 Fri>
+- [X] <2021-03-11 Thu> https://issues.guix.gnu.org/47079 <2021-03-12 Fri>
+- [ ] <2021-03-15 Mon> https://issues.guix.gnu.org/47179
+- [X] <2021-03-26 Fri> https://issues.guix.gnu.org/47430 <2021-03-29 Mon>
+- [X] <2021-03-31 Wed> https://issues.guix.gnu.org/47530 <2021-04-01 Thu>
+- [X] <2021-03-31 Wed> https://issues.guix.gnu.org/47531 <2021-04-01 Thu>
+- [X] <2021-04-02 Fri> https://issues.guix.gnu.org/47571 <2021-04-03 Sat>
+- [X] <2021-04-04 Sun> https://issues.guix.gnu.org/47586 <2021-04-05 Mon>
+- [X] <2021-04-10 Sat> https://issues.guix.gnu.org/47683 <2021-04-10 Sat>

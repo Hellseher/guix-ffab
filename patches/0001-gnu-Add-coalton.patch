@@ -1,0 +1,60 @@
+From 65ece0b4c88568dcbad9be885b12dca262eba8b9 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Apr 2021 00:12:14 +0100
+Subject: [PATCH] gnu: Add coalton
+
+* gnu/packages/lisp-xyz.scm: (sbcl-coalton, cl-coalton, ecl-coalton):
+New variables.
+---
+ gnu/packages/lisp-xyz.scm | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index a6da75675e..20b0016798 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -15751,3 +15751,41 @@ abstract and final and singleton classes.")
+ 
+ (define-public cl-abstract-classes
+   (sbcl-package->cl-source-package sbcl-abstract-classes))
++
++(define-public sbcl-coalton
++  (let ((commit "4a42ffb4222fde3abfd1b50d96e455ff2eef9fe8")
++        (revision "1"))
++    (package
++      (name "sbcl-coalton")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/stylewarning/coalton")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0aidwwam7cnhb3p9212zbv5w2dl6kr5iklzanypzr1a9lqaxwdlk"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("fiasco" ,sbcl-fiasco)))
++      (inputs
++       `(("alexandria" ,sbcl-alexandria)
++         ("global-vars" ,sbcl-global-vars)
++         ("trivial-garbage" ,sbcl-trivial-garbage)
++         ("optima" ,sbcl-optima)
++         ("abstract-classes" ,sbcl-abstract-classes)))
++      (home-page "https://github.com/stylewarning/coalton")
++      (synopsis "Dialect of ML in Common Lisp")
++      (description
++       "Coalton is a dialect of ML embedded in Common Lisp.  It emphasizes
++practicality and interoperability with Lisp, and is intended to be a DSL that
++allows one to gradually make their programs safer.")
++      (license license:expat))))
++
++(define-public ecl-coalton
++  (sbcl-package->ecl-package sbcl-coalton))
++
++(define-public cl-coalton
++  (sbcl-package->cl-source-package sbcl-coalton))
+-- 
+2.30.2
+

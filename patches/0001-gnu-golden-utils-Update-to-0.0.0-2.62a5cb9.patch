@@ -1,0 +1,36 @@
+From ffc0292912e435406228e8560b3495d382036374 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 3 Apr 2021 21:39:56 +0100
+Subject: [PATCH] gnu: golden-utils: Update to 0.0.0-2.62a5cb9
+
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 9eb937314e..0a1dd7504e 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -161,8 +161,8 @@ collection.")
+   (sbcl-package->cl-source-package sbcl-bodge-utilities))
+ 
+ (define-public sbcl-golden-utils
+-  (let ((commit "9424419d867d5c2f819196ee41667a818a5058e7")
+-        (revision "1"))
++  (let ((commit "62a5cb948a011eb26e7a89f56d5839a3334b4100")
++        (revision "2"))
+     (package
+       (name "sbcl-golden-utils")
+       (version (git-version "0.0.0" revision commit))
+@@ -174,7 +174,7 @@ collection.")
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+-          (base32 "15x0phm6820yj3h37ibi06gjyh6z45sd2nz2n8lcbfflwm086q0h"))))
++          (base32 "13mvxqwd1nmpq8h5hb1s60wyqdj7ji4haxrqr0sy3csyqa8aq2j8"))))
+       (build-system asdf-build-system/sbcl)
+       (inputs
+        `(("alexandria" ,sbcl-alexandria)))
+-- 
+2.29.2
+

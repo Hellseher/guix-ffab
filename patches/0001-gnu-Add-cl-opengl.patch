@@ -1,0 +1,85 @@
+From 14f041ee57cf788602f343caf92db192c81abb24 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 2 Apr 2021 21:46:37 +0100
+Subject: [PATCH] gnu: Add cl-opengl
+
+* gnu/packages/lisp-xyz.scm: (sbcl-cl-opengl, cl-opengl, ecl-cl-opengl):
+New variables.
+---
+ gnu/packages/lisp-xyz.scm | 56 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index e1a5a9a7a6..7d990840db 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -64,6 +64,7 @@
+   #:use-module (gnu packages file)
+   #:use-module (gnu packages fonts)
+   #:use-module (gnu packages fontutils)
++  #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages imagemagick)
+@@ -15564,3 +15565,58 @@ immediately loaded.")
+ 
+ (define-public cl-conspack
+   (sbcl-package->cl-source-package sbcl-cl-conspack))
++
++(define-public sbcl-cl-opengl
++  (let ((commit "e2d83e0977b7e7ac3f3d348d8ccc7ccd04e74d59")
++        (revision "1"))
++    (package
++      (name "sbcl-cl-opengl")
++      (version (git-version "0.1.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/3b/cl-opengl/")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0mhqmll09f079pnd6mgswz9nvr6h5n27d4q7zpmm2igf1v460id7"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:asd-systems '("cl-opengl" "cl-glu" "cl-glut")
++         #:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'patch-lib-path
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "gl/library.lisp"
++                 (("libGL.so" all)
++                  (string-append (assoc-ref inputs "mesa") "/lib/" all)))
++               (substitute* "glu/library.lisp"
++                 (("libGLU.so" all)
++                  (string-append (assoc-ref inputs "glu") "/lib/" all)))
++               (substitute* "glut/library.lisp"
++                 (("libglut.so" all)
++                  (string-append (assoc-ref inputs "freeglut") "/lib/" all)))
++               #t)))))
++      (inputs
++       `(("alexandria" ,sbcl-alexandria)
++         ("cffi" ,sbcl-cffi)
++         ("float-features" ,sbcl-float-features)
++         ("freeglut" ,freeglut)
++         ("glu" ,glu)
++         ("mesa" ,mesa)))
++      (home-page "https://github.com/3b/cl-opengl/")
++      (synopsis "Common Lisp bindings to OpenGL, GLU and GLUT APIs")
++      (description
++       "This package comes with OpenGL->Mesa and GLUT->FreeGLUT libraries
++substitutions.
++
++This package provides 4 systems: @code{CL-OPENGL} @code{CL-OPENGL/ES2}
++@code{CL-GLU} @code{CL-GLUT}")
++      (license license:bsd-2))))
++
++(define-public ecl-cl-opengl
++  (sbcl-package->ecl-package sbcl-cl-opengl))
++
++(define-public cl-cl-opengl
++  (sbcl-package->cl-source-package sbcl-cl-opengl))
+-- 
+2.29.2
+

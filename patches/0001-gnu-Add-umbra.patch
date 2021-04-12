@@ -1,0 +1,53 @@
+From 6847059c1e584b4689b34c0b92a7e907250aed67 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 3 Apr 2021 22:09:41 +0100
+Subject: [PATCH] gnu: Add umbra
+
+* gnu/packages/lisp-xyz.scm: (sbcl-umbra, cl-umbra, ecl-umbra): New variables
+---
+ gnu/packages/lisp-xyz.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 23de14c2de..86c7dae366 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -15652,3 +15652,35 @@ OpenGL (Mesa), GLU and GLUT (FreeGLUT) APIs using CFFI.")
+ 
+ (define-public cl-shadow
+   (sbcl-package->cl-source-package sbcl-shadow))
++
++(define-public sbcl-umbra
++  (let ((commit "d6ef2f6cbfa26180929061129eaf325bf17f73d8")
++        (revision "1"))
++    (package
++      (name "sbcl-umbra")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://git.mfiano.net/mfiano/umbra")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "04vyh2j00zdpb8ryxr8g81wjcmqlz9wrn55r3cypcj4qg970r5wi"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("golden-utils" ,sbcl-golden-utils)
++         ("shadow" ,sbcl-shadow)
++         ("varjo" ,sbcl-varjo)))
++      (home-page "https://git.mfiano.net/mfiano/umbra")
++      (synopsis "Common Lisp library of reusable GPU shader functions")
++      (description
++       "Common Lisp library of reusable GPU shader functions")
++      (license license:expat))))
++
++(define-public ecl-umbra
++  (sbcl-package->ecl-package sbcl-umbra))
++
++(define-public cl-umbra
++  (sbcl-package->cl-source-package sbcl-umbra))
+-- 
+2.29.2
+

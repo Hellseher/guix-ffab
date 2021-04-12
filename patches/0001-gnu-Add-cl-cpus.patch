@@ -1,0 +1,53 @@
+From d2c976dd5e5d7be41a7f5b66278283093296ef9d Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 3 Apr 2021 22:22:29 +0100
+Subject: [PATCH] gnu: Add cl-cpus
+
+* gnu/packages/lisp-xyz.scm: (sbcl-cl-cpus, cl-cpus, ecl-cl-cpus): New variables
+---
+ gnu/packages/lisp-xyz.scm | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 86c7dae366..f5cece4ed5 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -15335,6 +15335,35 @@ line tool @code{df} and get disk space information using @code{statvfs}.")
+ (define-public cl-diskspace
+   (sbcl-package->cl-source-package sbcl-cl-diskspace))
+ 
++(define-public sbcl-cl-cpus
++  (package
++    (name "sbcl-cl-cpus")
++    (version "0.0.3")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/muyinliu/cl-cpus")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0sdaff9hpsx7bpkkkqavmxmrrlc2d61gmqjjgn8xchncng4a0rf8"))))
++    (build-system asdf-build-system/sbcl)
++    (inputs
++     `(("cffi" ,sbcl-cffi)))
++    (home-page "https://github.com/muyinliu/cl-cpus")
++    (synopsis "Common Lisp feature to get number of CPUs")
++    (description
++     "This package provides Common Lisp system which has only one function to
++returns CPU count of the current system.")
++    (license license:isc)))
++
++(define-public ecl-cl-cpus
++  (sbcl-package->ecl-package sbcl-cl-cpus))
++
++(define-public cl-cpus
++  (sbcl-package->cl-source-package sbcl-cl-cpus))
++
+ (define-public sbcl-fof
+   (package
+     (name "sbcl-fof")
+-- 
+2.29.2
+

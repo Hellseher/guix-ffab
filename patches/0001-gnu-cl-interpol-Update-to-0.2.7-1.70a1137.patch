@@ -1,0 +1,40 @@
+From 6ccb19ef8c80241664ef17e3c0cc9d7f81ee5b08 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 6 Mar 2021 20:48:29 +0000
+Subject: [PATCH] gnu: cl-interpol: Update to 0.2.7-1.70a1137
+
+* gnu/packages/lisp-xyz: (sbcl-cl-interpol): Updated to 0.2.7-1.70a1137
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 161a15c44f..6bf3ba9b11 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -7991,11 +7991,11 @@ intending to program in Lisp.")
+   (sbcl-package->cl-source-package sbcl-antik))
+ 
+ (define-public sbcl-cl-interpol
+-  (let ((commit "1fd288d861db85bc4677cff3cdd6af75fda1afb4")
++  (let ((commit "70a1137f41dd8889004dbab9536b1adeac2497aa")
+         (revision "1"))
+     (package
+       (name "sbcl-cl-interpol")
+-      (version (git-version "0.2.6" revision commit))
++      (version (git-version "0.2.7" revision commit))
+       (source
+        (origin
+          (method git-fetch)
+@@ -8005,7 +8005,7 @@ intending to program in Lisp.")
+          (file-name (git-file-name name version))
+          (sha256
+           (base32
+-           "1hnikak52hmcq1r5f616m6qq1108qnkw80pja950nv1fq5p0ppjn"))))
++           "1kr00zf62m7la7rxa2m5w49r9cyzamc106hvjcc8ffmi7a4jw490"))))
+       (build-system asdf-build-system/sbcl)
+       (inputs
+        `(("cl-unicode" ,sbcl-cl-unicode)
+-- 
+2.29.2
+
