@@ -1,2 +1,0 @@
-#+TITLE: Maptools
-http://maptools.org/

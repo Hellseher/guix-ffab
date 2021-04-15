@@ -1,3 +1,0 @@
-#+TITLE: Math
-http://www.netlib.org/
-https://confluence.ecmwf.int/display/atlas

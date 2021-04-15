@@ -1,6 +1,6 @@
-#+title: Guix patches: astronomy
+#+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-03-06 Sat 20:59:20 GMT>
+#+modified: <2021-04-15 Thu 21:33:44 BST>
 
 * TODO AstrOmatic software [8/10][80%]
 - https://github.com/astromatic

@@ -1,0 +1,30 @@
+#+title: Guix channel
+
+This repository contains patches contributed to <guix-patches@gnu.org> and
+packaging progress. It also can be used as stand alone Guix channel.
+
+* Examples
+All examples are based on assumption that ~guix~ is the main system or available
+as package manager.
+
+** Use as channel
+~/.config/guix/channels.scm~
+#+begin_src scheme
+(cons* (channel
+        (name 'hellseher)
+        (url "https://github.com/Hellseher/guix-channel"))
+       %default-channels)
+ #+end_src
+
+** Use as build/install source
+#+begin_example
+~$ git clone https://github.com/Hellseher/guix-channel
+~$ guix build -L ./guix-channel pgloader
+#+end_example
+
+* References
+** Guix channels
+- https://github.com/ryanprior/guix-packages
+- https://github.com/flatwhatson/guix-channel
+- https://gitlab.com/nonguix/nonguix
+- https://gitlab.com/guix-gaming-channels

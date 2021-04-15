@@ -1,0 +1,52 @@
+#+TITLE: gnu/packages/version-control
+
+* TODO lazygit [0/4][0%]
+- https://github.com/jesseduffield/lazygit
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [13/34][38%]
+  + [ ] github.com/atotto/clipboard (0 deps)
+  + [ ] github.com/aybabtme/humanlog (8 deps)
+  + [ ] github.com/cloudfoundry/jibber_jabber (wtf? old)
+  + [ ] github.com/creack/pty (0 deps)
+  + [X] github.com/fatih/color
+  + [X] github.com/fsnotify/fsnotify
+  + [ ] github.com/go-errors/errors (0 deps)
+  + [ ] github.com/golang-collections/collections (wtf? old)
+  + [X] github.com/golang/protobuf
+  + [-] github.com/go-logfmt/logfmt (0 deps)
+  + [X] github.com/google/go-cmp
+  + [X] github.com/imdario/mergo
+  + [ ] github.com/integrii/flaggy (0 deps)
+  + [ ] github.com/jesseduffield/gocui (wtf? fork)
+  + [ ] github.com/jesseduffield/go-git/v5 (wtf? fork)
+  + [ ] github.com/jesseduffield/termbox-go (wtf? fork)
+  + [ ] github.com/jesseduffield/yaml (wtf? fork)
+  + [X] github.com/kardianos/osext
+  + [ ] github.com/konsorten/go-windows-terminal-sequences (0 deps, wtf? fork)
+  + [X] github.com/kylelemons/godebug
+  + [X] github.com/mattn/go-colorable
+  + [X] github.com/mattn/go-runewidth
+  + [ ] github.com/mgutz/str (wtf?)
+  + [ ] github.com/onsi/ginkgo (5 deps)
+  + [ ] github.com/onsi/gomega (4 deps)
+  + [ ] github.com/OpenPeeDeeP/xdg (4 deps)
+  + [ ] github.com/sahilm/fuzzy (5 deps)
+  + [X] github.com/sirupsen/logrus
+  + [ ] github.com/spkg/bom (1 dep)
+  + [-] github.com/stretchr/testify [0/4][0%]
+    + [ ] :packed
+    + [ ] :patch-sent
+    + [ ] :paptch-applied-upstream
+    + [-] :inputs [0/1][0%]
+      - [-] gopkg.in/yaml.v3 [2/3][66%]
+        - https://gopkg.in/yaml.v3
+        - [X] :packed <2021-02-01 Mon>
+        - [X] :patch-sent <2021-02-01 Mon>
+        - [ ] :paptch-applied-upstream
+          - https://issues.guix.gnu.org/46234
+  + [ ] github.com/tcnksm/go-gitconfig (wtf? old)
+  + [X]  golang.org/x/crypto
+  + [X] golang.org/x/net
+  + [X] golang.org/x/sys

@@ -1,0 +1,6 @@
+#+title: gnu/packages/math
+#+created: <2021-04-15 Thu 21:35:22 BST>
+#+modified: <2021-04-15 Thu 21:35:27 BST>
+
+http://www.netlib.org/
+https://confluence.ecmwf.int/display/atlas
