@@ -1,4 +1,4 @@
-(define-module (hellseher packages admin)
+(define-module (ffab packages admin)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages)
   #:use-module (gnu packages qt)

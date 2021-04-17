@@ -1,6 +1,8 @@
-(define-module (hellseher package web)
+(define-module (ffab packages web)
   #:use-module (guix packages)
   #:use-module (guix build-system gnu)
+  #:use-module (gnu packages lua)
+  #:use-module (gnu packages tls)
   #:use-module (guix git-download)
   #:use-module ((guix licenses) #:prefix license:))
 

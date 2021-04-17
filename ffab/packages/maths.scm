@@ -1,4 +1,4 @@
-(define-module (hellseher packages maths)
+(define-module (ffab packages maths)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages image)

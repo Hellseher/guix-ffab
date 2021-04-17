@@ -1,4 +1,4 @@
-(define-module (hellseher packages geo)
+(define-module (ffab packages geo)
   #:use-module (guix packages)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)

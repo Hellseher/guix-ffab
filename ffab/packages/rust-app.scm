@@ -1,4 +1,4 @@
-(define-module (hellseher packages astronomy)
+(define-module (ffab packages rust-app)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system cargo)
   #:use-module (guix download)

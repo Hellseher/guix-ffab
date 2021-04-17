@@ -1,4 +1,4 @@
-(define-module (hellseher packages image)
+(define-module (ffab packages image)
   #:use-module (guix packages)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system meson)

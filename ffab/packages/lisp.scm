@@ -1,4 +1,4 @@
-(define-module (hellseher packages lisp-xyz)
+(define-module (ffab packages lisp)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system gnu)
   #:use-module (guix git-download)

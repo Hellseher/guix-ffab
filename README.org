@@ -1,7 +1,39 @@
 #+title: Guix channel
+/FFAB :: Flock Full of Aleatory Burden/
+
 
 This repository contains patches contributed to <guix-patches@gnu.org> and
 packaging progress. It also can be used as stand alone Guix channel.
+
+Layout follows Guix upstream
+
+#+BEGIN_SRC sh :results value org :results output replace :exports results
+tree ffab
+echo Total packages:
+guix package -L . -A | grep -c ffab
+#+end_src
+
+#+RESULTS:
+#+begin_src org
+ffab
+└── packages
+    ├── admin.scm
+    ├── astronomy.scm
+    ├── databases.scm
+    ├── geo.scm
+    ├── golang.scm
+    ├── image.scm
+    ├── lisp.scm
+    ├── lisp-xyz.scm
+    ├── maths.scm
+    ├── pascal.scm
+    ├── rust-app.scm
+    └── web.scm
+
+1 directory, 12 files
+Total packages:
+142
+#+end_src
 
 * Examples
 All examples are based on assumption that ~guix~ is the main system or available
@@ -11,7 +43,7 @@ as package manager.
 ~/.config/guix/channels.scm~
 #+begin_src scheme
 (cons* (channel
-        (name 'hellseher)
+        (name 'ffab)
         (url "https://github.com/Hellseher/guix-channel"))
        %default-channels)
  #+end_src
