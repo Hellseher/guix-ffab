@@ -196,33 +196,69 @@ This package provides 1 system: @code{ORIGIN}")
 ;; Set of system which are maintained under Shirakumo distribution
 ;;+begin-shirakumo
 
+;; <2021-04-22>
+(define-public sbcl-terrable
+  (let ((commit "e4fe23ffa08e8d53a8168105b413861da59cc786")
+        (revision "1"))
+    (package
+     (name "sbcl-terrable")
+     (version (git-version "1.0.0" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Shirakumo/terrable.git")
+             (commit commit)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0pnqflgz410zydc1ivwnd8hcl24bgr7x12yjzr7g4lq3ibc8y97b"))))
+     (build-system asdf-build-system/sbcl)
+     (inputs
+      `(("documentation-utils" ,sbcl-documentation-utils)
+        ("fast-io" ,sbcl-fast-io)
+        ("ieee-floats" ,sbcl-ieee-floats)
+        ("static-vectors" ,sbcl-static-vectors)
+        ("trivial-garbage" ,sbcl-trivial-garbage)))
+     (home-page "https://shirakumo.github.io/terrable/")
+     (synopsis "File parser library for Terragen TER terrain files")
+     (description
+      "TBC")
+     (license license:zlib))))
+
+(define-public ecl-terrable
+  (sbcl-package->ecl-package sbcl-terrable))
+
+(define-public cl-terrable
+  (sbcl-package->cl-source-package sbcl-terrable))
+
 ;; <2021-04-21>
 (define-public sbcl-pathname-utils
   (let ((commit "70f517e44e13a38e0c8f296613236376d679fa8f")
         (revision "1"))
     (package
-      (name "sbcl-pathname-utils")
-      (version (git-version "1.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/pathname-utils.git")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1zm4bf6gajpgmhr7zwf7600zlaf8fs1fcyzabqsh2ma2crkgqdxq"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("parachute" ,sbcl-parachute)))
-      (home-page "https://shinmera.github.io/pathname-utils")
-      (synopsis "Collection of utilities to help with pathname operations")
-      (description
-       "This package provides Common Lisp system with collection of common tests
+     (name "sbcl-pathname-utils")
+     (version (git-version "1.1.0" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Shinmera/pathname-utils.git")
+             (commit commit)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1zm4bf6gajpgmhr7zwf7600zlaf8fs1fcyzabqsh2ma2crkgqdxq"))))
+     (build-system asdf-build-system/sbcl)
+     (native-inputs
+      `(("parachute" ,sbcl-parachute)))
+     (home-page "https://shinmera.github.io/pathname-utils")
+     (synopsis "Collection of utilities to help with pathname operations")
+     (description
+      "This package provides Common Lisp system with collection of common tests
 and operations to help handling pathnames.  It does not actually deal in handling
 the accessing of files on the underlying system however.")
-      (license license:zlib))))
+     (license license:zlib))))
 
 (define-public ecl-pathname-utils
   (sbcl-package->ecl-package sbcl-pathname-utils))
@@ -1498,6 +1534,7 @@ Scalable Vector Graphics files.")
   (sbcl-package->cl-source-package sbcl-fare-mop))
 
 ;; <2021-04-15 Thu>
+;; NOTE: (Sharlatan-20210425T171922+0100): Not aplicable with Guix licence policy
 (define-public sbcl-weir
   (let ((commit "beb4f6f47f0538d2c6d73b1d3c9d7f58ac8aa0e9")
         (revision "1"))
