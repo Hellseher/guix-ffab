@@ -1,0 +1,62 @@
+From 86e28c08c10ce5039beea1089dc2f23feb8f58ea Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 17 Apr 2021 21:41:15 +0100
+Subject: [PATCH] gnu: Add inferior-shell
+
+* gnu/packages/lisp-xyz.scm
+  (sbcl-inferior-shell, cl-inferior-shell, ecl-inferior-shell): New variables
+---
+ gnu/packages/lisp-xyz.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 2269431275..bfa0c1a488 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -5721,6 +5721,43 @@ debugging.")
+ (define-public cl-fare-mop
+   (sbcl-package->cl-source-package sbcl-fare-mop))
+ 
++(define-public sbcl-inferior-shell
++  (let ((commit "15c2d04a7398db965ea1c3ba2d49efa7c851f2c2")
++        (revision "1"))
++    (package
++      (name "sbcl-inferior-shell")
++      (version (git-version "2.0.5" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               ;; Other mirror, Fare is most active on GitHub.
++               ;; https://gitlab.common-lisp.net/frideau/inferior-shell
++               (url "https://github.com/fare/inferior-shell")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "02qx37zzk5j4xmwh77k2qa2wvnzvaj6qml5dh2q7b6b1ljvgcj4m"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("alexandira" ,sbcl-alexandria)
++         ("trivia" ,sbcl-trivia)
++         ("fare-utils" ,sbcl-fare-utils)
++         ("fare-quasiquote" ,sbcl-fare-quasiquote)
++         ("fare-mop" ,sbcl-fare-mop)))
++      (home-page "https://github.com/fare/inferior-shell")
++      (synopsis "Spawn local or remote processes and shell pipes")
++      (description
++       "This package provides Common Lisp system helping in scripting, it uses
++@code{uiop:run-program} as a backend.")
++      (license license:expat))))
++
++(define-public ecl-inferior-shell
++  (sbcl-package->ecl-package sbcl-inferior-shell))
++
++(define-public cl-inferior-shell
++  (sbcl-package->cl-source-package sbcl-fare-mop))
++
+ (define-public sbcl-trivial-utf-8
+   (let ((commit "4d427cfbb1c452436a0efb71c3205c9da67f718f")
+         (revision "1"))
+-- 
+2.30.2
+

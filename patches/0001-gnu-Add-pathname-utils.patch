@@ -1,0 +1,55 @@
+From b4d8253431113b80441a3ee71b53c5b6f52f037e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Apr 2021 22:20:07 +0100
+Subject: [PATCH] gnu: Add pathname-utils
+
+* gnu/packages/lisp-xyz.scm: (sbcl-pathname-utils, cl-pathname-utils,
+  ecl-pathname-utils): New variables
+---
+ gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 0e82f8fc2c..e728697710 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16034,3 +16034,36 @@ lQuery.")
+ 
+ (define-public cl-clip
+   (sbcl-package->cl-source-package sbcl-clip))
++
++(define-public sbcl-pathname-utils
++  (let ((commit "70f517e44e13a38e0c8f296613236376d679fa8f")
++        (revision "1"))
++    (package
++      (name "sbcl-pathname-utils")
++      (version (git-version "1.1.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shinmera/pathname-utils.git")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32
++           "1zm4bf6gajpgmhr7zwf7600zlaf8fs1fcyzabqsh2ma2crkgqdxq"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("parachute" ,sbcl-parachute)))
++      (home-page "https://shinmera.github.io/pathname-utils")
++      (synopsis "Collection of utilities to help with pathname operations")
++      (description
++       "This package provides Common Lisp system with collection of common tests
++and operations to help handling pathnames.  It does not actually deal in handling
++the accessing of files on the underlying system however.")
++      (license license:zlib))))
++
++(define-public ecl-pathname-utils
++  (sbcl-package->ecl-package sbcl-pathname-utils))
++
++(define-public cl-pathname-utils
++  (sbcl-package->cl-source-package sbcl-pathname-utils))
+-- 
+2.31.1
+

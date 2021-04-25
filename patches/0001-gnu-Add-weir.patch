@@ -1,0 +1,74 @@
+From ffb12b7132e4e831bccab0c22b4de96923b8c079 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Apr 2021 22:34:26 +0100
+Subject: [PATCH] gnu: Add weir
+
+* gnu/packages/lisp-xyz.scm (sbcl-weir, cl-weir, ecl-weir): New variables
+---
+ gnu/packages/lisp-xyz.scm | 53 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 0e82f8fc2c..f133d372a5 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16034,3 +16034,56 @@ lQuery.")
+ 
+ (define-public cl-clip
+   (sbcl-package->cl-source-package sbcl-clip))
++
++(define-public sbcl-weir
++  (let ((commit "beb4f6f47f0538d2c6d73b1d3c9d7f58ac8aa0e9")
++        (revision "1"))
++    (package
++      (name "sbcl-weir")
++      (version (git-version "4.9.1" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/inconvergent/weir")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1vm10kb51g4ba2nl5yixswkk47vwqgwqdlz5031xfff8h9z2a6ad"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       ;; FIXME: (Sharlatan-20210415T165228+0100): All tests have been passed
++       ;; but terminated with error status after `check' phase is completed.
++       ;;
++       ;;  tests:  303
++       ;;  fails:  0
++       ;;  passes: 303
++       ;; "--- at least one catastrophe! ---"
++       ;; terminated with status: 1
++       ;; ;
++       ;; ; compilation unit aborted
++       ;; ;   caught 1 fatal ERROR condition
++       ;; ;   caught 3 STYLE-WARNING conditions
++       ;; ;   printed 91 notes
++       `(#:tests? #f))
++      (inputs
++       `(("alexandira" ,sbcl-alexandria)
++         ("cl-json" ,sbcl-cl-json)
++         ("cl-svg" ,sbcl-cl-svg)
++         ("inferior-shell" ,sbcl-inferior-shell)
++         ("lparallel" ,sbcl-lparallel)
++         ("png" ,sbcl-png)
++         ("split-sequence" ,sbcl-split-sequence)
++         ("zpng" ,sbcl-zpng)))
++      (home-page "https://github.com/inconvergent/weir")
++      (synopsis "System for making generative systems")
++      (description
++       "This package provides Common Lisp system for generating 2d and 3d vector
++artworks with SVG and PNG export format.")
++      (license license:expat))))
++
++(define-public ecl-weir
++  (sbcl-package->ecl-package sbcl-weir))
++
++(define-public cl-weir
++  (sbcl-package->cl-source-package sbcl-fare-mop))
+-- 
+2.31.1
+

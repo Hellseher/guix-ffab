@@ -1,0 +1,73 @@
+From 4c88394f72e61a7f7170075ca32d8e42b1acc645 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 17 Apr 2021 21:37:45 +0100
+Subject: [PATCH] gnu: Add cl-png
+
+* gnu/packages/lisp-xyz.scm (sbcl-png, cl-png, ecl-png): New variables
+---
+ gnu/packages/lisp-xyz.scm | 42 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 7ee1957169..6c9353a9e2 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -68,6 +68,7 @@
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gtk)
++  #:use-module (gnu packages image)
+   #:use-module (gnu packages imagemagick)
+   #:use-module (gnu packages libevent)
+   #:use-module (gnu packages libffi)
+@@ -9224,6 +9225,47 @@ for reading and writing JPEG image files.")
+ (define-public ecl-cl-jpeg
+   (sbcl-package->ecl-package sbcl-cl-jpeg))
+ 
++(define-public sbcl-png
++  (let ((commit "11b965fe378fd0561abe3616b18ff03af5179648")
++        (revision "1"))
++    (package
++      (name "sbcl-png")
++      (version (git-version "2.1.2" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/ljosa/cl-png")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "173hqwpd0rwqf95mfx1h9l9c3i8bb0gvnpspzmmz3g5x3440czy4"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'fix-lib-paths
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "libpng.lisp"
++                 (("\"libpng\"") (string-append "\""
++                                        (assoc-ref inputs "libpng")
++                                        "/lib/libpng\""))))))))
++      (inputs
++       `(("cffi" ,sbcl-cffi)
++         ("libpng" ,libpng)))
++      (home-page "https://github.com/ljosa/cl-png")
++      (synopsis "Read and write PNG file format")
++      (description
++       "This package provides Common Lisp system @code{PNG} to operate with
++Portable Network Graphics file format.")
++      (license license:lgpl2.0))))
++
++(define-public ecl-png
++  (sbcl-package->ecl-package sbcl-png))
++
++(define-public cl-png
++  (sbcl-package->cl-source-package sbcl-png))
++
+ (define-public sbcl-nodgui
+   (let ((commit "4a9c2e7714b278fbe97d198c56f54ea87290001d")
+         (revision "1"))
+-- 
+2.30.2
+
