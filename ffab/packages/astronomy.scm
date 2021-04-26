@@ -6,8 +6,10 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages libusb)
   #:use-module (gnu packages maths)
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages pascal)
@@ -18,9 +20,9 @@
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages swig)
-  #:use-module (gnu packages libusb)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
+  #:use-module (gnu packages xml)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
@@ -29,11 +31,12 @@
   #:use-module (guix packages)
   #:use-module (ice-9 match))
 
-; TODO: (Sharlatan-20210415T214924+0100):
+;; TODO: (Sharlatan-20210415T214924+0100):
 (define-public astrometry
+  (let ((version "0.85"))
     (package
       (name "astrometry")
-      (version "0.85")
+      (version version)
       (source
        (origin
          (method git-fetch)
@@ -42,7 +45,7 @@
                (commit version)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "01pxlli8gk6d40kxhsa5aasnmsyaq1895kax3gfb7dcs0rp634qk"))))
+          (base32 "0v0yjahx4cbl7z65vdpf366286747vzrbq41n907273sxzdpc8ld"))))
       (build-system gnu-build-system)
       (arguments
        `(#:make-flags
@@ -63,11 +66,11 @@
          ("numpy" ,python-numpy)
          ("libjpeg" ,libjpeg-turbo)
          ("netpbm" ,netpbm)))
-      (home-page "https://github.com/dstndstn/astrometry.net")
-      (synopsis "")
+      (home-page "https://astrometry.net/")
+      (synopsis "Automatic recognition of astronomical images")
       (description
        "")
-    (license license:gpl3+)))
+      (license license:gpl3+))))
 
 (define-public eye
   (package
@@ -587,49 +590,78 @@ implementation of the ASDF Standard.")
 astronomical images, especially when there is no WCS information available.")
     (license license:expat)))
 
-;; TODO: (Sharlatan-20210415T231145+0100):
 (define-public python-astropy
   (package
     (name "python-astropy")
-    (version "4.2")
+    (version "4.2.1")
     (source
      (origin
        (method url-fetch)
        ;; Source: https://github.com/astropy/astropy
        (uri (pypi-uri "astropy" version))
        (sha256
-        (base32 "0snw1abrwaqkziw2vambbi9g0jgah5la04x4ckg9k0wv8a54y69c"))))
+        (base32 "09w4q64c6bykcdp8xdq5fgsdjqrcihqhqjszqjp3s5a1493kwj7d"))))
     (build-system python-build-system)
+    (arguments
+     ;; NOTE: (Sharlatan-20210426T204315+0100): Tests require build astropy
+     ;; module, it needs a good review on how to enable them.
+     `(#:tests? #f
+       #:phases
+       (modify-phases %standard-phases
+         (add-before 'build 'setenv-astropy-system-all
+           (lambda _
+             (setenv "ASTROPY_USE_SYSTEM_ALL" "1")
+             #t))
+         ;; NOTE: (Sharlatan-20210426T200127+0100): it fails during install
+         ;; phases without the file is removed
+         ;;
+         ;; PermissionError: [Errno 13] Permission denied: './astropy/_compiler.c'
+         (add-before 'install 'remove-compiler-c
+           (lambda _
+             (delete-file "astropy/_compiler.c")
+             #t))
+         (add-before 'install 'makdir-astropy
+           (lambda* (#:key outputs #:allow-other-keys)
+             (let ((out (assoc-ref outputs "out")))
+               (mkdir-p
+                (string-append out "/astropy")))
+             #t)))))
     (native-inputs
-     `(("coverage" ,python-coverage)
+     `(("cfitsio" ,cfitsio)
+       ("coverage" ,python-coverage)
+       ("cython" ,python-cython)
+       ("extension-helpers" ,python-extension-helpers)
        ("ipython" ,python-ipython)
        ("objgraph" ,python-objgraph)
-       ("pytest-astropy" ,python-pytest-astropy)
-       ("pytest-xdist" ,python-pytest-xdist)
+       ("pkg-config" ,pkg-config)
+       ("setuptools-scm" ,python-setuptools-scm)
        ("sgp4" ,python-sgp4)
-       ("skyfield" ,python-skyfield)
-       ))
+       ("skyfield" ,python-skyfield)))
     (inputs
-     `(("scipy" ,python-scipy)
-       ("numpy" ,python-numpy)
-       ("pyerfa" ,python-pyerfa)
-       ("dask" ,python-dask)
-       ("h5py" ,python-h5py)
+     `(("asdf" ,python-asdf)
        ("beautifulsoup4" ,python-beautifulsoup4)
-       ("html5lib" ,python-html5lib)
        ("bleach" ,python-bleach)
-       ("pyyaml" ,python-pyyaml)
-       ("pandas" ,python-pandas)
-       ("sortedcontainers" ,python-sortedcontainers)
-       ("pytz" ,python-pytz)
+       ("bottleneck" ,python-bottleneck)
+       ("cfitsio" ,cfitsio)
+       ("dask" ,python-dask)
+       ("expat" ,expat)
+       ("graphviz" ,graphviz)
+       ("h5py" ,python-h5py)
+       ("html5lib" ,python-html5lib)
        ("jplephem" ,python-jplephem)
        ("matplotlib" ,python-matplotlib)
        ("mpmath" ,python-mpmath)
-       ("asdf" ,python-asdf)
-       ("bottleneck" ,python-bottleneck)))
-  (home-page "http://astropy.org")
-  (synopsis "Astronomy and astrophysics core library")
-  (description
-   "Astropy Project is a single core package for Astronomy in Python and foster
+       ("numpy" ,python-numpy)
+       ("pandas" ,python-pandas)
+       ("pyerfa" ,python-pyerfa)
+       ("pytz" ,python-pytz)
+       ("pyyaml" ,python-pyyaml)
+       ("scipy" ,python-scipy)
+       ("sortedcontainers" ,python-sortedcontainers)
+       ("wcslib" ,wcslib)))
+    (home-page "https://astropy.org/")
+    (synopsis "Astronomy and astrophysics core library")
+    (description
+     "Astropy Project is a single core package for Astronomy in Python and foster
 interoperability between Python astronomy packages.")
-  (license license:bsd-3)))
+    (license license:bsd-3)))
