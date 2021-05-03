@@ -1,0 +1,120 @@
+From 12680c01148cac6be095f1dfab8beae21977f6ef Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 26 Apr 2021 20:52:09 +0100
+Subject: [PATCH] Gnu: Add Astropy
+
+* gnu/packages/astronomy.scm (python-astropy): New variable
+---
+ gnu/packages/astronomy.scm | 80 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4660e141a4..c43c98f797 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -39,6 +39,7 @@
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
++  #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages libusb)
+@@ -51,11 +52,14 @@
+   #:use-module (gnu packages python-check)
+   #:use-module (gnu packages python-crypto)
+   #:use-module (gnu packages python-science)
++  #:use-module (gnu packages python-web)
+   #:use-module (gnu packages python-xyz)
+   #:use-module (gnu packages qt)
++  #:use-module (gnu packages time)
+   #:use-module (gnu packages version-control)
+   #:use-module (gnu packages video)
+   #:use-module (gnu packages xiph)
++  #:use-module (gnu packages xml)
+   #:use-module (gnu packages xorg)
+   #:use-module (guix build-system cmake)
+   #:use-module (guix build-system gnu)
+@@ -1034,3 +1038,79 @@ astronomical images, especially when there is no WCS information available.")
+      "Skyfield computes positions for the stars, planets, and satellites in
+ orbit around the Earth.")
+     (license license:expat)))
++
++(define-public python-astropy
++  (package
++    (name "python-astropy")
++    (version "4.2.1")
++    (source
++     (origin
++       (method url-fetch)
++       ;; Source: https://github.com/astropy/astropy
++       (uri (pypi-uri "astropy" version))
++       (sha256
++        (base32 "09w4q64c6bykcdp8xdq5fgsdjqrcihqhqjszqjp3s5a1493kwj7d"))))
++    (build-system python-build-system)
++    (arguments
++     ;; NOTE: (Sharlatan-20210426T204315+0100): Tests require build astropy
++     ;; module, it needs a good review on how to enable them.
++     `(#:tests? #f
++       #:phases
++       (modify-phases %standard-phases
++         (add-before 'build 'setenv-astropy-system-all
++           (lambda _
++             (setenv "ASTROPY_USE_SYSTEM_ALL" "1")
++             #t))
++         ;; NOTE: (Sharlatan-20210426T200127+0100): it fails during install
++         ;; phases without the file is removed
++         ;;
++         ;; PermissionError: [Errno 13] Permission denied: './astropy/_compiler.c'
++         (add-before 'install 'remove-compiler-c
++           (lambda _
++             (delete-file "astropy/_compiler.c")
++             #t))
++         (add-before 'install 'makdir-astropy
++           (lambda* (#:key outputs #:allow-other-keys)
++             (let ((out (assoc-ref outputs "out")))
++               (mkdir-p
++                (string-append out "/astropy")))
++             #t)))))
++    (native-inputs
++     `(("cfitsio" ,cfitsio)
++       ("coverage" ,python-coverage)
++       ("cython" ,python-cython)
++       ("extension-helpers" ,python-extension-helpers)
++       ("ipython" ,python-ipython)
++       ("objgraph" ,python-objgraph)
++       ("pkg-config" ,pkg-config)
++       ("setuptools-scm" ,python-setuptools-scm)
++       ("sgp4" ,python-sgp4)
++       ("skyfield" ,python-skyfield)))
++    (inputs
++     `(("asdf" ,python-asdf)
++       ("beautifulsoup4" ,python-beautifulsoup4)
++       ("bleach" ,python-bleach)
++       ("bottleneck" ,python-bottleneck)
++       ("cfitsio" ,cfitsio)
++       ("dask" ,python-dask)
++       ("expat" ,expat)
++       ("graphviz" ,graphviz)
++       ("h5py" ,python-h5py)
++       ("html5lib" ,python-html5lib)
++       ("jplephem" ,python-jplephem)
++       ("matplotlib" ,python-matplotlib)
++       ("mpmath" ,python-mpmath)
++       ("numpy" ,python-numpy)
++       ("pandas" ,python-pandas)
++       ("pyerfa" ,python-pyerfa)
++       ("pytz" ,python-pytz)
++       ("pyyaml" ,python-pyyaml)
++       ("scipy" ,python-scipy)
++       ("sortedcontainers" ,python-sortedcontainers)
++       ("wcslib" ,wcslib)))
++    (home-page "https://astropy.org/")
++    (synopsis "Astronomy and astrophysics core library")
++    (description
++     "Astropy Project is a single core package for Astronomy in Python and foster
++interoperability between Python astronomy packages.")
++    (license license:bsd-3)))
+-- 
+2.31.1
+

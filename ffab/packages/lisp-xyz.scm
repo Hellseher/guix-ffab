@@ -5,6 +5,7 @@
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages mp3)
+  #:use-module (gnu packages sdl)
   #:use-module (guix build-system asdf)
   #:use-module (guix download)
   #:use-module (guix git-download)
@@ -1589,39 +1590,143 @@ artworks with SVG and PNG export format.")
   (sbcl-package->cl-source-package sbcl-fare-mop))
 
 ;; TODO: (Sharlatan-20210415T222020+0100):
-;; (define-public sbcl-sdl2
-;;   (let ((commit "bb2aa2a41cf799e3bb1ddf50de41fe389c6db668")
-;;         (revision "1"))
-;;     (package
-;;       (name "sbcl-sdl2")
-;;       (version (git-version "0.0.0" revision commit))
-;;       (source
-;;        (origin
-;;          (method git-fetch)
-;;          (uri (git-reference
-;;                (url "https://github.com/lispgames/cl-sdl2")
-;;                (commit commit)))
-;;          (file-name (git-file-name name version))
-;;          (sha256
-;;           (base32 "08jvy82abm7qi3wrxh6gvmwg9gy0zzhg4cfqajdwrggbah8mj5a6"))))
-;;       (build-system asdf-build-system/sbcl)
-;;       (inputs
-;;        `(("alexandria" ,sbcl-alexandria)
-;;          ("cl-autowrap" ,sbcl-cl-autowrap)
-;;          ("cl-plus-c" ,sbcl-cl-plus-c)
-;;          ("cl-ppcre" ,sbcl-cl-ppcre)
-;;          ("trivial-channels" ,sbcl-trivial-channels)
-;;          ("trivial-features" ,sbcl-trivial-features)))
-;;       (home-page "https://github.com/lispgames/cl-sdl2")
-;;       (synopsis "Common Lisp bindings for SDL2 using C2FFI")
-;;       (description
-;;        "
+(define-public sbcl-sdl2
+  (let ((commit "bb2aa2a41cf799e3bb1ddf50de41fe389c6db668")
+        (revision "1"))
+    (package
+      (name "sbcl-sdl2")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/lispgames/cl-sdl2")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1a4904310z2wwq80grnlixmyz30452vgd4lh74y105j2yrr43z97"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:tests? #f
+         ;; #:asd-files '("sdl2.asd")
+         ;; #:asd-systems '("sdl2")
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'fix-paths
+             (lambda* (#:key inputs #:allow-other-keys)
+               (substitute* "src/library.lisp"
+                 (("libSDL2-2.0.so.0" all)
+                  (string-append (assoc-ref inputs "libsdl2") "/lib/" all)))
+               #t)))))
+      (inputs
+       `(("alexandria" ,sbcl-alexandria)
+         ("cl-autowrap" ,sbcl-cl-autowrap)
+         ("cl-ppcre" ,sbcl-cl-ppcre)
+         ("libsdl2" ,sdl2)
+         ("trivial-channels" ,sbcl-trivial-channels)
+         ("trivial-features" ,sbcl-trivial-features)))
+      (home-page "https://github.com/lispgames/cl-sdl2")
+      (synopsis "Common Lisp bindings for SDL2 using C2FFI")
+      (description
+       "This pckage provides CL-SDL2 Commn Lisp wrapper system for SDL 2.0 C
+Library.")
+      (license license:expat))))
 
-;; This package provides 1 system: @code{SDL2}")
-;;       (license license:expat))))
+(define-public ecl-sdl2
+  (sbcl-package->ecl-package sbcl-sdl2))
 
-;; (define-public ecl-sdl2
-;;   (sbcl-package->ecl-package sbcl-sdl2))
+(define-public cl-sdl2
+  (sbcl-package->cl-source-package sbcl-sdl2))
 
-;; (define-public cl-sdl2
-;;   (sbcl-package->cl-source-package sbcl-sdl2))
+;; <2021-04-29 Thu>
+(define-public sbcl-unit-test
+  (let ((commit "266afaf4ac091fe0e8803bac2ae72d238144e735")
+        (revision "1"))
+    (package
+      (name "sbcl-unit-test")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/hanshuebner/unit-test")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32
+           "11hpksz56iqkv7jw25p2a8r3n9dj922fyarn16d98589g6hdskj9"))))
+      (build-system asdf-build-system/sbcl)
+      (home-page "https://github.com/hanshuebner/unit-test")
+      (synopsis "Unit-testing framework for common lisp")
+      (description
+"Unit-testing framework for common lisp")
+      (license license:unlicense))))
+
+(define-public ecl-unit-test
+  (sbcl-package->ecl-package sbcl-unit-test))
+
+(define-public cl-unit-test
+  (sbcl-package->cl-source-package sbcl-unit-test))
+
+;; <2021-04-29 Thu>
+(define-public sbcl-bknr-datastore
+  (let ((commit "c98d44f47cc88d19ff91ca3eefbd9719a8ace022")
+        (revision "1"))
+    (package
+      (name "sbcl-bknr-datastore")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               ;; Some other similar repository
+               ;; https://github.com/sharplispers/bknr.datastore
+               (url "https://github.com/hanshuebner/bknr-datastore")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1vi3w65fnczqvswkm381n6liqfrzjrg40y698qvj7skj28dm5vrm"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems
+         '("bknr.datastore"
+           "bknr.impex"
+           "bknr.indices"
+           "bknr.skip-list"
+           "bknr.utils"
+           "bknr.xml")
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'chdir
+             (lambda _
+               (chdir "src")
+               #t)))))
+      (native-inputs
+       `(("unit-test" ,sbcl-unit-test)))
+      (inputs
+       `(("alexandria" ,sbcl-alexandria)
+         ("bordeaux-threads" ,sbcl-bordeaux-threads)
+         ("closer-mop" ,sbcl-closer-mop)
+         ("cl-interpol" ,sbcl-cl-interpol)
+         ("cl-ppcre" ,sbcl-cl-ppcre)
+         ("cl-store" ,sbcl-cl-store)
+         ("cxml" ,sbcl-cxml)
+         ("flexi-streams" ,sbcl-flexi-streams)
+         ("md5" ,sbcl-md5)
+         ("trivial-utf-8" ,sbcl-trivial-utf-8)
+         ("yason" ,sbcl-yason)))
+      (home-page "https://github.com/hanshuebner/bknr-datastore")
+      (synopsis "MOP-Based in-memory database with transactions for Common Lisp")
+      (description
+       "BKNR.DATASTORE is an in-memory CLOS based data store.  This package
+produces 6 systems: BKNR.DATASTORE BKNR.IMPEX BKNR.INDICES BKNR.SKIP-LIST
+BKNR.UTILS BKNR.XML")
+      (license license:bsd-2))))
+
+;; NOTE: (Sharlatan-20210429T191426+0100):
+;; There is no port for ECL in upstream yet
+;; (define-public ecl-bknr-datastore
+;;   (sbcl-package->ecl-package sbcl-bknr-datastore))
+
+(define-public cl-bknr-datastore
+  (sbcl-package->cl-source-package sbcl-bknr-datastore))

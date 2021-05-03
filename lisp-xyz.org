@@ -1,8 +1,7 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-04-15 Thu 21:34:38 BST>
+#+modified: <2021-05-02 Sun 20:39:54 BST>
 
-http://bodge.borodust.org/dist/org.borodust.bodge.txt
 
 * TODO cl-plplot [0/4][0%]
 - https://github.com/HazenBabcock/cl-plplot
@@ -50,7 +49,9 @@ CLOSED: [2021-03-09 Tue 08:44]
 - [X] :patch-sent <2021-03-06 Sat>
 - [X] :paptch-applied-upstream <2021-03-08 Mon>
   - https://issues.guix.gnu.org/46977
-* TODO cl-re [4/4][100%]
+
+* DONE cl-re [4/4][100%]
+CLOSED: [2021-04-25 Sun 17:24]
 - https://github.com/massung/re
 - [X] :packed <2021-03-06 Sat>
 - [X] :patch-sent <2021-03-06 Sat>
@@ -86,7 +87,7 @@ CLOSED: [2021-03-09 Tue 08:44]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [19/40]
+- [-] :inputs [20/40]
   - [X] bodge-utilities
   - [ ] bodge-blobs-support
   - [ ] bodge-canvas
@@ -95,11 +96,11 @@ CLOSED: [2021-03-09 Tue 08:44]
     + [ ] :packed
     + [ ] :patch-sent
     + [ ] :paptch-applied-upstream
-    + [-] :inputs [2/8]
+    + [-] :inputs [3/8]
       - [ ] bodge-memory
       - [X] bodge-queue
       - [X] bodge-utilities
-      - [ ] bordeaux-threads
+      - [X] bordeaux-threads
       - [ ] cl-flow
       - [ ] cl-muth
       - [ ] simple-flow-dispatcher
@@ -132,7 +133,7 @@ CLOSED: [2021-03-09 Tue 08:44]
   - [X] cl-fad
   - [ ] cl-flow
   - [ ] cl-muth
-  - [ ] cl-opengl
+  - [X] cl-opengl
   - [X] cl-ppcre
   - [X] claw
   - [X] claw-utils
@@ -355,7 +356,7 @@ CLOSED: [2021-04-11 Sun 20:33]
     - [X] :inputs [1/1][100%]
       + [X] closer-mop
 
-* DONE radiance [0/0][0%]
+* DONE radiance [0/1][0%]
 CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
 - [X] :packed <2021-01-31 Sun>
@@ -470,7 +471,7 @@ CLOSED: [2021-02-04 Thu 00:28]
               + [X] dissect (gnu/packages/lisp-xyz.scm:10055:4)
               + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
               + [X] local-time (gnu/packages/lisp-xyz.scm:4397:4)
-** Modules
+** TODO Modules
 - https://gitlab.com/jason.melbye/r-djula
 - https://github.com/Shirakumo/radiance-contribs
 
@@ -479,7 +480,7 @@ CLOSED: [2021-02-04 Thu 00:28]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [21/33][63%]
+- [-] :inputs [23/33][69%]
   - [-] 3d-matrices
     + https://github.com/Shinmera/3d-matrices
     + [ ] :packed
@@ -501,6 +502,9 @@ CLOSED: [2021-02-04 Thu 00:28]
   - [ ] 3d-vectors
   - [X] bordeaux-threads
   - [ ] cl-gamepad
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
   - [X] cl-jpeg
   - [X] cl-opengl
   - [X] closer-mop
@@ -520,54 +524,86 @@ CLOSED: [2021-02-04 Thu 00:28]
   - [ ] lquery
   - [ ] messagebox
   - [X] mmap
-  - [ ] pathname-utils
+  - [X] pathname-utils
+    - https://github.com/Shinmera/pathname-utils.git
+    - [X] :packed <2021-04-21 Wed>
+    - [X] :patch-sent <2021-04-21 Wed>
+    - [X] :patch-applied-upstream <2021-04-22 Thu>
+      - https://issues.guix.gnu.org/47942
   - [X] pngload
   - [X] retrospectiff
   - [X] static-vectors
-  - [ ] terrable
+  - [X] terrable
+    - https://github.com/Shirakumo/terrable.git
+    - [X] :packed <2021-04-25 Sun>
+    - [X] :patch-sent <2021-04-25 Sun>
+    - [X] :patch-applied-upstream <2021-04-25 Sun>
+      - https://issues.guix.gnu.org/47961
   - [X] trivial-garbage
   - [X] trivial-indent
   - [X] verbose
   - [X] zpng
-* TODO weir [0/4][0%]
+
+* TODO weir [3/4][75%]
 - https://github.com/inconvergent/weir
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2021-04-17 Sat>
+- [X] :patch-sent <2021-04-21 Wed>
 - [ ] :patch-applied-upstream
-- [-] :inputs [5/8][62%]
+  - https://issues.guix.gnu.org/47943
+- [X] :inputs [8/8][100%]
   + [X] alexandria
   + [X] cl-json
-  + [ ] cl-svg
+  + [X] cl-svg
     - https://github.com/wmannis/cl-svg
-    - [ ] :packed <2021-04-15 Thu>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-  + [-] inferior-shell
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
+  + [X] inferior-shell
     - https://gitlab.common-lisp.net/qitab/inferior-shell.git
-    - [ ] :packed <2021-04-15 Thu>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [-] :inputs [5/6][83%]
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
+    - [X] :inputs [6/6][100%]
       - [X] alexandria
       - [X] trivia
       - [X] trivia.quasiquote
       - [X] fare-utils
       - [X] fare-quasiquote-extras
-      - [-] fare-mop
+      - [X] fare-mop
         - https://gitlab.common-lisp.net/frideau/fare-mop.git
         - https://github.com/fare/fare-mop
-        - [ ] :packed <2021-04-15 Thu>
-        - [ ] :patch-sent
-        - [ ] :patch-applied-upstream
+        - [X] :packed <2021-04-15 Thu>
+        - [X] :patch-sent <2021-04-17 Sat>
+        - [X] :patch-applied-upstream <2021-04-19 Mon>
+          - https://issues.guix.gnu.org/47851
         - [X] :inputs [1/1][100%]
           + [X] closer-mop
   + [X] lparallel
-  + [-] png
+  + [X] png
     - https://github.com/ljosa/cl-png
-    - [ ] :packed <2021-04-15 Thu>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
     - [X] :inputs [1/1][100%]
       - [X] cffi
   + [X] split-sequence
   + [X] zpng
+
+* DONE bknr-datastore
+CLOSED: [2021-05-02 Sun 20:39]
+- https://github.com/hanshuebner/bknr-datastore
+- [X] :packed <2021-04-29 Thu>
+- [X] :patch-sent <2021-04-29 Thu>
+- [X] :patch-applied-upstream
+  + https://issues.guix.gnu.org/48105
+- [X] :inputs [1/1][100%]
+  - [X] unit-test
+#+begin_example
+[env: /gnu/store/cc4lcxixh1gd06gjivqv3fkr1z3rp8ck-profile]
+> ./pre-inst-env guix build sbcl-unit-test ecl-unit-test
+/gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
+/gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
+#+end_example
