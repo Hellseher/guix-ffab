@@ -1,0 +1,103 @@
+From 6974e8158de7799195679a48d0ce31e1b4a28eec Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 3 May 2021 23:01:46 +0100
+Subject: [PATCH 2/2] gnu: Add 3d-matrices
+
+Draft
+
+I'm not sure where is the source of this issue, it looks like the
+problem in the naming of the package which includes '-3d-' in the name.
+
+--8<---------------cut here---------------start------------->8---
+starting phase `create-asdf-configuration'
+`/tmp/guix-build-sbcl-3d-matrices-3.1.0-1.f453b52.drv-0/source/.cl-union/etc/common-lisp/source-registry.conf.d/50-form-fiddle.conf' -> `/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-form-fiddle.conf'
+`/tmp/guix-build-sbcl-3d-matrices-3.1.0-1.f453b52.drv-0/source/.cl-union/etc/common-lisp/source-registry.conf.d/50-parachute.conf' -> `/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-parachute.conf'
+`/tmp/guix-build-sbcl-3d-matrices-3.1.0-1.f453b52.drv-0/source/.cl-union/etc/common-lisp/source-registry.conf.d/50-documentation-utils.conf' -> `/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-documentation-utils.conf'
+`/tmp/guix-build-sbcl-3d-matrices-3.1.0-1.f453b52.drv-0/source/.cl-union/etc/common-lisp/source-registry.conf.d/50-sbcl.conf' -> `/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-sbcl.conf'
+`/tmp/guix-build-sbcl-3d-matrices-3.1.0-1.f453b52.drv-0/source/.cl-union/etc/common-lisp/source-registry.conf.d/50-trivial-indent.conf' -> `/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-trivial-indent.conf'
+Backtrace:
+          12 (primitive-load "/gnu/store/s2m85hxbagxh93pngpb8bfsykqx?")
+In ice-9/eval.scm:
+   191:35 11 (_ _)
+In ice-9/boot-9.scm:
+    152:2 10 (with-fluid* _ _ _)
+    152:2  9 (with-fluid* _ _ _)
+In guix/build/gnu-build-system.scm:
+    838:2  8 (gnu-build #:source _ #:outputs _ #:inputs _ #:phases . #)
+In ice-9/boot-9.scm:
+  1736:10  7 (with-exception-handler _ _ #:unwind? _ # _)
+In srfi/srfi-1.scm:
+   857:16  6 (every1 #<procedure 7fffeeaddf40 at guix/build/gnu-bui?> ?)
+In guix/build/gnu-build-system.scm:
+   847:30  5 (_ _)
+In guix/build/asdf-build-system.scm:
+    232:4  4 (create-asdf-configuration #:inputs _ #:outputs _)
+In guix/build/lisp-utils.scm:
+    208:4  3 (make-asdf-configuration "sbcl" _ _ "/gnu/store/wpw0i9?" ?)
+In ice-9/ports.scm:
+   461:11  2 (call-with-output-file "/gnu/store/wpw0i9aqq2pf2lj8ai1?" ?)
+In unknown file:
+           1 (open-file "/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p73?" ?)
+In ice-9/boot-9.scm:
+  1669:16  0 (raise-exception _ #:continuable? _)
+
+ice-9/boot-9.scm:1669:16: In procedure raise-exception:
+In procedure open-file: Permission denied: "/gnu/store/wpw0i9aqq2pf2lj8ai11792fym37p731-sbcl-3d-matrices-3.1.0-1.f453b52/etc/common-lisp/source-registry.conf.d/50-sbcl.conf"
+builder for `/gnu/store/h6h02gy1ywsqijmar5lhb26sgldhnxss-sbcl-3d-matrices-3.1.0-1.f453b52.drv' failed with exit code 1
+build of /gnu/store/h6h02gy1ywsqijmar5lhb26sgldhnxss-sbcl-3d-matrices-3.1.0-1.f453b52.drv failed
+View build log at '/var/log/guix/drvs/h6/h02gy1ywsqijmar5lhb26sgldhnxss-sbcl-3d-matrices-3.1.0-1.f453b52.drv.bz2'.
+guix build: error: build of `/gnu/store/h6h02gy1ywsqijmar5lhb26sgldhnxss-sbcl-3d-matrices-3.1.0-1.f453b52.drv' failed
+--8<---------------cut here---------------end--------------->8---
+---
+ gnu/packages/lisp-xyz.scm | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index d7001d4c9b..2b7f0a41b5 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16408,3 +16408,41 @@ offers them both in non-modifying and modifying versions where applicable.")
+ 
+ (define-public cl-3d-vectors
+   (sbcl-package->cl-source-package sbcl-3d-vectors))
++
++(define-public sbcl-3d-matrices
++  (let ((commit "f453b521b8f2ceabb01eac94389119dece8c05f8")
++        (revision "1"))
++    (package
++      (name "sbcl-3d-matrices")
++      (version (git-version "3.1.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shinmera/3d-matrices")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "10q9c96gqzq6k8n89agy0khgimmnsn4s69171m3vhghqa2yv5n6v"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:asd-files '("3d-matrices.asd")
++         #:asd-systems '("3d-matrices")))
++      (native-inputs
++       `(("parachute" ,sbcl-parachute)))
++      (inputs
++       `(("documentation-utils" ,sbcl-documentation-utils)
++         ("3d-vectors" ,sbcl-3d-vectors)))
++      (home-page "https://shinmera.github.io/3d-matrices/")
++      (synopsis "Utility library implementing 2x2, 3x3, 4x4 and NxM matrix functionality")
++      (description
++       "@code{3D-MATRICES} is a library implementing common matrix operations,
++mainly intended as the counterpiece to @code{3d-vectors} and thus being aimed at
++operations in 3D space.")
++      (license license:zlib))))
++
++(define-public ecl-3d-matrices
++  (sbcl-package->ecl-package sbcl-3d-matrices))
++
++(define-public cl-3d-matrices
++  (sbcl-package->cl-source-package sbcl-3d-matrices))
+-- 
+2.31.1
+

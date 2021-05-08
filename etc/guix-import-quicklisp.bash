@@ -123,8 +123,8 @@ main()
         project_dependencies="$(ql_system_query "${system_project}" dependency "${ql_systems}")"
         project_systems="$(ql_system_query "${system_project}" project "${ql_systems}")"
 
-        project_fetch_method="$(awk '{print $1}' ${ql_system_src})"
-        project_url="$(awk '{print $2}' ${ql_system_src})"
+        project_fetch_method="$(awk 'NR==1{print $1}' ${ql_system_src})"
+        project_url="$(awk 'NR==1{print $2}' ${ql_system_src})"
 
         package_available="$(guix_package_available "${system_project}")"
 
@@ -166,8 +166,8 @@ main()
             then
                 project_dependencies="$(ql_system_query "${system_project}" dependency "${ql_systems}")"
                 project_systems="$(ql_system_query "${system_project}" project "${ql_systems}")"
-                project_fetch_method="$(awk '{print $1}' ${ql_system_src})"
-                project_url="$(awk '{print $2}' ${ql_system_src})"
+                project_fetch_method="$(awk 'NR==1{print $1}' ${ql_system_src})"
+                project_url="$(awk 'NR==1{print $2}' ${ql_system_src})"
 
                 printf "___ Quicklisp ___\n"
                 printf "fetch-method: %s\n" "${project_fetch_method}"

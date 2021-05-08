@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-05-02 Sun 20:39:54 BST>
+#+modified: <2021-05-08 Sat 21:58:00 BST>
 
 
 * TODO cl-plplot [0/4][0%]
@@ -480,31 +480,30 @@ CLOSED: [2021-02-04 Thu 00:28]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [23/33][69%]
-  - [-] 3d-matrices
+- [-] :inputs [26/32][81%]
+  - [X] 3d-matrices
     + https://github.com/Shinmera/3d-matrices
-    + [ ] :packed
-    + [ ] :patch-sent
-    + [ ] :patch-applied-upstream
-    + [-] :inputs [0/4][0%]
-      - [ ] :packed
-      - [ ] :patch-sent
-      - [ ] :patch-applied-upstream
-      - [-] :inputs [1/2][50%]
-        + [-] 3d-vectors
-          - [X] :packed <2021-04-11 Sun>
-          - [ ] :patch-sent
-          - [ ] :patch-applied-upstream
-          - [X] :inputs [1/1][100%]
-            + [X] documentation-utils
-        + [X] documentation-utils
+    + [X] :packed <2021-05-03 Mon>
+    + [X] :patch-sent <2021-05-03 Mon>
+    + [X] :patch-applied-upstream <2021-05-08 Sat>
+      - https://issues.guix.gnu.org/48208
+    + [X] :inputs [2/2][100%]
+      + [X] 3d-vectors
+        - [X] :packed <2021-04-11 Sun>
+        - [X] :patch-sent <2021-05-03 Mon>
+        - [X] :patch-applied-upstream <2021-05-08 Sat>
+          + https://issues.guix.gnu.org/48208
+      + [X] documentation-utils
+    + [X] documentation-utils
   - [X] alexandria
-  - [ ] 3d-vectors
+  - [X] 3d-vectors
   - [X] bordeaux-threads
   - [ ] cl-gamepad
+    - https://github.com/Shirakumo/cl-gamepad
     - [ ] :packed
     - [ ] :patch-sent
     - [ ] :patch-applied-upstream
+    - [ ] :inputs [0/0][0%]
   - [X] cl-jpeg
   - [X] cl-opengl
   - [X] closer-mop
@@ -513,16 +512,90 @@ CLOSED: [2021-02-04 Thu 00:28]
   - [X] deploy
   - [X] fast-io
   - [ ] flare
+    - https://github.com/Shinmera/flare
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [ ] :inputs [0/0][0%]
   - [X] float-features
-  - [ ] flow
-  - [ ] for
-  - [X] form-fiddle
-  - [ ] glsl-toolkit
+  - [-] flow
+    - https://github.com/Shinmera/flow
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [-] :inputs [2/5][40%]
+      + [X] closer-mop
+      + [X] documentation-utils
+      + [ ] qtcore -> qt-libs
+      + [ ] qtgui -> qt-libs
+      + [-] qtools
+        - https://github.com/Shinmera/qtools
+        - [ ] :packed
+        - [ ] :patch-sent
+        - [ ] :patch-applied-upstream
+        - [-] :inputs [8/10][80%]
+          + [ ] qt+libs
+          + [X] deploy
+          + [X] cl-ppcre
+          + [X] closer-mop
+          + [X] form-fiddle
+          + [X] named-readtables
+          + [X] trivial-indent
+          + [X] trivial-garbage
+          + [-] trivial-main-thread
+            - https://github.com/Shinmera/trivial-main-thread
+            - [X] :packed <2021-05-08 Sat>
+            - [X] :patch-sent <2021-05-08 Sat>
+            - [ ] :patch-applied-upstream
+              - https://issues.guix.gnu.org/48297
+            - [-] :inputs [2/3][66%]
+              + [X] trivial-features
+              + [X] bordeaux-threads
+              + [-] simple-tasks
+                - https://github.com/Shinmera/simple-tasks
+                - [X] :packed <2021-05-08 Sat>
+                - [X] :patch-sent <2021-05-08 Sat>
+                - [ ] :patch-applied-upstream
+                  - https://issues.guix.gnu.org/48297
+                - [X] :inputs [3/3][100%]
+                  - [X] array-utils
+                  - [X] bordeaux-thread
+                  - [X] dissect
+          + [X] documentation-utils
+  - [-] for
+    - https://github.com/Shinmera/for
+    - [X] :packed <2021-05-08 Sat>
+    - [X] :patch-sent <2021-05-08 Sat>
+    - [ ] :patch-applied-upstream
+      - https://issues.guix.gnu.org/48297
+    - [X] :inputs [3/3][100%]
+      - [X] documentation-utils
+      - [X] form-fiddle
+      - [X] lambda-fiddle
+  - [-] glsl-toolkit
+    - https://github.com/Shirakumo/glsl-toolkit
+    - [X] :packed <2021-05-08 Sat>
+    - [X] :patch-sent <2021-05-08 Sat>
+    - [ ] :patch-applied-upstream
+      - https://issues.guix.gnu.org/48297
+    - [X] :inputs [4/4][100%]
+      - [X] documentation-utils
+      - [X] trivial-indent
+      - [X] parse-float
+      - [X] cl-ppcre
   - [X] ieee-floats
   - [X] jsown
-  - [ ] lambda-fiddle
-  - [ ] lquery
-  - [ ] messagebox
+  - [X] lambda-fiddle
+  - [X] lquery
+  - [-] messagebox
+    + https://github.com/Shinmera/messagebox
+    + [X] :packed <2021-05-08 Sat>
+    + [X] :patch-sent <2021-05-08 Sat>
+    + [ ] :patch-applied-upstream
+      - https://issues.guix.gnu.org/48297
+    + [X] :inputs [2/2][100%]
+      - [X] documentation-utils
+      - [X] trivial-features
   - [X] mmap
   - [X] pathname-utils
     - https://github.com/Shinmera/pathname-utils.git
@@ -607,3 +680,21 @@ CLOSED: [2021-05-02 Sun 20:39]
 /gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
 /gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
 #+end_example
+* TODO cl-redis [1/5][20%]
+- https://github.com/vseloved/cl-redis
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [4/6][66%]
+  + [X] babel
+  + [X] bordeaux-threads
+  + [X] cl-ppcre
+  + [X] flexi-streams
+  + [ ] should-test
+  + [ ] rutils [0/3][0%]
+    + https://github.com/vseloved/rutils
+    + [ ] :packed
+    + [ ] :patch-sent
+    + [ ] :patch-applied-upstream
+- [X] :inputs [1/1][100%]
+  + [X] usocket

@@ -1,0 +1,55 @@
+From ff5a2aaaa26e51485d12118345ef9dae0ece1f2c Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 8 May 2021 21:26:15 +0100
+Subject: [PATCH 1/4] gnu: Add messagebox
+
+* gnu/packages/lisp-xyz.scm (sbcl-messagebox, ecl-messagebox,
+  cl-messagebox): New variables
+---
+ gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 0824fa1d82..2c8966651d 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16434,3 +16434,36 @@ operations in 3D space.")
+ 
+ (define-public cl-3d-matrices
+   (sbcl-package->cl-source-package sbcl-3d-matrices))
++
++(define-public sbcl-messagebox
++  (let ((commit "ea3688d9a9954bee7079c0173bc7b3f327021e9f")
++        (revision "1"))
++    (package
++      (name "sbcl-messagebox")
++      (version (git-version "1.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shinmera/messagebox.git")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0jkbzlca0wvspgsfj0b0hjwlyyy8jlywsldsbkp79q48fc3aa8jd"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("documentation-utils" ,sbcl-documentation-utils)
++         ("trivial-features" ,sbcl-trivial-features)))
++      (home-page "https://shinmera.github.io/messagebox/")
++      (synopsis "Display a native GUI message box")
++      (description
++       "This is a small library to display a native GUI message box.  This can be
++useful to show error messages and other informational pieces should the
++application fail and be unable to do so using its standard UI.")
++      (license license:zlib))))
++
++(define-public ecl-messagebox
++  (sbcl-package->ecl-package sbcl-messagebox))
++
++(define-public cl-messagebox
++  (sbcl-package->cl-source-package sbcl-messagebox))
+-- 
+2.31.1
+

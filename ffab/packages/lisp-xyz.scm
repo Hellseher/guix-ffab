@@ -197,6 +197,219 @@ This package provides 1 system: @code{ORIGIN}")
 ;; Set of system which are maintained under Shirakumo distribution
 ;;+begin-shirakumo
 
+;; <2021-05-08 Sat>
+(define-public sbcl-simple-tasks
+  (let ((commit "745d4b54eac9bf5d6909792e63ecd2ef8d303cf2")
+        (revision "1"))
+    (package
+      (name "sbcl-simple-tasks")
+      (version (git-version "1.3.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/simple-tasks")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32
+           "1ls1pij7dvb65g4nam7nvik1218jvfk5iplr48vy290fw3lq7v98"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("array-utils" ,sbcl-array-utils)
+         ("bordeaux-threads" ,sbcl-bordeaux-threads)
+         ("dissect" ,sbcl-dissect)))
+      (home-page "https://shinmera.github.io/simple-tasks/")
+      (synopsis "Simple task scheduling framework")
+      (description
+       "Task scheduling framework for Common Lisp.")
+      (license license:zlib))))
+
+(define-public ecl-simple-tasks
+  (sbcl-package->ecl-package sbcl-simple-tasks))
+
+(define-public cl-simple-tasks
+  (sbcl-package->cl-source-package sbcl-simple-tasks))
+
+;; <2021-05-08 Sat>
+(define-public sbcl-trivial-main-thread
+  (let ((commit "25f114973bb69eb63e01d0bbfead31f8e682846a")
+        (revision "1"))
+    (package
+      (name "sbcl-trivial-main-thread")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/trivial-main-thread")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0bw1887i7396lqg75qvmgjfzz4xbiq9w5dp8wxdgrcsm0qwlraw7"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("bordeaux-threads" ,sbcl-bordeaux-threads)
+         ("simple-tasks" ,sbcl-simple-tasks)
+         ("trivial-features" ,sbcl-trivial-features)))
+      (home-page "https://shinmera.github.io/trivial-main-thread/")
+      (synopsis "Compatibility library to run things in the main thread")
+      (description
+       "This package provides a Common Lisp system which wraps BORDEUX-THREADS
+system to be compatible to run GUI applications in the main thread of the
+implementation.")
+      (license license:zlib))))
+
+(define-public ecl-trivial-main-thread
+  (sbcl-package->ecl-package sbcl-trivial-main-thread))
+
+(define-public cl-trivial-main-thread
+  (sbcl-package->cl-source-package sbcl-trivial-main-thread))
+
+;; <2021-05-08 Sat>
+(define-public sbcl-for
+  (let ((commit "2e4fcfa0f9c1d2f4559c58cef20ccefa50ba180d")
+        (revision "1"))
+    (package
+      (name "sbcl-for")
+      (version (git-version "1.1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/for")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1akz9ggh33x2cq3h0f1cd0p632v1mbagv3dzsb0r10bwg9lh3nmv"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("documentation-utils" ,sbcl-documentation-utils)
+         ("form-fiddle" ,sbcl-form-fiddle)
+         ("lambda-fiddle" ,sbcl-lambda-fiddle)))
+      (home-page "https://shinmera.github.io/for/")
+      (synopsis "Extensible iteration macro library")
+      (description
+       "For is a library for an extensible iteration macro.  It allows you to write
+concise looping constructs similar to @code{loop} and @code{iterate}.  Unlike
+loop however it is extensible and sensible, and unlike iterate it does not
+require code-walking and is easier to extend.")
+      (license license:zlib))))
+
+(define-public ecl-for
+  (sbcl-package->ecl-package sbcl-for))
+
+(define-public cl-for
+  (sbcl-package->cl-source-package sbcl-for))
+
+;; <2021-05-08 Sat>
+(define-public sbcl-glsl-toolkit
+  (let ((commit "d00ba1906e3b5eb08ea346ac300a1e77bb999d04")
+        (revision "1"))
+    (package
+      (name "sbcl-glsl-toolkit")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shirakumo/glsl-toolkit")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0as5796yazchq1qkna3srxlz5v7cf7ffny9cbqi41wsa2s20vbh9"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("cl-ppcre" ,sbcl-cl-ppcre)
+         ("documentation-utils" ,sbcl-documentation-utils)
+         ("parse-float" ,sbcl-parse-float)
+         ("trivial-indent" ,sbcl-trivial-indent)))
+      (home-page "https://shirakumo.github.io/glsl-toolkit/")
+      (synopsis "Parser for OpenGL Shader Language source files")
+      (description
+       "This package provides Common Lisp system collecting tools written to
+allow to wrangle OpenGL Shader Language (GLSL) source files.")
+      (license license:zlib))))
+
+(define-public ecl-glsl-toolkit
+  (sbcl-package->ecl-package sbcl-glsl-toolkit))
+
+(define-public cl-glsl-toolkit
+  (sbcl-package->cl-source-package sbcl-glsl-toolkit))
+
+;; <2021-05-08 Sat>
+(define-public sbcl-messagebox
+  (let ((commit "ea3688d9a9954bee7079c0173bc7b3f327021e9f")
+        (revision "1"))
+    (package
+      (name "sbcl-messagebox")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/messagebox")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0jkbzlca0wvspgsfj0b0hjwlyyy8jlywsldsbkp79q48fc3aa8jd"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("documentation-utils" ,sbcl-documentation-utils)
+         ("trivial-features" ,sbcl-trivial-features)))
+      (home-page "https://shinmera.github.io/messagebox/")
+      (synopsis "Display a native GUI message box")
+      (description
+       "This is a small library to display a native GUI message box.  This can be
+useful to show error messages and other informational pieces should the
+application fail and be unable to do so using its standard UI.")
+      (license license:zlib))))
+
+(define-public ecl-messagebox
+  (sbcl-package->ecl-package sbcl-messagebox))
+
+(define-public cl-messagebox
+  (sbcl-package->cl-source-package sbcl-messagebox))
+
+;; <2021-05-03 Mon>
+(define-public sbcl-3d-matrices
+  (let ((commit "f453b521b8f2ceabb01eac94389119dece8c05f8")
+        (revision "1"))
+    (package
+      (name "sbcl-3d-matrices")
+      (version (git-version "3.1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/3d-matrices")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "10q9c96gqzq6k8n89agy0khgimmnsn4s69171m3vhghqa2yv5n6v"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-files '("3d-matrices.asd")
+         #:asd-systems '("3d-matrices")))
+      (native-inputs
+       `(("parachute" ,sbcl-parachute)))
+      (inputs
+       `(("documentation-utils" ,sbcl-documentation-utils)
+         ("3d-vectors" ,sbcl-3d-vectors)))
+      (home-page "https://shinmera.github.io/3d-matrices/")
+      (synopsis "Utility library implementing 2x2, 3x3, 4x4, and NxM matrix functionality")
+      (description
+       "@code{3D-MATRICES} is a library implementing common matrix operations,
+mainly intended as the counterpiece to @code{3d-vectors} and thus being aimed at
+operations in 3D space.")
+      (license license:zlib))))
+
+(define-public ecl-3d-matrices
+  (sbcl-package->ecl-package sbcl-3d-matrices))
+
+(define-public 3d-matrices
+  (sbcl-package->cl-source-package sbcl-3d-matrices))
+
 ;; <2021-05-03 Mon>
 (define-public sbcl-3d-vectors
   (let ((commit "29bb9684df803590deed344af63dbf7b712aabc0")
@@ -215,7 +428,8 @@ This package provides 1 system: @code{ORIGIN}")
           (base32 "0qc7m5brhpwi531rgmlaj1c609by533a1ia5hv8f90ilm8ksmw3l"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       `(#:asd-systems '("3d-vectors")))
+       `(#:asd-files '("3d-vectors.asd")
+         #:asd-systems '("3d-vectors")))
       (native-inputs
        `(("parachute" ,sbcl-parachute)))
       (inputs
@@ -231,7 +445,7 @@ offers them both in non-modifying and modifying versions where applicable.")
 (define-public ecl-3d-vectors
   (sbcl-package->ecl-package sbcl-3d-vectors))
 
-(define-public cl-3d-vectors
+(define-public 3d-vectors
   (sbcl-package->cl-source-package sbcl-3d-vectors))
 
 ;; <2021-04-22>
@@ -245,7 +459,7 @@ offers them both in non-modifying and modifying versions where applicable.")
       (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/Shirakumo/terrable.git")
+             (url "https://github.com/Shirakumo/terrable")
              (commit commit)))
        (file-name (git-file-name name version))
        (sha256
@@ -281,7 +495,7 @@ offers them both in non-modifying and modifying versions where applicable.")
       (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/Shinmera/pathname-utils.git")
+             (url "https://github.com/Shinmera/pathname-utils")
              (commit commit)))
        (file-name (git-file-name name version))
        (sha256
@@ -1596,7 +1810,7 @@ Scalable Vector Graphics files.")
        ;;  tests:  303
        ;;  fails:  0
        ;;  passes: 303
-       ;; "--- at least one catastrophe! ---"
+       ;; "-- at least one catastrophe! --"
        ;; terminated with status: 1
        ;; ;
        ;; ; compilation unit aborted
@@ -1767,3 +1981,110 @@ BKNR.UTILS BKNR.XML")
 
 (define-public cl-bknr-datastore
   (sbcl-package->cl-source-package sbcl-bknr-datastore))
+
+;; <2021-05-04 Tue>
+(define-public sbcl-rutils
+  (let ((commit "db3c3f4ae897025b5f0cd81042ca147da60ca0c5")
+        (revision "1"))
+    (package
+      (name "sbcl-rutils")
+      (version (git-version "5.2.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/vseloved/rutils")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1d2whscknh1zga2vdqvfqri8wx0gnml3sfqz62igq0ppap6q07y3"))))
+      (build-system asdf-build-system/sbcl)
+      ;; (native-inputs
+      ;;  `(("should-test" ,sbcl-should-test)))
+      (inputs
+       `(("closer-mop" ,sbcl-closer-mop)
+         ("named-readtables" ,sbcl-named-readtables)))
+      (home-page "https://github.com/vseloved/rutils")
+      (synopsis "Radical Utilities for Common Lisp")
+      (description
+       "This package provides collectioins of Common Lisp utilities similar to
+ALEXANDRIA, ANAPHORA or GOLDEN-UTILS")
+      (license license:expat))))
+
+(define-public ecl-rutils
+  (sbcl-package->ecl-package sbcl-rutils))
+
+(define-public cl-rutils
+  (sbcl-package->cl-source-package sbcl-rutils))
+
+(define-public sbcl-should-test
+  (let ((commit "48facb9f9c07aeceb71fc0c48ce17fd7d54a09d4")
+        (revision "1"))
+    (package
+      (name "sbcl-should-test")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/vseloved/should-test")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1fqqa7lhf28qg60ji9libkylkcy747x576qpjn1y7c945j2fxmnm"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("cl-ppcre" ,sbcl-cl-ppcre)
+         ("local-time" ,sbcl-local-time)
+         ("osicat" ,sbcl-osicat)
+         ("rutils" ,sbcl-rutils)))
+      (home-page "https://github.com/vseloved/should-test")
+      (synopsis "Minimal Common Lisp test framework")
+      (description
+       "Common Lisp test framework")
+      (license license:expat))))
+
+(define-public ecl-should-test
+  (sbcl-package->ecl-package sbcl-should-test))
+
+(define-public cl-should-test
+  (sbcl-package->cl-source-package sbcl-should-test))
+
+(define-public sbcl-cl-redis
+  (let ((commit "7d592417421cf7cd1cffa96043b457af0490df7d")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-redis")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/vseloved/cl-redis")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0x5ahxb5cx37biyn3cjycshhm1rr9p5cf1a9l5hd1n1xjxm2f8vi"))))
+      (build-system asdf-build-system/sbcl)
+      ;; NOTE: (Sharlatan-20210504T112254+0100): Tests require running Redis
+      ;; instance
+      (native-inputs
+       `(("should-test" ,sbcl-should-test)))
+      (inputs
+       `(("babel" ,sbcl-babel)
+         ("bordeaux-threads" ,sbcl-bordeaux-threads)
+         ("cl-ppcre" ,sbcl-cl-ppcre)
+         ("flexi-streams" ,sbcl-flexi-streams)
+         ("rutils" ,sbcl-rutils)
+         ("usocket" ,sbcl-usocket)))
+      (home-page "https://github.com/vseloved/cl-redis")
+      (synopsis "Redis client for Common Lisp")
+      (description
+       "This package provides Redis v3.0.0 compatible client for Common Lisp.")
+      (license license:expat))))
+
+(define-public ecl-cl-redis
+  (sbcl-package->ecl-package sbcl-cl-redis))
+
+(define-public cl-redis
+  (sbcl-package->cl-source-package sbcl-cl-redis))

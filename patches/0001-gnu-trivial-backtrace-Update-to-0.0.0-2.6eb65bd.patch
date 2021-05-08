@@ -1,0 +1,36 @@
+From aabe04b27d0851a3b331bf90c7ef20c315118018 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 3 May 2021 22:43:41 +0100
+Subject: [PATCH] gnu: trivial-backtrace: Update to 0.0.0-2.6eb65bd
+
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 57b4abf067..6f2666608f 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -3861,8 +3861,8 @@ client and server.")
+   (sbcl-package->ecl-package sbcl-trivial-clipboard))
+ 
+ (define-public sbcl-trivial-backtrace
+-  (let ((commit "ca81c011b86424a381a7563cea3b924f24e6fbeb")
+-        (revision "1"))
++  (let ((commit "6eb65bde7229413040c81d42ea22f0e4c9c8cfc9")
++        (revision "2"))
+     (package
+      (name "sbcl-trivial-backtrace")
+      (version (git-version "0.0.0" revision commit))
+@@ -3874,7 +3874,7 @@ client and server.")
+              (commit commit)))
+        (file-name (git-file-name "trivial-backtrace" version))
+        (sha256
+-        (base32 "10p41p43skj6cimdg8skjy7372s8v2xpkg8djjy0l8rm45i654k1"))))
++        (base32 "1mbaqiwj5034iw6jzw30jyhwzp1pvhnz1zcy0lns0z5j2h9ldapw"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("sbcl-lift" ,sbcl-lift)))
+-- 
+2.31.1
+
