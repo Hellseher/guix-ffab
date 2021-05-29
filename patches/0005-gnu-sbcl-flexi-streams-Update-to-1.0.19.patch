@@ -1,0 +1,34 @@
+From 106844854dd3aca255dbca6502dc2b638f7227c2 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 19 May 2021 23:14:04 +0100
+Subject: [PATCH 5/5] gnu: sbcl-flexi-streams: Update to 1.0.19
+
+---
+ gnu/packages/lisp-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index a9fea35625..24a262b879 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -544,7 +544,7 @@ logical continuation of Stefil.  It focuses on interactive debugging.")
+ (define-public sbcl-flexi-streams
+   (package
+     (name "sbcl-flexi-streams")
+-    (version "1.0.18")
++    (version "1.0.19")
+     (source
+      (origin
+        (method git-fetch)
+@@ -553,7 +553,7 @@ logical continuation of Stefil.  It focuses on interactive debugging.")
+              (commit (string-append "v" version))))
+        (file-name (git-file-name "flexi-streams" version))
+        (sha256
+-        (base32 "0bjv7fd2acknidc5dyi3h85pn10krxv5jyxs1xg8jya2rlfv7f1j"))))
++        (base32 "0v7lh4nrldzczd4mwylvmxfdxk7wfsli24iv1axd6mkb833llr70"))))
+     (build-system asdf-build-system/sbcl)
+     (arguments
+      `(#:phases
+-- 
+2.31.1
+

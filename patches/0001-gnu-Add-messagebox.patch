@@ -1,19 +1,27 @@
-From ff5a2aaaa26e51485d12118345ef9dae0ece1f2c Mon Sep 17 00:00:00 2001
+From d3e26e981b3a4dc6cc9f7f9220dc35fe1c969557 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Sat, 8 May 2021 21:26:15 +0100
-Subject: [PATCH 1/4] gnu: Add messagebox
+Date: Mon, 10 May 2021 20:08:55 +0100
+Subject: [PATCH] gnu: Add messagebox
 
 * gnu/packages/lisp-xyz.scm (sbcl-messagebox, ecl-messagebox,
-  cl-messagebox): New variables
+  cl-messagebox): New variables.
 ---
- gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ gnu/packages/lisp-xyz.scm | 44 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
 diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
-index 0824fa1d82..2c8966651d 100644
+index 0824fa1d82..c73d168932 100644
 --- a/gnu/packages/lisp-xyz.scm
 +++ b/gnu/packages/lisp-xyz.scm
-@@ -16434,3 +16434,36 @@ operations in 3D space.")
+@@ -67,6 +67,7 @@
+   #:use-module (gnu packages fontutils)
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
++  #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages imagemagick)
+@@ -16434,3 +16435,46 @@ operations in 3D space.")
  
  (define-public cl-3d-matrices
    (sbcl-package->cl-source-package sbcl-3d-matrices))
@@ -34,9 +42,19 @@ index 0824fa1d82..2c8966651d 100644
 +         (sha256
 +          (base32 "0jkbzlca0wvspgsfj0b0hjwlyyy8jlywsldsbkp79q48fc3aa8jd"))))
 +      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'patch-zenity-path
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "zenity.lisp"
++                 (("\"zenity\"")
++                  (string-append "\"" (assoc-ref inputs "zenity") "/bin/zenity\"")))
++               #t)))))
 +      (inputs
 +       `(("documentation-utils" ,sbcl-documentation-utils)
-+         ("trivial-features" ,sbcl-trivial-features)))
++         ("trivial-features" ,sbcl-trivial-features)
++         ("zenity" ,zenity)))
 +      (home-page "https://shinmera.github.io/messagebox/")
 +      (synopsis "Display a native GUI message box")
 +      (description

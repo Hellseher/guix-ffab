@@ -1,0 +1,54 @@
+From f99196cff24a7802f143797f7a842960fcdf2323 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 May 2021 20:32:18 +0100
+Subject: [PATCH 1/2] gnu: Add shasht
+
+* gnu/packages/lisp-xyz.scm (sbcl-shasht, ecl-shasht, cl-shasht): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 64955a13f6..ce8c61eefe 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16644,3 +16644,36 @@ all kind of typesetting applications.")
+ 
+ (define-public cl-typesetting
+   (sbcl-package->cl-source-package sbcl-cl-typesetting))
++
++(define-public sbcl-shasht
++  (let ((commit "4055327ef8e2aaa8627892ab256350ff3cb15e3c")
++        (revision "1"))
++    (package
++      (name "sbcl-shasht")
++      (version (git-version "0.1.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/yitzchak/shasht.git")
++               (commit commit)))
++         (file-name (git-file-name "shasht" version))
++         (sha256
++          (base32 "01mh20s5gj0lajq45anxji77ykq1wcg72mn1y9a1k8i7q1ainjlr"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("alexandria" ,sbcl-alexandria)
++         ("parachute" ,sbcl-parachute)
++         ("trivial-do" ,sbcl-trivial-do)))
++      (home-page "https://yitzchak.github.io/shasht/")
++      (synopsis "Common Lisp JSON reading and writing for the Kzinti")
++      (description
++       "This package provides a Common Lisp library to work with JSON file
++format.")
++      (license license:expat))))
++
++(define-public ecl-shasht
++  (sbcl-package->ecl-package sbcl-shasht))
++
++(define-public cl-shasht
++  (sbcl-package->cl-source-package sbcl-shasht))
+-- 
+2.31.1
+

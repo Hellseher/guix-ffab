@@ -1,0 +1,129 @@
+From f3ec7b37885ef7e494fbd101f287dc09c5241497 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 27 May 2021 22:11:32 +0100
+Subject: [PATCH 3/3] gnu: Add cl-trial
+
+* gnu/packages/game-development.scm: (sbcl-trial, ecl-trial, cl-trial):
+  New variables.
+---
+ gnu/packages/game-development.scm | 71 ++++++++++++++++++++++++++++++-
+ 1 file changed, 69 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/game-development.scm b/gnu/packages/game-development.scm
+index 62b8c6cdb1..1bdb2775ec 100644
+--- a/gnu/packages/game-development.scm
++++ b/gnu/packages/game-development.scm
+@@ -21,6 +21,7 @@
+ ;;; Copyright © 2020 Timotej Lazar <timotej.lazar@araneo.si>
+ ;;; Copyright © 2020 Giacomo Leidi <goodoldpaul@autistici.org>
+ ;;; Copyright © 2021 Alexandru-Sergiu Marton <brown121407@posteo.ro>
++;;; Copyright © 2021 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -46,6 +47,7 @@
+   #:use-module (guix git-download)
+   #:use-module (guix svn-download)
+   #:use-module (guix utils)
++  #:use-module (guix build-system asdf)
+   #:use-module (guix build-system cmake)
+   #:use-module (guix build-system gnu)
+   #:use-module (guix build-system python)
+@@ -55,16 +57,16 @@
+   #:use-module (gnu packages autotools)
+   #:use-module (gnu packages base)
+   #:use-module (gnu packages boost)
+-  #:use-module (gnu packages compression)
+   #:use-module (gnu packages check)
++  #:use-module (gnu packages compression)
+   #:use-module (gnu packages curl)
++  #:use-module (gnu packages dbm)
+   #:use-module (gnu packages documentation)
+   #:use-module (gnu packages fltk)
+   #:use-module (gnu packages fonts)
+   #:use-module (gnu packages fontutils)
+   #:use-module (gnu packages freedesktop)
+   #:use-module (gnu packages fribidi)
+-  #:use-module (gnu packages dbm)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+@@ -76,6 +78,7 @@
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages linux)
++  #:use-module (gnu packages lisp-xyz)
+   #:use-module (gnu packages lua)
+   #:use-module (gnu packages m4)
+   #:use-module (gnu packages mono)
+@@ -2577,3 +2580,67 @@ fully dynamic omnidirectional shadows, global illumination, HDR lighting,
+ deferred shading, morphological / temporal / multisample anti-aliasing, and
+ much more.")
+       (license license:zlib))))
++
++(define-public sbcl-trial
++  (let ((commit "ba178cac3a5528c570c7e8dad66c58cc770db53a")
++        (revision "1"))
++    (package
++      (name "sbcl-trial")
++      (version (git-version "1.2.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shirakumo/trial")
++               (commit commit)))
++         (file-name (git-file-name "trial" version))
++         (sha256
++          (base32 "1vpv9nrpq93fz1c5cyi1hazaaz9ijbrf1l7zwp7gammndr5v028r"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("alexandria" ,sbcl-alexandria)
++         ("3d-matrices" ,sbcl-3d-matrices)
++         ("3d-vectors" ,sbcl-3d-vectors)
++         ("bordeaux-threads" ,sbcl-bordeaux-threads)
++         ("cl-gamepad" ,sbcl-cl-gamepad)
++         ("cl-jpeg" ,sbcl-cl-jpeg)
++         ("cl-opengl" ,sbcl-cl-opengl)
++         ("cl-ppcre" ,sbcl-cl-ppcre)
++         ("cl-tga" ,sbcl-cl-tga)
++         ("closer-mop" ,sbcl-closer-mop)
++         ("deploy" ,sbcl-deploy)
++         ("fast-io" ,sbcl-fast-io)
++         ("flare" ,sbcl-flare)
++         ("float-features" ,sbcl-float-features)
++         ("flow" ,sbcl-flow)
++         ("for" ,sbcl-for)
++         ("form-fiddle" ,sbcl-form-fiddle)
++         ("glsl-toolkit" ,sbcl-glsl-toolkit)
++         ("ieee-floats" ,sbcl-ieee-floats)
++         ("jsown" ,sbcl-jsown)
++         ("lambda-fiddle" ,sbcl-lambda-fiddle)
++         ("lquery" ,sbcl-lquery)
++         ("messagebox" ,sbcl-messagebox)
++         ("mmap" ,sbcl-mmap)
++         ("pathname-utils" ,sbcl-pathname-utils)
++         ("pngload" ,sbcl-pngload)
++         ("retrospectiff" ,sbcl-retrospectiff)
++         ("static-vectors" ,sbcl-static-vectors)
++         ("terrable" ,sbcl-terrable)
++         ("trivial-garbage" ,sbcl-trivial-garbage)
++         ("trivial-indent" ,sbcl-trivial-indent)
++         ("verbose" ,sbcl-verbose)
++         ("zpng" ,sbcl-zpng)))
++      (home-page "https://github.com/Shirakumo/trial")
++      (synopsis "Common Lisp game engine")
++      (description
++       "Trial is a game engine written in Common Lisp.  Unlike many other
++engines, it is meant to be more of a loose connection of components that can be
++fit together as required by any particular game.")
++      (license license:zlib))))
++
++(define-public ecl-trial
++  (sbcl-package->ecl-package sbcl-trial))
++
++(define-public cl-trial
++  (sbcl-package->cl-source-package sbcl-trial))
+-- 
+2.31.1
+

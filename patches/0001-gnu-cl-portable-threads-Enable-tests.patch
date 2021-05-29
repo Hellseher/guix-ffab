@@ -1,0 +1,26 @@
+From 118b36be60187b02d1b90b67a0104b3322a0471e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 22 May 2021 21:34:52 +0100
+Subject: [PATCH] gnu: cl-portable-threads: Enable tests
+
+---
+ gnu/packages/lisp-xyz.scm | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 5355c21678..f85693886c 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -3665,9 +3665,6 @@ portability, and boilerplate reduction in CSS.")
+          (sha256
+           (base32 "058ksi07vfdmhrf5mdlc833s82m1rcqfja2266520m3r8bzs8bvs"))))
+       (build-system asdf-build-system/sbcl)
+-      (arguments
+-       `(;; Tests seem broken.
+-         #:tests? #f))
+       (home-page "https://github.com/binghe/portable-threads")
+       (synopsis "Portable threads API for Common Lisp")
+       (description
+-- 
+2.31.1
+

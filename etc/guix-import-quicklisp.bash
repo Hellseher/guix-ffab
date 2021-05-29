@@ -410,8 +410,7 @@ guix_package()
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32
-           "${sha256_base32}"))))
+          (base32 "${sha256_base32}"))))
       (build-system asdf-build-system/sbcl)
       (inputs
        \`(${inputs}))

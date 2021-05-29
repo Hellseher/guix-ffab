@@ -1,0 +1,65 @@
+From 14e98b24842842e4fe5fe78e2cff3fc253f0a515 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 May 2021 21:43:59 +0100
+Subject: [PATCH 3/3] gnu: Add r-opencpu
+
+* gnu/packages/cran.scm: (r-opencpu): New variable.
+---
+ gnu/packages/cran.scm | 44 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/gnu/packages/cran.scm b/gnu/packages/cran.scm
+index e39617efcd..4e84d26784 100644
+--- a/gnu/packages/cran.scm
++++ b/gnu/packages/cran.scm
+@@ -29054,3 +29054,47 @@ time.  The @code{RProtoBuf} package on the other hand uses the protobuf runtime
+ library to provide a general- purpose toolkit for reading and writing arbitrary
+ protocol-buffer data in R.")
+   (license license:expat)))
++
++(define-public r-opencpu
++  (package
++   (name "r-opencpu")
++   (version "2.2.2")
++   (source
++    (origin
++     (method url-fetch)
++     (uri (cran-uri "opencpu" version))
++     (sha256
++      (base32 "0dr3ga8vw10vllqjq6n53dwivvgvzrgrjcn17kmabp620533bj1k"))))
++   (properties `((upstream-name . "opencpu")))
++   (build-system r-build-system)
++   (inputs
++    `(("pandoc" ,pandoc)))
++   (propagated-inputs
++    `(("r-brew" ,r-brew)
++      ("r-curl" ,r-curl)
++      ("r-evaluate" ,r-evaluate)
++      ("r-httpuv" ,r-httpuv)
++      ("r-jsonlite" ,r-jsonlite)
++      ("r-knitr" ,r-knitr)
++      ("r-mime" ,r-mime)
++      ("r-openssl" ,r-openssl)
++      ("r-protolite" ,r-protolite)
++      ("r-rappdirs" ,r-rappdirs)
++      ("r-remotes" ,r-remotes)
++      ("r-sys" ,r-sys)
++      ("r-webutils" ,r-webutils)
++      ("r-zip" ,r-zip)))
++   (native-inputs
++    `(("r-knitr" ,r-knitr)))
++   (home-page "https://www.opencpu.org")
++   (synopsis "API for embedded scientific computing producing reproducing results")
++   (description
++    "This package provides a system for embedded scientific computing and
++reproducible research with R.  The OpenCPU server exposes a simple but powerful
++HTTP api for RPC and data interchange with R.  This provides a reliable and
++scalable foundation for statistical services or building R web applications.  The
++OpenCPU server runs either as a single-user development server within the
++interactive R session, or as a multi-user Linux stack based on Apache2.  The
++entire system is fully open source and permissively licensed.  The OpenCPU
++website has detailed documentation and example apps.")
++   (license license:asl2.0)))
+-- 
+2.31.1
+

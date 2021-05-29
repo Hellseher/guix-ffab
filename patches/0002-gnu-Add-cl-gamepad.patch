@@ -1,0 +1,84 @@
+From 3a00de74ea423a1ecc2fe2a8d3b281bd391436dd Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 27 May 2021 22:05:17 +0100
+Subject: [PATCH 2/3] gnu: Add cl-gamepad
+
+* gnu/packages/lisp-xyz.scm: (sbcl-cl-gamepad, ecl-cl-gamepad,
+  cl-gamepad): New variables
+---
+ gnu/packages/lisp-xyz.scm | 55 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index dcdf7b3f50..33d4bf99d0 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -90,6 +90,7 @@
+   #:use-module (gnu packages web)
+   #:use-module (gnu packages webkit)
+   #:use-module (gnu packages xdisorg)
++  #:use-module (gnu packages xorg)
+   #:use-module (ice-9 match)
+   #:use-module (srfi srfi-1)
+   #:use-module (srfi srfi-19))
+@@ -17221,3 +17222,57 @@ the generic visualisation of graphs in this format.")
+ 
+ (define-public cl-flow
+   (sbcl-package->cl-source-package sbcl-flow))
++
++(define-public sbcl-cl-gamepad
++  (let ((commit "2bb8f9eef29f8968fd12d0b4060314bf925169ef")
++        (revision "1"))
++    (package
++      (name "sbcl-cl-gamepad")
++      (version (git-version "3.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shirakumo/cl-gamepad")
++               (commit commit)))
++         (file-name (git-file-name "cl-gamepad" version))
++         (sha256
++          (base32 "18b9fainnswm0fb7lhkrkx3dxipyw0s7lzdjyqw7mchxpvicz9rv"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:phases
++         (modify-phases %standard-phases
++           ;; FIXME: (Sharlatan-20210527T212052+0100):
++           ;; default-device-mappings.lisp contains auto-generated code if it
++           ;; kept unsubstituted build fails with:
++           ;;
++           ;;  The function ORG.SHIRAKUMO.FRAF.GAMEPAD:LIST-DEVICES is undefined.
++           ;;
++           (add-after 'unpack 'skip-load-default-device-mappings
++             (lambda _
++               (substitute* "cl-gamepad.asd"
++                 ((".*default-device-mappings.*") ""))))
++           (add-after 'unpack 'patch-evdev-lib-path
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "evdev-cffi.lisp"
++                 (("libevdev.so" all)
++                  (string-append
++                   (assoc-ref inputs "libevdev")
++                   "/lib/" all))))))))
++      (inputs
++       `(("cffi" ,sbcl-cffi)
++         ("documentation-utils" ,sbcl-documentation-utils)
++         ("libevdev" ,libevdev)
++         ("trivial-features" ,sbcl-trivial-features)))
++      (home-page "https://shirakumo.github.io/cl-gamepad/")
++      (synopsis "Library for access to gamepads and joystick input devices")
++      (description
++       "This is a library to provide cross-platform access to gamepads,
++joysticks, and other such HID devices.")
++      (license license:zlib))))
++
++(define-public ecl-cl-gamepad
++  (sbcl-package->ecl-package sbcl-cl-gamepad))
++
++(define-public cl-gamepad
++  (sbcl-package->cl-source-package sbcl-cl-gamepad))
+-- 
+2.31.1
+

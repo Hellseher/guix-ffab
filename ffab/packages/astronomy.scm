@@ -605,13 +605,17 @@ astronomical images, especially when there is no WCS information available.")
     (arguments
      ;; NOTE: (Sharlatan-20210426T204315+0100): Tests require build astropy
      ;; module, it needs a good review on how to enable them.
-     `(#:tests? #f
+     `(;#:tests? #f
        #:phases
        (modify-phases %standard-phases
          (add-before 'build 'setenv-astropy-system-all
            (lambda _
              (setenv "ASTROPY_USE_SYSTEM_ALL" "1")
              #t))
+         (replace 'check
+           (lambda* (#:key inputs outputs #:allow-other-keys)
+             (add-installed-pythonpath inputs outputs)
+             (invoke "pytest" "-vv")))
          ;; NOTE: (Sharlatan-20210426T200127+0100): it fails during install
          ;; phases without the file is removed
          ;;
@@ -628,40 +632,111 @@ astronomical images, especially when there is no WCS information available.")
              #t)))))
     (native-inputs
      `(("cfitsio" ,cfitsio)
-       ("coverage" ,python-coverage)
-       ("cython" ,python-cython)
-       ("extension-helpers" ,python-extension-helpers)
-       ("ipython" ,python-ipython)
-       ("objgraph" ,python-objgraph)
-       ("pkg-config" ,pkg-config)
-       ("setuptools-scm" ,python-setuptools-scm)
-       ("sgp4" ,python-sgp4)
-       ("skyfield" ,python-skyfield)))
-    (inputs
-     `(("asdf" ,python-asdf)
-       ("beautifulsoup4" ,python-beautifulsoup4)
-       ("bleach" ,python-bleach)
-       ("bottleneck" ,python-bottleneck)
-       ("cfitsio" ,cfitsio)
-       ("dask" ,python-dask)
-       ("expat" ,expat)
-       ("graphviz" ,graphviz)
-       ("h5py" ,python-h5py)
-       ("html5lib" ,python-html5lib)
-       ("jplephem" ,python-jplephem)
-       ("matplotlib" ,python-matplotlib)
-       ("mpmath" ,python-mpmath)
-       ("numpy" ,python-numpy)
-       ("pandas" ,python-pandas)
-       ("pyerfa" ,python-pyerfa)
-       ("pytz" ,python-pytz)
-       ("pyyaml" ,python-pyyaml)
-       ("scipy" ,python-scipy)
-       ("sortedcontainers" ,python-sortedcontainers)
+       ("python-asdf" ,python-asdf)("expat" ,expat)
+       ("python-beautifulsoup4" ,python-beautifulsoup4)
+       ("python-bleach" ,python-bleach)
+       ("python-bottleneck" ,python-bottleneck)
+       ("python-coverage" ,python-coverage)
+       ("python-cython" ,python-cython)
+       ("python-dask" ,python-dask)
+       ("python-extension-helpers" ,python-extension-helpers)
+       ("python-graphviz" ,graphviz)
+       ("python-h5py" ,python-h5py)
+       ("python-html5lib" ,python-html5lib)
+       ("python-hypothesis" ,python-hypothesis)
+       ("python-ipython" ,python-ipython)
+       ("python-jplephem" ,python-jplephem)
+       ("python-matplotlib" ,python-matplotlib)
+       ("python-mpmath" ,python-mpmath)
+       ("python-objgraph" ,python-objgraph)
+       ("python-pandas" ,python-pandas)
+       ("python-pkg-config" ,pkg-config)
+       ("python-pytest" ,python-pytest)
+       ("python-pytest-astropy" ,python-pytest-astropy)
+       ("python-pytest-cov" ,python-pytest-cov)
+       ("python-pytest-xdist" ,python-pytest-xdist)
+       ("python-pytz" ,python-pytz)
+       ("python-pyyaml" ,python-pyyaml)
+       ("python-scipy" ,python-scipy)
+       ("python-setuptools" ,python-setuptools)
+       ("python-setuptools-scm" ,python-setuptools-scm)
+       ("python-sgp4" ,python-sgp4)
+       ("python-skyfield" ,python-skyfield)
+       ("python-sortedcontainers" ,python-sortedcontainers)
+       ("python-tox" ,python-tox)
        ("wcslib" ,wcslib)))
+    (propagated-inputs
+     `(("python-numpy" ,python-numpy)
+       ("python-pyerfa" ,python-pyerfa)))
     (home-page "https://astropy.org/")
     (synopsis "Astronomy and astrophysics core library")
     (description
      "Astropy Project is a single core package for Astronomy in Python and foster
 interoperability between Python astronomy packages.")
     (license license:bsd-3)))
+
+(define-public imppg
+  (package
+    (name "imppg")
+    (version "0.6.3")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/GreatAttractor/imppg")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0aj0zmqrgdzw6ha9y9ki3np0rvhrgm84ncb0d5dxhm4qqd58k1n9"))))
+    (build-system gnu-build-system)
+    (arguments
+     `(
+       ;; #:make-flags
+    ;;    (list
+    ;;     (string-append
+    ;;      "SKRY_INCLUDE_PATH=" (assoc-ref %build-inputs "libskry") "/include")
+    ;;     (string-append
+    ;;      "SKRY_LIB_PATH=-L" (assoc-ref %build-inputs "libskry") "/lib")
+    ;;     (string-append
+    ;;      "LIBAV_INCLUDE_PATH=" (assoc-ref %build-inputs "ffmpeg") "/include"))
+       #:phases
+       (modify-phases %standard-phases
+         ;; no configure and tests are provided
+         (delete 'configure)
+         (delete 'check)
+    ;;      (replace 'install
+    ;;        ;; The Makefile lacks an ‘install’ target.
+    ;;        (lambda* (#:key outputs #:allow-other-keys)
+    ;;          (let* ((out (assoc-ref outputs "out"))
+    ;;                 (bin (string-append out "/bin"))
+    ;;                 (icons (string-append out "/icons"))
+    ;;                 (lang (string-append out "/lang")))
+    ;;            (copy-recursively "bin" bin)
+    ;;            ;; FIXME: (Sharlatan-20210216T223419+0000): This part needs to be
+    ;;            ;; checked and probably patched in source code to set search path
+    ;;            ;; for static files, other way it tries to look at `../'
+    ;;            ;; directory which fails after install.
+    ;;            (copy-recursively "icons" icons)
+    ;;            (copy-recursively "lang" lang))
+         ;; #t))
+     )))
+    (native-inputs
+     `(("pkg-config" ,pkg-config)))
+     ;; (inputs
+     ;;  `(("gtkmm" ,gtkmm)
+     ;;    ("libskry" ,libskry)
+     ;;    ("ffmpeg" ,ffmpeg)))
+     (home-page "https://github.com/GreatAttractor/imppg")
+     (synopsis "Image Post-Proccessor for Astronomy")
+     (description
+      "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
+normalization and tone curve adjustment.  It can also apply previously specified
+processing settings to multiple images.  All operations are performed using
+32-bit floating-point arithmetic.
+
+Supported input formats: FITS, BMP, JPEG, PNG, TIFF (most of bit depths and
+compression methods), TGA and more. Images are processed in grayscale and can be
+saved as: BMP 8-bit; PNG 8-bit; TIFF 8-bit, 16-bit, 32-bit floating-point (no
+compression, LZW- or ZIP-compressed), FITS 8-bit, 16-bit, 32-bit
+floating-point.")
+     (license license:gpl3+)))

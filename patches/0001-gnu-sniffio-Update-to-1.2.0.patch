@@ -1,0 +1,32 @@
+From f7d0b5a446a3df522bae322641ffdcb1b7a4aff1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 10 May 2021 21:45:58 +0100
+Subject: [PATCH] gnu: sniffio: Update to 1.2.0
+
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 92b0789717..e6b64e07c9 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -10122,13 +10122,13 @@ designed to efficiently cope with extremely large amounts of data.")
+ (define-public python-sniffio
+   (package
+     (name "python-sniffio")
+-    (version "1.1.0")
++    (version "1.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sniffio" version))
+        (sha256
+-        (base32 "08bsp2pp2dxzn9yzcafwzw8jlm0jf50as0ix8vfhxzk91w810f4f"))))
++        (base32 "1pnkvi6wvn4qd37y69n1ls6n8l63gfmn3pvb1jb50gqxxkn6wrn4"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:phases
+-- 
+2.31.1
+

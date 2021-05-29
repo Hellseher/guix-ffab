@@ -1,0 +1,58 @@
+From 130a0c2d84c70e84b9b42a1452130ca0d3a867a3 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 23 May 2021 21:12:03 +0100
+Subject: [PATCH 2/6] gnu: Add cl-gettext
+
+* gnu/packages/lisp-xyz.scm (sbcl-gettext, ecl-gettext, cl-gettext): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index ecdcb44117..8e9bcffb9a 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16897,3 +16897,40 @@ or GOLDEN-UTILS.  Please read README
+ 
+ (define-public cl-arnesi
+   (sbcl-package->cl-source-package sbcl-arnesi))
++
++(define-public sbcl-gettext
++  (let ((commit "a432020cbad99fc22cbe6bb9aa8a83a35000d7aa")
++        (revision "1"))
++    (package
++      (name "sbcl-gettext")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/rotatef/gettext")
++               (commit commit)))
++         (file-name (git-file-name "gettext" version))
++         (sha256
++          (base32 "1pzhamgni6k5hi6bbvlb3dm659pcllrrr3vhhn3rpjn238zxg5ar"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:test-asd-file "gettext-tests/gettext-tests.asd"))
++      (native-inputs
++       `(("stefil" ,sbcl-stefil)))
++      (inputs
++       `(("flexi-streams" ,sbcl-flexi-streams)
++         ("split-sequence" ,sbcl-split-sequence)
++         ("yacc" ,sbcl-cl-yacc)))
++      (home-page "https://github.com/rotatef/gettext")
++      (synopsis "Gettext runtime implementation in Common Lisp")
++      (description
++       "This package provides GNU @code{gettext} completely implemented in
++Common Lisp without any C library bindings.")
++      (license license:gpl3+))))
++
++(define-public ecl-gettext
++  (sbcl-package->ecl-package sbcl-gettext))
++
++(define-public cl-gettext
++  (sbcl-package->cl-source-package sbcl-gettext))
+-- 
+2.31.1
+

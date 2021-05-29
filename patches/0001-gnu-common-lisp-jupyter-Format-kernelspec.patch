@@ -1,0 +1,58 @@
+From cbc17c767069e8fa5175f2f0f30fc961a2be319a Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 24 May 2021 22:18:28 +0100
+Subject: [PATCH] gnu: common-lisp-jupyter: Format kernelspec
+
+---
+ gnu/packages/lisp-xyz.scm | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 4a1e9064d5..91370c62c4 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -14897,6 +14897,41 @@ and @code{doseq*}.")
+          (sha256
+           (base32 "0si69xfzi769dprwfy7gp1x3bl7lxz6d4n98sa26w9r41wvay5ja"))))
+       (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:phases
++         (modify-phases %standard-phases
++           (add-after 'create-asdf-configuration 'generate-kernelspec
++             (lambda* (#:key outputs #:allow-other-keys)
++               (let* ((out (assoc-ref outputs "out"))
++                      (kernelspec (string-append out "/share/cl-jupyter/kernelspec")))
++                 (mkdir-p kernelspec)
++                 (copy-file (string-append "res/" (%lisp-type) "/logo-64x64.png")
++                            (string-append kernelspec "/logo-64x64.png"))
++                 (with-output-to-file (string-append kernelspec "/kernel.json")
++                   (lambda ()
++                     ;; FIXME: Use of guile-json would beneficial here
++                     (format #t "{ \"argv\": [ ~s,
++ \"--eval\",
++\"(require :asdf)\",
++ \"--eval\",
++\"(asdf:load-system :common-lisp-jupyter)\",
++ \"--eval\",
++\"(jupyter:run-kernel 'common-lisp-jupyter:kernel)\",
++\"{connection_file}\"
++],
++\"display_name\": \"Common Lisp\",
++\"language\": \"common-lisp\",
++\"interrupt_mode\": \"message\"
++}"
++                             (string-append (assoc-ref %build-inputs (%lisp-type)) "/bin/" (%lisp-type))))))))
++      (add-after 'generate-kernelspec 'install-kernelspec
++        (lambda* (#:key outputs #:allow-other-keys)
++          (let* ((out (assoc-ref outputs "out"))
++                (kernelspec (string-append out "/share/cl-jupyter/kernelspec")))
++            (invoke "jupyter" "kernelspec" "install"
++                    "--name" "cl-jupyter"
++                    "--prefix" out
++                    kernelspec)))))))
+       (inputs
+        `(("alexandria" ,sbcl-alexandria)
+          ("babel" ,sbcl-babel)
+-- 
+2.31.1
+

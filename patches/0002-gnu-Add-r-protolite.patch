@@ -1,0 +1,54 @@
+From 4730970563155c1f812c814002207d3d25a447b2 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 May 2021 21:42:54 +0100
+Subject: [PATCH 2/3] gnu: Add r-protolite
+
+* gnu/packages/cran.scm: (r-protolite): New variable.
+---
+ gnu/packages/cran.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/cran.scm b/gnu/packages/cran.scm
+index f7c841ad52..e39617efcd 100644
+--- a/gnu/packages/cran.scm
++++ b/gnu/packages/cran.scm
+@@ -29021,3 +29021,36 @@ complex functions.")
+ application/x-www-form-urlencoded format.  Includes example of hosting and
+ parsing html form data in R using either @code{httpuv} or @code{Rhttpd}.")
+     (license license:expat)))
++
++(define-public r-protolite
++(package
++  (name "r-protolite")
++  (version "2.1")
++  (source
++    (origin
++      (method url-fetch)
++      (uri (cran-uri "protolite" version))
++      (sha256
++        (base32 "0mwpdlpxsxbj4s2s30d0w1h4dsg0j1jzzldh8kvxii9lpfkiv2gz"))))
++  (properties `((upstream-name . "protolite")))
++  (build-system r-build-system)
++  (inputs
++   `(("protobuf" ,protobuf)))
++  (propagated-inputs
++   `(("r-jsonlite" ,r-jsonlite)
++     ("r-rcpp" ,r-rcpp)))
++  (native-inputs
++   `(("protobuf" ,protobuf)
++     ("pkg-config" ,pkg-config)))
++  (home-page "https://github.com/jeroen/protolite")
++  (synopsis "Highly Optimized Protocol Buffer Serializers")
++  (description
++    "Pure C++ implementations for reading and writing several common data
++formats based on Google protocol-buffers.  Currently supports @code{rexp.proto}
++for serialized R objects, @code{geobuf.proto} for binary geojson, and
++@code{mvt.proto} for vector tiles.  This package uses the auto-generated C++ code
++by protobuf-compiler, hence the entire serialization is optimized at compile
++time.  The @code{RProtoBuf} package on the other hand uses the protobuf runtime
++library to provide a general- purpose toolkit for reading and writing arbitrary
++protocol-buffer data in R.")
++  (license license:expat)))
+-- 
+2.31.1
+

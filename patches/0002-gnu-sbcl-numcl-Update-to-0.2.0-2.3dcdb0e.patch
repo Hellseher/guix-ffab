@@ -1,0 +1,36 @@
+From be43e39f28930441519391efa9b2bc1efd234393 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 19 May 2021 22:56:11 +0100
+Subject: [PATCH 2/5] gnu: sbcl-numcl: Update to 0.2.0-2.3dcdb0e
+
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 691b51dc38..60c263029a 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -9987,8 +9987,8 @@ type correctness in Common Lisp.  It is based on CLtL2 extensions.")
+          ((#:tests? _ #f) #f))))))
+ 
+ (define-public sbcl-numcl
+-  (let ((commit "d19f36356be900c600ef08560c9e1af441a166cb")
+-        (revision "1"))
++  (let ((commit "3dcdb0e24a33943d6c3a188ecbb0c78003bf975c")
++        (revision "2"))
+     (package
+       (name "sbcl-numcl")
+       (version (git-version "0.2.0" revision commit))
+@@ -10000,7 +10000,7 @@ type correctness in Common Lisp.  It is based on CLtL2 extensions.")
+                (commit commit)))
+          (file-name (git-file-name "numcl" version))
+          (sha256
+-          (base32 "0q4ylfr7hl0gz2ynr0c15h09dmnli2x6ndnm5wr58wfplf1wfj31"))))
++          (base32 "17m1rx1gfjbbmgjsf33b8s4bygfsj1hb6kvmypkql21qzjvx60nl"))))
+       (build-system asdf-build-system/sbcl)
+       (arguments
+        `(#:test-asd-file "numcl.test.asd"
+-- 
+2.31.1
+

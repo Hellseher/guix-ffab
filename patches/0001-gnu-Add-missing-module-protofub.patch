@@ -1,0 +1,24 @@
+From e0dc0df9b3f891822c3069b53538492a40ce654b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 May 2021 21:47:13 +0100
+Subject: [PATCH] gnu: Add missing module protofub
+
+---
+ gnu/packages/cran.scm | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gnu/packages/cran.scm b/gnu/packages/cran.scm
+index 4e84d26784..fcd3e6bc43 100644
+--- a/gnu/packages/cran.scm
++++ b/gnu/packages/cran.scm
+@@ -96,6 +96,7 @@
+   #:use-module (gnu packages pdf)
+   #:use-module (gnu packages perl)
+   #:use-module (gnu packages pkg-config)
++  #:use-module (gnu packages protobuf)
+   #:use-module (gnu packages pulseaudio)  ;libsndfile
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages python-xyz)
+-- 
+2.31.1
+

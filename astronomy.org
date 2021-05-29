@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-04-15 Thu 21:33:44 BST>
+#+modified: <2021-04-27 Tue 20:37:06 BST>
 
 * TODO AstrOmatic software [8/10][80%]
 - https://github.com/astromatic
@@ -240,11 +240,12 @@ CLOSED: [2021-01-25 Mon 17:25]
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 
-** TODO astropy [1/4][25%]
+** TODO astropy [2/4][50%]
 - https://github.com/astropy/astropy
 - https://pypi.org/project/astropy/
-- [ ] :packed
+- [X] :packed <2021-04-26 Mon>
 - [ ] :patch-sent
+  - https://issues.guix.gnu.org/48046
 - [X] :paptch-applied-upstream
   - [X] :inputs [27/27][100%]
     + [X] asdf [4/4][100%]

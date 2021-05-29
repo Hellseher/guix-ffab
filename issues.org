@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [86/92][93%]
+* Accepted in upstream [99/109][90%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -92,4 +92,21 @@
 - [X] <2021-05-03 Mon> https://issues.guix.gnu.org/48203 <2021-05-08 Sat>
 - [X] <2021-05-03 Mon> https://issues.guix.gnu.org/48206 <2021-05-08 Sat>
 - [X] <2021-05-03 Mon> https://issues.guix.gnu.org/48208 <2021-05-08 Sat>
-- [ ] <2021-05-08 Sat> https://issues.guix.gnu.org/48297
+- [X] <2021-05-08 Sat> https://issues.guix.gnu.org/48297 <2021-05-11 Tue>
+- [X] <2021-05-10 Mon> https://issues.guix.gnu.org/48338 <2021-05-15 Sat>
+- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48431 <2021-05-15 Sat>
+- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48438 <2021-05-15 Sat>
+- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48451 <2021-05-17 Mon>
+- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48453 <2021-05-17 Mon>
+- [ ] <2021-05-15 Sat> https://issues.guix.gnu.org/48454
+- [X] <2021-05-17 Mon> https://issues.guix.gnu.org/48485 <2021-05-18 Tue>
+- [ ] <2021-05-18 Tue> https://issues.guix.gnu.org/46333
+- [X] <2021-05-19 Wed> https://issues.guix.gnu.org/48527 <2021-05-20 Thu>
+- [X] <2021-05-20 Thu> https://issues.guix.gnu.org/48542 <2021-05-23 Sun>
+- [X] <2021-05-20 Thu> https://issues.guix.gnu.org/48550 <2021-05-23 Sun>
+- [X] <2021-05-22 Sat> https://issues.guix.gnu.org/48590 <2021-05-23 Sun>
+- [ ] <2021-05-22 Sat> https://issues.guix.gnu.org/48593
+- [X] <2021-05-23 Sun> https://issues.guix.gnu.org/48615 <2021-05-26 Wed>
+- [ ] <2021-05-26 Wed> https://issues.guix.gnu.org/48684
+- [X] <2021-05-26 Wed> https://issues.guix.gnu.org/48689 <2021-05-27 Thu>
+- [ ] <2021-05-27 Thu> https://issues.guix.gnu.org/48708

@@ -1,0 +1,42 @@
+From f74321dd73bb305dd835c456f4c84b4cbaad20c3 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 20 May 2021 23:00:35 +0100
+Subject: [PATCH 2/2] gnu: sbcl-cl-html5-parser: Update to 0.0.0-2.74a92eb
+
+* gnu/packages/lisp-xyz.scm: (sbcl-cl-html5-parser)
+  [arguments]: Enable tests, clean up not required #:asd-systems
+  [native-inputs]: Add json-streams, split-sequence and stefil
+---
+ gnu/packages/lisp-xyz.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 64394821db..689be8c4ae 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -15370,7 +15370,7 @@ Lisp.")
+ 
+ (define-public sbcl-cl-html5-parser
+   (let ((commit "74a92eb3a183a0afd089ea33350e816e6b9aeefa")
+-        (revision "1"))
++        (revision "2"))
+     (package
+       (name "sbcl-cl-html5-parser")
+       (version (git-version "0.0.0" revision commit))
+@@ -15384,9 +15384,10 @@ Lisp.")
+          (sha256
+           (base32 "04if61wigylsmn996rbfl8ylsd0d9hzdmg7p2wiglncibjzcl5k9"))))
+       (build-system asdf-build-system/sbcl)
+-      (arguments
+-       '(#:tests? #f
+-         #:asd-systems '("cl-html5-parser")))
++      (native-inputs
++       `(("json-streams" ,sbcl-json-streams)
++         ("split-sequence" ,sbcl-split-sequence)
++         ("stefil" ,sbcl-stefil)))
+       (inputs
+        `(("cl-ppcre" ,sbcl-cl-ppcre)
+          ("flexi-stream" ,sbcl-flexi-streams)
+-- 
+2.31.1
+

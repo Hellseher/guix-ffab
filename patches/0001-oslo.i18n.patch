@@ -1,0 +1,43 @@
+From 0cf4299c07138b0c5d6003a2d4dd459d6361aac1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 10 May 2021 22:32:20 +0100
+Subject: [PATCH] oslo.i18n
+
+---
+ gnu/packages/openstack.scm | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/openstack.scm b/gnu/packages/openstack.scm
+index 54df08863e..a0193c2787 100644
+--- a/gnu/packages/openstack.scm
++++ b/gnu/packages/openstack.scm
+@@ -457,14 +457,14 @@ pipeline and used by various modules such as logging.")
+ (define-public python-oslo.i18n
+   (package
+     (name "python-oslo.i18n")
+-    (version "3.20.0")
++    (version "5.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "oslo.i18n" version))
+        (sha256
+         (base32
+-         "0kjcdw4bk3mi4vqmqwhhq053kxbbbj05si6nwxd1pzx33z067ky3"))))
++         "0nq3dr2kbrawqvp9q9i8i44z9jliq98i2b9h4dsl6p7p60gbg11l"))))
+     (build-system python-build-system)
+     (propagated-inputs
+      `(("python-babel" ,python-babel)
+@@ -474,7 +474,9 @@ pipeline and used by various modules such as logging.")
+        ;; Tests
+        ("python-mock" ,python-mock)
+        ("python-mox3" ,python-mox3)
++       ("python-bandit" ,python-bandit)
+        ("python-oslotest" ,python-oslotest)
++       ("python-oslo.config" ,python-oslo.config)
+        ("python-testscenarios" ,python-testscenarios)))
+     (home-page "https://launchpad.net/oslo")
+     (synopsis "Oslo internationalization (i18n) library")
+-- 
+2.31.1
+

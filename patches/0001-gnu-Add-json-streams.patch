@@ -1,0 +1,54 @@
+From 2ca9e1850acf93650dcf4c3c42e8249254245fd9 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 20 May 2021 22:55:55 +0100
+Subject: [PATCH 1/2] gnu: Add json-streams
+
+* gnu/packages/lisp-xyz.scm (sbcl-json-streams, ecl-json-streams,
+  cl-json-streams): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 6149536047..64394821db 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16812,3 +16812,35 @@ format.")
+ 
+ (define-public ecl-woo
+   (sbcl-package->ecl-package sbcl-woo))
++
++(define-public sbcl-json-streams
++  (let ((commit "5da012e8133affbf75024e7500feb37394690752")
++        (revision "1"))
++    (package
++      (name "sbcl-json-streams")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/rotatef/json-streams")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0cia3721im04q73dfkd688d8splgpz03qa4h8s3r39kar4w3xll2"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("cl-quickcheck" ,sbcl-cl-quickcheck)
++         ("flexi-streams" ,sbcl-flexi-streams)))
++      (home-page "https://github.com/rotatef/json-streams")
++      (synopsis "Common Lisp library for reading and writing JSON")
++      (description
++       "This package provides a stream based JSON parser/writer, well suited for
++higher as building block for higher level libraries.")
++      (license license:gpl3+))))
++
++(define-public cl-json-streams
++  (sbcl-package->cl-source-package sbcl-json-streams))
++
++(define-public ecl-json-streams
++  (sbcl-package->ecl-package sbcl-json-streams))
+-- 
+2.31.1
+

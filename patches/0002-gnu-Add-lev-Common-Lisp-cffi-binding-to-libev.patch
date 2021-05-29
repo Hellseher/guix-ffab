@@ -1,0 +1,63 @@
+From a16ac9342a5355a51a877e62a362cb9bd45495cf Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 20 May 2021 17:29:42 +0100
+Subject: [PATCH 2/3] gnu: Add lev (Common Lisp cffi binding to libev)
+
+* gnu/packages/lisp-xyz.scm (sbcl-lev, ecl-lev, cl-lev): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 42 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 4cb1472078..6fb48f404b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -16710,3 +16710,45 @@ format.")
+ 
+ (define-public ecl-cl-speedy-queue
+   (sbcl-package->ecl-package sbcl-cl-speedy-queue))
++
++(define-public sbcl-lev
++  (let ((commit "7d03c68dad44f1cc4ac2aeeab2d24eb525ad941a")
++        (revision "1"))
++    (package
++      (name "sbcl-lev")
++      (version (git-version "0.1.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/fukamachi/lev")
++               (commit commit)))
++         (file-name (git-file-name "lev" version))
++         (sha256
++          (base32 "14lfnrvfyg2nnvlwck896p6vgarzc6g4kijmvhi2d8wra7gxzifh"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       ;; NOTE: (Sharlatan-20210520T163300+0100): No tests in upstream
++       `(#:tests? #f
++         #:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'patch-libev-lib-path
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "src/lev.lisp"
++                 (("libev.so" all)
++                  (string-append (assoc-ref inputs "libev")
++                                        "/lib/" all))))))))
++      (inputs
++       `(("cffi" ,sbcl-cffi)
++         ("libev" ,libev)))
++      (home-page "https://github.com/fukamachi/lev")
++      (synopsis "Common Lisp bindins for libev")
++      (description
++"Common Lisp bindins for libev")
++      (license license:bsd-2))))
++
++(define-public cl-lev
++  (sbcl-package->cl-source-package sbcl-lev))
++
++(define-public ecl-lev
++  (sbcl-package->ecl-package sbcl-lev))
+-- 
+2.31.1
+
