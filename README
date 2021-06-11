@@ -1,6 +1,6 @@
+#    -*- mode: org -*-
 #+title: Guix channel
 /FFAB :: Flock Full of Aleatory Burden/
-
 
 This repository contains patches contributed to <guix-patches@gnu.org> and
 packaging progress. It also can be used as stand alone Guix channel.
