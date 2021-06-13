@@ -1,0 +1,29 @@
+#+modified: <2021-06-12 Sat 20:47:27 BST>
+#+TITLE: gnu/packages/cran.scm
+
+* Synopsis
+This workflow file contains packaging process of R languagies CRAN repository.
+* Flow
+** TODO opencpu [/][%]
+- https://github.com/opencpu/opencpu
+- [X] :packed <2021-05-26 Wed>
+- [X] :patch-sent <2021-05-26 Wed>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/48684
+- [-] :inputs [3/16][18%]
+  + [X] pandoc
+  + [X] r-brewg
+  + [X] r-curlg
+  + [ ] r-evaluateg
+  + [ ] r-httpuvg
+  + [ ] r-jsonliteg
+  + [ ] r-knitr
+  + [ ] r-knitrg
+  + [ ] r-mimeg
+  + [ ] r-opensslg
+  + [ ] r-protoliteg
+  + [ ] r-rappdirsg
+  + [ ] r-remotesg
+  + [ ] r-sysg
+  + [ ] r-webutilsg
+  + [ ] r-zipg

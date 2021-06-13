@@ -290,17 +290,7 @@ fit together as required by any particular game.")
       (arguments
        `(#:phases
          (modify-phases %standard-phases
-           ;; FIXME: (Sharlatan-20210527T212052+0100):
-           ;; default-device-mappings.lisp contains auto-generated code if it
-           ;; kept unsubstituted build fails with:
-           ;;
-           ;;  The function ORG.SHIRAKUMO.FRAF.GAMEPAD:LIST-DEVICES is undefined.
-           ;;
-           (add-after 'unpack 'skip-load-default-device-mappings
-             (lambda _
-               (substitute* "cl-gamepad.asd"
-                 ((".*default-device-mappings.*") ""))))
-           (add-after 'unpack 'patch-evdev-lib-path
+                   (add-after 'unpack 'patch-evdev-lib-path
              (lambda* (#:key inputs #:allow-other-keys)
                (substitute* "evdev-cffi.lisp"
                  (("libevdev.so" all)
@@ -413,7 +403,7 @@ any existing or future application.")
 
 ;;<2021-05-12 Wed>
 (define-public sbcl-chirp
-  (let ((commit "cb04e880f5d88f2b2e734556508c0e955000db29")
+  (let ((commit "01c79fa41939688216d1f86d0766a687becb0654")
         (revision "1"))
     (package
       (name "sbcl-chirp")
@@ -426,13 +416,10 @@ any existing or future application.")
                (commit commit)))
          (file-name (git-file-name "chirp" version))
          (sha256
-          (base32
-           "045fg936dfy9dv3w9sl6dd8chdn28gg91fx09x1a8s179nsx0klk"))))
+          (base32 "10xlz1vwdv3jv48kmpndpnrg6672m0r5vsjgm2pksfl8bc05j2m0"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       ;; NOTE: (Sharlatan-20210512T222222+0100): No tests provided
-       `(#:tests? #f
-         #:asd-systems '("chirp-core" "chirp-dexador" "chirp-drakma" "chirp")))
+       `(#:asd-systems '("chirp-core" "chirp-dexador" "chirp-drakma" "chirp")))
       (inputs
        `(("alexandria" ,sbcl-alexandria)
          ("babel" ,sbcl-babel)
@@ -3197,3 +3184,189 @@ application development library.")
 
 (define-public cl-glfw3
   (sbcl-package->cl-source-package sbcl-cl-glfw3))
+
+;; 20210604T110204+0100
+(define-public sbcl-cepl
+  (let ((commit "d1a10b6c8f4cedc07493bf06aef3a56c7b6f8d5b")
+        (revision "1"))
+    (package
+     (name "sbcl-cepl")
+     (version (git-version "0.0.0" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cbaggers/cepl")
+             (commit commit)))
+       (file-name (git-file-name "cepl" version))
+       (sha256
+        (base32 "0izbw2advqm3wailj3dpq6zqfrfirwn14pw5qmqh8i71r51xwmm2"))))
+     (build-system asdf-build-system/sbcl)
+     (arguments
+      `(#:asd-files '("cepl.asd" "cepl.build.asd")))
+     (inputs
+      `(("alexandria" ,sbcl-alexandria)
+        ("bordeaux-threads" ,sbcl-bordeaux-threads)
+        ("cffi" ,sbcl-cffi)
+        ("cl-opengl" ,sbcl-cl-opengl)
+        ("cl-ppcre" ,sbcl-cl-ppcre)
+        ("documentation-utils" ,sbcl-documentation-utils)
+        ("float-features" ,sbcl-float-features)
+        ("ieee-floats" ,sbcl-ieee-floats)
+        ("split-sequence" ,sbcl-split-sequence)
+        ("varjo" ,sbcl-varjo)))
+     (propagated-inputs
+      `(("quickproject" ,sbcl-quickproject)))
+     (home-page "https://github.com/cbaggers/cepl")
+     (synopsis "Code Evaluate Play Loop - development playground to work with OpenGL")
+     (description
+      "CEPL is a lispy and REPL-friendly Common Lisp library for working with
+OpenGL.
+
+Its definition of success is making the user feel that GPU programming has
+always been part of the languages standard.
+
+The usual approach to using CEPL is to start it at the beginning of your Lisp
+session and leave it open for the duration of your work.  You can then treat the
+window it creates as just another output for your graphics, analogous to how
+@code{*standard-output*} is treated for text.")
+     (license license:bsd-2))))
+
+(define-public ecl-cepl
+  (sbcl-package->ecl-package sbcl-cepl))
+
+(define-public cl-cepl
+  (sbcl-package->cl-source-package sbcl-cepl))
+
+;; 20210604T194236+0100
+(define-public sbcl-nst
+  (let ((commit "6c0990f594abcf5887e8d80f1035e3b60454b61b")
+        (revision "1"))
+    (package
+     (name "sbcl-nst")
+     (version (git-version "4.1.2" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jphmrst/cl-nst")
+             (commit commit)))
+       (file-name (git-file-name "nst" version))
+       (sha256
+        (base32 "1hf3r6pqbnd9vsd1i24qmz928kia72hdgmiafiwb6jw1hmj3r6ga"))))
+     (build-system asdf-build-system/sbcl)
+     (inputs
+      `(("closer-mop" ,sbcl-closer-mop)
+        ("org-sampler" ,sbcl-org-sampler)))
+     (home-page "https://github.com/jphmrst/cl-nst")
+     (synopsis "Unit testing for Common Lisp")
+     (description
+      "NST is unit/regression testing system for Common Lisp.")
+     (license license:llgpl))))
+
+(define-public ecl-nst
+  (sbcl-package->ecl-package sbcl-nst))
+
+(define-public cl-nst
+  (sbcl-package->cl-source-package sbcl-nst))
+
+;; 20210604T195150+0100
+(define-public sbcl-org-sampler
+  (let ((commit "ee135a417750e5b1d810bb9574eb85223cb3038a")
+        (revision "1"))
+    (package
+     (name "sbcl-org-sampler")
+     (version (git-version "0.2.1" revision commit))
+     (source
+      (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jphmrst/cl-org-sampler")
+             (commit commit)))
+       (file-name (git-file-name "org-sampler" version))
+       (sha256
+        (base32 "1dg029in14928qfxvfshyxmdwhzskzhxx3na0zy98ybx69b21qla"))))
+     (build-system asdf-build-system/sbcl)
+     (inputs
+      `(("iterate" ,sbcl-iterate)))
+     (home-page "https://github.com/jphmrst/cl-org-sampler")
+     (synopsis "Extracting Common Lisp docstrings as Emacs Org-mode documents")
+     (description
+      "ORG-SAMPLER allows to use Lisp docstrings and reflection to make org-mode
+text for inclusion into a larger document.")
+     (license license:llgpl))))
+
+(define-public ecl-org-sampler
+  (sbcl-package->ecl-package sbcl-org-sampler))
+
+(define-public cl-org-sampler
+  (sbcl-package->cl-source-package sbcl-org-sampler))
+
+;; 20210608T233910+0100
+(define-public sbcl-adopt
+  (let ((commit "c558dfdd8b8f3ba386f67550268d651e81eff6cf")
+        (revision "1"))
+    (package
+      (name "sbcl-adopt")
+      (version (git-version "1.1.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/sjl/adopt")
+               (commit commit)))
+         (file-name (git-file-name "adopt" version))
+         (sha256
+          (base32 "1b1f9mpp3lkfq3hcpmw4g2cwklscjs5nggdjsfxapj88j2pj73ky"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("1am" ,sbcl-1am)))
+      (inputs
+       `(("bobbin" ,sbcl-bobbin)
+         ("split-sequence" ,sbcl-split-sequence)))
+      (home-page "https://hg.stevelosh.com/adopt")
+      (synopsis "Common Lisp A Damn OPTion parsing library")
+      (description
+       "Adopt is a simple UNIX-style option parser in Common Lisp, heavily
+influenced by Python's optparse and argparse.")
+      (license license:expat))))
+
+(define-public ecl-adopt
+  (sbcl-package->ecl-package sbcl-adopt))
+
+(define-public cl-adopt
+  (sbcl-package->cl-source-package sbcl-adopt))
+
+(define-public sbcl-bobbin
+  (let ((commit "b454e8241b24ceab674eeeae464c8082b1b6d8ce")
+        (revision "1"))
+    (package
+      (name "sbcl-bobbin")
+      (version (git-version "1.0.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/sjl/bobbin")
+               (commit commit)))
+         (file-name (git-file-name "bobbin" version))
+         (sha256
+          (base32 "02lw7w8cbvnxw5acbz405rb5lcqsf4fx7dvj5ldr0lhgbyv1mjnm"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("1am" ,sbcl-1am)))
+      (inputs
+       `(("split-sequence" ,sbcl-split-sequence)))
+      (home-page "https://hg.stevelosh.com/bobbin")
+      (synopsis "Word-wrapping library for strings in Common Lisp")
+      (description
+       "This package provides a simple (word) wrapping utilities for strings
+implemented in Common Lisp which aim is to be easy to use without demand on
+performance.")
+      (license license:expat))))
+
+(define-public ecl-bobbin
+  (sbcl-package->ecl-package sbcl-bobbin))
+
+(define-public cl-bobbin
+  (sbcl-package->cl-source-package sbcl-bobbin))

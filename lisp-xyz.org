@@ -1,20 +1,56 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-05-29 Sat 19:29:24 BST>
+#+modified: <2021-06-12 Sat 22:14:08 BST>
 
-* Flow [8/14][57%]
-** TODO cl-glfw3 [2/4][50%]
+* Flow [8/16][50%]
+** TODO cl-nst [2/4][50%]
+- https://github.com/jphmrst/cl-nst
+- [X] :packed <2021-06-04 Fri>
+- [X] :patch-sent <2021-06-04 Fri>
+- [ ] :patch-applied-upstream
+  + https://issues.guix.gnu.org/48835
+- [-] :inputs [1/2][50%]
+  - [X] closer-mop
+  - [-] org-sampler
+    - https://github.com/jphmrst/cl-org-sampler
+    - [X] :packed <2021-06-04 Fri>
+    - [X] :patch-sent <2021-06-04 Fri>
+    - [ ] :patch-applied-upstream
+      - https://issues.guix.gnu.org/48835
+    - [X] :inputs [1/1][100%]
+      + [X] iterate
+** TODO cepl [3/4][75%]
+- https://github.com/cbaggers/cepl
+- [X] :packed <2021-06-04 Fri>
+- [X] :patch-sent <2021-06-04 Fri>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/48836
+- [X] :inputs [11/11][100%]
+  - [X] alexandriag
+  - [X] bordeaux-threadsg
+  - [X] cffig
+  - [X] cl-openglg
+  - [X] cl-ppcreg
+  - [X] documentation-utilsg
+  - [X] float-featuresg
+  - [X] ieee-floatsg
+  - [X] split-sequenceg
+  - [X] varjog
+  - [X] quickprojectg
+** TODO cl-glfw3 [3/4][75%]
 - https://github.com/AlexCharlton/cl-glfw3
 - [X] :packed <2021-05-29 Sat>
-- [ ] :patch-sent
+- [X] :patch-sent <2021-06-08 Tue>
 - [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/48928
 - [X] :inputs [5/5][100%]
   + [X] cffi
   + [X] alexandria
   + [X] glfw
   + [X] cl-opengl
   + [X] trivial-main-thread
-** TODO virality [0/4][0%]
+
+** TODO virality [0/4][0%] :r5:
 - https://github.com/bufferswap/ViralityEngine/
 - [ ] :packed
 - [ ] :patch-sent
@@ -538,7 +574,8 @@ CLOSED: [2021-05-02 Sun 20:39]
 /gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
 /gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
 #+end_example
-* TODO :author borodust [0/4][0%]
+
+* TODO borodust [0/4][0%] :author:r3:
 ** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
 - [ ] :packed
@@ -656,7 +693,7 @@ CLOSED: [2021-05-02 Sun 20:39]
   - [X] trivial-features
   - [X] trivial-garbage
 
-* TODO :author vseloved [0/1][0%]
+* TODO vseloved [0/1][0%] :author:r1:
 ** TODO cl-redis [1/5][20%]
 - https://github.com/vseloved/cl-redis
 - [ ] :packed
@@ -676,26 +713,39 @@ CLOSED: [2021-05-02 Sun 20:39]
 - [X] :inputs [1/1][100%]
   + [X] usocket
 
-* TODO :author Shinmera/Shirakumo [0/3][0%]
-** TODO qt-libs
+* TODO Shinmera/Shirakumo [1/4][25%] :author:r5:
+** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
-  - [ ] :packed <2021-05-12 Wed>
-  - [ ] :patch-sent
-  - [ ] :patch-applied-upstream
-  - [ ] :inputs [0/0][0%]
-** TODO chirp
+- [X] :packed <2021-05-12 Wed>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+** TODO chirp [/][%]
   - https://github.com/Shinmera/chirp
-  - [ ] :packed <2021-05-12 Wed>
-  - [ ] :patch-sent
+  - [X] :packed <2021-05-12 Wed>
+  - [X] :patch-sent <2021-06-08 Tue>
   - [ ] :patch-applied-upstream
-  - [ ] :inputs [0/0][0%]
-** TODO trial [6/9][66%]
+    - https://issues.guix.gnu.org/48929
+  - [X] :inputs [12/12][100%]
+    + [X] alexandria
+    + [X] babel
+    + [X] cl-base64
+    + [X] cl-ppcre
+    + [X] dexador
+    + [X] drakma
+    + [X] flexi-streams
+    + [X] ironclad
+    + [X] local-time
+    + [X] split-sequence
+    + [X] uuid
+    + [X] yason
+** TODO trial [2/5][40%]
 - https://github.com/Shirakumo/trial/
 - [X] :packed <2021-05-27 Thu>
 - [X] :patch-sent <2021-05-27 Thu>
 - [ ] :patch-applied-upstream
   - https://issues.guix.gnu.org/48708
-- [-] :inputs [30/32][93%]
+- [-] :inputs [31/32][96%]
   - [X] 3d-matrices
     + https://github.com/Shinmera/3d-matrices
     + [X] :packed <2021-05-03 Mon>
@@ -745,11 +795,11 @@ CLOSED: [2021-05-02 Sun 20:39]
       + [X] documentation-utils
       + [X] for
   - [X] float-features
-  - [-] flow
+  - [X] flow
     - https://github.com/Shinmera/flow
     - [X] :packed <2021-05-27 Thu>
     - [X] :patch-sent <2021-05-27 Thu>
-    - [ ] :patch-applied-upstream
+    - [X] :patch-applied-upstream <2021-06-08 Tue>
       - https://issues.guix.gnu.org/48708
     - [X] :inputs [2/2][100%]
       + [X] closer-mop
@@ -815,7 +865,9 @@ CLOSED: [2021-05-02 Sun 20:39]
   + [ ] assimp
   + [ ] harmony
   + [ ] file-notify
-  + [ ] cl-steamworks** DONE radiance [0/0][0%]
+  + [ ] cl-steamworks
+
+** DONE radiance [4/4][100%]
 CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
 - [X] :packed <2021-01-31 Sun>
@@ -930,6 +982,25 @@ CLOSED: [2021-02-04 Thu 00:28]
               + [X] dissect (gnu/packages/lisp-xyz.scm:10055:4)
               + [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
               + [X] local-time (gnu/packages/lisp-xyz.scm:4397:4)
-*** TODO Modules
+*** Modules
 - https://gitlab.com/jason.melbye/r-djula
 - https://github.com/Shirakumo/radiance-contribs
+
+* TODO sjl [0/1][0%] :author:r1:
+** TODO adopt [1/4][25%]
+- https://github.com/sjl/adopt
+- [X] :packed <2021-06-08 Tue>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [2/3][66%]
+  + [X] 1am
+  + [-] bobbin
+    - [ ] :packed <2021-06-08 Tue>
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [X] :inputs [1/1][100%]
+      + [X] split-sequence
+  + [X] split-sequence
+
+* TODO s-expressionists [0/1][0%] :author:r3:
+** TODO ctype [/][%]

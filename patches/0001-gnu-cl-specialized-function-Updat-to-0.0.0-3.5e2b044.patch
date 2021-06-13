@@ -1,0 +1,53 @@
+From 3fc014e3948c4f82a6297bcaa5311ddc9abbfd1d Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 13 Jun 2021 12:05:30 +0100
+Subject: [PATCH] gnu: cl-specialized-function: Updat to 0.0.0-3.5e2b044
+
+Resolved in upstream https://github.com/numcl/specialized-function/issues/5
+
+* gnu/packages/lisp-xyz.scm: (sbcl-specialized-function): Updat to 0.0.0-3.5e2b044
+  [arguments]: Enable tests
+---
+ gnu/packages/lisp-xyz.scm | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 873944ba9d..bd8494b6c6 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -9854,8 +9854,8 @@ correctly.")
+   (sbcl-package->ecl-package sbcl-trivialib-type-unify))
+ 
+ (define-public sbcl-specialized-function
+-  (let ((commit "dee56d2d2b6ecd10500ad291c56217698604ec35")
+-        (revision "2"))
++  (let ((commit "5e2b04432bdf728496e6ff7227f210f845af7247")
++        (revision "3"))
+     (package
+       (name "sbcl-specialized-function")
+       (version (git-version "0.0.0" revision commit))
+@@ -9867,7 +9867,7 @@ correctly.")
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+-          (base32 "1mcc7mmpbnmgnr1cl2jl5r1ai54gn7fbisv2c14sh9za5w4sib82"))))
++          (base32 "19hfgc83b7as630r1w9r8yl0v6xq3dn01vcrl0bd4pza5hgjn4la"))))
+       (build-system asdf-build-system/sbcl)
+       (synopsis "Julia-like dispatch for Common Lisp")
+       (description
+@@ -9888,11 +9888,7 @@ code.  The main target of this macro is speed.")
+        `(("fiveam" ,sbcl-fiveam)))
+       (arguments
+        `(#:asd-files '("specialized-function.asd")
+-         #:test-asd-file "specialized-function.test.asd"
+-         ;; Tests fail because they try to use an internal symbol of SBCL
+-         ;; that does not exists in recent versions:
+-         ;;   "The variable SB-VM:COMPLEX-VECTOR-NIL-WIDETAG is unbound."
+-         #:tests? #f)))))
++         #:test-asd-file "specialized-function.test.asd")))))
+ 
+ (define-public cl-specialized-function
+   (sbcl-package->cl-source-package sbcl-specialized-function))
+-- 
+2.32.0
+

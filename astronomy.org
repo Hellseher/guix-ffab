@@ -1,8 +1,8 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-04-27 Tue 20:37:06 BST>
+#+modified: <2021-06-12 Sat 21:15:37 BST>
 
-* TODO AstrOmatic software [8/10][80%]
+* TODO AstrOmatic-software [8/10][80%] :author:r5:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
 
@@ -202,7 +202,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   + [ ] liblimesuite-dev [0/0][0%]
     - https://github.com/myriadrf/LimeSuite
 
-** TODO indi-service-type
+** TODO indi-service-type [/][%]
 
 * TODO ap-i [1/5][20%]
 
@@ -434,7 +434,7 @@ CLOSED: [2021-02-19 Fri 11:14]
       - [ ] :patch-sent
       - [ ] :paptch-applied-upstream
 
-* TODO THELI []
+* TODO THELI [0/0][0%]
 - https://github.com/schirmermischa/THELI
   + [ ] :packed
   + [ ] :patch-sent
@@ -442,7 +442,7 @@ CLOSED: [2021-02-19 Fri 11:14]
   + [ ] :inputs [0/1][0%]
     - [ ] astropy
 
-* TODO GreatAttractor [1/2]
+* TODO GreatAttractor [1/2][50%] :author:r5:
 ** DONE stackistry [4/4][100%]
 CLOSED: [2021-02-19 Fri 11:15]
 - https://github.com/GreatAttractor/stackistry

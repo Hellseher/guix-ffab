@@ -3,9 +3,11 @@
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
+  #:use-module (gnu packages boost)
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages gl)
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
@@ -22,6 +24,7 @@
   #:use-module (gnu packages swig)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
+  #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
@@ -688,48 +691,48 @@ interoperability between Python astronomy packages.")
        (file-name (git-file-name name version))
        (sha256
         (base32 "0aj0zmqrgdzw6ha9y9ki3np0rvhrgm84ncb0d5dxhm4qqd58k1n9"))))
-    (build-system gnu-build-system)
+    (build-system cmake-build-system)
     (arguments
-     `(
-       ;; #:make-flags
-    ;;    (list
-    ;;     (string-append
-    ;;      "SKRY_INCLUDE_PATH=" (assoc-ref %build-inputs "libskry") "/include")
-    ;;     (string-append
-    ;;      "SKRY_LIB_PATH=-L" (assoc-ref %build-inputs "libskry") "/lib")
-    ;;     (string-append
-    ;;      "LIBAV_INCLUDE_PATH=" (assoc-ref %build-inputs "ffmpeg") "/include"))
+     `(#:tests? #f ; No test provided
        #:phases
        (modify-phases %standard-phases
-         ;; no configure and tests are provided
-         (delete 'configure)
-         (delete 'check)
-    ;;      (replace 'install
-    ;;        ;; The Makefile lacks an ‘install’ target.
-    ;;        (lambda* (#:key outputs #:allow-other-keys)
-    ;;          (let* ((out (assoc-ref outputs "out"))
-    ;;                 (bin (string-append out "/bin"))
-    ;;                 (icons (string-append out "/icons"))
-    ;;                 (lang (string-append out "/lang")))
-    ;;            (copy-recursively "bin" bin)
-    ;;            ;; FIXME: (Sharlatan-20210216T223419+0000): This part needs to be
-    ;;            ;; checked and probably patched in source code to set search path
-    ;;            ;; for static files, other way it tries to look at `../'
-    ;;            ;; directory which fails after install.
-    ;;            (copy-recursively "icons" icons)
-    ;;            (copy-recursively "lang" lang))
-         ;; #t))
-     )))
-    (native-inputs
-     `(("pkg-config" ,pkg-config)))
-     ;; (inputs
-     ;;  `(("gtkmm" ,gtkmm)
-     ;;    ("libskry" ,libskry)
-     ;;    ("ffmpeg" ,ffmpeg)))
-     (home-page "https://github.com/GreatAttractor/imppg")
-     (synopsis "Image Post-Proccessor for Astronomy")
-     (description
-      "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
+         (delete 'configure) ;; No configure provided
+         ;; FIXME: https://github.com/GreatAttractor/imppg/issues/2
+         ;;  Fix building with GCC <8
+         (add-after 'unpack 'patch-src-image-cpp
+           (lambda _
+             (substitute* "src/image.cpp"
+               ((".*return result;.*") "return std::move(result);"))
+             #t))
+         (replace 'build
+           (lambda _
+             (mkdir-p "build")
+             (chdir "build")
+             (invoke "cmake"
+                     "-G" "Unix Makefiles"
+                     "-DCMAKE_BUILD_TYPE=Release"
+                     "..")
+             (invoke "make" "-j")))
+         (replace 'install
+           (lambda* (#:key outputs #:allow-other-keys)
+             (let* ((out (assoc-ref outputs "out"))
+                    (bin (string-append out "/bin")))
+               (invoke "cmake"
+                       "-P"
+                       (string-append "-DCMAKE_INSTALL_PREFIX=" out)
+                       "cmake_install.cmake")))))))
+         (native-inputs
+          `(("pkg-config" ,pkg-config)
+            ("boost" ,boost)))
+         (inputs
+          '(("glew" ,glew)
+            ("wxwidgets" ,wxwidgets)
+            ("freeimage" ,freeimage)
+            ("cfitsio" ,cfitsio)))
+         (home-page "https://github.com/GreatAttractor/imppg")
+         (synopsis "Astronomical Image Post-Proccessor")
+         (description
+          "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
 normalization and tone curve adjustment.  It can also apply previously specified
 processing settings to multiple images.  All operations are performed using
 32-bit floating-point arithmetic.

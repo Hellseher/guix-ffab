@@ -26,7 +26,8 @@ as package manager.
 #+begin_src scheme
 (cons* (channel
         (name 'ffab)
-        (url "https://github.com/Hellseher/guix-channel"))
+        ;; Mirror https://github.com/Hellseher/guix-channel
+        (url "https://git.sr.ht/~hellseher/ffab"))
        %default-channels)
  #+end_src
 
