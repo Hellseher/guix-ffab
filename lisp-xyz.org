@@ -1,8 +1,8 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-06-12 Sat 22:14:08 BST>
+#+modified: <2021-06-21 Mon 11:06:38 BST>
 
-* Flow [8/16][50%]
+* Flow [9/16][56%]
 ** TODO cl-nst [2/4][50%]
 - https://github.com/jphmrst/cl-nst
 - [X] :packed <2021-06-04 Fri>
@@ -19,29 +19,12 @@
       - https://issues.guix.gnu.org/48835
     - [X] :inputs [1/1][100%]
       + [X] iterate
-** TODO cepl [3/4][75%]
-- https://github.com/cbaggers/cepl
-- [X] :packed <2021-06-04 Fri>
-- [X] :patch-sent <2021-06-04 Fri>
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/48836
-- [X] :inputs [11/11][100%]
-  - [X] alexandriag
-  - [X] bordeaux-threadsg
-  - [X] cffig
-  - [X] cl-openglg
-  - [X] cl-ppcreg
-  - [X] documentation-utilsg
-  - [X] float-featuresg
-  - [X] ieee-floatsg
-  - [X] split-sequenceg
-  - [X] varjog
-  - [X] quickprojectg
-** TODO cl-glfw3 [3/4][75%]
+** DONE cl-glfw3 [4/4][100%]
+CLOSED: [2021-06-15 Tue 10:09]
 - https://github.com/AlexCharlton/cl-glfw3
 - [X] :packed <2021-05-29 Sat>
 - [X] :patch-sent <2021-06-08 Tue>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2021-06-15 Tue>
   - https://issues.guix.gnu.org/48928
 - [X] :inputs [5/5][100%]
   + [X] cffi
@@ -50,7 +33,7 @@
   + [X] cl-opengl
   + [X] trivial-main-thread
 
-** TODO virality [0/4][0%] :r5:
+** TODO virality [0/4][0%] :p5:
 - https://github.com/bufferswap/ViralityEngine/
 - [ ] :packed
 - [ ] :patch-sent
@@ -574,8 +557,18 @@ CLOSED: [2021-05-02 Sun 20:39]
 /gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
 /gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
 #+end_example
+** TODO cl-posix-mqueue [1/4][25%] :p2:
+- https://github.com/xFA25E/cl-posix-mqueue
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [4/4][100%]
+  - [X] cffi
+  - [X] alexandria
+  - [X] babel
+  - [X] local-time
 
-* TODO borodust [0/4][0%] :author:r3:
+* TODO borodust [0/4][0%] :author:p3:
 ** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
 - [ ] :packed
@@ -693,7 +686,7 @@ CLOSED: [2021-05-02 Sun 20:39]
   - [X] trivial-features
   - [X] trivial-garbage
 
-* TODO vseloved [0/1][0%] :author:r1:
+* TODO vseloved [0/1][0%] :author:p1:
 ** TODO cl-redis [1/5][20%]
 - https://github.com/vseloved/cl-redis
 - [ ] :packed
@@ -713,18 +706,19 @@ CLOSED: [2021-05-02 Sun 20:39]
 - [X] :inputs [1/1][100%]
   + [X] usocket
 
-* TODO Shinmera/Shirakumo [1/4][25%] :author:r5:
+* TODO Shinmera/Shirakumo [2/4][50%] :author:p5:
 ** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-** TODO chirp [/][%]
+** DONE chirp [4/4][100%]
+CLOSED: [2021-06-15 Tue 10:00]
   - https://github.com/Shinmera/chirp
   - [X] :packed <2021-05-12 Wed>
   - [X] :patch-sent <2021-06-08 Tue>
-  - [ ] :patch-applied-upstream
+  - [X] :patch-applied-upstream <2021-06-15 Tue>
     - https://issues.guix.gnu.org/48929
   - [X] :inputs [12/12][100%]
     + [X] alexandria
@@ -986,7 +980,7 @@ CLOSED: [2021-02-04 Thu 00:28]
 - https://gitlab.com/jason.melbye/r-djula
 - https://github.com/Shirakumo/radiance-contribs
 
-* TODO sjl [0/1][0%] :author:r1:
+* TODO sjl [0/1][0%] :author:p1:
 ** TODO adopt [1/4][25%]
 - https://github.com/sjl/adopt
 - [X] :packed <2021-06-08 Tue>
@@ -1002,5 +996,42 @@ CLOSED: [2021-02-04 Thu 00:28]
       + [X] split-sequence
   + [X] split-sequence
 
-* TODO s-expressionists [0/1][0%] :author:r3:
-** TODO ctype [/][%]
+* TODO s-expressionists [0/1][0%] :author:p3:
+** TODO ctype [0/4][0%]
+- https://github.com/s-expressionists/ctype
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+* TODO cbaggers [1/3][33%] :author:p2:
+** DONE cepl [4/4][100%]
+CLOSED: [2021-06-15 Tue 10:09]
+- https://github.com/cbaggers/cepl
+- [X] :packed <2021-06-04 Fri>
+- [X] :patch-sent <2021-06-04 Fri>
+- [X] :patch-applied-upstream <2021-06-15 Tue>
+  - https://issues.guix.gnu.org/48836
+- [X] :inputs [11/11][100%]
+  - [X] alexandriag
+  - [X] bordeaux-threadsg
+  - [X] cffig
+  - [X] cl-openglg
+  - [X] cl-ppcreg
+  - [X] documentation-utilsg
+  - [X] float-featuresg
+  - [X] ieee-floatsg
+  - [X] split-sequenceg
+  - [X] varjog
+  - [X] quickprojectg
+** TODO cl-soil [0/4][0%] :p1:
+- https://github.com/cbaggers/cl-soil
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+** TODO dirt [/][%] :p1:
+- https://github.com/cbaggers/dirt
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]

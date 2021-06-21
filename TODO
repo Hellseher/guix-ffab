@@ -3,53 +3,68 @@ grep TODO *.org | grep -v :author
 #+end_src
 
 #+RESULTS:
-| astronomy.org:**      | TODO | psfex             | [0/4][0%]  |      |
-| astronomy.org:**      | TODO | scamp             | [0/4][0%]  |      |
-| astronomy.org:**      | TODO | indi-3rdparty     | [0/4][0%]  |      |
-| astronomy.org:**      | TODO | indi-service-type | [/][%]     |      |
-| astronomy.org:*       | TODO | ap-i              | [1/5][20%] |      |
-| astronomy.org:**      | TODO | skychart          | [0/4][0%]  |      |
-| astronomy.org:**      | TODO | ccdciel           | [/][%]     |      |
-| astronomy.org:**      | TODO | inistarter        | [/][%]     |      |
-| astronomy.org:**      | TODO | eqmodgui          | [/][%]     |      |
-| astronomy.org:*       | TODO | astropy           | [0/2][0%]  |      |
-| astronomy.org:**      | TODO | astropy           | [2/4][50%] |      |
-| astronomy.org:**      | TODO | astropy-helpers   | [/][%]     |      |
-| astronomy.org:**      | TODO | sofa-c            | [/][%]     |      |
-| astronomy.org:*       | TODO | linguider         | [/][%]     |      |
-| astronomy.org:*       | TODO | XEphem            | [0/4][0%]  |      |
-| astronomy.org:**      | TODO | eclipse           | [0/0][0%]  |      |
-| astronomy.org:**      | TODO | skycat            | [0/1][0%]  |      |
-| astronomy.org:*       | TODO | THELI             | [0/0][0%]  |      |
-| astronomy.org:**      | TODO | imppg             | [0/4][0%]  |      |
-| astronomy.org:*       | TODO | phd2              | [0/4]      |      |
-| astronomy.org:*       | TODO | INDIGO            | [0/4]      |      |
-| cran.org:**           | TODO | opencpu           | [/][%]     |      |
-| docker.org:**         | TODO | dive              | [/][%]     |      |
-| lisp-xyz.org:**       | TODO | cl-nst            | [2/4][50%] |      |
-| lisp-xyz.org:**       | TODO | cepl              | [3/4][75%] |      |
-| lisp-xyz.org:**       | TODO | cl-glfw3          | [3/4][75%] |      |
-| lisp-xyz.org:**       | TODO | virality          | [0/4][0%]  | :r5: |
-| lisp-xyz.org:**       | TODO | lucerne           | [/][%]     |      |
-| lisp-xyz.org:**       | TODO | cl-plplot         | [0/4][0%]  |      |
-| lisp-xyz.org:**       | TODO | adams             | [1/4][25%] |      |
-| lisp-xyz.org:**       | TODO | weir              | [3/4][75%] |      |
-| lisp-xyz.org:**       | TODO | cl-bodge          | [0/4][0%]  |      |
-| lisp-xyz.org:**       | TODO | cl-redis          | [1/5][20%] |      |
-| lisp-xyz.org:**       | TODO | qt-libs           | [/][%]     |      |
-| lisp-xyz.org:**       | TODO | chirp             | [/][%]     |      |
-| lisp-xyz.org:**       | TODO | trial             | [2/5][40%] |      |
-| lisp-xyz.org:**       | TODO | adopt             | [1/4][25%] |      |
-| version-control.org:* | TODO | lazygit           | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | psfex             | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | scamp             | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | indi-3rdparty     | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | indi-service-type | [/][%]     |      |
+| astronomy.org:**       | TODO | skychart          | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | ccdciel           | [/][%]     |      |
+| astronomy.org:**       | TODO | inistarter        | [/][%]     |      |
+| astronomy.org:**       | TODO | eqmodgui          | [/][%]     |      |
+| astronomy.org:**       | TODO | astropy           | [3/4][75%] | :p1: |
+| astronomy.org:**       | TODO | astropy-helpers   | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | sofa-c            | [/][%]     |      |
+| astronomy.org:*        | TODO | linguider         | [/][%]     |      |
+| astronomy.org:*        | TODO | XEphem            | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | eclipse           | [0/0][0%]  |      |
+| astronomy.org:**       | TODO | skycat            | [0/4][0%]  |      |
+| astronomy.org:*        | TODO | THELI             | [0/0][0%]  |      |
+| astronomy.org:**       | TODO | imppg             | [0/4][0%]  |      |
+| astronomy.org:**       | TODO | phd2              | [0/4][%]   |      |
+| astronomy.org:*        | TODO | INDIGO            | [0/4]      | :p5: |
+| cran.org:**            | TODO | opencpu           | [3/4][75%] |      |
+| docker.org:**          | TODO | dive              | [/][%]     |      |
+| emacs-xyz.org:**       | TODO | org-roam-server   | [/][%]     | :p3: |
+| lisp-xyz.org:**        | TODO | cl-nst            | [2/4][50%] |      |
+| lisp-xyz.org:**        | TODO | virality          | [0/4][0%]  | :p5: |
+| lisp-xyz.org:**        | TODO | lucerne           | [/][%]     |      |
+| lisp-xyz.org:**        | TODO | cl-plplot         | [0/4][0%]  |      |
+| lisp-xyz.org:**        | TODO | adams             | [1/4][25%] |      |
+| lisp-xyz.org:**        | TODO | weir              | [3/4][75%] |      |
+| lisp-xyz.org:**        | TODO | cl-bodge          | [0/4][0%]  |      |
+| lisp-xyz.org:**        | TODO | cl-redis          | [1/5][20%] |      |
+| lisp-xyz.org:**        | TODO | qt-libs           | [/][%]     |      |
+| lisp-xyz.org:**        | TODO | trial             | [2/5][40%] |      |
+| lisp-xyz.org:**        | TODO | adopt             | [1/4][25%] |      |
+| lisp-xyz.org:**        | TODO | ctype             | [0/4][0%]  |      |
+| lisp-xyz.org:**        | TODO | cl-soil           | [0/4][0%]  | :p1: |
+| lisp-xyz.org:**        | TODO | dirt              | [/][%]     | :p1: |
+| maths.org:**           | TODO | nelib             | [/][%]     | :p5: |
+| maths.org:**           | TODO | atlas             | [/][%]     | :p5: |
+| maths.org:**           | TODO | plplot            | [/][%]     | :p2: |
+| python-check.org:**    | TODO | assay             | [2/3][66%] |      |
+| python-web.org:**      | TODO | pywb              | [1/4][25%] |      |
+| version-control.org:** | TODO | lazygit           | [0/4][0%]  |      |
+
 
 #+begin_src sh
 grep "TODO\|DONE" *.org | grep :author
 #+end_src
 
 #+RESULTS:
-| astronomy.org:* | TODO | AstrOmatic-software | [8/10][80%] | :author:r5: |
-| astronomy.org:* | TODO | GreatAttractor      | [1/2][50%]  | :author:r5: |
-| lisp-xyz.org:*  | TODO | borodust            | [0/4][0%]   | :author:r3: |
-| lisp-xyz.org:*  | TODO | vseloved            | [0/1][0%]   | :author:r1: |
-| lisp-xyz.org:*  | TODO | Shinmera/Shirakumo  | [1/4][25%]  | :author:r5: |
-| lisp-xyz.org:*  | TODO | :author             | sjl         | [0/1][0%]   |
+| astronomy.org:*       | TODO | AstrOmatic-software | [8/10][80%] | :author:p5: |
+| astronomy.org:*       | TODO | INDI                | [1/3][33%]  | :author:p5: |
+| astronomy.org:*       | TODO | ap-i                | [1/5][20%]  | :author:p5: |
+| astronomy.org:*       | TODO | astropy             | [0/2][0%]   | :author:p1: |
+| astronomy.org:*       | TODO | ESO                 | [1/3][33%]  | :author:    |
+| astronomy.org:*       | TODO | GreatAttractor      | [1/2][50%]  | :author:p5: |
+| astronomy.org:*       | TODO | OpenPHDGuiding      | [0/1][0%]   | :author:p4: |
+| lisp-xyz.org:*        | TODO | borodust            | [0/4][0%]   | :author:p3: |
+| lisp-xyz.org:*        | TODO | vseloved            | [0/1][0%]   | :author:p1: |
+| lisp-xyz.org:*        | TODO | Shinmera/Shirakumo  | [2/4][50%]  | :author:p5: |
+| lisp-xyz.org:*        | TODO | sjl                 | [0/1][0%]   | :author:p1: |
+| lisp-xyz.org:*        | TODO | s-expressionists    | [0/1][0%]   | :author:p3: |
+| lisp-xyz.org:*        | TODO | cbaggers            | [1/3][33%]  | :author:p2: |
+| python-check.org:*    | TODO | brandon-rhodes      | [0/1][0%]   | :author:p5: |
+| python-web.org:*      | TODO | webrecorder         | [0/1][0%]   | :author:p2: |
+| version-control.org:* | TODO | jesseduffield       | [0/1][0%]   | :author:p3: |

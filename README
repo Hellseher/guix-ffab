@@ -8,9 +8,20 @@ packaging progress. It also can be used as stand alone Guix channel.
 Layout follows Guix upstream
 
 #+BEGIN_SRC sh :results value org :results output replace :exports results
-tree ffab
-echo Total packages: $(guix package -L . -A | grep -c ffab)
-guix package -L . -A | grep -c ffab
+# tree ffab
+# echo Total packages: $(guix package -L . -A | grep -c ffab)
+# guix package -L . -A | grep -c ffab
+for pkg in $(grep -r define-public ffab/ | awk '{print $2}')
+do
+    if guix show $pkg &>/dev/null
+       then
+           printf "%s :is-in-upstream " $pkg
+           printf ":build-check %s\n" $(guix build --no-substitutes --quiet $pkg)
+    else
+           printf "%s :is-not-in-upstream " $pkg
+           printf ":build-check %s\n" $(guix build --load-path=. --no-substitutes --quiet $pkg)
+    fi
+done
 #+end_src
 
 #+RESULTS:
