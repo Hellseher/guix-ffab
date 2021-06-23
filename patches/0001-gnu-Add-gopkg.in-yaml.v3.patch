@@ -1,26 +1,26 @@
-From 31a174054c86fd51e81185d5b2bfcf2ab6bcf208 Mon Sep 17 00:00:00 2001
+From 55ccab7fbbd5a1610ce630f17e79db8bdc6b4d79 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Mon, 1 Feb 2021 12:44:15 +0000
+Date: Fri, 18 Jun 2021 20:27:27 +0100
 Subject: [PATCH] gnu: Add gopkg.in/yaml.v3
 
 * gnu/packages/golang.scm (go-gopkg-in-yml-v3): New variable
 ---
- gnu/packages/golang.scm | 42 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+ gnu/packages/golang.scm | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index d34bb1acb7..56843820f0 100644
+index 8c3c81ceda..19a70c7a82 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -23,6 +23,7 @@
- ;;; Copyright © 2020 Marius Bakke <marius@gnu.org>
- ;;; Copyright © 2020 raingloom <raingloom@riseup.net>
+@@ -25,6 +25,7 @@
  ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
+ ;;; Copyright © 2021 Ricardo Wurmus <rekado@elephly.net>
+ ;;; Copyright © 2021 Guillaume Le Vaillant <glv@posteo.net>
 +;;; Copyright © 2021 Sharlatan Hellseher <sharlatanus@mgail.com>
  ;;;
  ;;; This file is part of GNU Guix.
  ;;;
-@@ -2408,6 +2409,47 @@ which satisfies the cron expression.")
+@@ -2413,6 +2414,45 @@ which satisfies the cron expression.")
  values.")
      (license license:asl2.0)))
  
@@ -42,7 +42,7 @@ index d34bb1acb7..56843820f0 100644
 +     '(#:import-path "gopkg.in/yaml.v3"))
 +    (native-inputs
 +     `(("go-gopkg-in-check-v1" ,go-gopkg-in-check-v1)))
-+    (home-page "https://gopkg.in/yaml.v2")
++    (home-page "https://gopkg.in/yaml.v3")
 +    (synopsis "YAML reader and writer for the Go language")
 +    (description
 +     "This package provides a Go library for encode and decode YAML
@@ -60,14 +60,12 @@ index d34bb1acb7..56843820f0 100644
 +
 +@item Does not support base-60 floats.  These are gone from YAML 1.2, and were
 +actually never supported by this package as it's clearly a poor choice.
-+@end itemize\n")
-+
-+@end itemize\n")
++@end itemize")
 +    (license license:asl2.0)))
 +
  (define-public go-github-com-mattn-go-isatty
    (package
      (name "go-github-com-mattn-go-isatty")
 -- 
-2.30.0
+2.32.0
 

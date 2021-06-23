@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-06-21 Mon 11:06:38 BST>
+#+modified: <2021-06-23 Wed 14:36:27 BST>
 
 * Flow [9/16][56%]
 ** TODO cl-nst [2/4][50%]
@@ -182,12 +182,12 @@ CLOSED: [2021-06-15 Tue 10:09]
     - [X] :inputs [1/1]
       - [X] cl-ppcre
   + [X] queues.simple-queue
-  + [-] sdl2 [1/4][25%]
+  + [-] sdl2 [3/4][75%]
     - https://github.com/lispgames/cl-sdl2
-    - note :: there are a lot of static files in repository
-    - [ ] :packed
-    - [ ] :patch-sent
+    - [X] :packed <2021-06-23 Wed>
+    - [X] :patch-sent <2021-06-23 Wed>
     - [ ] :patch-applied-upstream
+      - https://issues.guix.gnu.org/49187
     - [X] :inputs [6/6][100%]
       + [X] alexandria
       + [X] cl-autowrap
@@ -557,9 +557,9 @@ CLOSED: [2021-05-02 Sun 20:39]
 /gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
 /gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
 #+end_example
-** TODO cl-posix-mqueue [1/4][25%] :p2:
+** TODO cl-posix-mqueue [2/4][50%] :p2:
 - https://github.com/xFA25E/cl-posix-mqueue
-- [ ] :packed
+- [X] :packed <2021-06-21 Mon>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [X] :inputs [4/4][100%]

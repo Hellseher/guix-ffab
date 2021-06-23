@@ -1,22 +1,22 @@
-From d605bc2ee21c7df1626db71f38b7d6fe05491e1a Mon Sep 17 00:00:00 2001
+From 35a1b7c9e0af4fef25686cdb8b379462456ca532 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Mon, 21 Jun 2021 12:10:54 +0100
+Date: Wed, 23 Jun 2021 13:34:55 +0100
 Subject: [PATCH] gnu: Add cl-posix-mqueue
 
 * gnu/packages/lisp-xyx: (sbcl-cl-posix-mqueue, ecl-cl-posix-mqueue,
   cl-posix-mqueue): New variables
 ---
- gnu/packages/lisp-xyz.scm | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+ gnu/packages/lisp-xyz.scm | 48 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
 diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
-index 1bd35d5812..50c118ee0c 100644
+index f2fe9c93d1..204a470df0 100644
 --- a/gnu/packages/lisp-xyz.scm
 +++ b/gnu/packages/lisp-xyz.scm
-@@ -17471,3 +17471,42 @@ Memory transactions give freedom from deadlocks, are immune to thread-safety
- bugs and race conditions, provide automatic roll-back on failure, and aim at
- resolving the tension between granularity and concurrency.")
-      (license license:llgpl))))
+@@ -17695,3 +17695,51 @@ computing and event based message handling.")
+ 
+ (define-public cl-gserver
+   (sbcl-package->cl-source-package sbcl-cl-gserver))
 +
 +(define-public sbcl-cl-posix-mqueue
 +  (let ((commit "8977370c7206d1f62bd1be80f4254af40654b83f")
@@ -35,18 +35,27 @@ index 1bd35d5812..50c118ee0c 100644
 +          (base32 "04519rg8vc782z097dzlb8nx0skab2fy2zd0m60r6mz2nw8xdvh6"))))
 +      (build-system asdf-build-system/sbcl)
 +      (arguments
-+       `(#:test-asd-file "cl-posix-mqueue-tests.asd"))
++       `(#:test-asd-file "cl-posix-mqueue-tests.asd"
++         #:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'patch-librt-path
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "src/spec.lisp"
++                 (("librt.so" all)
++                  (string-append (assoc-ref inputs "glibc") "/lib/" all))))))))
 +      (native-inputs
-+       `(("rove" ,sbcl-rove)))
++       `(("rove" ,sbcl-rove)
++         ("cl-ppcre" ,sbcl-cl-ppcre)))
 +      (inputs
 +       `(("alexandira" ,sbcl-alexandria)
 +         ("babel" ,sbcl-babel)
 +         ("cffi" ,sbcl-cffi)
++         ("glibc" ,glibc)
 +         ("local-time" ,sbcl-local-time)))
 +      (home-page "https://github.com/xFA25E/cl-posix-mqueue")
 +      (synopsis "Common Lisp binding to POSIX mqueue")
 +      (description
-+"This package provides a Common Lisp bindings to POSIX message queue - an
++       "This package provides a Common Lisp bindings to POSIX message queue - an
 +IPC (Inter-Process Communication) method that is easy to use and quick to
 +setup.")
 +      (license license:gpl3+))))

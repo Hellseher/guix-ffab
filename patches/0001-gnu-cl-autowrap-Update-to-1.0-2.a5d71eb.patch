@@ -1,0 +1,45 @@
+From 8e8144da5ec4b836f03144688d449f4e946df7ec Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 23 Jun 2021 14:16:38 +0100
+Subject: [PATCH] gnu: cl-autowrap: Update to 1.0-2.a5d71eb
+
+* gnu/packages/lisp-xyx.scm: (sbcl-cl-autowrap) Update to 1.0-2.a5d71eb
+  [file-name]: Altered format
+  [arguments]: Add missing system cl-plus-c
+---
+ gnu/packages/lisp-xyz.scm | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 204a470df0..31a9193b04 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -6712,8 +6712,8 @@ extension-points via the concept of hooks.")
+   (sbcl-package->ecl-package sbcl-cl-hooks))
+ 
+ (define-public sbcl-cl-autowrap
+-  (let ((revision "1")
+-        (commit "ae846d6968fc0d000de0c541638929a157f3009e"))
++  (let ((revision "2")
++        (commit "a5d71ebd7c21b87f449db1e16ab815750d7c0ea4"))
+     ;; no taged branches
+     (package
+       (name "sbcl-cl-autowrap")
+@@ -6724,10 +6724,12 @@ extension-points via the concept of hooks.")
+          (uri (git-reference
+                (url "https://github.com/rpav/cl-autowrap")
+                (commit commit)))
+-         (file-name (git-file-name name version))
++         (file-name (git-file-name "cl-autowrap" version))
+          (sha256
+-          (base32 "1gisldp2zns92kdcaikghm7c38ldy2d884n8bfg0wcjvbz78p3ar"))))
++          (base32 "0795c817m1c41cz3ywzzg83z4pgkxdg6si553pay9mdgjvmrwmaw"))))
+       (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:asd-systems '("cl-plus-c" "cl-autowrap")))
+       (inputs
+        `(("alexandria" ,sbcl-alexandria)
+          ("cffi" ,sbcl-cffi)
+-- 
+2.32.0
+
