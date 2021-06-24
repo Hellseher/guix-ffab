@@ -1,16 +1,17 @@
 (define-module (ffab packages lisp-xyz)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages base)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages elf)
+  #:use-module (gnu packages gl)
   #:use-module (gnu packages gsasl)
   #:use-module (gnu packages image)
-  #:use-module (gnu packages gl)
-  #:use-module (gnu packages xorg)
   #:use-module (gnu packages libevent)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages mp3)
   #:use-module (gnu packages sdl)
+  #:use-module (gnu packages xorg)
   #:use-module (guix build lisp-utils)
   #:use-module (guix build-system asdf)
   #:use-module (guix download)
@@ -134,71 +135,6 @@ It's a part of QITAB umbrella project.")
 ;; https://git.mfiano.net/mfiano
 ;;+begin-mfiano
 
-(define-public sbcl-origin
-  (let ((commit "d646134302456408d6d43580bb05299f1695ab8e")
-        (revision "1"))
-    (package
-      (name "sbcl-origin")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://git.mfiano.net/mfiano/origin")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1n9aszaif3yh8prs5r8v51fbj4r5jd1a048mivd5yij3hplkm82b"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("parachute" ,sbcl-parachute)))
-      (inputs
-       `(("golden-utils" ,sbcl-golden-utils)
-         ("specialization-store" ,sbcl-specialization-store)))
-      (home-page "https://git.mfiano.net/mfiano/origin")
-      (synopsis "Common Lisp graphics math library")
-      (description
-       "A native Common Lisp graphics math library with an emphasis on
-performance and correctness.
-
-This package provides 1 system: @code{ORIGIN}")
-      (license license:expat))))
-
-(define-public ecl-origin
-  (sbcl-package->ecl-package sbcl-origin))
-
-(define-public cl-origin
-  (sbcl-package->cl-source-package sbcl-origin))
-
-(define-public sbcl-golden-utils
-  (let ((commit "9424419d867d5c2f819196ee41667a818a5058e7")
-        (revision "1"))
-    (package
-      (name "sbcl-golden-utils")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://git.mfiano.net/mfiano/golden-utils")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "15x0phm6820yj3h37ibi06gjyh6z45sd2nz2n8lcbfflwm086q0h"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("alexandria" ,sbcl-alexandria)))
-      (home-page "https://git.mfiano.net/mfiano/golden-utils")
-      (synopsis "Common Lisp utility library")
-      (description
-       "This package provides 1 system: @code{GOLDEN-UTILS}")
-      (license license:expat))))
-
-(define-public ecl-golden-utils
-  (sbcl-package->ecl-package sbcl-golden-utils))
-
-(define-public cl-golden-utils
-  (sbcl-package->cl-source-package sbcl-golden-utils))
 ;;+end-mfiano
 
 ;; Dist: http://dist.tymoon.eu/shirakumo.txt
@@ -1345,43 +1281,6 @@ function.
 (define-public cl-specialization-store
   (sbcl-package->cl-source-package sbcl-specialization-store))
 
-(define-public sbcl-cl-slug
-  (let ((commit "ffb229d10f0d3f7f54e706791725225e200bf749")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-slug")
-      (version (git-version "0.4.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/EuAndreh/cl-slug")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1asdq6xllmsvfw5fky9wblqcx9isac9jrrlkfl7vyxcq1wxrnflx"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-files '("cl-slug-test.asd" "cl-slug.asd")
-         #:asd-systems '("cl-slug-test" "cl-slug")))
-      (native-inputs
-       `(("prove" ,sbcl-prove)))
-      (inputs
-       `(("ppcre" ,sbcl-cl-ppcre)))
-      (home-page "https://github.com/EuAndreh/cl-slug")
-      (synopsis "Multy languages slag formater")
-      (description
-       "Small library to make slugs, mainly for URIs, from english and beyond.
-
-This package provides 1 system: @code{CL-SLUG}")
-      (license license:expat))))
-
-(define-public ecl-cl-slug
-  (sbcl-package->ecl-package sbcl-cl-slug))
-
-(define-public cl-slug
-  (sbcl-package->cl-source-package sbcl-cl-slug))
-
 (define-public sbcl-py-configparser
   ;; NOTE: (Sharlatan <2021-01-05 Tue> <19:52:19 UTC+0000>) Project updated last
   ;; time 8y ago, it looks like abandoned. VCS of the project:
@@ -1415,36 +1314,6 @@ options.")
 
 (define-public ecl-py-configparser
   (sbcl-package->ecl-package sbcl-py-configparser))
-
-(define-public sbcl-printv
-  (let ((commit "646d31978dbbb460fffb160fd65bb2be9a5a434e")
-        (revision "1"))
-    (package
-      (name "sbcl-printv")
-      (version (git-version "0.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/danlentz/printv")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "08jvy82abm7qi3wrxh6gvmwg9gy0zzhg4cfqajdwrggbah8mj5a6"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/danlentz/printv")
-      (synopsis "Common Lisp tracing and debug-logging macro")
-      (description
-       "@code{PRINTV} is a 'batteries-included' tracing and debug-logging macro.
-
-This package provides 1 system: @code{PRINTV}")
-      (license license:asl2.0))))
-
-(define-public ecl-printv
-  (sbcl-package->ecl-package sbcl-printv))
-
-(define-public cl-printv
-  (sbcl-package->cl-source-package sbcl-printv))
 
 (define-public sbcl-postmodern
   (package
@@ -1772,51 +1641,6 @@ grammar.")
 (define-public cl-abnf
   (sbcl-package->cl-source-package sbcl-cl-abnf))
 
-(define-public sbcl-3b-bmfont
-  (let ((commit "d1b5bec0de580c2d08ec947a93c56b1400f2a37a")
-        (revision "1"))
-    (package
-      (name "sbcl-3b-bmfont")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/3b/3b-bmfont/")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "12sgf7m0h6fqzhvkas7vmci6mprj3j3fnz778jlbqbsydln6v2yc"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems
-         '("3b-bmfont"
-           "3b-bmfont/text"
-           "3b-bmfont/common"
-           "3b-bmfont/xml"
-           "3b-bmfont/json")))
-      (inputs
-       `(("flexi-streams" ,sbcl-flexi-streams)
-         ("alexandria" ,sbcl-alexandria)
-         ("cxml" ,sbcl-cxml)
-         ("jsown" ,sbcl-jsown)
-         ("split-sequence" ,sbcl-split-sequence)))
-      (home-page "https://github.com/3b/3b-bmfont/")
-      (synopsis "Read/write bmfont metadata files")
-      (description
-       "Common Lisp library which provides functionality to Read/Write Bit Map
-Font (BMF) into text, JSON and XML.
-
-This package provides 5 systems: @code{3B-BMFONT} @code{3B-BMFONT/TEXT}
-@code{3B-BMFONT/COMMON} @code{3B-BMFONT/XML} @code{3B-BMFONT/JSON}")
-      (license license:expat))))
-
-(define-public ecl-3b-bmfont
-  (sbcl-package->ecl-package sbcl-3b-bmfont))
-
-(define-public cl-3b-bmfont
-  (sbcl-package->cl-source-package sbcl-3b-bmfont))
-
 (define-public sbcl-cl-online-learning
   (let ((commit "87fbef8a340219e853adb3a5bf44a0470da76964")
         (revision "1"))
@@ -2091,6 +1915,38 @@ artworks with SVG and PNG export format.")
 (define-public cl-weir
   (sbcl-package->cl-source-package sbcl-fare-mop))
 
+;; --- fix begin
+(define-public sbcl-cl-autowrap
+  (let ((revision "1")
+        (commit "ae846d6968fc0d000de0c541638929a157f3009e"))
+    ;; no taged branches
+    (package
+      (name "sbcl-cl-autowrap")
+      (version (git-version "1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/rpav/cl-autowrap")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1gisldp2zns92kdcaikghm7c38ldy2d884n8bfg0wcjvbz78p3ar"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems '("cl-plus-c" "cl-autowrap")))
+      (inputs
+       `(("alexandria" ,sbcl-alexandria)
+         ("cffi" ,sbcl-cffi)
+         ("cl-json" ,sbcl-cl-json)
+         ("cl-ppcre" ,sbcl-cl-ppcre)
+         ("defpackage-plus" ,sbcl-defpackage-plus)
+         ("trivial-features" ,sbcl-trivial-features)))
+      (home-page "https://github.com/rpav/cl-autowrap")
+      (synopsis "FFI wrapper generator for Common Lisp")
+      (description "This is a c2ffi-based wrapper generator for Common Lisp.")
+      (license license:bsd-2))))
+;; --- fix end
 ;; TODO: (Sharlatan-20210415T222020+0100):
 (define-public sbcl-sdl2
   (let ((commit "bb2aa2a41cf799e3bb1ddf50de41fe389c6db668")
@@ -2109,10 +1965,7 @@ artworks with SVG and PNG export format.")
           (base32 "1a4904310z2wwq80grnlixmyz30452vgd4lh74y105j2yrr43z97"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       `(#:tests? #f
-         ;; #:asd-files '("sdl2.asd")
-         ;; #:asd-systems '("sdl2")
-         #:phases
+       `(#:phases
          (modify-phases %standard-phases
            (add-after 'unpack 'fix-paths
              (lambda* (#:key inputs #:allow-other-keys)
@@ -3370,3 +3223,167 @@ performance.")
 
 (define-public cl-bobbin
   (sbcl-package->cl-source-package sbcl-bobbin))
+
+;; 20210621T110738+0100
+(define-public sbcl-cl-posix-mqueue
+  (let ((commit "8977370c7206d1f62bd1be80f4254af40654b83f")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-posix-mqueue")
+      (version (git-version "0.1.2" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/xFA25E/cl-posix-mqueue")
+               (commit commit)))
+         (file-name (git-file-name "cl-posix-mqueue" version))
+         (sha256
+          (base32 "04519rg8vc782z097dzlb8nx0skab2fy2zd0m60r6mz2nw8xdvh6"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:test-asd-file "cl-posix-mqueue-tests.asd"
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'patch-librt-path
+             (lambda* (#:key inputs #:allow-other-keys)
+               (substitute* "src/spec.lisp"
+                 (("librt.so" all)
+                  (string-append (assoc-ref inputs "glibc") "/lib/" all))))))))
+      (native-inputs
+       `(("rove" ,sbcl-rove)
+         ("cl-ppcre" ,sbcl-cl-ppcre)))
+      (inputs
+       `(("alexandira" ,sbcl-alexandria)
+         ("babel" ,sbcl-babel)
+         ("cffi" ,sbcl-cffi)
+         ("glibc" ,glibc)
+         ("local-time" ,sbcl-local-time)))
+      (home-page "https://github.com/xFA25E/cl-posix-mqueue")
+      (synopsis "Common Lisp binding to POSIX mqueue")
+      (description
+       "This package provides a Common Lisp bindings to POSIX message queue - an
+IPC (Inter-Process Communication) method that is easy to use and quick to
+setup.")
+      (license license:gpl3+))))
+
+(define-public ecl-cl-posix-mqueue
+  (sbcl-package->ecl-package sbcl-cl-posix-mqueue))
+
+(define-public cl-posix-mqueue
+  (sbcl-package->cl-source-package sbcl-cl-posix-mqueue))
+
+(define-public sbcl-cl-graph
+  (let ((commit "3cb786797b24883d784b7350e7372e8b1e743508")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-graph")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/gwkkwg/cl-graph")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("lift" ,sbcl-lift)
+         ("moptilities" ,sbcl-moptilities)))
+      (inputs
+       `(("cl-containers" ,sbcl-cl-containers)
+         ("cl-mathstats" ,sbcl-cl-mathstats)
+         ("dynamic-classes" ,sbcl-dynamic-classes)
+         ("hu.dwim.graphviz" ,sbcl-hu.dwim.graphviz)
+         ("metabang-bind" ,sbcl-metabang-bind)
+         ("metacopy" ,sbcl-metacopy)
+         ("metatilities-base" ,sbcl-metatilities-base)
+         ("moptilities" ,sbcl-moptilities)))
+      (home-page "https://github.com/gwkkwg/cl-graph")
+      (synopsis "TBC")
+      (description
+       "TBC")
+      (license #f))))
+
+(define-public sbcl-cl-mathstats
+  (let ((commit "39af1b5e1ebbad6f75dab2c4214ce48852031bbf")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-mathstats")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/gwkkwg/cl-mathstats.git")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1iswi8gsz1s720ni8hfb7x5n8cidlaf8ypi7qwz1a7j89qcnqppr"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("cl-containers" ,sbcl-cl-containers)
+         ("lift" ,sbcl-lift)
+         ("metatilities-base" ,sbcl-metatilities-base)))
+      (home-page "https://github.com/gwkkwg/cl-mathstats.git")
+      (synopsis "TBC")
+      (description
+       "TBC")
+      (license #f))))
+
+(define-public sbcl-hu.dwim.graphviz
+  (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
+        (revision "1"))
+    (package
+      (name "sbcl-hu.dwim.graphviz")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("hu.dwim.common" ,sbcl-hu.dwim.common)
+         ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
+                                        ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
+         ))
+      (inputs
+       `(("cffi" ,sbcl-cffi)
+         ("metabang-bind" ,sbcl-metabang-bind)))
+      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+      (synopsis "TBC")
+      (description
+       "TBC")
+      (license #f))))
+(define-public sbcl-metacopy
+  (let ((commit "not-available")
+        (revision "1"))
+    (package
+      (name "sbcl-metacopy")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "http://dwim.hu/live/metacopy/")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 ""))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       `(("contextl" ,sbcl-contextl)
+         ("lift" ,sbcl-lift)
+         ("moptilities" ,sbcl-moptilities)))
+      (home-page "http://dwim.hu/live/metacopy/")
+      (synopsis "TBC")
+      (description
+       "TBC")
+      (license #f))))

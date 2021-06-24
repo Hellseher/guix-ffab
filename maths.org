@@ -1,6 +1,59 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2021-04-15 Thu 21:35:27 BST>
+#+modified: <2021-06-18 Fri 10:50:02 BST>
 
-http://www.netlib.org/
-https://confluence.ecmwf.int/display/atlas
+* Flow [0/3][0%]
+** TODO nelib [/][%] :p5:
+- http://www.netlib.org/
+** TODO atlas [/][%] :p5:
+- https://confluence.ecmwf.int/display/atlas
+** TODO plplot [/][%] :p2:
++ http://plplot.sourceforge.net/
++ synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
+  (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts
+  are installed on a user's computer.
++ [X] :packed <2021-01-28 Thu>
++ [X] :patch-sent (gnu/packages/maths) <2021-01-28 Thu>
++ [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/46160
++ [-] inputs [15/17]
+  - [X] cairo (gnu/packages/gtk.scm:123:2)
+  - [X] freetype
+  - [X] gfortran (gnu packages gcc)
+  - gnat (ADA compiler not included)
+  - [X] libgd (gnu/packages/gd.scm:40:2)
+  - [X] libharu (gnu/packages/pdf.scm)
+  - [X] lua5.1
+  - [X] itcl [4/4][4/4]
+    - http://incrtcl.sourceforge.net/
+    - [X] :packed <2021-02-13 Sat>
+    - [X] :patch-sent <2021-02-13 Sat>
+    - [X] :patch-applied-upstream <2021-03-06 Sat>
+      - https://issues.guix.gnu.org/46497
+    - [X] inputs [2/2]
+      + [X] tcl
+      + [X] tcllib
+  - [X] ocaml (gnu/packages/ocaml.scm)
+  - [ ] ocaml-nox
+  - [-] camlidl [3/4][75%]
+    - https://github.com/xavierleroy/camlidl
+    - [X] :packed <2021-02-12 Fri>
+    - [X] :patch-sent <2021-02-17 Wed>
+    - [ ] :paptch-applied-upstream
+      - https://issues.guix.gnu.org/46603
+    - [X] :inputs [1/1][100%]
+      + [X] ocaml
+  - [X] octave
+  - [X] pango
+  - [X] qhull (gnu packages maths)
+  - [X] shapelib [3/3][100%]
+    - https://github.com/OSGeo/shapelib
+    - [X] :packed <2021-01-27 Wed>
+    - [X] :patch-sent (gnu/packages/geo.scm) <2021-01-27 Wed>
+    - [X] :paptch-applied-upstream <2021-01-27 Wed>
+      - https://issues.guix.gnu.org/46141
+  - [X] tcl
+  - [X] tk
+  - [X] wxwidgets
+  - [X] pkg-config
+  - [X] swig (gnu/packages/swig.scm)

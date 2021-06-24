@@ -26,11 +26,11 @@
         (base32 "1agsr9hhk77ylc320hfxn7b4jjwnj0ld4dx22dvr65iy187hqkmk"))))
     (build-system python-build-system)
     (arguments
-     ;; FIXME: (Sharlatan-20210602T213319+0100): Test failed to pass, current
-     ;; availalbe version in Guix - 1.2.1
+     ;; FIXME: (Sharlatan-20210602T213319+0100): Test failed to pass
      ;;
      ;; Could not find suitable distribution for Requirement.parse('fakeredis<1.0')
      ;;
+     ;; current availalbe version in Guix - 1.2.1
      `(#:tests? #f))
     (native-inputs
      `(("python-pytest" ,python-pytest)
@@ -53,7 +53,8 @@
        ("python-webassets" ,python-webassets)
        ("python-webencodings" ,python-webencodings)
        ("python-werkzeug" ,python-werkzeug)
-       ("python-wsgiprox" ,python-wsgiprox)))
+       ("python-wsgiprox" ,python-wsgiprox)
+       ("redis" ,redis)))
     (home-page "https://github.com/webrecorder/pywb")
     (synopsis "Web Archiving Toolkit for replay and recording of web archives")
     (description

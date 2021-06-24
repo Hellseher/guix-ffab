@@ -55,12 +55,11 @@ statement.")
        (method url-fetch)
        (uri (pypi-uri "Py3AMF" version))
        (sha256
-        (base32
-         "0b4m94qjncl4rk6ig329vfk60dbb0b1wvs2lwr8m7bwxl0s2vb3d"))))
+        (base32 "0b4m94qjncl4rk6ig329vfk60dbb0b1wvs2lwr8m7bwxl0s2vb3d"))))
     (build-system python-build-system)
     (propagated-inputs
      `(("python-defusedxml" ,python-defusedxml)))
     (home-page "https://github.com/StdCarrot/Py3AMF")
-    (synopsis "AMF support for Python")
+    (synopsis "Action Message Format support for Python")
     (description "AMF support for Python")
     (license license:expat)))

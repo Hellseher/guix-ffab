@@ -25,8 +25,7 @@ grep TODO *.org | grep -v :author
 | cran.org:**            | TODO | opencpu           | [3/4][75%] |      |
 | docker.org:**          | TODO | dive              | [/][%]     |      |
 | emacs-xyz.org:**       | TODO | org-roam-server   | [/][%]     | :p3: |
-| lisp-xyz.org:**        | TODO | cl-nst            | [2/4][50%] |      |
-| lisp-xyz.org:**        | TODO | virality          | [0/4][0%]  | :p5: |
+| lisp-xyz.org:**        | TODO | virality          | [0/4][0%]  | :p1: |
 | lisp-xyz.org:**        | TODO | lucerne           | [/][%]     |      |
 | lisp-xyz.org:**        | TODO | cl-plplot         | [0/4][0%]  |      |
 | lisp-xyz.org:**        | TODO | adams             | [1/4][25%] |      |
@@ -42,6 +41,9 @@ grep TODO *.org | grep -v :author
 | maths.org:**           | TODO | nelib             | [/][%]     | :p5: |
 | maths.org:**           | TODO | atlas             | [/][%]     | :p5: |
 | maths.org:**           | TODO | plplot            | [/][%]     | :p2: |
+| node-xyz.org:**        | TODO | bootstrap-toggle  | [/][%]     | :p3: |
+| node-xyz.org:**        | TODO | bootstrap         | [/][%]     | :p3: |
+| node-xyz.org:**        | TODO | jquery            | [/][%]     | :p3: |
 | python-check.org:**    | TODO | assay             | [2/3][66%] |      |
 | python-web.org:**      | TODO | pywb              | [1/4][25%] |      |
 | version-control.org:** | TODO | lazygit           | [0/4][0%]  |      |

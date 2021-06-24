@@ -42,18 +42,8 @@
        (sha256
         (base32 "049v7y4zv2l0ymj03casr5fad8hm89lvvhx1rd7ha7dzlhimg98z"))))
     (build-system python-build-system)
-    (arguments
-     `(#:use-setuptools? #f
-       #:phases
-       (modify-phases %standard-phases
-         (add-before 'build 'fix-home-directory
-           (lambda _
-             (setenv "HOME" "/tmp")
-             #t)))))
     (native-inputs
-     `(("python-setuptools-scm" ,python-setuptools-scm/next)
-       ("python-wheel" ,python-wheel)
-       ("python-setuptools" ,python-setuptools)))
+     `(("python-setuptools-scm" ,python-setuptools-scm/next)))
     (propagated-inputs
      `(("python-attrs" ,python-attrs)
        ("python-filelock" ,python-filelock)

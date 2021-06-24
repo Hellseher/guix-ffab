@@ -1,21 +1,22 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-06-23 Wed 14:36:27 BST>
+#+modified: <2021-06-24 Thu 14:41:33 BST>
 
-* Flow [9/16][56%]
-** TODO cl-nst [2/4][50%]
+* Flow [11/16][68%]
+** DONE cl-nst [4/4][100%]
+CLOSED: [2021-06-24 Thu 14:40]
 - https://github.com/jphmrst/cl-nst
 - [X] :packed <2021-06-04 Fri>
 - [X] :patch-sent <2021-06-04 Fri>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2021-06-24 Thu>
   + https://issues.guix.gnu.org/48835
-- [-] :inputs [1/2][50%]
+- [X] :inputs [2/2][100%]
   - [X] closer-mop
-  - [-] org-sampler
+  - [X] org-sampler
     - https://github.com/jphmrst/cl-org-sampler
     - [X] :packed <2021-06-04 Fri>
     - [X] :patch-sent <2021-06-04 Fri>
-    - [ ] :patch-applied-upstream
+    - [X] :patch-applied-upstream <2021-06-24 Thu>
       - https://issues.guix.gnu.org/48835
     - [X] :inputs [1/1][100%]
       + [X] iterate
@@ -33,7 +34,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   + [X] cl-opengl
   + [X] trivial-main-thread
 
-** TODO virality [0/4][0%] :p5:
+** TODO virality [0/4][0%] :p1:
 - https://github.com/bufferswap/ViralityEngine/
 - [ ] :packed
 - [ ] :patch-sent
@@ -59,7 +60,12 @@ CLOSED: [2021-06-15 Tue 10:09]
     - [X] :patch-sent <2021-04-08 Thu>
     - [X] :patch-applied-upstream <2021-04-08 Thu>
       - https://issues.guix.gnu.org/47586
-  + [X] cl-graph (gnu/packages/lisp-xyz.scm:6984:4)
+  + [ ] cl-graph [0/3][0%]
+    - https://github.com/gwkkwg/cl-graph
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [ ] :inputs [/][%]
   + [X] cl-opengl [4/4][100%]
     - https://github.com/3b/cl-opengl
     - [X] :packed <2021-04-02 Fri>
@@ -182,11 +188,11 @@ CLOSED: [2021-06-15 Tue 10:09]
     - [X] :inputs [1/1]
       - [X] cl-ppcre
   + [X] queues.simple-queue
-  + [-] sdl2 [3/4][75%]
+  + [X] sdl2 [4/4][100%]
     - https://github.com/lispgames/cl-sdl2
     - [X] :packed <2021-06-23 Wed>
     - [X] :patch-sent <2021-06-23 Wed>
-    - [ ] :patch-applied-upstream
+    - [X] :patch-applied-upstream <2021-06-24 Thu>
       - https://issues.guix.gnu.org/49187
     - [X] :inputs [6/6][100%]
       + [X] alexandria
@@ -557,11 +563,13 @@ CLOSED: [2021-05-02 Sun 20:39]
 /gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
 /gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
 #+end_example
-** TODO cl-posix-mqueue [2/4][50%] :p2:
+** DONE cl-posix-mqueue [4/4][100%] :p2:
+CLOSED: [2021-06-24 Thu 14:41]
 - https://github.com/xFA25E/cl-posix-mqueue
 - [X] :packed <2021-06-21 Mon>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2021-06-21 Mon>
+- [X] :patch-applied-upstream <2021-06-24 Thu>
+  - https://issues.guix.gnu.org/49152
 - [X] :inputs [4/4][100%]
   - [X] cffi
   - [X] alexandria

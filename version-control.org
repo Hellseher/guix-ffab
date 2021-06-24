@@ -1,6 +1,9 @@
 #+TITLE: gnu/packages/version-control
+#+created: <2021-01-04 Mon 23:12:53 GMT>
+#+modified: <2021-06-18 Fri 11:05:38 BST>
 
-* TODO lazygit [0/4][0%]
+* TODO jesseduffield [0/1][0%] :author:p3:
+** TODO lazygit [0/4][0%]
 - https://github.com/jesseduffield/lazygit
 - [ ] :packed
 - [ ] :patch-sent
@@ -47,6 +50,6 @@
         - [ ] :paptch-applied-upstream
           - https://issues.guix.gnu.org/46234
   + [ ] github.com/tcnksm/go-gitconfig (wtf? old)
-  + [X]  golang.org/x/crypto
+  + [X] golang.org/x/crypto
   + [X] golang.org/x/net
   + [X] golang.org/x/sys
