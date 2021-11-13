@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-06-18 Fri 11:03:14 BST>
+#+modified: <2021-11-12 Fri 21:32:42 GMT>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -188,16 +188,17 @@ CLOSED: [2021-01-25 Mon 17:25]
 ** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
-* TODO astropy [0/2][0%] :author:p1:
+* TODO astropy [1/5][20%] :author:p1:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 
-** TODO astropy [3/4][75%] :p1:
+** DONE astropy [4/4][100%] :p1:
+CLOSED: [2021-11-08 Mon 20:41]
 - https://github.com/astropy/astropy
 - https://pypi.org/project/astropy/
 - [X] :packed <2021-04-26 Mon>
 - [X] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/48046
 - [X] :inputs [27/27][100%]
   + [X] asdf [4/4][100%]
@@ -311,11 +312,57 @@ CLOSED: [2021-01-25 Mon 17:25]
   + [X] sortedcontainers
   + [X] wcslib
 
+** TODO photutils [0/4][0%]
+- https://github.com/astropy/photutils
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [7/8][87%]
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-scipy
+  - [X] python-matplotlib
+  - [X] python-scikit-image
+  - [X] python-scikit-learn
+  - [ ] gwcs
+  - [X] python-bottleneck
 ** TODO astropy-helpers [0/4][0%]
 - [ ] :packed
 - [ ] :patch-sent
 - [-] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+** TODO pyvo [/][%]
+- https://github.com/astropy/pyvo
+- [ ] :packed
+- [ ] :patch-sent
+- [-] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
+** TODO astoquery [/][%]
+- [ ] :packed
+- [ ] :patch-sent
+- [-] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
+
+* TODO spacetelescope [0/1][0%] :author:
+- https://github.com/spacetelescope
+** TODO gwcs [3/4][75%]
+- https://github.com/spacetelescope/gwcs
+- [X] :packed <2021-11-11 Thu>
+- [X] :patch-sent <2021-11-11 Thu>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/51765
+- [X] :inputs [11/11][100%]
+  + [X] python-jsonschema
+  + [X] python-pytest
+  + [X] python-pytest-doctestplus
+  + [X] python-pyyaml
+  + [X] python-semantic-version
+  + [X] python-setuptools-scm
+  + [X] python-scipy
+  + [X] python-asdf
+  + [X] python-astropy
+  + [X] python-numpy
+  + [X] python-scipy
 
 * IAUSOFA
 ** TODO sofa-c [/][%]
@@ -356,7 +403,6 @@ CLOSED: [2021-02-19 Fri 11:13]
       + [X] cython
       + [X] numpy
       + [X] pytest
-
 
 * kepler-project [/]
 https://kepler-project.org/users/downloads.html
@@ -406,12 +452,19 @@ CLOSED: [2021-02-19 Fri 11:15]
   - [X] ffmpeg
   - [X] gtkmm
 
-** TODO imppg [0/4][0%]
+** TODO imppg [3/4][75%]
 - https://github.com/GreatAttractor/imppg
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2021-11-12 Fri>
+- [X] :patch-sent <2021-11-12 Fri>
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+  - https://issues.guix.gnu.org/51795
+- [X] :inputs [6/6][100%]
+  + [X] boost
+  + [X] pkg-config
+  + [X] cfitsio
+  + [X] freeimage
+  + [X] glew
+  + [X] wxwidgets
 
 * TODO OpenPHDGuiding [0/1][0%] :author:p4:
 - https://openphdguiding.org

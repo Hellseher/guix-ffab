@@ -1,12 +1,14 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2021-06-18 Fri 10:50:02 BST>
+#+modified: <2021-11-12 Fri 21:38:35 GMT>
 
 * Flow [0/3][0%]
 ** TODO nelib [/][%] :p5:
 - http://www.netlib.org/
+
 ** TODO atlas [/][%] :p5:
 - https://confluence.ecmwf.int/display/atlas
+
 ** TODO plplot [/][%] :p2:
 + http://plplot.sourceforge.net/
 + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose

@@ -1,0 +1,72 @@
+#+title: gnu/packages/lisp-check
+#+created: <2021-11-07 Sun 19:13:53 GMT>
+#+modified: <2021-11-10 Wed 19:58:37 GMT>
+
+
+* TODO tests [12/26][46%]
+https://sabracrolleton.github.io/testing-framewo
+
+- [ ] 1am
+- [ ] 2am (not in quicklisp)
+- [ ] cacau
+- [ ] cardiogram (e)
+- [ ] clunit (a)
+- [ ] clunit2
+- [ ] com.gigamonkeys.test-framework
+- [X] fiasco (b)
+- [X] fiveam
+- [X] kaputt
+- [X] lift
+- [ ] lisp-unit
+- [ ] lisp-unit2
+- [X] nst
+- [X] parachute
+- [X] prove
+- [X] ptester
+- [X] rove
+- [X] rt
+- [X] should-test
+- [ ] simplet
+- [X] stefil (f)
+- [ ] tap-unit-test (d)
+- [ ] unit-test
+- [ ] xlunit
+- [ ] xptest
+
+* foretspaisibles [1/1][100%] :author:
+** DONE kaputt [4/4][100%]
+CLOSED: [2021-11-08 Mon 20:49]
+- https://github.com/foretspaisibles/cl-kaputt
+- [X] :packed <2021-11-07 Sun>
+- [X] :patch-sent <2021-11-07 Sun>
+- [X] :paptch-applied-upstream <2021-11-08 Mon>
+  - https://issues.guix.gnu.org/51671
+- [X] :inputs [1/1]
+  - [X] cl-ppcre
+
+* noloop [0/1][0%] :author:
+** TODO cacau [0/4][0%]
+- https://github.com/noloop/cacau
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/2]
+  + [-] assertion-error [1/4][25%]
+    - https://github.com/noloop/assertion-error
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [X] :inputs [1/1]
+      - [X] dissect
+  + [-] eventbus [1/4][25%]
+    - https://github.com/noloop/eventbus
+    - [X] :packed <2021-11-07 Sun>
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [-] :inputs [0/1]
+      - [-] simplet [1/4][25%]
+        - https://github.com/noloop/simplet
+        - [X] :packed <2021-11-07 Sun>
+        - [ ] :patch-sent
+        - [ ] :paptch-applied-upstream
+        - [ ] :inputs [0/0]

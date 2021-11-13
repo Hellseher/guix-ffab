@@ -1,0 +1,37 @@
+From f596681eac64da74b3b9c828187869ae53ae793e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 7 Nov 2021 19:53:40 +0000
+Subject: [PATCH] gnu: fiasco: Update to 0.0.1-2.bb47d2f
+
+* gnu/packages/lisp-check.scm: (sbcl-fiasco): Update to 0.0.1-2.bb47d2f.
+---
+ gnu/packages/lisp-check.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-check.scm b/gnu/packages/lisp-check.scm
+index ca00e5054e..d80af459e4 100644
+--- a/gnu/packages/lisp-check.scm
++++ b/gnu/packages/lisp-check.scm
+@@ -298,8 +298,8 @@ (define-public ecl-eos
+   (sbcl-package->ecl-package sbcl-eos))
+ 
+ (define-public sbcl-fiasco
+-  (let ((commit "d62f7558b21addc89f87e306f65d7f760632655f")
+-        (revision "1"))
++  (let ((commit "bb47d2fef4eb24cc16badc1c9a73d73c3a7e18f5")
++        (revision "2"))
+     (package
+       (name "sbcl-fiasco")
+       (version (git-version "0.0.1" revision commit))
+@@ -312,7 +312,7 @@ (define-public sbcl-fiasco
+          (file-name (git-file-name "fiasco" version))
+          (sha256
+           (base32
+-           "1zwxs3d6iswayavcmb49z2892xhym7n556d8dnmvalc32pm9bkjh"))))
++           "1k8i2kq57201bvy3zfpsxld530hd104dgbglxigqb6i408c1a7aw"))))
+       (build-system asdf-build-system/sbcl)
+       (inputs
+        `(("alexandria" ,sbcl-alexandria)
+-- 
+2.33.1
+

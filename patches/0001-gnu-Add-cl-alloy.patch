@@ -1,0 +1,61 @@
+From 052d9f07c42922f54b36bfbd126bbe63815313fc Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 7 Nov 2021 18:50:57 +0000
+Subject: [PATCH] gnu: Add cl-alloy
+
+* gnu/packages/lisp-xyz.scm (sbcl-alloy, cl-alloy, ecsl-alloy): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 53911487ac..66accd59a1 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -17575,6 +17575,43 @@ (define-public ecl-trial
+ (define-public cl-trial
+   (sbcl-package->cl-source-package sbcl-trial))
+ 
++(define-public sbcl-alloy
++  (let ((commit "e86e22c2887836ec31cd97e039f0bca5248d8f1c")
++        (revision "1"))
++    (package
++      (name "sbcl-alloy")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shirakumo/alloy")
++               (commit commit)))
++         (file-name (git-file-name "alloy" version))
++         (sha256
++          (base32 "1jsqjr6sf86hcdvnjp4gd10qv0r7kfkr9hmda85irb5lha4q9n7w"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       `(("parachute" ,sbcl-parachute)
++         ("alexandria" ,sbcl-alexandria)))
++      (inputs
++       `(("documentation-utils" ,sbcl-documentation-utils)
++         ("closer-mop" ,sbcl-closer-mop)
++         ("array-utils" ,sbcl-array-utils)))
++      (home-page "https://shirakumo.github.io/alloy/")
++      (synopsis "Common Lisp user interface protocol and tolkit implementation")
++      (description
++       "Alloy is a user interface toolkit.  It is defined through a set of
++protocols that allow for a clear interface, as well as a standardised way to
++integrate Alloy into a target backend.")
++      (license license:zlib))))
++
++(define-public ecl-alloy
++  (sbcl-package->ecl-package sbcl-alloy))
++
++(define-public cl-alloy
++  (sbcl-package->cl-source-package sbcl-alloy))
++
+ (define-public sbcl-org-sampler
+   (let ((commit "ee135a417750e5b1d810bb9574eb85223cb3038a")
+         (revision "1"))
+-- 
+2.33.1
+

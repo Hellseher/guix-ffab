@@ -3,6 +3,7 @@
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
+  #:use-module (gnu packages gcc)
   #:use-module (gnu packages boost)
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
@@ -18,6 +19,7 @@
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-crypto)
   #:use-module (gnu packages python-science)
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
@@ -593,9 +595,9 @@ implementation of the ASDF Standard.")
 astronomical images, especially when there is no WCS information available.")
     (license license:expat)))
 
-(define-public python-astropy
+(define-public python-astropy-ffab
   (package
-    (name "python-astropy")
+    (name "python-astropy-ffab")
     (version "4.2.1")
     (source
      (origin
@@ -681,65 +683,178 @@ interoperability between Python astronomy packages.")
 (define-public imppg
   (package
     (name "imppg")
-    (version "0.6.3")
+    (version "0.6.4")
     (source
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/GreatAttractor/imppg")
+             (url (string-append "https://github.com/GreatAttractor/imppg"))
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0aj0zmqrgdzw6ha9y9ki3np0rvhrgm84ncb0d5dxhm4qqd58k1n9"))))
+        (base32 "04synbmyz0hkipl1cdc26nr42r57v494yjw8pi4jx0jrxrawgj9h"))))
     (build-system cmake-build-system)
     (arguments
      `(#:tests? #f ; No test provided
-       #:phases
-       (modify-phases %standard-phases
-         (delete 'configure) ;; No configure provided
-         ;; FIXME: https://github.com/GreatAttractor/imppg/issues/2
-         ;;  Fix building with GCC <8
-         (add-after 'unpack 'patch-src-image-cpp
-           (lambda _
-             (substitute* "src/image.cpp"
-               ((".*return result;.*") "return std::move(result);"))
-             #t))
-         (replace 'build
-           (lambda _
-             (mkdir-p "build")
-             (chdir "build")
-             (invoke "cmake"
-                     "-G" "Unix Makefiles"
-                     "-DCMAKE_BUILD_TYPE=Release"
-                     "..")
-             (invoke "make" "-j")))
-         (replace 'install
-           (lambda* (#:key outputs #:allow-other-keys)
-             (let* ((out (assoc-ref outputs "out"))
-                    (bin (string-append out "/bin")))
-               (invoke "cmake"
-                       "-P"
-                       (string-append "-DCMAKE_INSTALL_PREFIX=" out)
-                       "cmake_install.cmake")))))))
-         (native-inputs
-          `(("pkg-config" ,pkg-config)
-            ("boost" ,boost)))
-         (inputs
-          '(("glew" ,glew)
-            ("wxwidgets" ,wxwidgets)
-            ("freeimage" ,freeimage)
-            ("cfitsio" ,cfitsio)))
-         (home-page "https://github.com/GreatAttractor/imppg")
-         (synopsis "Astronomical Image Post-Proccessor")
-         (description
-          "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
+       #:configure-flags
+       (list
+        (string-append
+         "-DCMAKE_INSTALL_PREFIX=" (assoc-ref %outputs "out")))))
+    (native-inputs
+     `(("boost" ,boost)
+       ("pkg-config" ,pkg-config)))
+    (inputs
+     `(("cfitsio" ,cfitsio)
+       ("freeimage" ,freeimage)
+       ("glew" ,glew)
+       ("wxwidgets" ,wxwidgets)))
+    (home-page "https://github.com/GreatAttractor/imppg")
+    (synopsis "Astronomical Image Post-Proccessor (ImPPG)")
+    (description
+     "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
 normalization and tone curve adjustment.  It can also apply previously specified
 processing settings to multiple images.  All operations are performed using
 32-bit floating-point arithmetic.
 
 Supported input formats: FITS, BMP, JPEG, PNG, TIFF (most of bit depths and
-compression methods), TGA and more. Images are processed in grayscale and can be
+compression methods), TGA and more.  Images are processed in grayscale and can be
 saved as: BMP 8-bit; PNG 8-bit; TIFF 8-bit, 16-bit, 32-bit floating-point (no
 compression, LZW- or ZIP-compressed), FITS 8-bit, 16-bit, 32-bit
 floating-point.")
      (license license:gpl3+)))
+
+(define-public python-photutils
+  (package
+   (name "python-photutils")
+   (version "1.2.0")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "photutils" version))
+     (sha256
+      (base32 "09gxdzkn1r5d1pgvg7iprr4yrddixnpga68xadbn3wihpw4hl1la"))))
+   (build-system python-build-system)
+   (native-inputs
+    `(("python-pytest-astropy" ,python-pytest-astropy)
+      ("python-setuptools-scm" ,python-setuptools-scm)
+      ("python-extension-helpers" ,python-extension-helpers)))
+   (propagated-inputs
+    `(("python-astropy" ,python-astropy)
+      ("python-numpy" ,python-numpy)
+      ("python-scikit-image" ,python-scikit-image)
+      ("python-scikit-learn" ,python-scikit-learn)
+      ("python-bottleneck" ,python-bottleneck)
+      ("python-matplotlib" ,python-matplotlib)
+      ("python-scipy" ,python-scipy)))
+   (home-page "https://github.com/astropy/photutils")
+   (synopsis "An Astropy package for source detection and photometry")
+   (description "An Astropy package for source detection and photometry")
+   (license license:expat)))
+
+(define-public python-gwcs
+  (package
+   (name "python-gwcs")
+   (version "0.16.1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "gwcs" version))
+     (sha256
+      (base32 "0xjmv0v8bdzhpq61gvp76bx17pbcvxs8vp2gmn0rgs01zkrg8csk"))))
+   (build-system python-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         (replace 'check
+           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+             (when tests?
+               (add-installed-pythonpath inputs outputs)
+               (invoke "python" "-m" "pytest" "--pyargs" "gwcs")))))))
+   (native-inputs
+    `(("python-jsonschema" ,python-jsonschema)
+      ("python-pytest" ,python-pytest)
+      ("python-pytest-doctestplus" ,python-pytest-doctestplus)
+      ("python-pyyaml" ,python-pyyaml)
+      ("python-semantic-version" ,python-semantic-version)
+      ("python-setuptools-scm" ,python-setuptools-scm)))
+   (propagated-inputs
+    `(("python-asdf" ,python-asdf)
+      ("python-astropy" ,python-astropy)
+      ("python-numpy" ,python-numpy)
+      ("python-scipy" ,python-scipy)))
+   (home-page "https://gwcs.readthedocs.io/en/latest/")
+   (synopsis "Generalized World Coordinate System")
+   (description
+    "Generalized World Coordinate System (GWCS) is an Astropy affiliated package
+providing tools for managing the World Coordinate System of astronomical data.
+
+GWCS takes a general approach to the problem of expressing transformations
+between pixel and world coordinates.  It supports a data model which includes the
+entire transformation pipeline from input coordinates (detector by default) to
+world coordinates.  It is tightly integrated with Astropy.")
+   (license license:bsd-3)))
+
+(define-public python-astroquery
+  (package
+    (name "python-astroquery")
+    (version "0.4.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "astroquery" version))
+       (sha256
+        (base32 "141z8rvzwh9q4i0f7490jc6z71vkgwxaq8mycdli1fm5i5qb9r2y"))))
+    (build-system python-build-system)
+    (native-inputs
+     `(("python-pytest-doctestplus" ,python-pytest-doctestplus)
+       ("python-pytest-astropy" ,python-pytest-astropy)))
+    (propagated-inputs
+     `(("python-astropy" ,python-astropy)
+       ("python-numpy" ,python-numpy)
+       ("python-requests" ,python-requests)
+       ("python-beautifulsoup4" ,python-beautifulsoup4)
+       ("python-html5lib" ,python-html5lib)
+       ("python-keyring" ,python-keyring)
+       ("python-pyvo" ,python-pyvo)
+       ("python-scipy" ,python-scipy)))
+    (home-page "http://astropy.org/astroquery")
+    (synopsis
+     "Functions and classes to access online astronomical data resources")
+    (description
+     "Functions and classes to access online astronomical data resources")
+    (license license:bsd-3)))
+
+(define-public python-pyvo
+  (package
+    (name "python-pyvo")
+    (version "1.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyvo" version))
+       (sha256
+        (base32 "0azbdnpwpzfiyaf54531163gh2d8qqg313zlawfvfj7crdz54kz1"))))
+    (build-system python-build-system)
+    ;; (arguments
+    ;;  `(#:phases
+    ;;    (modify-phases %standard-phases
+    ;;      (replace 'check
+    ;;        (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+    ;;          (when tests?
+    ;;            (add-installed-pythonpath inputs outputs)
+    ;;            (invoke "python" "-m" "pytest" "--pyargs" "pyvo")))))))
+    (native-inputs
+     `(("python-pytest" ,python-pytest)
+       ("python-mimeparse" ,python-mimeparse)
+       ("python-requests-mock" ,python-requests-mock)
+       ("python-pytest-astropy" ,python-pytest-astropy)))
+    (propagated-inputs
+     `(("python-astropy" ,python-astropy)
+       ("python-numpy" ,python-numpy)
+       ("python-requests" ,python-requests)))
+    (home-page "https://github.com/astropy/pyvo")
+    (synopsis
+     "Astropy affiliated package for accessing Virtual Observatory data and services")
+    (description
+     "Astropy affiliated package for accessing Virtual Observatory data and services")
+    (license license:bsd-3)))

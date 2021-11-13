@@ -1,4 +1,5 @@
 (define-module (ffab packages lisp-xyz)
+  #:use-module (ffab packages lisp-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages databases)
@@ -9,6 +10,7 @@
   #:use-module (gnu packages libevent)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-xyz)
+  #:use-module (gnu packages lisp-check)
   #:use-module (gnu packages mp3)
   #:use-module (gnu packages sdl)
   #:use-module (gnu packages xorg)
@@ -140,6 +142,44 @@ It's a part of QITAB umbrella project.")
 ;; Dist: http://dist.tymoon.eu/shirakumo.txt
 ;; Set of system which are maintained under Shirakumo distribution or by Shinmera
 ;;+begin-shirakumo
+
+;; 20211107T173633+0000
+(define-public sbcl-alloy
+  (let ((commit "e86e22c2887836ec31cd97e039f0bca5248d8f1c")
+        (revision "1"))
+    (package
+      (name "sbcl-alloy")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shirakumo/alloy")
+               (commit commit)))
+         (file-name (git-file-name "alloy" version))
+         (sha256
+          (base32 "1jsqjr6sf86hcdvnjp4gd10qv0r7kfkr9hmda85irb5lha4q9n7w"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("parachute" ,sbcl-parachute)
+         ("alexandria" ,sbcl-alexandria)))
+      (inputs
+       `(("documentation-utils" ,sbcl-documentation-utils)
+         ("closer-mop" ,sbcl-closer-mop)
+         ("array-utils" ,sbcl-array-utils)))
+      (home-page "https://shirakumo.github.io/alloy/")
+      (synopsis "Common Lisp user interface protocol and tolkit implementation")
+      (description
+       "Alloy is a user interface toolkit.  It is defined through a set of
+protocols that allow for a clear interface, as well as a standardised way to
+integrate Alloy into a target backend.")
+      (license license:zlib))))
+
+(define-public ecl-alloy
+  (sbcl-package->ecl-package sbcl-alloy))
+
+(define-public cl-alloy
+  (sbcl-package->cl-source-package sbcl-alloy))
 
 ;; 20210527T213028+0100
 (define-public sbcl-trial
@@ -1915,84 +1955,6 @@ artworks with SVG and PNG export format.")
 (define-public cl-weir
   (sbcl-package->cl-source-package sbcl-fare-mop))
 
-;; --- fix begin
-(define-public sbcl-cl-autowrap
-  (let ((revision "1")
-        (commit "ae846d6968fc0d000de0c541638929a157f3009e"))
-    ;; no taged branches
-    (package
-      (name "sbcl-cl-autowrap")
-      (version (git-version "1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/rpav/cl-autowrap")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1gisldp2zns92kdcaikghm7c38ldy2d884n8bfg0wcjvbz78p3ar"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems '("cl-plus-c" "cl-autowrap")))
-      (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("cffi" ,sbcl-cffi)
-         ("cl-json" ,sbcl-cl-json)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("defpackage-plus" ,sbcl-defpackage-plus)
-         ("trivial-features" ,sbcl-trivial-features)))
-      (home-page "https://github.com/rpav/cl-autowrap")
-      (synopsis "FFI wrapper generator for Common Lisp")
-      (description "This is a c2ffi-based wrapper generator for Common Lisp.")
-      (license license:bsd-2))))
-;; --- fix end
-;; TODO: (Sharlatan-20210415T222020+0100):
-(define-public sbcl-sdl2
-  (let ((commit "bb2aa2a41cf799e3bb1ddf50de41fe389c6db668")
-        (revision "1"))
-    (package
-      (name "sbcl-sdl2")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/lispgames/cl-sdl2")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1a4904310z2wwq80grnlixmyz30452vgd4lh74y105j2yrr43z97"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'fix-paths
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "src/library.lisp"
-                 (("libSDL2-2.0.so.0" all)
-                  (string-append (assoc-ref inputs "libsdl2") "/lib/" all)))
-               #t)))))
-      (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("cl-autowrap" ,sbcl-cl-autowrap)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("libsdl2" ,sdl2)
-         ("trivial-channels" ,sbcl-trivial-channels)
-         ("trivial-features" ,sbcl-trivial-features)))
-      (home-page "https://github.com/lispgames/cl-sdl2")
-      (synopsis "Common Lisp bindings for SDL2 using C2FFI")
-      (description
-       "This pckage provides CL-SDL2 Commn Lisp wrapper system for SDL 2.0 C
-Library.")
-      (license license:expat))))
-
-(define-public ecl-sdl2
-  (sbcl-package->ecl-package sbcl-sdl2))
-
-(define-public cl-sdl2
-  (sbcl-package->cl-source-package sbcl-sdl2))
-
 ;; <2021-04-29 Thu>
 (define-public sbcl-unit-test
   (let ((commit "266afaf4ac091fe0e8803bac2ae72d238144e735")
@@ -2085,113 +2047,6 @@ BKNR.UTILS BKNR.XML")
 
 (define-public cl-bknr-datastore
   (sbcl-package->cl-source-package sbcl-bknr-datastore))
-
-;; <2021-05-04 Tue>
-(define-public sbcl-rutils
-  (let ((commit "db3c3f4ae897025b5f0cd81042ca147da60ca0c5")
-        (revision "1"))
-    (package
-      (name "sbcl-rutils")
-      (version (git-version "5.2.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/vseloved/rutils")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1d2whscknh1zga2vdqvfqri8wx0gnml3sfqz62igq0ppap6q07y3"))))
-      (build-system asdf-build-system/sbcl)
-      ;; (native-inputs
-      ;;  `(("should-test" ,sbcl-should-test)))
-      (inputs
-       `(("closer-mop" ,sbcl-closer-mop)
-         ("named-readtables" ,sbcl-named-readtables)))
-      (home-page "https://github.com/vseloved/rutils")
-      (synopsis "Radical Utilities for Common Lisp")
-      (description
-       "This package provides collectioins of Common Lisp utilities similar to
-ALEXANDRIA, ANAPHORA or GOLDEN-UTILS")
-      (license license:expat))))
-
-(define-public ecl-rutils
-  (sbcl-package->ecl-package sbcl-rutils))
-
-(define-public cl-rutils
-  (sbcl-package->cl-source-package sbcl-rutils))
-
-(define-public sbcl-should-test
-  (let ((commit "48facb9f9c07aeceb71fc0c48ce17fd7d54a09d4")
-        (revision "1"))
-    (package
-      (name "sbcl-should-test")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/vseloved/should-test")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1fqqa7lhf28qg60ji9libkylkcy747x576qpjn1y7c945j2fxmnm"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("cl-ppcre" ,sbcl-cl-ppcre)
-         ("local-time" ,sbcl-local-time)
-         ("osicat" ,sbcl-osicat)
-         ("rutils" ,sbcl-rutils)))
-      (home-page "https://github.com/vseloved/should-test")
-      (synopsis "Minimal Common Lisp test framework")
-      (description
-       "Common Lisp test framework")
-      (license license:expat))))
-
-(define-public ecl-should-test
-  (sbcl-package->ecl-package sbcl-should-test))
-
-(define-public cl-should-test
-  (sbcl-package->cl-source-package sbcl-should-test))
-
-(define-public sbcl-cl-redis
-  (let ((commit "7d592417421cf7cd1cffa96043b457af0490df7d")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-redis")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/vseloved/cl-redis")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0x5ahxb5cx37biyn3cjycshhm1rr9p5cf1a9l5hd1n1xjxm2f8vi"))))
-      (build-system asdf-build-system/sbcl)
-      ;; NOTE: (Sharlatan-20210504T112254+0100): Tests require running Redis
-      ;; instance
-      (native-inputs
-       `(("should-test" ,sbcl-should-test)))
-      (inputs
-       `(("babel" ,sbcl-babel)
-         ("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("flexi-streams" ,sbcl-flexi-streams)
-         ("rutils" ,sbcl-rutils)
-         ("usocket" ,sbcl-usocket)))
-      (home-page "https://github.com/vseloved/cl-redis")
-      (synopsis "Redis client for Common Lisp")
-      (description
-       "This package provides Redis v3.0.0 compatible client for Common Lisp.")
-      (license license:expat))))
-
-(define-public ecl-cl-redis
-  (sbcl-package->ecl-package sbcl-cl-redis))
-
-(define-public cl-redis
-  (sbcl-package->cl-source-package sbcl-cl-redis))
 
 ;; <2021-05-17 Mon>
 (define-public sbcl-cl-package-locks
@@ -3362,6 +3217,7 @@ setup.")
       (description
        "TBC")
       (license #f))))
+
 (define-public sbcl-metacopy
   (let ((commit "not-available")
         (revision "1"))
@@ -3376,7 +3232,7 @@ setup.")
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 ""))))
+          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
       (build-system asdf-build-system/sbcl)
       (inputs
        `(("contextl" ,sbcl-contextl)
@@ -3387,3 +3243,33 @@ setup.")
       (description
        "TBC")
       (license #f))))
+
+(define-public sbcl-eventbus
+  (let ((commit "92c1fa3846ba0e3cc9e6d7605d765379c8658d84")
+        (revision "1"))
+    (package
+      (name "sbcl-eventbus")
+      (version (git-version "0.1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/noloop/eventbus")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0slqx3zq6sbz3rg4g79j8y25sx4405y6ff3x6l5v8v4v42m1s0p2"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("simplet" ,sbcl-simplet)))
+      (home-page "https://github.com/noloop/eventbus")
+      (synopsis "Event bus implementation in Common Lisp")
+      (description
+"This package provides EVENTBUST Common Lisp system.")
+      (license license:gpl3+))))
+
+(define-public ecl-eventbus
+  (sbcl-package->ecl-package sbcl-eventbus))
+
+(define-public cl-eventbus
+  (sbcl-package->cl-source-package sbcl-eventbus))

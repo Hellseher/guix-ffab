@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-06-24 Thu 14:41:33 BST>
+#+modified: <2021-11-12 Fri 21:34:12 GMT>
 
 * Flow [11/16][68%]
 ** DONE cl-nst [4/4][100%]
@@ -576,7 +576,7 @@ CLOSED: [2021-06-24 Thu 14:41]
   - [X] babel
   - [X] local-time
 
-* TODO borodust [0/4][0%] :author:p3:
+* TODO borodust [0/1][0%] :author:p3:
 ** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
 - [ ] :packed
@@ -694,27 +694,7 @@ CLOSED: [2021-06-24 Thu 14:41]
   - [X] trivial-features
   - [X] trivial-garbage
 
-* TODO vseloved [0/1][0%] :author:p1:
-** TODO cl-redis [1/5][20%]
-- https://github.com/vseloved/cl-redis
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [4/6][66%]
-  + [X] babel
-  + [X] bordeaux-threads
-  + [X] cl-ppcre
-  + [X] flexi-streams
-  + [ ] should-test
-  + [ ] rutils [0/3][0%]
-    + https://github.com/vseloved/rutils
-    + [ ] :packed
-    + [ ] :patch-sent
-    + [ ] :patch-applied-upstream
-- [X] :inputs [1/1][100%]
-  + [X] usocket
-
-* TODO Shinmera/Shirakumo [2/4][50%] :author:p5:
+* TODO Shinmera/Shirakumo [0/0][0%] :author:p5:
 ** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -741,13 +721,13 @@ CLOSED: [2021-06-15 Tue 10:00]
     + [X] split-sequence
     + [X] uuid
     + [X] yason
-** TODO trial [2/5][40%]
+** TODO trial [4/5][80%]
 - https://github.com/Shirakumo/trial/
 - [X] :packed <2021-05-27 Thu>
 - [X] :patch-sent <2021-05-27 Thu>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2021-06-24 Thu>
   - https://issues.guix.gnu.org/48708
-- [-] :inputs [31/32][96%]
+- [X] :inputs [32/32][100%]
   - [X] 3d-matrices
     + https://github.com/Shinmera/3d-matrices
     + [X] :packed <2021-05-03 Mon>
@@ -765,11 +745,11 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] alexandria
   - [X] 3d-vectors
   - [X] bordeaux-threads
-  - [-] cl-gamepad
+  - [X] cl-gamepad
     - https://github.com/Shirakumo/cl-gamepad
     - [X] :packed <2021-05-27 Thu>
     - [X] :patch-sent <2021-05-27 Thu>
-    - [ ] :patch-applied-upstream
+    - [X] :patch-applied-upstream <2021-06-24 Thu>
       - https://issues.guix.gnu.org/48708
     - [X] :inputs [4/4][100%]
       - [X] cffi
@@ -831,7 +811,7 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] jsown
   - [X] lambda-fiddle
   - [X] lquery
-  - [X] messagebox
+  - [X] messagebox [4/4]
     + https://github.com/Shinmera/messagebox
     + [X] :packed <2021-05-08 Sat>
     + [X] :patch-sent <2021-05-08 Sat>
@@ -841,7 +821,7 @@ CLOSED: [2021-06-15 Tue 10:00]
       - [X] documentation-utils
       - [X] trivial-features
   - [X] mmap
-  - [X] pathname-utils
+  - [X] pathname-utils [3/3]
     - https://github.com/Shinmera/pathname-utils.git
     - [X] :packed <2021-04-21 Wed>
     - [X] :patch-sent <2021-04-21 Wed>
@@ -860,14 +840,34 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] trivial-indent
   - [X] verbose
   - [X] zpng
-- [ ] :inputs-additions
+- [-] :inputs-additions
   + [ ] alloy
   + [ ] backends
-  + [ ] feedback
+  + [-] feedback
   + [ ] assimp
   + [ ] harmony
   + [ ] file-notify
   + [ ] cl-steamworks
+
+** DONE alloy [4/4][100%] :p1:
+CLOSED: [2021-11-08 Mon 20:49]
+- https://github.com/Shirakumo/alloy
+- [X] :packed <2021-11-07 Sun>
+- [X] :patch-sent <2021-11-07 Sun>
+- [X] :patch-applied-upstream <2021-11-08 Mon>
+  - https://issues.guix.gnu.org/51670
+- [X] :inputs [5/5][100%]
+  - [X] alexandria
+  - [X] parachute
+  - [X] documentation-utils
+  - [X] closer-mop
+  - [X] array-utils
+** TODO backends [/][%]
+** TODO feedback [/][%]
+** TODO assimp [/][%]
+** TODO harmony [/][%]
+** TODO file-notify [/][%]
+** TODO cl-steamworks [/][%]
 
 ** DONE radiance [4/4][100%]
 CLOSED: [2021-02-04 Thu 00:28]
@@ -1043,3 +1043,4 @@ CLOSED: [2021-06-15 Tue 10:09]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+

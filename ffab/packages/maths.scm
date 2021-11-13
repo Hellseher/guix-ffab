@@ -6,9 +6,12 @@
   #:use-module (gnu packages)
   #:use-module (gnu packages commencement)
   #:use-module (gnu packages gcc)
+  #:use-module (gnu packages astronomy)
   #:use-module (gnu packages python)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages wxwidgets)
+  #:use-module (gnu packages ghostscript)
+  #:use-module (gnu packages qt)
   #:use-module (gnu packages tcl)
   #:use-module (gnu packages geo)
   #:use-module (gnu packages lua)
@@ -62,6 +65,7 @@
      `(("pkg-config" ,pkg-config)
        ("python", python-wrapper)
        ("perl", perl)
+       ("ocaml", ocaml)
        ("swig" ,swig)))
     (inputs
      `(("freetype", freetype)
@@ -84,3 +88,65 @@
      "PLplot is a cross-platform software package for creating scientific plots
 whose (UTF-8) plot symbols and text.")
     (license license:lgpl2.0))) ; Other terms are in Copyright file
+
+(define-public veusz
+  (package
+    (name "veusz")
+    (version "3.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "veusz" version))
+       (sha256
+        (base32 "0p6cv7ppk2cs8m13wqa527hzybdmd3lmshw331kxpz0wvykv17yd"))))
+    (build-system python-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         ;; Veusz will append 'PyQt5' to sip_dir by default. That is not how
+         ;; the path is defined in Guix, therefore we have to change it.
+         (add-after 'unpack 'fix-sip-dir
+           (lambda _
+             (substitute* "pyqtdistutils.py"
+               (("os.path.join\\(sip_dir, 'PyQt5'\\)") "sip_dir"))
+             #t))
+         ;; Now we have to pass the correct sip_dir to setup.py.
+         (replace 'build
+           (lambda* (#:key inputs #:allow-other-keys)
+             ;; We need to tell setup.py where to locate QtCoremod.sip
+             ((@@ (guix build python-build-system) call-setuppy)
+              "build_ext"
+              (list (string-append "--sip-dir="
+                                   (assoc-ref inputs "python-pyqt")
+                                   "/share/sip"))
+              #t)))
+         ;; Ensure that icons are found at runtime.
+         (add-after 'install 'wrap-executable
+           (lambda* (#:key inputs outputs #:allow-other-keys)
+             (let ((out (assoc-ref outputs "out")))
+               (wrap-program (string-append out "/bin/veusz")
+                 `("QT_PLUGIN_PATH" prefix
+                   ,(list (string-append (assoc-ref inputs "qtsvg")
+                                         "/lib/qt5/plugins/"))))))))))
+    (native-inputs
+     `(("pkg-config" ,pkg-config)
+       ("qttools" ,qttools)
+       ("python-sip" ,python-sip-4)))
+    (inputs
+     `(("ghostscript" ,ghostscript) ;optional, for EPS/PS output
+       ("python-astropy" ,python-astropy)
+       ("python-dbus" ,python-dbus)
+       ("python-h5py" ,python-h5py) ;optional, for HDF5 data
+       ("python-pyqt" ,python-pyqt)
+       ("qtbase" ,qtbase-5)
+       ("qtsvg" ,qtsvg)))
+    (propagated-inputs
+     `(("python-numpy" ,python-numpy)))
+    (home-page "https://veusz.github.io/")
+    (synopsis "Scientific plotting package")
+    (description
+     "Veusz is a scientific plotting and graphing program with a graphical
+user interface, designed to produce publication-ready 2D and 3D plots.  In
+addition it can be used as a module in Python for plotting.  It supports
+vector and bitmap output, including PDF, Postscript, SVG and EMF.")
+    (license license:gpl2+)))

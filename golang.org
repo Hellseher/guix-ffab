@@ -1,0 +1,39 @@
+#+title: gnu/packages/golang
+#+created: <2021-04-15 Thu 21:34:35 BST>
+#+modified: <2021-11-07 Sun 19:08:02 GMT>
+
+* Flow [0/3][0%]
+** TODO go/tools/gopls [/][%] :p1:
+- https://go.googlesource.com/tools
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [3/7][42%]
+  + [X] github.com/sergi/go-diff/diffmatchpatch
+  + [ ] golang.org/x/mod
+    - [ ] modfile
+    - [ ] module
+    - [ ] server
+  + [X] golang.org/x/sync/errgroup
+  + [ ] golang.org/x/sys/execabs
+  + [X] golang.org/x/xerrors
+  + [-] mvdan.cc/gofumpt/format [2/4][50%]
+    - [X] :packed <2021-07-10 Sat>
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      + [X] go-github-com-google-go-cmp-cmp
+      + [X] go-github-com-rogpeppe-go-internal
+      + [X] gopkg-in-errgo-fmt-errors
+      + [X] golang.org/x/mod
+        - [X] modfile
+        - [X] module
+        - [X] server
+  + [-] mvdan.cc/xurls/v2 [1/3][33%]
+    + [X] :packed <2021-07-10 Sat>
+    + [ ] :patch-sent
+    + [ ] :patch-applied-upstream
+** TODO bykof/go-plantuml [/][%] :p3:
+- https://github.com/bykof/go-plantuml
+** TODO FiloSottile/age [/][%]
+- https://github.com/FiloSottile/age
