@@ -711,16 +711,16 @@ interoperability between Python astronomy packages.")
     (home-page "https://github.com/GreatAttractor/imppg")
     (synopsis "Astronomical Image Post-Proccessor (ImPPG)")
     (description
-     "ImPPG performs Lucy-Richardson deconvolution, unsharp masking, brightness
-normalization and tone curve adjustment.  It can also apply previously specified
-processing settings to multiple images.  All operations are performed using
-32-bit floating-point arithmetic.
+     "ImPPG performs Lucy-Richardson deconvolution, unsharp masking,
+brightness normalization and tone curve adjustment.  It can also apply
+previously specified processing settings to multiple images.  All operations
+are performed using 32-bit floating-point arithmetic.
 
 Supported input formats: FITS, BMP, JPEG, PNG, TIFF (most of bit depths and
-compression methods), TGA and more.  Images are processed in grayscale and can be
-saved as: BMP 8-bit; PNG 8-bit; TIFF 8-bit, 16-bit, 32-bit floating-point (no
-compression, LZW- or ZIP-compressed), FITS 8-bit, 16-bit, 32-bit
-floating-point.")
+compression methods), TGA and more.  Images are processed in grayscale and can
+be saved as: BMP 8-bit; PNG 8-bit; TIFF 8-bit, 16-bit, 32-bit
+floating-point (no compression, LZW- or ZIP-compressed), FITS 8-bit, 16-bit,
+32-bit floating-point.")
      (license license:gpl3+)))
 
 (define-public python-photutils

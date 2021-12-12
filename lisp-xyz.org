@@ -1,8 +1,8 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-11-12 Fri 21:34:12 GMT>
+#+modified: <2021-12-02 Thu 22:38:48 GMT>
 
-* Flow [11/16][68%]
+* Flow [12/17][70%]
 ** DONE cl-nst [4/4][100%]
 CLOSED: [2021-06-24 Thu 14:40]
 - https://github.com/jphmrst/cl-nst
@@ -575,6 +575,19 @@ CLOSED: [2021-06-24 Thu 14:41]
   - [X] alexandria
   - [X] babel
   - [X] local-time
+** DONE cl-liballegro [4/4][100%]
+CLOSED: [2021-12-02 Thu 22:38]
+- https://github.com/resttime/cl-liballegro
+- [X] :packed <2021-11-27 Sat>
+- [X] :patch-sent <2021-11-29 Mon>
+- [X] :patch-applied-upstream <2021-12-01 Wed>
+  - https://issues.guix.gnu.org/52187
+- [X] :inputs
+  + [X] cffi
+  + [X] trivial-garbage
+  + [X] trivial-main-thread
+  + [X] float-features
+  + [X] allegro
 
 * TODO borodust [0/1][0%] :author:p3:
 ** TODO cl-bodge [0/4][0%]

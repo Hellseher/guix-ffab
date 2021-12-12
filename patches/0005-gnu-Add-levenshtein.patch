@@ -1,0 +1,44 @@
+From f744942805535fae2a43c57fcfcabb976b71d8b1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 12 Dec 2021 00:59:12 +0000
+Subject: [PATCH 5/6] gnu: Add levenshtein
+
+* gnu/packages/golang.scm: (go-github-com-agext-levenshtein): New variable.
+---
+ gnu/packages/golang.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 2e5a766c7e..50f1947dba 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9046,3 +9046,26 @@ (define-public go-github-com-zclconf-go-cty
+ losing type information.  The primary intended use is for implementing
+ configuration languages, but other uses may be possible too.")
+     (license license:expat)))
++
++(define-public go-github-com-agext-levenshtein
++  (package
++    (name "go-github-com-agext-levenshtein")
++    (version "1.2.3")
++    (source
++      (origin
++        (method git-fetch)
++        (uri (git-reference
++               (url "https://github.com/agext/levenshtein")
++               (commit (string-append "v" version))))
++        (file-name (git-file-name name version))
++        (sha256
++          (base32 "0a26c8pp9h5w66bhd9vb6lpvmhp30mz46pnh3a8vrjx50givb2lw"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/agext/levenshtein"))
++    (home-page "https://github.com/agext/levenshtein")
++    (synopsis "Calculating the Levenshtein distance between two strings in Go")
++    (description
++      "Package levenshtein implements distance and similarity metrics for
++strings, based on the Levenshtein measure.")
++    (license license:asl2.0)))
+-- 
+2.34.0
+

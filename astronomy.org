@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-11-12 Fri 21:32:42 GMT>
+#+modified: <2021-11-14 Sun 14:17:58 GMT>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -188,7 +188,7 @@ CLOSED: [2021-01-25 Mon 17:25]
 ** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
-* TODO astropy [1/5][20%] :author:p1:
+* TODO astropy [1/4][25%] :author:p1:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 
@@ -326,11 +326,6 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [X] python-scikit-learn
   - [ ] gwcs
   - [X] python-bottleneck
-** TODO astropy-helpers [0/4][0%]
-- [ ] :packed
-- [ ] :patch-sent
-- [-] :paptch-applied-upstream
-- [-] :inputs [0/0][0%]
 ** TODO pyvo [/][%]
 - https://github.com/astropy/pyvo
 - [ ] :packed
@@ -503,6 +498,19 @@ CLOSED: [2021-02-19 Fri 11:15]
   + [ ] libtiff (comes as external)
   + [ ] libusb (comes as external)
   + [ ] novas  (comes as external)
+* TODO NASA [0/2][0%] :author:
+** TODO HEAsoft [/][%]
+- https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [6/12][50%]
+** TODO Xspec [/]
+- https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [6/12][50%]
 
 * etc
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
