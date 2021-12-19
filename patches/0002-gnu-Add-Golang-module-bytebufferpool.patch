@@ -1,0 +1,44 @@
+From 301761527e70296adc7995bbe2579ccffe22b38f Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 Dec 2021 20:52:54 +0000
+Subject: [PATCH 2/4] gnu: Add Golang module - bytebufferpool
+
+* gnu/packages/golang.scm: (go-github-com-valyala-bytebufferpool): New variable.
+---
+ gnu/packages/golang.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 134bc8f16a..51ce7329c2 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8862,3 +8862,26 @@ (define-public go-github-com-andybalholm-brotli
+ the @code{c2go} tool at
+ @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
+     (license license:expat)))
++
++(define-public go-github-com-valyala-bytebufferpool
++  (package
++    (name "go-github-com-valyala-bytebufferpool")
++    (version "1.0.0")
++    (source
++      (origin
++        (method git-fetch)
++        (uri (git-reference
++               (url "https://github.com/valyala/bytebufferpool")
++               (commit (string-append "v" version))))
++        (file-name (git-file-name name version))
++        (sha256
++          (base32 "01lqzjddq6kz9v41nkky7wbgk7f1cw036sa7ldz10d82g5klzl93"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/valyala/bytebufferpool"))
++    (home-page "https://github.com/valyala/bytebufferpool")
++    (synopsis "Anti-memory-waste byte buffer pool for Golang")
++    (description
++      "Package @code{bytebufferpool} implements a pool of byte buffers with
++anti-fragmentation protection.")
++    (license license:expat)))
+-- 
+2.34.0
+

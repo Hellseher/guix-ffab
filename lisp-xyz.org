@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-12-02 Thu 22:38:48 GMT>
+#+modified: <2021-12-13 Mon 22:37:43 GMT>
 
 * Flow [12/17][70%]
 ** DONE cl-nst [4/4][100%]
@@ -707,7 +707,7 @@ CLOSED: [2021-12-02 Thu 22:38]
   - [X] trivial-features
   - [X] trivial-garbage
 
-* TODO Shinmera/Shirakumo [0/0][0%] :author:p5:
+* TODO Shinmera/Shirakumo [3/13][23%] :author:p5:
 ** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -854,7 +854,7 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] verbose
   - [X] zpng
 - [-] :inputs-additions
-  + [ ] alloy
+  + [X] alloy
   + [ ] backends
   + [-] feedback
   + [ ] assimp
@@ -881,7 +881,6 @@ CLOSED: [2021-11-08 Mon 20:49]
 ** TODO harmony [/][%]
 ** TODO file-notify [/][%]
 ** TODO cl-steamworks [/][%]
-
 ** DONE radiance [4/4][100%]
 CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
@@ -1000,6 +999,49 @@ CLOSED: [2021-02-04 Thu 00:28]
 *** Modules
 - https://gitlab.com/jason.melbye/r-djula
 - https://github.com/Shirakumo/radiance-contribs
+** TODO kandria [0/4][0%]
+- https://github.com/Shinmera/kandria
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [4/26][15%]
+  + [X] deploy
+  + [ ] trial-glfw
+  + [ ] trial-alloy
+  + [ ] trial-harmony
+  + [ ] trial-steam
+  + [ ] trial-notify
+  + [ ] alloy-constraint
+  + [ ] zip
+  + [ ] fast-io
+  + [ ] ieee-floats
+  + [ ] babel
+  + [ ] form-fiddle
+  + [ ] array-utils
+  + [ ] lambda-fiddle
+  + [ ] trivial-arguments
+  + [ ] trivial-indent
+  + [ ] speechless
+  + [ ] kandria-quest
+  + [ ] alexandria
+  + [ ] file-select
+  + [ ] feedback-client
+  + [ ] cl-mixed-wav
+  + [ ] cl-mixed-mpg123
+  + [X] zpng
+  + [X] jsown
+  + [X] swank
+** TODO cl-mixed [1/4][25%]
+https://github.com/Shirakumo/cl-mixed
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [5/5][100%]
+  + [X] alexandria
+  + [X] static-vectors
+  + [X] cffi
+  + [X] trivial-features
+  + [X] documentation-utils
 
 * TODO sjl [0/1][0%] :author:p1:
 ** TODO adopt [1/4][25%]

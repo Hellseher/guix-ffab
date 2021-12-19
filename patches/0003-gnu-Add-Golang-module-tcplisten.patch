@@ -1,0 +1,52 @@
+From 2e7e0cba901c7c84f5ed0a7b5d02e40291f6d053 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 Dec 2021 20:55:05 +0000
+Subject: [PATCH 3/4] gnu: Add Golang module - tcplisten
+
+* gnu/packages/golang.scm: (go-github-com-valyala-tcplisten): New variable.
+---
+ gnu/packages/golang.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 51ce7329c2..505feb997d 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8885,3 +8885,34 @@ (define-public go-github-com-valyala-bytebufferpool
+       "Package @code{bytebufferpool} implements a pool of byte buffers with
+ anti-fragmentation protection.")
+     (license license:expat)))
++
++(define-public go-github-com-valyala-tcplisten
++  (package
++    (name "go-github-com-valyala-tcplisten")
++    (version "1.0.0")
++    (source
++      (origin
++        (method git-fetch)
++        (uri (git-reference
++               (url "https://github.com/valyala/tcplisten")
++               (commit (string-append "v" version))))
++        (file-name (git-file-name name version))
++        (sha256
++          (base32 "1fv5hxmq1jwrjn1rdjvbmjrrkb601zcdh01qhx6d8l7ss6n05zb8"))))
++    (build-system go-build-system)
++    (arguments
++     ;; NOTE: (Sharlatan-20211218T165504+0000): Tests failing:
++     ;;
++     ;;   tcplisten_test.go:56: cannot create listener 0 using Config
++     ;;   &tcplisten.Config{ReusePort:false, DeferAccept:false, FastOpen:false,
++     ;;   Backlog:32}: lookup ip6-localhost on [::1]:53: read udp
++     ;;   [::1]:33932->[::1]:53: read: connection refused
++     ;;
++     '(#:tests? #f
++       #:import-path "github.com/valyala/tcplisten"))
++    (home-page "https://github.com/valyala/tcplisten")
++    (synopsis "Customizable TCP net.Listener for Go")
++    (description
++      "Package tcplisten provides customizable TCP net.Listener with various
++performance-related options:")
++    (license license:expat)))
+-- 
+2.34.0
+

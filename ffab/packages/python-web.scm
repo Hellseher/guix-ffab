@@ -4,6 +4,7 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages python-web)
+  #:use-module (gnu packages python-crypto)
   #:use-module (gnu packages web)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages check)
@@ -158,3 +159,23 @@ archives large and small as accurately as possible.")
     (description
      "HTTP/S proxy with WebSockets over WSGI")
     (license license:asl2.0)))
+
+(define-public python-sentry-sdk
+  (package
+   (name "python-sentry-sdk")
+   (version "1.5.1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "sentry-sdk" version))
+     (sha256
+      (base32 "1a7m8hwk0ls7k59ly1hx43nrzxzybbs7warccxyyqjqyc7b5f5ra"))))
+   (build-system python-build-system)
+    (arguments
+     ;; Tests require DB access
+     `(#:tests? #f))
+   (propagated-inputs (list python-certifi python-urllib3))
+   (home-page "https://github.com/getsentry/sentry-python")
+   (synopsis "Python client for Sentry (https://sentry.io)")
+   (description "Python client for Sentry (https://sentry.io)")
+   (license license:bsd-3)))
