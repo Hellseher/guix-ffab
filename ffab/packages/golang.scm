@@ -1,33 +1,14 @@
 (define-module (ffab packages golang)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (guix utils)
-  #:use-module ((guix build utils) #:select (alist-replace))
+  #:use-module (gnu packages base)
+  #:use-module (gnu packages golang)
+  #:use-module ((gnu packages syncthing) #:select (go-github-com-kballard-go-shellquote))
+  #:use-module (gnu packages check)
+  #:use-module (gnu packages vim)
+  #:use-module (guix build-system go)
   #:use-module (guix download)
   #:use-module (guix git-download)
-  #:use-module (guix packages)
-  #:use-module (guix build-system gnu)
-  #:use-module (guix build-system trivial)
-  #:use-module (guix build-system go)
-  #:use-module (gnu packages)
-  #:use-module (gnu packages admin)
-  #:use-module (gnu packages base)
-  #:use-module ((gnu packages bootstrap) #:select (glibc-dynamic-linker))
-  #:use-module (gnu packages gcc)
-  #:use-module (gnu packages glib)
-  #:use-module (gnu packages lua)
-  #:use-module (gnu packages mp3)
-  #:use-module (gnu packages pcre)
-  #:use-module (gnu packages perl)
-  #:use-module (gnu packages pkg-config)
-  #:use-module (gnu packages pulseaudio)
-  #:use-module (gnu packages syncthing)
-  #:use-module (gnu packages terminals)
-  #:use-module (gnu packages textutils)
-  #:use-module (gnu packages tls)
-  #:use-module (gnu packages web)
-  #:use-module (ice-9 match)
-  #:use-module (srfi srfi-1))
-
+  #:use-module (guix packages))
 
 (define-public go-golang-org-x-tools
   (let ((commit "d824a7481dff873bb36f76c5b92c46c97852d52e")
@@ -907,3 +888,465 @@ non-intrusive, and encourages use of net/http Handlers.")
     (description
       "Package echo implements high performance, minimalist Go web framework.")
     (license license:expat)))
+
+;; 20211220T194459+0000
+(define-public go-github-com-stretchr-testify
+  (package
+    (name "go-github-com-stretchr-testify")
+    (version "1.7.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/stretchr/testify")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0ixgjsvafr3513pz3r6pmgk074s2dxkll0dadvl25gkf30rkmh10"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/stretchr/testify"))
+    (propagated-inputs
+     (list go-github-com-davecgh-go-spew
+           go-github-com-pmezard-go-difflib
+           go-github-com-stretchr-objx
+           go-gopkg-in-yaml-v3))
+    (home-page "https://github.com/stretchr/testify")
+    (synopsis "Go helper library for tests and invariant checking")
+    (description "This package provide many tools for testifying that your code
+will behave as you intend.
+
+Features include:
+@itemize
+@item Easy assertions
+@item Mocking
+@item HTTP response trapping
+@item Testing suite interfaces and functions.
+@end itemize")
+    (license license:expat)))
+
+;;; :begin github.com/jesseduffield/lazygit
+;;
+;; Some packages are introduced in:
+;; - github.com/cli/cli: https://issues.guix.gnu.org/47539
+;;
+;; 20211220T202352+0000
+(define-public go-github-com-jesseduffield-lazygit
+  (package
+    (name "go-github-com-jesseduffield-lazygit")
+    (version "0.31.4")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/lazygit")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "198lpyc1qram3nvq79zy806dlb5q7dix58rc3pq22vw4li8vhdyb"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/jesseduffield/lazygit"))
+    (propagated-inputs
+     (list go-github-com-atotto-clipboard ;; +1
+           go-github-com-aybabtme-humanlog ;; +4
+           go-github-com-cli-safeexec ;; +1
+           go-github-com-cloudfoundry-jibber-jabber
+           go-github-com-creack-pty
+           go-github-com-fatih-color
+           go-github-com-fsnotify-fsnotify
+           go-github-com-go-errors-errors
+           go-github-com-go-logfmt-logfmt
+           go-github-com-golang-collections-collections
+           go-github-com-golang-protobuf
+           go-github-com-google-go-cmp
+           go-github-com-gookit-color
+           go-github-com-imdario-mergo
+           go-github-com-integrii-flaggy
+           go-github-com-jesseduffield-go-git-v5
+           go-github-com-jesseduffield-gocui
+           go-github-com-jesseduffield-minimal-gitignore
+           go-github-com-jesseduffield-yaml
+           go-github-com-kardianos-osext
+           go-github-com-konsorten-go-windows-terminal-sequences
+           go-github-com-kylelemons-godebug
+           go-github-com-kyokomi-emoji-v2
+           go-github-com-lucasb-eyer-go-colorful
+           go-github-com-mattn-go-colorable
+           go-github-com-mattn-go-runewidth
+           go-github-com-mgutz-str
+           go-github-com-onsi-ginkgo
+           go-github-com-onsi-gomega
+           go-github-com-sahilm-fuzzy
+           go-github-com-sirupsen-logrus
+           go-github-com-spkg-bom
+           go-github-com-stretchr-testify
+           go-github-com-xo-terminfo
+           go-golang-org-x-crypto
+           go-golang-org-x-net
+           go-golang-org-x-sys
+           go-golang-org-x-term
+           go-golang-org-x-text
+           go-gopkg-in-ozeidan-fuzzy-patricia-v3
+           go-github-com-openpeedeep-xdg))
+    (home-page "https://github.com/jesseduffield/lazygit")
+    (synopsis "Table of contents")
+    (description
+     "This package provides a simple terminal UI for git commands, written in Go with
+the @url{https://github.com/jroimartin/gocui,gocui} library.")
+    (license license:expat)))
+
+ (define-public go-github-com-atotto-clipboard
+  (package
+    (name "go-github-com-atotto-clipboard")
+    (version "0.1.4")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/atotto/clipboard")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0ycd8zkgsq9iil9svhlwvhcqwcd7vik73nf8rnyfnn10gpjx97k5"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/atotto/clipboard"))
+    (home-page "https://github.com/atotto/clipboard")
+    (synopsis "Clipboard for Go")
+    (description "Package clipboard read/write on clipboard")
+    (license license:bsd-3)))
+
+(define-public go-github-com-aybabtme-humanlog
+  (package
+    (name "go-github-com-aybabtme-humanlog")
+    (version "0.4.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/aybabtme/humanlog")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0s2ni1d4qqrdybvw8w8q5m500nhs6yz2a73wihmfhlk9hq36037n"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/aybabtme/humanlog"))
+    (propagated-inputs
+     (list go-github-com-aybabtme-rgbterm
+           go-github-com-fatih-color
+           go-github-com-go-logfmt-logfmt
+           go-github-com-kr-logfmt
+           go-github-com-mattn-go-colorable
+           go-github-com-mattn-go-isatty
+           go-github-com-urfave-cli
+           go-golang-org-x-sys))
+    (home-page "https://github.com/aybabtme/humanlog")
+    (synopsis "Logs for humans to read")
+    (description
+     "Read logs from @code{stdin} and prints them back to @code{stdout}, but
+prettier.")
+    (license license:asl2.0)))
+
+(define-public go-github-com-go-logfmt-logfmt
+  (package
+    (name "go-github-com-go-logfmt-logfmt")
+    (version "0.5.1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/go-logfmt/logfmt")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "01fs4x2aqw2qcsz18s4nfvyqv3rcwz5xmgpk3bic6nzgyzsjd7dp"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/go-logfmt/logfmt"))
+    (home-page "https://github.com/go-logfmt/logfmt")
+    (synopsis "Marshals and unmarshals logfmt messages")
+    (description
+      "Package logfmt implements utilities to marshal and unmarshal data in the logfmt
+format.  The logfmt format records key/value pairs in a way that balances
+readability for humans and simplicity of computer parsing.  It is most commonly
+used as a more human friendly alternative to JSON for structured logging.")
+    (license license:expat)))
+
+(define-public go-github-com-kr-logfmt
+  (package
+    (name "go-github-com-kr-logfmt")
+    (version "0.0.0-20210122060352-19f9bcb100e6")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/kr/logfmt")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1l6322amgy092n30l6br0wzszf3l2a3dkylck3pzpvzr4lqfcyhb"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/kr/logfmt"))
+    (home-page "https://github.com/kr/logfmt")
+    (synopsis "Parse logfmt messages")
+    (description "Package implements the decoding of logfmt key-value pairs.")
+    (license license:expat)))
+
+(define-public go-github-com-aybabtme-rgbterm
+  (package
+    (name "go-github-com-aybabtme-rgbterm")
+    (version "0.0.0-20170906152045-cc83f3b3ce59")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/aybabtme/rgbterm")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0wvmxvjn64968ikvnxrflb1x8rlcwzpfl53fzbxff2axbx9lq50q"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/aybabtme/rgbterm"))
+    (home-page "https://github.com/aybabtme/rgbterm")
+    (synopsis "RGB terminal")
+    (description
+      "Package rgbterm colorizes bytes and strings using RGB colors, for a full
+range of pretty terminal strings.")
+    (license license:expat)))
+
+(define-public go-github-com-cli-safeexec
+  (package
+    (name "go-github-com-cli-safeexec")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/cli/safeexec")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1q80va3721dyw33lrnv7x3gd66kcnbsm38dv3lk7xqhii2adawmk"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cli/safeexec"))
+    (home-page "https://github.com/cli/safeexec")
+    (synopsis "Safer version of exec.LookPath on Windows")
+    (description
+      "This package provides a Go module that provides a safer alternative to
+@code{exec.LookPath()} on Windows.")
+    (license license:bsd-2)))
+
+;; :end github.com/jesseduffield/lazygit
+
+;;; :begin github.com/cli/cli
+
+(define-public go-github-com-cli-cli
+  (package
+    (name "go-github-com-cli-cli")
+    (version "2.3.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cli/cli")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0qf19rkckbfwcsk9rkfnbrzrksb6r50p7gda25lbw86n2c3k18wp"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/cli/cli"))
+    (propagated-inputs
+     (list go-github-com-alecaivazis-survey-v2
+           go-github-com-briandowns-spinner
+           go-github-com-charmbracelet-glamour
+           go-github-com-cli-browser
+           go-github-com-cli-oauth
+           go-github-com-cli-safeexec
+           go-github-com-cpuguy83-go-md2man-v2
+           go-github-com-creack-pty
+           go-github-com-gabriel-vasile-mimetype
+           go-github-com-cli-shurcool-graphql
+           go-github-com-google-go-cmp
+           go-github-com-google-shlex
+           go-github-com-hashicorp-go-version
+           go-github-com-henvic-httpretty
+           go-github-com-itchyny-gojq
+           go-github-com-kballard-go-shellquote
+           go-github-com-makenowjust-heredoc
+           go-github-com-mattn-go-colorable
+           go-github-com-mattn-go-isatty
+           go-github-com-mattn-go-runewidth
+           go-github-com-mgutz-ansi
+           go-github-com-mitchellh-go-homedir
+           go-github-com-muesli-termenv
+           go-github-com-rivo-uniseg
+           go-github-com-shurcool-githubv4
+           go-github-com-spf13-cobra
+           go-github-com-spf13-pflag
+           go-github-com-stretchr-objx
+           go-github-com-stretchr-testify
+           go-golang-org-x-crypto
+           go-golang-org-x-sync
+           go-golang-org-x-sys ; +0
+           go-golang-org-x-term ; +0
+           go-gopkg-in-yaml-v3))
+    (home-page "https://github.com/cli/cli")
+    (synopsis "GitHub CLI")
+    (description
+     "@code{gh} is GitHub on the command line. It brings pull requests, issues,
+and other GitHub concepts to the terminal next to where you are already working
+with @code{git} and your code.")
+    (license license:expat)))
+
+(define-public go-github-com-alecaivazis-survey-v2
+  (package
+    (name "go-github-com-alecaivazis-survey-v2")
+    (version "2.3.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/AlecAivazis/survey")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1ipzr2p3j7il4rl4fdi6zsn739p81k2achsbj1s4z5vfrb3jj5kn"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:phases
+       (modify-phases %standard-phases
+         (add-before 'check 'set-env
+           (lambda* (#:key inputs #:allow-other-keys)
+             (setenv "EDITOR"
+                     (string-append (assoc-ref inputs "vim") "bin/vim")))))
+       #:import-path "github.com/AlecAivazis/survey"))
+    (native-inputs
+     (list go-github-com-davecgh-go-spew
+           go-github-com-stretchr-testify
+           vim))
+    (propagated-inputs
+     (list go-github-com-hinshun-vt10x
+           go-github-com-kballard-go-shellquote
+           go-github-com-kr-pty
+           go-github-com-mattn-go-colorable
+           go-github-com-mattn-go-isatty
+           go-github-com-mgutz-ansi
+           go-github-com-netflix-go-expect
+           go-github-com-pmezard-go-difflib
+           go-golang-org-x-crypto
+           go-golang-org-x-sys
+           go-golang-org-x-text))
+    (home-page
+     "https://github.com/AlecAivazis/survey")
+    (synopsis "Build interactive prompts on terminals")
+    (description "This is a library for building interactive prompts on
+terminals supporting ANSI escape sequences.")
+    (license license:expat)))
+
+(define-public go-github-com-hinshun-vt10x
+  (package
+    (name "go-github-com-hinshun-vt10x")
+    (version "0.0.0-20180616224451-1954e6464174")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/hinshun/vt10x.git")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+         (base32
+          "05a7z6qmmwm3672x1jmhy2d6cqyzypyxcpybs6incfdzwrx851pl"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path "github.com/hinshun/vt10x"))
+    (home-page "https://github.com/hinshun/vt10x")
+    (synopsis "vt10x terminal emulation backend")
+    (description "This package is a vt10x terminal emulation backend.  It has
+larged been influenced by st, rxvt, xterm, and iTerm as reference.")
+    (license license:expat)))
+
+;; archived project: moved to https://github.com/creack/pty
+(define-public go-github-com-kr-pty
+  (hidden-package
+   (package
+     (name "go-github-com-kr-pty")
+     (version "1.1.8")
+     (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+              (url "https://github.com/kr/pty.git")
+              (commit (string-append "v" version))))
+        (file-name (git-file-name "go-github-com-kr-pty" version))
+        (sha256
+         (base32
+          "1vcl6f90n0f8s8b4fyh0832ilybjqcypqyj233lqj1hx62fvgdbk"))))
+     (build-system go-build-system)
+     (arguments
+      '(#:import-path "github.com/kr/pty"))
+     (propagated-inputs
+      (list go-github-com-creack-pty))
+     (home-page "https://github.com/kr/pty")
+     (synopsis "PTY interface for Go")
+     (description "Pty is a Go package for using Unix pseudo-terminals.")
+     (license license:expat))))
+
+(define-public go-github-com-netflix-go-expect
+  (package
+    (name "go-github-com-netflix-go-expect")
+    (version "0.0.0-20201125194554-85d881c3777e")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/Netflix/go-expect.git")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32
+            "01s59hsdwy2nngngcgzyhncys56pdgzr6lff7k8kjrh26zk6pdv5"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path "github.com/Netflix/go-expect"))
+    (native-inputs
+      (list go-github-com-stretchr-testify
+            go-github-com-kr-pty))
+    (home-page "https://github.com/Netflix/go-expect")
+    (synopsis "Expect-like library to automate control of terminal programs")
+    (description
+     "This package provides an expect-like interface to automate control of
+applications.  It is unlike expect in that it does not spawn or manage process
+lifecycle.  This package only focuses on expecting output and sending input
+through it's pseudoterminal.")
+    (license license:asl2.0)))
+
+(define-public go-github-com-creack-pty
+  (package
+    (name "go-github-com-creack-pty")
+    (version "1.1.11")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/creack/pty.git")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32
+            "0dwhch53vqxpnbiqvfa27cliabx9ma2m4dax4adlrz8rami4sakw"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path "github.com/creack/pty"))
+    (home-page "https://github.com/creack/pty")
+    (synopsis "PTY interface for Go")
+    (description "Pty is a Go package for using Unix pseudo-terminals.")
+    (license license:expat)))
+
+
+;;; :end github.com/cli/cli
