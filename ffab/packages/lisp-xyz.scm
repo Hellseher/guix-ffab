@@ -1954,7 +1954,7 @@ artworks with SVG and PNG export format.")
   (sbcl-package->ecl-package sbcl-weir))
 
 (define-public cl-weir
-  (sbcl-package->cl-source-package sbcl-fare-mop))
+  (sbcl-package->cl-source-package sbcl-weir))
 
 ;; <2021-04-29 Thu>
 (define-public sbcl-unit-test
