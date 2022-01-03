@@ -1,0 +1,34 @@
+From de6b7da09c9bff3b66b0cc5485b0419f9b2f95c1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 23 Dec 2021 22:16:42 +0000
+Subject: [PATCH 1/1] gnu: cl-split-sequence: Update to 2.0.1
+
+---
+ gnu/packages/lisp-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 3d586663f1..bb831c301a 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1728,7 +1728,7 @@ (define-public ecl-esrap
+ (define-public sbcl-split-sequence
+   (package
+     (name "sbcl-split-sequence")
+-    (version "2.0.0")
++    (version "2.0.1")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1737,7 +1737,7 @@ (define-public sbcl-split-sequence
+              (commit (string-append "v" version))))
+        (sha256
+         (base32
+-         "0jcpnx21hkfwqj5fvp7kc6pn1qcz9hk7g2s5x8h0349x1j2irln0"))
++         "172k7iv775kwism6304p6z7mqpjvipl57nq1bgvmbk445943fmhq"))
+        (file-name (git-file-name "split-sequence" version))))
+     (build-system asdf-build-system/sbcl)
+     (native-inputs
+-- 
+2.34.0
+

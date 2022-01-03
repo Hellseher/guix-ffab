@@ -1,6 +1,6 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-12-19 Sun 21:19:01 GMT>
+#+modified: <2021-12-20 Mon 19:40:23 GMT>
 
 * Flow [0/3][0%]
 ** TODO go/tools/gopls [/][%] :p1:
@@ -40,7 +40,7 @@
 
 * TODO valyala [0/1][0%] :author:
 ** TODO github.com/valyala/fasthttp [2/4][50%]
-- https://github.com/valyala/f>
+- https://github.com/valyala/fasthttp
 - [X] :packed <2021-12-18 Sat>
 - [X] :patch-sent <2021-12-19 Sun>
 - [ ] :patch-applied-upstream

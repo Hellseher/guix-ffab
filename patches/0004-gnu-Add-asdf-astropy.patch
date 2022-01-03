@@ -1,0 +1,59 @@
+From 17071312c2498ef2169f7b5d3e15af46fe47c7a3 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Jan 2022 21:14:11 +0000
+Subject: [PATCH 4/6] gnu: Add asdf-astropy
+
+* gnu/packages/astronomy.scm: (python-asdf-astropy): New variable.
+---
+ gnu/packages/astronomy.scm | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e775d342ae..0bd0c05afa 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1324,6 +1324,41 @@ (define-public python-asdf-coordinates-schemas
+     (description "ASDF coordinates schemas")
+     (license license:bsd-3)))
+ 
++(define-public python-asdf-astropy
++  (package
++    (name "python-asdf-astropy")
++    (version "0.1.2")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "asdf_astropy" version))
++       (sha256
++        (base32 "0bzgah7gskvnz6jcrzipvzixv8k2jzjkskqwxngzwp4nxgjbcvi4"))))
++    (build-system python-build-system)
++    (arguments
++     (list
++      ;; NOTE: (Sharlatan-20211229T161056+0000): tests require tox and failing
++      ;; after not finding setuptools_scm when enabled.
++      #:tests? #f))
++    (native-inputs
++     (list python-coverage
++           python-pytest-astropy
++           python-semantic-version
++           python-setuptools-scm
++           python-tox))
++    (propagated-inputs
++     (list python-asdf
++           python-asdf-coordinates-schemas
++           python-asdf-transform-schemas
++           python-astropy
++           python-numpy
++           python-packaging))
++    (home-page "https://github.com/astropy/asdf-astropy")
++    (synopsis "ASDF serialization support for astropy")
++    (description "ASDF serialization support for astropy")
++    ;; Copyright (C) 2021 Association of Universities for Research in Astronomy (AURA)
++    (license license:bsd-3)))
++
+ (define-public python-astroalign
+   (package
+     (name "python-astroalign")
+-- 
+2.34.0
+

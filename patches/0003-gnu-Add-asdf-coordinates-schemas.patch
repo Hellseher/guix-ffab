@@ -1,0 +1,49 @@
+From 241525ef2ed98cfb0cbc63c22a8d5658fad5e4d7 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Jan 2022 21:12:17 +0000
+Subject: [PATCH 3/6] gnu: Add asdf-coordinates-schemas
+
+* gnu/packages/astronomy.scm: (python-asdf-coordinates-schemas): New variable.
+---
+ gnu/packages/astronomy.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8d08c5421d..e775d342ae 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1299,6 +1299,31 @@ (define-public python-asdf-transform-schemas
+     ;; https://github.com/asdf-format/asdf-transform-schemas/blob/master/LICENSE
+     (license license:bsd-3)))
+ 
++(define-public python-asdf-coordinates-schemas
++  (package
++    (name "python-asdf-coordinates-schemas")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "asdf_coordinates_schemas" version))
++       (sha256
++        (base32 "0ahwhsz5jzljnpkfd2kvspirg823lnj5ip9sfkd9cx09z1nlz8jg"))))
++    (build-system python-build-system)
++    (arguments
++     (list
++      ;; NOTE: (Sharlatan-20211229T161056+0000): tests require tox
++      #:tests? #f))
++    (native-inputs
++     (list python-semantic-version
++           python-setuptools-scm))
++    (propagated-inputs
++     (list python-asdf))
++    (home-page "https://github.com/asdf-format/asdf-coordinates-schemas")
++    (synopsis "ASDF coordinates schemas")
++    (description "ASDF coordinates schemas")
++    (license license:bsd-3)))
++
+ (define-public python-astroalign
+   (package
+     (name "python-astroalign")
+-- 
+2.34.0
+

@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-11-14 Sun 14:17:58 GMT>
+#+modified: <2021-12-20 Mon 19:40:23 GMT>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -429,7 +429,7 @@ CLOSED: [2021-02-19 Fri 11:14]
   + [ ] :inputs [0/1][0%]
     - [ ] astropy
 
-* TODO GreatAttractor [1/2][50%] :author:p5:
+* TODO GreatAttractor [2/2][100%] :author:p5:
 ** DONE stackistry [4/4][100%]
 CLOSED: [2021-02-19 Fri 11:15]
 - https://github.com/GreatAttractor/stackistry
@@ -447,11 +447,12 @@ CLOSED: [2021-02-19 Fri 11:15]
   - [X] ffmpeg
   - [X] gtkmm
 
-** TODO imppg [3/4][75%]
+** DONE imppg [4/4][100%]
+CLOSED: [2021-12-18 Sat 16:12]
 - https://github.com/GreatAttractor/imppg
 - [X] :packed <2021-11-12 Fri>
 - [X] :patch-sent <2021-11-12 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/51795
 - [X] :inputs [6/6][100%]
   + [X] boost

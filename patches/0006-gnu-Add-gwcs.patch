@@ -1,0 +1,79 @@
+From e252c2cd52cc91526923ac43f714f7bab767bf93 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Jan 2022 22:43:17 +0000
+Subject: [PATCH 6/6] gnu: Add gwcs
+
+* gnu/packages/astronomy.scm: (python-gwcs): New variable.
+---
+ gnu/packages/astronomy.scm | 51 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e3c7495ed4..77f8cfa024 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -66,6 +66,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (guix build-system cmake)
+   #:use-module (guix build-system gnu)
+   #:use-module (guix build-system python)
++  #:use-module (guix gexp)
+   #:use-module (ice-9 match)
+   #:use-module (srfi srfi-1))
+ 
+@@ -1438,3 +1439,53 @@ (define-public python-skyfield
+      "Skyfield computes positions for the stars, planets, and satellites in
+ orbit around the Earth.")
+     (license license:expat)))
++
++(define-public python-gwcs
++  (package
++    (name "python-gwcs")
++    (version "0.18.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "gwcs" version))
++       (sha256
++        (base32 "194j49m8xjjzv9pp8cnj06igz8sdxb0nphyybcc7mhigw0f0kr30"))))
++    (build-system python-build-system)
++    (arguments
++     (list #:phases
++           #~(modify-phases %standard-phases
++               (replace 'check
++                 (lambda* (#:key inputs outputs tests? #:allow-other-keys)
++                   (when tests?
++                     (add-installed-pythonpath inputs outputs)
++                     ;; NOTE: (Sharlatan-20211229T163203+0000): Check if tests
++                     ;; need to be run via tox
++                     (invoke "python" "-m" "pytest" "--pyargs" "gwcs")))))))
++    (native-inputs
++     (list python-jsonschema
++           python-jmespath
++           python-pytest
++           python-pytest-doctestplus
++           python-pyyaml
++           python-semantic-version
++           python-setuptools-scm))
++    (inputs
++     (list python-asdf
++           python-asdf-astropy
++           python-astropy
++           python-asdf-wcs-schemas
++           python-numpy
++           python-scipy))
++    (home-page "https://gwcs.readthedocs.io/en/latest/")
++    (synopsis "Generalized World Coordinate System")
++    (description
++     "Generalized World Coordinate System (GWCS) is an Astropy affiliated package
++providing tools for managing the World Coordinate System of astronomical data.
++
++GWCS takes a general approach to the problem of expressing transformations
++between pixel and world coordinates.  It supports a data model which includes the
++entire transformation pipeline from input coordinates (detector by default) to
++world coordinates.  It is tightly integrated with Astropy.")
++    ;; NOTE: (Sharlatan-20211229T210517+0000): There is no reference to any
++    ;; license in source.
++   (license #f)))
+-- 
+2.34.0
+

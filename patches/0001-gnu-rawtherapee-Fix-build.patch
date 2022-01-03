@@ -1,0 +1,27 @@
+From ddee10cbb671069bc828d375ded1fb1d742c311e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 26 Dec 2021 20:29:22 +0000
+Subject: [PATCH 1/1] gnu: rawtherapee: Fix build
+
+* gnu/packages/photo.scm: (rawtherapee): Fix build
+---
+ gnu/packages/photo.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/photo.scm b/gnu/packages/photo.scm
+index fa603a60be..e6f26c3b72 100644
+--- a/gnu/packages/photo.scm
++++ b/gnu/packages/photo.scm
+@@ -770,7 +770,8 @@ (define-public rawtherapee
+              "-DPROC_TARGET_NUMBER=1"
+              ;; These flags are recommended by upstream for distributed packages.
+              ;; See the file 'RELEASE_NOTES.txt' in the source distribution.
+-             "-O3"
++             "-DCMAKE_CXX_FLAGS=-O3 -fPIC"
++             "-DCMAKE_C_FLAGS=-O3 -fPIC"
+              "-DCACHE_NAME_SUFFIX=\"\"")))
+     (native-inputs
+      (list pkg-config))
+-- 
+2.34.0
+

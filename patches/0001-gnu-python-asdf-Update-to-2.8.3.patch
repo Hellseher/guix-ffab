@@ -1,0 +1,74 @@
+From 051573892c1db5679f20155583eb50e7d2be5100 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Jan 2022 20:24:03 +0000
+Subject: [PATCH 1/6] gnu: python-asdf: Update to 2.8.3
+
+* gnu/packages/astronomy.scm: (python-asdf): Update to 2.8.3
+  Refactor package style.
+  [inputs]->[propagated-inputs]: To satisfy sanity checks of other
+  packages depended on python-asdf. Add new input python-jmespath
+---
+ gnu/packages/astronomy.scm | 37 +++++++++++++++++++------------------
+ 1 file changed, 19 insertions(+), 18 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1f9eca9a44..5b5887fb2e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1238,34 +1238,35 @@ (define-public python-sep
+ (define-public python-asdf
+   (package
+     (name "python-asdf")
+-    (version "2.7.4")
++    (version "2.8.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "1mj52l2m8pbhiqacgjakjpvqi8kyx470yw151lcsswbq5wp0rsc6"))))
++        (base32 "0i4vq1hsympjgb1yvn4ql0gm8j1mki9ggmj03533kmg0nbzp03yy"))))
+     (build-system python-build-system)
+     (arguments
+-     ;; TODO: (Sharlatan-20210207T165820+0000): Tests depend on astropy, astropy
+-     ;; depends on asdf. Disable circular dependence.
+-     `(#:tests? #f))
++     ;; NOTE: (Sharlatan-20211229T201059+0000): Tests depend on astropy and
++     ;; gwcs, astropy gwcs depend on asdf. Disable circular dependence.
++     (list #:tests? #f))
+     (native-inputs
+-     `(("packaging" ,python-packaging)
+-       ("semantic-version" ,python-semantic-version)
+-       ("setuptools-scm" ,python-setuptools-scm)))
+-     (inputs
+-      `(("importlib-resources" ,python-importlib-resources)
+-        ("jsonschema" ,python-jsonschema)
+-        ("numpy" ,python-numpy)
+-        ("pyyaml" ,python-pyyaml)))
+-     (home-page "https://github.com/asdf-format/asdf")
+-     (synopsis "Python tools to handle ASDF files")
+-     (description
+-      "The Advanced Scientific Data Format (ASDF) is a next-generation
++     (list python-setuptools-scm
++           python-semantic-version
++           python-packaging))
++    (propagated-inputs
++     (list python-importlib-resources
++           python-jsonschema
++           python-jmespath
++           python-numpy
++           python-pyyaml))
++    (home-page "https://github.com/asdf-format/asdf")
++    (synopsis "Python tools to handle ASDF files")
++    (description
++     "The Advanced Scientific Data Format (ASDF) is a next-generation
+ interchange format for scientific data.  This package contains the Python
+ implementation of the ASDF Standard.")
+-     (license license:bsd-3)))
++    (license license:bsd-3)))
+ 
+ (define-public python-astroalign
+   (package
+-- 
+2.34.0
+

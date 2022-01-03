@@ -3,10 +3,24 @@
 ;;; This file is NOT part of GNU Guix.
 ;;;
 ;;; Commentary:
+;;; to add this file to Guile import path:
+;;;
+;;; (add-to-load-path "/mnt/library/projects/prj/guix-channel")
+
+
+;; $4 = ("/mnt/library/projects/prj/guix-channel" "/home/sharlatan/code/guix"
+;; "/mnt/library/code/doom-emacs/.local/straight/build-27.2/geiser-guile/src"
+;; "~/code/guix" "/home/sharlatan/.config/guix/current/share/guile/site/3.0"
+;; "/run/current-system/profile/share/guile/site/3.0"
+;; "/run/current-system/profile/share/guile/site/3.0"
+;; "/gnu/store/3h3jn0745ngd87zp83k5smwhykxvdfgf-guile-3.0.7/share/guile/3.0"
+;; "/gnu/store/3h3jn0745ngd87zp83k5smwhykxvdfgf-guile-3.0.7/share/guile/site/3.0"
+;; "/gnu/store/3h3jn0745ngd87zp83k5smwhykxvdfgf-guile-3.0.7/share/guile/site"
+;; "/gnu/store/3h3jn0745ngd87zp83k5smwhykxvdfgf-guile-3.0.7/share/guile")
 
 ;;; Code:
 
-(define-module (ffab guix import quicklisp)
+(define-module (ffab guix import common-lisp)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module ((ice-9 rdelim) #:select (read-line))
   #:use-module ((rnrs io ports) #:select (call-with-port))
@@ -35,6 +49,7 @@
 (define %distributions
   '(("quicklisp" . "https://beta.quicklisp.org/dist/quicklisp.txt")
     ("bodge" . "https://bodge.borodust.org/dist/org.borodust.bodge.txt")
+    ("ultralisp" . "http://dist.ultralisp.org/")
     ("shirakumo" . "http://dist.tymoon.eu/shirakumo.txt")))
 
 (define (distribution->alist distribution)

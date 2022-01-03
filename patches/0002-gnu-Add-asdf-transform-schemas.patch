@@ -1,0 +1,55 @@
+From b1ec99ee7222751e7b7393b3ea2ce32e6131a0d3 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Jan 2022 21:10:12 +0000
+Subject: [PATCH 2/6] gnu: Add asdf-transform-schemas
+
+* gnu/packages/astronomy.scm: (python-asdf-transform-schemas): New variable.
+---
+ gnu/packages/astronomy.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5b5887fb2e..8d08c5421d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1268,6 +1268,37 @@ (define-public python-asdf
+ implementation of the ASDF Standard.")
+     (license license:bsd-3)))
+ 
++(define-public python-asdf-transform-schemas
++  (package
++    (name "python-asdf-transform-schemas")
++    (version "0.2.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "asdf_transform_schemas" version))
++       (sha256
++        (base32 "1gmzd81hw4ppsvzrc91wcbjpcw9hhv9gavllv7nyi7qjb54c837g"))))
++    (build-system python-build-system)
++    (arguments
++     (list
++      ;; FIXME: (Sharlatan-20211229T160902+0000): tests run via tox
++      #:tests? #f))
++    (native-inputs
++     (list python-semantic-version
++           python-setuptools-scm))
++    (propagated-inputs
++     (list python-asdf))
++    (home-page "https://github.com/asdf-format/asdf-transform-schemas")
++    (synopsis "ASDF schemas for transforms")
++    (description
++     "This package provides ASDF schemas for validating transform tags.  Users
++should not need to install this directly; instead, install an implementation
++package such as asdf-astropy, which includes asdf-transform-schemas as a
++dependency.")
++    ;; Copyright (C) 2021 Association of Universities for Research in Astronomy (AURA)
++    ;; https://github.com/asdf-format/asdf-transform-schemas/blob/master/LICENSE
++    (license license:bsd-3)))
++
+ (define-public python-astroalign
+   (package
+     (name "python-astroalign")
+-- 
+2.34.0
+

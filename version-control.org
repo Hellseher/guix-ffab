@@ -1,6 +1,6 @@
 #+TITLE: gnu/packages/version-control
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-06-18 Fri 11:05:38 BST>
+#+modified: <2021-12-23 Thu 10:31:03 GMT>
 
 * TODO jesseduffield [0/1][0%] :author:p3:
 ** TODO lazygit [0/4][0%]
@@ -38,16 +38,16 @@
   + [ ] github.com/sahilm/fuzzy (5 deps)
   + [X] github.com/sirupsen/logrus
   + [ ] github.com/spkg/bom (1 dep)
-  + [-] github.com/stretchr/testify [0/4][0%]
+  + [-] github.com/stretchr/testify [1/4][25%]
     + [ ] :packed
     + [ ] :patch-sent
     + [ ] :paptch-applied-upstream
-    + [-] :inputs [0/1][0%]
-      - [-] gopkg.in/yaml.v3 [2/3][66%]
+    + [X] :inputs [1/1][100%]
+      - [X] gopkg.in/yaml.v3 [3/3][100%]
         - https://gopkg.in/yaml.v3
         - [X] :packed <2021-02-01 Mon>
         - [X] :patch-sent <2021-02-01 Mon>
-        - [ ] :paptch-applied-upstream
+        - [X] :paptch-applied-upstream
           - https://issues.guix.gnu.org/46234
   + [ ] github.com/tcnksm/go-gitconfig (wtf? old)
   + [X] golang.org/x/crypto

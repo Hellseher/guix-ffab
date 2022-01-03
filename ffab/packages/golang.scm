@@ -11,58 +11,65 @@
   #:use-module (guix packages))
 
 (define-public go-golang-org-x-tools
-  (let ((commit "d824a7481dff873bb36f76c5b92c46c97852d52e")
-        (revision "2"))
-    (package
-      (name "go-golang-org-x-tools")
-      (version (git-version "0.1.4" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://go.googlesource.com/tools")
-               (commit commit)))
-         (file-name (string-append "go.googlesource.com-tools-"
-                                   version "-checkout"))
-         (sha256
-          (base32 "07mfghhp4ry934hab8845jcyin6b7niwbpbz7x5kclmf1sy1j97f"))))
-      (build-system go-build-system)
-      (arguments
-       `(#:import-path "golang.org/x/tools"
+  (package
+    (name "go-golang-org-x-tools")
+    (version "0.1.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://go.googlesource.com/tools")
+             (commit (string-append "v" version))))
+       (file-name (string-append "go.googlesource.com-tools-"
+                                 version "-checkout"))
+       (sha256
+        (base32 "07mfghhp4ry934hab8845jcyin6b7niwbpbz7x5kclmf1sy1j97f"))))
+    (build-system go-build-system)
+    (arguments
+     `(#:import-path "golang.org/x/tools"
+       ;; Source-only package
+       #:tests? #f
+       #:phases
+       (modify-phases %standard-phases
          ;; Source-only package
-         #:tests? #f
-         #:phases
-         (modify-phases %standard-phases
-           ;; Source-only package
-           (delete 'build))))
-      (synopsis "Tools that support the Go programming language")
-      (description "This package provides miscellaneous tools that support the
+         (delete 'build))))
+    (synopsis "Tools that support the Go programming language")
+    (description "This package provides miscellaneous tools that support the
 Go programming language.")
-      (home-page "https://go.googlesource.com/tools/")
-      (license license:bsd-3))))
+    (home-page "https://go.googlesource.com/tools/")
+    (license license:bsd-3)))
 
 ;; 20210710T203819+0100
 (define-public go-golang-org-x-tools-gopls
   (package
-    (inherit go-golang-org-x-tools)
+    (version "0.7.4")
     (name "go-golang-org-x-tools-gopls")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://go.googlesource.com/tools")
+             (commit (string-append "gopls/v" version))))
+       (file-name (string-append "gopls-" version))
+       (sha256
+        (base32 "07mfghhp4ry934hab8845jcyin6b7niwbpbz7x5kclmf1sy1j97f"))))
+    (build-system go-build-system)
     (arguments
      '(#:import-path "golang.org/x/tools/gopls"
        #:unpack-path "golang.org/x/tools"))
     (native-inputs
-     `(
-       ("go-github-com-sergi-go-diff" ,go-github-com-sergi-go-diff)
-       ("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)
-       ("go-golang.org-x-sync-errgroup" ,go-golang.org-x-sync-errgroup)
-       ("go-mvdan-cc-gofumpt" ,go-mvdan-cc-gofumpt)
-       ("go-mvdan-cc-xurls-v2" ,go-mvdan-cc-xurls-v2)
-       ))
+     (list go-github-com-sergi-go-diff
+           go-golang-org-x-xerrors
+           go-golang.org-x-sync-errgroup
+           go-mvdan-cc-gofumpt
+           go-mvdan-cc-xurls-v2))
     (synopsis "Official language server for the Go language")
     (description
      "@code{gopls} (pronounced \"Go please\") is the official Go language server
 developed by the Go team. It provides IDE features to any LSP-compatible
 editor.")
-    (home-page "https://pkg.go.dev/golang.org/x/tools/gopls")))
+    (home-page "https://pkg.go.dev/golang.org/x/tools/gopls")
+    (license license:bsd-3)))
 
 ;; 20210710T203807+0100
 (define-public go-mvdan-cc-xurls-v2
@@ -82,8 +89,8 @@ editor.")
     (arguments
      '(#:import-path "mvdan.cc/xurls/v2"))
     (propagated-inputs
-      `(("go-gopkg-in-check-v1" ,go-gopkg-in-check-v1)
-        ("go-github-com-rogpeppe-go-internal" ,go-github-com-rogpeppe-go-internal)))
+     (list go-gopkg-in-check-v1
+           go-github-com-rogpeppe-go-internal))
     (home-page "https://mvdan.cc/xurls/v2")
     (synopsis "xurls")
     (description
@@ -1144,9 +1151,9 @@ range of pretty terminal strings.")
 
 ;;; :begin github.com/cli/cli
 
-(define-public go-github-com-cli-cli
+(define-public github-cli-v2
   (package
-    (name "go-github-com-cli-cli")
+    (name "github-cli-v2")
     (version "2.3.0")
     (source
      (origin
@@ -1158,8 +1165,10 @@ range of pretty terminal strings.")
        (sha256
         (base32 "0qf19rkckbfwcsk9rkfnbrzrksb6r50p7gda25lbw86n2c3k18wp"))))
     (build-system go-build-system)
-    (arguments '(#:import-path "github.com/cli/cli"))
-    (propagated-inputs
+    (arguments
+     '(#:unpack-path "github.com/cli/cli/v2"
+       #:import-path "github.com/cli/cli/v2"))
+    (native-inputs
      (list go-github-com-alecaivazis-survey-v2
            go-github-com-briandowns-spinner
            go-github-com-charmbracelet-glamour
@@ -1169,14 +1178,14 @@ range of pretty terminal strings.")
            go-github-com-cpuguy83-go-md2man-v2
            go-github-com-creack-pty
            go-github-com-gabriel-vasile-mimetype
-           go-github-com-cli-shurcool-graphql
-           go-github-com-google-go-cmp
-           go-github-com-google-shlex
+           ;; go-github-com-cli-shurcool-graphql
+           ;; go-github-com-google-go-cmp
+           ;; go-github-com-google-shlex
            go-github-com-hashicorp-go-version
-           go-github-com-henvic-httpretty
-           go-github-com-itchyny-gojq
+           ;; go-github-com-henvic-httpretty
+           ;; go-github-com-itchyny-gojq
            go-github-com-kballard-go-shellquote
-           go-github-com-makenowjust-heredoc
+           ;; go-github-com-makenowjust-heredoc
            go-github-com-mattn-go-colorable
            go-github-com-mattn-go-isatty
            go-github-com-mattn-go-runewidth
@@ -1184,15 +1193,15 @@ range of pretty terminal strings.")
            go-github-com-mitchellh-go-homedir
            go-github-com-muesli-termenv
            go-github-com-rivo-uniseg
-           go-github-com-shurcool-githubv4
+           ;; go-github-com-shurcool-githubv4
            go-github-com-spf13-cobra
            go-github-com-spf13-pflag
            go-github-com-stretchr-objx
            go-github-com-stretchr-testify
            go-golang-org-x-crypto
            go-golang-org-x-sync
-           go-golang-org-x-sys ; +0
-           go-golang-org-x-term ; +0
+           go-golang-org-x-sys
+           go-golang-org-x-term
            go-gopkg-in-yaml-v3))
     (home-page "https://github.com/cli/cli")
     (synopsis "GitHub CLI")
@@ -1218,12 +1227,9 @@ with @code{git} and your code.")
          "1ipzr2p3j7il4rl4fdi6zsn739p81k2achsbj1s4z5vfrb3jj5kn"))))
     (build-system go-build-system)
     (arguments
-     '(#:phases
-       (modify-phases %standard-phases
-         (add-before 'check 'set-env
-           (lambda* (#:key inputs #:allow-other-keys)
-             (setenv "EDITOR"
-                     (string-append (assoc-ref inputs "vim") "bin/vim")))))
+     ;; NOTE: (Sharlatan-20211223T223516+0000): Test requires vi in PATH wich is
+     ;; not packed in Guix https://github.com/AlecAivazis/survey/issues/396
+     '(#:tests? #f
        #:import-path "github.com/AlecAivazis/survey"))
     (native-inputs
      (list go-github-com-davecgh-go-spew
@@ -1347,6 +1353,188 @@ through it's pseudoterminal.")
     (synopsis "PTY interface for Go")
     (description "Pty is a Go package for using Unix pseudo-terminals.")
     (license license:expat)))
+
+(define-public go-github-com-briandowns-spinner
+  (package
+    (name "go-github-com-briandowns-spinner")
+    (version "1.18.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/briandowns/spinner.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "11lfyfj97rzmz7n0z6qfhqcgr3lilkjamppg4j9wivagk4879jil"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/briandowns/spinner"))
+    (native-inputs
+     (list go-github-com-mattn-go-colorable
+           go-github-com-fatih-color))
+    (home-page
+     "https://github.com/briandowns/spinner")
+    (synopsis "Progress indicator for any terminal application")
+    (description
+     "This is a simple package to add a spinner or progress indicator to any
+terminal application. ")
+    (license license:asl2.0)))
+
+(define-public go-github-com-cli-browser
+  (package
+    (name "go-github-com-cli-browser")
+    (version "1.1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cli/browser.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "13z27cc0a184bhprspwclzbvrzsrfd5qyk5r2djfx5nm85igxr0n"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cli/browser"))
+    (native-inputs
+     (list go-golang-org-x-sys))
+    (home-page "https://github.com/cli/browser")
+    (synopsis "Helpers to open URLs, or files in the default web browser")
+    (description
+     "This library provides helpers to open URLs, readers, or files in the
+system default web browser.")
+    (license license:bsd-2)))
+
+(define-public go-github-com-cli-oauth
+  (package
+    (name "go-github-com-cli-oauth")
+    (version "0.9.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cli/oauth.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1h45ms2772mcbki0pj1i396i77w7j3jbcbzi7zpn7i6hsmj1rvd3"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cli/oauth"))
+    (native-inputs
+     (list go-github-com-cli-browser))
+    (home-page "https://github.com/cli/oauth")
+    (synopsis "Perform OAuth Device flow and Web application flow in Go")
+    (description
+     "This is a library for performing OAuth Device flow and Web application
+flow in Go client apps.")
+    (license license:expat)))
+
+(define-public go-github-com-cpuguy83-go-md2man-v2
+  (package
+    (name "go-github-com-cpuguy83-go-md2man-v2")
+    (version "2.0.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cpuguy83/go-md2man.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "051ljpzf1f5nh631lvn53ziclkzmx5lza8545mkk6wxdfnfdcx8f"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cpuguy83/go-md2man"))
+    (native-inputs
+     (list go-github-com-shurcool-sanitized-anchor-name
+           go-github-com-russross-blackfriday-v2
+           go-github-com-pmezard-go-difflib))
+    (home-page "https://github.com/cpuguy83/go-md2man")
+    (synopsis "Convert Markdown into Man pages")
+    (description
+     "This package converts Markdown into Roff Man pages.")
+    (license license:expat)))
+
+(define-public go-github-com-russross-blackfriday-v2
+  (package
+    (name "go-github-com-russross-blackfriday-v2")
+    (version "2.1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/russross/blackfriday")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0d1rg1drrfmabilqjjayklsz5d0n3hkf979sr3wsrw92bfbkivs7"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/russross/blackfriday"))
+    (home-page "https://github.com/russross/blackfriday")
+    (synopsis "Markdown processor implemented in Go")
+    (description
+     "Blackfriday is a Markdown processor implemented in Go. It is paranoid
+about its input (so you can safely feed it user-supplied data), it is fast, it
+supports common extensions (tables, smart punctuation substitutions, etc.), and
+it is safe for all utf-8 (unicode) input.")
+    (license license:bsd-2)))
+
+(define-public go-github-com-gabriel-vasile-mimetype
+  (package
+    (name "go-github-com-gabriel-vasile-mimetype")
+    (version "1.4.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/gabriel-vasile/mimetype")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "0ivxwgb62dyvj8viyszn7p74lmykcplfgz38qrv5hwdf8i5xd53a"))))
+    (build-system go-build-system)
+    (arguments
+     ;; FIXME: Cannot open 'supported_mimes.md'
+     '(#:tests? #f
+       #:import-path
+       "github.com/gabriel-vasile/mimetype"
+       #:phases
+       (modify-phases %standard-phases
+         ;; The files are read-only
+         (add-before 'reset-gzip-timestamps 'make-gz-files-writable
+           (lambda* (#:key outputs #:allow-other-keys)
+             (for-each make-file-writable
+                       (find-files (string-append (assoc-ref outputs "out"))
+                                   ".*\\.gz$"))
+             #t)))))
+    (propagated-inputs
+     (list go-golang-org-x-net))
+    (home-page
+     "https://github.com/gabriel-vasile/mimetype")
+    (synopsis "A fast golang library for MIME type and file extension detection")
+    (description "This is a package for detecting MIME types and extensions
+based on magic numbers.  Features include
+
+@itemize
+@item fast and precise MIME type and file extension detection
+@item long list of supported MIME types
+@item common file formats are prioritized
+@item small and simple API
+@item handles MIME type aliases
+@item thread safe
+@item low memory usage, besides the file header
+@end itemize")
+    (license license:expat)))
+
 
 
 ;;; :end github.com/cli/cli
