@@ -59,26 +59,26 @@
               (string-append "-DCMAKE_INSTALL_LIBDIR=" out "/lib")
               (string-append "-DCMAKE_INSTALL_PREFIX=" out)))))
    (native-inputs
-    (list pkg-config
-          python-wrapper
+    (list ocaml
           perl
-          ocaml
+          python-wrapper
+          pkg-config
           swig))
    (inputs
     (list freetype
           gfortran
           libltdl
           lua
-          python-numpy
           octave
           pango
+          perl-xml-dom
+          perl-xml-parser
+          python-numpy
           qhull
           shapelib
           tcl
           tk
-          wxwidgets
-          perl-xml-dom
-          perl-xml-parser))
+          wxwidgets))
    (home-page "http://plplot.org/")
    (synopsis "Scientific graphics plotting library")
    (description
