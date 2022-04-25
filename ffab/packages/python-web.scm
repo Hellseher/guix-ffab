@@ -1,61 +1,91 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages python-web)
   #:use-module (ffab packages python-xyz)
   #:use-module (ffab packages python-crypto)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages python-xyz)
-  #:use-module (gnu packages python-web)
-  #:use-module (gnu packages python-crypto)
-  #:use-module (gnu packages web)
-  #:use-module (gnu packages python-check)
   #:use-module (gnu packages check)
-  #:use-module (gnu packages python-compression)
+  #:use-module (gnu packages compression)
   #:use-module (gnu packages databases)
+  #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-compression)
+  #:use-module (gnu packages python-crypto)
+  #:use-module (gnu packages python-web)
+  #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages web)
+  #:use-module (gnu packages xml)
   #:use-module (guix build-system python)
   #:use-module (guix download)
+  #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
 (define-public python-pywb
   (package
     (name "python-pywb")
-    (version "2.5.0")
+    (version "2.6.7")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "pywb" version))
        (sha256
-        (base32 "1agsr9hhk77ylc320hfxn7b4jjwnj0ld4dx22dvr65iy187hqkmk"))))
+        (base32 "1akyhx2kzb5gv7ys3c3vvjlb5066d3lixp09sr0ahjw5jmrg3fqr"))))
     (build-system python-build-system)
     (arguments
-     ;; FIXME: (Sharlatan-20210602T213319+0100): Test failed to pass
-     ;;
-     ;; Could not find suitable distribution for Requirement.parse('fakeredis<1.0')
-     ;;
-     ;; current availalbe version in Guix - 1.2.1
-     `(#:tests? #f))
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "py.test" "-v" "--cov" "pywb" "tests")))))))
     (native-inputs
-     `(("python-pytest" ,python-pytest)
-       ("python-fakeredis" ,python-fakeredis)
-       ("python-pytest-cov" ,python-pytest-cov)))
+     (list python-coverage
+           python-fakeredis
+           python-httpbin
+           python-lxml
+           python-mock
+           python-pytest
+           python-pytest-cov
+           python-ujson
+           python-urllib3
+           python-webtest))
     (propagated-inputs
-     `(("python-babel" ,python-babel)
-       ("python-brotli" ,python-brotli)
-       ("python-gevent" ,python-gevent)
-       ("python-jinja2" ,python-jinja2)
-       ("python-portalocker" ,python-portalocker)
-       ("python-py3amf" ,python-py3amf)
-       ("python-pyyaml" ,python-pyyaml)
-       ("python-redis" ,python-redis)
-       ("python-requests" ,python-requests)
-       ("python-six" ,python-six)
-       ("python-surt" ,python-surt)
-       ("python-tldextract" ,python-tldextract)
-       ("python-warcio" ,python-warcio)
-       ("python-webassets" ,python-webassets)
-       ("python-webencodings" ,python-webencodings)
-       ("python-werkzeug" ,python-werkzeug)
-       ("python-wsgiprox" ,python-wsgiprox)
-       ("redis" ,redis)))
+     (list python-babel
+           python-brotli
+           python-gevent
+           python-jinja2
+           python-portalocker
+           python-py3amf
+           python-pyyaml
+           python-redis
+           python-requests
+           python-six
+           python-surt
+           python-tldextract
+           python-ua-parser
+           python-warcio
+           python-webassets
+           python-webencodings
+           python-werkzeug
+           python-wsgiprox
+           redis))
     (home-page "https://github.com/webrecorder/pywb")
     (synopsis "Web Archiving Toolkit for replay and recording of web archives")
     (description
@@ -69,113 +99,33 @@ archives large and small as accurately as possible.")
     (version "0.3.1")
     (source
      (origin
-       (method url-fetch)
-       (uri (pypi-uri "surt" version))
+       ;; The source distributed on PyPI doesn't include tests.
+       ;; Release is not tagged
+       ;; https://github.com/internetarchive/surt/issues/26
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/internetarchive/surt")
+             (commit "6934c321b3e2f66af9c001d882475949f00570c5")))
+       (file-name (git-file-name name version))
        (sha256
-        (base32 "08271j6fb997nz1i6qjvml2yr2f01szsdg7rxrbzf90zq2v7w5i4"))))
+        (base32 "0gkgf04glncc7wyxlxfzqrqwf0qgyp33sib36l05vngaayj0s8x5"))))
     (build-system python-build-system)
     (arguments
-     `(#:tests? #f
-       ;; #:phases
-    ;;    (modify-phases %standard-phases
-    ;;      (replace 'check
-    ;;        (lambda _
-    ;;          (setenv "PYTHONPATH" (string-append "./build/lib:"
-    ;;                                              (getenv "PYTHONPATH")))
-    ;;          (invoke "pytest" "-vv" "tests")
-    ;;          #t)))
-          ))
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "py.test" "-v" "--cov" "surt" "tests")))))))
     (native-inputs
-     `(("python-pytest" ,python-pytest)
-       ("python-pytest-cov" ,python-pytest-cov)))
+     (list python-pytest
+           python-pytest-cov))
     (propagated-inputs
-     `(("python-six" ,python-six)
-       ("python-tldextract" ,python-tldextract)))
+     (list python-six
+           python-tldextract))
     (home-page "https://github.com/internetarchive/surt")
-    (synopsis "Sort-friendly URI Reordering Transform (SURT) python package.")
+    (synopsis "Sort-friendly URI Reordering Transform (SURT) python package")
     (description
      "Sort-friendly URI Reordering Transform (SURT) python package.")
     (license license:agpl3+)))
-
-(define-public python-warcio
-  (package
-    (name "python-warcio")
-    (version "1.7.4")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "warcio" version))
-       (sha256
-        (base32 "0lga8f8p936if8vj1a0l3dxq4mas6dzj8wq9bgg59inaksnrv271"))))
-    (build-system python-build-system)
-    (arguments
-     ;; FIXME: Test failed to pass
-     ;;
-     ;; E   ImportError: attempted relative import with no known parent package
-     ;;
-     `(#:tests? #f))
-    (native-inputs
-     `(("python-wsgiprox" ,python-wsgiprox)
-       ("python-httpbin" ,python-httpbin)
-       ("python-pytest" ,python-pytest)
-       ("python-pytest-cov" ,python-pytest-cov)))
-    (propagated-inputs
-     `(("python-six" ,python-six)))
-    (home-page "https://github.com/webrecorder/warcio")
-    (synopsis "Streaming WARC (and ARC) IO library")
-    (description
-     "Streaming WARC (and ARC) IO library")
-    (license license:asl2.0)))
-
-(define-public python-wsgiprox
-  (package
-    (name "python-wsgiprox")
-    (version "1.5.2")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "wsgiprox" version))
-       (sha256
-        (base32 "11fsm199pvwbmqx2lccznvws65aam1rqqv0w79gal8hispwgd5rs"))))
-    (build-system python-build-system)
-    (arguments
-     ;; FIXME: Test failed with:
-     ;;
-     ;; error: unrecognized arguments: --doctest-module test/
-     ;;
-     `(#:tests? #f))
-    (native-inputs
-     `(("python-waitress" ,python-waitress)
-       ("python-websocket-client" ,python-websocket-client)
-       ("python-gevent" ,python-gevent)
-       ("python-pytest" ,python-pytest)
-       ("python-mock" ,python-mock)
-       ("python-pytest-cov" ,python-pytest-cov)))
-    (propagated-inputs
-     `(("python-certauth" ,python-certauth)
-       ("python-six" ,python-six)))
-    (home-page "https://github.com/webrecorder/wsgiprox")
-    (synopsis "HTTP/S proxy with WebSockets over WSGI")
-    (description
-     "HTTP/S proxy with WebSockets over WSGI")
-    (license license:asl2.0)))
-
-(define-public python-sentry-sdk
-  (package
-   (name "python-sentry-sdk")
-   (version "1.5.1")
-   (source
-    (origin
-     (method url-fetch)
-     (uri (pypi-uri "sentry-sdk" version))
-     (sha256
-      (base32 "1a7m8hwk0ls7k59ly1hx43nrzxzybbs7warccxyyqjqyc7b5f5ra"))))
-   (build-system python-build-system)
-    (arguments
-     ;; Tests require DB access
-     `(#:tests? #f))
-   (propagated-inputs (list python-certifi python-urllib3))
-   (home-page "https://github.com/getsentry/sentry-python")
-   (synopsis "Python client for Sentry (https://sentry.io)")
-   (description "Python client for Sentry (https://sentry.io)")
-   (license license:bsd-3)))

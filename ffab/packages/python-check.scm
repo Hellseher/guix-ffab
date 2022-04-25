@@ -1,3 +1,21 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages python-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages check)
@@ -34,23 +52,32 @@
 (define-public python-pytest-mypy
   (package
     (name "python-pytest-mypy")
-    (version "0.8.1")
+    (version "0.9.1")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "pytest-mypy" version))
        (sha256
-        (base32 "049v7y4zv2l0ymj03casr5fad8hm89lvvhx1rd7ha7dzlhimg98z"))))
+        (base32
+         "0p5bd4r4gbwk1h7mpx1jkhdwkckapfz24bp9x5mmqb610ps3pylz"))))
     (build-system python-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         (replace 'check
+           (lambda* (#:key tests? #:allow-other-keys)
+             (when tests?
+               (invoke "pytest" "-vv")))))))
     (native-inputs
-     `(("python-setuptools-scm" ,python-setuptools-scm/next)))
+     (list python-pexpect
+           python-pytest-xdist ;; for pytest -n auto
+           python-setuptools-scm))
     (propagated-inputs
-     `(("python-attrs" ,python-attrs)
-       ("python-filelock" ,python-filelock)
-       ("python-mypy" ,python-mypy)
-       ("python-pytest" ,python-pytest)))
+     (list python-attrs
+           python-filelock
+           python-mypy
+           python-pytest))
     (home-page "https://github.com/dbader/pytest-mypy")
     (synopsis "Mypy static type checker plugin for Pytest")
-    (description
-     "Mypy static type checker plugin for Pytest")
+    (description "Mypy static type checker plugin for Pytest")
     (license license:expat)))
