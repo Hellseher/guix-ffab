@@ -1,0 +1,61 @@
+From 31ec5424f918fd0fef27181b3ce9e5772ae8e303 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 4 Jan 2022 20:50:08 +0000
+Subject: [PATCH 3/5] gnu: asdf-astropy: Enable tests
+
+* gnu/packages/astronomy.scm: (python-asdf-astropy): Enable tests.
+  [native-inputs]: Add python-h5py, python-matplotlib, python-pandas,
+  python-scipy. Remove python-tox.
+  [description]: Extand description string.
+---
+ gnu/packages/astronomy.scm | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b3d6a85240..dc3a6accb6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1376,16 +1376,22 @@ (define-public python-asdf-astropy
+         (base32 "0bzgah7gskvnz6jcrzipvzixv8k2jzjkskqwxngzwp4nxgjbcvi4"))))
+     (build-system python-build-system)
+     (arguments
+-     (list
+-      ;; NOTE: (Sharlatan-20211229T161056+0000): tests require tox and failing
+-      ;; after not finding setuptools_scm when enabled.
+-      #:tests? #f))
++     `(#:phases
++       (modify-phases %standard-phases
++         (replace 'check
++           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
++             (when tests?
++               (add-installed-pythonpath inputs outputs)
++               (invoke "python" "-m" "pytest")))))))
+     (native-inputs
+      (list python-coverage
++           python-h5py
++           python-matplotlib
++           python-pandas
+            python-pytest-astropy
++           python-scipy
+            python-semantic-version
+-           python-setuptools-scm
+-           python-tox))
++           python-setuptools-scm))
+     (propagated-inputs
+      (list python-asdf
+            python-asdf-coordinates-schemas
+@@ -1395,8 +1401,9 @@ (define-public python-asdf-astropy
+            python-packaging))
+     (home-page "https://github.com/astropy/asdf-astropy")
+     (synopsis "ASDF serialization support for astropy")
+-    (description "ASDF serialization support for astropy")
+-    ;; Copyright (C) 2021 Association of Universities for Research in Astronomy (AURA)
++    (description
++     "This package includes plugins that provide ASDF serialization support for
++astropy objects.")
+     (license license:bsd-3)))
+ 
+ (define-public python-astroalign
+-- 
+2.34.0
+

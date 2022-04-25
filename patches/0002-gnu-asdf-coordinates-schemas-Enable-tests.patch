@@ -1,0 +1,48 @@
+From 7cac0fa900b92da2ad81cf0c4f02e63c3c992e47 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 4 Jan 2022 20:47:17 +0000
+Subject: [PATCH 2/5] gnu: asdf-coordinates-schemas: Enable tests
+
+* gnu/packages/astronomy.scm: (python-asdf-coordinates-schemas): Enable tests.
+  [native-inputs]: Add python-pytest.
+  [description]: Extand description string.
+---
+ gnu/packages/astronomy.scm | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e7c1d6fbf6..b3d6a85240 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1315,17 +1315,23 @@ (define-public python-asdf-coordinates-schemas
+         (base32 "0ahwhsz5jzljnpkfd2kvspirg823lnj5ip9sfkd9cx09z1nlz8jg"))))
+     (build-system python-build-system)
+     (arguments
+-     (list
+-      ;; NOTE: (Sharlatan-20211229T161056+0000): tests require tox
+-      #:tests? #f))
++     `(#:phases
++       (modify-phases %standard-phases
++         (replace 'check
++           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
++             (when tests?
++               (add-installed-pythonpath inputs outputs)
++               (invoke "python" "-m" "pytest")))))))
+     (native-inputs
+-     (list python-semantic-version
++     (list python-pytest
++           python-semantic-version
+            python-setuptools-scm))
+     (propagated-inputs
+      (list python-asdf))
+     (home-page "https://github.com/asdf-format/asdf-coordinates-schemas")
+     (synopsis "ASDF coordinates schemas")
+-    (description "ASDF coordinates schemas")
++    (description
++     "This package provides ASDF schemas for validating coordinates tags.")
+     (license license:bsd-3)))
+ 
+ (define-public python-asdf-wcs-schemas
+-- 
+2.34.0
+

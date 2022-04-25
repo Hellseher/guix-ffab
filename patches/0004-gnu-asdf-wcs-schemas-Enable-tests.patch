@@ -1,0 +1,56 @@
+From 8ab774217a93cf0d4cc1995ee97f1485e168a2b6 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 4 Jan 2022 21:10:55 +0000
+Subject: [PATCH 4/5] gnu: asdf-wcs-schemas: Enable tests
+
+* gnu/packages/astronomy.scm: (python-asdf-wcs-schemas): Enable tests.
+  [native-inputs]: Add python-pytest.
+  [inputs]->[propagated-inputs]: To allow this package to be used as
+  library input.
+---
+ gnu/packages/astronomy.scm | 24 +++++++++++++-----------
+ 1 file changed, 13 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index dc3a6accb6..5538f77f16 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1346,22 +1346,24 @@ (define-public python-asdf-wcs-schemas
+         (base32 "0khyab9mnf2lv755as8kwhk3lqqpd3f4291ny3b9yp3ik86fzhz1"))))
+     (build-system python-build-system)
+     (arguments
+-     ;; FIXME: (Sharlatan-20211229T155217+0000): tox can't find setuptools,
+-     ;; check if running tests with tox is still required.
+-     (list #:tests? #f))
++     `(#:phases
++       (modify-phases %standard-phases
++         (replace 'check
++           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
++             (when tests?
++               (add-installed-pythonpath inputs outputs)
++               (invoke "python" "-m" "pytest")))))))
+     (native-inputs
+-     (list python-semantic-version
++     (list python-pytest
+            python-setuptools-scm
+-           python-tox))
+-    (inputs
++           python-semantic-version))
++    (propagated-inputs
+      (list python-asdf))
+     (home-page "https://github.com/asdf-format/asdf-wcs-schemas")
+     (synopsis "ASDF WCS Schemas")
+-    (description "World Coordinate System (WCS) as the Advanced Scientific Data
+-Format (ASDF) schemas")
+-    ;; FIXME: (Sharlatan-20220102T211658+0000): Check the lisense type
+-    ;; Copyright (C) 2021 Association of Universities for Research in Astronomy (AURA)
+-    ;; https://github.com/asdf-format/asdf-wcs-schemas/blob/main/LICENSE
++    (description
++     "This package provides ASDF schemas for validating World Coordinate
++System (WCS) tags.")
+     (license license:bsd-3)))
+ 
+ (define-public python-asdf-astropy
+-- 
+2.34.0
+

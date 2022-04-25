@@ -1,0 +1,68 @@
+From 6c7c70d12685dab78cc1687f003f3cdc18d359f4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 4 Jan 2022 21:21:31 +0000
+Subject: [PATCH 5/5] gnu: gwcs: Refactor package
+
+* gnu/packages/astronomy.scm: (python-gwcs): Refactor package.
+  [arguments]: Drop using gexp
+  [inputs]->[propagated-inputs]: To allow using package as in input library.
+  [lisense]: Add  BSD-3 lisense
+---
+ gnu/packages/astronomy.scm | 23 +++++++++--------------
+ 1 file changed, 9 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5538f77f16..5c8bffdd57 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -66,7 +66,6 @@ (define-module (gnu packages astronomy)
+   #:use-module (guix build-system cmake)
+   #:use-module (guix build-system gnu)
+   #:use-module (guix build-system python)
+-  #:use-module (guix gexp)
+   #:use-module (ice-9 match)
+   #:use-module (srfi srfi-1))
+ 
+@@ -1470,15 +1469,13 @@ (define-public python-gwcs
+         (base32 "194j49m8xjjzv9pp8cnj06igz8sdxb0nphyybcc7mhigw0f0kr30"))))
+     (build-system python-build-system)
+     (arguments
+-     (list #:phases
+-           #~(modify-phases %standard-phases
+-               (replace 'check
+-                 (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+-                   (when tests?
+-                     (add-installed-pythonpath inputs outputs)
+-                     ;; NOTE: (Sharlatan-20211229T163203+0000): Check if tests
+-                     ;; need to be run via tox
+-                     (invoke "python" "-m" "pytest" "--pyargs" "gwcs")))))))
++     `(#:phases
++       (modify-phases %standard-phases
++         (replace 'check
++           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
++             (when tests?
++               (add-installed-pythonpath inputs outputs)
++               (invoke "python" "-m" "pytest")))))))
+     (native-inputs
+      (list python-jsonschema
+            python-jmespath
+@@ -1487,7 +1484,7 @@ (define-public python-gwcs
+            python-pyyaml
+            python-semantic-version
+            python-setuptools-scm))
+-    (inputs
++    (propagated-inputs
+      (list python-asdf
+            python-asdf-astropy
+            python-astropy
+@@ -1504,6 +1501,4 @@ (define-public python-gwcs
+ between pixel and world coordinates.  It supports a data model which includes the
+ entire transformation pipeline from input coordinates (detector by default) to
+ world coordinates.  It is tightly integrated with Astropy.")
+-    ;; NOTE: (Sharlatan-20211229T210517+0000): There is no reference to any
+-    ;; license in source.
+-   (license #f)))
++   (license license:bsd-3)))
+-- 
+2.34.0
+
