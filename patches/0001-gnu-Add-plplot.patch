@@ -1,18 +1,26 @@
-From d4edcdcd71cc2c47caf2511abeb1bf153434d25c Mon Sep 17 00:00:00 2001
+From f190a7f646d8f1d7d212663a629adeb33414eb6a Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Thu, 4 Feb 2021 20:36:32 +0000
+Date: Fri, 13 May 2022 16:13:57 +0100
 Subject: [PATCH] gnu: Add plplot
 
-* gnu/packages/maths.scm (plplot): New variable
+* gnu/packages/maths.scm (plplot): New variable.
 ---
- gnu/packages/maths.scm | 60 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ gnu/packages/maths.scm | 55 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
 diff --git a/gnu/packages/maths.scm b/gnu/packages/maths.scm
-index eff1480e62..cfc57734da 100644
+index 98e239d5bd..641b80f572 100644
 --- a/gnu/packages/maths.scm
 +++ b/gnu/packages/maths.scm
-@@ -107,6 +107,7 @@
+@@ -50,6 +50,7 @@
+ ;;; Copyright © 2021 Jean-Baptiste Volatier <jbv@pm.me>
+ ;;; Copyright © 2021 Guillaume Le Vaillant <glv@posteo.net>
+ ;;; Copyright © 2021 Pierre-Antoine Bouttier <pierre-antoine.bouttier@univ-grenoble-alpes.fr>
++;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -123,6 +124,7 @@ (define-module (gnu packages maths)
    #:use-module (gnu packages llvm)
    #:use-module (gnu packages logging)
    #:use-module (gnu packages lua)
@@ -20,22 +28,19 @@ index eff1480e62..cfc57734da 100644
    #:use-module (gnu packages gnome)
    #:use-module (gnu packages guile)
    #:use-module (gnu packages xorg)
-@@ -131,6 +132,7 @@
-   #:use-module (gnu packages tbb)
-   #:use-module (gnu packages scheme)
+@@ -152,6 +154,7 @@ (define-module (gnu packages maths)
+   #:use-module (gnu packages serialization)
    #:use-module (gnu packages shells)
+   #:use-module (gnu packages sphinx)
 +  #:use-module (gnu packages swig)
    #:use-module (gnu packages tcl)
    #:use-module (gnu packages texinfo)
    #:use-module (gnu packages tex)
-@@ -954,6 +956,64 @@ plotting engine by third-party applications like Octave.")
+@@ -1123,6 +1126,58 @@ (define-public gnuplot
      (license (license:fsf-free
                "http://gnuplot.cvs.sourceforge.net/gnuplot/gnuplot/Copyright"))))
  
 +(define-public plplot
-+  ;; TODO: (Sharlatan-20210204T203350+0000): It needs to be split int some other
-+  ;; logical package like plplot-gtk plplot-qt plplot-minimal etc. For now I try
-+  ;; to include as much bindings as I could achieve.
 +  (package
 +    (name "plplot")
 +    (version "5.15.0")
@@ -43,46 +48,43 @@ index eff1480e62..cfc57734da 100644
 +     (origin
 +       (method git-fetch)
 +       (uri (git-reference
-+             ;; Official mirror in case Sourseforge blocks access
-+             ;; (url "https://github.com/PLplot/PLplot")
++             ;; Mirror: https://github.com/PLplot/PLplot
 +             (url "https://git.code.sf.net/p/plplot/plplot")
 +             (commit (string-append name "-" version))))
 +       (sha256
-+        (base32 "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
++        (base32
++         "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
 +       (file-name (git-file-name name version))))
 +    (build-system cmake-build-system)
 +    (arguments
-+     ;; NOTE: (Sharlatan-20210204T120351+0000): Tests failing on examples_cxx
-+     `(#:tests? #f
-+       #:configure-flags
-+       (let ((out (assoc-ref %outputs "out")))
-+         (list
-+          ;; "-DBUILD_TEST=ON"
-+          "-DENABLE_wxwidgets=ON"
-+          "-DCMAKE_BUILD_TYPE=Release"
-+          "-DCMAKE_SKIP_BUILD_RPATH=OFF"
-+          (string-append "-DCMAKE_INSTALL_LIBDIR=" out "/lib")
-+          (string-append "-DCMAKE_INSTALL_PREFIX=" out)))))
++     (list
++      #:configure-flags
++      #~(list
++         "-DBUILD_TEST=ON"
++         (string-append "-DCMAKE_INSTALL_LIBDIR=" #$output "/lib")
++         (string-append "-DCMAKE_INSTALL_PREFIX=" #$output))))
 +    (native-inputs
-+     `(("pkg-config" ,pkg-config)
-+       ("swig" ,swig)))
++     (list perl
++           python-wrapper
++           pkg-config
++           swig))
 +    (inputs
-+     `(("freetype", freetype)
-+       ("gfortran" ,gfortran)
-+       ("libltdl" ,libltdl)
-+       ("lua", lua)
-+       ("numpy", python-numpy)
-+       ("octave", octave)
-+       ("pango" ,pango)
-+       ("perl", perl)
-+       ("python", python)
-+       ("qhull" ,qhull)
-+       ("shapelib" ,shapelib)
-+       ("tcl", tcl)
-+       ("tk", tk)
-+       ("wxwidgets" ,wxwidgets)
-+       ("xml-dom" ,perl-xml-dom)
-+       ("xml-dom" ,perl-xml-parser)))
++     (list freetype
++           camlidl
++           gfortran
++           libltdl
++           lua
++           ocaml
++           octave
++           pango
++           perl-xml-dom
++           perl-xml-parser
++           python-numpy
++           qhull
++           shapelib
++           tcl
++           tk
++           wxwidgets))
 +    (home-page "http://plplot.org/")
 +    (synopsis "Scientific graphics plotting library")
 +    (description
@@ -94,5 +96,5 @@ index eff1480e62..cfc57734da 100644
    (package
      (name "gctp")
 -- 
-2.30.0
+2.35.1
 
