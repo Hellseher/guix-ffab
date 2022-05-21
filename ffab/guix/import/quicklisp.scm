@@ -57,7 +57,7 @@
   #:use-module (guix packages)
   #:use-module (gnu packages)
   #:export (distinfo->alist
-            systems->alist
+            parse-systems
             %test-systems
             distribution-spec
             parse-systems.txt
@@ -114,33 +114,59 @@
 3bmd 3bmd-ext-definition-lists 3bmd-ext-definition-lists 3bmd alexandria asdf colorize
 3bmd 3bmd-ext-math 3bmd-ext-math 3bmd asdf esrap
 3bmd 3bmd-ext-tables 3bmd-ext-tables 3bmd asdf
-3bmd 3bmd-ext-wiki-links 3bmd-ext-wiki-links")
+3bmd 3bmd-ext-wiki-links 3bmd-ext-wiki-links 3bmd asdf
+3bmd 3bmd-youtube 3bmd-youtube 3bmd asdf esrap
+3bmd 3bmd-youtube-tests 3bmd-youtube-tests 3bmd-youtube asdf fiasco
+3bz 3bz 3bz alexandria asdf babel cffi mmap nibbles trivial-features
+3d-matrices 3d-matrices 3d-matrices 3d-vectors asdf documentation-utils
+3d-matrices 3d-matrices-test 3d-matrices-test 3d-matrices asdf parachute
+3d-quaternions 3d-quaternions 3d-quaternions 3d-matrices 3d-vectors asdf documentation-utils
+3d-quaternions 3d-quaternions-test 3d-quaternions-test 3d-quaternions asdf parachute
+3d-transforms 3d-transforms 3d-transforms 3d-matrices 3d-quaternions 3d-vectors asdf documentation-utils
+3d-transforms 3d-transforms-test 3d-transforms-test 3d-transforms asdf parachute
+3d-vectors 3d-vectors 3d-vectors asdf documentation-utils
+3d-vectors 3d-vectors-test 3d-vectors-test 3d-vectors asdf parachute
+a-cl-logger a-cl-logger a-cl-logger alexandria asdf cl-interpol cl-json closer-mop exit-hooks iterate local-time osicat symbol-munger
+a-cl-logger a-cl-logger-logstash a-cl-logger-logstash a-cl-logger asdf cl-json zmq
+a-cl-logger a-cl-logger a-cl-logger-tests a-cl-logger lisp-unit2
+able able able cl-fad ltk trivial-gray-streams
+access access access alexandria asdf cl-ppcre closer-mop iterate
+access access access/test access lisp-unit2
+acclimation acclimation acclimation asdf
+acclimation acclimation-temperature acclimation-temperature asdf
+adhoc adhoc adhoc asdf closer-mop
+adhoc adhoc-tests adhoc-tests adhoc asdf fiveam
+adopt adopt adopt asdf bobbin split-sequence
+adopt adopt adopt/test 1am adopt
+adopt-subcommands adopt-subcommands adopt-subcommands adopt asdf bobbin split-sequence uiop
+adopt-subcommands adopt-subcommands-test adopt-subcommands-test adopt-subcommands asdf fiveam
+advanced-readtable advanced-readtable advanced-readtable named-readtables
+aether aether aether alexandria asdf cl-heap global-vars policy-cond
+aether aether-tests aether-tests aether asdf fiasco uiop
+agnostic-lizard agnostic-lizard agnostic-lizard asdf
+agnostic-lizard agnostic-lizard-debugger-prototype agnostic-lizard-debugger-prototype agnostic-lizard asdf bordeaux-threads
+agutil agutil agutil alexandria asdf optima
+ahungry-fleece ahungry-fleece ahungry-fleece archive asdf chipz cl-json cl-yaml md5 split-sequence")
 
-(define (systems->alist systems)
-  "Convert SYSTEMS string into an alist.
-Each field of the SYSTEMS strings separated by a single space and have following sequence:
-- <field-1> :: project
-- <field-2> :: system file
-- <field-3> :: system name
-- <field-4...n> :: list of dependencies"
-  (let ((lines (string-split systems #\newline))
-        (parse (lambda (line acc)
-                 (if (string-null? line)
-                     acc
-                     (if (not (string-prefix? "#" (string-trim line)))
-                         (let ((spec (string-split line #\space)))
-                           (cons
-                            (list (cons "project" (list-ref spec 0))
-                                  (cons "system-file" (list-ref spec 1))
-                                  (cons "system-name" (list-ref spec 2))
-                                  (cons "dependencies" (if (= (length spec) 3)
-                                                           #f
-                                                           (list-tail spec 3))))
-                            acc))
+(define (parse-systems systems)
+  "Parse SYSTEMS string and return a list of metadata list and dependencies list
+of the given project. Each field of the SYSTEMS strings separated by a single
+space and have following sequence.
 
-                         )))))
-    (fold parse '() lines)))
-
+The first line starting with # of the file is a header with following format:
+- <field-0> :: project
+- <field-1> :: system file
+- <field-2> :: system name
+- <field-3...n> :: list of dependencies"
+  (let ((lines (cdr (string-split systems #\newline))))
+    (map (lambda (line)
+           (let ((spec (string-split line #\space)))
+             (append
+              (list (list-head spec 3)
+                    (if (= (length spec) 3)
+                        (list)
+                        (list-tail spec 3))))))
+         lines)))
 
 (define* (distribution-spec #:optional (distribution "quicklisp"))
   "Return the latest verion of distribution specification.
