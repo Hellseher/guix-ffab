@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-12-20 Mon 19:40:23 GMT>
+#+modified: <2022-05-23 Mon 21:01:16 BST>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -23,15 +23,15 @@ CLOSED: [2021-01-27 Wed 11:26]
 - [X] :paptch-applied-upstream <2021-01-27 Wed>
   - https://issues.guix.gnu.org/46121
 
-** TODO psfex [0/4][0%]
+** TODO psfex [1/4][25%]
 - synosis :: psf modelling and quality assessment
 - http://www.astromatic.net/software/psfex
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [1/2][50%]
+- [X] :inputs [2/2][100%]
   - [X] fftw
-  - [ ] plplot
+  - [X] plplot
 
 ** TODO scamp [0/4][0%]
 - http://www.astromatic.net/software/scamp
@@ -188,7 +188,7 @@ CLOSED: [2021-01-25 Mon 17:25]
 ** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
-* TODO astropy [1/4][25%] :author:p1:
+* TODO astropy [1/3][33%] :author:p1:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 
@@ -312,52 +312,139 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-** TODO photutils [0/4][0%]
-- https://github.com/astropy/photutils
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [7/8][87%]
-  - [X] python-astropy
-  - [X] python-numpy
-  - [X] python-scipy
-  - [X] python-matplotlib
-  - [X] python-scikit-image
-  - [X] python-scikit-learn
-  - [ ] gwcs
-  - [X] python-bottleneck
-** TODO pyvo [/][%]
-- https://github.com/astropy/pyvo
-- [ ] :packed
-- [ ] :patch-sent
-- [-] :paptch-applied-upstream
-- [-] :inputs [0/0][0%]
-** TODO astoquery [/][%]
-- [ ] :packed
-- [ ] :patch-sent
-- [-] :paptch-applied-upstream
-- [-] :inputs [0/0][0%]
-
-* TODO spacetelescope [0/1][0%] :author:
+* TODO spacetelescope [1/2][50%] :author:
 - https://github.com/spacetelescope
-** TODO gwcs [3/4][75%]
+** DONE gwcs [4/4][100%]
 - https://github.com/spacetelescope/gwcs
 - [X] :packed <2021-11-11 Thu>
 - [X] :patch-sent <2021-11-11 Thu>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-01-30 Sun>
   - https://issues.guix.gnu.org/51765
-- [X] :inputs [11/11][100%]
-  + [X] python-jsonschema
-  + [X] python-pytest
-  + [X] python-pytest-doctestplus
-  + [X] python-pyyaml
-  + [X] python-semantic-version
-  + [X] python-setuptools-scm
-  + [X] python-scipy
-  + [X] python-asdf
-  + [X] python-astropy
-  + [X] python-numpy
-  + [X] python-scipy
+- [X] :inputs [13/13][100%]
+  - [X] python-asdf (2.8.3)
+    - [X] :packed <2021-11-11 Thu>
+  - [X] python-asdf-astropy
+    - [X] :packed <2021-11-11 Thu>
+    - [X] :inputs [12/12][100%]
+      - [X] python-asdf-coordinates-schemas
+        - [X] :packed <2021-11-11 Thu>
+        - [X] :inputs [2/2][100%]
+          - [X] python-semantic-version
+          - [X] python-setuptools-scm
+      - [X] python-asdf-transform-schemas
+        - [X] :packed <2021-11-11 Thu>
+        - [X] :inputs [3/3][100%]
+          - [X] python-pytest
+          - [X] python-semantic-version
+          - [X] python-setuptools-scm
+      - [X] python-astropy
+      - [X] python-h5py
+      - [X] python-matplotlib
+      - [X] python-numpy
+      - [X] python-packaging
+      - [X] python-pandas
+      - [X] python-pytest-astropy
+      - [X] python-scipy
+      - [X] python-semantic-version
+      - [X] python-setuptools-scm
+  - [X] python-asdf-wcs-schemas
+    - [X] :packed <2021-11-11 Thu>
+    - [X] :inputs [3/3][100%]
+      - [X] python-pytest
+      - [X] python-semantic-version
+      - [X] python-setuptools-scm
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-doctestplus
+  - [X] python-pyyaml
+  - [X] python-scipy
+  - [X] python-semantic-version
+  - [X] python-setuptools-scm
+  - [X] python-jmespath
+  - [X] python-jsonschema
+** TODO jwst [0/4][0%]
+- https://github.com/spacetelescope/jwst
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [12/32][37%]
+  - [X] python-asdf
+  - [X] python-asdf-astropy
+  - [X] python-astropy
+  - [X] python-bayesicfitting [2/2]
+    - https://github.com/dokester/BayesicFitting
+    - [X] :packed <2022-05-13 Fri>
+    - [X] :inputs [5/5][100%]
+      - [X] python-astropy
+      - [X] python-future
+      - [X] python-matplotlib
+      - [X] python-numpy
+      - [X] python-scipy
+  - [ ] python-ci-watson
+  - [X] python-codecov
+  - [X] python-colorama
+  - [-] python-crds [0/2]
+    - https://github.com/spacetelescope/crds
+    - [ ] :packed
+    - [-] :inputs [15/17][88%]
+      - [X] python-asdf
+      - [X] python-astropy
+      - [X] python-bandit
+      - [X] python-filelock
+      - [X] python-flake8
+      - [X] python-ipython
+      - [X] python-lockfile
+      - [X] python-lxml
+      - [X] python-mock
+      - [X] python-nose
+      - [X] python-numpy
+      - [X] python-parsley [1/1]
+        - https://launchpad.net/parsley
+        - [X] :packed <2022-05-13 Fri>
+      - [X] python-pylint
+      - [ ] python-pysynphot
+        - https://github.com/spacetelescope/pysynphot
+        - [ ] :packed
+      - [X] python-pytest
+      - [X] python-requests
+      - [-] python-roman-datamodels [0/2]
+        - https://github.com/spacetelescope/roman_datamodels
+        - [ ] :packed
+        - [-] :inputs [6/7]
+          - [X] python-asdf
+          - [X] python-asdf-astropy
+          - [X] python-astropy
+          - [X] python-jsonschema
+          - [X] python-numpy
+          - [X] python-psutil
+          - [ ] python-rad [0/1]
+            - https://github.com/spacetelescope/rad
+            - [ ] :packed
+  - [ ] python-drizzle
+  - [X] python-flake8
+  - [ ] python-getch
+  - [X] python-gwcs
+  - [X] python-jsonschema
+  - [X] python-numpy
+  - [X] python-photutils
+  - [ ] python-poppy
+  - [ ] python-psutil
+  - [ ] python-pyparsing
+  - [ ] python-pytest
+  - [ ] python-pytest-cov
+  - [ ] python-pytest-doctestplus
+  - [ ] python-pytest-openfiles
+  - [ ] python-requests
+  - [ ] python-requests-mock
+  - [X] python-scipy
+  - [ ] python-spherical-geometry
+  - [ ] python-stcal
+  - [ ] python-stdatamodels
+  - [ ] python-stpipe
+  - [ ] python-stsci.image
+  - [ ] python-stsci.imagestats
+  - [ ] python-tweakwcs
 
 * IAUSOFA
 ** TODO sofa-c [/][%]
