@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-12-13 Mon 22:37:43 GMT>
+#+modified: <2022-05-25 Wed 23:25:38 BST>
 
 * Flow [12/17][70%]
 ** DONE cl-nst [4/4][100%]
@@ -589,7 +589,7 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] float-features
   + [X] allegro
 
-* TODO borodust [0/1][0%] :author:p3:
+* TODO borodust [0/2][0%] :author:p3:
 ** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
 - [ ] :packed
@@ -706,8 +706,30 @@ CLOSED: [2021-12-02 Thu 22:38]
   - [X] static-vectors
   - [X] trivial-features
   - [X] trivial-garbage
+** TODO claw [0/4][0%]
+- https://github.com/borodust/claw
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [1/10]
+  - [X] alexandria
+  - [ ] cffi
+  - [ ] cl-json
+  - [ ] cl-ppcre
+  - [ ] claw-support
+  - [ ] claw-utils
+  - [-] cl-resect [/][%]
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [X] :inputs [2/2]
+      - [X] alexandria
+      - [X] cffi
+  - [ ] local-time
+  - [ ] named-readtables
+  - [ ] trivial-features))
 
-* TODO Shinmera/Shirakumo [3/13][23%] :author:p5:
+* TODO Shinmera/Shirakumo [3/12][25%] :author:p5:
 ** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -855,7 +877,14 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] zpng
 - [-] :inputs-additions
   + [X] alloy
-  + [ ] backends
+  + [-] backends [1/2]
+    + [X] trial-glfw [3/3][100%]
+      - [X] cl-glfw3
+      - [X] trivial-main-thread
+      - [X] trivial-garbage
+    + [-] trial-glop [1/2][50%]
+      - [X] trivial-main-thread
+      - [ ] glop
   + [-] feedback
   + [ ] assimp
   + [ ] harmony
@@ -875,7 +904,7 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] documentation-utils
   - [X] closer-mop
   - [X] array-utils
-** TODO backends [/][%]
+
 ** TODO feedback [/][%]
 ** TODO assimp [/][%]
 ** TODO harmony [/][%]
@@ -1042,6 +1071,20 @@ https://github.com/Shirakumo/cl-mixed
   + [X] cffi
   + [X] trivial-features
   + [X] documentation-utils
+
+* TODO lispgames [0/1][0%] :author:
+** TODO glop [0/4][0%]
+- https://github.com/lispgames/glop
+- sinopsis :: Direct FFI bindings for OpenGL window and context management
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [3/5][60%]
+  - [X] sbcl-cffi
+  - [ ] sbcl-cl-opengl
+  - [ ] sbcl-glue
+  - [X] sbcl-split-sequence
+  - [X] sbcl-trivial-garbage
 
 * TODO sjl [0/1][0%] :author:p1:
 ** TODO adopt [1/4][25%]

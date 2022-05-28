@@ -1,3 +1,21 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages lisp-xyz)
   #:use-module (ffab packages lisp-check)
   #:use-module ((guix licenses) #:prefix license:)
@@ -18,10 +36,85 @@
   #:use-module (guix build lisp-utils)
   #:use-module (guix build-system asdf)
   #:use-module (guix download)
+  #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (srfi srfi-1)
   #:use-module (json))
+
+
+;; https://github.com/lispgames
+;;+begin-lispgames
+
+;; 20220525T231520+0100
+(define-public sbcl-glop
+  (let ((commit "45e722ab4a0cd2944d550bf790206b3326041e38")
+        (revision "1"))
+    (package
+      (name "sbcl-glop")
+      (version (git-version "0.1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/lispgames/glop")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1nm35kvigflfjlmsa8zwdajc61f02fh4sq08jv0wnqylhx8yg2bv"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       (list
+         #:phases
+         #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-lib-path
+             (lambda _
+               (substitute* "src/x11/xcomposite.lisp"
+                 (("libXcomposite.so" all)
+                  (string-append #$(this-package-input "libxcomposite") "/lib/" all)))
+               (substitute* "src/x11/xlib.lisp"
+                 (("libX11" all)
+                  (string-append #$(this-package-input "libx11") "/lib/" all)))
+               (substitute* "src/utils.lisp"
+                 (("libX11" all)
+                  (string-append #$(this-package-input "libx11") "/lib/" all)))
+               (substitute* "src/utils.lisp"
+                 (("libGL.so.1" all)
+                  (string-append #$(this-package-input "mesa") "/lib/" all)))
+               (substitute* "src/x11/glx.lisp"
+                 (("libGL.so" all)
+                  (string-append #$(this-package-input "mesa") "/lib/" all)))
+               (substitute* "src/x11/display-ctrl.lisp"
+                 (("libXrandr" all)
+                  (string-append #$(this-package-input "libxrandr") "/lib/" all)))
+               #t)))
+         #:test-asd-file "glop-test.asd"))
+      (native-inputs
+       (list sbcl-cl-opengl))
+      (inputs
+       (list libx11
+             libxcomposite
+             libxrandr
+             mesa
+             sbcl-cffi
+             sbcl-split-sequence
+             sbcl-trivial-garbage))
+      (home-page "https://github.com/lispgames/glop")
+      (synopsis "Direct FFI bindings for OpenGL window and context management")
+      (description
+       "This package provides Common Lisp bindings to create OpenGL window and context
+manipulation code as well as system input handling.  Direct FFI bindings to
+system functions are used so no third party C lib is required except system
+libraries.")
+      (license license:expat))))
+
+(define-public ecl-glop
+  (sbcl-package->ecl-package sbcl-glop))
+
+(define-public cl-glop
+  (sbcl-package->cl-source-package sbcl-glop))
+
+;;+end-lispgames
 
 
 ;; Set of systems which are maintained by Dimitri Fontaine
@@ -1249,8 +1342,8 @@ support for RFC8264 and RFC7564.")
   (sbcl-package->cl-source-package sbcl-uax-15))
 
 (define-public sbcl-trivial-timeout
-  (let ((commit "feb869357f40f5e109570fb40abad215fb370c6c")
-        (revision "1"))
+  (let ((commit "27b21a6651b24554191c28953e2a8cce69a2a16c")
+        (revision "2"))
     (package
       (name "sbcl-trivial-timeout")
       (version (git-version "0.1.5" revision commit))
@@ -1262,12 +1355,10 @@ support for RFC8264 and RFC7564.")
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "1kninxwvvih9nhh7a9y8lfgi7pdr76675y1clw4ss17vz8fbim5p"))))
+          (base32 "0nzsb4pbk1ia49v50dmbsdc6svmiy1k9zqr9ri1nkfy01zhdvg07"))))
       (build-system asdf-build-system/sbcl)
-      (arguments
-       ;; NOTE: (Sharlatan-20210202T231437+0000): Due to the age of this library
-       ;; tests use some deprecated functionality and keep failing.
-       `(#:tests? #f))
+      (native-inputs
+       (list sbcl-lift))
       (home-page "https://github.com/gwkkwg/trivial-timeout/")
       (synopsis "OS and Implementation independent access to timeouts")
       (description
@@ -3320,3 +3411,127 @@ developing library for Common Lisp.")
 
 (define-public cl-liballegro
   (sbcl-package->cl-source-package sbcl-cl-liballegro))
+
+;; 20220123T112516+0000
+(define-public sbcl-cl-resect
+  (let ((commit "1ae6a4b9ded6e613ca7d58bc6b73f2c5d66e2f67")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-resect")
+      (version (git-version "1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/borodust/cl-resect")
+               (commit commit)))
+         (file-name (git-file-name "cl-resect" version))
+         (sha256
+          (base32 "0k3i2gpxpjkisj1aycgzr1vicnzfnqx2ch6bxpy521mxcz3nhjgi"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       (list sbcl-alexandria
+             sbcl-cffi))
+      (home-page "https://github.com/borodust/cl-resect")
+      (synopsis "Common Lisp bindings to libresect")
+      (description
+       "This package provides bindings for Common Lispt for @code{libresect}")
+      (license license:bsd-2))))
+
+(define-public cl-resect
+  (sbcl-package->cl-source-package sbcl-cl-resect))
+
+(define-public ecl-claw
+  (sbcl-package->ecl-package sbcl-cl-resect))
+
+;; 20220520T170101+0100
+(define-public sbcl-clog
+  (package
+    (name "sbcl-clog")
+    (version "1.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/rabbibotton/clog")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name "clog" version))
+       (sha256
+        (base32 "0f4i6571nm0j704zgnh60sc9slifs11byb2gs8gamqjcfh931dap"))))
+    (build-system asdf-build-system/sbcl)
+    (inputs
+     (list sbcl-3bmd
+           sbcl-alexandria
+           sbcl-bordeaux-threads
+           sbcl-cl-ppcre
+           sbcl-cl-sqlite
+           sbcl-cl-template
+           sbcl-clack
+           sbcl-closer-mop
+           sbcl-colorize
+           sbcl-dbi
+           sbcl-hunchentoot
+           sbcl-lack
+           sbcl-mgl-pax
+           sbcl-parse-float
+           sbcl-quri
+           sbcl-trivial-open-browser
+           sbcl-websocket-driver))
+    (home-page "https://github.com/rabbibotton/clog")
+    (synopsis "Common Lisp Omnificent GUI")
+    (description
+     "This package provides the Common Lisp web framefork for building GUI
+applications.  CLOG can take the place, or work along side, most cross platform
+GUI frameworks and website frameworks.  The CLOG package starts up the
+connectivity to the browser or other websocket client (often a browser embedded
+in a native template application.")
+    (license license:bsd-3)))
+
+(define-public cl-clog
+  (sbcl-package->cl-source-package sbcl-clog))
+
+(define-public ecl-clog
+  (sbcl-package->ecl-package sbcl-clog))
+
+(define-public sbcl-hunchentoot
+  ;; NOTE: (Sharlatan-20220520T213309+0100): The latest commit fixed tests,
+  ;; switch to the version tag when release is ready.
+  (let ((commit "76862391040c20255c7275e815c2175e46bfd080")
+        (revision "1"))
+    (package
+      (name "sbcl-hunchentoot")
+      (version (git-version "1.3.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/edicl/hunchentoot")
+               (commit commit)))
+         (file-name (git-file-name "hunchentoot" version))
+         (sha256
+          (base32 "1h7ggmmzvgwr4p6j3ai0dqrw30q5309l13w4c03gqrapvwrb65l0"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       (list sbcl-cl-who sbcl-drakma))
+      (inputs
+       (list sbcl-chunga
+             sbcl-cl-base64
+             sbcl-cl-fad
+             sbcl-cl-ppcre
+             sbcl-flexi-streams
+             sbcl-cl+ssl
+             sbcl-md5
+             sbcl-rfc2388
+             sbcl-trivial-backtrace
+             sbcl-usocket))
+      (home-page "https://edicl.github.io/hunchentoot/")
+      (synopsis "Web server written in Common Lisp")
+      (description
+       "Hunchentoot is a web server written in Common Lisp and at the same
+time a toolkit for building dynamic websites.  As a stand-alone web server,
+Hunchentoot is capable of HTTP/1.1 chunking (both directions), persistent
+connections (keep-alive), and SSL.")
+      (license license:bsd-2))))
+
+(define-public ecl-hunchentoot
+  (sbcl-package->ecl-package sbcl-hunchentoot))
