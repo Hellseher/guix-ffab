@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-05-23 Mon 21:10:54 BST>
+#+modified: <2022-05-23 Mon 23:30:54 BST>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -454,12 +454,24 @@ CLOSED: [2021-11-08 Mon 20:41]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [3/7][42%]
+- [-] :inputs [4/7][57%]
   - [X] python-astropy
   - [X] python-gwcs
   - [X] python-numpy
-  - [ ] python-packaging
-  - [ ] python-spherical-geometry
+  - [X] python-packaging
+  - [-] python-spherical-geometry [2/4]
+    - https://github.com/spacetelescope/spherical_geometry
+    - synopsis :: A Python package for handling spherical polygons that represent arbitrary regions
+      of the sky
+    - [X] :packed <2022-05-23 Mon>
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [X] :inputs [5/5][100%]
+      - [X] astropy
+      - [X] python-numpy
+      - [X] python-pytest
+      - [X] python-setuptools-scm
+      - [X] qd
   - [ ] python-stsci.imagestats
   - [ ] python-stsci.stimage
 

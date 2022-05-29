@@ -1,6 +1,6 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-12-20 Mon 19:40:23 GMT>
+#+modified: <2022-01-29 Sat 14:13:51 GMT>
 
 * Flow [0/3][0%]
 ** TODO go/tools/gopls [/][%] :p1:
@@ -38,53 +38,44 @@
 ** TODO FiloSottile/age [/][%]
 - https://github.com/FiloSottile/age
 
-* TODO valyala [0/1][0%] :author:
-** TODO github.com/valyala/fasthttp [2/4][50%]
+* TODO github.com/valyala [1/1][100%] :author:
+** DONE github.com/valyala/fasthttp [3/4][75%]
 - https://github.com/valyala/fasthttp
 - [X] :packed <2021-12-18 Sat>
 - [X] :patch-sent <2021-12-19 Sun>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-01-29 Sat>
   - https://issues.guix.gnu.org/52668
 - [-] :inputs [4/7][57%]
   - [X] go-golang-org-x-sys
   - [X] go-golang-org-x-net
   - [X] go-golang-org-x-crypto
-  - [-] go-github-com-valyala-tcplisten [2/4][50%]
+  - [X] go-github-com-valyala-tcplisten [2/4][50%]
     - https://github.com/valyala/tcplisten
     - [X] :packed <2021-12-18 Sat>
-    - [X] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [ ] :inputs [0/0][0%]
-  - [-] go-github-com-valyala-bytebufferpool
+  - [X] go-github-com-valyala-bytebufferpool
     - https://github.com/valyala/bytebufferpool
     - [X] :packed <2021-12-18 Sat>
-    - [X] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [ ] :inputs [0/0][0%]
   - [X] go-github-com-klauspost-compress
   - [-] go-github-com-andybalholm-brotli
     - https://github.com/andybalholm/brotli
     - [X] :packed <2021-12-18 Sat>
-    - [X] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [ ] :inputs [0/0][0%]
 
-* github.com/hashicorp [0/0][0%]
-** hcl v2 [3/4][75%]
+* github.com/hashicorp [1/1][100%]
+** DONE hcl v2 [4/4][100%]
 - https://github.com/hashicorp/hcl
 - [X] :packed <2021-12-12 Sun>
 - [X] :patch-sent <2021-12-12 Sun>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-01-29 Sat>
   - https://issues.guix.gnu.org/52444
 - [X] :inputs [5/5][100%]
-  1. [X] go-github-com-agext-levenshtein
-     - [X] :packed <2021-12-12 Sun>
-  2. [X] go-github-com-mitchellh-go-wordwrap
-  3. [X] go-github-com-zclconf-go-cty
-     - [X] :packed <2021-12-12 Sun>
-  4. [X] go-github-com-apparentlymart-go-textseg-v13
-     - [X] :packed <2021-12-12 Sun>
-  5. [X] go-github-com-davecgh-go-spew
+  - [X] go-github-com-agext-levenshtein
+    - [X] :packed <2021-12-12 Sun>
+  - [X] go-github-com-mitchellh-go-wordwrap
+  - [X] go-github-com-zclconf-go-cty
+    - [X] :packed <2021-12-12 Sun>
+  - [X] go-github-com-apparentlymart-go-textseg-v13
+    - [X] :packed <2021-12-12 Sun>
+  - [X] go-github-com-davecgh-go-spew
 ** terraform [0/4][0%]
 https://github.com/hashicorp/terraform
 - [ ] :packed

@@ -1,6 +1,6 @@
 #+title: gnu/packages/python-web
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-04-25 Mon 21:09:18 BST>
+#+modified: <2022-05-13 Fri 16:36:09 BST>
 
 * TODO webrecorder [0/1][0%] :author:p2:
 ** TODO pywb [1/4][25%]
@@ -8,7 +8,7 @@
 - [X] :packed <2021-06-18 Fri>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [5/19][26%]
+- [-] :inputs [10/19][52%]
   - [X] python-babel
   - [X] python-brotli
   - [ ] python-fakeredis v < 1.0 or redis
@@ -49,15 +49,23 @@
   - [ ] python-redis
   - [ ] python-requests
   - [ ] python-six
-  - [-] python-surt [0/4][0%]
-    https://github.com/internetarchive/surt
+  - [-] python-surt [2/4][50%]
+    - https://github.com/internetarchive/surt
+    - [X] :packed <2022-04-25 Mon>
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      - [X] python-six
+      - [X] python-tldextract
+      - [X] python-pytest
+      - [X] python-pytest-cov
+  - [X] python-tldextract
+  - [ ] python-warcio
     - [ ] :packed
     - [ ] :patch-sent
     - [ ] :patch-applied-upstream
-    - [-] :inputs [0/0][0%]
-  - [ ] python-tldextract
-  - [ ] python-warcio
-  - [ ] python-webassets
-  - [ ] python-webencodings
-  - [ ] python-werkzeug
-  - [ ] python-wsgiprox
+    - [ ] :inputs [0/0][0%]
+  - [X] python-webassets
+  - [X] python-webencodings
+  - [X] python-werkzeug
+  - [X] python-wsgiprox
