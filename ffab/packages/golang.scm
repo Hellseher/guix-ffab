@@ -1,3 +1,21 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages golang)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
@@ -1178,7 +1196,7 @@ range of pretty terminal strings.")
            go-github-com-cpuguy83-go-md2man-v2
            go-github-com-creack-pty
            go-github-com-gabriel-vasile-mimetype
-           ;; go-github-com-cli-shurcool-graphql
+           go-github-com-cli-shurcool-graphql
            ;; go-github-com-google-go-cmp
            ;; go-github-com-google-shlex
            go-github-com-hashicorp-go-version
@@ -1535,6 +1553,225 @@ based on magic numbers.  Features include
 @end itemize")
     (license license:expat)))
 
+(define-public go-github-com-shurcool-graphql
+  (package
+    (name "go-github-com-shurcool-graphql")
+    (version "0.0.0-20200928012149-18c5c3165e3a")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/shurcooL/graphql")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0psxc2q3qsh1lfag11m2gz54fzzvlss5znyf34aars94igsjywzx"))))
+    (build-system go-build-system)
+    (arguments
+     (list #:import-path "github.com/shurcooL/graphql"))
+    (inputs
+     (list go-golang-org-x-net))
+    (home-page "https://github.com/shurcooL/graphql")
+    (synopsis "GraphQL client implementation for Golang")
+    (description "Package graphql provides a GraphQL client implementation.")
+    (license license:expat)))
 
 
 ;;; :end github.com/cli/cli
+
+;; 20220515T223341+0100
+(define-public go-github-com-logrusorgru-aurora
+  (package
+    (name "go-github-com-logrusorgru-aurora")
+    (version "2.0.3+incompatible")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/logrusorgru/aurora")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1ck2j2ff2avph07vgq0r1y7hmbqgvk339rvph45dcwgci23lb3pf"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/logrusorgru/aurora"))
+    (home-page "https://github.com/logrusorgru/aurora")
+    (synopsis "Aurora")
+    (description "Package aurora implements ANSI-colors")
+    (license license:unlicense)))
+
+;; 20220515T223437+0100
+(define-public go-github-com-konsorten-go-windows-terminal-sequences
+  (package
+    (name "go-github-com-konsorten-go-windows-terminal-sequences")
+    (version "1.0.3")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/konsorten/go-windows-terminal-sequences")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1yrsd4s8vhjnxhwbigirymz89dn6qfjnhn28i33vvvdgf96j6ypl"))))
+    (build-system go-build-system)
+    (arguments
+      '(#:import-path "github.com/konsorten/go-windows-terminal-sequences"))
+    (home-page "https://github.com/konsorten/go-windows-terminal-sequences")
+    (synopsis "Windows Terminal Sequences")
+    (description
+      "This library allow for enabling Windows terminal color support for Go.")
+    (license license:expat)))
+
+;; 20220515T223130+0100
+(define-public go-github-com-lunixbochs-vtclean
+  (package
+    (name "go-github-com-lunixbochs-vtclean")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/lunixbochs/vtclean")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0jqn33l1kzy4dk66zbvxz7rlgkgg34s9mhc8z0lrz0i88466zhd8"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/lunixbochs/vtclean"))
+    (home-page "https://github.com/lunixbochs/vtclean")
+    (synopsis "vtclean")
+    (description
+      "Clean up raw terminal output by stripping escape sequences, optionally
+preserving color.")
+    (license license:expat)))
+
+;; 20220515T223750+0100
+(define-public go-github-com-cespare-xxhash
+  (package
+    (name "go-github-com-cespare-xxhash")
+    (version "1.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/cespare/xxhash")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1qyzlcdcayavfazvi03izx83fvip8h36kis44zr2sg7xf6sx6l4x"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/cespare/xxhash"))
+    (propagated-inputs
+      `(("go-github-com-spaolacci-murmur3" ,go-github-com-spaolacci-murmur3)
+        ("go-github-com-oneofone-xxhash" ,go-github-com-oneofone-xxhash)))
+    (home-page "https://github.com/cespare/xxhash")
+    (synopsis "xxhash")
+    (description
+      "Package xxhash implements the 64-bit variant of xxHash (XXH64) as described at
+@url{http://cyan4973.github.io/xxHash/,http://cyan4973.github.io/xxHash/}.")
+    (license license:expat)))
+
+;; 20220515T223858+0100
+(define-public go-github-com-awesome-gocui-keybinding
+  (package
+    (name "go-github-com-awesome-gocui-keybinding")
+    (version "1.0.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/awesome-gocui/keybinding")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "0d1nvxs2pd6nc10gm3md2rsd0v33025b8dik1l1iy8klzhiqfd1q"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/awesome-gocui/keybinding"))
+    (propagated-inputs
+      (list
+         go-github-com-awesome-gocui-gocui))
+    (home-page "https://github.com/awesome-gocui/keybinding")
+    (synopsis "keybinding")
+    (description
+      "This package provides a golang wrapper for parsing gocui keybindings.")
+    (license license:expat)))
+
+;; 20220515T223949+0100
+(define-public go-github-com-awesome-gocui-gocui
+  (package
+    (name "go-github-com-awesome-gocui-gocui")
+    (version "1.1.0")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/awesome-gocui/gocui")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "082ziwxj239nxcclv54d783933s6c5ks592mq3ilcvg1vfyfkjz8"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/awesome-gocui/gocui"))
+    (propagated-inputs
+      `(("go-golang-org-x-text" ,go-golang-org-x-text)
+        ("go-github-com-mattn-go-runewidth" ,go-github-com-mattn-go-runewidth)
+        ("go-github-com-gdamore-tcell-v2" ,go-github-com-gdamore-tcell-v2)))
+    (home-page "https://github.com/awesome-gocui/gocui")
+    (synopsis "GOCUI - Go Console User Interface")
+    (description "Package gocui allows to create console user interfaces.")
+    (license license:bsd-3)))
+
+;; 20220516T220629+0100
+(define-public go-github-com-microsoft-go-winio
+  (package
+    (name "go-github-com-microsoft-go-winio")
+    (version "0.5.2")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/microsoft/go-winio")
+               (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "19rzcwq07c2y7c06pkjjc8pbg68a24g1khwp7cdc5ypfzj509sc3"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/Microsoft/go-winio"))
+    (propagated-inputs
+      `(("go-golang-org-x-sys" ,go-golang-org-x-sys)
+        ("go-github-com-sirupsen-logrus" ,go-github-com-sirupsen-logrus)))
+    (home-page "https://github.com/Microsoft/go-winio")
+    (synopsis "go-winio")
+    (description
+      "This repository contains utilities for efficiently performing Win32 IO
+operations in Go.  Currently, this is focused on accessing named pipes and other
+file handles, and for using named pipes as a net transport.")
+    (license license:expat)))
+
+;; 20220516T220713+0100
+(define-public go-github-com-azure-go-ansiterm
+  (package
+    (name "go-github-com-azure-go-ansiterm")
+    (version "0.0.0-20210617225240-d185dfc1b5a1")
+    (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+               (url "https://github.com/Azure/go-ansiterm")
+               (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+          (base32 "1y54b1fx80qlyvv2915xrryb9vcc8nnbsdkxszhxjg8bcg85ps5c"))))
+    (build-system go-build-system)
+    (arguments '(#:import-path "github.com/Azure/go-ansiterm"))
+    (propagated-inputs `(("go-golang-org-x-sys" ,go-golang-org-x-sys)))
+    (home-page "https://github.com/Azure/go-ansiterm")
+    (synopsis "go-ansiterm")
+    (description
+      "This is a cross platform Ansi Terminal Emulation library.  It reads a stream of
+Ansi characters and produces the appropriate function calls.  The results of the
+function calls are platform dependent.")
+    (license license:expat)))
