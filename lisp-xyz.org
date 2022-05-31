@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-05-25 Wed 23:25:38 BST>
+#+modified: <2022-05-31 Tue 22:59:06 BST>
 
 * Flow [12/17][70%]
 ** DONE cl-nst [4/4][100%]
@@ -1073,20 +1073,20 @@ https://github.com/Shirakumo/cl-mixed
   + [X] documentation-utils
 
 * TODO lispgames [0/1][0%] :author:
-** TODO glop [0/4][0%]
+** TODO glop [1/4][25%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [3/5][60%]
+- [X] :inputs [5/5][100%]
   - [X] sbcl-cffi
-  - [ ] sbcl-cl-opengl
-  - [ ] sbcl-glue
+  - [X] sbcl-cl-opengl
+  - [X] sbcl-glue
   - [X] sbcl-split-sequence
   - [X] sbcl-trivial-garbage
 
-* TODO sjl [0/1][0%] :author:p1:
+* TODO sjl [0/1][0%] :author:p5:
 ** TODO adopt [1/4][25%]
 - https://github.com/sjl/adopt
 - [X] :packed <2021-06-08 Tue>

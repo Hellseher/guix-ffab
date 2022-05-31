@@ -65,30 +65,30 @@
       (build-system asdf-build-system/sbcl)
       (arguments
        (list
-         #:phases
-         #~(modify-phases %standard-phases
-           (add-after 'unpack 'patch-lib-path
-             (lambda _
-               (substitute* "src/x11/xcomposite.lisp"
-                 (("libXcomposite.so" all)
-                  (string-append #$(this-package-input "libxcomposite") "/lib/" all)))
-               (substitute* "src/x11/xlib.lisp"
-                 (("libX11" all)
-                  (string-append #$(this-package-input "libx11") "/lib/" all)))
-               (substitute* "src/utils.lisp"
-                 (("libX11" all)
-                  (string-append #$(this-package-input "libx11") "/lib/" all)))
-               (substitute* "src/utils.lisp"
-                 (("libGL.so.1" all)
-                  (string-append #$(this-package-input "mesa") "/lib/" all)))
-               (substitute* "src/x11/glx.lisp"
-                 (("libGL.so" all)
-                  (string-append #$(this-package-input "mesa") "/lib/" all)))
-               (substitute* "src/x11/display-ctrl.lisp"
-                 (("libXrandr" all)
-                  (string-append #$(this-package-input "libxrandr") "/lib/" all)))
-               #t)))
-         #:test-asd-file "glop-test.asd"))
+        #:test-asd-file "glop-test.asd"
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'patch-lib-path
+              (lambda _
+                (substitute* "src/x11/xcomposite.lisp"
+                  (("libXcomposite.so" all)
+                   (string-append #$libxcomposite "/lib/" all)))
+                (substitute* "src/x11/xlib.lisp"
+                  (("libX11" all)
+                   (string-append #$libx11 "/lib/" all)))
+                (substitute* "src/utils.lisp"
+                  (("libX11" all)
+                   (string-append #$libx11 "/lib/" all)))
+                (substitute* "src/utils.lisp"
+                  (("libGL.so.1" all)
+                   (string-append #$mesa "/lib/" all)))
+                (substitute* "src/x11/glx.lisp"
+                  (("libGL.so" all)
+                   (string-append #$mesa "/lib/" all)))
+                (substitute* "src/x11/display-ctrl.lisp"
+                  (("libXrandr" all)
+                   (string-append #$libxrandr "/lib/" all)))
+                #t)))))
       (native-inputs
        (list sbcl-cl-opengl))
       (inputs

@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [123/133][92%]
+* Accepted in upstream [124/133][93%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -130,7 +130,7 @@
 - [X] <2021-12-26 Sun> https://issues.guix.gnu.org/52762 <2021-12-26 Sun>
 - [X] <2021-12-26 Sun> https://issues.guix.gnu.org/52811 <2021-12-26 Sun>
 - [ ] <2021-12-26 Sun> https://issues.guix.gnu.org/52812
-- [ ] <2022-05-18 Wed> https://issues.guix.gnu.org/55509
+- [X] <2022-05-18 Wed> https://issues.guix.gnu.org/55509 <2022-05-30 Mon>
 - [ ] <2022-05-20 Fri> https://issues.guix.gnu.org/55546 blocked by jQuery
 - [X] <2022-05-20 Fri> https://issues.guix.gnu.org/55548 <2022-05-21 Sat>
 - [ ] <2022-05-23 Mon> https://issues.guix.gnu.org/55604
