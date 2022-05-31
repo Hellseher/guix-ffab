@@ -35,6 +35,7 @@
   #:use-module (gnu packages libusb)
   #:use-module (gnu packages machine-learning)
   #:use-module (gnu packages maths)
+  #:use-module (gnu packages multiprecision)
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages openstack)
   #:use-module (gnu packages pascal)
@@ -50,6 +51,7 @@
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
+  ;; #:use-module (guix build utils)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
@@ -311,6 +313,11 @@ planetarium.")
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
+
+;; Set of packages maintained by Space Telescope Science Institute
+;; https://github.com/spacetelescope
+;;+begin-spacetelescope
+
 ;; 20220131T235042+0000
 (define-public python-jwst
   (package
@@ -364,91 +371,6 @@ planetarium.")
             "Library for calibration of science observations from the James Webb Space
 Telescope")
            (license #f)))
-
-;; 20220513T172658+0100
-(define-public  python-bayesicfitting
-  (package
-    (name "python-bayesicfitting")
-    (version "3.0.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "BayesicFitting" version))
-       (sha256
-        (base32 "08bj2vaicc9cn6mn2hkqri33r1v6iy6skiiddsikgz89lpaccl5g"))))
-    (build-system python-build-system)
-    (propagated-inputs
-     (list python-astropy
-           python-future
-           python-matplotlib
-           python-numpy
-           python-scipy))
-    (home-page "https://www.bayesicfitting.nl")
-    (synopsis "Python Toolbox for Astronimical Bayesian fitting")
-    (description
-     "The BayesicFitting package is a python version of the the fitter classes
-in Herschel Common Science System (HCSS).  HCSS was the all encompassing software
-system for the operations and analysis of the ESA satelite Herschel.")
-    (license license:gpl3+)))
-
-;; 20220513T172614+0100
-(define-public python-crds
-  (package
-    (name "python-crds")
-    (version "11.14.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "crds" version))
-       (sha256
-        (base32 "0nzi93ra8hy9pimcxrns8y65wk76ymlcndhn5zfhgh744fiykrrl"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "pytest" "-vv")))))))
-    (propagated-inputs
-     (list awscli
-           ;python-jwst ;; circular dependency
-           python-asdf
-           python-astropy
-           python-boto3
-           python-filelock
-           python-lxml
-           python-numpy
-           python-parsley
-           python-pysynphot
-           python-roman-datamodels
-           python-stsynphot
-           python-requests))
-    (native-inputs
-     (list python-bandit
-           python-flake8
-           python-ipython
-           python-lockfile
-           python-mock
-           python-nose
-           python-pylint
-           python-pytest
-           python-semantic-version))
-    (home-page "https://hst-crds.stsci.edu")
-    (synopsis "Calibration Reference Data System (CRDS) - HST/JWST/Roman reference file management")
-    (description
-     "CRDS is a package used for working with astronomical reference files for
-the HST and JWST telescopes.  CRDS is useful for performing various operations on
-reference files or reference file assignment rules.  CRDS is used to assign,
-check, and compare reference files and rules, and also to predict those datasets
-which should potentially be reprocessed due to changes in reference files or
-assignment rules.  CRDS has versioned rules which define the assignment of
-references for each type and instrument configuration.  CRDS has web sites
-corresponding to each project (http://hst-crds.stsci.edu or
-https://jwst-crds.stsci.edu/) which record information about reference files and
-provide related services.")
-    (license license:bsd-3)))
 
 ;; 20220513T211720+0100
 (define-public python-pysynphot
@@ -550,6 +472,198 @@ provide related services.")
     (synopsis "Roman Attribute Dictionary")
     (description "Roman Attribute Dictionary")
     (license #f)))
+
+;; 20220523T215048+0100
+(define-public python-tweakwcs
+  (package
+    (name "python-tweakwcs")
+    (version "0.7.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "tweakwcs" version))
+       (sha256
+        (base32 "0569xpd5q6fj4k7y3ib6rjqps0q94irnmsxa1hykvmjj1ymclwnf"))))
+    (build-system python-build-system)
+    (propagated-inputs
+     (list python-astropy
+           python-gwcs
+           python-numpy
+           python-packaging
+           python-spherical-geometry
+           python-stsci.imagestats
+           python-stsci.stimage))
+    (native-inputs
+     (list python-codecov python-pytest python-pytest-cov python-scipy))
+    (home-page "https://github.com/spacetelescope/tweakwcs")
+    (synopsis "A package for correcting alignment errors in WCS objects")
+    (description
+     "This package provides a package for correcting alignment errors in WCS objects")
+    (license #f)))
+
+;;20220523T215603+0100
+(define-public python-spherical-geometry
+  (package
+    (name "python-spherical-geometry")
+    (version "1.2.22")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/spacetelescope/spherical_geometry")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0kzcncqir4v7nhk9lxj9gxr32p3krkaqa58y2i4kksgxxy24qw4z"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      ;; NOTE: (Sharlatan-20220523T231348+0100): Tests depends on old Python2
+      ;; libarry `sphere'
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'preparations
+            (lambda _
+              ;; Fixing: setuptools-scm was unable to detect version for ...
+              (substitute* "setup.py"
+                (("use_scm_version=True")
+                 (format #f "version=~s" #$version))
+                (("setup_requires=\\['setuptools_scm'\\],.*")
+                 ""))
+              ;; Use our own libraries in place of bundles.
+              (setenv "USE_SYSTEM_QD" "1"))))))
+    (native-inputs
+     (list python-pytest
+           python-setuptools-scm))
+    (inputs
+     (list qd))
+    (propagated-inputs
+     (list python-astropy
+           python-numpy))
+    (home-page "https://github.com/spacetelescope/tweakwcs")
+    (synopsis "Python astronimical package for handling spherical polygons")
+    (description
+     "The @code{spherical_geometry} library is a Python package for handling
+spherical polygons that represent arbitrary regions of the sky.")
+    ;; LICENSE.rst Association of Universities for Research in Astronomy (AURA)
+    ;; QD_LIBRARY_LICENSE.rst for bandeled QD source
+    (license license:bsd-3)))
+
+;;20220523T223656+0100
+(define-public python2-sphere
+  (let ((commit "24c99dda4621b2ad77e811e6ff197fa0697f32ba")
+        (revision "1"))
+    (package
+      (name "python2-sphere")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/bwesterb/py-sphere")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1ja1dhysj04jc8q6qjak21hql9rya05xpj71x8w8c73fsyg27sqn"))))
+      (build-system python-build-system)
+      (arguments
+       (list #:python python-2)) ;not compatible with Python 3
+      (inputs
+       (list python2-numpy))
+      (home-page "https://github.com/bwesterb/py-sphere")
+      (synopsis "Python library for geometry on the sphere")
+      (description
+       "Python library for geometry on the sphere (and projective plane)")
+      (license license:gpl3))))
+
+;;+end-spacetelescope
+
+
+;; 20220513T172658+0100
+(define-public  python-bayesicfitting
+  (package
+    (name "python-bayesicfitting")
+    (version "3.0.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "BayesicFitting" version))
+       (sha256
+        (base32 "08bj2vaicc9cn6mn2hkqri33r1v6iy6skiiddsikgz89lpaccl5g"))))
+    (build-system python-build-system)
+    (propagated-inputs
+     (list python-astropy
+           python-future
+           python-matplotlib
+           python-numpy
+           python-scipy))
+    (home-page "https://www.bayesicfitting.nl")
+    (synopsis "Python Toolbox for Astronimical Bayesian fitting")
+    (description
+     "The BayesicFitting package is a python version of the the fitter classes
+in Herschel Common Science System (HCSS).  HCSS was the all encompassing software
+system for the operations and analysis of the ESA satelite Herschel.")
+    (license license:gpl3+)))
+
+;; 20220513T172614+0100
+(define-public python-crds
+  (package
+    (name "python-crds")
+    (version "11.14.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "crds" version))
+       (sha256
+        (base32 "0nzi93ra8hy9pimcxrns8y65wk76ymlcndhn5zfhgh744fiykrrl"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "pytest" "-vv")))))))
+    (propagated-inputs
+     (list awscli
+           ;python-jwst ;; circular dependency
+           python-asdf
+           python-astropy
+           python-boto3
+           python-filelock
+           python-lxml
+           python-numpy
+           python-parsley
+           python-pysynphot
+           python-roman-datamodels
+           python-stsynphot
+           python-requests))
+    (native-inputs
+     (list python-bandit
+           python-flake8
+           python-ipython
+           python-lockfile
+           python-mock
+           python-nose
+           python-pylint
+           python-pytest
+           python-semantic-version))
+    (home-page "https://hst-crds.stsci.edu")
+    (synopsis "Calibration Reference Data System (CRDS) - HST/JWST/Roman reference file management")
+    (description
+     "CRDS is a package used for working with astronomical reference files for
+the HST and JWST telescopes.  CRDS is useful for performing various operations on
+reference files or reference file assignment rules.  CRDS is used to assign,
+check, and compare reference files and rules, and also to predict those datasets
+which should potentially be reprocessed due to changes in reference files or
+assignment rules.  CRDS has versioned rules which define the assignment of
+references for each type and instrument configuration.  CRDS has web sites
+corresponding to each project (http://hst-crds.stsci.edu or
+https://jwst-crds.stsci.edu/) which record information about reference files and
+provide related services.")
+    (license license:bsd-3)))
 
 ;; 20220518T205203+0100
 (define-public calceph
