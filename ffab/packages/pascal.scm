@@ -4,16 +4,19 @@
   #:use-module (gnu packages compression)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages ncurses)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages pascal)
+  #:use-module (gnu packages xorg)
   #:use-module (gnu packages perl)
   #:use-module (guix build-system gnu)
   #:use-module (guix download)
+  #:use-module (guix gexp)
   #:use-module (guix packages)
   #:use-module ((guix licenses) #:prefix license:))
 
-(define-public lazarus-ide
+(define-public lazarus
   (package
-    (name "lazarus-ide")
+    (name "lazarus")
     (version "2.0.12")
     (source
      (origin
@@ -28,44 +31,39 @@
     (build-system gnu-build-system)
     (supported-systems '("i686-linux" "x86_64-linux"))
     (arguments
-     `(#:make-flags
-       (list
-        "bigide"
-        (string-append
-         "FPC=" (assoc-ref %build-inputs "fpc") "/bin/fpc")
-        (string-append
-         "PP=" (assoc-ref %build-inputs "fpc") "/bin/fpc")
-        (string-append
-         "INSTALL_PREFIX=" (assoc-ref %outputs "out")))
-       #:phases
-       (modify-phases %standard-phases
-         (delete 'configure)
-         (add-after 'unpack 'prepare-deps
-           (lambda* (#:key inputs #:allow-other-keys)
-             ;; needed by libwhich
-             (setenv "LD_LIBRARY_PATH"
-                     (string-join (map (lambda (pkg)
-                                         (string-append (assoc-ref inputs pkg)
-                                                        "/lib"))
-                                       '("gtk+" "pango" "cairo"))
-                                  ":"))
-             #t))
-         (replace 'build
-           (lambda _
-             (invoke "make" "clean" "bigide")
-             #t)))))
+     (list
+      #:make-flags
+      #~(list "bigide"
+              "REQUIRE_PACKAGES+=tachartlazaruspkg"
+              (string-append "FPC=" #$fpc "/bin/fpc")
+              (string-append "INSTALL_PREFIX=" #$output)
+              (string-append "LAZARUS_INSTALL_DIR=" #$output "/share/lazarus")
+              (string-append "PP=" #$fpc "/bin/fpc"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure)
+          (replace 'build
+            (lambda _
+              (setenv "LDFLAGS" (string-append "-L" #$glibc "/lib"))
+              (invoke "make" "clean" "bigide")
+              #t)))))
     (native-inputs
-     `(("perl" ,perl)
-       ("glibc" ,glibc)
-       ("gtk+" ,gtk+)
-       ("pango" ,pango)
-       ("atk" ,atk)
-       ("ld-wrapper" ,ld-wrapper)
-       ("cairo" ,cairo)
-       ("zlib" ,zlib)
-       ("ld-wrapper" ,ld-wrapper)))
+     (list atk
+           cairo
+           gdk-pixbuf
+           glibc
+           gtk+
+           ld-wrapper
+           ld-wrapper
+           libx11
+           libxi
+           pango
+           perl
+           pkg-config
+           xorgproto
+           zlib))
     (inputs
-     `(("fpc" ,fpc)))
+     (list fpc))
     (native-search-paths (package-native-search-paths glibc))
     (home-page "https://www.lazarus-ide.org/")
     (synopsis "Free Pascal RAD IDE")

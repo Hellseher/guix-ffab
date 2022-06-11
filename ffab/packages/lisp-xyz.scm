@@ -59,7 +59,7 @@
          (uri (git-reference
                (url "https://github.com/lispgames/glop")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "glop" version))
          (sha256
           (base32 "1nm35kvigflfjlmsa8zwdajc61f02fh4sq08jv0wnqylhx8yg2bv"))))
       (build-system asdf-build-system/sbcl)

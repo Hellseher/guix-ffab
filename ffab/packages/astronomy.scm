@@ -23,10 +23,12 @@
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
+  #:use-module (gnu packages bison)
   #:use-module (gnu packages boost)
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages flex)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
   #:use-module (gnu packages graphviz)
@@ -36,6 +38,7 @@
   #:use-module (gnu packages machine-learning)
   #:use-module (gnu packages maths)
   #:use-module (gnu packages multiprecision)
+  #:use-module (gnu packages ncurses)
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages openstack)
   #:use-module (gnu packages pascal)
@@ -46,12 +49,12 @@
   #:use-module (gnu packages python-science)
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages readline)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
-  ;; #:use-module (guix build utils)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
@@ -61,46 +64,203 @@
   #:use-module (guix packages)
   #:use-module (ice-9 match))
 
+;; 20220608T193453+0100
+;; error: in phase 'validate-runpath': uncaught exception:
+;; misc-error #f "RUNPATH validation failed" () #f
+(define-public casacore
+  (package
+    (name "casacore")
+    (version "3.4.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/casacore/casacore")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32
+         "05ar5gykgh4dm826xplj5ri5rw7znhxrvin2l67a3mjwfys7r2a0"))
+       (file-name (git-file-name name version))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      ;; NOTE: (Sharlatan-20220611T213043+0100): There are multiple fails in
+      ;; tests which require additional measures data. They are
+      ;; distributed via FTP without any license:
+      ;; ftp://ftp.astron.nl/outgoing/Measures/
+      #:tests? #f
+      #:configure-flags
+      #~(list "-DBUILD_PYTHON3=ON"
+              "-DBUILD_PYTHON=OFF"
+              "-DBUILD_TESTING=TRUE"
+              "-DCMAKE_SKIP_INSTALL_RPATH=ON"
+              "-DUSE_HDF5=ON"
+              "-DUSE_OPENMP=OFF"
+              "-DUSE_THREADS=ON"
+              (string-append "-DDATA_DIR=" #$output "/data")
+              (string-append "-DPYTHON3_EXECUTABLE=" #$python "/bin")
+              (string-append "-DPYTHON3_INCLUDE_DIR=" #$python "/include")
+              (string-append "-DPYTHON3_LIBRARY=" #$python "/lib"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'use-absolute-rm
+            (lambda _
+              (substitute* "casa/OS/test/tFile.run"
+                (("/bin/rm") (which "rm")))
+              #t))
+          (add-after 'unpack 'use-absolute-python3
+            (lambda _
+              (substitute* "build-tools/casacore_floatcheck"
+                (("#!/usr/bin/env python")
+                 (string-append "#!" #$python "/bin/python3")))
+              #t))
+          ;; NOTE: (Sharlatan-20220611T200837+0100): Workaround for casacore
+          ;; tests stuck with missing "qsub" issue.
+          ;; https://github.com/casacore/casacore/issues/1122
+          (add-after 'unpack 'patch-pre-test-checks
+            (lambda _
+              (substitute* "build-tools/casacore_assay"
+                (("QSUBP=.*$") "QSUBP=\n")
+                (("YODP=.*$") "YODP=\n"))
+              #t)))))
+    (native-inputs
+     (list bison
+           boost
+           readline))
+    (inputs
+     (list cfitsio
+           fftw
+           fftwf
+           flex
+           gfortran
+           hdf5
+           lapack
+           ncurses
+           openblas
+           python
+           python-numpy
+           wcslib))
+    (home-page "http://casacore.github.io/casacore/")
+    (synopsis "Suite of C++ libraries for radio astronomy data processing")
+    (description
+     "The casacore package contains the core libraries of the old
+@code{AIPS++/CASA} (Common Astronomy Software Application) package.  This split
+was made to get a better separation of core libraries and applications.
+(CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
+    (license license:gpl2)))
+
+;; 20220608T191316+0100
+(define-public aoflagger
+  (package
+    (name "aoflagger")
+    (version "3.2.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gitlab.com/aroffringa/aoflagger")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32
+         "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
+       (file-name (git-file-name name version))))
+    (build-system cmake-build-system)
+    ;; (arguments
+    ;;  (list
+    ;;   #:configure-flags
+    ;;   #~(list
+    ;;      "-DBUILD_TEST=ON"
+    ;;      (string-append "-DCMAKE_INSTALL_LIBDIR=" #$output "/lib")
+    ;;      (string-append "-DCMAKE_INSTALL_PREFIX=" #$output))))
+    ;; (native-inputs
+    ;;  (list perl
+    ;;        perl-xml-dom
+    ;;        perl-xml-parser
+    ;;        pkg-config
+    ;;        ;python-wrapper
+    ;;        swig))
+    (inputs
+     (list hdf5
+           ))
+    (home-page "http://plplot.org/")
+    (synopsis "")
+    (description
+     "")
+    (license license:gpl3)))
+
 ;; TODO: (Sharlatan-20210415T214924+0100):
 (define-public astrometry
-  (let ((version "0.85"))
-    (package
-      (name "astrometry")
-      (version version)
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/dstndstn/astrometry.net")
-               (commit version)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0v0yjahx4cbl7z65vdpf366286747vzrbq41n907273sxzdpc8ld"))))
-      (build-system gnu-build-system)
-      (arguments
-       `(#:make-flags
-         (list
-          (string-append "RELEASE_VER=" version)
-          (string-append "INSTALL_DIR=" (assoc-ref %outputs "out")))))
-      (native-inputs
-       `(("pkg-config" ,pkg-config)
-         ("swig" ,swig)
-         ("python" ,python)))
-      (inputs
-       `(("cairo" ,cairo)
-         ("libpng" ,libpng)
-         ("zlib" ,zlib)
-         ("git" ,git)
-         ("cfitsio" ,cfitsio)
-         ("bzip2" ,bzip2)
-         ("numpy" ,python-numpy)
-         ("libjpeg" ,libjpeg-turbo)
-         ("netpbm" ,netpbm)))
-      (home-page "https://astrometry.net/")
-      (synopsis "Automatic recognition of astronomical images")
-      (description
-       "")
-      (license license:gpl3+))))
+  (package
+   (name "astrometry")
+   (version "0.90")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/dstndstn/astrometry.net")
+           (commit version)))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "0dwq48skf1fc9vrmxswnr9gjjvi9xzfmgm6hzm41iggc3v1f1g1g"))))
+   (build-system gnu-build-system)
+   (arguments
+    (list
+     #:make-flags
+     #~(list
+        (string-append "RELEASE_VER=" #$version)
+        (string-append "INSTALL_DIR=" #$output))
+     #:phases
+     #~(modify-phases %standard-phases
+                      (delete 'configure)
+                      (replace 'check
+                               (lambda _
+                                 (when #$tests?
+                                   (invoke "make" "test"))))
+                      (replace 'build
+                               (lambda _
+                                 (invoke "make")
+                                 (invoke "make" "py")
+                                 #t)))))
+   (native-inputs
+    (list pkg-config
+          swig
+          python-wrapper
+          git))
+   (inputs
+    (list cairo
+          bzip2
+          cfitsio
+          libjpeg-turbo
+          libpng
+          netpbm
+          python-fitsio
+          python-numpy
+          zlib))
+   (home-page "https://astrometry.net/")
+   (synopsis "Automatic recognition of astronomical images")
+   (description
+    "")
+   (license license:gpl3+)))
+
+;; 20220607T220301+0100
+(define-public python-astrometry
+  (package
+   (name "python-astrometry")
+   (version "2.0.0")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "astrometry" version))
+     (sha256
+      (base32
+       "0vcp2k5d2grq45860qxllsypqa712rcvd93rngdk4bwg445nzk7c"))))
+   (build-system python-build-system)
+   (native-inputs
+    (list python-requests))
+   (home-page "https://github.com/neuromorphicsystems/astrometry")
+   (synopsis "Astrometry.net solver interface")
+   (description "Astrometry.net solver interface")
+   (license #f)))
 
 ;; (define-public eye
 ;; added-to-upstream: 51418c32d95d8188d8877616829f26479f1135c6
@@ -111,71 +271,36 @@
 ;; (define-public libpasastro
 ;; added-to-upstream: 906155e437c9513462f19baac6e88b976f42b358
 
-;; 20220518T204327+0100
-(define-public libcalceph
-  (package
-    (name "libcalceph")
-    (version  "3.4.7")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/pchev/libcalceph")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1c9kpp6rhycf4cykdz8wak6n8dyimrlxyk31fydy326cwg9pdwwn"))))
-    (build-system gnu-build-system)
-    (arguments
-     `(#:tests? #f
-       #:make-flags
-       (list
-        ,(match (or (%current-target-system) (%current-system))
-           ((or "aarch64-linux" "armhf-linux" "i686-linux" "x86_64-linux")
-            "OS_TARGET=linux")
-           (_ #f))
-        ,(match (or (%current-target-system) (%current-system))
-           ("i686-linux" "CPU_TARGET=i386")
-           ("x86_64-linux" "CPU_TARGET=x86_64")
-           ((or "armhf-linux" "aarch64-linux") "CPU_TARGET=armv7l")
-           (_ #f))
-        (string-append "PREFIX=" (assoc-ref %outputs "out")))
-       #:phases
-       (modify-phases %standard-phases
-         (delete 'configure))))
-    (home-page "https://github.com/pchev/libcalceph")
-    (synopsis "Shared library to access astronimcal SPICE and JPL files")
-    (description
-     "")
-    (license license:cecill)))
-
 (define-public libsep
   (package
-    (name "libsep")
-    (version "1.1.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/kbarbary/sep")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1xcdlmm2zwrcrcdgbwc8ahna3szdr6a88gg37lkzbh4n5rw90qki"))))
-    (build-system cmake-build-system)
-    (arguments
-     `(#:phases
-       (modify-phases %standard-phases
-         (replace  'check
-           (lambda _
-             (invoke "ctest"))))))
-    (native-inputs
-     `(("python" ,python)))
-    (home-page "https://github.com/kbarbary/sep")
-    (synopsis "Astronomical source extraction and photometry library")
-    (description
-     "C library for Source Extraction and Photometry")
-    (license license:expat))) ;; BSD, LGPL, MIT
+   (name "libsep")
+   (version "1.1.1")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/kbarbary/sep")
+           (commit (string-append "v" version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "1xcdlmm2zwrcrcdgbwc8ahna3szdr6a88gg37lkzbh4n5rw90qki"))))
+   (build-system cmake-build-system)
+   (arguments
+    (list
+     #:phases
+     #~(modify-phases %standard-phases
+                      (replace  'check
+                                (lambda _
+                                  (when #tests?
+                                    (invoke "ls" "../source" "-la")))))))
+   (native-inputs
+    (list gcc
+          python-wrapper))
+   (home-page "https://github.com/kbarbary/sep")
+   (synopsis "Astronomical source extraction and photometry library")
+   (description
+    "C library for Source Extraction and Photometry")
+   (license license:expat))) ;; BSD, LGPL, MIT
 
 ;; (define-public missfits
 ;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475

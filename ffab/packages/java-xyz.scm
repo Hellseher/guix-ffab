@@ -1,7 +1,26 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages java-xyz)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system maven)
   #:use-module (guix git-download)
+  #:use-module (guix gexp)
   #:use-module (guix packages))
 
 
@@ -61,3 +80,31 @@
     (synopsis "Java mocking framework for unit tests")
     (description "")
     (license license:expat)))
+
+;; 20220513T230340+0100
+(define-public java-outbackcdx
+  (package
+    (name "java-outbackcdx")
+    (version "0.11.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nla/outbackcdx")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1zh91cf465rnd9fkb5ybpcp9lgah5537y298890sg02nlbhspl4x"))))
+    (build-system maven-build-system)
+    (arguments
+     (list
+       #:maven-plugins
+       (("maven-shade-plugi" ,maven-shade-plugin)
+        ,@(default-maven-plugins))))
+    (home-page "https://github.com/nla/outbackcdx")
+    (synopsis "Web archive index server based on RocksDB")
+    (description
+     "This package provides a RocksDB-based capture index (CDX) server for web
+archives.")
+    (license license:asl2.0)))

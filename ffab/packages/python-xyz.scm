@@ -24,6 +24,7 @@
   #:use-module (gnu packages xml)
   #:use-module (gnu packages check)
   #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages databases)
   #:use-module (guix build-system python)
@@ -83,4 +84,44 @@ distibute locks across multiple computers.")
     (description
      "This package provides a Python module Py3AMF which is a fork of PyAMF
 with support of Python v3+.")
+    (license license:expat)))
+
+;; 20220513T200612+0100
+(define-public python-parsley
+  (package
+    (name "python-parsley")
+    (version "1.3")
+    (source
+     (origin
+       ;; The source distributed on PyPI is outdated.
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/pyga/parsley")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0550rw65ygqzbjc8a66hs355pzbx727kbn20dssdb6ls846gw2qs"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; Examples directorie has outdated tests which break after main tests
+          ;; have been passed. Removing them before run tests.
+          (add-before 'check 'drop-examples-from-tests
+            (lambda _
+              (delete-file-recursively "examples")
+              #t))
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "pytest" "-vv")))))))
+    (native-inputs
+     (list python-pytest
+           python-twisted))
+    (home-page "http://launchpad.net/parsley")
+    (synopsis "Parsing and pattern matching Python library")
+    (description
+     "Parsley is an implementation of OMeta, an object-oriented pattern-matching
+language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (license license:expat)))

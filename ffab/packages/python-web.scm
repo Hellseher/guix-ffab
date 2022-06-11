@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages python-web)
+  #:use-module (ffab packages databases)
   #:use-module (ffab packages python-xyz)
   #:use-module (ffab packages python-crypto)
   #:use-module ((guix licenses) #:prefix license:)
@@ -57,7 +58,7 @@
                 (invoke "py.test" "-v" "--cov" "pywb" "tests")))))))
     (native-inputs
      (list python-coverage
-           python-fakeredis
+           python-fakeredis-0.16.0
            python-httpbin
            python-lxml
            python-mock
@@ -74,7 +75,7 @@
            python-portalocker
            python-py3amf
            python-pyyaml
-           python-redis
+           python-redis-2.10.6
            python-requests
            python-six
            python-surt
@@ -84,8 +85,7 @@
            python-webassets
            python-webencodings
            python-werkzeug
-           python-wsgiprox
-           redis))
+           python-wsgiprox))
     (home-page "https://github.com/webrecorder/pywb")
     (synopsis "Web Archiving Toolkit for replay and recording of web archives")
     (description
