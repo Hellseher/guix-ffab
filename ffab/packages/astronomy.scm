@@ -65,8 +65,6 @@
   #:use-module (ice-9 match))
 
 ;; 20220608T193453+0100
-;; error: in phase 'validate-runpath': uncaught exception:
-;; misc-error #f "RUNPATH validation failed" () #f
 (define-public casacore
   (package
     (name "casacore")
@@ -89,11 +87,11 @@
       ;; distributed via FTP without any license:
       ;; ftp://ftp.astron.nl/outgoing/Measures/
       #:tests? #f
+      #:parallel-build? #t
       #:configure-flags
       #~(list "-DBUILD_PYTHON3=ON"
               "-DBUILD_PYTHON=OFF"
               "-DBUILD_TESTING=TRUE"
-              "-DCMAKE_SKIP_INSTALL_RPATH=ON"
               "-DUSE_HDF5=ON"
               "-DUSE_OPENMP=OFF"
               "-DUSE_THREADS=ON"
@@ -103,6 +101,9 @@
               (string-append "-DPYTHON3_LIBRARY=" #$python "/lib"))
       #:phases
       #~(modify-phases %standard-phases
+          (add-after 'unpack 'set-env
+            (lambda _
+              (setenv "HOME" "/tmp")))
           (add-after 'unpack 'use-absolute-rm
             (lambda _
               (substitute* "casa/OS/test/tFile.run"
@@ -126,12 +127,12 @@
     (native-inputs
      (list bison
            boost
+           flex
            readline))
     (inputs
      (list cfitsio
            fftw
            fftwf
-           flex
            gfortran
            hdf5
            lapack
@@ -791,40 +792,33 @@ provide related services.")
     (license license:bsd-3)))
 
 ;; 20220518T205203+0100
-(define-public calceph
+;; (define-public calceph
+;; added-to-upastream: d730bbbbb3d47d566bd24d0b4a44dcc808435f24
+;; CommitDate: Mon May 30 16:34:40 2022 +0200
+
+;; 20220612T205116+0100
+(define-public python-losoto
   (package
-    (name "calceph")
-    (version  "3.5.1")
+    (name "python-losoto")
+    (version "2.2.1")
     (source
      (origin
        (method url-fetch)
-       (uri (string-append
-             "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-"
-             version ".tar.gz"))
+       (uri (pypi-uri "losoto" version))
        (sha256
-        (base32 "078wn773pwf4pg9m0h0l00g4aq744pq1rb6kz6plgdpzp3hhpk1k"))))
-    (build-system gnu-build-system)
-    (native-inputs
-     (list gfortran))
-    (home-page "https://www.imcce.fr/inpop/calceph")
-    (synopsis "Astronomical library to access the binary planetary ephemeris files")
-    (description
-     "The CALCEPH Library is designed to access the binary planetary ephemeris files,
-such INPOPxx and JPL DExxx ephemeris files, (called @code{original JPL binary} or
-@code{INPOP 2.0 or 3.0 binary} ephemeris files in the next sections) and the SPICE
-kernel files (called @code{SPICE} ephemeris files in the next sections).  At the
-moment, supported SPICE files are:
-
-@itemize
-@item text Planetary Constants Kernel (KPL/PCK) files;
-
-@item binary PCK (DAF/PCK) files;
-
-@item binary SPK (DAF/SPK) files containing segments of type 1, 2, 3, 5, 8, 9,
-12, 13, 17, 18, 19, 20, 21, 102, 103 and 120;
-
-@item meta kernel (KPL/MK) files;
-
-@item frame kernel (KPL/FK) files.  Only a basic support is provided;)
-@end itemize\n")
-    (license license:cecill)))
+        (base32 "0mbfym9iy5nnrxjz5jiz3mvcq9y7bhqsn48b16lky7xhs4fb15gv"))))
+    (build-system python-build-system)
+    (propagated-inputs
+     (list python-casacore
+           python-configparser
+           python-cython
+           python-matplotlib
+           python-numexpr
+           python-numpy
+           python-progressbar
+           python-scipy
+           python-tables))
+    (home-page "http://github.com/revoltek/losoto/")
+    (synopsis "LOFAR Solution Tool")
+    (description "LOFAR Solution Tool")
+    (license #f)))

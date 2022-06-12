@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-06-11 Sat 19:40:13 BST>
+#+modified: <2022-06-12 Sun 22:34:49 BST>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -649,14 +649,21 @@ CLOSED: [2021-12-18 Sat 16:12]
 - [ ] :inputs [0/2][0%]
   - [ ] hdf5
   - [ ] casa
+* TODO ATNF :author:
+/Australia Telescope National Facility/
+- https://www.atnf.csiro.au/computing/software/index.html
+** AIPS
+- synopsis :: Astronomical Image Processing System, produced by NRAO.
+**
 * TODO casacore [0/1][0%] :author:
 - https://github.com/casacore
 ** TODO casacore
 - https://github.com/casacore/casacore
 - synopsis :: Suite of C++ libraries for radio astronomy data processing
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2022-06-12 Sun>
+- [X] :patch-sent <2022-06-12 Sun>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/55935
 - [-] :inputs [14/16][87%]
   - [ ] boost-python (optional)
   - [X] fftw3 (guix fftw)
