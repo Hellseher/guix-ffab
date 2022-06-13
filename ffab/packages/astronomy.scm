@@ -58,13 +58,49 @@
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system copy)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (ice-9 match))
 
+;; 20220613T235347+0100
+(define-public casacore-data
+  (package
+    (name "casacore-data")
+    (version "20220613-160001")
+    (source
+     (origin
+       (method url-fetch)
+       ;; NOTE: (Sharlatan-20220614T002807+0100): Meeasures data is updated
+       ;; daily and distributed via Westerbork Synthesis Radio Telescope (WSRT)
+       ;; FTP server.
+       (uri (string-append "ftp://ftp.astron.nl/outgoing/Measures/WSRT_Measures_"
+                           version ".ztar"))
+       (sha256
+        (base32 "0smz9kfzx3j36g22ccvv0s8y9pss7bgsj65byqyg254xyj599g9l"))))
+    (build-system copy-build-system)
+    (arguments
+     (list
+      #:patch-shebangs? #f
+      #:strip-binaries? #f
+      #:validate-runpath? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'install 'unpack-measures
+            (lambda _
+              (invoke "tar" "xvzf" (string-append "WSRT_Measures_" #$version ".ztar")))))))
+    (home-page "")
+    (synopsis "Measures data for Casacore")
+    (description "Westerbork Synthesis Radio Telescope (WSRT) measures data.")
+    (license license:public-domain)))
+
 ;; 20220608T193453+0100
+;; The following tests FAILED:
+        ;;  59 - tFile (Failed)
+        ;;  66 - tPath (Failed)
+        ;; 189 - tExprNode (Failed)
 (define-public casacore
   (package
     (name "casacore")
@@ -86,7 +122,7 @@
       ;; tests which require additional measures data. They are
       ;; distributed via FTP without any license:
       ;; ftp://ftp.astron.nl/outgoing/Measures/
-      #:tests? #f
+      #:tests? #t
       #:parallel-build? #t
       #:configure-flags
       #~(list "-DBUILD_PYTHON3=ON"
@@ -95,7 +131,7 @@
               "-DUSE_HDF5=ON"
               "-DUSE_OPENMP=OFF"
               "-DUSE_THREADS=ON"
-              (string-append "-DDATA_DIR=" #$output "/data")
+              (string-append "-DDATA_DIR=" #$casacore-data)
               (string-append "-DPYTHON3_EXECUTABLE=" #$python "/bin")
               (string-append "-DPYTHON3_INCLUDE_DIR=" #$python "/include")
               (string-append "-DPYTHON3_LIBRARY=" #$python "/lib"))
@@ -128,6 +164,7 @@
      (list bison
            boost
            flex
+           casacore-data
            readline))
     (inputs
      (list cfitsio
