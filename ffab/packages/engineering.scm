@@ -1,7 +1,0 @@
-(define-module (ffab packages engineering)
-  #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages)
-  #:use-module (gnu packages compression)
-  #:use-module (guix git-download)
-  #:use-module (guix build-system cmake)
-  #:use-module (guix packages))

@@ -28,69 +28,80 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
+;; 20220615T213902+0100
 (define-public dive
   (package
-   (name "dive")
-   (version "0.10.0")
-   (source (origin
-            (method git-fetch)
-            (uri (git-reference
-                  (url "https://github.com/wagoodman/dive")
-                  (commit (string-append "v" version))))
-            (file-name (git-file-name name version))
-            (sha256
-             (base32
-              "0q028nx6fhrlx0ybrrkhp31yi82argmh4s4dji2lwyi5jprb16fn"))))
-   (build-system go-build-system)
-   (arguments
-    (list #:import-path "github.com/wagoodman/dive"))
-   (native-inputs (list ;; go-github-com-docker-engine ;; indirect
-                        go-github-com-docker-distribution
-                        ;; go-gotest-tools ;; indirect
-                        ;; go-google-golang-org-grpc ;; indirect
-                        ;; go-google-golang-org-genproto ;; indirect
-                        go-golang-org-x-text
-                        go-golang-org-x-sys
-                        go-golang-org-x-net
-                        go-github-com-stretchr-testify
-                        go-github-com-spf13-viper
-                        go-github-com-spf13-pflag
-                        go-github-com-spf13-jwalterweatherman
-                        go-github-com-spf13-cobra
-                        go-github-com-spf13-afero
-                        go-github-com-sirupsen-logrus
-                        go-github-com-sergi-go-diff
-                        go-github-com-phayes-permbits
-                        go-github-com-pelletier-go-toml
-                        go-github-com-opencontainers-image-spec
-                        go-github-com-opencontainers-go-digest
-                        ;; go-github-com-morikuni-aec ;; indirect
-                        go-github-com-mitchellh-go-homedir
-                        go-github-com-mattn-go-isatty
-                        go-github-com-mattn-go-colorable
-                        go-github-com-magiconair-properties
-                        go-github-com-lunixbochs-vtclean
-                        go-github-com-logrusorgru-aurora
-                        go-github-com-konsorten-go-windows-terminal-sequences
-                        go-github-com-gorilla-mux
-                        go-github-com-google-uuid
-                        ;; go-github-com-google-go-cmp ;; indirect
-                        go-github-com-gogo-protobuf
-                        go-github-com-fatih-color
-                        go-github-com-dustin-go-humanize
-                        go-github-com-docker-go-units
-                        go-github-com-docker-go-connections
-                        go-github-com-docker-cli
-                        go-github-com-cespare-xxhash
-                        go-github-com-awesome-gocui-keybinding
-                        go-github-com-awesome-gocui-gocui
-                        go-github-com-microsoft-go-winio
-                        go-github-com-azure-go-ansiterm))
-   (home-page "https://github.com/wagoodman/dive")
-   (synopsis "dive")
-   (description
-    "To analyze a Docker image simply run dive with an image tag/id/digest:")
-   (license license:expat)))
+    (name "dive")
+    (version "0.10.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/wagoodman/dive")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0q028nx6fhrlx0ybrrkhp31yi82argmh4s4dji2lwyi5jprb16fn"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/wagoodman/dive"))
+    (native-inputs
+     (list ;; go-github-com-docker-engine ;; indirect
+      go-github-com-docker-distribution
+      ;; go-gotest-tools ;; indirect
+      ;; go-google-golang-org-grpc ;; indirect
+      ;; go-google-golang-org-genproto ;; indirect
+      go-golang-org-x-text
+      go-golang-org-x-sys
+      go-golang-org-x-net
+      go-github-com-stretchr-testify
+      go-github-com-spf13-viper
+      go-github-com-spf13-pflag
+      go-github-com-spf13-jwalterweatherman
+      go-github-com-spf13-cobra
+      go-github-com-spf13-afero
+      go-github-com-sirupsen-logrus
+      go-github-com-sergi-go-diff
+      go-github-com-phayes-permbits
+      go-github-com-pelletier-go-toml
+      go-github-com-opencontainers-image-spec
+      go-github-com-opencontainers-go-digest
+      ;; go-github-com-morikuni-aec ;; indirect
+      go-github-com-mitchellh-go-homedir
+      go-github-com-mattn-go-isatty
+      go-github-com-mattn-go-colorable
+      go-github-com-magiconair-properties
+      go-github-com-lunixbochs-vtclean
+      go-github-com-logrusorgru-aurora
+      go-github-com-konsorten-go-windows-terminal-sequences
+      go-github-com-gorilla-mux
+      go-github-com-google-uuid
+      ;; go-github-com-google-go-cmp ;; indirect
+      go-github-com-gogo-protobuf
+      go-github-com-fatih-color
+      go-github-com-dustin-go-humanize
+      go-github-com-docker-go-units
+      go-github-com-docker-go-connections
+      go-github-com-docker-cli
+      go-github-com-cespare-xxhash
+      go-github-com-awesome-gocui-keybinding
+      go-github-com-awesome-gocui-gocui
+      go-github-com-microsoft-go-winio
+      go-github-com-azure-go-ansiterm))
+    (home-page "https://github.com/wagoodman/dive")
+    (synopsis "Tool for exploring each layer in a Docker image")
+    (description
+     "This package provides TUI based application to analyze a Docker image.
+@itemize
+@item Show Docker image contents broken down by layer
+@item Indicate what's changed in each layer
+@item Estimate @code{image efficiency}
+@item Quick build/analysis cycles
+@item CI Integration
+@item Multiple Image Sources and Container Engines Supported
+@end itemize\n")
+    (license license:expat)))
 
 ;; 20220515T222656+0100
 (define-public go-github-com-phayes-permbits

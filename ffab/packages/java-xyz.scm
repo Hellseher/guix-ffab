@@ -23,7 +23,7 @@
   #:use-module (guix gexp)
   #:use-module (guix packages))
 
-
+;; 20220615T222550+0100
 (define-public java-universal-g-code-sender
   (package
     (name "java-universal-g-code-sender")
@@ -61,7 +61,7 @@
     (description "")
     (license license:gpl3)))
 
-
+;; 20220615T222557+0100
 (define-public java-mockito-core
   (package
     (name "java-mockito-core")
@@ -81,30 +81,30 @@
     (description "")
     (license license:expat)))
 
-;; 20220513T230340+0100
-(define-public java-outbackcdx
-  (package
-    (name "java-outbackcdx")
-    (version "0.11.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/nla/outbackcdx")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32
-         "1zh91cf465rnd9fkb5ybpcp9lgah5537y298890sg02nlbhspl4x"))))
-    (build-system maven-build-system)
-    (arguments
-     (list
-       #:maven-plugins
-       (("maven-shade-plugi" ,maven-shade-plugin)
-        ,@(default-maven-plugins))))
-    (home-page "https://github.com/nla/outbackcdx")
-    (synopsis "Web archive index server based on RocksDB")
-    (description
-     "This package provides a RocksDB-based capture index (CDX) server for web
-archives.")
-    (license license:asl2.0)))
+;; ;; 20220513T230340+0100
+;; (define-public java-outbackcdx
+;;   (package
+;;     (name "java-outbackcdx")
+;;     (version "0.11.0")
+;;     (source
+;;      (origin
+;;        (method git-fetch)
+;;        (uri (git-reference
+;;              (url "https://github.com/nla/outbackcdx")
+;;              (commit version)))
+;;        (file-name (git-file-name name version))
+;;        (sha256
+;;         (base32
+;;          "1zh91cf465rnd9fkb5ybpcp9lgah5537y298890sg02nlbhspl4x"))))
+;;     (build-system maven-build-system)
+;;     (arguments
+;;      (list
+;;        #:maven-plugins
+;;        (("maven-shade-plugi" ,maven-shade-plugin)
+;;         ,@(default-maven-plugins))))
+;;     (home-page "https://github.com/nla/outbackcdx")
+;;     (synopsis "Web archive index server based on RocksDB")
+;;     (description
+;;      "This package provides a RocksDB-based capture index (CDX) server for web
+;; archives.")
+;;     (license license:asl2.0)))

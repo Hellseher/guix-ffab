@@ -1,6 +1,6 @@
 #+title: gnu/packages/astronomy
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-06-12 Sun 22:34:49 BST>
+#+modified: <2022-06-14 Tue 23:23:02 BST>
 
 * TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -584,6 +584,13 @@ CLOSED: [2021-12-18 Sat 16:12]
   + [X] freeimage
   + [X] glew
   + [X] wxwidgets
+* TODO jobovy :author:
+- https://github.com/jobovy
+** TODO galpy
+- https://github.com/jobovy/galpy
+- synopsis :: Galactic Dynamics in python
+
+
 
 * TODO OpenPHDGuiding [0/1][0%] :author:p4:
 - https://openphdguiding.org

@@ -1,9 +1,28 @@
+;;; GNU Guix --- Functional package management for GNU
+;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;;
+;;; This file is NOT part of GNU Guix.
+;;;
+;;; This program is free software: you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation, either version 3 of the License, or
+;;; (at your option) any later version.
+;;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 (define-module (ffab packages tls)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages xml)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
+  #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (gnu packages autotools)
   #:use-module (guix packages))
@@ -11,24 +30,25 @@
 (define-public wolfssl
   (package
     (name "wolfssl")
-    (version "5.0.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                     (url "https://github.com/wolfSSL/wolfssl")
-                     (commit (string-append "v" version "-stable"))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "18a2dw7piiqriqcaiw7c0wlzlh0j92v422w67gsw2i1nzvw47zxf"))))
+    (version "5.3.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/wolfSSL/wolfssl")
+             (commit (string-append "v" version "-stable"))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0q1w90jl9jszply1005rxkm6gq1yrgy3a6j6m1jqh3i0c2nq1mra"))))
     (build-system gnu-build-system)
     (arguments
-     '(#:configure-flags
-       '("--enable-reproducible-build")))
+     (list
+      #:configure-flags
+      #~(list "--enable-reproducible-build")))
     (native-inputs
-     `(("autoconf" ,autoconf)
-       ("automake" ,automake)
-       ("libtool" ,libtool)))
+     (list autoconf
+           automake
+           libtool))
     (synopsis "SSL/TLS implementation")
     (description "The wolfSSL embedded SSL library (formerly CyaSSL) is an
 SSL/TLS library written in ANSI C and targeted for embedded, RTOS, and

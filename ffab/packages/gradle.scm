@@ -16,21 +16,29 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (ffab packages image)
-  #:use-module (guix packages)
-  #:use-module (guix build-system gnu)
-  #:use-module (guix build-system meson)
+(define-module (ffab packages gradle)
+  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (guix build-system ant)
+  #:use-module (guix gexp)
   #:use-module (guix git-download)
-  #:use-module (gnu packages pkg-config)
-  #:use-module (gnu packages gtk)
-  #:use-module (gnu packages gnome)
-  #:use-module (gnu packages ninja)
-  #:use-module (gnu packages glib)
-  #:use-module (gnu packages man)
-  #:use-module (gnu packages build-tools)
-  #:use-module ((guix licenses) #:prefix license:))
+  #:use-module (guix packages))
 
-;; 20210212T121631+0000
-;; added-to-upstream: bc7879cca6196905b3f1e2c9db6c674ef0b7f8ca
-;; CommitDate: Sat Feb 13 10:38:13 2021 +0800
-;; (define-public swappy
+(define-public java-gradle-bootstrap
+  (let ((commit "e09125febb2abd4d5eb70714ff68cdc76ee7dc45"))
+    (package
+      (name "java-gradle-bootstrap")
+      (version "0.0.0")
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/gradle/gradle")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0m8wmwi2cryjw2g272w213cw4zb02v61j2x9cfhd3gfvnmi9909x"))))
+      (build-system ant-build-system)
+      (home-page "https://gradle.org/")
+      (synopsis "Build automation tool written")
+      (description "")
+      (license license:asl2.0))))

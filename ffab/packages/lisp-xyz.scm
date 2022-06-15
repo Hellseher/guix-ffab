@@ -3038,38 +3038,6 @@ window it creates as just another output for your graphics, analogous to how
 (define-public cl-cepl
   (sbcl-package->cl-source-package sbcl-cepl))
 
-;; 20210604T194236+0100
-(define-public sbcl-nst
-  (let ((commit "6c0990f594abcf5887e8d80f1035e3b60454b61b")
-        (revision "1"))
-    (package
-     (name "sbcl-nst")
-     (version (git-version "4.1.2" revision commit))
-     (source
-      (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/jphmrst/cl-nst")
-             (commit commit)))
-       (file-name (git-file-name "nst" version))
-       (sha256
-        (base32 "1hf3r6pqbnd9vsd1i24qmz928kia72hdgmiafiwb6jw1hmj3r6ga"))))
-     (build-system asdf-build-system/sbcl)
-     (inputs
-      `(("closer-mop" ,sbcl-closer-mop)
-        ("org-sampler" ,sbcl-org-sampler)))
-     (home-page "https://github.com/jphmrst/cl-nst")
-     (synopsis "Unit testing for Common Lisp")
-     (description
-      "NST is unit/regression testing system for Common Lisp.")
-     (license license:llgpl))))
-
-(define-public ecl-nst
-  (sbcl-package->ecl-package sbcl-nst))
-
-(define-public cl-nst
-  (sbcl-package->cl-source-package sbcl-nst))
-
 ;; 20210604T195150+0100
 (define-public sbcl-org-sampler
   (let ((commit "ee135a417750e5b1d810bb9574eb85223cb3038a")
@@ -3220,6 +3188,7 @@ setup.")
 (define-public cl-posix-mqueue
   (sbcl-package->cl-source-package sbcl-cl-posix-mqueue))
 
+;; 20220615T223419+0100
 (define-public sbcl-cl-graph
   (let ((commit "3cb786797b24883d784b7350e7372e8b1e743508")
         (revision "1"))
@@ -3237,22 +3206,22 @@ setup.")
           (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
       (build-system asdf-build-system/sbcl)
       (native-inputs
-       `(("lift" ,sbcl-lift)
-         ("moptilities" ,sbcl-moptilities)))
+       (list sbcl-lift
+             sbcl-moptilities))
       (inputs
-       `(("cl-containers" ,sbcl-cl-containers)
-         ("cl-mathstats" ,sbcl-cl-mathstats)
-         ("dynamic-classes" ,sbcl-dynamic-classes)
-         ("hu.dwim.graphviz" ,sbcl-hu.dwim.graphviz)
-         ("metabang-bind" ,sbcl-metabang-bind)
-         ("metacopy" ,sbcl-metacopy)
-         ("metatilities-base" ,sbcl-metatilities-base)
-         ("moptilities" ,sbcl-moptilities)))
+       (list sbcl-cl-containers
+             sbcl-cl-mathstats
+             sbcl-dynamic-classes
+             ;; sbcl-hu.dwim.graphviz
+             sbcl-metabang-bind
+             sbcl-metacopy
+             sbcl-metatilities-base
+             sbcl-moptilities))
       (home-page "https://github.com/gwkkwg/cl-graph")
-      (synopsis "TBC")
+      (synopsis "Common Lisp library for manipulating graphs and running graph algorithms")
       (description
-       "TBC")
-      (license #f))))
+       "Graph manipulation utilities for Common Lisp")
+      (license license:expat))))
 
 (define-public sbcl-cl-mathstats
   (let ((commit "39af1b5e1ebbad6f75dab2c4214ce48852031bbf")
@@ -3280,38 +3249,38 @@ setup.")
        "TBC")
       (license #f))))
 
-(define-public sbcl-hu.dwim.graphviz
-  (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
-        (revision "1"))
-    (package
-      (name "sbcl-hu.dwim.graphviz")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("hu.dwim.common" ,sbcl-hu.dwim.common)
-         ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
-                                        ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
-         ))
-      (inputs
-       `(("cffi" ,sbcl-cffi)
-         ("metabang-bind" ,sbcl-metabang-bind)))
-      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
-      (synopsis "TBC")
-      (description
-       "TBC")
-      (license #f))))
+;; (define-public sbcl-hu-dwim-graphviz
+;;   (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
+;;         (revision "1"))
+;;     (package
+;;       (name "sbcl-hu-dwim-graphviz")
+;;       (version (git-version "0.0.0" revision commit))
+;;       (source
+;;        (origin
+;;          (method git-fetch)
+;;          (uri (git-reference
+;;                (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+;;                (commit commit)))
+;;          (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
+;;          (sha256
+;;           (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
+;;       (build-system asdf-build-system/sbcl)
+;;       (native-inputs
+;;        `(("hu.dwim.common" ,sbcl-hu.dwim.common)
+;;          ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
+;;                                         ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
+;;          ))
+;;       (inputs
+;;        `(("cffi" ,sbcl-cffi)
+;;          ("metabang-bind" ,sbcl-metabang-bind)))
+;;       (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+;;       (synopsis "TBC")
+;;       (description
+;;        "TBC")
+;;       (license #f))))
 
 (define-public sbcl-metacopy
-  (let ((commit "not-available")
+  (let ((commit "1b5bf443206cc1dea7801ae23d1167bd02122d30")
         (revision "1"))
     (package
       (name "sbcl-metacopy")
@@ -3320,21 +3289,21 @@ setup.")
        (origin
          (method git-fetch)
          (uri (git-reference
-               (url "http://dwim.hu/live/metacopy/")
+               (url "https://github.com/gwkkwg/metacopy")
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
+          (base32 "1rzp112djgw5n76s6hy2aq92bc43p0zd5bgzvqwvgvws4pls42s9"))))
       (build-system asdf-build-system/sbcl)
       (inputs
-       `(("contextl" ,sbcl-contextl)
-         ("lift" ,sbcl-lift)
-         ("moptilities" ,sbcl-moptilities)))
-      (home-page "http://dwim.hu/live/metacopy/")
-      (synopsis "TBC")
+       (list sbcl-contextl
+             sbcl-lift
+             sbcl-moptilities))
+      (home-page "https://github.com/gwkkwg/metacopy")
+      (synopsis "Flexible Common Lisp shallow/deep copy mechanism")
       (description
        "TBC")
-      (license #f))))
+      (license license:expat))))
 
 (define-public sbcl-eventbus
   (let ((commit "92c1fa3846ba0e3cc9e6d7605d765379c8658d84")

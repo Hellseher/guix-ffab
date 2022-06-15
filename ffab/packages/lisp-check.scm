@@ -26,46 +26,15 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
-(define-public sbcl-kaputt
-  (let ((commit "f26c9b0f8219fe61d86249198ef85174eecafc10")
-        (revision "1"))
-    (package
-      (name "sbcl-kaputt")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/foretspaisibles/cl-kaputt")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "10a78032vnf12kjjpfmq9ign38cad237ycyq37dwnx922nxjjaj4"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("cl-ppcre" ,sbcl-cl-ppcre)))
-      (home-page "https://github.com/foretspaisibles/cl-kaputt")
-      (synopsis "Simple Interactive Test Framework for Common Lisp")
-      (description
-       "KAPUTT is a test framework for Common Lisp that focuses on the following
-features:
+;; 20210604T194236+0100
+;; added-to-upstream: 8a40a964e01ba07bf0c6ecdd90c5d064a697f9d6
+;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
+;; (define-public sbcl-nst
 
-@itemize
-@item KAPUTT is simple, it only defines three abstractions testcase, assertion
-and protocol and does not add any artefact on the backtrace when errors occur.
-
-@item KAPUTT is extensible, it is possible to add problem-specific assertions to
-make test code more informative.
-
-@item KAPUTT fits well interactive development.
-@end itemize\n")
-      (license license:cecill-b))))
-
-(define-public ecl-kaputt
-  (sbcl-package->ecl-package sbcl-kaputt))
-
-(define-public cl-kaputt
-  (sbcl-package->cl-source-package sbcl-kaputt))
+;; 20211107T194006+0000
+;; added-to-upstream: 07a68587b0e00a7b7c231d1360bbc5fb47fc51bf
+;; CommitDate: Mon Nov 8 09:25:25 2021 +0100
+;; (define-public sbcl-kaputt
 
 (define-public sbcl-cacau
   (let ((commit "ba0fb36a284ded884f1dab0bd3f0f41ec14e3038")

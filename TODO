@@ -1,5 +1,5 @@
 #+created: <2022-05-29 Sun 12:53:28 BST>
-#+modified: <2022-05-29 Sun 12:53:43 BST>
+#+modified: <2022-06-15 Wed 23:05:48 BST>
 #+file: TODO
 
 #+begin_src sh
@@ -16,6 +16,7 @@ grep TODO *.org | grep -v :author
 | astronomy.org:**       | TODO | inistarter        | [/][%]       |      |
 | astronomy.org:**       | TODO | eqmodgui          | [/][%]       |      |
 | astronomy.org:**       | TODO | jwst              | [0/4][0%]    |      |
+| astronomy.org:**       | TODO | drizzle           | [0/4]        |      |
 | astronomy.org:**       | TODO | tweakwcs          | [0/4][0%]    |      |
 | astronomy.org:**       | TODO | sofa-c            | [/][%]       |      |
 | astronomy.org:*        | TODO | linguider         | [/][%]       |      |
@@ -23,10 +24,13 @@ grep TODO *.org | grep -v :author
 | astronomy.org:**       | TODO | eclipse           | [0/0][0%]    |      |
 | astronomy.org:**       | TODO | skycat            | [0/4][0%]    |      |
 | astronomy.org:*        | TODO | THELI             | [0/0][0%]    |      |
+| astronomy.org:**       | TODO | galpy             |              |      |
 | astronomy.org:**       | TODO | phd2              | [0/4][%]     |      |
 | astronomy.org:*        | TODO | INDIGO            | [0/4]        | :p5: |
 | astronomy.org:**       | TODO | HEAsoft           | [/][%]       |      |
 | astronomy.org:**       | TODO | Xspec             | [/]          |      |
+| astronomy.org:**       | TODO | AOFlagger         | [0/4]        |      |
+| astronomy.org:**       | TODO | casacore          |              |      |
 | docker.org:**          | TODO | dive              | [/][%]       |      |
 | emacs-xyz.org:**       | TODO | org-roam-server   | [/][%]       | :p3: |
 | golang.org:**          | TODO | go/tools/gopls    | [/][%]       | :p1: |
@@ -50,7 +54,7 @@ grep TODO *.org | grep -v :author
 | lisp-xyz.org:**        | TODO | cl-steamworks     | [/][%]       |      |
 | lisp-xyz.org:**        | TODO | kandria           | [0/4][0%]    |      |
 | lisp-xyz.org:**        | TODO | cl-mixed          | [1/4][25%]   |      |
-| lisp-xyz.org:**        | TODO | glop              | [0/4][0%]    |      |
+| lisp-xyz.org:**        | TODO | glop              | [1/4][25%]   |      |
 | lisp-xyz.org:**        | TODO | adopt             | [1/4][25%]   |      |
 | lisp-xyz.org:**        | TODO | ctype             | [0/4][0%]    |      |
 | lisp-xyz.org:**        | TODO | cl-soil           | [0/4][0%]    | :p1: |
@@ -75,16 +79,22 @@ grep "TODO\|DONE" *.org | grep :author
 | astronomy.org:*       | TODO | INDI                | [1/3][33%]  | :author:p5: |
 | astronomy.org:*       | TODO | ap-i                | [1/5][20%]  | :author:p5: |
 | astronomy.org:*       | TODO | astropy             | [1/3][33%]  | :author:p1: |
-| astronomy.org:*       | TODO | spacetelescope      | [1/3][33%]  | :author:    |
+| astronomy.org:*       | TODO | spacetelescope      | [1/4][25%]  | :author:    |
+| astronomy.org:*       | TODO | IAUSOFA             | :author:    |             |
 | astronomy.org:*       | TODO | ESO                 | [1/3][33%]  | :author:    |
 | astronomy.org:*       | TODO | GreatAttractor      | [2/2][100%] | :author:p5: |
+| astronomy.org:*       | TODO | jobovy              | :author:    |             |
 | astronomy.org:*       | TODO | OpenPHDGuiding      | [0/1][0%]   | :author:p4: |
 | astronomy.org:*       | TODO | NASA                | [0/2][0%]   | :author:    |
+| astronomy.org:*       | TODO | kernsuite           | :author:    |             |
+| astronomy.org:*       | TODO | aroffringa          | [0/1][0%]   | :author:    |
+| astronomy.org:*       | TODO | ATNF                | :author:    |             |
+| astronomy.org:*       | TODO | casacore            | [0/1][0%]   | :author:    |
 | golang.org:*          | TODO | github.com/valyala  | [1/1][100%] | :author:    |
 | lisp-xyz.org:*        | TODO | borodust            | [0/2][0%]   | :author:p3: |
 | lisp-xyz.org:*        | TODO | Shinmera/Shirakumo  | [3/12][25%] | :author:p5: |
 | lisp-xyz.org:*        | TODO | lispgames           | [0/1][0%]   | :author:    |
-| lisp-xyz.org:*        | TODO | sjl                 | [0/1][0%]   | :author:p1: |
+| lisp-xyz.org:*        | TODO | sjl                 | [0/1][0%]   | :author:p5: |
 | lisp-xyz.org:*        | TODO | s-expressionists    | [0/1][0%]   | :author:p3: |
 | lisp-xyz.org:*        | TODO | cbaggers            | [1/3][33%]  | :author:p2: |
 | python-check.org:*    | TODO | brandon-rhodes      | [0/1][0%]   | :author:p5: |

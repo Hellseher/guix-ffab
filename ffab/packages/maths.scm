@@ -52,8 +52,6 @@
   #:use-module (guix gexp)
   #:use-module (guix packages))
 
-;(define-public plplot-base)
-
 (define-public plplot
   (package
     (name "plplot")

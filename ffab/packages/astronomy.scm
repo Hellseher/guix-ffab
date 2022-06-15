@@ -31,10 +31,12 @@
   #:use-module (gnu packages flex)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
+  #:use-module (gnu packages glib)
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
   #:use-module (gnu packages libusb)
+  #:use-module (gnu packages lua)
   #:use-module (gnu packages machine-learning)
   #:use-module (gnu packages maths)
   #:use-module (gnu packages multiprecision)
@@ -64,12 +66,15 @@
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (ice-9 match))
+
+;; https://github.com/casacore
+;;+begin-casacore
 
 ;; 20220613T235347+0100
 (define-public casacore-data
   (package
     (name "casacore-data")
-    (version "20220613-160001")
+    (version "20220614-160001")
     (source
      (origin
        (method url-fetch)
@@ -79,7 +84,7 @@
        (uri (string-append "ftp://ftp.astron.nl/outgoing/Measures/WSRT_Measures_"
                            version ".ztar"))
        (sha256
-        (base32 "0smz9kfzx3j36g22ccvv0s8y9pss7bgsj65byqyg254xyj599g9l"))))
+        (base32 "1jsf237k6amkvh2lp3zm9f4jdk3zplgdmv5mfpwicqaw60fs4m88"))))
     (build-system copy-build-system)
     (arguments
      (list
@@ -90,8 +95,9 @@
       #~(modify-phases %standard-phases
           (add-before 'install 'unpack-measures
             (lambda _
-              (invoke "tar" "xvzf" (string-append "WSRT_Measures_" #$version ".ztar")))))))
-    (home-page "")
+              (invoke "tar" "xvzf" (string-append "WSRT_Measures_" #$version ".ztar"))
+              (invoke "rm" "-vf" (string-append "WSRT_Measures_" #$version ".ztar")))))))
+    (home-page "https://astron.nl")
     (synopsis "Measures data for Casacore")
     (description "Westerbork Synthesis Radio Telescope (WSRT) measures data.")
     (license license:public-domain)))
@@ -112,8 +118,7 @@
              (url "https://github.com/casacore/casacore")
              (commit (string-append "v" version))))
        (sha256
-        (base32
-         "05ar5gykgh4dm826xplj5ri5rw7znhxrvin2l67a3mjwfys7r2a0"))
+        (base32 "05ar5gykgh4dm826xplj5ri5rw7znhxrvin2l67a3mjwfys7r2a0"))
        (file-name (git-file-name name version))))
     (build-system cmake-build-system)
     (arguments
@@ -122,7 +127,7 @@
       ;; tests which require additional measures data. They are
       ;; distributed via FTP without any license:
       ;; ftp://ftp.astron.nl/outgoing/Measures/
-      #:tests? #t
+      #:tests? #f
       #:parallel-build? #t
       #:configure-flags
       #~(list "-DBUILD_PYTHON3=ON"
@@ -186,7 +191,8 @@
 was made to get a better separation of core libraries and applications.
 (CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
     (license license:gpl2)))
-
+;;+end-casacore
+
 ;; 20220608T191316+0100
 (define-public aoflagger
   (package
@@ -199,32 +205,72 @@ was made to get a better separation of core libraries and applications.
              (url "https://gitlab.com/aroffringa/aoflagger")
              (commit (string-append "v" version))))
        (sha256
-        (base32
-         "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
+        (base32 "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
        (file-name (git-file-name name version))))
     (build-system cmake-build-system)
-    ;; (arguments
-    ;;  (list
-    ;;   #:configure-flags
-    ;;   #~(list
-    ;;      "-DBUILD_TEST=ON"
-    ;;      (string-append "-DCMAKE_INSTALL_LIBDIR=" #$output "/lib")
-    ;;      (string-append "-DCMAKE_INSTALL_PREFIX=" #$output))))
-    ;; (native-inputs
-    ;;  (list perl
-    ;;        perl-xml-dom
-    ;;        perl-xml-parser
-    ;;        pkg-config
-    ;;        ;python-wrapper
-    ;;        swig))
+    (arguments
+     (list
+      #:configure-flags
+      #~(list
+         (string-append "-DCASACORE_ROOT_DIR=" #$casacore))))
+    (native-inputs
+     (list pkg-config
+           boost))
     (inputs
-     (list hdf5
-           ))
-    (home-page "http://plplot.org/")
+     (list casacore
+           gtkmm-3
+           cfitsio
+           libxml2
+           fftw
+           gsl
+           hdf5
+           lua
+           pybind11
+           openblas
+           libpng
+           libsigc++
+           python
+           lapack))
+    (home-page "https://gitlab.com/aroffringa/aoflagger")
     (synopsis "")
     (description
      "")
     (license license:gpl3)))
+
+;; 20220614T105114+0100
+(define-public aocommon
+  (let ((commit "7329a075271edab8f6264db649e81e62b2b6ae5e")
+        (revision "1"))
+    (package
+      (name "aocommon")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://gitlab.com/aroffringa/aocommon")
+               (commit commit)))
+         (sha256
+          (base32 "0qcfax6pbzs0yigy0x8xibrkk539wm2pbvjsb4lh50fybir02nix"))
+         (file-name (git-file-name name version))))
+      (build-system cmake-build-system)
+      (arguments
+       (list
+        #:tests? #f
+        #:configure-flags
+        #~(list
+           (string-append "-DCASACORE_ROOT_DIR=" #$casacore))))
+      (native-inputs
+       (list pkg-config boost))
+      (inputs
+       (list casacore
+             openblas
+             cfitsio))
+      (home-page "https://gitlab.com/aroffringa/aocommon")
+      (synopsis "")
+      (description
+       "")
+      (license license:gpl3))))
 
 ;; TODO: (Sharlatan-20210415T214924+0100):
 (define-public astrometry
@@ -475,9 +521,35 @@ planetarium.")
 ;; (define-public python-asdf-transform-schemas
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
-
 
-;; Set of packages maintained by Space Telescope Science Institute
+;; https://github.com/jobovy
+;;+begin-jobovy
+(define-public python-galpy
+  (package
+    (name "python-galpy")
+    (version "1.7.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "galpy" version))
+       (sha256
+        (base32 "0jn073p19m3k2ibwv0gf4mlx824gkac585r0v3filybx89xva4a0"))))
+    (build-system python-build-system)
+    (propagated-inputs
+     (list python-future
+           python-matplotlib
+           python-numpy
+           python-pytest
+           python-scipy
+           python-setuptools
+           python-six))
+    (home-page "http://github.com/jobovy/galpy")
+    (synopsis "Galactic Dynamics in python")
+    (description "Galactic Dynamics in python")
+    (license license:bsd-3)))
+
+  ;;+end-jobovy
+
 ;; https://github.com/spacetelescope
 ;;+begin-spacetelescope
 
@@ -744,7 +816,7 @@ spherical polygons that represent arbitrary regions of the sky.")
 
 
 ;; 20220513T172658+0100
-(define-public  python-bayesicfitting
+(define-public python-bayesicfitting
   (package
     (name "python-bayesicfitting")
     (version "3.0.1")

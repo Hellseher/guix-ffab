@@ -1,7 +1,8 @@
 #+title: gnu/packages/emacs-xyz
 #+created: <2021-06-21 Mon 09:39:08 BST>
-#+modified: <2021-06-21 Mon 09:42:39 BST>
+#+modified: <2022-06-15 Wed 23:06:41 BST>
 
 * Flow [0/1][0%]
-** TODO org-roam-server [/][%] :p3:
-- https://github.com/org-roam/org-roam-server
+** org-roam [0/1][0%] :author:
+*** TODO org-roam-ui [/][%] :p3:
+- https://github.com/org-roam/org-roam-ui

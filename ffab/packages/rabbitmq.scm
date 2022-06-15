@@ -28,7 +28,6 @@
 
 
 ;; 20220414T212045+0100
-
 (define-public rabbitmq-server
   (package
     (name "rabbitmq-server")
