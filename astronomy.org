@@ -1,182 +1,17 @@
-#+title: gnu/packages/astronomy
+#+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-06-16 Thu 23:32:01 BST>
+#+modified: <2022-06-18 Sat 22:38:53 BST>
 
-* TODO AstrOmatic-software [8/10][80%] :author:p5:
-- https://github.com/astromatic
-- http://www.astromatic.net/software
+* Synopsis
+This workflow file contains packaging process for Astronomical/Astrophysical related software
+- GNU Guix :: gnu/packages/astronomy.scm
+- FFAB :: ffab/packages/astronomy.scm
 
-** DONE eye [3/3][100%]
-CLOSED: [2021-01-26 Tue 10:02]
-- synopsis :: small image feature detector using machine learning
-- [X] :packed <2021-01-24 Sun>
-- [X] :patch-sent <2021-01-25 Mon>
-- [X] :paptch-applied-upstream <2021-01-26 Tue>
-  + https://issues.guix.gnu.org/46103
-
-** DONE missfits [3/3][100%]
-CLOSED: [2021-01-27 Wed 11:26]
-- http://www.astromatic.net/software/missfits
-- synosis :: fits file management
-- [X] :packed <2021-01-26 Tue>
-- [X] :patch-sent <2021-01-27 Wed>
-- [X] :paptch-applied-upstream <2021-01-27 Wed>
-  - https://issues.guix.gnu.org/46121
-
-** TODO psfex [1/4][25%]
-- synosis :: psf modelling and quality assessment
-- http://www.astromatic.net/software/psfex
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [2/2][100%]
-  - [X] fftw
-  - [X] plplot
-
-** TODO scamp [0/4][0%]
-- http://www.astromatic.net/software/scamp
-- synosis :: astrometric calibration and photometric homogenisation
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  - [ ] plplot
-
-** DONE sextractor [4/4][100%]
-CLOSED: [2021-01-25 Mon 17:27]
-- synosis :: Extract catalogs of sources from astronomical images
-- [X] :packed <2021-01-23 Sat>
-- [X] :patch-sent <2021-01-24 Sun>
-- [X] :paptch-applied-upstream <2021-01-25 Mon>
-  - https://issues.guix.gnu.org/46072
-- [X] :inputs [2/2]
-  + [X] openblas (gnu/packages/maths.scm:3960:2)
-  + [X] fftwf (gnu/packages/algebra.scm)
-
-** DONE skymaker [4/4][100%]
-CLOSED: [2021-01-28 Thu 13:24]
-- http://www.astromatic.net/software/skymaker
-- synosis :: image simulation
-- [X] :packed <2021-01-27 Wed>
-- [X] :patch-sent (gnu/packages/astonomy.scm) <2021-01-27 Wed>
-- [X] :paptch-applied-upstream <2021-01-28 Thu>
-  - https://issues.guix.gnu.org/46143
-- [X] :inputs [1/1][100%]
-  + [X] fftwf (gnu/packages/algebra.scm)
-** DONE stuff [3/3][100%]
-CLOSED: [2021-01-29 Fri 10:56]
-- synosis :: catalogue simulation
-- [X] :packed <2021-01-28 Thu>
-- [X] :patch-sent <2021-01-28 Thu>
-- [X] :paptch-applied-upstream <2021-01-29 Fri>
-  - https://issues.guix.gnu.org/46161
-** DONE swarp [3/3][100%]
-CLOSED: [2021-01-29 Fri 10:56]
-- synosis :: image regridding and co-addition
-- [X] :packed <2021-01-28 Thu>
-- [X] :patch-sent <2021-01-28 Thu>
-- [X] :paptch-applied-upstream <2021-01-29 Fri>
-  - https://issues.guix.gnu.org/46161
-** DONE weightwatcher [3/3][100%]
-CLOSED: [2021-01-29 Fri 10:56]
-- synosis :: weight-map/flag-map multiplexer and rasteriser
-- [X] :packed <2021-01-28 Thu>
-- [X] :patch-sent <2021-01-28 Thu>
-- [X] :paptch-applied-upstream <2021-01-29 Fri>
-  - https://issues.guix.gnu.org/46161
-** DONE stiff [3/3] [100%]
-CLOSED: [2021-01-22 Fri 23:03]
-  - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
-  - synopsis :: automated image compositing and conversion
-  - [X] :packed <2021-01-05 Tue>
-  - [X] :patch-sent <2021-01-05 Tue>
-  - [X] :paptch-applied-upstream <2021-01-06 Wed>
-    - https://issues.guix.gnu.org/45666
-  - [X] :inputs [3/3]
-    - [X] libtiff (gnu/packages/image.scm:581:2)
-    - [X] zlib (gnu/packages/compression.scm:86:2)
-    - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
-* TODO IIPImage [/][%] :author:
-- https://iipimage.sourceforge.io/
-- https://github.com/ruven/iipsrv
-- synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
-  web-based streamed viewing and zooming of ultra high-resolution images. It is designed to be fast
-  and bandwidth-efficient with low processor and memory requirements. The system can comfortably
-  handle gigapixel size images as well as advanced image features such as 8, 16 and 32 bits per
-  channel, CIELAB colorimetric images and scientific imagery such as multispectral images and
-  digital elevation maps.
-
-* TODO C-Munipack library [0/0][0%]
-- https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
-  - synopsis ::  The extensive set of functions with simple application interface, that provides the
-    complete solution for reduction of images carried out by a CCD camera, aimed at the observation
-    of variable stars.
-  - [ ] :packed
-  - [ ] :patch-sent
-  - [ ] :paptch-applied-upstream
-  - [ ] :inputs [0/0]
-
-* TODO INDI Library [1/3][33%] :author:p5:
-- https://www.indilib.org/
-- synopsis :: INDI Library is an open source software to control astronomical equipment. It is based
-  on the Instrument Neutral Distributed Interface (INDI) protocol and acts as a bridge between
-  software clients and hardware devices. Since it is network transparent, it enables you to
-  communicate with your equipment transparently over any network without requiring any 3rd party
-  software. It is simple enough to control a single backyard telescope, and powerful enough to
-  control state of the art observatories across multiple locations
-** DONE indi [4/4][100%]
-CLOSED: [2021-01-31 Sun 13:07]
-- https://github.com/indilib/indi
-- synospsis :: INDI is a standard for astronomical instrumentation control. INDI Library is an Open
-  Source POSIX implementation of the Instrument-Neutral-Device-Interface protocol.
-- [X] :packed <2021-01-21 Thu>
-- [X] :patch-sent <2021-01-31 Sun>
-- [X] :paptch-applied-upstream <2021-01-31 Sun>
-  - https://issues.guix.gnu.org/46201
-- [X] inputs [9/9]
-  + [X] libusb
-  + [X] libnova
-  + [X] cfitsio
-  + [X] gsl
-  + [X] zlib
-  + [X] libjpeg
-  + [X] libtiff
-  + [X] fftw
-  + [X] curl
-
-** TODO indi-3rdparty [0/4][0%]
-- https://github.com/indilib/indi-3rdparty
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [13/18][72%]
-  + [X] libnova
-  + [X] cfitsio
-  + [X] libusb
-  + [X] zlib
-  + [X] gsl
-  + [ ] git (?)
-  + [X] libjpeg-turbo (gnu/packages/image.scm)
-  + [X] curl
-  + [X] libtiff (gnu/packages/image.scm)
-  + [X] libftdi (gnu/packages/libftdi.scm)
-  + [X] gpsd (gnu/packages/gps.scm)
-  + [X] libraw (gnu/packages/photo.scm)
-  + [X] libdc1394 (gnu/packages/gstreamer.scm)
-  + [X] gphoto2 (gnu/packages/photo.scm)
-  + [ ] libboost
-  + [ ] libboost-regex-dev
-  + [ ] librtlsdr-dev
-    - https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr
-  + [ ] liblimesuite-dev [0/0][0%]
-    - https://github.com/myriadrf/LimeSuite
-
-** TODO indi-service-type [/][%]
-
-* TODO ap-i [1/5][20%] :author:p5:
+* Flow [0/24][0%]
+** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
-** DONE libpasastro [3/3][100%]
+*** DONE libpasastro [3/3][100%]
 CLOSED: [2021-01-25 Mon 17:25]
 - https://github.com/pchev/libpasastro
 - [X] :packed <2021-01-22 Fri>
@@ -184,7 +19,7 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [X] :paptch-applied-upstream <2021-01-25 Mon>
   + https://issues.guix.gnu.org/46045
 
-** TODO skychart [0/4][0%]
+*** TODO skychart [0/4][0%]
 - https://github.com/pchev/skychart
 - synopsis :: SkyChart / Cartes du Ciel Free software to draw sky charts
 - [ ] :packed
@@ -199,21 +34,150 @@ CLOSED: [2021-01-25 Mon 17:25]
     - [ ] :paptch-applied-upstream
     - [-] :inputs [0/0][0%]
 
-** TODO ccdciel [/][%]
+*** TODO ccdciel [/][%]
 - https://github.com/pchev/ccdciel
-** TODO inistarter [/][%]
+*** TODO inistarter [/][%]
 - https://github.com/pchev/indistarter
-** TODO eqmodgui [/][%]
+*** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
-* TODO astropy [1/2][50%] :author:p1:
+** TODO aroffringa [0/1][0%] :author:
+*** TODO AOFlagger [0/4]
+- https://gitlab.com/aroffringa/aoflagger
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/2][0%]
+  - [ ] hdf5
+  - [ ] casa
+** TODO astroalign [1/2][50%] :author:
+*** DONE astoalign [4/4][100%]
+CLOSED: [2021-02-19 Fri 11:13]
+- https://github.com/quatrope/astroalign
+- synopsis :: Tool to align astronomical images based on asterism matching
+- [X] :packed <2021-02-13 Sat>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  - [X] numpy
+  - [X] scikit-image
+  - [X] scipy
+  - [X] sep [4/4][100%]
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-13 Sat>
+    - [X] :paptch-applied-upstream <2021-02-19 Fri>
+      - https://issues.guix.gnu.org/46492
+    - [X] :inputs [3/3][100%]
+      + [X] cython
+      + [X] numpy
+      + [X] pytest
+*** TODO ois [/][%] :p5:
+- https://github.com/quatrope/ois
+- synopsis :: Optimal Image Subtraction
+
+** TODO AstrOmatic-software [8/10][80%] :author:p5:
+- https://github.com/astromatic
+- http://www.astromatic.net/software
+
+*** DONE eye [3/3][100%]
+CLOSED: [2021-01-26 Tue 10:02]
+- synopsis :: small image feature detector using machine learning
+- [X] :packed <2021-01-24 Sun>
+- [X] :patch-sent <2021-01-25 Mon>
+- [X] :paptch-applied-upstream <2021-01-26 Tue>
+  + https://issues.guix.gnu.org/46103
+
+*** DONE missfits [3/3][100%]
+CLOSED: [2021-01-27 Wed 11:26]
+- http://www.astromatic.net/software/missfits
+- synosis :: fits file management
+- [X] :packed <2021-01-26 Tue>
+- [X] :patch-sent <2021-01-27 Wed>
+- [X] :paptch-applied-upstream <2021-01-27 Wed>
+  - https://issues.guix.gnu.org/46121
+
+*** TODO psfex [1/4][25%]
+- synosis :: psf modelling and quality assessment
+- http://www.astromatic.net/software/psfex
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [2/2][100%]
+  - [X] fftw
+  - [X] plplot
+
+*** TODO scamp [0/4][0%]
+- http://www.astromatic.net/software/scamp
+- synosis :: astrometric calibration and photometric homogenisation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  - [ ] plplot
+
+*** DONE sextractor [4/4][100%]
+CLOSED: [2021-01-25 Mon 17:27]
+- synosis :: Extract catalogs of sources from astronomical images
+- [X] :packed <2021-01-23 Sat>
+- [X] :patch-sent <2021-01-24 Sun>
+- [X] :paptch-applied-upstream <2021-01-25 Mon>
+  - https://issues.guix.gnu.org/46072
+- [X] :inputs [2/2]
+  + [X] openblas (gnu/packages/maths.scm:3960:2)
+  + [X] fftwf (gnu/packages/algebra.scm)
+
+*** DONE skymaker [4/4][100%]
+CLOSED: [2021-01-28 Thu 13:24]
+- http://www.astromatic.net/software/skymaker
+- synosis :: image simulation
+- [X] :packed <2021-01-27 Wed>
+- [X] :patch-sent (gnu/packages/astonomy.scm) <2021-01-27 Wed>
+- [X] :paptch-applied-upstream <2021-01-28 Thu>
+  - https://issues.guix.gnu.org/46143
+- [X] :inputs [1/1][100%]
+  + [X] fftwf (gnu/packages/algebra.scm)
+*** DONE stuff [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
+- synosis :: catalogue simulation
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
+*** DONE swarp [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
+- synosis :: image regridding and co-addition
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
+*** DONE weightwatcher [3/3][100%]
+CLOSED: [2021-01-29 Fri 10:56]
+- synosis :: weight-map/flag-map multiplexer and rasteriser
+- [X] :packed <2021-01-28 Thu>
+- [X] :patch-sent <2021-01-28 Thu>
+- [X] :paptch-applied-upstream <2021-01-29 Fri>
+  - https://issues.guix.gnu.org/46161
+*** DONE stiff [3/3] [100%]
+CLOSED: [2021-01-22 Fri 23:03]
+  - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
+  - synopsis :: automated image compositing and conversion
+  - [X] :packed <2021-01-05 Tue>
+  - [X] :patch-sent <2021-01-05 Tue>
+  - [X] :paptch-applied-upstream <2021-01-06 Wed>
+    - https://issues.guix.gnu.org/45666
+  - [X] :inputs [3/3]
+    - [X] libtiff (gnu/packages/image.scm:581:2)
+    - [X] zlib (gnu/packages/compression.scm:86:2)
+    - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
+** TODO astropy [1/2][50%] :author:p1:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
 - synopsis :: The Astropy Project is a community effort to develop a common core package for
   Astronomy in Python and foster an ecosystem of interoperable astronomy packages.
 
-** DONE astropy [4/4][100%] :p1:
+*** DONE astropy [4/4][100%] :p1:
 CLOSED: [2021-11-08 Mon 20:41]
 - https://github.com/astropy/astropy
 - https://pypi.org/project/astropy/
@@ -332,13 +296,271 @@ CLOSED: [2021-11-08 Mon 20:41]
       - [X] sgp4
   + [X] sortedcontainers
   + [X] wcslib
-** TODO astroquery [/][%]
+*** TODO astroquery [/][%]
 - https://github.com/astropy/astroquery
 - synopsis :: Functions and classes to access online data resources.
-* TODO spacetelescope [1/4][25%] :author:
+** TODO ATNF [0/1][0%] :author:
+/Australia Telescope National Facility/
+- https://www.atnf.csiro.au/computing/software/index.html
+*** TODO AIPS [/][%] :p5:
+- synopsis :: Astronomical Image Processing System, produced by NRAO.
+** TODO casacore [0/0][0%] :author:
+- https://github.com/casacore
+*** TODO casacore [2/4][50%] :p1:
+- https://github.com/casacore/casacore
+- synopsis :: Suite of C++ libraries for radio astronomy data processing
+
+- [X] :packed <2022-06-12 Sun>
+- [X] :patch-sent <2022-06-12 Sun>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/55935
+- [-] :inputs [14/16][87%]
+  - [ ] boost-python (optional)
+  - [X] fftw3 (guix fftw)
+  - [X] fftw3f (guix fftwf)
+  - [X] g++
+  - [X] numpy (optional)
+  - [ ] sofa (optional, only for testing casacore measures)
+  - [X] bison
+  - [X] blas (guix openblas)
+  - [X] cfitsio (3.181 or later)
+  - [X] flex
+  - [X] gfortran
+  - [X] hdf5 (optional)
+  - [X] lapack
+  - [X] ncurses (optional)
+  - [X] readline
+  - [X] wcslib (4.20 or later)
+
+** TODO C-Munipack-library [0/0][0%] :author:
+- https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
+  - synopsis ::  The extensive set of functions with simple application interface, that provides the
+    complete solution for reduction of images carried out by a CCD camera, aimed at the observation
+    of variable stars.
+  - [ ] :packed
+  - [ ] :patch-sent
+  - [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0]
+
+** TODO ESO [1/3][33%] :author:
+*** DONE qfits [3/3][100%]
+CLOSED: [2021-02-19 Fri 11:14]
+  + https://www.eso.org/sci/software/eclipse/qfits/
+  + [X] :packed <2021-02-11 Thu>
+  + [X] :patch-sent <2021-02-13 Sat>
+  + [X] :paptch-applied-upstream <2021-02-19 Fri>
+    - https://issues.guix.gnu.org/46492
+
+*** TODO eclipse [0/0][0%]
+
+*** TODO skycat [0/4][0%]
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  + [ ] wcstools
+    - http://tdc-www.harvard.edu/wcstools/
+
+** TODO GreatAttractor [2/2][100%] :author:p5:
+*** DONE stackistry [4/4][100%]
+CLOSED: [2021-02-19 Fri 11:15]
+- https://github.com/GreatAttractor/stackistry
+- [X] :packed <2021-02-16 Tue>
+- [X] :patch-sent <2021-02-16 Tue>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46575
+- [X] :inputs [3/3][100%]
+  - [X] libskry [3/3][100%]
+    - https://github.com/GreatAttractor/libskry
+    - [X] :packed <2021-02-16 Tue>
+    - [X] :patch-sent <2021-02-16 Tue>
+    - [X] :paptch-applied-upstream <2021-02-19 Fri>
+      - https://issues.guix.gnu.org/46575
+  - [X] ffmpeg
+  - [X] gtkmm
+
+*** DONE imppg [4/4][100%]
+CLOSED: [2021-12-18 Sat 16:12]
+- https://github.com/GreatAttractor/imppg
+- [X] :packed <2021-11-12 Fri>
+- [X] :patch-sent <2021-11-12 Fri>
+- [X] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/51795
+- [X] :inputs [6/6][100%]
+  + [X] boost
+  + [X] pkg-config
+  + [X] cfitsio
+  + [X] freeimage
+  + [X] glew
+  + [X] wxwidgets
+** TODO IAUSOFA [0/1][0%] :author:
+- http://www.iausofa.org/
+*** TODO sofa-c [0/4][0%] :p5:
++ [ ] :packed
++ [ ] :patch-sent
++ [ ] :paptch-applied-upstream
++ [ ] :inputs
+
+** TODO IIPImage [/][%] :author:
+- https://iipimage.sourceforge.io/
+- https://github.com/ruven/iipsrv
+- synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
+  web-based streamed viewing and zooming of ultra high-resolution images. It is designed to be fast
+  and bandwidth-efficient with low processor and memory requirements. The system can comfortably
+  handle gigapixel size images as well as advanced image features such as 8, 16 and 32 bits per
+  channel, CIELAB colorimetric images and scientific imagery such as multispectral images and
+  digital elevation maps.
+
+** TODO indigo-astronomy [0/1][0%] :author:
+- https://www.indigo-astronomy.org/
+- synopsis :: INDIGO is a system of standards and frameworks for multiplatform and distributed
+  astronomy software development designed to scale with your needs.
+*** TODO INDIGO [0/4] :p5:
+- https://github.com/indigo-astronomy/indigo
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [6/12][50%]
+  + [X] libudev (gnu/packages/gnome.scm)
+  + [X] avahi (gnu/packages/avahi.scm)
+  + [X] libusb
+  + [X] curl
+  + [X] gphoto2
+  + [X] zlib
+  + [ ] bsdmainutils
+  + [ ] hidapi
+  + [ ] libjpeg (comes as external)
+  + [ ] libtiff (comes as external)
+  + [ ] libusb (comes as external)
+  + [ ] novas  (comes as external)
+** TODO INDI-Library [1/3][33%] :author:p5:
+- https://www.indilib.org/
+- synopsis :: INDI Library is an open source software to control astronomical equipment. It is based
+  on the Instrument Neutral Distributed Interface (INDI) protocol and acts as a bridge between
+  software clients and hardware devices. Since it is network transparent, it enables you to
+  communicate with your equipment transparently over any network without requiring any 3rd party
+  software. It is simple enough to control a single backyard telescope, and powerful enough to
+  control state of the art observatories across multiple locations
+*** DONE indi [4/4][100%]
+CLOSED: [2021-01-31 Sun 13:07]
+- https://github.com/indilib/indi
+- synospsis :: INDI is a standard for astronomical instrumentation control. INDI Library is an Open
+  Source POSIX implementation of the Instrument-Neutral-Device-Interface protocol.
+- [X] :packed <2021-01-21 Thu>
+- [X] :patch-sent <2021-01-31 Sun>
+- [X] :paptch-applied-upstream <2021-01-31 Sun>
+  - https://issues.guix.gnu.org/46201
+- [X] inputs [9/9]
+  + [X] libusb
+  + [X] libnova
+  + [X] cfitsio
+  + [X] gsl
+  + [X] zlib
+  + [X] libjpeg
+  + [X] libtiff
+  + [X] fftw
+  + [X] curl
+
+*** TODO indi-3rdparty [0/4][0%]
+- https://github.com/indilib/indi-3rdparty
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [13/18][72%]
+  + [X] libnova
+  + [X] cfitsio
+  + [X] libusb
+  + [X] zlib
+  + [X] gsl
+  + [ ] git (?)
+  + [X] libjpeg-turbo (gnu/packages/image.scm)
+  + [X] curl
+  + [X] libtiff (gnu/packages/image.scm)
+  + [X] libftdi (gnu/packages/libftdi.scm)
+  + [X] gpsd (gnu/packages/gps.scm)
+  + [X] libraw (gnu/packages/photo.scm)
+  + [X] libdc1394 (gnu/packages/gstreamer.scm)
+  + [X] gphoto2 (gnu/packages/photo.scm)
+  + [ ] libboost
+  + [ ] libboost-regex-dev
+  + [ ] librtlsdr-dev
+    - https://osmocom.org/projects/rtl-sdr/wiki/Rtl-sdr
+  + [ ] liblimesuite-dev [0/0][0%]
+    - https://github.com/myriadrf/LimeSuite
+
+*** TODO indi-service-type [/][%]
+
+** TODO jobovy [0/1][0%] :author:
+- https://github.com/jobovy
+- http://astro.utoronto.ca/~bovy/
+*** TODO galpy [/][%] :p1:
+- https://github.com/jobovy/galpy
+- synopsis :: Galactic Dynamics in python
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [7/7][100%]
+  - [X] python-future
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [ ] python-pynbody
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-six
+** TODO kepler-project [/][%] :author:
+https://kepler-project.org/users/downloads.html
+** TODO kernsuite [/][%] :author:
+- https://github.com/kernsuite
+- https://kernsuite.info/packages/
+- synopsis :: Kern - Radio Astronomy Software Suite. Collection of the DEB packages.
+
+** TODO linguider [/][%] :author:
+- https://sourceforge.net/projects/linguider/
+
+** TODO NASA [0/2][0%] :author:
+*** TODO HEAsoft [/][%]
+- https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [6/12][50%]
+*** TODO Xspec [/]
+- https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [6/12][50%]
+** TODO OpenPHDGuiding [0/1][0%] :author:p4:
+- https://openphdguiding.org
+*** TODO phd2 [0/4][%]
+- https://github.com/OpenPHDGuiding/phd2
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [2/9][22%]
+  + [ ] libwxgtk3.0-dev
+  + [ ] libgtk2.0-dev
+  + [X] cfitsio
+  + [X] opencv
+  + [ ] libusb-1.0-0-dev
+  + [ ] libudev-dev
+  + [ ] libv4l-dev
+  + [ ] libnova-dev
+  + [ ] libcurl4-gnutls-dev
+
+** TODO schirmermischa [0/1][0%] :author:
+*** TODO THELI [0/0][0%]
+- https://github.com/schirmermischa/THELI
+  + [ ] :packed
+  + [ ] :patch-sent
+  + [ ] :paptch-applied-upstream
+  + [ ] :inputs [0/1][0%]
+    - [ ] astropy
+** TODO spacetelescope [1/4][25%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
-** DONE gwcs [4/4][100%]
+*** DONE gwcs [4/4][100%]
 - https://github.com/spacetelescope/gwcs
 - [X] :packed <2021-11-11 Thu>
 - [X] :patch-sent <2021-11-11 Thu>
@@ -388,7 +610,7 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [X] python-jmespath
   - [X] python-jsonschema
 
-** TODO jwst [0/4][0%]
+*** TODO jwst [0/4][0%]
 - https://github.com/spacetelescope/jwst
 - [ ] :packed
 - [ ] :patch-sent
@@ -471,14 +693,14 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [ ] python-stsci.imagestats
   - [ ] python-tweakwcs
 
-** TODO drizzle [0/4]
+*** TODO drizzle [0/4]
 - https://github.com/spacetelescope/drizzle/blob/master/tox.ini
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO tweakwcs [0/4][0%]
+*** TODO tweakwcs [0/4][0%]
 - https://github.com/spacetelescope/jwst
 - synopsis :: Algorithms for matching and aligning catalogs and for tweaking the WCS so as to
   minimize catalog mismatch error
@@ -506,17 +728,17 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [ ] python-stsci.imagestats
   - [ ] python-stsci.stimage
 
-* TODO IAUSOFA :author:
-** TODO sofa-c [/][%]
-+ http://www.iausofa.org/
-+ [ ] :packed
-+ [ ] :patch-sent
-+ [ ] :paptch-applied-upstream
+** TODO Starlink [0/1][0%] :author:
+- http://starlink.eao.hawaii.edu/starlink
+*** TODO pal [0/4][0%] :p1:
+- https://github.com/Starlink/pal
+- synopsis :: Positional Astronomy Library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
-* TODO linguider [/][%]
-- https://sourceforge.net/projects/linguider/
-
-* TODO XEphem [0/4][0%]
+** TODO XEphem [0/4][0%] :author:
 - http://www.clearskyinstitute.com/xephem/
 - synopsis ::
 - [ ] :packed
@@ -524,209 +746,7 @@ CLOSED: [2021-11-08 Mon 20:41]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-* DONE astroalign [4/4][100%]
-CLOSED: [2021-02-19 Fri 11:13]
-- https://github.com/quatrope/astroalign
-- synopsis ::
-- [X] :packed <2021-02-13 Sat>
-- [X] :patch-sent <2021-02-13 Sat>
-- [X] :paptch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46492
-- [X] :inputs [4/4][100%]
-  - [X] numpy
-  - [X] scikit-image
-  - [X] scipy
-  - [X] sep [4/4][100%]
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-13 Sat>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46492
-    - [X] :inputs [3/3][100%]
-      + [X] cython
-      + [X] numpy
-      + [X] pytest
-
-* TODO kepler-project [/] :author:
-https://kepler-project.org/users/downloads.html
-* TODO ESO [1/3][33%] :author:
-** DONE qfits [3/3][100%]
-CLOSED: [2021-02-19 Fri 11:14]
-  + https://www.eso.org/sci/software/eclipse/qfits/
-  + [X] :packed <2021-02-11 Thu>
-  + [X] :patch-sent <2021-02-13 Sat>
-  + [X] :paptch-applied-upstream <2021-02-19 Fri>
-    - https://issues.guix.gnu.org/46492
-
-** TODO eclipse [0/0][0%]
-
-** TODO skycat [0/4][0%]
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  + [ ] wcstools
-    - http://tdc-www.harvard.edu/wcstools/
-
-* TODO schirmermischa [0/1][0%] :author:
-** TODO THELI [0/0][0%]
-- https://github.com/schirmermischa/THELI
-  + [ ] :packed
-  + [ ] :patch-sent
-  + [ ] :paptch-applied-upstream
-  + [ ] :inputs [0/1][0%]
-    - [ ] astropy
-* TODO GreatAttractor [2/2][100%] :author:p5:
-** DONE stackistry [4/4][100%]
-CLOSED: [2021-02-19 Fri 11:15]
-- https://github.com/GreatAttractor/stackistry
-- [X] :packed <2021-02-16 Tue>
-- [X] :patch-sent <2021-02-16 Tue>
-- [X] :paptch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46575
-- [X] :inputs [3/3][100%]
-  - [X] libskry [3/3][100%]
-    - https://github.com/GreatAttractor/libskry
-    - [X] :packed <2021-02-16 Tue>
-    - [X] :patch-sent <2021-02-16 Tue>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46575
-  - [X] ffmpeg
-  - [X] gtkmm
-
-** DONE imppg [4/4][100%]
-CLOSED: [2021-12-18 Sat 16:12]
-- https://github.com/GreatAttractor/imppg
-- [X] :packed <2021-11-12 Fri>
-- [X] :patch-sent <2021-11-12 Fri>
-- [X] :paptch-applied-upstream
-  - https://issues.guix.gnu.org/51795
-- [X] :inputs [6/6][100%]
-  + [X] boost
-  + [X] pkg-config
-  + [X] cfitsio
-  + [X] freeimage
-  + [X] glew
-  + [X] wxwidgets
-* TODO jobovy [0/1][0%]:author:
-- https://github.com/jobovy
-- http://astro.utoronto.ca/~bovy/
-** TODO galpy
-- https://github.com/jobovy/galpy
-- synopsis :: Galactic Dynamics in python
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [7/7][100%]
-  - [X] python-future
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pytest
-  - [ ] python-pynbody
-  - [X] python-scipy
-  - [X] python-setuptools
-  - [X] python-six
-* TODO OpenPHDGuiding [0/1][0%] :author:p4:
-- https://openphdguiding.org
-** TODO phd2 [0/4][%]
-- https://github.com/OpenPHDGuiding/phd2
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [2/9][22%]
-  + [ ] libwxgtk3.0-dev
-  + [ ] libgtk2.0-dev
-  + [X] cfitsio
-  + [X] opencv
-  + [ ] libusb-1.0-0-dev
-  + [ ] libudev-dev
-  + [ ] libv4l-dev
-  + [ ] libnova-dev
-  + [ ] libcurl4-gnutls-dev
-
-* TODO indigo-astronomy [0/1][0%] :author:
-- https://www.indigo-astronomy.org/
-- synopsis :: INDIGO is a system of standards and frameworks for multiplatform and distributed
-  astronomy software development designed to scale with your needs.
-** TODO INDIGO [0/4] :p5:
-- https://github.com/indigo-astronomy/indigo
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [6/12][50%]
-  + [X] libudev (gnu/packages/gnome.scm)
-  + [X] avahi (gnu/packages/avahi.scm)
-  + [X] libusb
-  + [X] curl
-  + [X] gphoto2
-  + [X] zlib
-  + [ ] bsdmainutils
-  + [ ] hidapi
-  + [ ] libjpeg (comes as external)
-  + [ ] libtiff (comes as external)
-  + [ ] libusb (comes as external)
-  + [ ] novas  (comes as external)
-* TODO NASA [0/2][0%] :author:
-** TODO HEAsoft [/][%]
-- https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [6/12][50%]
-** TODO Xspec [/]
-- https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [6/12][50%]
-* TODO kernsuite :author:
-- https://github.com/kernsuite
-- https://kernsuite.info/packages/
-- synopsis :: Kern - Radio Astronomy Software Suite. Collection of the DEB packages.
-
-* TODO aroffringa [0/1][0%] :author:
-** TODO AOFlagger [0/4]
-- https://gitlab.com/aroffringa/aoflagger
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/2][0%]
-  - [ ] hdf5
-  - [ ] casa
-* TODO ATNF :author:
-/Australia Telescope National Facility/
-- https://www.atnf.csiro.au/computing/software/index.html
-** AIPS
-- synopsis :: Astronomical Image Processing System, produced by NRAO.
-**
-* TODO casacore [0/1][0%] :author:
-- https://github.com/casacore
-** TODO casacore
-- https://github.com/casacore/casacore
-- synopsis :: Suite of C++ libraries for radio astronomy data processing
-- [X] :packed <2022-06-12 Sun>
-- [X] :patch-sent <2022-06-12 Sun>
-- [ ] :paptch-applied-upstream
-  - https://issues.guix.gnu.org/55935
-- [-] :inputs [14/16][87%]
-  - [ ] boost-python (optional)
-  - [X] fftw3 (guix fftw)
-  - [X] fftw3f (guix fftwf)
-  - [X] g++
-  - [X] numpy (optional)
-  - [ ] sofa (optional, only for testing casacore measures)
-  - [X] bison
-  - [X] blas (guix openblas)
-  - [X] cfitsio (3.181 or later)
-  - [X] flex
-  - [X] gfortran
-  - [X] hdf5 (optional)
-  - [X] lapack
-  - [X] ncurses (optional)
-  - [X] readline
-  - [X] wcslib (4.20 or later)
-
-
-* etc
+* References
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
 - http://www.iausofa.org/current_C.html#Downloads
 - https://ascl.net/1112.014

@@ -67,6 +67,38 @@
   #:use-module (guix packages)
   #:use-module (ice-9 match))
 
+;; http://starlink.eao.hawaii.edu/starlink
+;;+begin-Starlink
+
+;; 20220618T223938+0100
+;; starting phase `bootstrap'
+;; running './bootstrap'
+;; patch-shebang: ./bootstrap: changing `/bin/sh' to `/gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh'
+;; ./bootstrap: line 43: /bin/sh: No such file or directory
+(define-public starlink-pal
+  (package
+    (name "starlink-pal")
+    (version "0.9.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Starlink/pal")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "1snd03h40327hm4xz2359w7gw2j9symp9357pl8j2mprbzk1ai09"))
+       (file-name (git-file-name name version))))
+    (build-system gnu-build-system)
+    (home-page "https://github.com/Starlink/pal")
+    (synopsis "Positional Astronomy Library")
+    (description "The PAL library is a partial re-implementation of Pat
+Wallace's popular SLALIB library written in C using a Gnu GPL license and
+layered on top of the IAU's SOFA library (or the BSD-licensed ERFA) where
+appropriate.")
+    (license license:gpl3)))
+
+;;+end-Starlink
+
 ;; https://github.com/casacore
 ;;+begin-casacore
 
