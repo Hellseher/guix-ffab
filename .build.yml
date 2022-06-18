@@ -1,0 +1,22 @@
+...
+# File : .build.yml
+# Created : <2022-06-18 Sat 16:46:26 BST>
+# Modified : <2022-06-18 Sat 16:49:08 BST>
+
+## Commentary:
+#
+# CI build script for Sourcehut
+# https://man.sr.ht/builds.sr.ht/compatibility.md
+
+image: guix
+packages:
+  - make
+sources:
+  - https://git.sr.ht/~hellseher/ffab
+tasks:
+  - build: |
+      cd ffab
+      make
+
+# End of .build.yml
+---
