@@ -191,6 +191,29 @@
 was made to get a better separation of core libraries and applications.
 (CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
     (license license:gpl2)))
+
+(define-public python-casacore
+  (package
+    (name "python-casacore")
+    (version "3.4.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "python-casacore" version))
+       (sha256
+        (base32 "1kj2r97pnki93iykdwd6h3wjrc5fypvzb0br0c6fg39hj897hm7n"))))
+    (build-system python-build-system)
+    (inputs
+     (list boost
+           casacore))
+    (propagated-inputs
+     (list python-future python-numpy python-six))
+    (home-page "https://github.com/casacore/python-casacore")
+    (synopsis "A wrapper around CASACORE, the radio astronomy library")
+    (description
+     "This package provides a wrapper around CASACORE, the radio astronomy library")
+    (license license:gpl3)))
+
 ;;+end-casacore
 
 ;; 20220608T191316+0100
@@ -524,22 +547,40 @@ planetarium.")
 
 ;; https://github.com/jobovy
 ;;+begin-jobovy
+
+;;20220615T234403+0100
 (define-public python-galpy
   (package
     (name "python-galpy")
     (version "1.7.2")
     (source
      (origin
-       (method url-fetch)
-       (uri (pypi-uri "galpy" version))
+       ;; PyPi has not tests
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jobovy/galpy")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
        (sha256
-        (base32 "0jn073p19m3k2ibwv0gf4mlx824gkac585r0v3filybx89xva4a0"))))
+        (base32 "1dp9vi9bc4vbb4ymsjw71vjm114v4361mbgfqkw8z2h9pd68g1s1"))))
     (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda _
+              (setenv "HOME" (getcwd))
+              (invoke "touch" ".galpyrc")
+              (make-file-writable  ".galpyrc")
+              (invoke "pytest" "-vv" "tests"))))))
+    (native-inputs
+     (list python-pytest
+           python-pynbody))
     (propagated-inputs
      (list python-future
            python-matplotlib
            python-numpy
-           python-pytest
            python-scipy
            python-setuptools
            python-six))
@@ -548,7 +589,7 @@ planetarium.")
     (description "Galactic Dynamics in python")
     (license license:bsd-3)))
 
-  ;;+end-jobovy
+;;+end-jobovy
 
 ;; https://github.com/spacetelescope
 ;;+begin-spacetelescope
