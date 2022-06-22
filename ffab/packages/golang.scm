@@ -306,37 +306,6 @@ programming language}. It integrates well with Go's built-in @code{testing}
 package, but can be used in other contexts too.")
     (license license:asl2.0)))
 
-(define-public go-golang-org-x-tools
-  (package
-    (name "go-golang-org-x-tools")
-    (version "0.1.8")
-    (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://go.googlesource.com/tools")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "0h9ip7sry1y8z94jypygas4ylb403wji3vljcc5jlb54rf51x3z7"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "golang.org/x/tools"))
-    (propagated-inputs
-      `(("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)
-        ("go-golang-org-x-text" ,go-golang-org-x-text)
-        ("go-golang-org-x-sys" ,go-golang-org-x-sys)
-        ("go-golang-org-x-sync" ,go-golang-org-x-sync)
-        ("go-golang-org-x-net" ,go-golang-org-x-net)
-        ("go-golang-org-x-mod" ,go-golang-org-x-mod)
-        ("go-github-com-yuin-goldmark" ,go-github-com-yuin-goldmark)))
-    (home-page "https://golang.org/x/tools")
-    (synopsis "Go Tools")
-    (description
-      "This subrepository holds the source for various packages and tools that
-support the Go programming language.")
-    (license license:bsd-3)))
-
 (define-public go-github-com-getsentry-sentry-go
   (package
     (name "go-github-com-getsentry-sentry-go")
