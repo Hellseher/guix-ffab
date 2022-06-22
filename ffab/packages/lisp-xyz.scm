@@ -238,42 +238,9 @@ It's a part of QITAB umbrella project.")
 ;;+begin-shirakumo
 
 ;; 20211107T173633+0000
-(define-public sbcl-alloy
-  (let ((commit "e86e22c2887836ec31cd97e039f0bca5248d8f1c")
-        (revision "1"))
-    (package
-      (name "sbcl-alloy")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/alloy")
-               (commit commit)))
-         (file-name (git-file-name "alloy" version))
-         (sha256
-          (base32 "1jsqjr6sf86hcdvnjp4gd10qv0r7kfkr9hmda85irb5lha4q9n7w"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("parachute" ,sbcl-parachute)
-         ("alexandria" ,sbcl-alexandria)))
-      (inputs
-       `(("documentation-utils" ,sbcl-documentation-utils)
-         ("closer-mop" ,sbcl-closer-mop)
-         ("array-utils" ,sbcl-array-utils)))
-      (home-page "https://shirakumo.github.io/alloy/")
-      (synopsis "Common Lisp user interface protocol and tolkit implementation")
-      (description
-       "Alloy is a user interface toolkit.  It is defined through a set of
-protocols that allow for a clear interface, as well as a standardised way to
-integrate Alloy into a target backend.")
-      (license license:zlib))))
-
-(define-public ecl-alloy
-  (sbcl-package->ecl-package sbcl-alloy))
-
-(define-public cl-alloy
-  (sbcl-package->cl-source-package sbcl-alloy))
+;; added-to-upstream: 6ec0c6c7678234ff5ab4c892903e0b682cbd876d
+;; CommitDate: Mon Nov 8 09:16:28 2021 +0100
+;; (define-public sbcl-alloy
 
 ;; 20210527T213028+0100
 (define-public sbcl-trial
@@ -691,81 +658,14 @@ application fail and be unable to do so using its standard UI.")
   (sbcl-package->cl-source-package sbcl-messagebox))
 
 ;; <2021-05-03 Mon>
-(define-public sbcl-3d-matrices
-  (let ((commit "f453b521b8f2ceabb01eac94389119dece8c05f8")
-        (revision "1"))
-    (package
-      (name "sbcl-3d-matrices")
-      (version (git-version "3.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/3d-matrices")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "10q9c96gqzq6k8n89agy0khgimmnsn4s69171m3vhghqa2yv5n6v"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-files '("3d-matrices.asd")
-         #:asd-systems '("3d-matrices")))
-      (native-inputs
-       `(("parachute" ,sbcl-parachute)))
-      (inputs
-       `(("documentation-utils" ,sbcl-documentation-utils)
-         ("3d-vectors" ,sbcl-3d-vectors)))
-      (home-page "https://shinmera.github.io/3d-matrices/")
-      (synopsis "Utility library implementing 2x2, 3x3, 4x4, and NxM matrix functionality")
-      (description
-       "@code{3D-MATRICES} is a library implementing common matrix operations,
-mainly intended as the counterpiece to @code{3d-vectors} and thus being aimed at
-operations in 3D space.")
-      (license license:zlib))))
-
-(define-public ecl-3d-matrices
-  (sbcl-package->ecl-package sbcl-3d-matrices))
-
-(define-public 3d-matrices
-  (sbcl-package->cl-source-package sbcl-3d-matrices))
+;; added-to-upstream: 440217b1e5e8f7c4570e23494f932ff620eedee2
+;; CommitDate: Sat May 8 13:43:17 2021 +0200
+;; (define-public sbcl-3d-matrices
 
 ;; <2021-05-03 Mon>
-(define-public sbcl-3d-vectors
-  (let ((commit "29bb9684df803590deed344af63dbf7b712aabc0")
-        (revision "1"))
-    (package
-      (name "sbcl-3d-vectors")
-      (version (git-version "3.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/3d-vectors")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0qc7m5brhpwi531rgmlaj1c609by533a1ia5hv8f90ilm8ksmw3l"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-files '("3d-vectors.asd")
-         #:asd-systems '("3d-vectors")))
-      (native-inputs
-       `(("parachute" ,sbcl-parachute)))
-      (inputs
-       `(("documentation-utils" ,sbcl-documentation-utils)))
-      (home-page "https://shinmera.github.io/3d-vectors/")
-      (synopsis "Utility library implementing 2D, 3D, and 4D vector functionality")
-      (description
-       "@code{3D-VECTORS} is a library for vector math in 3D space.  It contains
-most of the vector operations one would usually expect out of such a library and
-offers them both in non-modifying and modifying versions where applicable.")
-      (license license:zlib))))
-
-(define-public ecl-3d-vectors
-  (sbcl-package->ecl-package sbcl-3d-vectors))
-
-(define-public 3d-vectors
-  (sbcl-package->cl-source-package sbcl-3d-vectors))
+;; added-to-upstream: e961f15083e71abfd16b74a10331c9297960370d
+;; CommitDate: Sat May 8 13:43:17 2021 +0200
+;; (define-public sbcl-3d-vectors
 
 ;; <2021-04-22>
 (define-public sbcl-terrable
@@ -3140,53 +3040,9 @@ performance.")
   (sbcl-package->cl-source-package sbcl-bobbin))
 
 ;; 20210621T110738+0100
-(define-public sbcl-cl-posix-mqueue
-  (let ((commit "8977370c7206d1f62bd1be80f4254af40654b83f")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-posix-mqueue")
-      (version (git-version "0.1.2" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/xFA25E/cl-posix-mqueue")
-               (commit commit)))
-         (file-name (git-file-name "cl-posix-mqueue" version))
-         (sha256
-          (base32 "04519rg8vc782z097dzlb8nx0skab2fy2zd0m60r6mz2nw8xdvh6"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:test-asd-file "cl-posix-mqueue-tests.asd"
-         #:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'patch-librt-path
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "src/spec.lisp"
-                 (("librt.so" all)
-                  (string-append (assoc-ref inputs "glibc") "/lib/" all))))))))
-      (native-inputs
-       `(("rove" ,sbcl-rove)
-         ("cl-ppcre" ,sbcl-cl-ppcre)))
-      (inputs
-       `(("alexandira" ,sbcl-alexandria)
-         ("babel" ,sbcl-babel)
-         ("cffi" ,sbcl-cffi)
-         ("glibc" ,glibc)
-         ("local-time" ,sbcl-local-time)))
-      (home-page "https://github.com/xFA25E/cl-posix-mqueue")
-      (synopsis "Common Lisp binding to POSIX mqueue")
-      (description
-       "This package provides a Common Lisp bindings to POSIX message queue - an
-IPC (Inter-Process Communication) method that is easy to use and quick to
-setup.")
-      (license license:gpl3+))))
-
-(define-public ecl-cl-posix-mqueue
-  (sbcl-package->ecl-package sbcl-cl-posix-mqueue))
-
-(define-public cl-posix-mqueue
-  (sbcl-package->cl-source-package sbcl-cl-posix-mqueue))
+;; added-to-upstream: ad4a46b028378f38f897c74ca5728e6cb77689ca
+;; CommitDate: Thu Jun 24 10:33:04 2021 +0200
+;; (define-public sbcl-cl-posix-mqueue
 
 ;; 20220615T223419+0100
 (define-public sbcl-cl-graph
@@ -3249,35 +3105,35 @@ setup.")
        "TBC")
       (license #f))))
 
-;; (define-public sbcl-hu-dwim-graphviz
-;;   (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
-;;         (revision "1"))
-;;     (package
-;;       (name "sbcl-hu-dwim-graphviz")
-;;       (version (git-version "0.0.0" revision commit))
-;;       (source
-;;        (origin
-;;          (method git-fetch)
-;;          (uri (git-reference
-;;                (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
-;;                (commit commit)))
-;;          (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
-;;          (sha256
-;;           (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
-;;       (build-system asdf-build-system/sbcl)
-;;       (native-inputs
-;;        `(("hu.dwim.common" ,sbcl-hu.dwim.common)
-;;          ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
-;;                                         ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
-;;          ))
-;;       (inputs
-;;        `(("cffi" ,sbcl-cffi)
-;;          ("metabang-bind" ,sbcl-metabang-bind)))
-;;       (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
-;;       (synopsis "TBC")
-;;       (description
-;;        "TBC")
-;;       (license #f))))
+(define-public sbcl-hu-dwim-graphviz
+  (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
+        (revision "1"))
+    (package
+      (name "sbcl-hu-dwim-graphviz")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+               (commit commit)))
+         (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
+         (sha256
+          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       `(("hu.dwim.common" ,sbcl-hu.dwim.common)
+         ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
+                                        ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
+         ))
+      (inputs
+       `(("cffi" ,sbcl-cffi)
+         ("metabang-bind" ,sbcl-metabang-bind)))
+      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+      (synopsis "TBC")
+      (description
+       "TBC")
+      (license #f))))
 
 (define-public sbcl-metacopy
   (let ((commit "1b5bf443206cc1dea7801ae23d1167bd02122d30")
@@ -3336,50 +3192,9 @@ setup.")
   (sbcl-package->cl-source-package sbcl-eventbus))
 
 ;; 20211127T133558+0000
-(define-public sbcl-cl-liballegro
-  (let ((commit "49f632ce97fc4f835bf5d450588793234b980a64")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-liballegro")
-      (version (git-version "0.2.15" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/resttime/cl-liballegro")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0brbr7i342s0gadlnzd3a61w2b9ihhx60l19ararnc2asvyhmz7x"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'patch-allegro-lib-path
-                      (lambda* (#:key inputs #:allow-other-keys)
-                        (let ((allegro-lib-path (string-append
-                       (assoc-ref inputs "allegro") "/lib/")))
-                 (substitute* "src/library.lisp"
-                   (("lib \".so\"" all)
-                    (string-append "\"" allegro-lib-path "\"" " lib \".so\"")))))))))
-      (inputs
-       `(("allegro" ,allegro)
-         ("cffi" ,sbcl-cffi)
-         ("float-features" ,sbcl-float-features)
-         ("trivial-garbage" ,sbcl-trivial-garbage)
-         ("trivial-main-thread" ,sbcl-trivial-main-thread)))
-      (home-page "https://github.com/resttime/cl-liballegro")
-      (synopsis "Allegro 5 game programming library bindings for Common Lisp")
-      (description
-       "This package provides CFFI bindings and interface to Allegro 5 game
-developing library for Common Lisp.")
-      (license license:zlib))))
-
-(define-public ecl-cl-liballegro
-  (sbcl-package->ecl-package sbcl-cl-liballegro))
-
-(define-public cl-liballegro
-  (sbcl-package->cl-source-package sbcl-cl-liballegro))
+;; added-to-upstream: 4beb013c84cd44a2e6dc03a2697615c660985f4a
+;; CommitDate: Wed Dec 1 09:44:03 2021 +0100
+;; (define-public sbcl-cl-liballegro
 
 ;; 20220123T112516+0000
 (define-public sbcl-cl-resect
@@ -3413,6 +3228,9 @@ developing library for Common Lisp.")
 (define-public ecl-claw
   (sbcl-package->ecl-package sbcl-cl-resect))
 
+;; NOTE: (Sharlatan-20220622T211349+0100): This package contains JavaScript
+;; blobs and has to be withdrawn from upstream.
+;;
 ;; 20220520T170101+0100
 (define-public sbcl-clog
   (package
@@ -3461,46 +3279,3 @@ in a native template application.")
 
 (define-public ecl-clog
   (sbcl-package->ecl-package sbcl-clog))
-
-(define-public sbcl-hunchentoot
-  ;; NOTE: (Sharlatan-20220520T213309+0100): The latest commit fixed tests,
-  ;; switch to the version tag when release is ready.
-  (let ((commit "76862391040c20255c7275e815c2175e46bfd080")
-        (revision "1"))
-    (package
-      (name "sbcl-hunchentoot")
-      (version (git-version "1.3.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/edicl/hunchentoot")
-               (commit commit)))
-         (file-name (git-file-name "hunchentoot" version))
-         (sha256
-          (base32 "1h7ggmmzvgwr4p6j3ai0dqrw30q5309l13w4c03gqrapvwrb65l0"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-cl-who sbcl-drakma))
-      (inputs
-       (list sbcl-chunga
-             sbcl-cl-base64
-             sbcl-cl-fad
-             sbcl-cl-ppcre
-             sbcl-flexi-streams
-             sbcl-cl+ssl
-             sbcl-md5
-             sbcl-rfc2388
-             sbcl-trivial-backtrace
-             sbcl-usocket))
-      (home-page "https://edicl.github.io/hunchentoot/")
-      (synopsis "Web server written in Common Lisp")
-      (description
-       "Hunchentoot is a web server written in Common Lisp and at the same
-time a toolkit for building dynamic websites.  As a stand-alone web server,
-Hunchentoot is capable of HTTP/1.1 chunking (both directions), persistent
-connections (keep-alive), and SSL.")
-      (license license:bsd-2))))
-
-(define-public ecl-hunchentoot
-  (sbcl-package->ecl-package sbcl-hunchentoot))
