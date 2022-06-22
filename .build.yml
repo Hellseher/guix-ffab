@@ -1,3 +1,12 @@
+# File : .build.yml
+# Created : <2022-06-18 Sat 16:46:26 BST>
+# Modified : <2022-06-22 Wed 21:08:18 BST>
+
+## Commentary:
+#
+# CI build script for Sourcehut, it's a paid feature.
+# https://man.sr.ht/builds.sr.ht/compatibility.md
+
 image: guix
 packages:
   - make
@@ -7,3 +16,5 @@ tasks:
   - build: |
       cd ffab
       make
+
+# End of .build.yml
