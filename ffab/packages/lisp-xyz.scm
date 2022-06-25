@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;; Copyright © 2020-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
 ;;;
 ;;; This file is NOT part of GNU Guix.
 ;;;
@@ -42,6 +42,15 @@
   #:use-module (srfi srfi-1)
   #:use-module (json))
 
+;; 20201201T143902+0000
+;; added-to-upstream: 65d3fab53aa1ac19c49f93d1d6b21df596ebeb0f
+;; CommitDate: Sat Dec 5 16:01:19 2020 +0100
+;; (define-public sbcl-cl-log
+
+;; 20201203T175618+0000
+;; added-to-upstream: cebfb29abb151ede95696181d2446c63504593d7
+;; CommitDate: Sat Dec 5 16:01:19 2020 +0100
+;; (define-public sbcl-zs3
 
 ;; https://github.com/lispgames
 ;;+begin-lispgames
@@ -121,110 +130,21 @@ libraries.")
 ;; https://github.com/dimitri
 ;;+begin-dimitri
 
-(define-public sbcl-qmynd
-  (let ((commit "7e56daf73f0ed5f49a931c01af75fb874bcf3445")
-        (revision "1"))
-    (package
-      (name "sbcl-qmynd")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/qitab/qmynd")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "06gw5wxcpdclb6a5i5k9lbmdlyqsp182czrm9bm1cpklzbj0ihrl"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("asdf-finalizers" ,sbcl-asdf-finalizers)
-         ("babel" ,sbcl-babel)
-         ("chipz" ,sbcl-chipz)
-         ("cl+ssl" ,sbcl-cl+ssl)
-         ("flexi-streams" ,sbcl-flexi-streams)
-         ("ironclad" ,sbcl-ironclad)
-         ("salza2" ,sbcl-salza2)
-         ("trivial-gray-streams" ,sbcl-trivial-gray-streams)
-         ("usocket" ,sbcl-usocket)))
-      (home-page "https://github.com/dimitri/cl-abnf")
-      (synopsis "QITAB MySQL Native Driver for Common Lisp")
-      (description "QMyND, the QITAB MySQL Native Driver, is a MySQL client
-library that directly talks to a MySQL server in its native network protocol.
+;; 20201219T163755+0000
+;; added-to-upstream: 10c06966af07908aa15f79c3be1d6a64d7717d02
+;; CommitDate: Sat Dec 19 19:01:29 2020 +0100
+;; (define-public sbcl-qmynd
 
-It's a part of QITAB umbrella project.")
-      (license license:expat ))))
+;; 20210103T214507+0000
+;; added-to-upstream: d005f809f8209dfb3e4b4ee02b6f2beeb1d8f2e6
+;; CommitDate: Mon Jan 4 10:40:54 2021 +0100
+;; (define-public sbcl-db3
 
-(define-public ecl-qmynd
-  (sbcl-package->ecl-package sbcl-qmynd))
+;; 20210101T232743+0000
+;; added-to-upstream: 1fc9baeebb24a36431736f1a187e501943918444
+;; CommitDate: Sat Jan 2 11:13:06 2021 +0100
+;; (define-public sbcl-cl-ixf
 
-(define-public cl-qmynd
-  (sbcl-package->cl-source-package sbcl-qmynd))
-
-(define-public sbcl-db3
-  (let ((commit "38e5ad35f025769fb7f8dcdc6e56df3e8efd8e6d")
-        (revision "1"))
-  (package
-    (name "sbcl-db3")
-    (version (git-version "0.0.0" revision commit))
-    (source (origin
-             (method git-fetch)
-             (uri (git-reference
-                   (url "https://github.com/dimitri/cl-db3")
-                   (commit commit)))
-             (file-name (git-file-name name version))
-             (sha256
-              (base32
-               "1i7j0mlri6kbklcx1lsm464s8kmyhhij5c4xh4aybrw8m4ixn1s5"))))
-    (build-system asdf-build-system/sbcl)
-    (home-page "https://github.com/dimitri/cl-db3")
-    (synopsis "Common Lisp library to read dbf files version 3")
-    (description "Allows processing data found in dbf and db3 files.")
-    (license license:public-domain))))
-
-(define-public ecl-db3
-  (sbcl-package->ecl-package sbcl-db3))
-
-(define-public cl-db3
-  (sbcl-package->cl-source-package sbcl-db3))
-
-(define-public sbcl-cl-ixf
-  (let ((commit "ed26f87e4127e4a9e3aac4ff1e60d1f39cca5183")
-        (revision "1"))
-  (package
-    (name "sbcl-cl-ixf")
-    (version (git-version "0.1.0" revision commit))
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/dimitri/cl-ixf")
-                    (commit commit)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1wjdnf4vr9z7lcfc49kl43g6l2i23q9n81siy494k17d766cdvqa"))))
-    (build-system asdf-build-system/sbcl)
-    (inputs
-     `(("split-sequence" ,sbcl-split-sequence)
-       ("md5" ,sbcl-md5)
-       ("alexandria" ,sbcl-alexandria)
-       ("babel" ,sbcl-babel)
-       ("local-time" ,sbcl-local-time)
-       ("cl-ppcre" ,sbcl-cl-ppcre)
-       ("ieee-floats" ,sbcl-ieee-floats)))
-    (arguments
-     `(#:asd-systems '("ixf")))
-    (home-page "https://github.com/dimitri/cl-ixf")
-    (synopsis "Parse IBM Integration Exchange Format (IXF)")
-    (description "Tools to handle IBM PC version of IXF file format.")
-    (license license:public-domain))))
-
-(define-public ecl-cl-ixf
-  (sbcl-package->ecl-package sbcl-cl-ixf))
-
-(define-public cl-ixf
-  (sbcl-package->cl-source-package sbcl-cl-ixf))
 ;;+end-dimitri
 
 ;; Set of systems which are maintained by Michael Fiano
@@ -243,419 +163,54 @@ It's a part of QITAB umbrella project.")
 ;; (define-public sbcl-alloy
 
 ;; 20210527T213028+0100
-(define-public sbcl-trial
-  (let ((commit "ba178cac3a5528c570c7e8dad66c58cc770db53a")
-        (revision "1"))
-    (package
-      (name "sbcl-trial")
-      (version (git-version "1.2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/trial")
-               (commit commit)))
-         (file-name (git-file-name "trial" version))
-         (sha256
-          (base32 "1vpv9nrpq93fz1c5cyi1hazaaz9ijbrf1l7zwp7gammndr5v028r"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("3d-vectors" ,sbcl-3d-vectors)
-         ("3d-matrices" ,sbcl-3d-matrices)
-         ("verbose" ,sbcl-verbose)
-         ("deploy" ,sbcl-deploy)
-         ("closer-mop" ,sbcl-closer-mop)
-         ("trivial-garbage" ,sbcl-trivial-garbage)
-         ("trivial-indent" ,sbcl-trivial-indent)
-         ("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("cl-opengl" ,sbcl-cl-opengl)
-         ("cl-gamepad" ,sbcl-cl-gamepad)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("pathname-utils" ,sbcl-pathname-utils)
-         ("flare" ,sbcl-flare)
-         ("for" ,sbcl-for)
-         ("flow" ,sbcl-flow)
-         ("glsl-toolkit" ,sbcl-glsl-toolkit)
-         ("fast-io" ,sbcl-fast-io)
-         ("ieee-floats" ,sbcl-ieee-floats)
-         ("float-features" ,sbcl-float-features)
-         ("lquery" ,sbcl-lquery)
-         ("static-vectors" ,sbcl-static-vectors)
-         ("pngload" ,sbcl-pngload)
-         ("cl-tga" ,sbcl-cl-tga)
-         ("cl-jpeg" ,sbcl-cl-jpeg)
-         ("retrospectiff" ,sbcl-retrospectiff)
-         ("terrable" ,sbcl-terrable)
-         ("mmap" ,sbcl-mmap)
-         ("messagebox" ,sbcl-messagebox)
-         ("form-fiddle" ,sbcl-form-fiddle)
-         ("lambda-fiddle" ,sbcl-lambda-fiddle)
-         ("jsown" ,sbcl-jsown)
-         ("zpng" ,sbcl-zpng)))
-      (home-page "https://github.com/Shirakumo/trial")
-      (synopsis "Common Lisp game engine")
-      (description
-       "Trial is a game engine written in Common Lisp.  Unlike many other
-engines, it is meant to be more of a loose connection of components that can be
-fit together as required by any particular game.")
-      (license license:zlib))))
-
-(define-public ecl-trial
-  (sbcl-package->ecl-package sbcl-trial))
-
-(define-public cl-trial
-  (sbcl-package->cl-source-package sbcl-trial))
+;; added-to-upstream: 88cde3c671747b6a51699ab8e7052de3c79fac04
+;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
+;; (define-public sbcl-trial
 
 ;; 20210527T203933+0100
-(define-public sbcl-cl-gamepad
-  (let ((commit "2bb8f9eef29f8968fd12d0b4060314bf925169ef")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-gamepad")
-      (version (git-version "3.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/cl-gamepad")
-               (commit commit)))
-         (file-name (git-file-name "cl-gamepad" version))
-         (sha256
-          (base32 "18b9fainnswm0fb7lhkrkx3dxipyw0s7lzdjyqw7mchxpvicz9rv"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-                   (add-after 'unpack 'patch-evdev-lib-path
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "evdev-cffi.lisp"
-                 (("libevdev.so" all)
-                  (string-append
-                   (assoc-ref inputs "libevdev")
-                   "/lib/" all))))))))
-      (inputs
-       `(("cffi" ,sbcl-cffi)
-         ("documentation-utils" ,sbcl-documentation-utils)
-         ("libevdev" ,libevdev)
-         ("trivial-features" ,sbcl-trivial-features)))
-      (home-page "https://shirakumo.github.io/cl-gamepad/")
-      (synopsis "Library for access to gamepads and joystick input devices")
-      (description
-       "This is a library to provide cross-platform access to gamepads,
-joysticks, and other such HID devices.")
-      (license license:zlib))))
-
-(define-public ecl-cl-gamepad
-  (sbcl-package->ecl-package sbcl-cl-gamepad))
-
-(define-public cl-gamepad
-  (sbcl-package->cl-source-package sbcl-cl-gamepad))
+;; added-to-upstream: d09184ce2eafd1c5f7d4d1962c44b0becfaede16
+;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
+;; (define-public sbcl-cl-gamepad
 
 ;; 20210527T202249+0100
-(define-public sbcl-flow
-  (let ((commit "6d925af009cdfe033650d7048197a5e6ee937d15")
-        (revision "1"))
-    (package
-      (name "sbcl-flow")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/flow")
-               (commit commit)))
-         (file-name (git-file-name "flow" version))
-         (sha256
-          (base32 "0ysw1kwiqlf8kzllhnz8v3q40dmvwf83fzq8bfkbmwy5hfjh3pxp"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       ;; FIXME: (Sharlatan-20210527T203118+0100): FLOW-VISUALIZER requires
-       ;; COMMONQT which is not packed yet and required tweaks with QT. Remove
-       ;; this when it's ready.
-       `(#:asd-files '("flow.asd")))
-      (inputs
-       `(("closer-mop" ,sbcl-closer-mop)
-         ("documentation-utils" ,sbcl-documentation-utils)))
-      (home-page "https://shinmera.github.io/flow/")
-      (synopsis "Tools for the representation of graphs and flowcharts")
-      (description
-       "FLOW is a flowchart graph library.  Unlike other graphing libraries, this
-one focuses on nodes in a graph having distinct @code{ports} through which
-connections to other nodes are formed.  This helps in many concrete scenarios
-where it is important to distinguish not only which nodes are connected, but
-also how they are connected to each other.
-
-Particularly, a lot of data flow and exchange problems can be reduced to such
-a @code{flowchart}.  For example, an audio processing library may present its pipeline
-as a flowchart of segments that communicate with each other through audio sample
-buffers.  Flow gives a convenient view onto this kind of problem, and even allows
-the generic visualisation of graphs in this format.")
-      (license license:zlib))))
-
-(define-public ecl-flow
-  (sbcl-package->ecl-package sbcl-flow))
-
-(define-public cl-flow
-  (sbcl-package->cl-source-package sbcl-flow))
+;; added-to-upstream: c03da7edb0bc4bb48c2f8e00e1ef5932c399f800
+;; CommitDate: Tue Jun 8 11:09:12 2021 +0200;;
+;; (define-public sbcl-flow
 
 ;; 20210526T224526+0100
-(define-public sbcl-flare
-  (let ((commit "4f9f17a4fc5b368c2a1988b9a20288695b8d8c48")
-        (revision "1"))
-    (package
-      (name "sbcl-flare")
-      (version (git-version "1.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/flare")
-               (commit commit)))
-         (file-name (git-file-name "flare" version))
-         (sha256
-          (base32 "00nm3sjngbflj2gd5q0xs2m136w4kix6krww23nk64pkkyq2fs86"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("3d-vectors" ,sbcl-3d-vectors)
-         ("array-utils" ,sbcl-array-utils)
-         ("documentation-utils" ,sbcl-documentation-utils)
-         ("for" ,sbcl-for)
-         ("lambda-fiddle" ,sbcl-lambda-fiddle)
-         ("trivial-garbage" ,sbcl-trivial-garbage)))
-      (home-page "https://shinmera.github.io/flare/")
-      (synopsis "Easy particle systems with fine grained control")
-      (description
-       "FLARE is a library designed to allow quick and precise particle effect
-creations.  It does not concern itself with displaying and only with the
-management and movement of particles.  As such, it can easily be integrated into
-any existing or future application.")
-      (license license:zlib))))
-
-(define-public ecl-flare
-  (sbcl-package->ecl-package sbcl-flare))
-
-(define-public cl-flare
-  (sbcl-package->cl-source-package sbcl-flare))
+;; added-to-upstream: 23ab7067f32495a8a02710c08b7cfe0e21be7f3f
+;; CommitDate: Thu May 27 09:05:24 2021 +0200
+;; (define-public sbcl-flare
 
 ;;<2021-05-12 Wed>
-(define-public sbcl-chirp
-  (let ((commit "01c79fa41939688216d1f86d0766a687becb0654")
-        (revision "1"))
-    (package
-      (name "sbcl-chirp")
-      (version (git-version "0.2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/chirp")
-               (commit commit)))
-         (file-name (git-file-name "chirp" version))
-         (sha256
-          (base32 "10xlz1vwdv3jv48kmpndpnrg6672m0r5vsjgm2pksfl8bc05j2m0"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems '("chirp-core" "chirp-dexador" "chirp-drakma" "chirp")))
-      (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("babel" ,sbcl-babel)
-         ("cl-base64" ,sbcl-cl-base64)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("dexador" ,sbcl-dexador)
-         ("drakma" ,sbcl-drakma)
-         ("flexi-streams" ,sbcl-flexi-streams)
-         ("ironclad" ,sbcl-ironclad)
-         ("local-time" ,sbcl-local-time)
-         ("split-sequence" ,sbcl-split-sequence)
-         ("uuid" ,sbcl-uuid)
-         ("yason" ,sbcl-yason)))
-      (home-page "https://shinmera.github.io/chirp/")
-      (synopsis "Twitter client library for Common Lisp")
-      (description
-       "This package provides a Common Lisp systems utilizing Tweeter API:
-CHIRP, CHIRP-CORE, CHIRP-DEXADOR, CHIRP-DRAKMA")
-      (license license:zlib))))
-
-(define-public ecl-chirp
-  (sbcl-package->ecl-package sbcl-chirp))
-
-(define-public cl-chirp
-  (sbcl-package->cl-source-package sbcl-chirp))
+;; added-to-upstream: 7cf3860429f7ba650f0fe040310017b419b57961
+;; CommitDate: Mon Jun 14 09:55:38 2021 +0200
+;; (define-public sbcl-chirp
 
 ;; <2021-05-08 Sat>
-(define-public sbcl-simple-tasks
-  (let ((commit "745d4b54eac9bf5d6909792e63ecd2ef8d303cf2")
-        (revision "1"))
-    (package
-      (name "sbcl-simple-tasks")
-      (version (git-version "1.3.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/simple-tasks")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1ls1pij7dvb65g4nam7nvik1218jvfk5iplr48vy290fw3lq7v98"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("array-utils" ,sbcl-array-utils)
-         ("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("dissect" ,sbcl-dissect)))
-      (home-page "https://shinmera.github.io/simple-tasks/")
-      (synopsis "Simple task scheduling framework")
-      (description
-       "Task scheduling framework for Common Lisp.")
-      (license license:zlib))))
-
-(define-public ecl-simple-tasks
-  (sbcl-package->ecl-package sbcl-simple-tasks))
-
-(define-public cl-simple-tasks
-  (sbcl-package->cl-source-package sbcl-simple-tasks))
+;; added-to-upstream: 4a1fd4a5371b23e1fbf793c33124af08db45a8cd
+;; CommitDate: Tue May 11 10:06:53 2021 +0200
+;; (define-public sbcl-simple-tasks
 
 ;; <2021-05-08 Sat>
-(define-public sbcl-trivial-main-thread
-  (let ((commit "25f114973bb69eb63e01d0bbfead31f8e682846a")
-        (revision "1"))
-    (package
-      (name "sbcl-trivial-main-thread")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/trivial-main-thread")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0bw1887i7396lqg75qvmgjfzz4xbiq9w5dp8wxdgrcsm0qwlraw7"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("simple-tasks" ,sbcl-simple-tasks)
-         ("trivial-features" ,sbcl-trivial-features)))
-      (home-page "https://shinmera.github.io/trivial-main-thread/")
-      (synopsis "Compatibility library to run things in the main thread")
-      (description
-       "This package provides a Common Lisp system which wraps BORDEUX-THREADS
-system to be compatible to run GUI applications in the main thread of the
-implementation.")
-      (license license:zlib))))
-
-(define-public ecl-trivial-main-thread
-  (sbcl-package->ecl-package sbcl-trivial-main-thread))
-
-(define-public cl-trivial-main-thread
-  (sbcl-package->cl-source-package sbcl-trivial-main-thread))
+;; added-to-upstream: a232a40b0011ef3200954f0f5e082e9adfeab2e1
+;; CommitDate: Tue May 11 10:15:38 2021 +0200
+;; (define-public sbcl-trivial-main-thread
 
 ;; <2021-05-08 Sat>
-(define-public sbcl-for
-  (let ((commit "2e4fcfa0f9c1d2f4559c58cef20ccefa50ba180d")
-        (revision "1"))
-    (package
-      (name "sbcl-for")
-      (version (git-version "1.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/for")
-               (commit commit)))
-         (file-name (git-file-name "for" version))
-         (sha256
-          (base32 "1akz9ggh33x2cq3h0f1cd0p632v1mbagv3dzsb0r10bwg9lh3nmv"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("documentation-utils" ,sbcl-documentation-utils)
-         ("form-fiddle" ,sbcl-form-fiddle)
-         ("lambda-fiddle" ,sbcl-lambda-fiddle)))
-      (home-page "https://shinmera.github.io/for/")
-      (synopsis "Extensible iteration macro library")
-      (description
-       "For is a library for an extensible iteration macro.  It allows you to write
-concise looping constructs similar to @code{loop} and @code{iterate}.  Unlike
-loop however it is extensible and sensible, and unlike iterate it does not
-require code-walking and is easier to extend.")
-      (license license:zlib))))
-
-(define-public ecl-for
-  (sbcl-package->ecl-package sbcl-for))
-
-(define-public cl-for
-  (sbcl-package->cl-source-package sbcl-for))
+;; added-to-upstream: 1ab3aab59af43f42113408020cf052389cb6e303
+;; CommitDate: Thu May 27 09:05:20 2021 +0200
+;; (define-public sbcl-for
 
 ;; <2021-05-08 Sat>
-(define-public sbcl-glsl-toolkit
-  (let ((commit "d00ba1906e3b5eb08ea346ac300a1e77bb999d04")
-        (revision "1"))
-    (package
-      (name "sbcl-glsl-toolkit")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/glsl-toolkit")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0as5796yazchq1qkna3srxlz5v7cf7ffny9cbqi41wsa2s20vbh9"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("cl-ppcre" ,sbcl-cl-ppcre)
-         ("documentation-utils" ,sbcl-documentation-utils)
-         ("parse-float" ,sbcl-parse-float)
-         ("trivial-indent" ,sbcl-trivial-indent)))
-      (home-page "https://shirakumo.github.io/glsl-toolkit/")
-      (synopsis "Parser for OpenGL Shader Language source files")
-      (description
-       "This package provides Common Lisp system collecting tools written to
-allow to wrangle OpenGL Shader Language (GLSL) source files.")
-      (license license:zlib))))
-
-(define-public ecl-glsl-toolkit
-  (sbcl-package->ecl-package sbcl-glsl-toolkit))
-
-(define-public cl-glsl-toolkit
-  (sbcl-package->cl-source-package sbcl-glsl-toolkit))
+;; added-to-upstream: a2aa8ac5518cc803d73d35db04bfe64fcf9f98bc
+;; CommitDate: Tue May 11 10:01:44 2021 +0200
+;; (define-public sbcl-glsl-toolkit
 
 ;; <2021-05-08 Sat>
-(define-public sbcl-messagebox
-  (let ((commit "ea3688d9a9954bee7079c0173bc7b3f327021e9f")
-        (revision "1"))
-    (package
-      (name "sbcl-messagebox")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/messagebox")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0jkbzlca0wvspgsfj0b0hjwlyyy8jlywsldsbkp79q48fc3aa8jd"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("documentation-utils" ,sbcl-documentation-utils)
-         ("trivial-features" ,sbcl-trivial-features)))
-      (home-page "https://shinmera.github.io/messagebox/")
-      (synopsis "Display a native GUI message box")
-      (description
-       "This is a small library to display a native GUI message box.  This can be
-useful to show error messages and other informational pieces should the
-application fail and be unable to do so using its standard UI.")
-      (license license:zlib))))
-
-(define-public ecl-messagebox
-  (sbcl-package->ecl-package sbcl-messagebox))
-
-(define-public cl-messagebox
-  (sbcl-package->cl-source-package sbcl-messagebox))
+;; added-to-upstream: df07ecbac6ef76f0f4d47606d85888fbcd2f0454
+;; CommitDate: Tue May 11 09:39:56 2021 +0200
+;; (define-public sbcl-messagebox
 
 ;; <2021-05-03 Mon>
 ;; added-to-upstream: 440217b1e5e8f7c4570e23494f932ff620eedee2
@@ -1634,44 +1189,10 @@ It produces two systems: asdf-finalizers list-of")
 (define-public cl-asdf-finalizers
   (sbcl-package->cl-source-package sbcl-asdf-finalizers))
 
-(define-public sbcl-cl-abnf
-  ;; There are no releases
-  (let ((commit "ba1fbb104dedbdaddb1ef93d2e4da711bd96cd70")
-        (revision "1"))
-    (package
-     (name "sbcl-cl-abnf")
-     (version (git-version "0" revision commit))
-     (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/dimitri/cl-abnf")
-                    (commit commit)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0f09nsndxa90acm71zd4qdnp40v705a4sqm04mnv9x76h6dlggmz"))))
-     (build-system asdf-build-system/sbcl)
-     (inputs
-      `(("esrap" ,sbcl-esrap)
-        ("cl-ppcre" ,sbcl-cl-ppcre)))
-     (arguments
-      `(#:asd-systems '("abnf")))
-     (home-page "https://github.com/dimitri/cl-abnf")
-     (synopsis "ABNF Parser Generator, per RFC2234")
-     (description "This Common Lisp librairie implements a parser generator for
-the ABNF grammar format as described in RFC2234. The generated parser is a
-regular expression scanner provided by the cl-ppcre lib, which means that we
-can't parse recursive grammar definition. One such definition is the ABNF
-definition as given by the RFC. Fortunately, as you have this lib, you most
-probably don't need to generate another parser to handle that particular ABNF
-grammar.")
-     (license license:expat))))
-
-(define-public ecl-cl-abnf
-  (sbcl-package->ecl-package sbcl-cl-abnf))
-
-(define-public cl-abnf
-  (sbcl-package->cl-source-package sbcl-cl-abnf))
+;; 20200107T212250+0000
+;; added-to-upstream: 2ae3033449a6ee803fc3ead77c5f26967e9dc34c
+;; CommitDate: Fri Dec 11 19:17:00 2020 +0100
+;; (define-public sbcl-cl-abnf
 
 (define-public sbcl-cl-online-learning
   (let ((commit "87fbef8a340219e853adb3a5bf44a0470da76964")
@@ -1714,34 +1235,10 @@ online linear classification written in Common Lisp.")
 (define-public ecl-cl-online-learning
   (sbcl-package->ecl-package sbcl-cl-online-learning))
 
-(define-public sbcl-command-line-arguments
-  (let ((commit "fbac862fb01c0e368141204f3f639920462c23fe")
-        (revision "1"))
-    (package
-      (name "sbcl-command-line-arguments")
-      (version (git-version "2.0.0" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/fare/command-line-arguments")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "054m1ikndzqf72mb9ajaa64136cwr3bgag4yfbi1574a9vq75mjq"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/fare/command-line-arguments")
-      (synopsis "Trivial command-line argument parsing library for Common Lisp")
-      (description "A library to abstract away the parsing of Unix-style
-command-line arguments.  Use it in conjunction with asdf:program-op or cl-launch
-for portable processing of command-line arguments.")
-      (license license:expat))))
-
-(define-public ecl-command-line-arguments
-  (sbcl-package->ecl-package sbcl-command-line-arguments))
-
-(define-public cl-command-line-arguments
-  (sbcl-package->cl-source-package sbcl-command-line-arguments))
+;; 20201212T002124+0000
+;; added-to-upstream: f42e54dfaaece18a5065ddd328750d8b316605f3
+;; CommitDate: Sun Dec 13 09:48:18 2020 +0100
+;; (define-public sbcl-command-line-arguments
 
 ;; <2021-04-15 Thu>
 (define-public sbcl-png

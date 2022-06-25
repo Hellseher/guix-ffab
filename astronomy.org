@@ -1,13 +1,13 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-06-18 Sat 22:38:53 BST>
+#+modified: <2022-06-24 Fri 20:47:54 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [0/24][0%]
+* Flow [0/26][0%]
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -158,7 +158,7 @@ CLOSED: [2021-01-29 Fri 10:56]
 - [X] :patch-sent <2021-01-28 Thu>
 - [X] :paptch-applied-upstream <2021-01-29 Fri>
   - https://issues.guix.gnu.org/46161
-*** DONE stiff [3/3] [100%]
+*** DONE stiff [3/3][100%]
 CLOSED: [2021-01-22 Fri 23:03]
   - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
   - synopsis :: automated image compositing and conversion
@@ -170,14 +170,14 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] libtiff (gnu/packages/image.scm:581:2)
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
-** TODO astropy [1/2][50%] :author:p1:
+** TODO astropy [1/2][50%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
 - synopsis :: The Astropy Project is a community effort to develop a common core package for
   Astronomy in Python and foster an ecosystem of interoperable astronomy packages.
 
-*** DONE astropy [4/4][100%] :p1:
+*** DONE astropy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:41]
 - https://github.com/astropy/astropy
 - https://pypi.org/project/astropy/
@@ -304,23 +304,23 @@ CLOSED: [2021-11-08 Mon 20:41]
 - https://www.atnf.csiro.au/computing/software/index.html
 *** TODO AIPS [/][%] :p5:
 - synopsis :: Astronomical Image Processing System, produced by NRAO.
-** TODO casacore [0/0][0%] :author:
+** TODO casacore [1/2][50%] :author:p1:
 - https://github.com/casacore
-*** TODO casacore [2/4][50%] :p1:
+*** DONE casacore [4/4][100%]:
 - https://github.com/casacore/casacore
 - synopsis :: Suite of C++ libraries for radio astronomy data processing
 
 - [X] :packed <2022-06-12 Sun>
 - [X] :patch-sent <2022-06-12 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-06-23 Thu>
   - https://issues.guix.gnu.org/55935
-- [-] :inputs [14/16][87%]
-  - [ ] boost-python (optional)
+- [X] :inputs [14/14][100%]
+  - boost-python (optional)
   - [X] fftw3 (guix fftw)
   - [X] fftw3f (guix fftwf)
   - [X] g++
   - [X] numpy (optional)
-  - [ ] sofa (optional, only for testing casacore measures)
+  - sofa (optional, only for testing casacore measures)
   - [X] bison
   - [X] blas (guix openblas)
   - [X] cfitsio (3.181 or later)
@@ -331,6 +331,19 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [X] ncurses (optional)
   - [X] readline
   - [X] wcslib (4.20 or later)
+
+*** TODO python-casacore [1/4][25%]
+- https://github.com/casacore/python-casacore
+- synopsis :: Python bindings for casacore, a library used in radio astronomy
+- [ ] :packed <2022-06-24 Fri>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] boost
+  - [X] casacore
+  - [X] cfitsio
+  - [X] python-pytest
+  - [X] wcslib
 
 ** TODO C-Munipack-library [0/0][0%] :author:
 - https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
@@ -493,18 +506,32 @@ CLOSED: [2021-01-31 Sun 13:07]
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
-*** TODO galpy [/][%] :p1:
+*** TODO galpy [0/4][0%] :p1:
 - https://github.com/jobovy/galpy
 - synopsis :: Galactic Dynamics in python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [7/7][100%]
+- [-] :inputs [7/8][87%]
   - [X] python-future
   - [X] python-matplotlib
   - [X] python-numpy
   - [X] python-pytest
-  - [ ] python-pynbody
+  - [-] python-pynbody [0/4][0%]
+    - https://github.com/pynbody/pynbody
+    - synopsis :: N-body and hydro analysis tools
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :paptch-applied-upstream
+    - [-] :inputs [1/8][12%]
+      - [X] python-cython
+      - [ ] python-h5py
+      - [ ] python-matplotlib
+      - [ ] python-numpy
+      - [ ] python-pandas
+      - [ ] python-posix-ipc
+      - [ ] python-pytest
+      - [ ] python-scipy
   - [X] python-scipy
   - [X] python-setuptools
   - [X] python-six
@@ -531,6 +558,16 @@ https://kepler-project.org/users/downloads.html
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [6/12][50%]
+** TODO ericmandel [0/1][0%] :author:p1:
+- https://github.com/ericmandel
+*** TODO funtools [/][%] :p1:
+- https://github.com/ericmandel/funtools
+- synopsis :: "minimal buy-in" FITS library and utility package for astronomical data analysis
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [2/9][22%]
+
 ** TODO OpenPHDGuiding [0/1][0%] :author:p4:
 - https://openphdguiding.org
 *** TODO phd2 [0/4][%]
@@ -548,6 +585,29 @@ https://kepler-project.org/users/downloads.html
   + [ ] libv4l-dev
   + [ ] libnova-dev
   + [ ] libcurl4-gnutls-dev
+** TODO SAOImageDS9 [0/1][0%] :author:p1:
+- http://ds9.si.edu/
+*** TODO SAOImageDS9 [0/4][0%]
+- https://github.com/SAOImageDS9/SAOImageDS9
+- synopsis :: DS9 is an astronomical imaging and data visualization application.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [2/13][15%]
+  - [ ] starlink-ast
+  - [ ] tcl-awthemes
+  - [ ] tcl-signal
+  - [ ] tcl-xpa
+  - [ ] tcl-ttkthemes
+  - [ ] tcl
+  - [ ] tk
+  - [ ] tk-html1
+  - [ ] tk-mpeg
+  - [ ] tk-table
+  - [X] xauth
+  - [X] xvfb (guix xvfb)-run)
+  - [ ] funtools
+
 
 ** TODO schirmermischa [0/1][0%] :author:
 *** TODO THELI [0/0][0%]
@@ -752,5 +812,4 @@ https://kepler-project.org/users/downloads.html
 - https://ascl.net/1112.014
 - https://rhodesmill.org/skyfield/
 - https://github.com/esheldon/fitsio
-- https://sites.google.com/cfa.harvard.edu/saoimageds9/download
 - https://www.ossblog.org/open-source-astronomy-software/

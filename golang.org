@@ -1,8 +1,8 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-01-29 Sat 14:13:51 GMT>
+#+modified: <2022-06-24 Fri 20:44:51 BST>
 
-* Flow [0/3][0%]
+* Flow [0/6][0%]
 ** TODO go/tools/gopls [/][%] :p1:
 - https://go.googlesource.com/tools
 - [ ] :packed
@@ -35,11 +35,12 @@
     + [ ] :patch-applied-upstream
 ** TODO bykof/go-plantuml [/][%] :p3:
 - https://github.com/bykof/go-plantuml
-** TODO FiloSottile/age [/][%]
+** TODO FiloSottile [0/1][0%] :author:
+*** TODO age [/][%] :p5:
 - https://github.com/FiloSottile/age
 
-* TODO github.com/valyala [1/1][100%] :author:
-** DONE github.com/valyala/fasthttp [3/4][75%]
+** TODO github.com/valyala [1/1][100%] :author:
+*** DONE github.com/valyala/fasthttp [3/4][75%]
 - https://github.com/valyala/fasthttp
 - [X] :packed <2021-12-18 Sat>
 - [X] :patch-sent <2021-12-19 Sun>
@@ -60,8 +61,8 @@
     - https://github.com/andybalholm/brotli
     - [X] :packed <2021-12-18 Sat>
 
-* github.com/hashicorp [1/1][100%]
-** DONE hcl v2 [4/4][100%]
+** TODO github.com/hashicorp [1/1][100%]
+*** DONE hcl-v2 [4/4][100%]
 - https://github.com/hashicorp/hcl
 - [X] :packed <2021-12-12 Sun>
 - [X] :patch-sent <2021-12-12 Sun>
@@ -76,7 +77,7 @@
   - [X] go-github-com-apparentlymart-go-textseg-v13
     - [X] :packed <2021-12-12 Sun>
   - [X] go-github-com-davecgh-go-spew
-** terraform [0/4][0%]
+*** terraform [0/4][0%]
 https://github.com/hashicorp/terraform
 - [ ] :packed
 - [ ] :patch-sent
