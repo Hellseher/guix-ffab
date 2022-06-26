@@ -1,0 +1,135 @@
+From bec695ac513c9f2e187484863f6c6e8e375ba2c4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 26 Jun 2022 18:34:58 +0100
+Subject: [PATCH 2/2] gnu: Add aoflagger
+
+* gnu/packages/astronomy.scm (aoflagger): New vaiable
+* gnu/packages/patches (aoflagger-use-system-provided-pybind11.patch):
+Releated patch.
+---
+ gnu/packages/astronomy.scm                    | 63 +++++++++++++++++++
+ ...flagger-use-system-provided-pybind11.patch | 38 +++++++++++
+ 2 files changed, 101 insertions(+)
+ create mode 100644 gnu/packages/patches/aoflagger-use-system-provided-pybind11.patch
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 27f7fa1c3b..afa2733c1a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -140,6 +140,69 @@ (define-public calceph
+ @end itemize\n")
+     (license license:cecill)))
+ 
++(define-public aoflagger
++  (package
++    (name "aoflagger")
++    (version "3.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://gitlab.com/aroffringa/aoflagger")
++             (commit (string-append "v" version))))
++       (sha256
++        (base32 "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
++       (patches
++        (search-patches "aoflagger-use-system-provided-pybind11.patch"))
++       (file-name (git-file-name name version))))
++    (build-system cmake-build-system)
++    (arguments
++     (list
++      ;; NOTE: (Sharlatan-20220626T175728+0100): Tests require external files
++      ;; download from https://www.astron.nl/citt/ci_data/aoflagger/
++      ;; FIXME: runtest is not found
++      #:tests? #f
++      #:configure-flags
++      #~(list (string-append "-DCASACORE_ROOT_DIR="
++                             #$(this-package-input "casacore")))
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; NOTE: (Sharlatan-20220626T163240+0100): aocommon and pybind11 are
++          ;; expected to be found as git submodules, link them before build.
++          (add-after 'unpack 'link-submodule-package
++            (lambda _
++              (rmdir "external/aocommon")
++              (symlink #$(this-package-native-input "aocommon")
++                       (string-append (getcwd) "/external/aocommon")))))))
++    (native-inputs
++     (list aocommon
++           boost
++           pkg-config
++           python
++           pybind11))
++    (inputs
++     (list casacore
++           cfitsio
++           fftw
++           gsl
++           gtkmm-3
++           hdf5
++           lapack
++           libpng
++           libsigc++
++           libxml2
++           lua
++           openblas
++           zlib))
++    (home-page "https://gitlab.com/aroffringa/aoflagger")
++    (synopsis "Astronomical tool that can find and remove radio-frequency interference")
++    (description
++     "AOFlagger is a tool that can find and remove radio-frequency
++interference (RFI) in radio astronomical observations.  It can make use of Lua
++scripts to make flagging strategies flexible, and the tools are applicable to a
++wide set of telescopes.")
++    (license license:gpl3+)))
++
+ (define-public casacore
+   (package
+     (name "casacore")
+diff --git a/gnu/packages/patches/aoflagger-use-system-provided-pybind11.patch b/gnu/packages/patches/aoflagger-use-system-provided-pybind11.patch
+new file mode 100644
+index 0000000000..76bc52a4ba
+--- /dev/null
++++ b/gnu/packages/patches/aoflagger-use-system-provided-pybind11.patch
+@@ -0,0 +1,38 @@
++This patch was borrowed from Debian's package:
++https://salsa.debian.org/debian-astro-team/aoflagger/-/blob/0484ef75a663e3e07738550cdade46f433a53dac/debian/patches/Use-system-provided-pybind11.patch
++Description: Use system provided pybind11
++Author: Ole Streicher <olebole@debian.org>
++Origin: Debian
++Last-Update: Mon, 30 Aug 2021 11:05:37 +0200
++---
++ CMakeLists.txt | 10 +++++-----
++ 1 file changed, 5 insertions(+), 5 deletions(-)
++
++diff --git a/CMakeLists.txt b/CMakeLists.txt
++index 655ea5e..824ee2a 100644
++--- a/CMakeLists.txt
+++++ b/CMakeLists.txt
++@@ -62,11 +62,6 @@ foreach(ExternalSubmodule IN LISTS ExternalSubmoduleDirectories)
++   endif()
++ endforeach()
++ 
++-# Include aocommon/pybind11 headers
++-include_directories("${CMAKE_SOURCE_DIR}/external/aocommon/include")
++-add_subdirectory("${CMAKE_SOURCE_DIR}/external/pybind11")
++-include_directories(SYSTEM ${pybind11_INCLUDE_DIR})
++-
++ find_package(
++   HDF5
++   COMPONENTS C CXX
++@@ -101,6 +96,11 @@ find_package(PythonInterp REQUIRED)
++ message(STATUS "Using python version ${PYTHON_VERSION_STRING}")
++ include_directories(SYSTEM ${PYTHON_INCLUDE_DIRS})
++ 
+++# Include pybind11 headers
+++find_package(pybind11 REQUIRED)
+++include_directories("${CMAKE_SOURCE_DIR}/external/aocommon/include")
+++include_directories(${pybind11_INCLUDE_DIR})
+++
++ # boost::alignment requires Boost 1.56
++ find_package(Boost 1.56.0 REQUIRED COMPONENTS date_time filesystem system
++                                               unit_test_framework)
+-- 
+2.36.0
+

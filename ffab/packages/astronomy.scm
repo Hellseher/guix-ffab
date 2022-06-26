@@ -20,6 +20,7 @@
   #:use-module (ffab packages maths)
   #:use-module (ffab packages python-xyz)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages)
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
@@ -29,6 +30,7 @@
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages flex)
+  #:use-module (gnu packages gawk)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
   #:use-module (gnu packages glib)
@@ -44,6 +46,7 @@
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages openstack)
   #:use-module (gnu packages pascal)
+  #:use-module (gnu packages perl)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages python-check)
@@ -53,6 +56,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages readline)
   #:use-module (gnu packages swig)
+  #:use-module (gnu packages tcl)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wxwidgets)
@@ -66,15 +70,100 @@
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (ice-9 match))
+
+;; 20220619T144120+0100
+(define-public funtools
+  (package
+    (name "funtools")
+    (version "1.4.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/ericmandel/funtools")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "1217gfac89j7m3yqsql6f941c7a0bxpk8cgg4bi421i1h3cr23zy"))
+       (file-name (git-file-name name version))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:tests? #f ;; No tests
+      #:parallel-build? #f
+      #:configure-flags
+      #~(list "--enable-dl"
+              "--enable-shared"
+              "--with-zlib"
+              (string-append "--with-wcslib=" #$wcslib)
+              (string-append "--with-tcl=" #$tcl "/lib"))
+      #:make-flags
+      #~(list "all" "shtclfun")
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'bootstrap
+            (lambda _
+              (substitute* "mkconfigure"
+                (("#!/bin/bash") (string-append "#!" (which "bash"))))
+              (invoke "./mkconfigure")
+              #t)
+            )
+          )))
+    (native-inputs
+     (list autoconf
+           zlib
+           perl))
+    (inputs
+     (list tcl
+           wcslib))
+    (home-page "https://github.com/ericmandel/funtools")
+    (synopsis "Astronomical minimal buy-in FITS libray")
+    (description "Funtools is a \"minimal buy-in\" FITS library and utility
+package originally developed at the the High Energy Astrophysics Division of
+SAO. Although no longer actively supported at SAO, it is still widely used
+within the astronomical community, especially among X-ray astronomers.")
+    (license license:lgpl2.0+)))
+
 
 ;; http://starlink.eao.hawaii.edu/starlink
 ;;+begin-Starlink
+
+;; 20220619T140953+0100
+(define-public starlink
+  (package
+    (name "starlink")
+    (version "2021A")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Starlink/starlink")
+             (commit  version)))
+       (sha256
+        (base32 "1snd03h40327hm4xz2359w7gw2j9symp9357pl8j2mprbzk1ai09"))
+       (file-name (git-file-name name version))))
+    (build-system gnu-build-system)
+    (native-inputs
+     (list autoconf))
+    (home-page "https://github.com/Starlink/pal")
+    (synopsis "Starlink Software Collection")
+    (description "")
+    (license (list license:gpl3 ;; applications/atools/astviewer/LICENSE
+                                ;; applications/smurf/LICENCE
+                   license:gpl2 ;; applications/obsolete/sgmlkit/lib/texml/license.txt
+                                ;; applications/gaia/gaia/tkhtml/COPYING
+                                ;; libraries/ref/LICENCE
+                                ;; libraries/trn/LICENCE
+                                ;; libraries/agi/LICENCE
+                                ;; libraries/kaplibs/LICENCE
+                                ;; ... and more
+                                ))))
 
 ;; 20220618T223938+0100
 ;; starting phase `bootstrap'
 ;; running './bootstrap'
 ;; patch-shebang: ./bootstrap: changing `/bin/sh' to `/gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh'
-;; ./bootstrap: line 43: /bin/sh: No such file or directory
+;; Bootstrapping /tmp/guix-build-starlink-pal-0.9.8.drv-0/source ...
+;; bootstrap error: The starconf application is not in your path
 (define-public starlink-pal
   (package
     (name "starlink-pal")
@@ -89,6 +178,22 @@
         (base32 "1snd03h40327hm4xz2359w7gw2j9symp9357pl8j2mprbzk1ai09"))
        (file-name (git-file-name name version))))
     (build-system gnu-build-system)
+    (arguments
+     (list
+      #:configure-flags
+      #~(list
+       "--without-starlink"
+       (string-append "--prefix=" #$output))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'patch-boostrap
+            (lambda _
+              (substitute* "bootstrap"
+                (("exec /bin/sh")
+                 (format #f "exec ~a" (which "sh"))))
+              #t)))))
+    (native-inputs
+     (list autoconf))
     (home-page "https://github.com/Starlink/pal")
     (synopsis "Positional Astronomy Library")
     (description "The PAL library is a partial re-implementation of Pat
@@ -139,9 +244,10 @@ appropriate.")
         ;;  59 - tFile (Failed)
         ;;  66 - tPath (Failed)
         ;; 189 - tExprNode (Failed)
-(define-public casacore
+;; NOTE: (Sharlatan-20220624T202307+0100): working on tests
+(define-public ffab-casacore
   (package
-    (name "casacore")
+    (name "ffab-casacore")
     (version "3.4.0")
     (source
      (origin
@@ -159,7 +265,7 @@ appropriate.")
       ;; tests which require additional measures data. They are
       ;; distributed via FTP without any license:
       ;; ftp://ftp.astron.nl/outgoing/Measures/
-      #:tests? #f
+      #:tests? #t
       #:parallel-build? #t
       #:configure-flags
       #~(list "-DBUILD_PYTHON3=ON"
@@ -224,26 +330,56 @@ was made to get a better separation of core libraries and applications.
 (CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
     (license license:gpl2)))
 
+;; 20220621T222748+0100
 (define-public python-casacore
   (package
     (name "python-casacore")
     (version "3.4.0")
     (source
      (origin
-       (method url-fetch)
-       (uri (pypi-uri "python-casacore" version))
+       (method git-fetch)
+       ;; No tests in PyPi package
+       (uri (git-reference
+             (url "https://github.com/casacore/python-casacore")
+             (commit (string-append "v" version))))
        (sha256
-        (base32 "1kj2r97pnki93iykdwd6h3wjrc5fypvzb0br0c6fg39hj897hm7n"))))
+        (base32 "12ygijs1xwb5yd9y7wsxz5bw2c2z0yyv0hr72b3sg4simplm61nh"))
+       (file-name (git-file-name name version))))
     (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'set-ld-library-path-env
+            (lambda _
+              (setenv "LD_LIBRARY_PATH"
+                      (string-append #$(this-package-input "casacore") "/lib"
+                                     ":"
+                                     #$(this-package-input "boost") "/lib"))))
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "pytest" "-vv"))))
+          ;; NOTE: (Sharlatan-20220621T235907+0100): failing on checking version
+          ;;
+          ;;...checking requirements: ERROR: python-casacore==3.4.0 \
+          ;; DistributionNotFound(Requirement.parse('argparse'), {'python-casacore'})
+          ;;
+          (delete 'sanity-check))))
+    (native-inputs
+     (list python-pytest))
     (inputs
      (list boost
-           casacore))
+           casacore
+           cfitsio
+           wcslib))
     (propagated-inputs
      (list python-future python-numpy python-six))
     (home-page "https://github.com/casacore/python-casacore")
-    (synopsis "A wrapper around CASACORE, the radio astronomy library")
+    (synopsis "Python wrapper for casacore")
     (description
-     "This package provides a wrapper around CASACORE, the radio astronomy library")
+     "Python-casacore is a set of Python bindings for @code{casacore}, a c++ library used in
+radio astronomy.")
     (license license:gpl3)))
 
 ;;+end-casacore
@@ -261,36 +397,56 @@ was made to get a better separation of core libraries and applications.
              (commit (string-append "v" version))))
        (sha256
         (base32 "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
+       (patches
+        (search-patches "aoflagger-use-system-provided-pybind11.patch"))
        (file-name (git-file-name name version))))
     (build-system cmake-build-system)
     (arguments
      (list
+      ;; NOTE: (Sharlatan-20220626T175728+0100): Tests require external files
+      ;; download from https://www.astron.nl/citt/ci_data/aoflagger/
+      ;; FIXME: runtest is not found
+      #:tests? #f
       #:configure-flags
-      #~(list
-         (string-append "-DCASACORE_ROOT_DIR=" #$casacore))))
+      #~(list (string-append "-DCASACORE_ROOT_DIR="
+                             #$(this-package-input "casacore")))
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; NOTE: (Sharlatan-20220626T163240+0100): aocommon and pybind11 are
+          ;; expected to be found as git submodules, link them before build.
+          (add-after 'unpack 'link-submodule-package
+            (lambda _
+              (rmdir "external/aocommon")
+              (symlink #$(this-package-native-input "aocommon")
+                       (string-append (getcwd) "/external/aocommon")))))))
     (native-inputs
-     (list pkg-config
-           boost))
+     (list aocommon
+           boost
+           pkg-config
+           python
+           pybind11))
     (inputs
      (list casacore
-           gtkmm-3
            cfitsio
-           libxml2
            fftw
            gsl
+           gtkmm-3
            hdf5
-           lua
-           pybind11
-           openblas
+           lapack
            libpng
            libsigc++
-           python
-           lapack))
+           libxml2
+           lua
+           openblas
+           zlib))
     (home-page "https://gitlab.com/aroffringa/aoflagger")
-    (synopsis "")
+    (synopsis "Astronomical tool that can find and remove radio-frequency interference")
     (description
-     "")
-    (license license:gpl3)))
+     "AOFlagger is a tool that can find and remove radio-frequency
+interference (RFI) in radio astronomical observations.  It can make use of Lua
+scripts to make flagging strategies flexible, and the tools are applicable to a
+wide set of telescopes.")
+    (license license:gpl3+)))
 
 ;; 20220614T105114+0100
 (define-public aocommon
@@ -308,26 +464,19 @@ was made to get a better separation of core libraries and applications.
          (sha256
           (base32 "0qcfax6pbzs0yigy0x8xibrkk539wm2pbvjsb4lh50fybir02nix"))
          (file-name (git-file-name name version))))
-      (build-system cmake-build-system)
+      (build-system copy-build-system)
       (arguments
-       (list
-        #:tests? #f
-        #:configure-flags
-        #~(list
-           (string-append "-DCASACORE_ROOT_DIR=" #$casacore))))
-      (native-inputs
-       (list pkg-config boost))
-      (inputs
-       (list casacore
-             openblas
-             cfitsio))
+       (list #:install-plan
+             #~'(("include/aocommon" "include/aocommon"))))
       (home-page "https://gitlab.com/aroffringa/aocommon")
-      (synopsis "")
+      (synopsis "Collection of functionality that is reused in astronomical applications")
       (description
-       "")
+       "This package provides source-only AOCommon collection of functionality that is
+reused in several astronomical applications, such as @code{wsclean},
+@code{aoflagger}, @code{DP3} and @code{everybeam}.")
       (license license:gpl3))))
 
-;; TODO: (Sharlatan-20210415T214924+0100):
+;; 20210415T214924+0100
 (define-public astrometry
   (package
    (name "astrometry")
@@ -990,6 +1139,8 @@ provide related services.")
        (sha256
         (base32 "0mbfym9iy5nnrxjz5jiz3mvcq9y7bhqsn48b16lky7xhs4fb15gv"))))
     (build-system python-build-system)
+    (native-inputs
+     (list boost))
     (propagated-inputs
      (list python-casacore
            python-configparser
@@ -997,10 +1148,36 @@ provide related services.")
            python-matplotlib
            python-numexpr
            python-numpy
-           python-progressbar
+           ;; python-progressbar What's that?
            python-scipy
            python-tables))
     (home-page "http://github.com/revoltek/losoto/")
-    (synopsis "LOFAR Solution Tool")
+    (synopsis "Astronomical LOFAR Solution Tool")
     (description "LOFAR Solution Tool")
-    (license #f)))
+    (license license:gpl3+)))
+
+;; 20220621T190544+0100
+(define-public python-pynbody
+  (package
+    (name "python-pynbody")
+    (version "1.2.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pynbody" version))
+       (sha256
+        (base32 "0hjh2ya5lbrcvp3qik3w7jbwd4syvfq9bnwd1gqzlw5liy7471v5"))))
+    (build-system python-build-system)
+    (native-inputs
+     (list python-pandas python-pytest python-setuptools))
+    (propagated-inputs
+     (list python-cython
+           python-h5py
+           python-matplotlib
+           python-numpy
+           ;; python-posix-ipc
+           python-scipy))
+    (home-page "https://github.com/pynbody/pynbody/releases")
+    (synopsis "Light-weight astronomical N-body/SPH analysis for python")
+    (description "Light-weight astronomical N-body/SPH analysis for python")
+    (license license:gpl3+)))
