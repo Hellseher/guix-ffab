@@ -136,3 +136,4 @@
 - [ ] <2022-05-23 Mon> https://issues.guix.gnu.org/55604
 - [X] <2022-06-12 Sun> https://issues.guix.gnu.org/55935 <2022-06-23 Thu>
 - [ ] <2022-06-26 Sun> https://issues.guix.gnu.org/56238
+- [ ] <2022-06-26 Sun> https://issues.guix.gnu.org/56242

@@ -535,19 +535,19 @@ Features include:
 the @url{https://github.com/jroimartin/gocui,gocui} library.")
     (license license:expat)))
 
- (define-public go-github-com-atotto-clipboard
+(define-public go-github-com-atotto-clipboard
   (package
     (name "go-github-com-atotto-clipboard")
     (version "0.1.4")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/atotto/clipboard")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "0ycd8zkgsq9iil9svhlwvhcqwcd7vik73nf8rnyfnn10gpjx97k5"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/atotto/clipboard")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ycd8zkgsq9iil9svhlwvhcqwcd7vik73nf8rnyfnn10gpjx97k5"))))
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/atotto/clipboard"))
