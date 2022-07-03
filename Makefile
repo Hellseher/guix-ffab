@@ -1,11 +1,12 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-06-26 Sun 18:55:36 BST>
+# Modified : <2022-07-02 Sat 17:05:42 BST>
 
-PKGS ?= $(shell grep -r define-public ffab/ | grep -v ';' | cut -d' ' -f2)
+PKGS_ALL ?= $(shell grep -r define-public ffab/ | grep -v ';' | cut -d' ' -f2)
+PKGS_PYTHON ?= $(shell grep -r define-public ffab/ | grep -v ';' | grep "python-" cut -d' ' -f2)
 
 GUIX_FLAGS ?= --load-path=./
-GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --keep-failed
+GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --keep-failed --rounds=2
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 .PHONY: all
