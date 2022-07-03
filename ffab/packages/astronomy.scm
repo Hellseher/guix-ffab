@@ -29,6 +29,7 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages databases)
   #:use-module (gnu packages flex)
   #:use-module (gnu packages gawk)
   #:use-module (gnu packages gcc)
@@ -49,6 +50,7 @@
   #:use-module (gnu packages perl)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
+  #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-crypto)
   #:use-module (gnu packages python-science)
@@ -70,6 +72,41 @@
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (ice-9 match))
+
+;; 20220626T221017+0100
+(define-public splash
+  (package
+    (name "splash")
+    (version "3.5.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/danieljprice/splash")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "12s3w96wzd4zpxw4adzhalkr57fgdk7cjp6bj596jnd87pz3rhyd"))
+       (file-name (git-file-name name version))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:make-flags
+      #~(list (string-append "GIZA_DIR=" #$(this-package-input "giza")))
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure))))
+    (native-inputs
+     (list perl pkg-config python))
+    (inputs
+     (list giza))
+    (home-page "https://users.monash.edu.au/~dprice/splash/")
+    (synopsis "Astrophysical visualisation tool for smoothed particle hydrodynamics")
+    (description
+     "SPLASH is a free and open source visualisation tool for Smoothed Particle
+Hydrodynamics (SPH) simulations in one, two and three dimensions, developed
+mainly for astrophysics.  It uses a command-line menu but data can be manipulated
+interactively in the plotting window.")
+    (license license:lgpl2.0)))
 
 ;; 20220619T144120+0100
 (define-public funtools
@@ -1181,3 +1218,136 @@ provide related services.")
     (synopsis "Light-weight astronomical N-body/SPH analysis for python")
     (description "Light-weight astronomical N-body/SPH analysis for python")
     (license license:gpl3+)))
+
+
+;; https://github.com/sunpy
+;;+begin-sunpy
+
+;; 20220627T202513+0100
+(define-public python-sunpy
+  (package
+    (name "python-sunpy")
+    (version "4.0.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sunpy" version))
+       (sha256
+        (base32 "0gx7gjww0hsdwagiswrhv3hwkhcy8idvkh1mln64ia0iscai9k36"))))
+    (build-system python-build-system)
+    (propagated-inputs
+     (list python-astropy
+           python-numpy
+           python-packaging
+           ;python-parfive
+           ))
+    (inputs
+     (list python-asdf
+           python-asdf-astropy
+           python-beautifulsoup4
+           python-cdflib
+           python-dask
+           python-dateutil
+           python-drms
+           python-glymur
+           python-h5netcdf
+           python-h5py
+           python-hypothesis
+           python-jplephem
+           python-matplotlib
+           python-mpl-animators
+                                        ;python-opencv-python
+           python-pandas
+           python-pytest
+           python-pytest-astropy
+           python-pytest-doctestplus
+           python-pytest-mock
+           python-pytest-mpl
+           python-pytest-xdist
+           ; python-reproject
+           python-scikit-image
+           python-scipy
+           python-sqlalchemy
+           python-tqdm
+           python-zeep))
+    (home-page "https://sunpy.org")
+    (synopsis "Python library for Solar Physics")
+    (description "SunPy: Python for Solar Physics")
+    (license license:bsd-2)))
+
+;;20220627T213949+0100
+(define-public python-drms
+  (package
+    (name "python-drms")
+    (version "0.6.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "drms" version))
+       (sha256
+        (base32 "1nmpcpaz7bsg35nw2vc5a7rp9fpc49qjlhvy3rhbvaramwy2ppr1"))))
+    (build-system python-build-system)
+    (arguments
+     ;; Tests depends on sunpy, which depends on drms
+     (list #:tests? #f))
+    (propagated-inputs
+     (list python-numpy python-pandas))
+    (native-inputs
+     (list python-astropy python-pytest python-setuptools-scm))
+    (home-page "https://sunpy.org")
+    (synopsis "Access astronomical HMI, AIA and MDI data with Python from the public JSOC DRMS server")
+    (description
+     "DRMS module provides an easy-to-use interface for accessing HMI, AIA and MDI
+data with Python.  It uses the publicly accessible
+JSOC (@url{http://jsoc.stanford.edu/}) DRMS server by default, but can also be
+used with local NetDRMS sites.")
+    (license license:bsd-2)))
+
+;;+end-sunpy
+
+;; 20220627T211818+0100
+(define-public python-cdflib
+  (package
+    (name "python-cdflib")
+    (version "0.4.4")
+    (source
+     (origin
+       (method git-fetch)   ; no tests in pypi archive
+       (uri (git-reference
+             (url "https://github.com/MAVENSDC/cdflib")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1h7750xvr6qbhnl2w3bhccs3pwp3hci3624pvvxym0yjinmskjlz"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               (replace 'check
+                 (lambda* (#:key tests? #:allow-other-keys)
+                   (when tests?
+                     (setenv "HOME" (getcwd))
+                     (invoke "pytest" "-vv" "tests")))))))
+    (propagated-inputs
+     (list python-attrs python-numpy))
+    (native-inputs
+     (list python-astropy
+           python-hypothesis
+           python-pytest
+           python-pytest-cov
+           python-pytest-remotedata
+           python-xarray))
+    (home-page "https://github.com/MAVENSDC/cdflib")
+    (synopsis "Python library to deal with NASA's CDF astronmical data format")
+    (description "This package provides a Python CDF reader toolkit
+It provides functionality:
+@itemize
+@item Ability to read variables and attributes from CDF files (see CDF Reader
+Class)
+@item Writes CDF version 3 files (see CDF Writer Class)
+@item Can convert between CDF time types (EPOCH/EPOCH16/TT2000) to other common
+time formats (see CDF Time Conversions)
+@item Can convert CDF files into XArray Dataset objects and vice versa,
+attempting to maintain ISTP compliance (see Working with XArray)
+@end itemize\n")
+    (license license:expat)))
