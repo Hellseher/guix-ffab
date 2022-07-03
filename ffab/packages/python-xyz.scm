@@ -19,23 +19,48 @@
 (define-module (ffab packages python-xyz)
   #:use-module (ffab packages python-check)
   #:use-module ((guix licenses) #:prefix license:)
+<<<<<<< Updated upstream
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages python-compression)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages check)
+<<<<<<< Updated upstream
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages base)
   #:use-module (gnu packages commencement)
   #:use-module (gnu packages python-build)
+=======
+=======
+  #:use-module (gnu packages astronomy)
+  #:use-module (gnu packages base)
+  #:use-module (gnu packages check)
+  #:use-module (gnu packages commencement)
+  #:use-module (gnu packages databases)
+  #:use-module (gnu packages gcc)
+  #:use-module (gnu packages image)
+  #:use-module (gnu packages python-build)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-compression)
+  #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages sphinx)
+<<<<<<< Updated upstream
   #:use-module (gnu packages databases)
+<<<<<<< Updated upstream
   #:use-module (gnu packages image)
+=======
+=======
+  #:use-module (gnu packages xml)
+  #:use-module (gnu packages)
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
+  #:use-module (guix utils)
   #:use-module (guix packages))
 
 (define-public python-portalocker
@@ -130,6 +155,11 @@ with support of Python v3+.")
      "Parsley is an implementation of OMeta, an object-oriented pattern-matching
 language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (license license:expat)))
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
 ;; 20220621T191218+0100
 (define-public python-posix-ipc
@@ -176,15 +206,23 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 (define-public python-glymur
   (package
     (name "python-glymur")
+<<<<<<< Updated upstream
     (version "0.10.0")
     (source
      (origin
        (method git-fetch) ;; no tests data in PyPi package
+=======
+    (version "0.10.1")
+    (source
+     (origin
+       (method git-fetch)   ; no tests data in PyPi package
+>>>>>>> Stashed changes
        (uri (git-reference
              (url "https://github.com/quintusdias/glymur")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
+<<<<<<< Updated upstream
         (base32 "0ifjirxr99b0ylc7vf46m244gjdh2v2qm9iglbsnh9218hsvvdqz"))))
     (build-system python-build-system)
     (arguments
@@ -223,6 +261,51 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
                      ;; which is patched above.
                      (delete-file "tests/test_config.py")
                      (invoke "python" "-m" "pytest" "-vv" "tests")))))))
+=======
+        (base32 "1cq9r8vzwvds1kasy5gc2rxw034jh9l43rraps1n739072pfz6qg"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'patch-library-locations
+            (lambda _
+              ;; XXX: It's a workaround for Python inability to find the
+              ;; .so libraries with ctypes.util.find_library()
+              (substitute* '("glymur/config.py")
+                (("path = find_library\\(libname\\)")
+                 (string-append
+                  "if libname == \"openjp2\":\n"
+                  "        path = \""
+                  #$(this-package-input "openjpeg") "/lib/libopenjp2.so\"\n"
+                  "    elif libname == \"tiff\":\n"
+                  "        path = \""
+                  #$(this-package-input "libtiff") "/lib/libtiff.so\"\n"
+                  "    elif libname == \"c\":\n"
+                  "        path = \""
+                  #$(this-package-input "glibc") "/lib/libc.so.6\"\n")))))
+          ;; TODO: implement as a feature of python-build-system (PEP-621,
+          ;; PEP-631, PEP-660)
+          (replace 'build
+            (lambda _
+              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
+              ;; ZIP does not support timestamps before 1980.
+              (setenv "SOURCE_DATE_EPOCH" "315532800")
+              (invoke "python" "-m" "build" "--wheel" "--no-isolation" ".")))
+          (replace 'install
+            (lambda* (#:key outputs #:allow-other-keys)
+              (let ((whl (car (find-files "dist" "\\.whl$"))))
+                (invoke "pip" "--no-cache-dir" "--no-input"
+                        "install" "--no-deps" "--prefix" #$output whl))))
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                ;; Failing test due to inability of
+                ;; ctypes.util.find_library() to determine library path,
+                ;; which is patched above.
+                (delete-file "tests/test_config.py")
+                (invoke "python" "-m" "pytest" "-vv" "tests")))))))
+>>>>>>> Stashed changes
     (native-inputs
      (list python-pypa-build python-pytest))
     (inputs
@@ -232,6 +315,7 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (propagated-inputs
      (list python-lxml
            python-numpy
+<<<<<<< Updated upstream
            python-packaging
            python-setuptools))
      (home-page "https://github.com/quintusdias/glymur")
@@ -240,6 +324,15 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
       "This package provides Python interface to the OpenJPEG library which
 allows one to read and write JPEG 2000 files")
      (license license:expat)))
+=======
+           python-packaging))
+    (home-page "https://github.com/quintusdias/glymur")
+    (synopsis "Python interface to OpenJPEG and LibTIFF")
+    (description
+     "This package provides Python interface to the OpenJPEG library which
+allows one to read and write JPEG 2000 files")
+    (license license:expat)))
+>>>>>>> Stashed changes
 
 ;; 20220702T095332+0100(package
 (define-public python-h5netcdf
@@ -263,10 +356,67 @@ allows one to read and write JPEG 2000 files")
     (native-inputs
      (list python-setuptools-scm
            python-pytest
+<<<<<<< Updated upstream
            python-netcdf4))
     (propagated-inputs
      (list python-h5py python-packaging python-numpy))
+=======
+           python-netcdf4-1.6))
+    (propagated-inputs
+     (list python-h5py python-packaging))
+>>>>>>> Stashed changes
     (home-page "https://h5netcdf.org")
     (synopsis "Python interface for the netCDF4 file-format based on h5py")
     (description "netCDF4 via h5py")
     (license license:bsd-3)))
+<<<<<<< Updated upstream
+=======
+
+;; 20220702T155715+0100
+(define-public python-netcdf4-1.6 ;; new version
+  (package
+    (inherit python-netcdf4)
+    (name "python-netcdf4-1.6")
+    (version "1.6.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "netCDF4" version))
+       (sha256
+        (base32 "0qxs8r1qmsmg760wm5q0wqlcm7hdd3k7cghryw6wvqd3v5rs7vwm"))))))
+
+;; 20220702T165531+0100
+(define-public python-mpl-animators
+  (package
+    (name "python-mpl-animators")
+    (version "1.0.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "mpl_animators" version))
+       (sha256
+        (base32 "15vzmdb499xq1i8r2l2qj66wgmnv1z0m5r7sdk849c1v5gp929ay"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               (replace 'check
+                 (lambda* (#:key tests? #:allow-other-keys)
+                   (when tests?
+                     (invoke "pytest" "-vv" "mpl_animators/tests")))))))
+    (native-inputs
+     (list python-pytest
+           python-pytest-mpl
+           python-setuptools-scm))
+    (propagated-inputs
+     (list python-astropy
+           python-matplotlib
+           python-numpy))
+    (home-page "https://sunpy.org")
+    (synopsis "Interactive animations with matplotlib")
+    (description
+     "The @code{mpl_animators} package provides a set of classes which allow the
+easy construction of interactive matplotlib widget based animations.")
+    (license license:bsd-3)))
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
