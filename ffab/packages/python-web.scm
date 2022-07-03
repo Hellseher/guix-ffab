@@ -38,7 +38,7 @@
   #:use-module (guix packages))
 
 ;; 20220615T224859+0100
-(define-public python-pywb
+(define python-pywb
   (package
     (name "python-pywb")
     (version "2.6.7")
