@@ -18,38 +18,39 @@
 
 (define-module (ffab packages maths)
   #:use-module ((guix licenses) #:prefix license:)
-  #:use-module (gnu packages compression)
-  #:use-module (gnu packages image)
-  #:use-module (guix git-download)
-  #:use-module (gnu packages)
-  #:use-module (gnu packages commencement)
-  #:use-module (gnu packages gcc)
   #:use-module (gnu packages astronomy)
-  #:use-module (gnu packages python)
-  #:use-module (gnu packages swig)
-  #:use-module (gnu packages wxwidgets)
-  #:use-module (gnu packages ghostscript)
-  #:use-module (gnu packages qt)
-  #:use-module (gnu packages tcl)
-  #:use-module (gnu packages geo)
-  #:use-module (gnu packages lua)
-  #:use-module (gnu packages gd)
-  #:use-module (gnu packages pdf)
-  #:use-module (gnu packages fontutils)
-  #:use-module (gnu packages ocaml)
-  #:use-module (gnu packages gtk)
-  #:use-module (gnu packages maths)
-  #:use-module (gnu packages pkg-config)
-  #:use-module (gnu packages cmake)
-  #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages autotools)
+  #:use-module (gnu packages cmake)
+  #:use-module (gnu packages commencement)
+  #:use-module (gnu packages compression)
+  #:use-module (gnu packages fontutils)
+  #:use-module (gnu packages gcc)
+  #:use-module (gnu packages gd)
+  #:use-module (gnu packages geo)
+  #:use-module (gnu packages ghostscript)
+  #:use-module (gnu packages gtk)
+  #:use-module (gnu packages image)
+  #:use-module (gnu packages lua)
+  #:use-module (gnu packages maths)
+  #:use-module (gnu packages ocaml)
+  #:use-module (gnu packages pdf)
   #:use-module (gnu packages perl)
+  #:use-module (gnu packages pkg-config)
+  #:use-module (gnu packages python)
+  #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages qt)
+  #:use-module (gnu packages swig)
+  #:use-module (gnu packages tcl)
+  #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
+  #:use-module (gnu packages xorg)
+  #:use-module (gnu packages)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
+  #:use-module (guix git-download)
   #:use-module (guix packages))
 
 (define-public plplot
@@ -120,3 +121,29 @@ Thai, Lao, and Tibetan.  Thus, for these PLplot devices essentially any language
 that is supported by Unicode and installed system fonts can be used to label
 plots.")
     (license license:lgpl2.0))) ; Other terms are in Copyright file
+
+;; 20220626T221034+0100
+(define-public giza
+  (package
+    (name "giza")
+    (version "1.3.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/danieljprice/giza")
+             (commit (string-append "v" version))))
+       (sha256
+        (base32 "1clklh3nzgwrwg80h3k5x65gdymbvcc84c44nql7m4bv9b8rqfsq"))
+       (file-name (git-file-name name version))))
+    (build-system gnu-build-system)
+    (native-inputs
+     (list perl pkg-config))
+    (inputs
+     (list cairo freetype gfortran))
+    (home-page "https://danieljprice.github.io/giza/")
+    (synopsis "Scientific plotting library for C/Fortran")
+    (description
+     "Giza is a lightweight scientific plotting library built on top of
+@code{cairo} that provides uniform output to multiple devices.")
+    (license license:lgpl2.0)))
