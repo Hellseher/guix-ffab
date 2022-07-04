@@ -124,27 +124,6 @@ plots.")
     (license license:lgpl2.0))) ; Other terms are in Copyright file
 
 ;; 20220626T221034+0100
-(define-public giza
-  (package
-    (name "giza")
-    (version "1.3.2")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/danieljprice/giza")
-             (commit (string-append "v" version))))
-       (sha256
-        (base32 "1clklh3nzgwrwg80h3k5x65gdymbvcc84c44nql7m4bv9b8rqfsq"))
-       (file-name (git-file-name name version))))
-    (build-system gnu-build-system)
-    (native-inputs
-     (list perl pkg-config))
-    (inputs
-     (list cairo freetype gfortran))
-    (home-page "https://danieljprice.github.io/giza/")
-    (synopsis "Scientific plotting library for C/Fortran")
-    (description
-     "Giza is a lightweight scientific plotting library built on top of
-@code{cairo} that provides uniform output to multiple devices.")
-    (license license:lgpl2.0)))
+;; (define-public giza
+;; added-to-upstream: e8e7b4cdae251abebf4ae139d02e8369cc90fd01
+;; CommitDate: Mon Jul 4 12:29:05 2022 +0200
