@@ -28,9 +28,10 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
+;; 20220703T151151+0100
 (define-public python-assay
-  (let ((commit "d61a16e060c50f9c1a97df84ad9960825031915e")
-        (revision "1"))
+  (let ((commit "bb62d1f7d51d798b05a88045fff3a2ff92c299c3")
+        (revision "2"))
     (package
      (name "python-assay")
      (version (git-version "0.0.0" revision commit))
@@ -42,44 +43,10 @@
              (commit commit)))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0shcbchwcdq1qqv8grfj34ap92mfm6l0hs9q69jb8gshnhsl8p7r"))))
+        (base32 "0775a901ryr9wd8b2iqgm1j2ac1qwvrxw0f801yx29w5i7ph7q0n"))))
      (build-system python-build-system)
      (home-page "https://github.com/brandon-rhodes/assay")
      (synopsis "Python testing framework")
      (description
       "Simple Python testing framework")
      (license license:expat))))
-
-(define-public python-pytest-mypy
-  (package
-    (name "python-pytest-mypy")
-    (version "0.9.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "pytest-mypy" version))
-       (sha256
-        (base32
-         "0p5bd4r4gbwk1h7mpx1jkhdwkckapfz24bp9x5mmqb610ps3pylz"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "pytest" "-vv")))))))
-    (native-inputs
-     (list python-pexpect
-           python-pytest-xdist ;; for pytest -n auto
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-attrs
-           python-filelock
-           python-mypy
-           python-pytest))
-    (home-page "https://github.com/dbader/pytest-mypy")
-    (synopsis "Mypy static type checker plugin for Pytest")
-    (description "Mypy static type checker plugin for Pytest")
-    (license license:expat)))
