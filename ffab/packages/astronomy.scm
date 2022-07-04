@@ -282,7 +282,7 @@ appropriate.")
         ;;  66 - tPath (Failed)
         ;; 189 - tExprNode (Failed)
 ;; NOTE: (Sharlatan-20220624T202307+0100): working on tests
-(define-public ffab-casacore
+(define ffab-casacore
   (package
     (name "ffab-casacore")
     (version "3.4.0")
@@ -302,7 +302,6 @@ appropriate.")
       ;; tests which require additional measures data. They are
       ;; distributed via FTP without any license:
       ;; ftp://ftp.astron.nl/outgoing/Measures/
-      #:tests? #t
       #:parallel-build? #t
       #:configure-flags
       #~(list "-DBUILD_PYTHON3=ON"
@@ -514,58 +513,58 @@ reused in several astronomical applications, such as @code{wsclean},
       (license license:gpl3))))
 
 ;; 20210415T214924+0100
-(define-public astrometry
+;; NOTE: (Sharlatan-20220704T211255+0100): Needs more love
+(define astrometry
   (package
-   (name "astrometry")
-   (version "0.90")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/dstndstn/astrometry.net")
-           (commit version)))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "0dwq48skf1fc9vrmxswnr9gjjvi9xzfmgm6hzm41iggc3v1f1g1g"))))
-   (build-system gnu-build-system)
-   (arguments
-    (list
-     #:make-flags
-     #~(list
-        (string-append "RELEASE_VER=" #$version)
-        (string-append "INSTALL_DIR=" #$output))
-     #:phases
-     #~(modify-phases %standard-phases
-                      (delete 'configure)
-                      (replace 'check
-                               (lambda _
-                                 (when #$tests?
-                                   (invoke "make" "test"))))
-                      (replace 'build
-                               (lambda _
-                                 (invoke "make")
-                                 (invoke "make" "py")
-                                 #t)))))
-   (native-inputs
-    (list pkg-config
-          swig
-          python-wrapper
-          git))
-   (inputs
-    (list cairo
-          bzip2
-          cfitsio
-          libjpeg-turbo
-          libpng
-          netpbm
-          python-fitsio
-          python-numpy
-          zlib))
-   (home-page "https://astrometry.net/")
-   (synopsis "Automatic recognition of astronomical images")
-   (description
-    "")
-   (license license:gpl3+)))
+    (name "astrometry")
+    (version "0.90")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/dstndstn/astrometry.net")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0dwq48skf1fc9vrmxswnr9gjjvi9xzfmgm6hzm41iggc3v1f1g1g"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:make-flags
+      #~(list (string-append "RELEASE_VER=" #$version)
+              (string-append "INSTALL_DIR=" #$output))
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure)
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "make" "test"))))
+          (replace 'build
+            (lambda _
+              (invoke "make")
+              (invoke "make" "py")
+              #t)))))
+    (native-inputs
+     (list pkg-config
+           swig
+           python-wrapper
+           git))
+    (inputs
+     (list cairo
+           bzip2
+           cfitsio
+           libjpeg-turbo
+           libpng
+           netpbm
+           python-fitsio
+           python-numpy
+           zlib))
+    (home-page "https://astrometry.net/")
+    (synopsis "Automatic recognition of astronomical images")
+    (description
+     "")
+    (license license:gpl3+)))
 
 ;; 20220607T220301+0100
 (define-public python-astrometry
