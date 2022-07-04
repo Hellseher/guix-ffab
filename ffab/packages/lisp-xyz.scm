@@ -326,7 +326,7 @@ libraries.")
          (uri (git-reference
                (url "https://github.com/gwkkwg/cl-graph")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "cl-graph" version))
          (sha256
           (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
       (build-system asdf-build-system/sbcl)
@@ -351,7 +351,7 @@ libraries.")
 (define-public ecl-cl-graph
   (sbcl-package->ecl-package sbcl-cl-graph))
 
-(define-public cl-cl-graph
+(define-public cl-graph
   (sbcl-package->cl-source-package sbcl-cl-graph))
 
 ;; 20220627T204024+0100
@@ -367,7 +367,7 @@ libraries.")
          (uri (git-reference
                (url "https://github.com/gwkkwg/cl-mathstats")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "cl-mathstats" version))
          (sha256
           (base32 "0gsjvmkmnxc4hp5z9mkm5vsllywqyg7kx8jgz88vnx47yj3va1s8"))))
       (build-system asdf-build-system/sbcl)
@@ -384,7 +384,7 @@ libraries.")
 (define-public ecl-cl-mathstats
   (sbcl-package->ecl-package sbcl-cl-mathstats))
 
-(define-public cl-cl-mathstats
+(define-public cl-mathstats
   (sbcl-package->cl-source-package sbcl-cl-mathstats))
 
 ;; 20220627T205038+0100
