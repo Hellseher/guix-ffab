@@ -1,5 +1,5 @@
 #+created: <2022-05-29 Sun 12:53:28 BST>
-#+modified: <2022-07-03 Sun 12:56:04 BST>
+#+modified: <2022-07-04 Mon 20:44:23 BST>
 #+file: TODO
 
 #+begin_src sh
@@ -13,6 +13,7 @@ grep TODO *.org | grep -v :author | sort -r -k5
 | astronomy.org:***      | TODO | ois                  | [/][%]       | :p5: |
 | astronomy.org:***      | TODO | INDIGO               | [0/4]        | :p5: |
 | astronomy.org:***      | TODO | AIPS                 | [/][%]       | :p5: |
+| lisp-xyz.org:***       | TODO | cl-mathstats         | [0/4][0%]    | :p4: |
 | pascal.org:**          | TODO | voc                  | [/][%]       | :p3: |
 | node-xyz.org:**        | TODO | jquery               | [/][%]       | :p3: |
 | node-xyz.org:**        | TODO | bootstrap-toggle     | [/][%]       | :p3: |
@@ -49,7 +50,6 @@ grep TODO *.org | grep -v :author | sort -r -k5
 | lisp-xyz.org:***       | TODO | cl-steamworks        | [/][%]       |      |
 | lisp-xyz.org:**        | TODO | cl-plplot            | [0/4][0%]    |      |
 | lisp-xyz.org:***       | TODO | cl-mixed             | [1/4][25%]   |      |
-| lisp-xyz.org:***       | TODO | cl-mathstats         | [/][%]       |      |
 | lisp-xyz.org:***       | TODO | cl-bodge             | [0/4][0%]    |      |
 | lisp-xyz.org:***       | TODO | claw                 | [0/4][0%]    |      |
 | lisp-xyz.org:***       | TODO | assimp               | [/][%]       |      |
@@ -117,7 +117,7 @@ grep "TODO\|DONE" *.org | grep :author
 | astronomy.org:**      | TODO | XEphem              | [0/4][0%]   | :author:    |
 | golang.org:**         | TODO | FiloSottile         | [0/1][0%]   | :author:    |
 | golang.org:**         | TODO | github.com/valyala  | [1/1][100%] | :author:    |
-| lisp-xyz.org:**       | TODO | gwkkwg              | [0/1][0%]   | :author:    |
+| lisp-xyz.org:**       | TODO | gwkkwg              | [0/1][0%]   | :author:p3: |
 | lisp-xyz.org:**       | TODO | borodust            | [0/2][0%]   | :author:p3: |
 | lisp-xyz.org:**       | TODO | Shinmera/Shirakumo  | [3/12][25%] | :author:p5: |
 | lisp-xyz.org:**       | TODO | lispgames           | [0/1][0%]   | :author:    |
