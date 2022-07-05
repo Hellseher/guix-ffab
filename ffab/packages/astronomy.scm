@@ -91,14 +91,24 @@
     (arguments
      (list
       #:make-flags
-      #~(list (string-append "GIZA_DIR=" #$(this-package-input "giza")))
+      #~(list "SYSTEM=gfortran"
+              (string-append "GIZA_DIR=" #$(this-package-input "giza"))
+              ;; (string-append "H5PART_DIR=" #$(this-package-input ""))
+              ;; (string-append "HDF5ROOT=" #$(this-package-input ""))
+              ;; (string-append "PBOB_DIR=" #$(this-package-input ""))
+              ;; (string-append "SILO_DIR=" #$(this-package-input ""))
+
+              )
       #:phases
       #~(modify-phases %standard-phases
           (delete 'configure))))
     (native-inputs
-     (list perl pkg-config python))
+     (list gfortran
+           pkg-config
+           perl
+           python-wrapper))
     (inputs
-     (list giza))
+     (list cairo giza))
     (home-page "https://users.monash.edu.au/~dprice/splash/")
     (synopsis "Astrophysical visualisation tool for smoothed particle hydrodynamics")
     (description
@@ -106,7 +116,7 @@
 Hydrodynamics (SPH) simulations in one, two and three dimensions, developed
 mainly for astrophysics.  It uses a command-line menu but data can be manipulated
 interactively in the plotting window.")
-    (license license:lgpl2.0)))
+    (license license:gpl2+)))
 
 ;; 20220619T144120+0100
 (define-public funtools
