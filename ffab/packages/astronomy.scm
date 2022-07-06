@@ -1094,6 +1094,49 @@ spherical polygons that represent arbitrary regions of the sky.")
 image")
     (license license:bsd-3)))
 
+;; 20220706T114426+0100
+(define-public python-poppy
+  (package
+    (name "python-poppy")
+    (version "1.0.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "poppy" version))
+       (sha256
+        (base32 "050cn6aabd1dxbi7zihbqnkl79hz6q6d5n6g25zmrpvc4sii171m"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? inputs outputs #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (invoke "pytest" "-vv" "poppy/tests")))))))
+    (propagated-inputs
+     (list python-astropy
+           python-matplotlib
+           python-numpy
+           python-scipy))
+    (native-inputs
+     (list python-h5py
+           python-pytest
+           python-pytest-astropy
+           python-setuptools-scm
+           ;; Optional, not packed yet in Guix
+           #;python-synphot))
+    (home-page "https://poppy-optics.readthedocs.io/")
+    (synopsis "Physical Optics Propagation in Python")
+    (description
+     "@acronym{POPPY, Physical Optics Propagation in Python} is a Python package that
+simulates physical optical propagation including diffraction.  It implements a
+flexible framework for modeling Fraunhofer and Fresnel diffraction and point
+spread function formation, particularly in the context of astronomical
+telescopes.")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
