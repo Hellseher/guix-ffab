@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-07-04 Mon 20:49:05 BST>
+#+modified: <2022-07-06 Wed 14:30:18 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -342,7 +342,8 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] libtiff (gnu/packages/image.scm:581:2)
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
-** TODO astropy [1/2][50%] :author:
+
+** TODO astropy [1/3][33%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -468,9 +469,15 @@ CLOSED: [2021-11-08 Mon 20:41]
       - [X] sgp4
   + [X] sortedcontainers
   + [X] wcslib
+
 *** TODO astroquery [/][%]
 - https://github.com/astropy/astroquery
 - synopsis :: Functions and classes to access online data resources.
+
+*** TODO specutils [/][%]
+- https://github.com/astropy/specutils
+- synopsis :: Astronomical one-dimensional spectral operations.
+
 ** TODO ATNF [0/1][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
@@ -786,7 +793,7 @@ https://kepler-project.org/users/downloads.html
   + [ ] :paptch-applied-upstream
   + [ ] :inputs [0/1][0%]
     - [ ] astropy
-** TODO spacetelescope [1/4][25%] :author:
+** TODO spacetelescope [1/5][20%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** DONE gwcs [4/4][100%]
@@ -898,6 +905,7 @@ https://kepler-project.org/users/downloads.html
             - https://github.com/spacetelescope/rad
             - [ ] :packed
   - [ ] python-drizzle
+    - [ ] :packed
   - [X] python-flake8
   - [ ] python-getch
   - [X] python-gwcs
@@ -922,8 +930,24 @@ https://kepler-project.org/users/downloads.html
   - [ ] python-stsci.imagestats
   - [ ] python-tweakwcs
 
-*** TODO drizzle [0/4]
-- https://github.com/spacetelescope/drizzle/blob/master/tox.ini
+*** TODO drizzle [1/4][25%]
+- https://github.com/spacetelescope/drizzle
+- synopsis :: package for combining dithered images into a single image
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [7/7][100%]
+  - [X] python-astropy
+  - [X] python-coverage
+  - [X] python-flake8
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-setuptools-scm
+
+*** TODO poppy [/][%]
+- https://github.com/spacetelescope/poppy
+- synopsis :: Physical Optics Propagation in Python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -990,3 +1014,4 @@ https://kepler-project.org/users/downloads.html
 - Kern - Radio Astronomy Software Suite. Collection of the DEB packages
   https://kernsuite.info/packages/ https://github.com/kernsuite
 - The Astrophysics Source Code Library http://www.ascl.net/
+- https://ssb.stsci.edu/astroconda/

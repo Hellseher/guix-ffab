@@ -1,16 +1,24 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-07-03 Sun 21:02:37 BST>
+# Modified : <2022-07-06 Wed 21:25:40 BST>
 
-PKGS_ALL ?= $(shell grep -r define-public ffab/ | grep -v ';' | cut -d' ' -f2)
+PKGS_ALL ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
 
 ASTRONOMY_PKGS ?= $(shell grep "^.define-public" ffab/packages/astronomy.scm | cut -d' ' -f2)
 LISP_PKGS ?= $(shell grep "^.define-public" ffab/packages/lisp*.scm | cut -d' ' -f2)
 PYTHON_PKGS ?= $(shell grep "^.define-public" ffab/packages/python-*.scm | cut -d' ' -f2)
 
 GUIX_FLAGS ?= --load-path=./
-GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --keep-failed --rounds=2
+GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --rounds=2 --cores=0
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
+GUIX_REFRESH_FLAGS ?= $(GUIX_FLAGS)
+
+ifdef CI_BUILD
+$(info :status ci-environemt)
+GUIX_BUILD_FLAGS += --keep-going --quiet
+else
+GUIX_BUILD_FLAGS += --check --no-substitutes --keep-failed
+endif
 
 .PHONY: all
 all: list lint build
