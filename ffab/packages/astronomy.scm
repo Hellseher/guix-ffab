@@ -855,7 +855,7 @@ planetarium.")
            python-stdatamodels
            python-stpipe
            python-stsci.image
-           python-stsci.imagestats
+           python-stsci-imagestats
            python-tweakwcs))
     (native-inputs
      (list python-ci-watson
@@ -994,7 +994,7 @@ Telescope")
            python-numpy
            python-packaging
            python-spherical-geometry
-           python-stsci.imagestats
+           python-stsci-imagestats
            python-stsci.stimage))
     (native-inputs
      (list python-codecov python-pytest python-pytest-cov python-scipy))
@@ -1207,6 +1207,31 @@ telescopes.")
     (description "Synthetic photometry for HST")
     (license license:bsd-3)))
 
+;; 20220706T215537+0100
+(define-public python-stsci-imagestats
+  (package
+    (name "python-stsci-imagestats")
+    (version "1.6.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "stsci.imagestats" version))
+       (sha256
+        (base32 "14457izlbnks84dyza75ib3nvx2w8nhlqm9vc1zb7hbhknb5gjvw"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:tests? #f)) ; No teests
+    (propagated-inputs
+     (list python-numpy))
+    (native-inputs
+     (list python-setuptools-scm))
+    (home-page "https://github.com/spacetelescope/stsci.imagestats")
+    (synopsis "Compute sigma-clipped statistics on data arrays")
+    (description "@code{stsci.imagestats} is a package designed to compute various statistics on
+image data using sigma-clipping iterations.  It is designed to replicate core
+behaviour of the IRAF's")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
@@ -1229,7 +1254,7 @@ telescopes.")
       (arguments
        (list #:python python-2)) ;not compatible with Python 3
       (inputs
-       (list python2-numpy))
+       (list python-numpy))
       (home-page "https://github.com/bwesterb/py-sphere")
       (synopsis "Python library for geometry on the sphere")
       (description
