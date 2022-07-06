@@ -988,6 +988,15 @@ Telescope")
        (sha256
         (base32 "0569xpd5q6fj4k7y3ib6rjqps0q94irnmsxa1hykvmjj1ymclwnf"))))
     (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? inputs outputs #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (invoke "pytest" "-vv")))))))
     (propagated-inputs
      (list python-astropy
            python-gwcs
@@ -995,14 +1004,21 @@ Telescope")
            python-packaging
            python-spherical-geometry
            python-stsci-imagestats
-           python-stsci.stimage))
+           python-stsci-stimage))
     (native-inputs
-     (list python-codecov python-pytest python-pytest-cov python-scipy))
-    (home-page "https://github.com/spacetelescope/tweakwcs")
-    (synopsis "A package for correcting alignment errors in WCS objects")
+     (list python-codecov
+           python-pytest
+           python-pytest-cov
+           python-setuptools-scm
+           python-scipy))
+    (home-page "https://tweakwcs.readthedocs.io/en/latest/")
+    (synopsis "Algorithms for matching and aligning catalogs and for tweaking the WCS")
     (description
-     "This package provides a package for correcting alignment errors in WCS objects")
-    (license #f)))
+     "@code{tweakwcs} is a package that provides core algorithms for computing and
+applying corrections to @code{WCS} objects such as to minimize mismatch between
+image and reference catalogs. Currently only aligning images with @code{FITS
+WCS} and @code{JWST gWCS} are supported.")
+    (license license:bsd-3)))
 
 ;;20220523T215603+0100
 (define-public python-spherical-geometry
@@ -1230,6 +1246,51 @@ telescopes.")
     (description "@code{stsci.imagestats} is a package designed to compute various statistics on
 image data using sigma-clipping iterations.  It is designed to replicate core
 behaviour of the IRAF's")
+    (license license:bsd-3)))
+
+;; 20220706T225216+0100
+(define-public python-stsci-stimage
+  (package
+    (name "python-stsci-stimage")
+    (version "0.2.5")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "stsci.stimage" version))
+       (sha256
+        (base32 "14iiwr0mgrn5r0r41mk7fyqrr39f95agb4hpl2li4gl88knvy9ck"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      ;; TODO: (Sharlatan-20220706T230732+0100): Tests fail
+      ;;
+      ;; _____________ ERROR collecting stsci/stimage/tests/test_geomap.py ______________
+      ;; import file mismatch:
+      ;; imported module 'stsci.stimage.tests.test_geomap' has this __file__ attribute:
+      ;;   /gnu/store/mh6sw4nqyjzbspwa8hxc3r6fn49ghnyj-python-stsci-stimage-0.2.5/lib/python3.9/site-packages/stsci/stimage/tests/test_geomap.py
+      ;; which is not the same as the test file we want to collect:
+      ;;   /tmp/guix-build-python-stsci-stimage-0.2.5.drv-0/stsci.stimage-0.2.5/stsci/stimage/tests/test_geomap.py
+      ;; HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
+      ;;
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? inputs outputs #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (invoke "pytest" "-rsv" "--cov=./")))))))
+    (propagated-inputs
+     (list python-numpy))
+    (native-inputs
+     (list python-codecov
+           python-pytest
+           python-pytest-cov
+           python-setuptools-scm))
+    (home-page "https://stscistimage.readthedocs.io/en/latest/")
+    (synopsis "Various image processing functions")
+    (description "This package provides astronomical Python package with various
+ image processing functions.")
     (license license:bsd-3)))
 
 ;;+end-spacetelescope
