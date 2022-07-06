@@ -1119,14 +1119,15 @@ image")
      (list python-astropy
            python-matplotlib
            python-numpy
-           python-scipy))
+           python-scipy
+           ;; With this package enabled it tries to download from remote host
+           ;; during tests and failes
+           #;python-synphot))
     (native-inputs
      (list python-h5py
            python-pytest
            python-pytest-astropy
-           python-setuptools-scm
-           ;; Optional, not packed yet in Guix
-           #;python-synphot))
+           python-setuptools-scm))
     (home-page "https://poppy-optics.readthedocs.io/")
     (synopsis "Physical Optics Propagation in Python")
     (description
@@ -1135,6 +1136,37 @@ simulates physical optical propagation including diffraction.  It implements a
 flexible framework for modeling Fraunhofer and Fresnel diffraction and point
 spread function formation, particularly in the context of astronomical
 telescopes.")
+    (license license:bsd-3)))
+
+;; 20220706T135507+0100
+(define-public python-synphot
+  (package
+    (name "python-synphot")
+    (version "1.1.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "synphot" version))
+       (sha256
+        (base32 "0xhfavsgwpxzqg1w6pm43c9mribxfj2c2p0wd8iq19b3ip4yhx84"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? inputs outputs #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (invoke "pytest" "-vv")))))))
+    (propagated-inputs
+     (list python-astropy python-numpy python-scipy))
+    (native-inputs
+     (list python-pytest python-pytest-astropy python-setuptools-scm))
+    (home-page "https://www.github.com/spacetelescope/synphot_refactor")
+    (synopsis "Synthetic photometry")
+    (description "Synthetic photometry")
     (license license:bsd-3)))
 
 ;;+end-spacetelescope
