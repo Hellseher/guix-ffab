@@ -1169,6 +1169,44 @@ telescopes.")
     (description "Synthetic photometry")
     (license license:bsd-3)))
 
+;; 20220706T213133+0100
+(define-public python-stsynphot
+  (package
+    (name "python-stsynphot")
+    (version "1.1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "stsynphot" version))
+              (sha256
+               (base32
+                "1dcgfhypq4sf174zv1cml85irqa8s27fzs527sknww4x2dqsqd51"))))
+    (build-system python-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? inputs outputs #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (setenv "HOME" (getcwd))
+                (invoke "pytest" "-vv")))))))
+    (propagated-inputs
+     (list python-astropy
+           python-beautifulsoup4
+           python-matplotlib
+           python-numpy
+           python-scipy
+           python-synphot))
+    (native-inputs
+     (list  python-pytest
+            python-pytest-astropy
+            python-setuptools-scm))
+    (home-page "https://github.com/spacetelescope/stsynphot_refactor")
+    (synopsis "Synthetic photometry for HST")
+    (description "Synthetic photometry for HST")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
