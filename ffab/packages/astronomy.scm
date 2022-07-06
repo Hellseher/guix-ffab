@@ -1174,12 +1174,12 @@ telescopes.")
   (package
     (name "python-stsynphot")
     (version "1.1.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "stsynphot" version))
-              (sha256
-               (base32
-                "1dcgfhypq4sf174zv1cml85irqa8s27fzs527sknww4x2dqsqd51"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "stsynphot" version))
+       (sha256
+        (base32 "1dcgfhypq4sf174zv1cml85irqa8s27fzs527sknww4x2dqsqd51"))))
     (build-system python-build-system)
     (arguments
      (list
