@@ -744,10 +744,35 @@ planetarium.")
 ;; (define-public python-astroalign
 ;; added-to-upstream: d6996fa05277f240b70b18c227419c371cfc737f
 ;; CommitDate: Fri Feb 19 11:05:34 2021 +0100
+
+;;  http://www.astropy.org https://github.com/astropy
+;;+begin-astropy
 
 ;; (define-public python-astropy
 ;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
+;; 20220707T095318+0100
+(define-public python-astropy-5.1
+  (package
+    (inherit python-astropy)
+    (name "python-astropy-5.1")
+    (version "5.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/astropy/astropy")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "13blq7xgysjdbn2sig35w2bmgfszgkkf5b9rmjpid419ciaxd7nj"))))))
+
+;; (define-public python-asdf-astropy
+;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
+;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
+
+;;+end-astropy
+
 ;; (define-public imppg
 ;; added-to-upstream: bf9a1dfd591d5e166581919ac92e67f47219f0eb
 ;; CommitDate: Sun Dec 5 12:35:55 2021 +0100
@@ -759,10 +784,6 @@ planetarium.")
 ;; (define-public python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-
-;; (define-public python-asdf-astropy
-;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
-;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
 ;; (define-public python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
@@ -998,7 +1019,7 @@ Telescope")
                 (add-installed-pythonpath inputs outputs)
                 (invoke "pytest" "-vv")))))))
     (propagated-inputs
-     (list python-astropy
+     (list python-astropy-5.1
            python-gwcs
            python-numpy
            python-packaging
