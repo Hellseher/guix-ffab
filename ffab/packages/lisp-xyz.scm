@@ -24,12 +24,13 @@
   #:use-module (gnu packages elf)
   #:use-module (gnu packages game-development)
   #:use-module (gnu packages gl)
+  #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gsasl)
   #:use-module (gnu packages image)
   #:use-module (gnu packages libevent)
   #:use-module (gnu packages lisp)
-  #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages lisp-check)
+  #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages mp3)
   #:use-module (gnu packages sdl)
   #:use-module (gnu packages xorg)
@@ -875,35 +876,48 @@ performance.")
 ;; http://dwim.hu
 ;;+begin-hu-dwim
 
-(define-public sbcl-hu-dwim-graphviz
-  (let ((commit "63b1195c4b87257608f21700be6718a450660b08")
+(define-public sbcl-hu.dwim.graphviz
+  (let ((commit "31522ca8b9a04d535b7cec20ef24d8bf3b26d52b")
         (revision "1"))
     (package
-      (name "sbcl-hu-dwim-graphviz")
+      (name "sbcl-hu.dwim.graphviz")
       (version (git-version "0.0.0" revision commit))
       (source
        (origin
          (method git-fetch)
          (uri (git-reference
-               (url "https://github.com/hu-dwim/hu.dwim.graphviz.git")
+               (url "https://github.com/hu-dwim/hu.dwim.graphviz")
                (commit commit)))
          (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
          (sha256
-          (base32 "0imafyj8jlx1wymdqpwmmxpzm02bggsdaqv00zni3r9nyb4nqcqf"))))
+          (base32 "0cz5g7d6817ajypp876k9m65sxxlf42x4bg04ya73aqci5s1vjwy"))))
       (build-system asdf-build-system/sbcl)
+      (arguments
+       (list
+        #:test-asd-file "hu.dwim.graphviz.test.asd"
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'patch-graphviz-lib-path
+              (lambda _
+                (substitute* "source/package.lisp"
+                  (("libgvc.so" all)
+                   (string-append #$(this-package-input "graphviz")
+                                  "/lib/" all))))))))
       (native-inputs
-       `(("hu.dwim.common" ,sbcl-hu.dwim.common)
-         ("hu.dwim.presentation" ,sbcl-hu.dwim.presentation)
-                                        ;("hu.dwim.stefil+hu.dwim.def+swank" ,sbcl-hu.dwim.stefil+hu.dwim.def+swank)
-         ))
+       (list sbcl-hu.dwim.common sbcl-hu.dwim.stefil))
       (inputs
-       `(("cffi" ,sbcl-cffi)
-         ("metabang-bind" ,sbcl-metabang-bind)))
-      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz.git")
-      (synopsis "TBC")
+       (list graphviz sbcl-cffi sbcl-metabang-bind))
+      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz")
+      (synopsis "Graphviz layouting using CFFI bindings")
       (description
-       "TBC")
-      (license #f))))
+       "This package provides CFFI bindigs to Graphviz library in Common Lisp.")
+      (license license:public-domain))))
+
+(define-public cl-hu.dwim.graphviz
+  (sbcl-package->cl-source-package sbcl-hu.dwim.graphviz))
+
+(define-public ecl-hu.dwim.graphviz
+  (sbcl-package->ecl-package sbcl-hu.dwim.graphviz))
 
 ;;+end-hu-dwim
 
