@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-07-06 Wed 14:30:18 BST>
+#+modified: <2022-07-07 Thu 22:11:40 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -181,6 +181,7 @@ CLOSED: [2021-01-25 Mon 17:25]
   - [X] python-sqlalchemy
   - [X] python-tqdm
   - [X] python-zeep
+
 *** TODO drms [2/4][50%] :p2:
 - https://github.com/sunpy/drms
 - synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
@@ -193,6 +194,7 @@ CLOSED: [2021-01-25 Mon 17:25]
   - [X] python-numpy
   - [X] python-pandas
   - [X] python-pytest-astropy
+
 *** TODO mpl-animations [2/4][50%] :p2:
 - https://github.com/sunpy/mpl-animations
 - synopsis :: Interactive animations with matplotlib
@@ -234,9 +236,10 @@ CLOSED: [2021-02-19 Fri 11:13]
 *** TODO ois [/][%] :p5:
 - https://github.com/quatrope/ois
 - synopsis :: Optimal Image Subtraction
+
 ** TODO danieljprice [0/1][0%] :author:
 - https://github.com/danieljprice
-*** TODO SPLASH [0/4][0%] :p2:
+*** TODO SPLASH [1/4][25%] :p2:
 - https://users.monash.edu.au/~dprice/splash/
 - https://github.com/danieljprice/splash
 - synopsis :: SPLASH is an interactive visualisation and plotting tool using kernel interpolation,
@@ -244,9 +247,9 @@ CLOSED: [2021-02-19 Fri 11:13]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [1/2][50%]
+- [X] :inputs [2/2][100%]
   - [X] giza
-  - [ ] gfortran
+  - [X] gfortran
 
 ** TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
@@ -309,6 +312,7 @@ CLOSED: [2021-01-28 Thu 13:24]
   - https://issues.guix.gnu.org/46143
 - [X] :inputs [1/1][100%]
   + [X] fftwf (gnu/packages/algebra.scm)
+
 *** DONE stuff [3/3][100%]
 CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: catalogue simulation
@@ -316,6 +320,7 @@ CLOSED: [2021-01-29 Fri 10:56]
 - [X] :patch-sent <2021-01-28 Thu>
 - [X] :paptch-applied-upstream <2021-01-29 Fri>
   - https://issues.guix.gnu.org/46161
+
 *** DONE swarp [3/3][100%]
 CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: image regridding and co-addition
@@ -323,6 +328,7 @@ CLOSED: [2021-01-29 Fri 10:56]
 - [X] :patch-sent <2021-01-28 Thu>
 - [X] :paptch-applied-upstream <2021-01-29 Fri>
   - https://issues.guix.gnu.org/46161
+
 *** DONE weightwatcher [3/3][100%]
 CLOSED: [2021-01-29 Fri 10:56]
 - synosis :: weight-map/flag-map multiplexer and rasteriser
@@ -330,6 +336,7 @@ CLOSED: [2021-01-29 Fri 10:56]
 - [X] :patch-sent <2021-01-28 Thu>
 - [X] :paptch-applied-upstream <2021-01-29 Fri>
   - https://issues.guix.gnu.org/46161
+
 *** DONE stiff [3/3][100%]
 CLOSED: [2021-01-22 Fri 23:03]
   - :patch-copyright Oleh Malyi <astroclubzp@gmail.com>
@@ -793,7 +800,7 @@ https://kepler-project.org/users/downloads.html
   + [ ] :paptch-applied-upstream
   + [ ] :inputs [0/1][0%]
     - [ ] astropy
-** TODO spacetelescope [1/5][20%] :author:
+** TODO spacetelescope [1/8][12%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** DONE gwcs [4/4][100%]
@@ -945,13 +952,47 @@ https://kepler-project.org/users/downloads.html
   - [X] python-pytest-cov
   - [X] python-setuptools-scm
 
-*** TODO poppy [/][%]
+*** TODO poppy [0/4][0%]
 - https://github.com/spacetelescope/poppy
 - synopsis :: Physical Optics Propagation in Python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [-] :inputs [8/9][88%]
+  - [X] python-astropy
+  - [X] python-h5py
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-setuptools-scm
+  -  python-synphot ; failing with
+
+*** TODO stsynphot [2/4][50%]
+- https://github.com/spacetelescope/stsynphot_refactor
+- synopsis :: Synthetic photometry using Astropy for HST and JWST
+- [X] :packed <2022-07-06 Wed>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [9/9][100%]
+  - [X] python-astropy
+  - [X] python-beautifulsoup4
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-setuptools-scm
+  - [X] python-synphot
+
+*** TODO stsci.imagestats [/][%]
+- https://github.com/spacetelescope/stsci.imagestats
+- synopsis :: STScI clipped image statistics with core functionality of IRAF's imstatistics.
+
+*** TODO stsci.stimage [/][%]
+- https://github.com/spacetelescope/stsci.image
+- synopsis :: STScI image processing.
 
 *** TODO tweakwcs [0/4][0%]
 - https://github.com/spacetelescope/jwst
