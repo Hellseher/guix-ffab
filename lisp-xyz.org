@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-06-27 Mon 20:49:57 BST>
+#+modified: <2022-07-03 Sun 22:25:34 BST>
 
 * Flow [12/24][50%]
 ** DONE cl-nst [4/4][100%]
@@ -235,10 +235,18 @@ CLOSED: [2021-06-15 Tue 10:09]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
-** TODO gwkkwg [0/1][0%] :author:
+
+** TODO gwkkwg [0/1][0%] :author:p3:
 - https://github.com/gwkkwg
-*** TODO cl-mathstats [/][%]
+
+*** TODO cl-mathstats [0/4][0%] :p4:
 - https://github.com/gwkkwg/cl-mathstats
+- synopsis :: An unordered collection of mathematical routines
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+
 ** DONE cl-mount-info [4/4][100%]
 CLOSED: [2021-03-09 Tue 08:43]
 https://notabug.org/cage/cl-mount-info.git

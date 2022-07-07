@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [125/138][90%]
+* Accepted in upstream [126/138][91%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -136,6 +136,6 @@
 - [ ] <2022-05-23 Mon> https://issues.guix.gnu.org/55604
 - [X] <2022-06-12 Sun> https://issues.guix.gnu.org/55935 <2022-06-23 Thu>
 - [ ] <2022-06-26 Sun> https://issues.guix.gnu.org/56238
-- [ ] <2022-06-26 Sun> https://issues.guix.gnu.org/56242
+- [X] <2022-06-26 Sun> https://issues.guix.gnu.org/56242 <2022-07-04 Mon>
 - [ ] <2022-07-02 Sat> https://issues.guix.gnu.org/56363
 - [ ] <2022-07-02 Sat> https://issues.guix.gnu.org/56364
