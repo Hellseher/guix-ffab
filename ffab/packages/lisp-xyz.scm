@@ -421,6 +421,35 @@ libraries.")
 (define-public cl-metacopy
   (sbcl-package->cl-source-package sbcl-metacopy))
 
+;; 20220707T232742+0100
+(define-public sbcl-asdf-system-connections
+  (let ((commit "9f085240febccccff99d9d3bb687fcaafffd3f5e")
+        (revision "1"))
+    (package
+      (name "sbcl-asdf-system-connections")
+      (version (git-version "0.8.4" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/gwkkwg/asdf-system-connections")
+               (commit commit)))
+         (file-name (git-file-name "asdf-system-connections" version))
+         (sha256
+          (base32 "06kg0m8bv383qq3r34x0f8hz6p6zxcw02qn7kj960vcnrp5a5b3y"))))
+      (build-system asdf-build-system/sbcl)
+      (home-page "https://github.com/gwkkwg/asdf-system-connections")
+      (synopsis "Common Lisp ASDF system auto-loading extantion")
+      (description "This package povides Common Lisp ASDF system auto-loading
+extantion.")
+      (license license:expat))))
+
+(define-public ecl-asdf-system-connections
+  (sbcl-package->ecl-package sbcl-asdf-system-connections))
+
+(define-public cl-asdf-system-connections
+  (sbcl-package->cl-source-package sbcl-asdf-system-connections))
+
 ;;+end-gwkkwg
 
 ;; 20210204T013223+0000
