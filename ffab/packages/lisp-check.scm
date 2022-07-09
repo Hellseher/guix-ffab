@@ -129,26 +129,24 @@ minimal dependencies on DISSECT.")
   (sbcl-package->cl-source-package sbcl-assert-p))
 
 (define-public sbcl-simplet
-  (let ((commit "12268f95d2da9b84ea5afc05e2e790963566b0d8")
-        (revision "1"))
-    (package
-      (name "sbcl-simplet")
-      (version (git-version "1.2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/noloop/simplet")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1scsalzbwxk6z48b61zq532c02l36yr3vl2jdy0xjm2diycq6jgs"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/noloop/simplet")
-      (synopsis "Simple test runner in Common Lisp")
-      (description
-"TBC")
-      (license license:gpl3+))))
+  (package
+    (name "sbcl-simplet")
+    (version  "1.2.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/noloop/simplet")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1iwp3a43mns885k2arr7gbmyv5rsrjfvgarxickj7r2bfgwp1cnn"))))
+    (build-system asdf-build-system/sbcl)
+    (home-page "https://github.com/noloop/simplet")
+    (synopsis "Simple test runner in Common Lisp")
+    (description "This package provides Common Lisp test runner system
+SIMPLET.")
+    (license license:gpl3+)))
 
 (define-public ecl-simplet
   (sbcl-package->ecl-package sbcl-simplet))
