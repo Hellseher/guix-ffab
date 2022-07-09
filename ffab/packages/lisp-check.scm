@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages lisp-check)
+  #:use-module (ffab packages lisp-xyz)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-xyz)
@@ -48,17 +49,17 @@
          (uri (git-reference
                (url "https://github.com/noloop/cacau")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "cacau" version))
          (sha256
           (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
       (build-system asdf-build-system/sbcl)
       (inputs
-       `(("assertion-error" ,sbcl-assertion-error)
-         ("eventbus" ,sbcl-eventbus)))
+       (list sbcl-assertion-error sbcl-eventbus))
       (home-page "https://github.com/noloop/cacau")
       (synopsis "Comon Lisp test runner")
       (description
-"TBC")
+       "This package provides Common Lisp system CACAU to perform tests which
+was built to be independent of assertions systems.")
       (license license:gpl3+))))
 
 (define-public ecl-cacau
