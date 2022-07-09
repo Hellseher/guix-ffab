@@ -653,11 +653,12 @@ artworks with SVG and PNG export format.")
          ("lfarm" ,sbcl-lfarm)
          ("lparallel" ,sbcl-lparallel)
          ("trees" ,sbcl-trees)))
-      (home-page "git://git.savannah.nongnu.org/femlisp.git")
-      (synopsis "TBC")
+      (home-page "http://www.femlisp.org/")
+      (synopsis "Common Lisp finite element method framework")
       (description
-       "TBC")
-      (license #f))))
+       "FEMLISP is a Common Lisp framework for solving partial differential equations
+with the help of the @acronym{FEM, Finite Element Method}.")
+      (license license:bsd-3))))
 
 (define-public sbcl-cl-gd
   (let ((commit "9084944079736eac085494523a41c8265d4671b7")
