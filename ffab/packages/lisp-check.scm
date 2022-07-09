@@ -99,6 +99,34 @@ minimal dependencies on DISSECT.")
 (define-public cl-assertion-error
   (sbcl-package->cl-source-package sbcl-assertion-error))
 
+;; 20220709T233521+0100
+(define-public sbcl-assert-p
+  (package
+    (name "sbcl-assert-p")
+    (version "1.0.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/noloop/assert-p")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1x24rkqkqiw8zd26swi9rmhfplkmr5scz3bhjwccah9d2s36b1xs"))))
+    (build-system asdf-build-system/sbcl)
+    (inputs
+     (list sbcl-assertion-error sbcl-simplet))
+    (home-page "https://github.com/noloop/assert-p")
+    (synopsis "Common Lisp assertion library")
+    (description "This package provides Common Lisp collection of assertions.")
+    (license license:gpl3+)))
+
+(define-public ecl-assert-p
+  (sbcl-package->ecl-package sbcl-assert-p))
+
+(define-public cl-assert-p
+  (sbcl-package->cl-source-package sbcl-assert-p))
+
 (define-public sbcl-simplet
   (let ((commit "12268f95d2da9b84ea5afc05e2e790963566b0d8")
         (revision "1"))
