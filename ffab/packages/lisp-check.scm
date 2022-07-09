@@ -68,6 +68,7 @@ was built to be independent of assertions systems.")
 (define-public cl-cacau
   (sbcl-package->cl-source-package sbcl-cacau))
 
+;; 20220709T233237+0100
 (define-public sbcl-assertion-error
   (let ((commit "8eab692a990d4caa193a46bae99af3e13e717b86")
         (revision "1"))
@@ -82,14 +83,14 @@ was built to be independent of assertions systems.")
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
+          (base32 "0ix23kkakmf4nwx852zsssb831jvajr3qyppqfyks7y1ls617svn"))))
       (build-system asdf-build-system/sbcl)
       (inputs
-       `(("dissect" ,sbcl-dissect)))
+       (list sbcl-dissect))
       (home-page "https://github.com/noloop/assertion-error")
       (synopsis "Error pattern for assertion libraries in Common Lisp")
-      (description
-"TBC")
+      (description "This package provides Common Lisp assertion system with
+minimal dependencies on DISSECT.")
       (license license:gpl3+))))
 
 (define-public ecl-assertion-error
