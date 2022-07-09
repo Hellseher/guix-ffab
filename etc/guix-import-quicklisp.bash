@@ -341,12 +341,12 @@ guix_hash()
 
     case "${type}" in
         git)
-            guix hash --recursive --exclude-vcs "${src}"
+            guix hash --serializer=nar --exclude-vcs "${src}"
             ;;
         tagged-git)
             tag=$(git --git-dir "${src}/.git" describe --tags --abbrev=0)
             git --git-dir "${src}/.git" checkout "${tag}" &>/dev/null
-            guix hash --recursive --exclude-vcs "${src}"
+            guix hash --serializer=nar --exclude-vcs "${src}"
             ;;
         https | http)
             guix hash "${src}"
