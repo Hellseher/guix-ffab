@@ -74,31 +74,32 @@
           (base32 "1nm35kvigflfjlmsa8zwdajc61f02fh4sq08jv0wnqylhx8yg2bv"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       (list
-        #:test-asd-file "glop-test.asd"
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'patch-lib-paths
-              (lambda _
-                (substitute* "src/x11/xcomposite.lisp"
-                  (("libXcomposite.so" all)
-                   (string-append #$(this-package-input "libxcomposite") "/lib/" all)))
-                (substitute* "src/x11/xlib.lisp"
-                  (("libX11" all)
-                   (string-append #$(this-package-input "libx11") "/lib/" all)))
-                (substitute* "src/utils.lisp"
-                  (("libX11" all)
-                   (string-append #$(this-package-input "libx11") "/lib/" all)))
-                (substitute* "src/utils.lisp"
-                  (("libGL.so.1" all)
-                   (string-append #$(this-package-input "mesa") "/lib/" all)))
-                (substitute* "src/x11/glx.lisp"
-                  (("libGL.so" all)
-                   (string-append #$(this-package-input "mesa") "/lib/" all)))
-                (substitute* "src/x11/display-ctrl.lisp"
-                  (("libXrandr" all)
-                   (string-append #$(this-package-input "libxrandr") "/lib/" all)))
-                #t)))))
+       (list #:test-asd-file "glop-test.asd"
+             #:phases
+             #~(modify-phases %standard-phases
+                 (add-after 'unpack 'patch-lib-paths
+                   (lambda* (#:key inputs #:allow-other-keys)
+                     (substitute* "src/x11/xcomposite.lisp"
+                       (("libXcomposite.so")
+                        (search-input-file inputs "/lib/libXcomposite.so")))
+                     (substitute* "src/x11/xlib.lisp"
+                       (("libX11")
+                        (string-drop-right
+                         (search-input-file inputs "/lib/libX11.so") 3)))
+                     (substitute* "src/utils.lisp"
+                       (("libX11")
+                        (string-drop-right
+                         (search-input-file inputs "/lib/libX11.so") 3)))
+                     (substitute* "src/utils.lisp"
+                       (("libGL.so")
+                        (search-input-file inputs "/lib/libGL.so.1")))
+                     (substitute* "src/x11/glx.lisp"
+                       (("libGL.so")
+                        (search-input-file inputs "/lib/libGL.so")))
+                     (substitute* "src/x11/display-ctrl.lisp"
+                       (("libXrandr")
+                        (string-drop-right
+                         (search-input-file inputs "/lib/libXrandr.so") 3))))))))
       (native-inputs
        (list sbcl-cl-opengl))
       (inputs
@@ -622,7 +623,9 @@ artworks with SVG and PNG export format.")
 ;; added-to-upstream: 0e007842c9ab3021160596a0de14a2ef1b94acb2
 ;; CommitDate: Tue May 25 10:31:27 2021 +0200
 
-(define-public sbcl-femlisp
+;; 20220709T215009+0100
+;; TODO: (Sharlatan-20220709T215016+0100): Needs more love
+(define sbcl-femlisp
   (let ((commit "9084944079736eac085494523a41c8265d4671b7")
         (revision "1"))
     (package
