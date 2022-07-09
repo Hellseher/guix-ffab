@@ -37,30 +37,31 @@
 ;; CommitDate: Mon Nov 8 09:25:25 2021 +0100
 ;; (define-public sbcl-kaputt
 
+;; 20220709T234615+0100
 (define-public sbcl-cacau
-  (let ((commit "ba0fb36a284ded884f1dab0bd3f0f41ec14e3038")
-        (revision "1"))
-    (package
-      (name "sbcl-cacau")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/noloop/cacau")
-               (commit commit)))
-         (file-name (git-file-name "cacau" version))
-         (sha256
-          (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-assertion-error sbcl-eventbus))
-      (home-page "https://github.com/noloop/cacau")
-      (synopsis "Comon Lisp test runner")
-      (description
-       "This package provides Common Lisp system CACAU to perform tests which
-was built to be independent of assertions systems.")
-      (license license:gpl3+))))
+  (package
+    (name "sbcl-cacau")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/noloop/cacau")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name "cacau" version))
+       (sha256
+        (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
+    (build-system asdf-build-system/sbcl)
+    (native-inputs
+     (list sbcl-assert-p))
+    (inputs
+     (list sbcl-assertion-error sbcl-eventbus))
+    (home-page "https://github.com/noloop/cacau")
+    (synopsis "Comon Lisp test runner")
+    (description
+     "This package provides Common Lisp testing framework system CACAU which was
+built to be independent of assertions systems.")
+    (license license:gpl3+)))
 
 (define-public ecl-cacau
   (sbcl-package->ecl-package sbcl-cacau))
