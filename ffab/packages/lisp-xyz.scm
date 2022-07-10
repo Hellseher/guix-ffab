@@ -333,14 +333,17 @@ libraries.")
          (sha256
           (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
       (build-system asdf-build-system/sbcl)
+      (arguments
+       (list #:tests? #f
+             #:asd-files #~'("cl-graph.asd"
+                             "cl-graph+hu.dwim.graphviz.asd")))
       (native-inputs
-       (list sbcl-lift
-             sbcl-moptilities))
+       (list sbcl-lift sbcl-moptilities))
       (inputs
-       (list sbcl-cl-containers
+       (list sbcl-hu.dwim.graphviz
+             sbcl-cl-containers
              sbcl-cl-mathstats
              sbcl-dynamic-classes
-             ;; sbcl-hu.dwim.graphviz
              sbcl-metabang-bind
              sbcl-metacopy
              sbcl-metatilities-base
