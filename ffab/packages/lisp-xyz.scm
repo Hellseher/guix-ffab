@@ -32,6 +32,7 @@
   #:use-module (gnu packages lisp-check)
   #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages mp3)
+  #:use-module (gnu packages mpi)
   #:use-module (gnu packages sdl)
   #:use-module (gnu packages xorg)
   #:use-module (guix build lisp-utils)
@@ -687,6 +688,7 @@ with the help of the @acronym{FEM, Finite Element Method}.")
        "TBC")
       (license #f))))
 
+;; 20220709T235535+0100
 (define-public sbcl-cl-mpi
   (let ((commit "ba92be06ec1dca74d0ca5256aa387d8a28c8ad86")
         (revision "1"))
@@ -704,18 +706,46 @@ with the help of the @acronym{FEM, Finite Element Method}.")
           (base32
            "1ykwk7acjhzpsjgm2b5svdpyw2qgrh860gkx3n2ckyrgd9l9q6jb"))))
       (build-system asdf-build-system/sbcl)
+      (arguments
+       ;; TODO: (Sharlatan-20220710T001624+0100): tests failed :
+       ;;
+       ;;  plm_rsh_agent: ssh : rsh
+       ;; Please either unset the parameter, or check that the path is correct
+       ;; --------------------------------------------------------------------------
+       ;; [localhost:00080] [[INVALID],INVALID] FORCE-TERMINATE AT Not found:-13 - error plm_rsh_component.c(335)
+       ;; [localhost:00078] [[INVALID],INVALID] ORTE_ERROR_LOG: Unable to start a daemon on the local node in file ess_singleton_module.c at line 716
+       ;; [localhost:00078] [[INVALID],INVALID] ORTE_ERROR_LOG: Unable to start a daemon on the local node in file ess_singleton_module.c at line 172
+       ;;
+       (list #:tests? #f
+             #:test-asd-file "cl-mpi-test-suite.asd"
+             #:asd-files #~'("cl-mpi-asdf-integration.asd"
+                             "cl-mpi-extensions.asd"
+                             "cl-mpi.asd")))
       (native-inputs
-       `(("fiveam" ,sbcl-fiveam)))
+       (list sbcl-fiveam))
       (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("cffi" ,sbcl-cffi)
-         ("cl-conspack" ,sbcl-cl-conspack)
-         ("static-vectors" ,sbcl-static-vectors)))
+       (list openmpi
+             sbcl-alexandria
+             sbcl-cffi
+             sbcl-cl-conspack
+             sbcl-static-vectors))
       (home-page "https://github.com/marcoheisig/cl-mpi.git")
-      (synopsis "TBC")
+      (synopsis "Common Lisp bindings for the Message Passing Interface (MPI)")
       (description
-       "TBC")
-      (license #f))))
+       "@code{cl-mpi} provides convenient CFFI bindings for the Message Passing
+Interface (MPI).  MPI is typically used in High Performance Computing to utilize
+big parallel computers with thousands of cores.  It features minimal
+communication overhead with a latency in the range of microseconds. In
+comparison to the C or FORTRAN interface of MPI, cl-mpi relieves the programmer
+from working with raw pointers to memory and a plethora of mandatory function
+arguments.")
+      (license license:expat))))
+
+(define-public cl-mpi
+  (sbcl-package->cl-source-package sbcl-cl-mpi))
+
+(define-public ecl-mpi
+  (sbcl-package->ecl-package sbcl-cl-mpi))
 
 (define-public sbcl-lfarm
   (let ((commit "f7ba49f1ec01fb99a7aeb8f18e245a44411c361b")
