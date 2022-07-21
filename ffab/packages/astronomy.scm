@@ -1363,6 +1363,36 @@ behaviour of the IRAF's")
    (description "STScI tools and algorithms used in calibration pipelines")
    (license license:bsd-3)))
 
+;; 20220710T123019+0100
+(define-public python-stdatamodels
+  (package
+   (name "python-stdatamodels")
+   (version "0.4.3")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "stdatamodels" version))
+     (sha256
+      (base32 "0lsda897cf186di1pshlh7rhn9klxf4p7ydp1zmbnsq9g4bqbi90"))))
+   (build-system python-build-system)
+   (propagated-inputs
+    (list python-asdf
+          python-astropy
+          python-jsonschema
+          python-numpy
+          python-psutil))
+   (native-inputs
+    (list python-asdf
+          python-psutil
+          python-pytest
+          python-pytest-doctestplus
+          python-pytest-openfiles))
+   (home-page "https://github.com/spacetelescope/stdatamodels")
+   (synopsis "Core support for DataModel classes used in calibration pipelines")
+   (description
+    "Core support for DataModel classes used in calibration pipelines")
+   (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
