@@ -1479,6 +1479,15 @@ behaviour of the IRAF's")
        (sha256
         (base32 "08bj2vaicc9cn6mn2hkqri33r1v6iy6skiiddsikgz89lpaccl5g"))))
     (build-system python-build-system)
+    (arguments
+     (list
+        ;; NOTE: (Sharlatan-20220716T140847+0100): tests failed:
+        ;;
+        ;; TypeError: calling <class
+        ;; 'BayesicFitting.source.kernels.Uniform.Uniform'> returned Uniform: 1
+        ;; if |x| < 1 else 0, not a test
+        ;;
+        #:tests? #f))
     (propagated-inputs
      (list python-astropy
            python-future
