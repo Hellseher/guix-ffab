@@ -1336,6 +1336,32 @@ behaviour of the IRAF's")
  image processing functions.")
     (license license:bsd-3)))
 
+;; 20220710T122747+0100
+(define-public python-stcal
+  (package
+   (name "python-stcal")
+   (version "1.0.0")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "stcal" version))
+     (sha256
+      (base32 "1i8lr8w3jf4y4ss3zimkakk3a18vpdxxgl68fsmnj86innzj6g70"))))
+   (build-system python-build-system)
+   (propagated-inputs
+    (list python-astropy
+          python-numpy
+          python-scipy))
+   (native-inputs
+    (list python-psutil
+          python-pytest
+          python-pytest-cov
+          python-pytest-doctestplus
+          python-pytest-openfiles))
+   (home-page "https://github.com/spacetelescope/stcal")
+   (synopsis "STScI tools and algorithms used in calibration pipelines")
+   (description "STScI tools and algorithms used in calibration pipelines")
+   (license license:bsd-3)))
 
 ;;+end-spacetelescope
 
