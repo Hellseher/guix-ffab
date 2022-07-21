@@ -1,6 +1,6 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-07-09 Sat 23:17:34 BST>
+#+modified: <2022-07-21 Thu 20:38:19 BST>
 
 * Flow [11/24][45%]
 ** jphmrst [1/1][100%] :author:
@@ -1001,13 +1001,13 @@ https://github.com/Shirakumo/cl-mixed
   + [X] trivial-features
   + [X] documentation-utils
 
-** TODO lispgames [0/1][0%] :author:
-*** TODO glop [3/4][75%]
+** TODO lispgames [1/1][100%] :author:
+*** DONE glop [4/4][100%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
 - [X] :packed <2022-07-09 Sat>
 - [X] :patch-sent <2022-07-09 Sat>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-07-19 Tue>
   - https://issues.guix.gnu.org/56472
 - [X] :inputs [8/8][100%]
   - [X] libx11
