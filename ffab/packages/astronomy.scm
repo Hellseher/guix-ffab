@@ -1419,6 +1419,25 @@ behaviour of the IRAF's")
   (description "Framework for calibration pipeline software")
   (license #f)))
 
+;; 20220711T123349+0100
+(define-public python-stsci.image
+  (package
+   (name "python-stsci.image")
+   (version "2.3.5")
+   (source (origin
+            (method url-fetch)
+            (uri (pypi-uri "stsci.image" version))
+            (sha256
+             (base32
+              "1vnp4256nbdvapa69cmm80sjz11ygxa49abr9nbvssj6nyyp5icb"))))
+   (build-system python-build-system)
+   (propagated-inputs (list python-numpy python-scipy))
+   (native-inputs (list python-pytest))
+   (home-page "https://github.com/spacetelescope/stsci.image")
+   (synopsis "Image array manipulation functions")
+   (description "Image array manipulation functions")
+   (license #f)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
