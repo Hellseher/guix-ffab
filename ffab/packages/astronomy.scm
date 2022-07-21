@@ -1393,6 +1393,32 @@ behaviour of the IRAF's")
     "Core support for DataModel classes used in calibration pipelines")
    (license license:bsd-3)))
 
+;; 20220711T123113+0100
+(define-public python-stpipe
+(package
+  (name "python-stpipe")
+  (version "0.4.0")
+  (source (origin
+            (method url-fetch)
+            (uri (pypi-uri "stpipe" version))
+            (sha256
+             (base32
+              "0wh0d3vrkin5acmvs03rwijgwvqj2ciw0svdx5czrdffcwlpklgg"))))
+  (build-system python-build-system)
+  (propagated-inputs
+   (list python-asdf
+         python-astropy
+         python-crds
+         python-stdatamodels))
+  (native-inputs
+   (list python-pytest
+         python-pytest-doctestplus
+         python-pytest-openfiles))
+  (home-page "https://github.com/spacetelescope/stpipe")
+  (synopsis "Framework for calibration pipeline software")
+  (description "Framework for calibration pipeline software")
+  (license #f)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
