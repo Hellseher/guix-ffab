@@ -846,14 +846,22 @@ planetarium.")
 (define-public python-jwst
   (package
     (name "python-jwst")
-    (version "1.5.0")
+    ;; NOTE: (Sharlatan-20220716T143923+0100): The maximum compatible version
+    ;; with currently packed inputs. Any other higher versions require large
+    ;; chane of packages to be upgraded first.
+    (version "1.4.5")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "jwst" version))
        (sha256
-        (base32 "0r83z6103q0r2a4ldkr2zcq0jj4ml73ajsby98i7020x237dymrc"))))
+        (base32 "0vgligv27px7cgk5jjqmcckjm7fb9phmczgghak3n5l8xdr85cgm"))))
     (build-system python-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               (replace 'check
+                 (lambda _ (invoke "pytest" "-vv"))))))
     (propagated-inputs
      (list python-asdf
            python-asdf-astropy
@@ -875,26 +883,25 @@ planetarium.")
            python-stcal
            python-stdatamodels
            python-stpipe
-           python-stsci.image
            python-stsci-imagestats
+           python-stsci.image
            python-tweakwcs))
     (native-inputs
-     (list python-ci-watson
-           python-codecov
+     (list python-codecov
            python-colorama
            python-flake8
-           python-getch
+           #;python-getch
            python-pytest
            python-pytest-cov
            python-pytest-doctestplus
            python-pytest-openfiles
-           python-requests-mock))    (home-page "https://github.com/spacetelescope/jwst")
-           (synopsis
-            "Library for calibration of science observations from the James Webb Space Telescope")
-           (description
-            "Library for calibration of science observations from the James Webb Space
-Telescope")
-           (license #f)))
+           python-requests-mock))
+    (home-page "https://jwst-pipeline.readthedocs.io/en/latest/")
+    (synopsis "Python library for science observations from the James Webb Space Telescope")
+    (description
+     "Library for calibration of science observations from the @acronym{JWST, James
+Webb Space Telescope}")
+    (license license:bsd-3)))
 
 ;; 20220513T211720+0100
 (define-public python-pysynphot
@@ -1328,6 +1335,7 @@ behaviour of the IRAF's")
     (description "This package provides astronomical Python package with various
  image processing functions.")
     (license license:bsd-3)))
+
 
 ;;+end-spacetelescope
 
