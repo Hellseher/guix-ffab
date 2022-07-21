@@ -1,8 +1,8 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-07-03 Sun 22:25:34 BST>
+#+modified: <2022-07-09 Sat 23:57:46 BST>
 
-* Flow [12/24][50%]
+* Flow [13/25][52%]
 ** DONE cl-nst [4/4][100%]
 CLOSED: [2021-06-24 Thu 14:40]
 - https://github.com/jphmrst/cl-nst
@@ -33,6 +33,16 @@ CLOSED: [2021-06-15 Tue 10:09]
   + [X] glfw
   + [X] cl-opengl
   + [X] trivial-main-thread
+
+** DONE marcoheisig [0/1][0%] :author:
+- https://github.com/marcoheisig
+*** TODO cl-mpi [0/4][0%] :p1:
+- https://github.com/marcoheisig/cl-mpi
+- synopsis :: MPI bindings for Common Lisp with many useful extras
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 ** TODO virality [0/4][0%] :p1:
 - https://github.com/bufferswap/ViralityEngine/
