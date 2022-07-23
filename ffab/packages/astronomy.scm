@@ -649,6 +649,18 @@ wraps the C library in a Pythonic API.  The Python wrapper operates on NumPy
 arrays with NumPy as its only dependency.")
     (license (list license:expat license:lgpl3+ license:bsd-3))))
 
+(define-public python-sep
+  (package
+    (inherit libsep)
+    (name "python-sep")
+    (build-system python-build-system)
+    (arguments
+     (strip-keyword-arguments
+      '(#:make-flags) (package-arguments libsep)))
+    (propagated-inputs
+     (modify-inputs (package-inputs libsep)
+       (prepend python-numpy python-cython)))))
+
 ;; (define-public missfits
 ;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475
 
