@@ -43,6 +43,7 @@
   #:use-module (gnu packages machine-learning)
   #:use-module (gnu packages maths)
   #:use-module (gnu packages multiprecision)
+  #:use-module (gnu packages multiprecision)
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages openstack)
@@ -64,13 +65,14 @@
   #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
   #:use-module (guix build-system cmake)
+  #:use-module (guix build-system copy)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system python)
-  #:use-module (guix build-system copy)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages)
+  #:use-module (guix utils)
   #:use-module (ice-9 match))
 
 ;; 20220626T221017+0100
@@ -607,34 +609,45 @@ reused in several astronomical applications, such as @code{wsclean},
 
 (define-public libsep
   (package
-   (name "libsep")
-   (version "1.1.1")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/kbarbary/sep")
-           (commit (string-append "v" version))))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "1xcdlmm2zwrcrcdgbwc8ahna3szdr6a88gg37lkzbh4n5rw90qki"))))
-   (build-system cmake-build-system)
-   (arguments
-    (list
-     #:phases
-     #~(modify-phases %standard-phases
-                      (replace  'check
-                                (lambda _
-                                  (when #tests?
-                                    (invoke "ls" "../source" "-la")))))))
-   (native-inputs
-    (list gcc
-          python-wrapper))
-   (home-page "https://github.com/kbarbary/sep")
-   (synopsis "Astronomical source extraction and photometry library")
-   (description
-    "C library for Source Extraction and Photometry")
-   (license license:expat))) ;; BSD, LGPL, MIT
+    (name "libsep")
+    (version "1.2.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kbarbary/sep")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0sag96am6r1ffh9860yq40js874362v3132ahlm6sq7padczkicf"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      #:make-flags #~(list (string-append "CC=" #$(cc-for-target))
+                           (string-append "PREFIX=" #$output))
+      #:phases #~(modify-phases %standard-phases
+                   (replace 'check
+                     (lambda* (#:key tests? #:allow-other-keys)
+                       (when tests?
+                         (chdir "../source")
+                         (invoke "make"
+                                 (string-append "CC=" #$(cc-for-target))
+                                 "test")))))))
+    (native-inputs
+     (list python-wrapper))
+    (home-page "https://github.com/kbarbary/sep")
+    (synopsis "Astronomical source extraction and photometry library")
+    (description
+     "SEP makes the core algorithms of
+@url{https://www.astromatic.net/software/sextractor/, sextractor} available as a
+library of stand-alone functions and classes.  These operate directly on
+in-memory arrays (no FITS files or configuration files).  The code is derived
+from the Source Extractor code base (written in C) and aims to produce results
+compatible with Source Extractor whenever possible.  SEP consists of a C library
+with no dependencies outside the standard library, and a Python module that
+wraps the C library in a Pythonic API.  The Python wrapper operates on NumPy
+arrays with NumPy as its only dependency.")
+    (license (list license:expat license:lgpl3+ license:bsd-3))))
 
 ;; (define-public missfits
 ;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475
