@@ -777,10 +777,6 @@ planetarium.")
 ;; added-to-upstream: bf9a1dfd591d5e166581919ac92e67f47219f0eb
 ;; CommitDate: Sun Dec 5 12:35:55 2021 +0100
 
-;; (define-public python-gwcs
-;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
-;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-
 ;; (define-public python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
@@ -841,6 +837,10 @@ planetarium.")
 
 ;; https://github.com/spacetelescope
 ;;+begin-spacetelescope
+
+;; (define-public python-gwcs
+;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
+;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
 ;; 20220131T235042+0000
 (define-public python-jwst
