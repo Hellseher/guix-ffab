@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-07-09 Sat 16:20:41 BST>
+#+modified: <2022-07-22 Fri 14:44:25 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -132,16 +132,17 @@ CLOSED: [2021-01-25 Mon 17:25]
       - [X] python-pypa-build
       - [X] python-pytest
       - [X] python-setuptools
-  - [-] python-h5netcdf [1/4][25%]
+  - [-] python-h5netcdf [3/4][75%]
     - https://github.com/h5netcdf/h5netcdf
     - synopsis :: Pythonic interface to netCDF4 via h5py
     - [X] :packed <2022-07-02 Sat>
-    - [ ] :patch-sent
+    - [X] :patch-sent <2022-07-22 Fri>
     - [-] :paptch-applied-upstream
-    - [-] :inputs [5/6][5/6]
+      - https://issues.guix.gnu.org/56700
+    - [X] :inputs [6/6][6/6]
       - [X] python-setuptools-scm
       - [X] python-pytest
-      - [ ] python-netcdf4 (needs to be upgraded to 1.6.0 to pass tests)
+      - [X] python-netcdf4 (needs to be upgraded to 1.6.0 to pass tests)
       - [X] python-h5py
       - [X] python-packaging
       - [X] python-numpy
