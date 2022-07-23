@@ -657,9 +657,12 @@ arrays with NumPy as its only dependency.")
     (arguments
      (strip-keyword-arguments
       '(#:make-flags) (package-arguments libsep)))
+    (native-inputs
+     (modify-inputs (package-inputs libsep)
+       (prepend python-cython))
     (propagated-inputs
      (modify-inputs (package-inputs libsep)
-       (prepend python-numpy python-cython)))))
+       (prepend python-numpy)))))
 
 ;; (define-public missfits
 ;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475
