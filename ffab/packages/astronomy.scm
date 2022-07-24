@@ -607,6 +607,7 @@ reused in several astronomical applications, such as @code{wsclean},
 ;; (define-public libpasastro
 ;; added-to-upstream: 906155e437c9513462f19baac6e88b976f42b358
 
+;; 20220724T204740+0100
 (define-public libsep
   (package
     (name "libsep")
@@ -659,7 +660,7 @@ arrays with NumPy as its only dependency.")
       '(#:make-flags) (package-arguments libsep)))
     (native-inputs
      (modify-inputs (package-inputs libsep)
-       (prepend python-cython))
+       (prepend python-cython)))
     (propagated-inputs
      (modify-inputs (package-inputs libsep)
        (prepend python-numpy)))))
