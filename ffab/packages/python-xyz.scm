@@ -38,6 +38,7 @@
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix utils)
+  #:use-module (guix build utils)
   #:use-module (guix packages))
 
 (define-public python-portalocker
@@ -134,7 +135,7 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (license license:expat)))
 
 ;; 20220621T191218+0100
-(define python-posix-ipc
+(define-public python-posix-ipc
   (package
     (name "python-posix-ipc")
     (version "1.0.5")
@@ -149,13 +150,21 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
        (sha256
         (base32 "17y4d0pmvp199c5hbs602ailhlh9f9zv89kmpbd8jhyl6rgaxsvs"))))
     (build-system python-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               (add-after 'unpack 'patch-prober-cc
+                 (lambda _
+                   (substitute* "prober.py"
+                     (("cmd = .cc")
+                      (string-append "cmd = \"" #$(cc-for-target)))))))))
     (native-inputs
-     (list gcc python-unittest2))
+     (list python-unittest2))
     (home-page "http://semanchuk.com/philip/posix_ipc/")
     (synopsis "POSIX IPC primitives for Python")
     (description
-     "Thi package provides POSIX IPC primitives - semaphores, shared memory and
-message queues for Python")
+     "This package provides POSIX IPC primitives - semaphores, shared memory and
+message queues for Python.")
     (license license:bsd-3))) ; BSD like Copyright (c) 2018, Philip Semanchuk
 
 ;; 20220621T222117+0100
