@@ -825,41 +825,51 @@ planetarium.")
 (define-public python-galpy
   (package
     (name "python-galpy")
-    (version "1.7.2")
+    (version "1.8.0")
     (source
      (origin
-       ;; PyPi has not tests
-       (method git-fetch)
+       (method git-fetch)   ; PyPi has not tests
        (uri (git-reference
              (url "https://github.com/jobovy/galpy")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1dp9vi9bc4vbb4ymsjw71vjm114v4361mbgfqkw8z2h9pd68g1s1"))))
+        (base32 "168bba4xpyzrcj8kh7yzy6jrsnf94dm928qiy4v859nbrdq4x7yw"))))
     (build-system python-build-system)
     (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda _
-              (setenv "HOME" (getcwd))
-              (invoke "touch" ".galpyrc")
-              (make-file-writable  ".galpyrc")
-              (invoke "pytest" "-vv" "tests"))))))
+     ;; NOTE: (Sharlatan-20220727T204455+0100): Tests require few not packed yet
+     ;; Python packages: Jax, Amuse
+     (list #:tests? #f
+           #:phases
+           #~(modify-phases %standard-phases
+               (replace 'check
+                 (lambda* (#:key tests? #:allow-other-keys)
+                   (when tests?
+                     (setenv "HOME" (getcwd))
+                     (invoke "touch" ".galpyrc")
+                     (make-file-writable  ".galpyrc")
+                     (invoke "pytest" "-vv" "tests")))))))
     (native-inputs
-     (list python-pytest
-           python-pynbody))
+     (list python-pynbody python-pytest))
+    (inputs
+     (list gsl))
     (propagated-inputs
-     (list python-future
+     (list python-astroquery
+           python-astropy
+           python-future
+           python-numexpr
            python-matplotlib
            python-numpy
            python-scipy
-           python-setuptools
            python-six))
-    (home-page "http://github.com/jobovy/galpy")
+    (home-page "https://www.galpy.org/")
     (synopsis "Galactic Dynamics in python")
-    (description "Galactic Dynamics in python")
+    (description "@code{galpy} is a Python package for galactic dynamics.
+It supports orbit integration in a variety of potentials, evaluating and
+sampling various distribution functions, and the calculation of action-angle
+coordinates for all static potentials. @code{galpy} is an @code{astropy}
+affiliated package and provides full support for astropy’s Quantity framework
+for variables with units.")
     (license license:bsd-3)))
 
 ;;+end-jobovy
