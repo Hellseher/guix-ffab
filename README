@@ -1,17 +1,16 @@
-
 # Table of Contents
 
-1.  [Project structure and layout](#org38d3926)
-2.  [Installation](#orgf4bdb0d)
-    1.  [Use as channel](#org0505af2)
-    2.  [Use as build/install source](#orgc2ea765)
-3.  [References](#orgd28d53a)
-    1.  [Guix channels](#orgea95d4b)
-    2.  [etc](#org037c778)
+1.  [Project structure and layout](#org546084d)
+2.  [Installation](#orgd416864)
+    1.  [Use as channel](#orgfc03ac8)
+    2.  [Use as build/install source](#org7e4365a)
+3.  [References](#org2f0fd19)
+    1.  [Guix channels](#orgec2d38b)
+    2.  [etc](#org593810f)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
-[\![builds.sr.ht status](![img](https://builds.sr.ht/~hellseher/ffab.svg))](<https://builds.sr.ht/~hellseher/ffab>?)
+[![builds.sr.ht status](https://builds.sr.ht/~hellseher/ffab.svg)](https://builds.sr.ht/~hellseher/ffab?)
 
 This repository contains patches contributed to <guix-patches@gnu.org> and packaging progress. It
 also can be used as stand alone Guix channel.
@@ -21,7 +20,7 @@ It&rsquo;s concentraited on Astronomical/Astrophisical, Common Lisp, Golan, Pyth
 `master` branch should be buildable all the time, `wip-` could be to be broken.
 
 
-<a id="org38d3926"></a>
+<a id="org546084d"></a>
 
 # Project structure and layout
 
@@ -44,7 +43,7 @@ Layout follows Guix upstream.
 -   **issues.org:** tracks all sent patches to <guix-patches@gnu.org>
 
 
-<a id="orgf4bdb0d"></a>
+<a id="orgd416864"></a>
 
 # Installation
 
@@ -52,7 +51,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org0505af2"></a>
+<a id="orgfc03ac8"></a>
 
 ## Use as channel
 
@@ -65,7 +64,7 @@ manager.
            %default-channels)
 
 
-<a id="orgc2ea765"></a>
+<a id="org7e4365a"></a>
 
 ## Use as build/install source
 
@@ -73,14 +72,14 @@ manager.
     ~$ guix build -L ./guix-channel pgloader
 
 
-<a id="orgd28d53a"></a>
+<a id="org2f0fd19"></a>
 
 # References
 
 -   <http://hpc.guix.info/>
 
 
-<a id="orgea95d4b"></a>
+<a id="orgec2d38b"></a>
 
 ## Guix channels
 
@@ -96,7 +95,7 @@ manager.
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="org037c778"></a>
+<a id="org593810f"></a>
 
 ## etc
 

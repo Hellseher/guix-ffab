@@ -2,7 +2,9 @@
 #+title: FFAB - Guix channel
 /FFAB :: Flock Full of Aleatory Burden/
 
+#+begin_src markdown
 [![builds.sr.ht status](https://builds.sr.ht/~hellseher/ffab.svg)](https://builds.sr.ht/~hellseher/ffab?)
+#+end_src
 
 This repository contains patches contributed to <guix-patches@gnu.org> and packaging progress. It
 also can be used as stand alone Guix channel.
