@@ -1649,7 +1649,7 @@ provide related services.")
     (arguments
      (list #:phases
            #~(modify-phases %standard-phases
-               (add-after 'unpack 'disable-required-testdata-tests
+               (add-after 'unpack 'disable-tests-require-testdata
                  (lambda _
                    ;; Disable tests which need to download additional 1.0GiB+
                    ;; of test data archive from
@@ -1688,8 +1688,7 @@ provide related services.")
                      (setenv "HOME" "/tmp")
                      (invoke "pytest" "-vv")))))))
     (native-inputs
-     (list python-pandas
-           python-pytest))
+     (list python-pandas python-pytest))
     (propagated-inputs
      (list python-cython
            python-h5py
