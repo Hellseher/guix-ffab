@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-07-27 Wed 21:12:53 BST>
+#+modified: <2022-07-29 Fri 21:34:17 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -713,11 +713,11 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-matplotlib
   - [X] python-numpy
   - [X] python-pytest
-  - [-] python-pynbody [2/4][50%]
+  - [-] python-pynbody [3/4][75%]
     - https://github.com/pynbody/pynbody
     - synopsis :: N-body and hydro analysis tools
     - [X] :packed <2022-07-27 Wed>
-    - [ ] :patch-sent
+    - [X] :patch-sent <2022-07-29 Fri>
     - [ ] :paptch-applied-upstream
     - [X] :inputs [8/8][100%]
       - [X] python-cython
