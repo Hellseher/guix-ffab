@@ -153,7 +153,7 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (arguments
      (list #:phases
            #~(modify-phases %standard-phases
-               (add-after 'unpack 'patch-prober-cc
+               (add-after 'unpack 'patch-cc-path
                  (lambda _
                    (substitute* "prober.py"
                      (("cmd = .cc")
