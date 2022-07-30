@@ -1336,3 +1336,29 @@ function calls are platform dependent.")
     (synopsis "Golang HTTP web framework")
     (description "Package gin implements a HTTP web framework called gin.")
     (license license:expat)))
+
+;;+begin_github.com/modern-go
+
+;; 20220730T152705+0100
+(define-public go-github-com-modern-go-reflect2
+  (package
+    (name "go-github-com-modern-go-reflect2")
+    (version "1.0.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/modern-go/reflect2")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "05a89f9j4nj8v1bchfkv2sy8piz746ikj831ilbp54g8dqhl8vzr"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/modern-go/reflect2"))
+    (home-page "https://github.com/modern-go/reflect2")
+    (synopsis "Implementaion of Golang reflect")
+    (description "reflect api that avoids runtime reflect.Value cost")
+    (license license:asl2.0)))
+
+;;+end_github.com/modern-go
