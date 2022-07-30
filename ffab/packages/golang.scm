@@ -306,35 +306,36 @@ programming language}. It integrates well with Go's built-in @code{testing}
 package, but can be used in other contexts too.")
     (license license:asl2.0)))
 
+;; 20220730T151556+0100
 (define-public go-github-com-getsentry-sentry-go
   (package
     (name "go-github-com-getsentry-sentry-go")
-    (version "0.11.0")
+    (version "0.13.0")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/getsentry/sentry-go")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "0hisknhn2r6g2fz3kgypa99jvixxkwz8sfyq7x64jy97y2sh2lil"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/getsentry/sentry-go")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0hisknhn2r6g2fz3kgypa99jvixxkwz8sfyq7x64jy97y2sh2lil"))))
     (build-system go-build-system)
     (arguments '(#:import-path "github.com/getsentry/sentry-go"))
     (propagated-inputs
-      `(("go-github-com-valyala-fasthttp" ,go-github-com-valyala-fasthttp)
-        ("go-github-com-urfave-negroni" ,go-github-com-urfave-negroni)
-        ("go-github-com-pkg-errors" ,go-github-com-pkg-errors)
-        ("go-github-com-pingcap-errors" ,go-github-com-pingcap-errors)
-        ("go-github-com-labstack-echo-v4" ,go-github-com-labstack-echo-v4)
-        ("go-github-com-kataras-iris-v12" ,go-github-com-kataras-iris-v12)
-        ("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)
-        ("go-github-com-go-martini-martini" ,go-github-com-go-martini-martini)
-        ("go-github-com-go-errors-errors" ,go-github-com-go-errors-errors)
-        ("go-github-com-gin-gonic-gin" ,go-github-com-gin-gonic-gin)))
+     (list go-github-com-gin-gonic-gin
+           go-github-com-go-errors-errors
+           go-github-com-go-martini-martini
+           go-github-com-google-go-cmp
+           go-github-com-kataras-iris-v12
+           go-github-com-labstack-echo-v4
+           go-github-com-pingcap-errors
+           go-github-com-pkg-errors
+           go-github-com-urfave-negroni
+           go-github-com-valyala-fasthttp))
     (home-page "https://github.com/getsentry/sentry-go")
-    (synopsis "Official Sentry SDK for Go")
-    (description "Package sentry is the official Sentry SDK for Go.")
+    (synopsis "Sentry SDK for Golang")
+    (description "This package profides sentry.io SDK integration for Golang.")
     (license license:bsd-2)))
 
 ;; 20211217T213122+0000
@@ -465,11 +466,11 @@ Features include:
 @end itemize")
     (license license:expat)))
 
-;;; :begin github.com/jesseduffield/lazygit
+;;+begin_github.com/jesseduffield
 ;;
 ;; Some packages are introduced in:
 ;; - github.com/cli/cli: https://issues.guix.gnu.org/47539
-;;
+
 ;; 20211220T202352+0000
 (define-public go-github-com-jesseduffield-lazygit
   (package
@@ -679,10 +680,11 @@ range of pretty terminal strings.")
 @code{exec.LookPath()} on Windows.")
     (license license:bsd-2)))
 
-;; :end github.com/jesseduffield/lazygit
+;;+end_github.com/jesseduffield
 
-;;; :begin github.com/cli/cli
+;;+begin_github.com/cli
 
+;; 20220730T151450+0100
 (define-public github-cli-v2
   (package
     (name "github-cli-v2")
