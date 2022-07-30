@@ -1,9 +1,9 @@
 #+title: gnu/packages/lisp-xyz
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-07-21 Thu 20:38:19 BST>
+#+modified: <2022-07-30 Sat 10:05:11 BST>
 
-* Flow [11/24][45%]
-** jphmrst [1/1][100%] :author:
+* Flow [11/26][42%]
+** TODO jphmrst [1/1][100%] :author:
 - https://github.com/jphmrst
 - https://maraist.org/
 
@@ -46,18 +46,7 @@ CLOSED: [2021-06-15 Tue 10:09]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [-] :inputs [23/24][95%]
-  + [X] 3b-bmfont [4/4][100%]
-    - https://github.com/3b/3b-bmfont/
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent  <2021-02-02 Tue>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-    - [X] :inputs [5/5]
-      - [X] alexandria
-      - [X] cxml
-      - [X] flexi-streams
-      - [X] jsown
-      - [X] split-sequence
+  + [X] 3b-bmfont
   + [X] 3b-bmfont/json (part of 3b-bmfont)
   + [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
   + [X] cl-cpus [3/3][100%]
@@ -72,20 +61,7 @@ CLOSED: [2021-06-15 Tue 10:09]
     - [ ] :patch-sent
     - [ ] :patch-applied-upstream
     - [ ] :inputs [/][%]
-  + [X] cl-opengl [4/4][100%]
-    - https://github.com/3b/cl-opengl
-    - [X] :packed <2021-04-02 Fri>
-    - [X] :patch-sent <2021-04-02 Fri>
-    - [X] :patch-applied-upstream <2021-04-03 Sat>
-      - https://issues.guix.gnu.org/47571
-    - [X] :inputs [6/6]
-      + [X] float-features
-      + [X] alexandria
-      + [X] cffi
-      + [X] mesa
-      + [X] glu
-      + [X] freeglut
-    - https://github.com/3b/cl-opengl.git
+  + [X] cl-opengl
   + [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
   + [X] cl-slug [4/4][100%]
     - https://github.com/EuAndreh/cl-slug/
@@ -132,14 +108,7 @@ CLOSED: [2021-06-15 Tue 10:09]
     - [X] :inputs [8/8][100%]
       + [X] cffi
       + [X] cl-opengl
-      + [X] glsl-packing [4/4][100%]
-        - https://github.com/3b/glsl-packing
-        - [X] :packed <2021-02-18 Thu>
-        - [X] :patch-sent <2021-02-18 Thu>
-        - [X] :patch-applied-upstream <2021-02-19 Fri>
-          - https://issues.guix.gnu.org/46626
-        - [X] :inputs [1/1][100%]
-          + [X] alexandria
+      + [X] glsl-packing
       + [X] golden-utils
       + [X] origin
       + [X] split-sequence
@@ -228,6 +197,48 @@ CLOSED: [2021-06-15 Tue 10:09]
 - [PATCH 2/2] Add new origin specialization-store
 - [PATCH 4/4] On the way of Virality Engine: varjo glsl-spec vas-string-metrics fn
 
+** TODO 3b [3/4][75%] :author:
+*** DONE cl-opengl [4/4][100%]
+  - https://github.com/3b/cl-opengl
+  - synopsis :: cl-opengl is a set of CFFI bindings to the OpenGL, GLU and GLUT APIs.
+  - [X] :packed <2021-04-02 Fri>
+  - [X] :patch-sent <2021-04-02 Fri>
+  - [X] :patch-applied-upstream <2021-04-03 Sat>
+    - https://issues.guix.gnu.org/47571
+  - [X] :inputs [6/6]
+    + [X] float-features
+    + [X] alexandria
+    + [X] cffi
+    + [X] mesa
+    + [X] glu
+    + [X] freeglut
+
+*** DONE glsl-packing [4/4][100%]
+- https://github.com/3b/glsl-packing
+- synopsis :: calculate std140/std430 layout for a glsl UBO/SSBO
+- [X] :packed <2021-02-18 Thu>
+- [X] :patch-sent <2021-02-18 Thu>
+- [X] :patch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46626
+- [X] :inputs [1/1][100%]
+  + [X] alexandria
+
+*** DONE 3b-bmfont [4/4][100%]
+- https://github.com/3b/3b-bmfont/
+- synopsis :: read/write bmfont metadata files
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent  <2021-02-02 Tue>
+- [X] :patch-applied-upstream <2021-02-03 Wed>
+  - https://issues.guix.gnu.org/46261
+- [X] :inputs [5/5]
+  - [X] alexandria
+  - [X] cxml
+  - [X] flexi-streams
+  - [X] jsown
+  - [X] split-sequence
+*** TODO classimp [/][%] :p1:
+- https://github.com/3b/classimp
+- synopsis :: common lisp/cffi bindings for Open Asset Import Library
 
 ** TODO eudoxia0 [0/1][0%] :author:
 - https://github.com/eudoxia0
@@ -658,7 +669,7 @@ CLOSED: [2021-12-02 Thu 22:38]
   - [ ] named-readtables
   - [ ] trivial-features))
 
-** TODO Shinmera/Shirakumo [3/12][25%] :author:p5:
+** TODO Shinmera/Shirakumo [3/11][27%] :author:p5:
 *** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -806,16 +817,16 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] zpng
 - [-] :inputs-additions
   + [X] alloy
-  + [-] backends [1/2]
+  + [X] backends [2/2]
     + [X] trial-glfw [3/3][100%]
       - [X] cl-glfw3
       - [X] trivial-main-thread
       - [X] trivial-garbage
-    + [-] trial-glop [1/2][50%]
+    + [X] trial-glop [2/2][100%]
       - [X] trivial-main-thread
-      - [ ] glop
+      - [X] glop
   + [-] feedback
-  + [ ] assimp
+  + [ ] classimp
   + [ ] harmony
   + [ ] file-notify
   + [ ] cl-steamworks
@@ -834,8 +845,9 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] closer-mop
   - [X] array-utils
 
-*** TODO feedback [/][%]
-*** TODO assimp [/][%]
+*** TODO feedback [/][%] :p1:
+- https://github.com/Shirakumo/feedback
+- synopsis :: Radiance client/server module for anonymous feedback submission
 *** TODO harmony [/][%]
 *** TODO file-notify [/][%]
 *** TODO cl-steamworks [/][%]
@@ -1001,7 +1013,7 @@ https://github.com/Shirakumo/cl-mixed
   + [X] trivial-features
   + [X] documentation-utils
 
-** TODO lispgames [1/1][100%] :author:
+** TODO lispgames [0/0][0%] :author:
 *** DONE glop [4/4][100%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
