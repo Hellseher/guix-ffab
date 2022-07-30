@@ -1291,3 +1291,48 @@ file handles, and for using named pipes as a net transport.")
 Ansi characters and produces the appropriate function calls.  The results of the
 function calls are platform dependent.")
     (license license:expat)))
+
+;; 20220730T152336+0100(define-public go-github-com-gin-gonic-gin
+(define-public go-github-com-gin-gonic-gin
+  (package
+    (name "go-github-com-gin-gonic-gin")
+    (version "1.8.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/gin-gonic/gin")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0fbs44q2w1cx891l3i1jxfrvf9v3ar3hlb8vnqlg7nbkch04jkdf"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/gin-gonic/gin"))
+    (propagated-inputs
+     (list go-gopkg-in-yaml-v3
+           go-golang-org-x-text
+           go-golang-org-x-sys
+           go-golang-org-x-crypto
+           go-github-com-pmezard-go-difflib
+           go-github-com-modern-go-reflect2
+           go-github-com-modern-go-concurrent
+           go-github-com-leodido-go-urn
+           go-github-com-go-playground-universal-translator
+           go-github-com-go-playground-locales
+           go-github-com-davecgh-go-spew
+           go-gopkg-in-yaml-v2
+           go-google-golang-org-protobuf
+           go-golang-org-x-net
+           go-github-com-ugorji-go-codec
+           go-github-com-stretchr-testify
+           go-github-com-pelletier-go-toml-v2
+           go-github-com-mattn-go-isatty
+           go-github-com-json-iterator-go
+           go-github-com-goccy-go-json
+           go-github-com-go-playground-validator-v10
+           go-github-com-gin-contrib-sse))
+    (home-page "https://github.com/gin-gonic/gin")
+    (synopsis "Golang HTTP web framework")
+    (description "Package gin implements a HTTP web framework called gin.")
+    (license license:expat)))
