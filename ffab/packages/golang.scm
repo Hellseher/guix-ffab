@@ -29,35 +29,6 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
-(define-public go-golang-org-x-tools
-  (package
-    (name "go-golang-org-x-tools")
-    (version "0.1.8")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://go.googlesource.com/tools")
-             (commit (string-append "v" version))))
-       (file-name (string-append "go.googlesource.com-tools-"
-                                 version "-checkout"))
-       (sha256
-        (base32 "07mfghhp4ry934hab8845jcyin6b7niwbpbz7x5kclmf1sy1j97f"))))
-    (build-system go-build-system)
-    (arguments
-     `(#:import-path "golang.org/x/tools"
-       ;; Source-only package
-       #:tests? #f
-       #:phases
-       (modify-phases %standard-phases
-         ;; Source-only package
-         (delete 'build))))
-    (synopsis "Tools that support the Go programming language")
-    (description "This package provides miscellaneous tools that support the
-Go programming language.")
-    (home-page "https://go.googlesource.com/tools/")
-    (license license:bsd-3)))
-
 ;; 20210710T203819+0100
 (define-public go-golang-org-x-tools-gopls
   (package
@@ -116,6 +87,7 @@ editor.")
       "Package xurls extracts urls from plain text using regular expressions.")
     (license license:bsd-3)))
 
+;; 20220731T214206+0100
 (define-public go-mvdan-cc-gofumpt
   (package
     (name "go-mvdan-cc-gofumpt")
@@ -157,40 +129,7 @@ The tool is a modified fork of @code{gofmt}, so it can be used as a drop-in
 replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (license license:bsd-3)))
 
-;; 20210710T210538+0100
-(define-public go-golang-org-x-mod
-  (package
-    (name "go-golang-org-x-mod")
-    (version "0.4.2")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://go.googlesource.com/mod")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0z1p17i291z2k6va08i80ljyzyij2b6qsz78lnz0wi8zsnkfdz43"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "golang.org/x/mod"
-       ;; Source-only package
-       #:tests? #f
-       #:phases
-       (modify-phases %standard-phases
-         ;; Source-only package
-         (delete 'build))))
-    (propagated-inputs
-     `(("go-golang-org-x-xerrors" ,go-golang-org-x-xerrors)
-       ("go-golang-org-x-tools" ,go-golang-org-x-tools)
-       ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)))
-    (home-page "https://golang.org/x/mod")
-    (synopsis "mod")
-    (description
-     "This package holds tools for writing that work directly with Go module
-mechanics.  That is, it is for direct manipulation of Go modules themselves.")
-    (license license:bsd-3)))
-
+;; 20220731T214024+0100
 (define-public go-github-com-hashicorp-hcl
   (package
     (name "go-github-com-hashicorp-hcl")
@@ -219,41 +158,41 @@ expressing configuration which is easy for both humans and machines to read.")
     (license license:mpl2.0)))
 
 ;; <2021-12-12 Sun>
+;; (define-public go-github-com-hashicorp-hcl-v2
 ;; added-to-upstream: 63b194080d3038bdfc54d66355bdd59e86197214
 ;; CommitDate: Fri Jan 28 10:36:01 2022 +0100
-;; (define-public go-github-com-hashicorp-hcl-v2
 
 ;; 20220128T103316+0100
+;; (define-public go-github-com-agext-levenshtein
 ;; added-to-upstream: 52850033d37ea2153210974acbb969b616d3ba20
 ;; CommitDate: Fri Jan 28 10:33:16 2022 +0100
-;; (define-public go-github-com-agext-levenshtein
 
 ;; 20220128T103150+0100
-;; added-to-upstream: 433f04136b443cb935a0911fa7560fa87f029e64
-;; CommitDate: Fri Jan 28 10:31:50 2022 +0100
 ;; (define-public go-github-com-apparentlymart-go-textseg-v13
-
-;; 20220128T103150+0100
 ;; added-to-upstream: 433f04136b443cb935a0911fa7560fa87f029e64
 ;; CommitDate: Fri Jan 28 10:31:50 2022 +0100
+
+;; 20220128T103150+0100
 ;; (define-public go-github-com-apparentlymart-go-textseg-autoversion
+;; added-to-upstream: 433f04136b443cb935a0911fa7560fa87f029e64
+;; CommitDate: Fri Jan 28 10:31:50 2022 +0100
 
 ;; 20220128T103434+0100
+;; (define-public go-github-com-zclconf-go-cty
 ;; added-to-upstream: a222ae9146404e6d04276682a0a5ad4fe4bc6743
 ;; CommitDate: Fri Jan 28 10:34:34 2022 +0100
-;; (define-public go-github-com-zclconf-go-cty
 
 ;; 20220128T103709+0100
+;; (define-public go-github-com-vmihailenco-msgpack-v4
 ;; added-to-upstream: 4db80f3f0cc32d4f6a487cb51a3ac393694affe3
 ;; CommitDate: Fri Jan 28 10:37:09 2022 +0100
-;; (define-public go-github-com-vmihailenco-msgpack-v4
 
 ;; 20220128T102859+0100
+;; (define-public go-github-com-vmihailenco-tagparser
 ;; added-to-upstream: cd355a8dafb0ccb748ab48604ac3890ba1931e1e
 ;; CommitDate: Fri Jan 28 10:28:59 2022 +0100
-;; (define-public go-github-com-vmihailenco-tagparser
 
-
+;; 20220731T214100+0100
 (define-public go-github-com-golang-jwt-jwt-v4
   (package
     (name "go-github-com-golang-jwt-jwt-v4")
@@ -278,6 +217,7 @@ expressing configuration which is easy for both humans and machines to read.")
 ")
     (license license:expat)))
 
+;; 20220731T214217+0100
 (define-public go-github-com-golang-mock-mockgen
   (package
     (name "go-github-com-golang-mock-mockgen")
@@ -488,9 +428,9 @@ Features include:
     (build-system go-build-system)
     (arguments '(#:import-path "github.com/jesseduffield/lazygit"))
     (propagated-inputs
-     (list go-github-com-atotto-clipboard ;; +1
-           go-github-com-aybabtme-humanlog ;; +4
-           go-github-com-cli-safeexec ;; +1
+     (list go-github-com-atotto-clipboard
+           go-github-com-aybabtme-humanlog
+           go-github-com-cli-safeexec
            go-github-com-cloudfoundry-jibber-jabber
            go-github-com-creack-pty
            go-github-com-fatih-color
@@ -536,6 +476,7 @@ Features include:
 the @url{https://github.com/jroimartin/gocui,gocui} library.")
     (license license:expat)))
 
+;; 20220731T214252+0100
 (define-public go-github-com-atotto-clipboard
   (package
     (name "go-github-com-atotto-clipboard")
@@ -557,6 +498,7 @@ the @url{https://github.com/jroimartin/gocui,gocui} library.")
     (description "Package clipboard read/write on clipboard")
     (license license:bsd-3)))
 
+;; 20220731T214258+0100
 (define-public go-github-com-aybabtme-humanlog
   (package
     (name "go-github-com-aybabtme-humanlog")
@@ -589,6 +531,7 @@ the @url{https://github.com/jroimartin/gocui,gocui} library.")
 prettier.")
     (license license:asl2.0)))
 
+;; 20220731T214316+0100
 (define-public go-github-com-go-logfmt-logfmt
   (package
     (name "go-github-com-go-logfmt-logfmt")
@@ -614,6 +557,7 @@ readability for humans and simplicity of computer parsing.  It is most commonly
 used as a more human friendly alternative to JSON for structured logging.")
     (license license:expat)))
 
+;; 20220731T214321+0100
 (define-public go-github-com-kr-logfmt
   (package
     (name "go-github-com-kr-logfmt")
@@ -634,6 +578,7 @@ used as a more human friendly alternative to JSON for structured logging.")
     (description "Package implements the decoding of logfmt key-value pairs.")
     (license license:expat)))
 
+;; 20220731T214326+0100
 (define-public go-github-com-aybabtme-rgbterm
   (package
     (name "go-github-com-aybabtme-rgbterm")
@@ -657,6 +602,7 @@ used as a more human friendly alternative to JSON for structured logging.")
 range of pretty terminal strings.")
     (license license:expat)))
 
+;; 20220731T214333+0100
 (define-public go-github-com-cli-safeexec
   (package
     (name "go-github-com-cli-safeexec")
@@ -709,17 +655,17 @@ range of pretty terminal strings.")
            go-github-com-cli-browser
            go-github-com-cli-oauth
            go-github-com-cli-safeexec
+           go-github-com-cli-shurcool-graphql
            go-github-com-cpuguy83-go-md2man-v2
            go-github-com-creack-pty
            go-github-com-gabriel-vasile-mimetype
-           go-github-com-cli-shurcool-graphql
-           ;; go-github-com-google-go-cmp
-           ;; go-github-com-google-shlex
+           go-github-com-google-go-cmp
+           go-github-com-google-shlex
            go-github-com-hashicorp-go-version
-           ;; go-github-com-henvic-httpretty
-           ;; go-github-com-itchyny-gojq
+           go-github-com-henvic-httpretty
+           go-github-com-itchyny-gojq
            go-github-com-kballard-go-shellquote
-           ;; go-github-com-makenowjust-heredoc
+           go-github-com-makenowjust-heredoc
            go-github-com-mattn-go-colorable
            go-github-com-mattn-go-isatty
            go-github-com-mattn-go-runewidth
@@ -727,7 +673,7 @@ range of pretty terminal strings.")
            go-github-com-mitchellh-go-homedir
            go-github-com-muesli-termenv
            go-github-com-rivo-uniseg
-           ;; go-github-com-shurcool-githubv4
+           go-github-com-shurcool-githubv4
            go-github-com-spf13-cobra
            go-github-com-spf13-pflag
            go-github-com-stretchr-objx
@@ -745,6 +691,7 @@ and other GitHub concepts to the terminal next to where you are already working
 with @code{git} and your code.")
     (license license:expat)))
 
+;; 20220731T214415+0100
 (define-public go-github-com-alecaivazis-survey-v2
   (package
     (name "go-github-com-alecaivazis-survey-v2")
@@ -788,6 +735,7 @@ with @code{git} and your code.")
 terminals supporting ANSI escape sequences.")
     (license license:expat)))
 
+;; 20220731T214428+0100
 (define-public go-github-com-hinshun-vt10x
   (package
     (name "go-github-com-hinshun-vt10x")
@@ -811,6 +759,7 @@ terminals supporting ANSI escape sequences.")
 larged been influenced by st, rxvt, xterm, and iTerm as reference.")
     (license license:expat)))
 
+;; 20220731T214435+0100
 ;; archived project: moved to https://github.com/creack/pty
 (define-public go-github-com-kr-pty
   (hidden-package
@@ -837,6 +786,7 @@ larged been influenced by st, rxvt, xterm, and iTerm as reference.")
      (description "Pty is a Go package for using Unix pseudo-terminals.")
      (license license:expat))))
 
+;; 20220731T214441+0100
 (define-public go-github-com-netflix-go-expect
   (package
     (name "go-github-com-netflix-go-expect")
@@ -866,6 +816,7 @@ lifecycle.  This package only focuses on expecting output and sending input
 through it's pseudoterminal.")
     (license license:asl2.0)))
 
+;; 20220731T214446+0100
 (define-public go-github-com-creack-pty
   (package
     (name "go-github-com-creack-pty")
@@ -888,6 +839,7 @@ through it's pseudoterminal.")
     (description "Pty is a Go package for using Unix pseudo-terminals.")
     (license license:expat)))
 
+;; 20220731T214451+0100
 (define-public go-github-com-briandowns-spinner
   (package
     (name "go-github-com-briandowns-spinner")
@@ -916,6 +868,7 @@ through it's pseudoterminal.")
 terminal application. ")
     (license license:asl2.0)))
 
+;; 20220731T214457+0100
 (define-public go-github-com-cli-browser
   (package
     (name "go-github-com-cli-browser")
@@ -942,6 +895,7 @@ terminal application. ")
 system default web browser.")
     (license license:bsd-2)))
 
+;; 20220731T214502+0100
 (define-public go-github-com-cli-oauth
   (package
     (name "go-github-com-cli-oauth")
@@ -968,6 +922,7 @@ system default web browser.")
 flow in Go client apps.")
     (license license:expat)))
 
+;; 20220731T214507+0100
 (define-public go-github-com-cpuguy83-go-md2man-v2
   (package
     (name "go-github-com-cpuguy83-go-md2man-v2")
@@ -995,6 +950,7 @@ flow in Go client apps.")
      "This package converts Markdown into Roff Man pages.")
     (license license:expat)))
 
+;; 20220731T214512+0100
 (define-public go-github-com-russross-blackfriday-v2
   (package
     (name "go-github-com-russross-blackfriday-v2")
@@ -1021,6 +977,7 @@ supports common extensions (tables, smart punctuation substitutions, etc.), and
 it is safe for all utf-8 (unicode) input.")
     (license license:bsd-2)))
 
+;; 20220731T214517+0100
 (define-public go-github-com-gabriel-vasile-mimetype
   (package
     (name "go-github-com-gabriel-vasile-mimetype")
@@ -1069,6 +1026,7 @@ based on magic numbers.  Features include
 @end itemize")
     (license license:expat)))
 
+;; 20220731T214524+0100
 (define-public go-github-com-shurcool-graphql
   (package
     (name "go-github-com-shurcool-graphql")
@@ -1511,7 +1469,7 @@ code portable")
            go-github-com-google-gofuzz
            go-github-com-davecgh-go-spew))
     (home-page "https://github.com/json-iterator/go")
-    (synopsis "Golang encoding/json high-performance implementation replacemenvt")
+    (synopsis "Golang encoding/json high-performance replacemenvt")
     (description
      "Package jsoniter implements encoding and decoding of JSON as defined in
 @url{https://rfc-editor.org/rfc/rfc4627.html,RFC 4627} and provides interfaces
