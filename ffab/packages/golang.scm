@@ -1361,4 +1361,28 @@ function calls are platform dependent.")
     (description "reflect api that avoids runtime reflect.Value cost")
     (license license:asl2.0)))
 
+;; 20220730T155408+0100
+(define-public go-github-com-modern-go-concurrent
+  (package
+    (name "go-github-com-modern-go-concurrent")
+    (version "0.0.0-20180306012644-bacd9c7ef1dd")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/modern-go/concurrent")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0s0fxccsyb8icjmiym5k7prcqx36hvgdwl588y0491gi18k5i4zs"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/modern-go/concurrent"))
+    (home-page "https://github.com/modern-go/concurrent")
+    (synopsis "concurrent")
+    (description
+     "because sync.Map is only available in go 1.9, we can use concurrent.Map to make
+code portable")
+    (license license:asl2.0)))
+
 ;;+end_github.com/modern-go
