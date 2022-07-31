@@ -1310,28 +1310,29 @@ function calls are platform dependent.")
     (arguments
      '(#:import-path "github.com/gin-gonic/gin"))
     (propagated-inputs
-     (list go-gopkg-in-yaml-v3
-           go-golang-org-x-text
-           go-golang-org-x-sys
-           go-golang-org-x-crypto
-           go-github-com-pmezard-go-difflib
-           go-github-com-modern-go-reflect2
-           go-github-com-modern-go-concurrent
-           go-github-com-leodido-go-urn
-           go-github-com-go-playground-universal-translator
+
+     (list go-github-com-davecgh-go-spew
+           go-github-com-gin-contrib-sse
            go-github-com-go-playground-locales
-           go-github-com-davecgh-go-spew
-           go-gopkg-in-yaml-v2
-           go-google-golang-org-protobuf
-           go-golang-org-x-net
-           go-github-com-ugorji-go-codec
-           go-github-com-stretchr-testify
-           go-github-com-pelletier-go-toml-v2
-           go-github-com-mattn-go-isatty
-           go-github-com-json-iterator-go
-           go-github-com-goccy-go-json
+           go-github-com-go-playground-universal-translator
            go-github-com-go-playground-validator-v10
-           go-github-com-gin-contrib-sse))
+           go-github-com-goccy-go-json
+           go-github-com-gogo-protobuf
+           go-github-com-json-iterator-go
+           go-github-com-leodido-go-urn
+           go-github-com-mattn-go-isatty
+           go-github-com-modern-go-concurrent
+           go-github-com-modern-go-reflect2
+           go-github-com-pelletier-go-toml-v2
+           go-github-com-pmezard-go-difflib
+           go-github-com-stretchr-testify
+           go-github-com-ugorji-go-codec
+           go-golang-org-x-crypto
+           go-golang-org-x-net
+           go-golang-org-x-sys
+           go-golang-org-x-text
+           go-gopkg-in-yaml-v2
+           go-gopkg-in-yaml-v3))
     (home-page "https://github.com/gin-gonic/gin")
     (synopsis "Golang HTTP web framework")
     (description "Package gin implements a HTTP web framework called gin.")
