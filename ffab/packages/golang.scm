@@ -1437,6 +1437,10 @@ code portable")
     (arguments
      '(#:import-path "gopkg.in/go-playground/validator.v10"))
     (propagated-inputs
-     (list go-golang-org-x-crypto))))
+     (list go-github-com-go-playground-universal-translator
+           go-gopkg-in-go-playground-assert-v2
+           go-github-com-leodido-go-urn
+           go-golang-org-x-crypto
+           go-golang-org-x-text))))
 
 ;;+end_github.com/go-playground
