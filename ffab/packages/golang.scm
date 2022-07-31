@@ -1292,7 +1292,7 @@ Ansi characters and produces the appropriate function calls.  The results of the
 function calls are platform dependent.")
     (license license:expat)))
 
-;; 20220730T152336+0100(define-public go-github-com-gin-gonic-gin
+;; 20220730T152336+0100
 (define-public go-github-com-gin-gonic-gin
   (package
     (name "go-github-com-gin-gonic-gin")
@@ -1337,6 +1337,34 @@ function calls are platform dependent.")
     (synopsis "Golang HTTP web framework")
     (description "Package gin implements a HTTP web framework called gin.")
     (license license:expat)))
+
+;; 20220731T195956+0100
+(define-public go-github-com-gin-contrib-sse
+  (package
+   (name "go-github-com-gin-contrib-sse")
+   (version "0.1.0")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/gin-contrib/sse")
+           (commit (string-append "v" version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "072nq91a65n5xvwslqjyvydfd0mfpnvb3vwjyfvmzm1ym96wr1nd"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "github.com/gin-contrib/sse"))
+   (propagated-inputs
+    (list go-github-com-stretchr-testify))
+   (home-page "https://github.com/gin-contrib/sse")
+   (synopsis "Server-Sent Events for Golang")
+   (description
+    "Server-sent events (SSE) is a technology where a browser receives automatic
+updates from a server via HTTP connection.  The Server-Sent Events EventSource
+API is @url{http://www.w3.org/TR/2009/WD-eventsource-20091029/,standardized as
+part of HTML5[1] by the W3C}.")
+   (license license:expat)))
 
 ;;+begin_github.com/modern-go
 
