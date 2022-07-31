@@ -1502,3 +1502,28 @@ compatibility with code using standard lib.")
     (synopsis "go-toml")
     (description "Package toml is a TOML parser and manipulation library.")
     (license license:expat)))
+
+;; 20220731T221227+0100
+(define-public go-github-com-ugorji-go-codec
+  (package
+    (name "go-github-com-ugorji-go-codec")
+    (version "1.2.7")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/ugorji/go")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0h4mbxp8zyhash342l00fd5726yhfmgrlk6v7sl6k8fd6mkb10l4"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/ugorji/go/codec"
+       #:unpack-path "github.com/ugorji/go"))
+    (home-page "https://github.com/ugorji/go")
+    (synopsis "idiomatic codec and rpc lib for msgpack, cbor, json, etc. msgpack.org[Go]")
+    (description
+     "Package codec provides a High Performance, Feature-Rich Idiomatic Golang 1.4+
+codec/encoding library for binc, msgpack, cbor, json.")
+    (license license:expat)))
