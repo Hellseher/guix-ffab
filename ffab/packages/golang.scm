@@ -1415,3 +1415,28 @@ code portable")
     (license license:asl2.0)))
 
 ;;+end_github.com/modern-go
+
+;;+begin_github.com/go-playground
+
+;; 20220731T210059+0100
+(define-public go-github-com-go-playground-validator-v10
+  (package
+    (inherit go-gopkg-in-go-playground-validator-v9)
+    (name "go-github-com-go-playground-validator-v10")
+    (version "10.11.0")
+    (home-page "https://gopkg.in/go-playground/validator.v10")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/go-playground/validator")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "042s63q6la8izcxf6nljcq7425qhndln7h4i55xh57j6gmp16frl"))))
+    (arguments
+     '(#:import-path "gopkg.in/go-playground/validator.v10"))
+    (propagated-inputs
+     (list go-golang-org-x-crypto))))
+
+;;+end_github.com/go-playground
