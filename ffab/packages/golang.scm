@@ -1486,3 +1486,37 @@ code portable")
     (description
      "Fast JSON encoder/decoder compatible with encoding/json for Go")
     (license license:expat)))
+
+;; 20220731T213050+0100
+(define-public go-github-com-json-iterator-go
+  (package
+    (name "go-github-com-json-iterator-go")
+    (version "1.1.12")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/json-iterator/go")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1c8f0hxm18wivx31bs615x3vxs2j3ba0v6vxchsjhldc8kl311bz"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/json-iterator/go"))
+    (propagated-inputs
+     (lisp go-github-com-stretchr-testify
+           go-github-com-modern-go-reflect2
+           go-github-com-modern-go-concurrent
+           go-github-com-google-gofuzz
+           go-github-com-davecgh-go-spew))
+    (home-page "https://github.com/json-iterator/go")
+    (synopsis "Golang encoding/json high-performance implementation replacemenvt")
+    (description
+     "Package jsoniter implements encoding and decoding of JSON as defined in
+@url{https://rfc-editor.org/rfc/rfc4627.html,RFC 4627} and provides interfaces
+with identical syntax of standard lib encoding/json.  Converting from
+encoding/json to jsoniter is no more than replacing the package with jsoniter
+and variable type declarations (if any).  jsoniter interfaces gives 100%
+compatibility with code using standard lib.")
+    (license license:expat)))
