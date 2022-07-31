@@ -1478,3 +1478,27 @@ encoding/json to jsoniter is no more than replacing the package with jsoniter
 and variable type declarations (if any).  jsoniter interfaces gives 100%
 compatibility with code using standard lib.")
     (license license:expat)))
+
+;; 20220731T220023+0100
+(define-public go-github-com-pelletier-go-toml-v2
+  (package
+    (name "go-github-com-pelletier-go-toml-v2")
+    (version "2.0.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/pelletier/go-toml")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0nz9d88cfr70jipn9xrs3al7nr7rl879y6bi23wmvsj0b7ghr5cm"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/pelletier/go-toml"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/pelletier/go-toml/v2")
+    (synopsis "go-toml")
+    (description "Package toml is a TOML parser and manipulation library.")
+    (license license:expat)))
