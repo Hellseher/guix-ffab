@@ -1443,4 +1443,23 @@ code portable")
            go-golang-org-x-crypto
            go-golang-org-x-text))))
 
+;; 20220731T211127+0100
+(define-public go-gopkg-in-go-playground-assert-v2
+  (package
+    (inherit go-gopkg-in-go-playground-assert-v1)
+    (name "go-gopkg-in-go-playground-assert-v2")
+    (version "2.0.1")
+    (home-page "https://github.com/go-playground/assert")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url home-page)
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1cl9c4s405zddzrj36hhs0a18g02zscdl46fyipp6k91mhvai8wz"))))
+    (arguments
+     '(#:import-path "github.com/go-playground/assert/v2"))))
+
 ;;+end_github.com/go-playground
