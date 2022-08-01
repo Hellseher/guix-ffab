@@ -1370,7 +1370,7 @@ code portable")
        (sha256
         (base32 "042s63q6la8izcxf6nljcq7425qhndln7h4i55xh57j6gmp16frl"))))
     (arguments
-     '(#:import-path "gopkg.in/go-playground/validator.v10"))
+     '(#:import-path "github.com/go-playground/validator/v10"))
     (propagated-inputs
      (list go-github-com-go-playground-universal-translator
            go-gopkg-in-go-playground-assert-v2
