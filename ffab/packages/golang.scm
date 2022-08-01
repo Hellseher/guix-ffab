@@ -1439,9 +1439,10 @@ code portable")
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/json-iterator/go"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
     (propagated-inputs
-     (lisp go-github-com-stretchr-testify
-           go-github-com-modern-go-reflect2
+     (list go-github-com-modern-go-reflect2
            go-github-com-modern-go-concurrent
            go-github-com-google-gofuzz
            go-github-com-davecgh-go-spew))
