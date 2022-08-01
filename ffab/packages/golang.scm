@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages golang)
+  #:use-module (ffab packages protobuf)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages golang)
@@ -1245,14 +1246,12 @@ function calls are platform dependent.")
     (arguments
      '(#:import-path "github.com/gin-gonic/gin"))
     (propagated-inputs
-
      (list go-github-com-davecgh-go-spew
            go-github-com-gin-contrib-sse
            go-github-com-go-playground-locales
            go-github-com-go-playground-universal-translator
            go-github-com-go-playground-validator-v10
            go-github-com-goccy-go-json
-           go-github-com-gogo-protobuf
            go-github-com-json-iterator-go
            go-github-com-leodido-go-urn
            go-github-com-mattn-go-isatty
@@ -1266,6 +1265,7 @@ function calls are platform dependent.")
            go-golang-org-x-net
            go-golang-org-x-sys
            go-golang-org-x-text
+           go-google-golang-org-protobuf
            go-gopkg-in-yaml-v2
            go-gopkg-in-yaml-v3))
     (home-page "https://github.com/gin-gonic/gin")
