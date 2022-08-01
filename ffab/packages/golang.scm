@@ -1268,9 +1268,39 @@ function calls are platform dependent.")
            go-google-golang-org-protobuf
            go-gopkg-in-yaml-v2
            go-gopkg-in-yaml-v3))
-    (home-page "https://github.com/gin-gonic/gin")
+    (home-page "https://gin-gonic.com/")
     (synopsis "Golang HTTP web framework")
-    (description "Package gin implements a HTTP web framework called gin.")
+    (description
+     "This package provides Gin Web Framework written in Golang.  It has a list
+of higliths comparting to similar @url{https://www.codegangsta.io/, Martini} Web
+Framework:
+
+@itemize
+@item Fast :: Radix tree based routing, small memory foot print.  No reflection.
+Predictable API performance.
+
+@item Middleware support :: An incoming HTTP request can be handled by a chain
+of middleware and the final action.  For example: Logger, Authorization, GZIP and
+finally post a message in the DB.
+
+@item Crash-free :: Gin can catch a panic occurred during a HTTP request and
+recover it.  This way, your server will be always available.  It’s also possible
+to report this panic to Sentry for example!
+
+@item JSON validation :: Gin can parse and validate the JSON of a request,
+checking, for example, the existence of required values.
+
+@item Routes grouping :: Organize your routes better.  Authorization required vs
+non required, different API versions.  In addition, groups can be nested
+infinitely without degrading performance.
+
+@item Error management :: Gin provides a convenient way to collect all the
+errors occurred during a HTTP request.  Eventually, middleware can write them to
+a log file, to a database and send them through the network.
+
+@item Rendering built-in :: Gin provides an easy to use API for JSON, XML and
+HTML rendering.
+@end itemize\n")
     (license license:expat)))
 
 ;; 20220731T195956+0100
