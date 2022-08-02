@@ -1288,3 +1288,25 @@ codec/encoding library for binc, msgpack, cbor, json.")
      "Jibber Jabber is a GoLang Library that can be used to detect an operating
 system's current language.")
     (license license:asl2.0)))
+
+;; 20220802T125830+0100
+(define-public go-github-com-go-errors-errors
+  (package
+    (name "go-github-com-go-errors-errors")
+    (version "1.4.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/go-errors/errors")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1ww0yxp6pyd1sdb1y6zqlas7vpq8pr6d4p1z8iqm6mhsb0k4ni2f"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/go-errors/errors"))
+    (home-page "https://github.com/go-errors/errors")
+    (synopsis "go-errors/errors")
+    (description "Package errors provides errors that have stack-traces.")
+    (license license:expat)))
