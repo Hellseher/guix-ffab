@@ -347,42 +347,6 @@ non-intrusive, and encourages use of net/http Handlers.")
       "Package echo implements high performance, minimalist Go web framework.")
     (license license:expat)))
 
-;; 20211220T194459+0000
-(define-public go-github-com-stretchr-testify
-  (package
-    (name "go-github-com-stretchr-testify")
-    (version "1.7.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/stretchr/testify")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32
-         "0ixgjsvafr3513pz3r6pmgk074s2dxkll0dadvl25gkf30rkmh10"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/stretchr/testify"))
-    (propagated-inputs
-     (list go-github-com-davecgh-go-spew
-           go-github-com-pmezard-go-difflib
-           go-github-com-stretchr-objx
-           go-gopkg-in-yaml-v3))
-    (home-page "https://github.com/stretchr/testify")
-    (synopsis "Go helper library for tests and invariant checking")
-    (description "This package provide many tools for testifying that your code
-will behave as you intend.
-
-Features include:
-@itemize
-@item Easy assertions
-@item Mocking
-@item HTTP response trapping
-@item Testing suite interfaces and functions.
-@end itemize")
-    (license license:expat)))
 
 ;;+begin_github.com/jesseduffield
 ;;
@@ -1320,7 +1284,7 @@ HTML rendering.
    (build-system go-build-system)
    (arguments
     '(#:import-path "github.com/gin-contrib/sse"))
-   (propagated-inputs
+   (native-inputs
     (list go-github-com-stretchr-testify))
    (home-page "https://github.com/gin-contrib/sse")
    (synopsis "Server-Sent Events for Golang")
@@ -1359,13 +1323,13 @@ part of HTML5[1] by the W3C}.")
 (define-public go-github-com-modern-go-concurrent
   (package
     (name "go-github-com-modern-go-concurrent")
-    (version "0.0.0-20180306012644-bacd9c7ef1dd")
+    (version "1.0.3")
     (source
      (origin
        (method git-fetch)
        (uri (git-reference
              (url "https://github.com/modern-go/concurrent")
-             (commit (go-version->git-ref version))))
+             (commit version)))
        (file-name (git-file-name name version))
        (sha256
         (base32 "0s0fxccsyb8icjmiym5k7prcqx36hvgdwl588y0491gi18k5i4zs"))))
@@ -1373,10 +1337,11 @@ part of HTML5[1] by the W3C}.")
     (arguments
      '(#:import-path "github.com/modern-go/concurrent"))
     (home-page "https://github.com/modern-go/concurrent")
-    (synopsis "concurrent")
+    (synopsis "Concurrency utilities for Golang")
     (description
-     "because sync.Map is only available in go 1.9, we can use concurrent.Map to make
-code portable")
+     "Concurrency utilities for Go, including a backported version of
++@code{sync.Map} for Go < 1.9 named @code{concurrent.Map}, and
++@code{concurrent.Executor}.")
     (license license:asl2.0)))
 
 ;;+end_github.com/modern-go
@@ -1447,9 +1412,9 @@ code portable")
     (arguments
      '(#:import-path "github.com/goccy/go-json"))
     (home-page "https://github.com/goccy/go-json")
-    (synopsis "go-json")
+    (synopsis "Golang JSON encoder/decoder")
     (description
-     "Fast JSON encoder/decoder compatible with encoding/json for Go")
+     "Fast JSON encoder/decoder compatible with encoding/json for Golang.")
     (license license:expat)))
 
 ;; 20220731T213050+0100
@@ -1530,7 +1495,7 @@ compatibility with code using standard lib.")
      '(#:import-path "github.com/ugorji/go/codec"
        #:unpack-path "github.com/ugorji/go"))
     (home-page "https://github.com/ugorji/go")
-    (synopsis "idiomatic codec and rpc lib for msgpack, cbor, json, etc. msgpack.org[Go]")
+    (synopsis "Idiomatic codec and rpc lib for msgpack, cbor, json, etc. msgpack.org[Go]")
     (description
      "Package codec provides a High Performance, Feature-Rich Idiomatic Golang 1.4+
 codec/encoding library for binc, msgpack, cbor, json.")
