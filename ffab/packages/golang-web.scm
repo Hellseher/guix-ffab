@@ -16,7 +16,7 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(define-module (ffab packages golang)
+(define-module (ffab packages golang-web)
   #:use-module (ffab packages protobuf)
   #:use-module (ffab packages golang)
   #:use-module ((guix licenses) #:prefix license:)
