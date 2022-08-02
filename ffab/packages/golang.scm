@@ -1264,3 +1264,27 @@ compatibility with code using standard lib.")
      "Package codec provides a High Performance, Feature-Rich Idiomatic Golang 1.4+
 codec/encoding library for binc, msgpack, cbor, json.")
     (license license:expat)))
+
+;; 20220802T125606+0100
+(define-public go-github-com-cloudfoundry-jibber-jabber
+  (package
+    (name "go-github-com-cloudfoundry-jibber-jabber")
+    (version "0.0.0-20151120183258-bcc4c8345a21")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cloudfoundry-attic/jibber_jabber")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0q31q03sxfwrdgbv559bgm9gr5cmyzp1al0zli9nlkwa2v9hw5fi"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/cloudfoundry/jibber_jabber"))
+    (home-page "https://github.com/cloudfoundry/jibber_jabber")
+    (synopsis "Jibber Jabber")
+    (description
+     "Jibber Jabber is a GoLang Library that can be used to detect an operating
+system's current language.")
+    (license license:asl2.0)))
