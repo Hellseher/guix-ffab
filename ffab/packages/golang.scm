@@ -1521,3 +1521,27 @@ implementation as closely while remaining idiomatic and easy to use.")
 modern CLI interfaces.  In addition to providing an interface, Cobra
 simultaneously provides a controller to organize your application code.")
     (license license:asl2.0)))
+
+;; 20220803T212310+0100
+(define-public go-github-com-arbovm-levenshtein
+  (package
+    (name "go-github-com-arbovm-levenshtein")
+    (version "0.0.0-20160628152529-48b4e1c0c4d0")
+    (source
+     (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/arbovm/levenshtein")
+                    (commit (go-version->git-ref version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32 "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/arbovm/levenshtein"))
+    (home-page "https://github.com/arbovm/levenshtein")
+    (synopsis "Levenshtein Distance")
+    (description
+     "@url{http://golang.org,Go} package to calculate the
+@url{http://en.wikipedia.org/wiki/Levenshtein_distance,Levenshtein Distance}")
+    (license license:bsd-3)))
