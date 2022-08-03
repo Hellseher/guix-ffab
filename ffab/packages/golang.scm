@@ -1615,3 +1615,31 @@ simultaneously provides a controller to organize your application code.")
     (description
      "Package levenshtein is a Go implementation to calculate Levenshtein Distance.")
     (license license:expat)))
+
+;; 20220803T205520+0100
+(define-public go-github-com-dgryski-trifles
+  (package
+    (name "go-github-com-dgryski-trifles")
+    (version "0.0.0-20220729183022-231ecf6ed548")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/dgryski/trifles")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0pbsldp7mc2a9sww22xshnzvab932zj2r02z6dvwy2mbflvgixxx"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/dgryski/trifles"
+       ;; Source-only package
+       #:tests? #f
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
+    (home-page "https://github.com/dgryski/trifles")
+    (synopsis #f)
+    (description #f)
+    (license license:expat)))
