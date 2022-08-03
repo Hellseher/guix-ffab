@@ -1334,3 +1334,27 @@ system's current language.")
     (synopsis "Small parser for git todo files")
     (description "Small parser for git todo files.")
     (license license:public-domain)))
+
+;; 20220803T200630+0100
+(define-public go-git-sr-ht-emersion-go-scfg
+  (package
+   (name "go-git-sr-ht-emersion-go-scfg")
+   (version "0.0.0-20211215104734-c2c7a15d6c99")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://git.sr.ht/~emersion/go-scfg")
+           (commit (go-version->git-ref version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "02gn8hz8zfv8y0krysx2wv951gw8hmhdfqf1ysidwm7i293365w4"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "git.sr.ht/~emersion/go-scfg"))
+   (propagated-inputs
+    (list go-github-com-google-shlex go-github-com-davecgh-go-spew))
+   (home-page "https://git.sr.ht/~emersion/go-scfg")
+   (synopsis "go-scfg")
+   (description "Package scfg parses configuration files.")
+   (license license:expat)))
