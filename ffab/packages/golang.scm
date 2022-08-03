@@ -1469,3 +1469,25 @@ shell-style rules for quoting and commenting.")
     "This is a parser for graphql, written to mirror the graphql-js reference
 implementation as closely while remaining idiomatic and easy to use.")
    (license license:expat)))
+
+;; 20220803T214141+0100
+(define-public go-github-com-inconshreveable-mousetrap
+  (package
+    (name "go-github-com-inconshreveable-mousetrap")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/inconshreveable/mousetrap")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1mn0kg48xkd74brf48qf5hzp0bc6g8cf5a77w895rl3qnlpfw152"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/inconshreveable/mousetrap"))
+    (home-page "https://github.com/inconshreveable/mousetrap")
+    (synopsis "mousetrap")
+    (description "mousetrap is a tiny library that answers a single question.")
+    (license license:asl2.0)))
