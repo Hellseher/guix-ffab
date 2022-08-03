@@ -1310,3 +1310,27 @@ system's current language.")
     (synopsis "go-errors/errors")
     (description "Package errors provides errors that have stack-traces.")
     (license license:expat)))
+
+;; 20220802T130705+0100
+(define-public go-github-com-fsmiamoto-git-todo-parser
+  (package
+    (name "go-github-com-fsmiamoto-git-todo-parser")
+    (version "0.0.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/fsmiamoto/git-todo-parser")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0jm83d0id8igyifqdcn8rx331jhly8kk4zlh3xid66y39l3hlqwq"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/fsmiamoto/git-todo-parser"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/fsmiamoto/git-todo-parser")
+    (synopsis "Small parser for git todo files")
+    (description "Small parser for git todo files.")
+    (license license:public-domain)))
