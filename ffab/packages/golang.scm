@@ -1358,3 +1358,30 @@ system's current language.")
    (synopsis "go-scfg")
    (description "Package scfg parses configuration files.")
    (license license:expat)))
+
+;; 20220803T200936+0100
+(define-public go-git-sr-ht-emersion-gqlclient
+  (package
+   (name "go-git-sr-ht-emersion-gqlclient")
+   (version "0.0.0-20220713194109-e4b2ae1fac10")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://git.sr.ht/~emersion/gqlclient")
+           (commit (go-version->git-ref version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "1swly21i3i9czc571skx92gs1gyn9i7ya0967m0a5r3m2k7lcix1"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "git.sr.ht/~emersion/gqlclient"))
+   (propagated-inputs
+    (list go-github-com-vektah-gqlparser-v2
+          go-github-com-dave-jennifer
+          go-github-com-agnivade-levenshtein))
+   (home-page "https://git.sr.ht/~emersion/gqlclient")
+   (synopsis "gqlclient")
+   (description
+    "This package provides a GraphQL client and code generator for Go.")
+   (license license:expat)))
