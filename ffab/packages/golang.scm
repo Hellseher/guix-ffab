@@ -1414,3 +1414,27 @@ system's current language.")
     "Package ansiterm provides a Writer that writes out the ANSI escape codes for
 color and styles.")
    (license license:lgpl3)))
+
+;; 20220803T203926+0100
+(define-public go-github-com-google-shlex
+  (package
+   (name "go-github-com-google-shlex")
+   (version "0.0.0-20191202100458-e7afc7fbc510")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/google/shlex")
+           (commit (go-version->git-ref version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "14z8hqyik910wk2qwnzgz8mjsmiamxa0pj55ahbv0jx6j3dgvzfm"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "github.com/google/shlex"))
+   (home-page "https://github.com/google/shlex")
+   (synopsis "")
+   (description
+    "Package shlex implements a simple lexer which splits input in to tokens using
+shell-style rules for quoting and commenting.")
+   (license license:asl2.0)))
