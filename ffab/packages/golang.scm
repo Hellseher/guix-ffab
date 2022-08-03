@@ -1385,3 +1385,32 @@ system's current language.")
    (description
     "This package provides a GraphQL client and code generator for Go.")
    (license license:expat)))
+
+;; 20220803T201334+0100
+(define-public go-github-com-juju-ansiterm
+  (package
+   (name "go-github-com-juju-ansiterm")
+   (version "1.0.0")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/juju/ansiterm")
+           (commit (string-append "v" version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "05mk7mlvg11dd6b0j0wlq547ghbmx2ywwrlbcb4kddpg7qaqp1va"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "github.com/juju/ansiterm"))
+   (propagated-inputs
+    (list go-gopkg-in-check-v1
+          go-github-com-mattn-go-isatty
+          go-github-com-mattn-go-colorable
+          go-github-com-lunixbochs-vtclean))
+   (home-page "https://github.com/juju/ansiterm")
+   (synopsis "ansiterm")
+   (description
+    "Package ansiterm provides a Writer that writes out the ANSI escape codes for
+color and styles.")
+   (license license:lgpl3)))
