@@ -1567,3 +1567,25 @@ simultaneously provides a controller to organize your application code.")
     (synopsis "Brenda")
     (description "Package brenda is a boolean expression solver for Go AST")
     (license license:expat)))
+
+;; 20220803T211446+0100
+(define-public go-github-com-dave-jennifer
+  (package
+    (name "go-github-com-dave-jennifer")
+    (version "1.5.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/dave/jennifer")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "105achj59b8w7df07vwvzgap58pbb605m7hncz152ckg747aj8hx"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/dave/brenda"))
+    (home-page "https://github.com/dave/jennifer")
+    (synopsis "Code generator for Golang")
+    (description "Package brenda is a boolean expression solver for Go AST")
+    (license license:expat)))
