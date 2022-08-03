@@ -1438,3 +1438,34 @@ color and styles.")
     "Package shlex implements a simple lexer which splits input in to tokens using
 shell-style rules for quoting and commenting.")
    (license license:asl2.0)))
+
+;; 20220803T204415+0100
+(define-public go-github-com-vektah-gqlparser-v2
+  (package
+   (name "go-github-com-vektah-gqlparser-v2")
+   (version "2.4.7")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/vektah/gqlparser")
+           (commit (string-append "v" version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "174hq1mdk9cc3jvhr810m5z9s5yziria9p5w9311g7ykbzq1yyqs"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "github.com/vektah/gqlparser/v2"))
+   (propagated-inputs
+    (list go-github-com-agnivade-levenshtein
+          go-github-com-andreyvit-diff
+          go-github-com-sergi-go-diff
+          go-github-com-stretchr-testify
+          go-golang-org-x-tools
+          go-gopkg-in-yaml-v2))
+   (home-page "https://github.com/vektah/gqlparser")
+   (synopsis "Port of the parser from graphql-js into golang")
+   (description
+    "This is a parser for graphql, written to mirror the graphql-js reference
+implementation as closely while remaining idiomatic and easy to use.")
+   (license license:expat)))
