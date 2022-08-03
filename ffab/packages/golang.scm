@@ -1491,3 +1491,33 @@ implementation as closely while remaining idiomatic and easy to use.")
     (synopsis "mousetrap")
     (description "mousetrap is a tiny library that answers a single question.")
     (license license:asl2.0)))
+
+;; 20220803T214016+0100
+(define-public go-github-com-spf13-cobra-1.5
+  (package
+    (name "go-github-com-spf13-cobra-1.5")
+    (version "1.5.0") ; Newer version than in Guix upstream.
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/spf13/cobra")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0qavvyljh509w5xb46lfkak670szp6v4jswwar1hx13cpid8gk5d"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/spf13/cobra"))
+    (propagated-inputs
+     (list go-gopkg-in-yaml-v2
+           go-github-com-spf13-pflag
+           go-github-com-inconshreveable-mousetrap
+           go-github-com-cpuguy83-go-md2man-v2))
+    (home-page "https://github.com/spf13/cobra")
+    (synopsis "Overview")
+    (description
+     "Package cobra is a commander providing a simple interface to create powerful
+modern CLI interfaces.  In addition to providing an interface, Cobra
+simultaneously provides a controller to organize your application code.")
+    (license license:asl2.0)))
