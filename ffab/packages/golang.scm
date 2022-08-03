@@ -1669,3 +1669,30 @@ simultaneously provides a controller to organize your application code.")
     "diff provides quick and easy string diffing functions based on
 github.com/sergi/go-diff, mainly for diffing strings in tests")
    (license license:expat)))
+
+;; 20220803T204715+0100
+(define-public go-github-com-agnivade-levenshtein
+  (package
+   (name "go-github-com-agnivade-levenshtein")
+   (version "1.1.1")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/agnivade/levenshtein")
+           (commit (string-append "v" version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "0cq6jc032gxssiqnlkq3y3i1b19qsg73ysgxfbn6hwf8qnrzc2xn"))))
+   (build-system go-build-system)
+   (arguments
+    '(#:import-path "github.com/agnivade/levenshtein"))
+   (native-inputs
+    (list go-github-com-dgryski-trifles))
+   (propagated-inputs
+    (list go-github-com-arbovm-levenshtein))
+   (home-page "https://github.com/agnivade/levenshtein")
+   (synopsis "levenshtein")
+   (description
+    "Package levenshtein is a Go implementation to calculate Levenshtein Distance.")
+   (license license:expat)))
