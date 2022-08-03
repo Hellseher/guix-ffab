@@ -1545,3 +1545,25 @@ simultaneously provides a controller to organize your application code.")
      "@url{http://golang.org,Go} package to calculate the
 @url{http://en.wikipedia.org/wiki/Levenshtein_distance,Levenshtein Distance}")
     (license license:bsd-3)))
+
+;; 20220803T210624+0100
+(define-public go-github-com-dave-brenda
+  (package
+    (name "go-github-com-dave-brenda")
+    (version "1.1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/dave/brenda")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1bcc06ifb9hg0g4qqfrqai1m2r4n1gwix3jaydjzq38c7zwcyd1v"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/dave/brenda"))
+    (home-page "https://github.com/dave/brenda")
+    (synopsis "Brenda")
+    (description "Package brenda is a boolean expression solver for Go AST")
+    (license license:expat)))
