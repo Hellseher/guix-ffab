@@ -1734,3 +1734,26 @@ github.com/sergi/go-diff, mainly for diffing strings in tests")
     "Package pretty provides pretty-printing for Go values.  This is useful during
 debugging, to avoid wrapping long output lines in the terminal.")
    (license license:expat)))
+
+;; 20220804T214912+0100
+(define-public go-github-com-anmitsu-go-shlex
+  (package
+    (name "go-github-com-anmitsu-go-shlex")
+    (version "0.0.0-20200514113438-38f4b401e2be")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/anmitsu/go-shlex")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "17iz68yzbnr7y4s493asbagbv79qq8hvl2pkxvm6bvdkgphj8w1g"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/anmitsu/go-shlex"))
+    (home-page "https://github.com/anmitsu/go-shlex")
+    (synopsis "Library to make a lexical analyzer like Unix shell for golang")
+    (description
+"Package shlex provides a simple lexical analysis like Unix shell.")
+    (license license:expat)))
