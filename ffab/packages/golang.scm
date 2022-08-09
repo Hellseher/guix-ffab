@@ -1698,3 +1698,39 @@ github.com/sergi/go-diff, mainly for diffing strings in tests")
    (description
     "Package levenshtein is a Go implementation to calculate Levenshtein Distance.")
    (license license:expat)))
+
+;; 20220804T215209+0100
+(define-public go-github-com-niemeyer-pretty
+  (package
+   (name "go-github-com-niemeyer-pretty")
+   (version "0.0.0-20200227124842-a10e7caefd8e")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/niemeyer/pretty")
+           (commit (go-version->git-ref version))))
+     (file-name (git-file-name name version))
+     (sha256
+      (base32 "1jmazh4xzaa3v6g46hz60q2z7nmqs9l9cxdzmmscn3kbcs2znq4v"))))
+   (build-system go-build-system)
+   (arguments
+    ;; FIXME: (Sharlatan-20220809T112607+0100): Test failed with:
+    ;;
+    ;; # github.com/niemeyer/pretty
+    ;; src/github.com/niemeyer/pretty/formatter.go:40:9: conversion from int to
+    ;; string yields a string of one rune, not a string of digits (did you mean
+    ;; fmt.Sprint(x)?)
+    ;; FAIL    github.com/niemeyer/pretty [build failed]
+    ;; FAIL
+    ;;
+    '(#:tests? #f
+      #:import-path "github.com/niemeyer/pretty"))
+   (propagated-inputs
+    (list go-github-com-kr-text))
+   (home-page "https://github.com/niemeyer/pretty")
+   (synopsis "Pretty printing for Golang values")
+   (description
+    "Package pretty provides pretty-printing for Go values.  This is useful during
+debugging, to avoid wrapping long output lines in the terminal.")
+   (license license:expat)))
