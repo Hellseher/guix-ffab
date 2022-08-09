@@ -20,10 +20,11 @@
   #:use-module (ffab packages protobuf)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
-  #:use-module (gnu packages golang)
-  #:use-module ((gnu packages syncthing) #:select (go-github-com-kballard-go-shellquote))
   #:use-module (gnu packages check)
+  #:use-module (gnu packages golang)
+  #:use-module (gnu packages syncthing)
   #:use-module (gnu packages vim)
+  #:use-module (gnu packages xdisorg)
   #:use-module (guix build-system go)
   #:use-module (guix download)
   #:use-module (guix gexp)
@@ -244,7 +245,7 @@ package, but can be used in other contexts too.")
      (list go-github-com-gin-gonic-gin
            go-github-com-go-errors-errors
            go-github-com-go-martini-martini
-           go-github-com-google-go-cmp
+           go-github-com-google-go-cmp-cmp
            go-github-com-kataras-iris-v12
            go-github-com-labstack-echo-v4
            go-github-com-pingcap-errors
@@ -347,7 +348,6 @@ non-intrusive, and encourages use of net/http Handlers.")
       "Package echo implements high performance, minimalist Go web framework.")
     (license license:expat)))
 
-
 ;; 20220731T214252+0100
 (define-public go-github-com-atotto-clipboard
   (package
@@ -365,6 +365,8 @@ non-intrusive, and encourages use of net/http Handlers.")
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/atotto/clipboard"))
+    (inputs
+     (list xsel))
     (home-page "https://github.com/atotto/clipboard")
     (synopsis "Clipboard for Go")
     (description "Package clipboard read/write on clipboard")
