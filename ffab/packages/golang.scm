@@ -1874,3 +1874,32 @@ free to implement mocks and testing over filesystem operations.")
      "This package provides git repository fixtures used by
 @url{https://github.com/go-git/go-git,go-git}")
     (license license:asl2.0)))
+
+;; 20220804T214239+0100
+(define-public go-github-com-gliderlabs-ssh
+  (package
+    (name "go-github-com-gliderlabs-ssh")
+    (version "0.3.4")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/gliderlabs/ssh")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "18g7czcx3hhcivqr2z780z57fh6bxd4lh2qpzshw2jgvll7k85qn"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/gliderlabs/ssh"))
+    (propagated-inputs
+     (list go-golang-org-x-sys
+           go-golang-org-x-crypto
+           go-github-com-anmitsu-go-shlex))
+    (home-page "https://github.com/gliderlabs/ssh")
+    (synopsis "SSH server in Golang")
+    (description
+     "Package ssh wraps the crypto/ssh package with a higher-level API for building
+SSH servers.  The goal of the API was to make it as simple as using net/http, so
+the API is very similar.")
+    (license license:bsd-3)))
