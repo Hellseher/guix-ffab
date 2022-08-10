@@ -1846,3 +1846,31 @@ interface based on the @code{os} standard library, allowing to develop
 applications without dependency on the underlying storage.  Makes it virtually
 free to implement mocks and testing over filesystem operations.")
     (license license:asl2.0)))
+
+;; 20220804T214406+0100
+(define-public go-github-com-go-git-go-git-fixtures-v4
+  (package
+    (name "go-github-com-go-git-go-git-fixtures-v4")
+    (version "4.3.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/go-git/go-git-fixtures")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1d6qs2mzbhz95aflpjh6ijywvb4ys73jvk2v30mickax3gmm2vlw"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/go-git/go-git-fixtures/v4"))
+    (propagated-inputs
+     (list go-gopkg-in-check-v1
+           go-github-com-stretchr-testify
+           go-github-com-go-git-go-billy-v5))
+    (home-page "https://github.com/go-git/go-git-fixtures")
+    (synopsis "Tests runner fixes for Golang module go-git")
+    (description
+     "This package provides git repository fixtures used by
+@url{https://github.com/go-git/go-git,go-git}")
+    (license license:asl2.0)))
