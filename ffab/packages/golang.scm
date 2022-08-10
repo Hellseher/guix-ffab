@@ -1815,3 +1815,34 @@ package is similar in functionality to the go built-in flag package but provides
 more options and uses reflection to provide a convenient and succinct way of
 specifying command line options.")
     (license license:bsd-3)))
+
+;; 20220804T214322+0100
+(define-public go-github-com-go-git-go-billy-v5
+  (package
+    (name "go-github-com-go-git-go-billy-v5")
+    (version "5.3.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/go-git/go-billy")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0x5z649f47lwsqw8578a5hvgjaxp0zz6cg184s0n68xdqhza3m2i"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/go-git/go-billy/v5"))
+    (propagated-inputs
+     (list go-gopkg-in-check-v1
+           go-golang-org-x-sys
+           go-github-com-niemeyer-pretty
+           go-github-com-kr-text))
+    (home-page "https://github.com/go-git/go-billy")
+    (synopsis "Interface filesystem abstraction for Golang")
+    (description
+     "The missing interface filesystem abstraction for Go.  Billy implements an
+interface based on the @code{os} standard library, allowing to develop
+applications without dependency on the underlying storage.  Makes it virtually
+free to implement mocks and testing over filesystem operations.")
+    (license license:asl2.0)))
