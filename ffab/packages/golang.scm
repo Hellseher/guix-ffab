@@ -25,11 +25,13 @@
   #:use-module (gnu packages syncthing)
   #:use-module (gnu packages vim)
   #:use-module (gnu packages xdisorg)
+  #:use-module (guix build utils)
   #:use-module (guix build-system go)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
-  #:use-module (guix packages))
+  #:use-module (guix packages)
+  #:use-module (ice-9 match))
 
 ;; 20210710T203819+0100
 (define-public go-golang-org-x-tools-gopls
@@ -1757,3 +1759,59 @@ debugging, to avoid wrapping long output lines in the terminal.")
     (description
 "Package shlex provides a simple lexical analysis like Unix shell.")
     (license license:expat)))
+
+;; 20220804T214550+0100
+(define-public go-github-com-jessevdk-go-flags
+  (package
+    (name "go-github-com-jessevdk-go-flags")
+    (version "1.5.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jessevdk/go-flags")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "13ixw1yx4bvcj66lkc8zgwf9j7gkvj686g991gycdsafvdvca0lj"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/jessevdk/go-flags"
+       #:modules ((ice-9 match)
+                  (guix build go-build-system)
+                  (guix build utils))
+       #:phases
+       (modify-phases %standard-phases
+         (add-before 'check 'patch-diff-path
+           (lambda* (#:key inputs #:allow-other-keys)
+             (substitute* "src/github.com/jessevdk/go-flags/assert_test.go"
+               (("diff\",")
+                (string-append (search-input-file inputs "/bin/diff") "\",")))))
+         (add-after 'patch-diff-path 'set-epoch-time
+           (lambda  _
+             (setenv "SOURCE_DATE_EPOCH" "1630000000")))
+         (add-after 'patch-diff-path 'disable-failing-tests
+           (lambda _
+             ;; Disable failing tests:
+             (for-each
+              (match-lambda
+                ((file test)
+                 (let ((regex (string-append "^(func\\s+)(" test "\\()")))
+                   (substitute* file
+                     ((regex all before test_name)
+                      (string-append before "Disabled" test_name))))))
+              ;; Issue with epoch time, remove when it's merged
+              ;; https://github.com/jessevdk/go-flags/pull/376
+              '(("src/github.com/jessevdk/go-flags/help_test.go" "TestMan"))))))))
+    (native-inputs
+     (list diffutils))
+    (propagated-inputs
+     (list go-golang-org-x-sys))
+    (home-page "https://github.com/jessevdk/go-flags")
+    (synopsis "Command line arguments parsing library for Golang")
+    (description
+     "Package flags provides an extensive command line option parser.  The flags
+package is similar in functionality to the go built-in flag package but provides
+more options and uses reflection to provide a convenient and succinct way of
+specifying command line options.")
+    (license license:bsd-3)))
