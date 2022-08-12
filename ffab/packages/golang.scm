@@ -2074,3 +2074,28 @@ never will.")
      "Package fuzzy provides fuzzy string matching optimized for filenames and code
 symbols in the style of Sublime Text, VSCode, IntelliJ IDEA et al.")
     (license license:expat)))
+
+;; 20220803T221927+0100
+(define-public go-github-com-openpeedeep-xdg
+  (package
+    (name "go-github-com-openpeedeep-xdg")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/OpenPeeDeeP/xdg")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1yk4hlji28pp69bvvv9m1ja1bn6njfhf8p0rwwyszjbk0qnpf8q6"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/OpenPeeDeeP/xdg"))
+    (native-inputs
+     (list go-github-com-stretchr-testify ))
+    (home-page "https://github.com/OpenPeeDeeP/xdg")
+    (synopsis "Golang cross platform package that follows the XDG Standard")
+    (description
+     "Package xdg impelements the XDG standard for application file locations.")
+    (license license:bsd-3)))
