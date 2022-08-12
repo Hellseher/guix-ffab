@@ -2015,3 +2015,27 @@ The Unicode Standard defines UTF-8 byte order marks as the byte sequence
 library provides no support for UTF-8 byte order marks, and it looks like it
 never will.")
     (license license:expat)))
+
+;; 20220803T223249+0100
+(define-public go-github-com-sanity-io-litter
+  (package
+    (name "go-github-com-sanity-io-litter")
+    (version "1.5.5")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/sanity-io/litter")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1vgzwl9y50x4wdiaiqdbr4y9h1dvcrhdaljd65dc3ypqcbp0ynhg"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/sanity-io/litter"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/sanity-io/litter")
+    (synopsis "Pretty printer library for Golang data structures")
+    (description "Litter is provided by")
+    (license license:expat)))
