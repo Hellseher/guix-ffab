@@ -2039,3 +2039,38 @@ never will.")
     (synopsis "Pretty printer library for Golang data structures")
     (description "Litter is provided by")
     (license license:expat)))
+
+(define-public go-github-com-kylelemons-godebug-pretty
+  (package
+    (inherit go-github-com-kylelemons-godebug)
+    (name "go-github-com-kylelemons-godebug-pretty")
+    (arguments
+     '(#:import-path "github.com/kylelemons/godebug/pretty"
+       #:unpack-path "github.com/kylelemons/godebug"))))
+
+;; 20220803T222100+0100
+(define-public go-github-com-sahilm-fuzzy
+  (package
+    (name "go-github-com-sahilm-fuzzy")
+    (version "0.1.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/sahilm/fuzzy")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1x6wrlbqgjkhr1wdvw7vzn6h8nx0p60540slkzfnrvghvbxr7lgb"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/sahilm/fuzzy"))
+    (native-inputs
+     (list go-github-com-kylelemons-godebug-pretty
+           go-github-com-kylelemons-godebug))
+    (home-page "https://github.com/sahilm/fuzzy")
+    (synopsis "Fuzzy string matching for Golang")
+    (description
+     "Package fuzzy provides fuzzy string matching optimized for filenames and code
+symbols in the style of Sublime Text, VSCode, IntelliJ IDEA et al.")
+    (license license:expat)))
