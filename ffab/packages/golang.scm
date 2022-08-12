@@ -1985,3 +1985,33 @@ fast visiting of items in some particular ways:
     (description
      "Package @code{terminfo} implements reading terminfo files in pure Golang.")
     (license license:expat)))
+
+;; 20220803T223445+0100
+(define-public go-github-com-spkg-bom
+  (package
+    (name "go-github-com-spkg-bom")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/spkg/bom")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ksf6aynyh4rk96kyydw7acslhbwa875h91qid2lvszghp86g8pd"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/spkg/bom"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/spkg/bom")
+    (synopsis "Strip UTF-8 byte order marks for Golang")
+    (description
+     "Package bom is used to clean up UTF-8 Byte Order Marks.
+
+The Unicode Standard defines UTF-8 byte order marks as the byte sequence
+@code{0xEF,0xBB,0xBF}, but neither requires nor recommends their use.  The Go standard
+library provides no support for UTF-8 byte order marks, and it looks like it
+never will.")
+    (license license:expat)))
