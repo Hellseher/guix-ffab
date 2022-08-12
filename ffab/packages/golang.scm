@@ -1931,3 +1931,34 @@ the API is very similar.")
 is used to route traffic between a client and server through an intermediate
 proxy layer.  This can be used to bypass firewalls or NATs.")
     (license license:expat)))
+
+;; 20220803T224241+0100
+(define-public go-gopkg-in-ozeidan-fuzzy-patricia-v3
+  (package
+    (name "go-gopkg-in-ozeidan-fuzzy-patricia-v3")
+    (version "3.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gopkg.in/ozeidan/fuzzy-patricia.v3")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0wn6fq1g7f6djrj407r8nimm5fyp7lji22ng7a4rg8pf7ihrqzrp"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:unpack-path "gopkg.in/ozeidan/fuzzy-patricia.v3"
+       #:import-path "gopkg.in/ozeidan/fuzzy-patricia.v3/patricia"))
+    (home-page "https://gopkg.in/ozeidan/fuzzy-patricia.v3")
+    (synopsis "Radix tree implementation in Golang")
+    (description
+     "This package provides generic patricia trie (also called radix tree)
+implemented in Golang.  The patricia trie as implemented in this library enables
+fast visiting of items in some particular ways:
+@itemize
+@item visit all items saved in the tree
+@item visit all items matching particular prefix (visit subtree)
+@item given a string, visit all items matching some prefix of that string
+@end itemize")
+    (license license:expat)))
