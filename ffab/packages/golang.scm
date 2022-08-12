@@ -1962,3 +1962,26 @@ fast visiting of items in some particular ways:
 @item given a string, visit all items matching some prefix of that string
 @end itemize")
     (license license:expat)))
+
+;; 20220803T224100+0100
+(define-public go-github-com-xo-terminfo
+  (package
+    (name "go-github-com-xo-terminfo")
+    (version "0.0.0-20210125001918-ca9a967f8778")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/xo/terminfo")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "05gdcvcbwcrcwxznhvs1q1xh4irz2d10v2mz179pydjh30kjc0j5"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/xo/terminfo"))
+    (home-page "https://github.com/xo/terminfo")
+    (synopsis "Terminfo implementation in Golang")
+    (description
+     "Package @code{terminfo} implements reading terminfo files in pure Golang.")
+    (license license:expat)))
