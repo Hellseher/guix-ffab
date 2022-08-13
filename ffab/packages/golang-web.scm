@@ -19,10 +19,12 @@
 (define-module (ffab packages golang-web)
   #:use-module (ffab packages protobuf)
   #:use-module (ffab packages golang)
-  #:use-module ((guix licenses) #:prefix license:)
+  #:use-module ((guix licenses)
+                #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages golang)
-  #:use-module ((gnu packages syncthing) #:select (go-github-com-kballard-go-shellquote))
+  #:use-module ((gnu packages syncthing)
+                #:select (go-github-com-kballard-go-shellquote))
   #:use-module (gnu packages check)
   #:use-module (gnu packages vim)
   #:use-module (guix build-system go)
@@ -36,41 +38,40 @@
   (package
     (name "go-github-com-gin-gonic-gin")
     (version "1.8.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/gin-gonic/gin")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0fbs44q2w1cx891l3i1jxfrvf9v3ar3hlb8vnqlg7nbkch04jkdf"))))
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/gin-gonic/gin")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0fbs44q2w1cx891l3i1jxfrvf9v3ar3hlb8vnqlg7nbkch04jkdf"))))
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/gin-gonic/gin"))
-    (propagated-inputs
-     (list go-github-com-davecgh-go-spew
-           go-github-com-gin-contrib-sse
-           go-github-com-go-playground-locales
-           go-github-com-go-playground-universal-translator
-           go-github-com-go-playground-validator-v10
-           go-github-com-goccy-go-json
-           go-github-com-json-iterator-go
-           go-github-com-leodido-go-urn
-           go-github-com-mattn-go-isatty
-           go-github-com-modern-go-concurrent
-           go-github-com-modern-go-reflect2
-           go-github-com-pelletier-go-toml-v2
-           go-github-com-pmezard-go-difflib
-           go-github-com-stretchr-testify
-           go-github-com-ugorji-go-codec
-           go-golang-org-x-crypto
-           go-golang-org-x-net
-           go-golang-org-x-sys
-           go-golang-org-x-text
-           go-google-golang-org-protobuf
-           go-gopkg-in-yaml-v2
-           go-gopkg-in-yaml-v3))
+    (propagated-inputs (list go-github-com-davecgh-go-spew
+                             go-github-com-gin-contrib-sse
+                             go-github-com-go-playground-locales
+                             go-github-com-go-playground-universal-translator
+                             go-github-com-go-playground-validator-v10
+                             go-github-com-goccy-go-json
+                             go-github-com-json-iterator-go
+                             go-github-com-leodido-go-urn
+                             go-github-com-mattn-go-isatty
+                             go-github-com-modern-go-concurrent
+                             go-github-com-modern-go-reflect2
+                             go-github-com-pelletier-go-toml-v2
+                             go-github-com-pmezard-go-difflib
+                             go-github-com-stretchr-testify
+                             go-github-com-ugorji-go-codec
+                             go-golang-org-x-crypto
+                             go-golang-org-x-net
+                             go-golang-org-x-sys
+                             go-golang-org-x-text
+                             go-google-golang-org-protobuf
+                             go-gopkg-in-yaml-v2
+                             go-gopkg-in-yaml-v3))
     (home-page "https://gin-gonic.com/")
     (synopsis "Golang HTTP web framework")
     (description
@@ -103,33 +104,33 @@ a log file, to a database and send them through the network.
 
 @item Rendering built-in :: Gin provides an easy to use API for JSON, XML and
 HTML rendering.
-@end itemize\n")
+@end itemize
+")
     (license license:expat)))
 
 ;; 20220731T195956+0100
 (define-public go-github-com-gin-contrib-sse
   (package
-   (name "go-github-com-gin-contrib-sse")
-   (version "0.1.0")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/gin-contrib/sse")
-           (commit (string-append "v" version))))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "072nq91a65n5xvwslqjyvydfd0mfpnvb3vwjyfvmzm1ym96wr1nd"))))
-   (build-system go-build-system)
-   (arguments
-    '(#:import-path "github.com/gin-contrib/sse"))
-   (native-inputs
-    (list go-github-com-stretchr-testify))
-   (home-page "https://github.com/gin-contrib/sse")
-   (synopsis "Server-Sent Events for Golang")
-   (description
-    "Server-sent events (SSE) is a technology where a browser receives automatic
+    (name "go-github-com-gin-contrib-sse")
+    (version "0.1.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/gin-contrib/sse")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "072nq91a65n5xvwslqjyvydfd0mfpnvb3vwjyfvmzm1ym96wr1nd"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/gin-contrib/sse"))
+    (native-inputs (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/gin-contrib/sse")
+    (synopsis "Server-Sent Events for Golang")
+    (description
+     "Server-sent events (SSE) is a technology where a browser receives automatic
 updates from a server via HTTP connection.  The Server-Sent Events EventSource
 API is @url{http://www.w3.org/TR/2009/WD-eventsource-20091029/,standardized as
 part of HTML5[1] by the W3C}.")
-   (license license:expat)))
+    (license license:expat)))
