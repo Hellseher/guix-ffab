@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages golang)
+  #:use-module (ffab packages golang-web)
   #:use-module (ffab packages protobuf)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
@@ -36,7 +37,8 @@
   #:use-module (ice-9 match))
 
 ;; 20210710T203819+0100
-(define-public go-golang-org-x-tools-gopls
+;; NOTE: (Sharlatan-20220813T152536+0100): it needs more lvoe!
+(define go-golang-org-x-tools-gopls
   (package
     (version "0.7.4")
     (name "go-golang-org-x-tools-gopls")
@@ -48,7 +50,7 @@
              (commit (string-append "gopls/v" version))))
        (file-name (string-append "gopls-" version))
        (sha256
-        (base32 "07mfghhp4ry934hab8845jcyin6b7niwbpbz7x5kclmf1sy1j97f"))))
+        (base32 "1zzil5px8maqnx22i30rqxc3avnvw9jrb8dhw64lif6kml9694mn"))))
     (build-system go-build-system)
     (arguments
      '(#:import-path "golang.org/x/tools/gopls"
@@ -94,7 +96,8 @@ editor.")
     (license license:bsd-3)))
 
 ;; 20220731T214206+0100
-(define-public go-mvdan-cc-gofumpt
+;; NOTE: (Sharlatan-20220813T152559+0100):  https://issues.guix.gnu.org/52915
+(define go-mvdan-cc-gofumpt
   (package
     (name "go-mvdan-cc-gofumpt")
     (version "0.1.1")
@@ -206,31 +209,51 @@ replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (name "go-github-com-golang-mock-mockgen")
     (version "1.6.0")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/golang/mock")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "1hara8j0x431njjhqxfrg1png7xa1gbrpwza6ya4mwlx76hppap4"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/golang/mock")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1hara8j0x431njjhqxfrg1png7xa1gbrpwza6ya4mwlx76hppap4"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/golang/mock/mockgen"
+     ;; NOTE: (Sharlatan-20220813T151655+0100): Failed tests:
+     ;;
+     ;; --- FAIL: TestFileParser_ParseFile (0.01s)
+     ;;     parse_test.go:25: Unexpected error: internal/tests/custom_package_name/greeter/greeter.go:17:11: failed parsing returns: internal/tests/custom_package_name/greeter/greeter.go:17:14: unknown package "client"
+     ;; --- FAIL: TestFileParser_ParsePackage (0.01s)
+     ;;     parse_test.go:56: Unexpected error: go/build: go list github.com/golang/mock/mockgen/internal/tests/custom_package_name/greeter: exit status 1
+     ;;         go: golang.org/x/mod@v0.4.2: Get "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial tcp: lookup proxy.golang.org on [::1]:53: read udp [::1]:54944->[::1]:53: read: connection refused
+     ;;         go: golang.org/x/mod@v0.4.2: Get "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial tcp: lookup proxy.golang.org on [::1]:53: read udp [::1]:54944->[::1]:53: read: connection refused
+     ;; --- FAIL: TestImportsOfFile (0.01s)
+     ;;     parse_test.go:96: Expected imports to have key "client"
+     ;;     parse_test.go:106: Expected import not to have key "v1"
+     ;; --- FAIL: TestParseArrayWithConstLength (0.00s)
+     ;;     parse_test.go:136: Unexpected error: internal/tests/const_array_length/input.go:12:5: failed parsing returns: internal/tests/const_array_length/input.go:12:9: unknown package in array length: can't find import: "math"
+     ;; FAIL
+     ;; FAIL    github.com/golang/mock/mockgen  0.119s
+     ;; FAI
+     '(#:tests? #f
+       #:import-path "github.com/golang/mock/mockgen"
        #:unpack-path "github.com/golang/mock"))
     (propagated-inputs
-      `(("go-golang-org-x-tools" ,go-golang-org-x-tools)
-        ("go-golang-org-x-mod" ,go-golang-org-x-mod)))
+     (list go-golang-org-x-mod
+           go-golang-org-x-tools
+           go-golang-org-x-xerrors))
     (home-page "https://github.com/golang/mock")
-    (synopsis "gomock")
+    (synopsis "Mocking framework for Golang")
     (description
-      "gomock is a mocking framework for the @url{http://golang.org/,Go
+     "gomock is a mocking framework for the @url{http://golang.org/,Go
 programming language}. It integrates well with Go's built-in @code{testing}
 package, but can be used in other contexts too.")
     (license license:asl2.0)))
 
 ;; 20220730T151556+0100
-(define-public go-github-com-getsentry-sentry-go
+;; NOTE: (Sharlatan-20220813T155759+0100): WIP needs more love to complete
+;; packaging.
+(define go-github-com-getsentry-sentry-go
   (package
     (name "go-github-com-getsentry-sentry-go")
     (version "0.13.0")
@@ -311,24 +334,34 @@ non-intrusive, and encourages use of net/http Handlers.")
     (name "go-github-com-pingcap-errors")
     (version "0.11.4")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/pingcap/errors")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "02k6b30m42aya763fnwx3paq4r8h28yav4i2kv2z4r28r70xxcgn"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/pingcap/errors")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "02k6b30m42aya763fnwx3paq4r8h28yav4i2kv2z4r28r70xxcgn"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/pingcap/errors"))
+     ;; NOTE: (Sharlatan-20220813T151249+0100): Fix tests
+     ;;
+     ;; # github.com/pingcap/errors
+     ;; src/github.com/pingcap/errors/example_test.go:6:2: cannot find package "github.com/pkg/errors" in any of:
+     ;;         /gnu/store/d06665qgp3zqp05fr0q1sdbfnpvxywsc-go-1.17.11/lib/go/src/github.com/pkg/errors (from $GOROOT)
+     ;;         /tmp/guix-build-go-github-com-pingcap-errors-0.11.4.drv-0/src/github.com/pkg/errors (from $GOPATH)
+     ;; FAIL    github.com/pingcap/errors [setup failed]
+     ;; FAIL
+     '(#:tests? #f
+       #:import-path "github.com/pingcap/errors"))
     (home-page "https://github.com/pingcap/errors")
-    (synopsis "errors")
+    (synopsis "Simple error handling primitives for Golang")
     (description "Package errors provides simple error handling primitives.")
     (license license:bsd-2)))
 
 ;;20211218T170204+0000
-(define-public go-github-com-labstack-echo-v4
+;; ;;NOTE: (Sharlatan-20220813T150447+0100): Fix build by pack missing inputs
+(define go-github-com-labstack-echo-v4
   (package
     (name "go-github-com-labstack-echo-v4")
     (version "4.6.1")
@@ -368,7 +401,22 @@ non-intrusive, and encourages use of net/http Handlers.")
         (base32 "0ycd8zkgsq9iil9svhlwvhcqwcd7vik73nf8rnyfnn10gpjx97k5"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/atotto/clipboard"))
+     ;; NOTE: (Sharlatan-20220813T144650+0100): Test need more love to pass, failing on:
+     ;;
+     ;; starting phase `check'
+     ;; --- FAIL: TestCopyAndPaste (0.01s)
+     ;;     clipboard_test.go:18: exit status 1
+     ;; --- FAIL: TestMultiCopyAndPaste (0.00s)
+     ;;     clipboard_test.go:37: exit status 1
+     ;; --- FAIL: Example (0.00s)
+     ;; got:
+     ;; want:
+     ;; 日本語
+     ;; FAIL
+     ;; FAIL    github.com/atotto/clipboard     0.012s
+     ;; FAIL
+     '(#:tests? #f
+       #:import-path "github.com/atotto/clipboard"))
     (inputs
      (list xsel))
     (home-page "https://github.com/atotto/clipboard")
@@ -507,7 +555,7 @@ range of pretty terminal strings.")
 ;;+end_github.com/jesseduffield
 
 ;; 20220731T214415+0100
-(define-public go-github-com-alecaivazis-survey-v2
+(define go-github-com-alecaivazis-survey-v2
   (package
     (name "go-github-com-alecaivazis-survey-v2")
     (version "2.3.2")
@@ -575,31 +623,30 @@ larged been influenced by st, rxvt, xterm, and iTerm as reference.")
     (license license:expat)))
 
 ;; 20220731T214435+0100
-;; archived project: moved to https://github.com/creack/pty
-(define-public go-github-com-kr-pty
-  (hidden-package
-   (package
-     (name "go-github-com-kr-pty")
-     (version "1.1.8")
-     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-              (url "https://github.com/kr/pty.git")
-              (commit (string-append "v" version))))
-        (file-name (git-file-name "go-github-com-kr-pty" version))
-        (sha256
-         (base32
-          "1vcl6f90n0f8s8b4fyh0832ilybjqcypqyj233lqj1hx62fvgdbk"))))
-     (build-system go-build-system)
-     (arguments
-      '(#:import-path "github.com/kr/pty"))
-     (propagated-inputs
-      (list go-github-com-creack-pty))
-     (home-page "https://github.com/kr/pty")
-     (synopsis "PTY interface for Go")
-     (description "Pty is a Go package for using Unix pseudo-terminals.")
-     (license license:expat))))
+;; NOTE: (Sharlatan-20220813T155726+0100): archived project: moved to https://github.com/creack/pty
+(define go-github-com-kr-pty
+  (package
+    (name "go-github-com-kr-pty")
+    (version "1.1.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kr/pty.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name "go-github-com-kr-pty" version))
+       (sha256
+        (base32
+         "1vcl6f90n0f8s8b4fyh0832ilybjqcypqyj233lqj1hx62fvgdbk"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/kr/pty"))
+    (propagated-inputs
+     (list go-github-com-creack-pty))
+    (home-page "https://github.com/kr/pty")
+    (synopsis "PTY interface for Go")
+    (description "Pty is a Go package for using Unix pseudo-terminals.")
+    (license license:expat)))
 
 ;; 20220731T214441+0100
 (define-public go-github-com-netflix-go-expect
@@ -872,20 +919,20 @@ based on magic numbers.  Features include
 (define-public go-github-com-logrusorgru-aurora
   (package
     (name "go-github-com-logrusorgru-aurora")
-    (version "2.0.3+incompatible")
+    (version "3.0.0")
     (source
       (origin
         (method git-fetch)
         (uri (git-reference
                (url "https://github.com/logrusorgru/aurora")
-               (commit (go-version->git-ref version))))
+               (commit (string-append "v" version))))
         (file-name (git-file-name name version))
         (sha256
-          (base32 "1ck2j2ff2avph07vgq0r1y7hmbqgvk339rvph45dcwgci23lb3pf"))))
+          (base32 "0z7cgj8gl69271d0ag4f4yjbsvbrnfibc96cs01spqf5krv2rzjc"))))
     (build-system go-build-system)
     (arguments '(#:import-path "github.com/logrusorgru/aurora"))
     (home-page "https://github.com/logrusorgru/aurora")
-    (synopsis "Aurora")
+    (synopsis "Golang ultimate ANSI-colors that supports Printf/Sprintf methods")
     (description "Package aurora implements ANSI-colors")
     (license license:unlicense)))
 
@@ -967,25 +1014,31 @@ preserving color.")
     (name "go-github-com-awesome-gocui-keybinding")
     (version "1.0.0")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/awesome-gocui/keybinding")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "0d1nvxs2pd6nc10gm3md2rsd0v33025b8dik1l1iy8klzhiqfd1q"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/awesome-gocui/keybinding")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0d1nvxs2pd6nc10gm3md2rsd0v33025b8dik1l1iy8klzhiqfd1q"))))
     (build-system go-build-system)
     (arguments
-     (list
-      #:import-path "github.com/awesome-gocui/keybinding"))
+     ;; NOTE: (Sharlatan-20220813T145037+0100): Tests failed on:
+     ;; starting phase `check'
+     ;; --- FAIL: TestParse (0.00s)
+     ;;     keybinding_test.go:52: Expected error message 'unsupported keybinding: KeyCtrl! (+1)' but got 'unsupported keybinding: KeyCtrl! (+4)' (trial 19)
+     ;; FAIL
+     ;; FAIL    github.com/awesome-gocui/keybinding     0.001s
+     ;; FAIL
+     `(#:tests? #f
+       #:import-path "github.com/awesome-gocui/keybinding"))
     (propagated-inputs
-      (list
-         go-github-com-awesome-gocui-gocui))
+     (list go-github-com-awesome-gocui-gocui))
     (home-page "https://github.com/awesome-gocui/keybinding")
     (synopsis "keybinding")
     (description
-      "This package provides a golang wrapper for parsing gocui keybindings.")
+     "This package provides a golang wrapper for parsing gocui keybindings.")
     (license license:expat)))
 
 ;; 20220515T223949+0100
@@ -1014,7 +1067,9 @@ preserving color.")
     (license license:bsd-3)))
 
 ;; 20220516T220629+0100
-(define-public go-github-com-microsoft-go-winio
+;; NOTE: (Sharlatan-20220813T150910+0100): Check if it can be removed from
+;; depended package inputs.
+(define go-github-com-microsoft-go-winio
   (package
     (name "go-github-com-microsoft-go-winio")
     (version "0.5.2")
@@ -1287,9 +1342,15 @@ codec/encoding library for binc, msgpack, cbor, json.")
         (base32 "0q31q03sxfwrdgbv559bgm9gr5cmyzp1al0zli9nlkwa2v9hw5fi"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/cloudfoundry/jibber_jabber"))
+     ;; NOTE: (Sharlatan-20220813T150133+0100): Tests require extra not-packed
+     ;; packages, pack them later:
+     ;;
+     ;; github.com/onsi/ginkgo
+     ;; github.com/onsi/gomega
+     '(#:tests? #f
+       #:import-path "github.com/cloudfoundry/jibber_jabber"))
     (home-page "https://github.com/cloudfoundry/jibber_jabber")
-    (synopsis "Jibber Jabber")
+    (synopsis "Cross Platform locale detection for Golang")
     (description
      "Jibber Jabber is a GoLang Library that can be used to detect an operating
 system's current language.")
@@ -1333,7 +1394,8 @@ system's current language.")
         (base32 "0jm83d0id8igyifqdcn8rx331jhly8kk4zlh3xid66y39l3hlqwq"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/fsmiamoto/git-todo-parser"))
+     '(#:import-path "github.com/fsmiamoto/git-todo-parser/todo"
+       #:unpack-path "github.com/fsmiamoto/git-todo-parser"))
     (native-inputs
      (list go-github-com-stretchr-testify))
     (home-page "https://github.com/fsmiamoto/git-todo-parser")
@@ -1553,7 +1615,8 @@ simultaneously provides a controller to organize your application code.")
     (license license:bsd-3)))
 
 ;; 20220803T210624+0100
-(define-public go-github-com-dave-brenda
+;; NOTE: (Sharlatan-20220813T150314+0100): Check what is for, fix build.
+(define go-github-com-dave-brenda
   (package
     (name "go-github-com-dave-brenda")
     (version "1.1.0")
