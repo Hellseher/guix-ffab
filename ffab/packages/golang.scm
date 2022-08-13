@@ -21,6 +21,7 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
+  #:use-module (gnu packages terminals)
   #:use-module (gnu packages golang)
   #:use-module (gnu packages syncthing)
   #:use-module (gnu packages vim)
@@ -2293,3 +2294,40 @@ regexp, which is overkill, and supports globstars (**), unlike filepath.Match.")
      "This package provides functionality for killing processes across different
 platforms.  Handles killing children of processes as well as the process itself.")
     (license license:expat)))
+
+;; 20220803T220441+0100
+(define-public go-github-com-jesseduffield-gocui
+  (package
+    (name "go-github-com-jesseduffield-gocui")
+    (version "0.3.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/gocui")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "01xac0my3jkiykbqylfldx7yj1xcwjqhxm1d9fqy1gmy3bwwzvkg"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/jesseduffield/gocui"))
+    (propagated-inputs
+     (list go-github.com-nsf-termbox-go))
+    (home-page "https://github.com/jesseduffield/gocui")
+    (synopsis "Minimalist Golang package aimed at creating Console User Interfaces")
+    (description "Package gocui allows to create console user interfaces.
+
+Higlited features:
+@itemize
+@item Minimalist API.
+@item Views (the windows in the GUI) implement the interface io.ReadWriter.
+@item Support for overlapping views.
+@item The GUI can be modified at runtime (concurrent-safe).
+@item Global and view-level keybindings.
+@item Mouse support.
+@item Colored text.
+@item Customizable edition mode.
+@item Easy to build reusable widgets, complex layouts.
+@end itemize")
+    (license license:bsd-3)))
