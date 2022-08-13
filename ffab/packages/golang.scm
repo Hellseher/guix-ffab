@@ -2099,3 +2099,28 @@ symbols in the style of Sublime Text, VSCode, IntelliJ IDEA et al.")
     (description
      "Package xdg impelements the XDG standard for application file locations.")
     (license license:bsd-3)))
+
+;; 20220803T221748+0100
+(define-public go-github-com-mgutz-str
+  (package
+    (name "go-github-com-mgutz-str")
+    (version "1.2.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mgutz/str")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1g3dq618mcnpfyw7q6m32dy08wjzkyvlbd0f2nvwvck682749i1j"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/mgutz/str"))
+    (home-page "https://github.com/mgutz/str")
+    (synopsis "Golang extended string library")
+    (description
+     "Package @code{str} is a comprehensive set of string functions to build more Go
+awesomeness.  Str complements Go's standard packages and does not duplicate
+functionality found in `strings` or  `strconv`.")
+    (license license:expat)))
