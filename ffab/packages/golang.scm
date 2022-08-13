@@ -2191,3 +2191,25 @@ represented in HPLuv beccause it's not pastel.
 
 @end itemize")
     (license license:expat)))
+
+;; 20220803T221607+0100
+(define-public go-github-com-kyokomi-emoji-v2
+  (package
+    (name "go-github-com-kyokomi-emoji-v2")
+    (version "2.2.10")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kyokomi/emoji")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1wd9nv1g5cn32sm03lnqvcg4mklb9rp5iwbk0ksabqvzpjwy5mp4"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/kyokomi/emoji/v2"))
+    (home-page "https://github.com/kyokomi/emoji")
+    (synopsis "Emoji terminal output for Golang")
+    (description "This package provides emoji support for termnial output.")
+    (license license:expat)))
