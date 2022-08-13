@@ -89,8 +89,8 @@ editor.")
     (propagated-inputs
      (list go-gopkg-in-check-v1
            go-github-com-rogpeppe-go-internal))
-    (home-page "https://mvdan.cc/xurls/v2")
-    (synopsis "xurls")
+    (home-page "https://github.com/mvdan/xurls")
+    (synopsis "Extract urls from text")
     (description
       "Package xurls extracts urls from plain text using regular expressions.")
     (license license:bsd-3)))
@@ -196,11 +196,11 @@ replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (arguments
      '(#:import-path "github.com/golang-jwt/jwt/v4"))
     (home-page "https://github.com/golang-jwt/jwt")
-    (synopsis "jwt-go")
+    (synopsis "Golang implementation of JSON Web Tokens")
     (description
-      "Package jwt is a Go implementation of JSON Web Tokens:
-@url{http://self-issued.info/docs/draft-jones-json-web-token.html,http://self-issued.info/docs/draft-jones-json-web-token.html}
-")
+      "This library supports the parsing and verification as well as the generation
+and signing of JWTs.  Current supported signing algorithms are HMAC SHA, RSA,
+RSA-PSS, and ECDSA, though hooks are present for adding your own.")
     (license license:expat)))
 
 ;; 20220731T214217+0100
@@ -221,17 +221,34 @@ replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (arguments
      ;; NOTE: (Sharlatan-20220813T151655+0100): Failed tests:
      ;;
-     ;; --- FAIL: TestFileParser_ParseFile (0.01s)
-     ;;     parse_test.go:25: Unexpected error: internal/tests/custom_package_name/greeter/greeter.go:17:11: failed parsing returns: internal/tests/custom_package_name/greeter/greeter.go:17:14: unknown package "client"
-     ;; --- FAIL: TestFileParser_ParsePackage (0.01s)
-     ;;     parse_test.go:56: Unexpected error: go/build: go list github.com/golang/mock/mockgen/internal/tests/custom_package_name/greeter: exit status 1
-     ;;         go: golang.org/x/mod@v0.4.2: Get "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial tcp: lookup proxy.golang.org on [::1]:53: read udp [::1]:54944->[::1]:53: read: connection refused
-     ;;         go: golang.org/x/mod@v0.4.2: Get "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial tcp: lookup proxy.golang.org on [::1]:53: read udp [::1]:54944->[::1]:53: read: connection refused
+     ;; --- FAIL: TestFileParser_ParseFile (0.01s) parse_test.go:25: Unexpected
+     ;; error: internal/tests/custom_package_name/greeter/greeter.go:17:11:
+     ;; failed parsing returns:
+     ;; internal/tests/custom_package_name/greeter/greeter.go:17:14: unknown
+     ;; package "client"
+     ;;
+     ;; --- FAIL: TestFileParser_ParsePackage (0.01s) parse_test.go:56:
+     ;;         Unexpected error: go/build: go list
+     ;;         github.com/golang/mock/mockgen/internal/tests/custom_package_name/greeter:
+     ;;         exit status 1 go: golang.org/x/mod@v0.4.2: Get
+     ;;         "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial
+     ;;         tcp: lookup proxy.golang.org on [::1]:53: read udp
+     ;;         [::1]:54944->[::1]:53: read: connection refused go:
+     ;;         golang.org/x/mod@v0.4.2: Get
+     ;;         "https://proxy.golang.org/golang.org/x/mod/@v/v0.4.2.mod": dial
+     ;;         tcp: lookup proxy.golang.org on [::1]:53: read udp
+     ;;         [::1]:54944->[::1]:53: read: connection refused
+     ;;
      ;; --- FAIL: TestImportsOfFile (0.01s)
      ;;     parse_test.go:96: Expected imports to have key "client"
      ;;     parse_test.go:106: Expected import not to have key "v1"
-     ;; --- FAIL: TestParseArrayWithConstLength (0.00s)
-     ;;     parse_test.go:136: Unexpected error: internal/tests/const_array_length/input.go:12:5: failed parsing returns: internal/tests/const_array_length/input.go:12:9: unknown package in array length: can't find import: "math"
+     ;;
+     ;; --- FAIL: TestParseArrayWithConstLength (0.00s) parse_test.go:136:
+     ;;     Unexpected error: internal/tests/const_array_length/input.go:12:5:
+     ;;     failed parsing returns:
+     ;;     internal/tests/const_array_length/input.go:12:9: unknown package in
+     ;;     array length: can't find import: "math"
+     ;;
      ;; FAIL
      ;; FAIL    github.com/golang/mock/mockgen  0.119s
      ;; FAI
@@ -245,9 +262,9 @@ replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (home-page "https://github.com/golang/mock")
     (synopsis "Mocking framework for Golang")
     (description
-     "gomock is a mocking framework for the @url{http://golang.org/,Go
-programming language}. It integrates well with Go's built-in @code{testing}
-package, but can be used in other contexts too.")
+     "This package provides the mocking framework for the Golang.  It integrates well
+with Golang's built-in @code{testing} package, but can be used in other contexts
+too.")
     (license license:asl2.0)))
 
 ;; 20220730T151556+0100
@@ -305,6 +322,7 @@ package, but can be used in other contexts too.")
 ;; (define-public go-github-com-andybalholm-brotli
 
 ;; 20211218T165950+0000
+;; NOTE: (Sharlatan-20220813T213022+0100): Can be moved to golang-web
 (define-public go-github-com-urfave-negroni
   (package
     (name "go-github-com-urfave-negroni")
@@ -322,7 +340,7 @@ package, but can be used in other contexts too.")
     (arguments
      '(#:import-path "github.com/urfave/negroni"))
     (home-page "https://github.com/urfave/negroni")
-    (synopsis "Negroni")
+    (synopsis "Idiomatic HTTP Middleware for Golang")
     (description
       "Package negroni is an idiomatic approach to web middleware in Go.  It is tiny,
 non-intrusive, and encourages use of net/http Handlers.")
@@ -347,9 +365,15 @@ non-intrusive, and encourages use of net/http Handlers.")
      ;; NOTE: (Sharlatan-20220813T151249+0100): Fix tests
      ;;
      ;; # github.com/pingcap/errors
-     ;; src/github.com/pingcap/errors/example_test.go:6:2: cannot find package "github.com/pkg/errors" in any of:
-     ;;         /gnu/store/d06665qgp3zqp05fr0q1sdbfnpvxywsc-go-1.17.11/lib/go/src/github.com/pkg/errors (from $GOROOT)
-     ;;         /tmp/guix-build-go-github-com-pingcap-errors-0.11.4.drv-0/src/github.com/pkg/errors (from $GOPATH)
+     ;;         src/github.com/pingcap/errors/example_test.go:6:2: cannot find
+     ;;         package "github.com/pkg/errors" in any of:
+     ;;         /gnu/store/d06665qgp3zqp05fr0q1sdbfnpvxywsc-go-1.17.11/
+     ;;         lib/go/src/github.com/pkg/errors
+     ;;         (from $GOROOT)
+     ;;         /tmp/guix-build-go-github-com-pingcap-errors-0.11.4.drv-0/
+     ;;         src/github.com/pkg/errors
+     ;;         (from $GOPATH)
+     ;;
      ;; FAIL    github.com/pingcap/errors [setup failed]
      ;; FAIL
      '(#:tests? #f
@@ -416,7 +440,11 @@ non-intrusive, and encourages use of net/http Handlers.")
      ;; FAIL    github.com/atotto/clipboard     0.012s
      ;; FAIL
      '(#:tests? #f
-       #:import-path "github.com/atotto/clipboard"))
+       #:import-path "github.com/atotto/clipboard"
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
     (inputs
      (list xsel))
     (home-page "https://github.com/atotto/clipboard")
@@ -510,21 +538,25 @@ used as a more human friendly alternative to JSON for structured logging.")
     (name "go-github-com-aybabtme-rgbterm")
     (version "0.0.0-20170906152045-cc83f3b3ce59")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/aybabtme/rgbterm")
-               (commit (go-version->git-ref version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "0wvmxvjn64968ikvnxrflb1x8rlcwzpfl53fzbxff2axbx9lq50q"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/aybabtme/rgbterm")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0wvmxvjn64968ikvnxrflb1x8rlcwzpfl53fzbxff2axbx9lq50q"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/aybabtme/rgbterm"))
+     '(#:import-path "github.com/aybabtme/rgbterm"
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
     (home-page "https://github.com/aybabtme/rgbterm")
     (synopsis "RGB terminal")
     (description
-      "Package rgbterm colorizes bytes and strings using RGB colors, for a full
+     "Package rgbterm colorizes bytes and strings using RGB colors, for a full
 range of pretty terminal strings.")
     (license license:expat)))
 
@@ -607,7 +639,7 @@ terminals supporting ANSI escape sequences.")
       (origin
         (method git-fetch)
         (uri (git-reference
-               (url "https://github.com/hinshun/vt10x.git")
+               (url "https://github.com/hinshun/vt10x")
                (commit (go-version->git-ref version))))
         (file-name (git-file-name name version))
         (sha256
@@ -617,7 +649,7 @@ terminals supporting ANSI escape sequences.")
     (arguments
       '(#:import-path "github.com/hinshun/vt10x"))
     (home-page "https://github.com/hinshun/vt10x")
-    (synopsis "vt10x terminal emulation backend")
+    (synopsis "Terminal emulation backend")
     (description "This package is a vt10x terminal emulation backend.  It has
 larged been influenced by st, rxvt, xterm, and iTerm as reference.")
     (license license:expat)))
@@ -632,7 +664,7 @@ larged been influenced by st, rxvt, xterm, and iTerm as reference.")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/kr/pty.git")
+             (url "https://github.com/kr/pty")
              (commit (string-append "v" version))))
        (file-name (git-file-name "go-github-com-kr-pty" version))
        (sha256
@@ -657,7 +689,7 @@ larged been influenced by st, rxvt, xterm, and iTerm as reference.")
       (origin
         (method git-fetch)
         (uri (git-reference
-               (url "https://github.com/Netflix/go-expect.git")
+               (url "https://github.com/Netflix/go-expect")
                (commit (go-version->git-ref version))))
         (file-name (git-file-name name version))
         (sha256
@@ -687,7 +719,7 @@ through it's pseudoterminal.")
       (origin
         (method git-fetch)
         (uri (git-reference
-               (url "https://github.com/creack/pty.git")
+               (url "https://github.com/creack/pty")
                (commit (string-append "v" version))))
         (file-name (git-file-name name version))
         (sha256
@@ -710,7 +742,7 @@ through it's pseudoterminal.")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/briandowns/spinner.git")
+             (url "https://github.com/briandowns/spinner")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
@@ -727,7 +759,7 @@ through it's pseudoterminal.")
     (synopsis "Progress indicator for any terminal application")
     (description
      "This is a simple package to add a spinner or progress indicator to any
-terminal application. ")
+terminal application.")
     (license license:asl2.0)))
 
 ;; 20220731T214457+0100
@@ -739,7 +771,7 @@ terminal application. ")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/cli/browser.git")
+             (url "https://github.com/cli/browser")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
@@ -766,7 +798,7 @@ system default web browser.")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/cli/oauth.git")
+             (url "https://github.com/cli/oauth")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
@@ -793,7 +825,7 @@ flow in Go client apps.")
      (origin
        (method git-fetch)
        (uri (git-reference
-             (url "https://github.com/cpuguy83/go-md2man.git")
+             (url "https://github.com/cpuguy83/go-md2man")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
@@ -833,7 +865,7 @@ flow in Go client apps.")
     (home-page "https://github.com/russross/blackfriday")
     (synopsis "Markdown processor implemented in Go")
     (description
-     "Blackfriday is a Markdown processor implemented in Go. It is paranoid
+     "Blackfriday is a Markdown processor implemented in Go.  It is paranoid
 about its input (so you can safely feed it user-supplied data), it is fast, it
 supports common extensions (tables, smart punctuation substitutions, etc.), and
 it is safe for all utf-8 (unicode) input.")
@@ -873,7 +905,7 @@ it is safe for all utf-8 (unicode) input.")
      (list go-golang-org-x-net))
     (home-page
      "https://github.com/gabriel-vasile/mimetype")
-    (synopsis "A fast golang library for MIME type and file extension detection")
+    (synopsis "Fast golang library for MIME type and file extension detection")
     (description "This is a package for detecting MIME types and extensions
 based on magic numbers.  Features include
 
@@ -976,10 +1008,10 @@ based on magic numbers.  Features include
     (build-system go-build-system)
     (arguments '(#:import-path "github.com/lunixbochs/vtclean"))
     (home-page "https://github.com/lunixbochs/vtclean")
-    (synopsis "vtclean")
+    (synopsis "Strips terminal escapes from text, can preserve color")
     (description
-      "Clean up raw terminal output by stripping escape sequences, optionally
-preserving color.")
+      "This package provides Golang library to clean up raw terminal output by
+stripping escape sequences, optionally preserving color.")
     (license license:expat)))
 
 ;; 20220515T223750+0100
@@ -1026,8 +1058,11 @@ preserving color.")
     (arguments
      ;; NOTE: (Sharlatan-20220813T145037+0100): Tests failed on:
      ;; starting phase `check'
-     ;; --- FAIL: TestParse (0.00s)
-     ;;     keybinding_test.go:52: Expected error message 'unsupported keybinding: KeyCtrl! (+1)' but got 'unsupported keybinding: KeyCtrl! (+4)' (trial 19)
+     ;;
+     ;; --- FAIL: TestParse (0.00s) keybinding_test.go:52: Expected error
+     ;; message 'unsupported keybinding: KeyCtrl! (+1)' but got 'unsupported
+     ;; keybinding: KeyCtrl! (+4)' (trial 19)
+     ;;
      ;; FAIL
      ;; FAIL    github.com/awesome-gocui/keybinding     0.001s
      ;; FAIL
@@ -1036,7 +1071,7 @@ preserving color.")
     (propagated-inputs
      (list go-github-com-awesome-gocui-gocui))
     (home-page "https://github.com/awesome-gocui/keybinding")
-    (synopsis "keybinding")
+    (synopsis "Golang wrapper for parsing gocui keybindings")
     (description
      "This package provides a golang wrapper for parsing gocui keybindings.")
     (license license:expat)))
@@ -1047,23 +1082,37 @@ preserving color.")
     (name "go-github-com-awesome-gocui-gocui")
     (version "1.1.0")
     (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/awesome-gocui/gocui")
-               (commit (string-append "v" version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "082ziwxj239nxcclv54d783933s6c5ks592mq3ilcvg1vfyfkjz8"))))
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/awesome-gocui/gocui")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "082ziwxj239nxcclv54d783933s6c5ks592mq3ilcvg1vfyfkjz8"))))
     (build-system go-build-system)
-    (arguments '(#:import-path "github.com/awesome-gocui/gocui"))
+    (arguments
+     '(#:import-path "github.com/awesome-gocui/gocui"))
     (propagated-inputs
-      `(("go-golang-org-x-text" ,go-golang-org-x-text)
-        ("go-github-com-mattn-go-runewidth" ,go-github-com-mattn-go-runewidth)
-        ("go-github-com-gdamore-tcell-v2" ,go-github-com-gdamore-tcell-v2)))
+     (list go-golang-org-x-text
+       go-github-com-mattn-go-runewidth
+       go-github-com-gdamore-tcell))
     (home-page "https://github.com/awesome-gocui/gocui")
-    (synopsis "GOCUI - Go Console User Interface")
-    (description "Package gocui allows to create console user interfaces.")
+    (synopsis "Minimalist Golang package aimed at creating Console User Interfaces")
+    (description "Package gocui allows to create console user interfaces.
+
+Higlited features:
+@itemize
+@item Minimalist API.
+@item Views (the windows in the GUI) implement the interface io.ReadWriter.
+@item Support for overlapping views.
+@item The GUI can be modified at runtime (concurrent-safe).
+@item Global and view-level keybindings.
+@item Mouse support.
+@item Colored text.
+@item Customizable edition mode.
+@item Easy to build reusable widgets, complex layouts.
+@end itemize")
     (license license:bsd-3)))
 
 ;; 20220516T220629+0100
@@ -1113,7 +1162,7 @@ file handles, and for using named pipes as a net transport.")
     (arguments '(#:import-path "github.com/Azure/go-ansiterm"))
     (propagated-inputs `(("go-golang-org-x-sys" ,go-golang-org-x-sys)))
     (home-page "https://github.com/Azure/go-ansiterm")
-    (synopsis "go-ansiterm")
+    (synopsis "Golang package for ANSI terminal emulation in Windows")
     (description
       "This is a cross platform Ansi Terminal Emulation library.  It reads a stream of
 Ansi characters and produces the appropriate function calls.  The results of the
@@ -1141,7 +1190,12 @@ function calls are platform dependent.")
      '(#:import-path "github.com/modern-go/reflect2"))
     (home-page "https://github.com/modern-go/reflect2")
     (synopsis "Implementaion of Golang reflect")
-    (description "reflect api that avoids runtime reflect.Value cost")
+    (description "Reflect api that avoids runtime @code{reflect.Value} cost:
+@itemize
+@item reflect get/set @code{interface{}}, with type checking
+@item reflect get/set @code{unsafe.Pointer}, without type checking
+@item @code{reflect2.TypeByName} works like @code{Class.forName} found in java
+@end itemize")
     (license license:asl2.0)))
 
 ;; 20220730T155408+0100
@@ -1296,8 +1350,8 @@ compatibility with code using standard lib.")
      '(#:import-path "github.com/pelletier/go-toml"))
     (native-inputs
      (list go-github-com-stretchr-testify))
-    (home-page "https://github.com/pelletier/go-toml/v2")
-    (synopsis "go-toml")
+    (home-page "https://github.com/pelletier/go-toml")
+    (synopsis "Golang library for the TOML file format")
     (description "Package toml is a TOML parser and manipulation library.")
     (license license:expat)))
 
@@ -1349,7 +1403,7 @@ codec/encoding library for binc, msgpack, cbor, json.")
      ;; github.com/onsi/gomega
      '(#:tests? #f
        #:import-path "github.com/cloudfoundry/jibber_jabber"))
-    (home-page "https://github.com/cloudfoundry/jibber_jabber")
+    (home-page "https://github.com/cloudfoundry-attic/jibber_jabber")
     (synopsis "Cross Platform locale detection for Golang")
     (description
      "Jibber Jabber is a GoLang Library that can be used to detect an operating
@@ -1374,7 +1428,7 @@ system's current language.")
     (arguments
      '(#:import-path "github.com/go-errors/errors"))
     (home-page "https://github.com/go-errors/errors")
-    (synopsis "go-errors/errors")
+    (synopsis "Errors with stacktraces for Golang")
     (description "Package errors provides errors that have stack-traces.")
     (license license:expat)))
 
@@ -1423,7 +1477,7 @@ system's current language.")
    (propagated-inputs
     (list go-github-com-google-shlex go-github-com-davecgh-go-spew))
    (home-page "https://git.sr.ht/~emersion/go-scfg")
-   (synopsis "go-scfg")
+   (synopsis "Golang library for scfg")
    (description "Package scfg parses configuration files.")
    (license license:expat)))
 
@@ -1449,7 +1503,7 @@ system's current language.")
           go-github-com-dave-jennifer
           go-github-com-agnivade-levenshtein))
    (home-page "https://git.sr.ht/~emersion/gqlclient")
-   (synopsis "gqlclient")
+   (synopsis "A GraphQL client and code generator for Golang")
    (description
     "This package provides a GraphQL client and code generator for Go.")
    (license license:expat)))
@@ -1477,7 +1531,7 @@ system's current language.")
           go-github-com-mattn-go-colorable
           go-github-com-lunixbochs-vtclean))
    (home-page "https://github.com/juju/ansiterm")
-   (synopsis "ansiterm")
+   (synopsis "Colored writers and tabwriters for Golang")
    (description
     "Package ansiterm provides a Writer that writes out the ANSI escape codes for
 color and styles.")
@@ -1501,7 +1555,7 @@ color and styles.")
    (arguments
     '(#:import-path "github.com/google/shlex"))
    (home-page "https://github.com/google/shlex")
-   (synopsis "")
+   (synopsis "Golang lexer library")
    (description
     "Package shlex implements a simple lexer which splits input in to tokens using
 shell-style rules for quoting and commenting.")
@@ -1556,8 +1610,8 @@ implementation as closely while remaining idiomatic and easy to use.")
     (arguments
      '(#:import-path "github.com/inconshreveable/mousetrap"))
     (home-page "https://github.com/inconshreveable/mousetrap")
-    (synopsis "mousetrap")
-    (description "mousetrap is a tiny library that answers a single question.")
+    (synopsis "Detect starting from Windows explorer")
+    (description "Mousetrap is a tiny library that answers a single question.")
     (license license:asl2.0)))
 
 ;; 20220803T214016+0100
@@ -1597,16 +1651,20 @@ simultaneously provides a controller to organize your application code.")
     (version "0.0.0-20160628152529-48b4e1c0c4d0")
     (source
      (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/arbovm/levenshtein")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32 "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/arbovm/levenshtein")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/arbovm/levenshtein"))
+     '(#:import-path "github.com/arbovm/levenshtein"
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
     (home-page "https://github.com/arbovm/levenshtein")
     (synopsis "Levenshtein Distance")
     (description
@@ -1680,9 +1738,12 @@ simultaneously provides a controller to organize your application code.")
     (propagated-inputs
      (list go-github-com-dgryski-trifles))
     (home-page "https://github.com/agnivade/levenshtein")
-    (synopsis "levenshtein")
+    (synopsis "Golang implementation to calculate Levenshtein Distance")
     (description
-     "Package levenshtein is a Go implementation to calculate Levenshtein Distance.")
+     "Package levenshtein is a Go implementation to calculate Levenshtein Distance.
+The library is fully capable of working with non-ascii strings. But the strings
+are not normalized. That is left as a user-dependant use case. Please normalize
+the strings before passing it to the library if you have such a requirement.")
     (license license:expat)))
 
 ;; 20220803T205520+0100
@@ -1709,35 +1770,40 @@ simultaneously provides a controller to organize your application code.")
          ;; Source-only package
          (delete 'build))))
     (home-page "https://github.com/dgryski/trifles")
-    (synopsis #f)
-    (description #f)
+    (synopsis "Golang collection of mics utilities code")
+    (description "This package provides the collection of as-it-is code snipets and micro
+libraries.")
     (license license:expat)))
 
 ;; 20220803T204825+0100
 (define-public go-github-com-andreyvit-diff
   (package
-   (name "go-github-com-andreyvit-diff")
-   (version "0.0.0-20170406064948-c7f18ee00883")
-   (source
-    (origin
-     (method git-fetch)
-     (uri (git-reference
-           (url "https://github.com/andreyvit/diff")
-           (commit (go-version->git-ref version))))
-     (file-name (git-file-name name version))
-     (sha256
-      (base32 "1s4qjkxig5yqahpzfl4xqh4kzi9mymdpkzq6kj3f4dr5dl3hlynr"))))
-   (build-system go-build-system)
-   (arguments
-    '(#:import-path "github.com/andreyvit/diff"))
-   (native-inputs
-    (list go-github-com-sergi-go-diff))
-   (home-page "https://github.com/andreyvit/diff")
-   (synopsis "diff")
-   (description
-    "diff provides quick and easy string diffing functions based on
+    (name "go-github-com-andreyvit-diff")
+    (version "0.0.0-20170406064948-c7f18ee00883")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/andreyvit/diff")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1s4qjkxig5yqahpzfl4xqh4kzi9mymdpkzq6kj3f4dr5dl3hlynr"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/andreyvit/diff"
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
+    (native-inputs
+     (list go-github-com-sergi-go-diff))
+    (home-page "https://github.com/andreyvit/diff")
+    (synopsis "Quick string diffs for Golang")
+    (description
+     "Package @code{diff} provides quick and easy string diffing functions based on
 github.com/sergi/go-diff, mainly for diffing strings in tests")
-   (license license:expat)))
+    (license license:expat)))
 
 ;; 20220803T204715+0100
 (define-public go-github-com-agnivade-levenshtein
@@ -1822,7 +1888,7 @@ debugging, to avoid wrapping long output lines in the terminal.")
     (home-page "https://github.com/anmitsu/go-shlex")
     (synopsis "Library to make a lexical analyzer like Unix shell for golang")
     (description
-"Package shlex provides a simple lexical analysis like Unix shell.")
+     "Package shlex provides a simple lexical analysis like Unix shell.")
     (license license:expat)))
 
 ;; 20220804T214550+0100
@@ -1985,7 +2051,11 @@ the API is very similar.")
         (base32 "104w10jf0wlxyxi35hf6frndgf0ybz21h54xjmnkivpb6slycpyq"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/armon/go-socks5"))
+     '(#:import-path "github.com/armon/go-socks5"
+       #:phases
+       (modify-phases %standard-phases
+         ;; Source-only package
+         (delete 'build))))
     (propagated-inputs
      (list go-golang-org-x-net))
     (home-page "https://github.com/armon/go-socks5")
@@ -2218,7 +2288,7 @@ Supported colour spaces:
 @itemize
 @item RGB: All three of Red, Green and Blue in [0..1].
 
-@item HSL: Hue in [0..360], Saturation and Luminance in [0..1]. For legacy
+@item HSL: Hue in [0..360], Saturation and Luminance in [0..1].  For legacy
 reasons; please forget that it exists.
 
 @item HSV: Hue in [0..360], Saturation and Value in [0..1]. You're better off
@@ -2382,7 +2452,7 @@ platforms.  Handles killing children of processes as well as the process itself.
     (synopsis "Minimalist Golang package aimed at creating Console User Interfaces")
     (description "Package gocui allows to create console user interfaces.
 
-Higlited features:
+Highlighted features:
 @itemize
 @item Minimalist API.
 @item Views (the windows in the GUI) implement the interface io.ReadWriter.
@@ -2396,30 +2466,14 @@ Higlited features:
 @end itemize")
     (license license:bsd-3)))
 
-(define-public go-github-com-go-git-gcfg
+(define-public ffab-go-github-com-go-git-gcfg
   (package
-    (name "go-github-com-go-git-gcfg")
-    (version "1.5.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/go-git/gcfg")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1lb14z4j35pwz2b2rbykkpsq515spwbndb00gwn2xlrzn949xb83"))))
-    (arguments
-     `(#:import-path "github.com/go-git/gcfg"))
+    (inherit go-github-com-go-git-gcfg)
+    (name "ffab-go-github-com-go-git-gcfg")
     (native-inputs
      (list go-gopkg-in-warnings go-github-com-pkg-errors))
     (propagated-inputs
-     (list go-gopkg-in-warnings))
-    (build-system go-build-system)
-    (home-page "https://github.com/go-git/gcfg/")
-    (synopsis "Gcfg reads INI-style configuration files into Go structs")
-    (description "Gcfg reads INI-style configuration files into Go structs.")
-    (license license:bsd-3)))
+     (list go-gopkg-in-warnings))))
 
 ;; 20220813T134740+0100
 (define-public go-github-com-jesseduffield-go-git-v5
@@ -2448,7 +2502,7 @@ Higlited features:
      (list go-github-com-armon-go-socks5
            go-github-com-emirpasic-gods
            go-github-com-gliderlabs-ssh
-           go-github-com-go-git-gcfg
+           ffab-go-github-com-go-git-gcfg ;; Upstream fix require
            go-github-com-go-git-go-billy-v5
            go-github-com-go-git-go-git-fixtures-v4
            go-github-com-google-go-cmp-cmp
@@ -2489,7 +2543,7 @@ Higlited features:
     (propagated-inputs
      (list go-github-com-google-go-cmp-cmp))
     (home-page "https://github.com/integrii/flaggy")
-    (synopsis "Golang input parsing with subcommands, positional values, and flags at any position")
+    (synopsis "Golang CLI input parsing library")
     (description
      "Package flaggy is a input flag parsing package that supports recursive
 subcommands, positional values, and any-position flags without unnecessary
