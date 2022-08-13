@@ -1,9 +1,9 @@
 #+TITLE: gnu/packages/version-control
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2021-12-23 Thu 10:31:03 GMT>
+#+modified: <2022-08-04 Thu 21:22:06 BST>
 
 * TODO jesseduffield [0/1][0%] :author:p3:
-** TODO lazygit [0/4][0%]
+** TODO lazygit [0/4][0%] :p1:
 - https://github.com/jesseduffield/lazygit
 - [ ] :packed
 - [ ] :patch-sent
