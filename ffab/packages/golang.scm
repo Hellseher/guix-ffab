@@ -2269,3 +2269,27 @@ that can be used to test against a certain string or selectively walk a file
 tree.  Gobwas's glob package is used for matching because it is faster than using
 regexp, which is overkill, and supports globstars (**), unlike filepath.Match.")
     (license license:expat)))
+
+;; 20220803T220528+0100
+(define-public go-github-com-jesseduffield-kill
+  (package
+    (name "go-github-com-jesseduffield-kill")
+    (version "0.0.0-20220618033138-bfbe04675d10")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/kill")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1snks1bd86b3clxp9d4mf1dcwwpyfvsqm7ncdm02r2iy2lq9381i"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/jesseduffield/kill"))
+    (home-page "https://github.com/jesseduffield/kill")
+    (synopsis "Golang package for killing processes")
+    (description
+     "This package provides functionality for killing processes across different
+platforms.  Handles killing children of processes as well as the process itself.")
+    (license license:expat)))
