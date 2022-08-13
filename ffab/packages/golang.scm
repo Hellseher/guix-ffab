@@ -21,9 +21,10 @@
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
-  #:use-module (gnu packages terminals)
   #:use-module (gnu packages golang)
   #:use-module (gnu packages syncthing)
+  #:use-module (gnu packages terminals)
+  #:use-module (gnu packages version-control)
   #:use-module (gnu packages vim)
   #:use-module (gnu packages xdisorg)
   #:use-module (guix build utils)
@@ -2331,3 +2332,76 @@ Higlited features:
 @item Easy to build reusable widgets, complex layouts.
 @end itemize")
     (license license:bsd-3)))
+
+(define-public go-github-com-go-git-gcfg
+  (package
+    (name "go-github-com-go-git-gcfg")
+    (version "1.5.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/go-git/gcfg")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1lb14z4j35pwz2b2rbykkpsq515spwbndb00gwn2xlrzn949xb83"))))
+    (arguments
+     `(#:import-path "github.com/go-git/gcfg"))
+    (native-inputs
+     (list go-gopkg-in-warnings go-github-com-pkg-errors))
+    (propagated-inputs
+     (list go-gopkg-in-warnings))
+    (build-system go-build-system)
+    (home-page "https://github.com/go-git/gcfg/")
+    (synopsis "Gcfg reads INI-style configuration files into Go structs")
+    (description "Gcfg reads INI-style configuration files into Go structs.")
+    (license license:bsd-3)))
+
+;; 20220813T134740+0100
+(define-public go-github-com-jesseduffield-go-git-v5
+  (package
+    (name "go-github-com-jesseduffield-go-git-v5")
+    (version "5.1.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/go-git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ks3x4qbjcg4nqgc3zg8l6b71mkg6xgs9s0rldbxrkbrf3sh36ar"))))
+    (build-system go-build-system)
+    (arguments
+     ;; NOTE: (Sharlatan-20220813T142811+0100): Some tests require remote access
+     ;; and tryes to download external git repositories
+     ;; Disable them or find a way to make them availalbe as inputs.
+     '(#:tests? #f
+       #:import-path "github.com/jesseduffield/go-git"))
+    (native-inputs
+     (list git))
+    (propagated-inputs
+     (list go-github-com-armon-go-socks5
+           go-github-com-emirpasic-gods
+           go-github-com-gliderlabs-ssh
+           go-github-com-go-git-gcfg
+           go-github-com-go-git-go-billy-v5
+           go-github-com-go-git-go-git-fixtures-v4
+           go-github-com-google-go-cmp-cmp
+           go-github-com-imdario-mergo
+           go-github-com-jbenet-go-context
+           go-github-com-jessevdk-go-flags
+           go-github-com-kevinburke-ssh-config
+           go-github-com-mitchellh-go-homedir
+           go-github-com-sergi-go-diff
+           go-github-com-xanzy-ssh-agent
+           go-golang-org-x-crypto
+           go-golang-org-x-net
+           go-golang-org-x-text
+           go-gopkg-in-check-v1))
+    (home-page "https://github.com/jesseduffield/go-git")
+    (synopsis "Project Status")
+    (description
+     "This package provides a highly extensible git implementation in pure Go.")
+    (license license:asl2.0)))
