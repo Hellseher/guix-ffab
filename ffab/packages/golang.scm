@@ -1064,9 +1064,9 @@ stripping escape sequences, optionally preserving color.")
     (synopsis
      "Minimalist Golang package aimed at creating Console User Interfaces")
     (description
-     "Package gocui allows to create console user interfaces.
+     "Package gocui allows creating console user interfaces.
 
-Higlited features:
+Highlighted features:
 @itemize
 @item Minimalist API.
 @item Views (the windows in the GUI) implement the interface io.ReadWriter.
@@ -1464,7 +1464,7 @@ system's current language.")
                              go-github-com-dave-jennifer
                              go-github-com-agnivade-levenshtein))
     (home-page "https://git.sr.ht/~emersion/gqlclient")
-    (synopsis "A GraphQL client and code generator for Golang")
+    (synopsis "GraphQL client and code generator for Golang")
     (description
      "This package provides a GraphQL client and code generator for Go.")
     (license license:expat)))
@@ -1756,31 +1756,6 @@ libraries.")
     (description
      "Package @code{diff} provides quick and easy string diffing functions based on
 github.com/sergi/go-diff, mainly for diffing strings in tests")
-    (license license:expat)))
-
-;; 20220803T204715+0100
-(define-public go-github-com-agnivade-levenshtein
-  (package
-    (name "go-github-com-agnivade-levenshtein")
-    (version "1.1.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/agnivade/levenshtein")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0cq6jc032gxssiqnlkq3y3i1b19qsg73ysgxfbn6hwf8qnrzc2xn"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/agnivade/levenshtein"))
-    (native-inputs (list go-github-com-dgryski-trifles))
-    (propagated-inputs (list go-github-com-arbovm-levenshtein))
-    (home-page "https://github.com/agnivade/levenshtein")
-    (synopsis "levenshtein")
-    (description
-     "Package levenshtein is a Go implementation to calculate Levenshtein Distance.")
     (license license:expat)))
 
 ;; 20220804T215209+0100
@@ -2229,7 +2204,7 @@ Supported colour spaces:
 @item HSL: Hue in [0..360], Saturation and Luminance in [0..1].  For legacy
 reasons; please forget that it exists.
 
-@item HSV: Hue in [0..360], Saturation and Value in [0..1]. You're better off
+@item HSV: Hue in [0..360], Saturation and Value in [0..1].  You're better off
 using HCL, see below.
 
 @item Hex RGB: The Internet color format, as in #FF00FF.
@@ -2240,25 +2215,25 @@ using HCL, see below.
 
 @item CIE-xyY: encodes chromacity in x and y and luminance in Y, all in [0..1]
 
-@item CIE-L*a*b*: A perceptually uniform color space, i.e. distances are
-meaningful. L* in [0..1] and a*, b* almost in [-1..1].
+@item CIE-L*a*b*: A perceptually uniform color space, i.e.  distances are
+meaningful.  L* in [0..1] and a*, b* almost in [-1..1].
 
 @item CIE-L*u*v*: Very similar to CIE-L*a*b*, there is no consensus on which one
 is better.
 
 @item CIE-L*C*h° (HCL): This is generally the most useful one; CIE-L*a*b* space
-in polar coordinates, i.e. a better HSV. H° is in [0..360], C* almost in [0..1]
+in polar coordinates, i.e.  a better HSV.  H° is in [0..360], C* almost in [0..1]
 and L* as in CIE-L*a*b*.
 
 @item CIE LCh(uv): Called LuvLCh in code, this is a cylindrical transformation
-of the CIE-L*u*v* color space. Like HCL above: H° is in [0..360], C* almost in
+of the CIE-L*u*v* color space.  Like HCL above: H° is in [0..360], C* almost in
 [0..1] and L* as in CIE-L*u*v*.
 
-@item HSLuv: The better alternative to HSL, see here and here. Hue in [0..360],
+@item HSLuv: The better alternative to HSL, see here and here.  Hue in [0..360],
 Saturation and Luminance in [0..1].
 
-@item HPLuv: A variant of HSLuv. The color space is smoother, but only pastel
-colors can be included. Because the valid colors are limited, it's easy to get
+@item HPLuv: A variant of HSLuv.  The color space is smoother, but only pastel
+colors can be included.  Because the valid colors are limited, it's easy to get
 invalid Saturation values way above 1.0, indicating the color can't be
 represented in HPLuv beccause it's not pastel.
 
@@ -2388,7 +2363,7 @@ platforms.  Handles killing children of processes as well as the process itself.
     (synopsis
      "Minimalist Golang package aimed at creating Console User Interfaces")
     (description
-     "Package gocui allows to create console user interfaces.
+     "Package gocui allows creating console user interfaces.
 
 Highlighted features:
 @itemize
