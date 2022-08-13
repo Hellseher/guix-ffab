@@ -2405,3 +2405,30 @@ Higlited features:
     (description
      "This package provides a highly extensible git implementation in pure Go.")
     (license license:asl2.0)))
+
+;; 20220803T215957+0100
+(define-public go-github-com-integrii-flaggy
+  (package
+    (name "go-github-com-integrii-flaggy")
+    (version "1.5.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/integrii/flaggy")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0qn55pn0c75bd4gm1fd2in0qp9fllfabwzn0qs994frd32cfz7h3"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/integrii/flaggy"))
+    (propagated-inputs
+     (list go-github-com-google-go-cmp-cmp))
+    (home-page "https://github.com/integrii/flaggy")
+    (synopsis "Golang input parsing with subcommands, positional values, and flags at any position")
+    (description
+     "Package flaggy is a input flag parsing package that supports recursive
+subcommands, positional values, and any-position flags without unnecessary
+complexeties.")
+    (license license:unlicense)))
