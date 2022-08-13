@@ -2240,3 +2240,32 @@ decode YAML values.  It was developed within Canonical as part of the juju
 project, and is based on a pure Golang port of the @code{libyaml} C library to
 parse and generate YAML data quickly and reliably.")
     (license license:asl2.0)))
+
+;; 20220813T093204+0100
+(define-public go-github-com-jesseduffield-minimal-gitignore
+  (package
+    (name "go-github-com-jesseduffield-minimal-gitignore")
+    (version "0.3.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/minimal")
+             (commit (string-append "gitignore/v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0m4r0hg9pwb3p8ngr2skdl8aq7d07zrxdkh2wcvddfpbbh2jfdcb"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:unpack-path "github.com/jesseduffield/minimal"
+       #:import-path "github.com/jesseduffield/minimal/gitignore"))
+    (propagated-inputs
+     (list go-github-com-gobwas-glob))
+    (home-page "https://github.com/jesseduffield/minimal")
+    (synopsis "Parser for .gitignore-style files")
+    (description
+     "Package @code{gitignore} can be used to parse .gitignore-style files into globs
+that can be used to test against a certain string or selectively walk a file
+tree.  Gobwas's glob package is used for matching because it is faster than using
+regexp, which is overkill, and supports globstars (**), unlike filepath.Match.")
+    (license license:expat)))
