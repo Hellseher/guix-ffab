@@ -2213,3 +2213,30 @@ represented in HPLuv beccause it's not pastel.
     (synopsis "Emoji terminal output for Golang")
     (description "This package provides emoji support for termnial output.")
     (license license:expat)))
+
+;; 20220803T221518+0100
+(define-public go-github-com-jesseduffield-yaml
+  (package
+    (name "go-github-com-jesseduffield-yaml")
+    (version "0.0.0-20190702115811-b900b7e08b56")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/yaml")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1k2p3f85zl17946g5w8pvx930prd4da6n2d48gsh9br3b1z0wqqg"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/jesseduffield/yaml"))
+    (native-inputs (list go-gopkg-in-check-v1))
+    (home-page "https://github.com/jesseduffield/yaml")
+    (synopsis "YAML support for Golang")
+    (description
+     "The @code{yaml} package enables Golang programs to comfortably encode and
+decode YAML values.  It was developed within Canonical as part of the juju
+project, and is based on a pure Golang port of the @code{libyaml} C library to
+parse and generate YAML data quickly and reliably.")
+    (license license:asl2.0)))
