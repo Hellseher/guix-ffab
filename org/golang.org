@@ -1,8 +1,8 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-08-01 Mon 22:54:08 BST>
+#+modified: <2022-08-14 Sun 17:40:17 BST>
 
-* Flow [0/7][0%]
+* Flow [0/6][0%]
 ** TODO go/tools/gopls [/][%] :p1:
 - https://go.googlesource.com/tools
 - [ ] :packed
@@ -86,7 +86,7 @@ https://github.com/hashicorp/terraform
   1. [ ] go-github-com-golang-jwt-jwt
   2. [ ] go-github-com-golang-mock
 *** TODO hashicorp/nomad [0/0][100%]
-** TODO github.com/gin-gonic :autho:
+** TODO github.com/gin-gonic [/][%] :author:
 *** TODO gin-gonic/gin [1/4][25%]
 - https://github.com/gin-gonic/gin
 - [X] :packed <2022-08-01 Mon>

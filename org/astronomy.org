@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-08-04 Thu 21:21:05 BST>
+#+modified: <2022-08-14 Sun 17:32:57 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -702,23 +702,24 @@ CLOSED: [2021-01-31 Sun 13:07]
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
-*** TODO galpy [0/4][0%] :p1:
+*** TODO galpy [1/4][25%] :p1:
 - https://github.com/jobovy/galpy
 - synopsis :: Galactic Dynamics in python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [7/8][87%]
+- [X] :inputs [8/8][100%]
   - [X] python-future
   - [X] python-matplotlib
   - [X] python-numpy
   - [X] python-pytest
-  - [-] python-pynbody [3/4][75%]
+  - [X] python-pynbody [4/4][100%]
     - https://github.com/pynbody/pynbody
     - synopsis :: N-body and hydro analysis tools
     - [X] :packed <2022-07-27 Wed>
     - [X] :patch-sent <2022-07-29 Fri>
-    - [ ] :paptch-applied-upstream
+    - [X] :paptch-applied-upstream <2022-08-05 Fri>
+      - https://issues.guix.gnu.org/56835
     - [X] :inputs [8/8][100%]
       - [X] python-cython
       - [X] python-h5py
