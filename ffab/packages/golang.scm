@@ -405,7 +405,7 @@ non-intrusive, and encourages use of net/http Handlers.")
 (define-public go-github-com-atotto-clipboard
   (package
     (name "go-github-com-atotto-clipboard")
-    (version "0.1.4")
+    (version "0.1.3")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -414,7 +414,7 @@ non-intrusive, and encourages use of net/http Handlers.")
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0ycd8zkgsq9iil9svhlwvhcqwcd7vik73nf8rnyfnn10gpjx97k5"))))
+                "060n0sjwqarwhlfn3aiw0vyn8vrilg304zyql5vhih4g8r92yq1n"))))
     (build-system go-build-system)
     (arguments
      ;; NOTE: (Sharlatan-20220813T144650+0100): Test need more love to pass, failing on:
@@ -432,10 +432,7 @@ non-intrusive, and encourages use of net/http Handlers.")
      ;; FAIL    github.com/atotto/clipboard     0.012s
      ;; FAIL
      '(#:tests? #f
-       #:import-path "github.com/atotto/clipboard"
-       #:phases (modify-phases %standard-phases
-                  ;; Source-only package
-                  (delete 'build))))
+       #:import-path "github.com/atotto/clipboard"))
     (inputs (list xsel))
     (home-page "https://github.com/atotto/clipboard")
     (synopsis "Clipboard for Go")
@@ -524,30 +521,29 @@ used as a more human friendly alternative to JSON for structured logging.")
 
 ;; 20220731T214326+0100
 (define-public go-github-com-aybabtme-rgbterm
-  (package
-    (name "go-github-com-aybabtme-rgbterm")
-    (version "0.0.0-20170906152045-cc83f3b3ce59")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/aybabtme/rgbterm")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0wvmxvjn64968ikvnxrflb1x8rlcwzpfl53fzbxff2axbx9lq50q"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/aybabtme/rgbterm"
-       #:phases (modify-phases %standard-phases
-                  ;; Source-only package
-                  (delete 'build))))
-    (home-page "https://github.com/aybabtme/rgbterm")
-    (synopsis "RGB terminal")
-    (description
-     "Package rgbterm colorizes bytes and strings using RGB colors, for a full
+  (let ((commit "cc83f3b3ce5911279513a46d6d3316d67bedaa54")
+        (revision "1"))
+    (package
+      (name "go-github-com-aybabtme-rgbterm")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/aybabtme/rgbterm")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "0wvmxvjn64968ikvnxrflb1x8rlcwzpfl53fzbxff2axbx9lq50q"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "github.com/aybabtme/rgbterm"))
+      (home-page "https://github.com/aybabtme/rgbterm")
+      (synopsis "RGB terminal")
+      (description
+       "Package rgbterm colorizes bytes and strings using RGB colors, for a full
 range of pretty terminal strings.")
-    (license license:expat)))
+      (license license:expat))))
 
 ;; 20220731T214333+0100
 (define-public go-github-com-cli-safeexec
@@ -1059,7 +1055,7 @@ stripping escape sequences, optionally preserving color.")
      '(#:import-path "github.com/awesome-gocui/gocui"))
     (propagated-inputs (list go-golang-org-x-text
                              go-github-com-mattn-go-runewidth
-                             go-github-com-gdamore-tcell))
+                             go-github-com-gdamore-tcell-v2))
     (home-page "https://github.com/awesome-gocui/gocui")
     (synopsis
      "Minimalist Golang package aimed at creating Console User Interfaces")
@@ -1603,30 +1599,29 @@ simultaneously provides a controller to organize your application code.")
 
 ;; 20220803T212310+0100
 (define-public go-github-com-arbovm-levenshtein
-  (package
-    (name "go-github-com-arbovm-levenshtein")
-    (version "0.0.0-20160628152529-48b4e1c0c4d0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/arbovm/levenshtein")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/arbovm/levenshtein"
-       #:phases (modify-phases %standard-phases
-                  ;; Source-only package
-                  (delete 'build))))
-    (home-page "https://github.com/arbovm/levenshtein")
-    (synopsis "Levenshtein Distance")
-    (description
-     "@url{http://golang.org,Go} package to calculate the
+  (let ((commit "48b4e1c0c4d0b8b1864f1bd2cd31bb20147e4636")
+        (revision "1"))
+    (package
+      (name "go-github-com-arbovm-levenshtein")
+      (version (git-version "0.0.1" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/arbovm/levenshtein")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "github.com/arbovm/levenshtein"))
+      (home-page "https://github.com/arbovm/levenshtein")
+      (synopsis "Levenshtein Distance")
+      (description
+       "@url{http://golang.org,Go} package to calculate the
 @url{http://en.wikipedia.org/wiki/Levenshtein_distance,Levenshtein Distance}")
-    (license license:bsd-3)))
+      (license license:bsd-3))))
 
 ;; 20220803T210624+0100
 ;; NOTE: (Sharlatan-20220813T150314+0100): Check what is for, fix build.
@@ -1732,31 +1727,30 @@ libraries.")
 
 ;; 20220803T204825+0100
 (define-public go-github-com-andreyvit-diff
-  (package
-    (name "go-github-com-andreyvit-diff")
-    (version "0.0.0-20170406064948-c7f18ee00883")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/andreyvit/diff")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1s4qjkxig5yqahpzfl4xqh4kzi9mymdpkzq6kj3f4dr5dl3hlynr"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/andreyvit/diff"
-       #:phases (modify-phases %standard-phases
-                  ;; Source-only package
-                  (delete 'build))))
-    (native-inputs (list go-github-com-sergi-go-diff))
-    (home-page "https://github.com/andreyvit/diff")
-    (synopsis "Quick string diffs for Golang")
-    (description
-     "Package @code{diff} provides quick and easy string diffing functions based on
+  (let ((commit "c7f18ee00883bfd3b00e0a2bf7607827e0148ad4")
+        (revision "0"))
+    (package
+      (name "go-github-com-andreyvit-diff")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/andreyvit/diff")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "1s4qjkxig5yqahpzfl4xqh4kzi9mymdpkzq6kj3f4dr5dl3hlynr"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "github.com/andreyvit/diff"))
+      (native-inputs (list go-github-com-sergi-go-diff))
+      (home-page "https://github.com/andreyvit/diff")
+      (synopsis "Quick string diffs for Golang")
+      (description
+       "Package @code{diff} provides quick and easy string diffing functions based on
 github.com/sergi/go-diff, mainly for diffing strings in tests")
-    (license license:expat)))
+      (license license:expat))))
 
 ;; 20220804T215209+0100
 (define-public go-github-com-niemeyer-pretty
@@ -1795,26 +1789,29 @@ debugging, to avoid wrapping long output lines in the terminal.")
 
 ;; 20220804T214912+0100
 (define-public go-github-com-anmitsu-go-shlex
-  (package
-    (name "go-github-com-anmitsu-go-shlex")
-    (version "0.0.0-20200514113438-38f4b401e2be")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/anmitsu/go-shlex")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "17iz68yzbnr7y4s493asbagbv79qq8hvl2pkxvm6bvdkgphj8w1g"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/anmitsu/go-shlex"))
-    (home-page "https://github.com/anmitsu/go-shlex")
-    (synopsis "Library to make a lexical analyzer like Unix shell for golang")
-    (description
-     "Package shlex provides a simple lexical analysis like Unix shell.")
-    (license license:expat)))
+  (let ((commit "38f4b401e2be5955e3e00b843d96e3c406f5094d")
+        (revision "0"))
+    (package
+      (name "go-github-com-anmitsu-go-shlex")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/anmitsu/go-shlex")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "17iz68yzbnr7y4s493asbagbv79qq8hvl2pkxvm6bvdkgphj8w1g"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "github.com/anmitsu/go-shlex"))
+      (home-page "https://github.com/anmitsu/go-shlex")
+      (synopsis
+       "Library to make a lexical analyzer like Unix shell for golang")
+      (description
+       "Package shlex provides a simple lexical analysis like Unix shell.")
+      (license license:expat))))
 
 ;; 20220804T214550+0100
 (define-public go-github-com-jessevdk-go-flags
@@ -1956,33 +1953,32 @@ the API is very similar.")
 
 ;; 20220804T214200+0100
 (define-public go-github-com-armon-go-socks5
-  (package
-    (name "go-github-com-armon-go-socks5")
-    (version "0.0.0-20160902184237-e75332964ef5")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/armon/go-socks5")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "104w10jf0wlxyxi35hf6frndgf0ybz21h54xjmnkivpb6slycpyq"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/armon/go-socks5"
-       #:phases (modify-phases %standard-phases
-                  ;; Source-only package
-                  (delete 'build))))
-    (propagated-inputs (list go-golang-org-x-net))
-    (home-page "https://github.com/armon/go-socks5")
-    (synopsis "SOCKS5 server in Golang")
-    (description
-     "This package provides the @code{socks5} package that implements a
+  (let ((commit "e75332964ef517daa070d7c38a9466a0d687e0a5")
+        (revision "0"))
+    (package
+      (name "go-github-com-armon-go-socks5")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/armon/go-socks5")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "104w10jf0wlxyxi35hf6frndgf0ybz21h54xjmnkivpb6slycpyq"))))
+      (build-system go-build-system)
+      (arguments
+       '(#:import-path "github.com/armon/go-socks5"))
+      (propagated-inputs (list go-golang-org-x-net))
+      (home-page "https://github.com/armon/go-socks5")
+      (synopsis "SOCKS5 server in Golang")
+      (description
+       "This package provides the @code{socks5} package that implements a
 @url{http://en.wikipedia.org/wiki/SOCKS,SOCKS5 server}.  SOCKS (Secure Sockets)
 is used to route traffic between a client and server through an intermediate
 proxy layer.  This can be used to bypass firewalls or NATs.")
-    (license license:expat)))
+      (license license:expat))))
 
 ;; 20220803T224241+0100
 (define-public go-gopkg-in-ozeidan-fuzzy-patricia-v3
@@ -2379,12 +2375,28 @@ Highlighted features:
 @end itemize")
     (license license:bsd-3)))
 
-(define-public ffab-go-github-com-go-git-gcfg
+(define-public go-github-com-go-git-gcfg
   (package
-    (inherit go-github-com-go-git-gcfg)
-    (name "ffab-go-github-com-go-git-gcfg")
+    (name "go-github-com-go-git-gcfg")
+    (version "1.5.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/go-git/gcfg")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1lb14z4j35pwz2b2rbykkpsq515spwbndb00gwn2xlrzn949xb83"))))
+    (arguments
+     `(#:import-path "github.com/go-git/gcfg"))
     (native-inputs (list go-gopkg-in-warnings go-github-com-pkg-errors))
-    (propagated-inputs (list go-gopkg-in-warnings))))
+    (propagated-inputs (list go-gopkg-in-warnings))
+    (build-system go-build-system)
+    (home-page "https://github.com/go-git/gcfg/")
+    (synopsis "Gcfg reads INI-style configuration files into Go structs")
+    (description "Gcfg reads INI-style configuration files into Go structs.")
+    (license license:bsd-3)))
 
 ;; 20220813T134740+0100
 (define-public go-github-com-jesseduffield-go-git-v5
@@ -2411,7 +2423,7 @@ Highlighted features:
     (propagated-inputs (list go-github-com-armon-go-socks5
                              go-github-com-emirpasic-gods
                              go-github-com-gliderlabs-ssh
-                             ffab-go-github-com-go-git-gcfg ;Upstream fix require
+                             go-github-com-go-git-gcfg ;Upstream fix require
                              go-github-com-go-git-go-billy-v5
                              go-github-com-go-git-go-git-fixtures-v4
                              go-github-com-google-go-cmp-cmp
