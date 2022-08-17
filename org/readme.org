@@ -1,0 +1,80 @@
+# -*- mode: org; org-html-head-include-scripts: nil; -*-
+#+title: FFAB - Guix channel
+/FFAB :: Flock Full of Aleatory Burden/
+
+#+begin_src markdown
+[![builds.sr.ht status](https://builds.sr.ht/~hellseher/ffab.svg)](https://builds.sr.ht/~hellseher/ffab?)
+#+end_src
+
+This repository contains patches contributed to <guix-patches@gnu.org> and packaging progress. It
+also can be used as stand alone Guix channel.
+
+
+It's concentraited on Astronomical/Astrophisical, Common Lisp, Golan, Python related packages.
+
+~master~ branch should be buildable all the time, ~wip-~ could be to be broken.
+
+* Project structure and layout
+Layout follows Guix upstream.
+
+#+BEGIN_SRC sh :results value org :results output replace :exports results
+tree  -d ../
+#+end_src
+
+#+RESULTS:
+#+begin_src org
+../
+├── etc
+├── ffab
+│   ├── guix
+│   │   ├── build-system
+│   │   └── import
+│   └── packages
+│       └── patches
+├── org
+├── patches
+└── tmp
+
+10 directories
+#+end_src
+
+- issues.org :: tracks all sent patches to <guix-patches@gnu.org>
+
+* Installation
+All examples are based on assumptions that ~guix~ is the main system or available as package
+manager.
+
+** Use as channel
+~/.config/guix/channels.scm~
+#+begin_src scheme
+(cons* (channel
+        (name 'ffab)
+        ;; Mirror https://github.com/Hellseher/guix-channel
+        (url "https://git.sr.ht/~hellseher/ffab"))
+       %default-channels)
+ #+end_src
+
+** Use as build/install source
+#+begin_example
+~$ git clone https://github.com/Hellseher/guix-channel
+~$ guix build -L ./guix-channel pgloader
+#+end_example
+
+* References
+- http://hpc.guix.info/
+** Guix channels
+- https://github.com/flatwhatson/guix-channel
+- nonguix :: Guix channel for packages that can't be included upstream. Please do NOT promote or
+  refer to this repository on any official Guix communication channels.
+  https://gitlab.com/nonguix/nonguix
+- Guix Gaming Channels :: A collection of gaming-oriented channels for Guix
+  https://gitlab.com/guix-gaming-channels
+- Guix Science :: Free scientific packages for GNU Guix https://github.com/guix-science/guix-science
+  and non-free scientific packages for GNU Guix https://github.com/guix-science/guix-science-nonfree
+- Emacs channel :: Guix channel for automatically generated emacs packages
+  https://github.com/babariviere/guix-emacs
+** etc
+- https://github.com/UMCUGenetics/guix-additions
+- https://github.com/ryanprior/guix-packages
+- https://github.com/BIMSBbioinfo/guix-bimsb
+- https://github.com/techenthusiastsorg/awesome-guix
