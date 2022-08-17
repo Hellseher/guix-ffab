@@ -842,6 +842,11 @@ planetarium.")
      (list #:tests? #f
            #:phases
            #~(modify-phases %standard-phases
+               (add-after 'unpack 'patch-gsl-config-bin-path
+                 (lambda* (#:key inputs #:allow-other-keys)
+                   (substitute* "setup.py"
+                     (("'gsl-config'")
+                      (format #f "'~a'" (search-input-file inputs "/bin/gsl-config"))))))
                (replace 'check
                  (lambda* (#:key tests? #:allow-other-keys)
                    (when tests?
