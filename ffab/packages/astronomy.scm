@@ -1776,3 +1776,22 @@ time formats (see CDF Time Conversions)
 attempting to maintain ISTP compliance (see Working with XArray)
 @end itemize\n")
     (license license:expat)))
+
+;; 20220817T224720+0100
+(define-public libebf-c-cpp
+  (package
+    (name "libebf-c-cpp")
+    (version "0.0.3" )
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "mirror://sourceforge/ebfformat/libebf/c-cpp/libebf_c_cpp-"
+             version ".tar.gz"))
+       (sha256
+        (base32 "05473vwdilhnzjyjn3frq8n0pc4m0aibm8dx5hk5mip9h02ms85b"))))
+    (build-system gnu-build-system)
+    (home-page "http://ebfformat.sourceforge.net/")
+    (synopsis "Efficient Binary Format C/C++ library")
+    (description "")
+    (license license:gpl2)))
