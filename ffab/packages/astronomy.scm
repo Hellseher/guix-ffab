@@ -1795,3 +1795,56 @@ attempting to maintain ISTP compliance (see Working with XArray)
     (synopsis "Efficient Binary Format C/C++ library")
     (description "")
     (license license:gpl2)))
+
+;; 20220818T223250+0100
+(define-public torus
+  (let ((commit "0e8ac960cb0122eef58ec9693a38e62e1b21eaf9")
+        (revision "0"))
+    (package
+      (name "torus")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/PaulMcMillan-Astro/Torus")
+               (commit commit)))
+         (sha256
+          (base32 "09yrq2qyw8b7bmh57i3iagpfshz04z7xz44q6svpw3af7gjw93ca"))
+         (file-name (git-file-name name version))))
+      (build-system gnu-build-system)
+      (arguments
+       ;; With parallel build enabled raised random "file truncated" issues.
+       (list #:parallel-build? #f
+             #:tests? #f ; No tests
+             #:phases #~(modify-phases %standard-phases
+                          (add-after 'unpack 'patch-makefiles
+                            (lambda* (#:key inputs #:allow-other-keys)
+                              (substitute* "makefile"
+                                (("...libebf_c_cpp-0.0.3.include.")
+                                 (search-input-directory inputs "include/"))
+                                (("...libebf_c_cpp-0.0.3.lib.")
+                                 (search-input-directory inputs "lib/")))
+                              (substitute* "src/makefile"
+                                (("...libebf_c_cpp-0.0.3.src.cpp.")
+                                 (search-input-directory inputs "include/"))
+                                (("...libebf_c_cpp-0.0.3.lib.")
+                                 (search-input-directory inputs "lib/")))))
+                          (delete 'configure) ; No configure
+                          (replace 'install
+                            (lambda* (#:key outputs #:allow-other-keys)
+                              (let ((out (assoc-ref outputs "out")))
+                                (delete-file "bin/.gitignore")
+                                (for-each (lambda (file)
+                                            (install-file file (string-append out "/bin")))
+                                          (find-files "bin"))))))))
+      (native-inputs
+       (list libebf-c-cpp))
+      (home-page "https://github.com/PaulMcMillan-Astro/Torus")
+      (synopsis "To produce models for orbits in action-angle coordinates in axisymmetric potentials")
+      (description
+       "The package is based around `torus mapping', which is a non-perturbative
+technique for creating orbital tori for specified values of the action
+integrals. Given an orbital torus and a star's position at a reference time, one
+can compute its position at any other time, no matter how remote.")
+      (license license:gpl2+))))
