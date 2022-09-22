@@ -802,16 +802,19 @@ planetarium.")
                               (invoke "touch" ".galpyrc")
                               (make-file-writable ".galpyrc")
                               (invoke "pytest" "-vv" "tests")))))))
-    (native-inputs (list python-pynbody python-pytest))
+    (native-inputs (list python-pytest))
     (inputs (list gsl))
     (propagated-inputs (list python-astroquery
                              python-astropy
                              python-future
-                             python-numexpr
                              python-matplotlib
+                             python-numba
+                             python-numexpr
                              python-numpy
+                             python-pynbody
                              python-scipy
-                             python-six))
+                             python-six
+                             python-tqdm))
     (home-page "https://www.galpy.org/")
     (synopsis "Galactic Dynamics in python")
     (description
