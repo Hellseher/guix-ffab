@@ -1,0 +1,21 @@
+#+title: High availability
+#+created: <2021-01-04 Mon 23:12:53 GMT>
+#+modified: <2022-09-25 Sun 14:17:27 BST>
+
+* Synopsis
+This workflow file contains packaging process for the projects such Prxmox VE
+https://www.proxmox.com/en/ which provide out-of-the box clusterisation and virtualization
+management.
+
+* Flow
+** TODO corosync [0/1][0%] :author:
+- https://github.com/corosync
+*** TODO corosync
+- https://corosync.github.io/corosync/
+- synopsis ::
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+  - libknet
+  - libqb
