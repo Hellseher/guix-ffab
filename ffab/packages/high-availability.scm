@@ -21,6 +21,7 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages documentation)
+  #:use-module (gnu packages gcc)
   #:use-module (gnu packages gettext)
   #:use-module (gnu packages glib)
   #:use-module (gnu packages hardware)
@@ -37,6 +38,7 @@
   #:use-module (gnu packages)
   #:use-module (guix build-system gnu)
   #:use-module (guix gexp)
+  #:use-module (guix download)
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module ((guix licenses)
@@ -58,8 +60,10 @@
                 "1b8rz7f2h3scrq0xcqz58ckzsvv08g31j5jgy2v4i6w87r9c75lw"))))
     (build-system gnu-build-system)
     (arguments
-     ;; TODO: (Sharlatan-20220925T203354+0100): Multiple tests failed, fixm them
-     ;; or disable.
+     ;; TODO: (Sharlatan-20220925T203354+0100): Multiple tests failed. Tests
+     ;; require very complex environment and for some of them root privileges to
+     ;; set network configuration. It has it's own CI based on Jenkis
+     ;; https://ci.kronosnet.org/.
      (list #:tests? #f
            #:phases #~(modify-phases %standard-phases
                         (add-before 'bootstrap 'fix-version-gen
@@ -67,7 +71,14 @@
                             (call-with-output-file ".tarball-version"
                               (lambda (port)
                                 (display #$version port))))))))
-    (native-inputs (list autoconf automake doxygen libtool pkg-config))
+    (native-inputs (list autoconf
+                         automake
+                         doxygen
+                         libtool
+                         net-tools
+                         pkg-config
+                         ;; libgcc_s.so.1 must be installed for pthread_cancel to work
+                         `(,gcc "lib")))
     (inputs (list lksctp-tools
                   libnl
                   libqb
@@ -75,6 +86,7 @@
                   lz4
                   lzo
                   nss
+                  nspr
                   openssl
                   xz
                   zlib
@@ -159,10 +171,7 @@ lost.
                 "04gfd7i3w0zbzv7vi7728lgbyjq7cbqpr7jsp501piwg3z5j4mvb"))))
     (build-system gnu-build-system)
     (arguments
-     (list
-           ;; TODO: (Sharlatan-20220925T205137+0100): Add support for Sheferd
-           ;; service
-           #:configure-flags #~(list "--with-corosync"
+     (list #:configure-flags #~(list "--with-corosync"
                                      (string-append "--with-initdir="
                                                     #$output "/etc/init.d")
                                      (string-append "--with-ocfdir="
