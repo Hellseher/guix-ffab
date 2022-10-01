@@ -1,8 +1,8 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-08-14 Sun 17:40:17 BST>
+#+modified: <2022-09-12 Mon 19:41:42 BST>
 
-* Flow [0/6][0%]
+* Flow [0/8][0%]
 ** TODO go/tools/gopls [/][%] :p1:
 - https://go.googlesource.com/tools
 - [ ] :packed
@@ -164,3 +164,69 @@ https://github.com/hashicorp/terraform
     - https://issues.guix.gnu.org/55903#164
   - [X] go-gopkg-in-yaml-v2
   - [X] go-gopkg-in-yaml-v3
+** TODO github.com/johnkerl [0/1][0%] :author:
+*** TODO miller [1/5][20%] :p1:
+- https://github.com/johnkerl/miller
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/7][0%]
+  - [ ] github.com/facette/natsort
+  - [ ] github.com/johnkerl/lumin
+  - [ ] github.com/kballard/go-shellquote
+  - [ ] github.com/lestrrat-go/strftime
+  - [ ] github.com/mattn/go-isatty
+  - [ ] github.com/nine-lives-later/go-windows-terminal-sequences [/][%]
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+  - [ ] github.com/pkg/profile [/][%]
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+- [X] :inputs [3/3][100%]
+  - [X] github.com/stretchr/testify
+  - [X] golang.org/x/sys
+  - [X] golang.org/x/term
+** TODO github.com/caddyserver [0/1][0%] :author:
+- https://github.com/caddyserver
+*** TODO caddy [0/4][0%] :p1:
+- https://github.com/caddyserver/caddy
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [14/34][41%]
+  - [X] go-github-com-alecthomas-chroma
+  - [ ] go-github-com-aryann-difflib
+  - [X] go-github-com-burntsushi-toml
+  - [ ] go-github-com-caddyserver-certmagic
+  - [X] go-github-com-dustin-go-humanize
+  - [ ] go-github-com-go-chi-chi
+  - [ ] go-github-com-google-cel-go
+  - [X] go-github-com-google-uuid
+  - [X] go-github-com-klauspost-compress
+  - [ ] go-github-com-klauspost-cpuid-v2
+  - [X] go-github-com-lucas-clemente-quic-go
+  - [ ] go-github-com-masterminds-sprig-v3
+  - [ ] go-github-com-mholt-acmez
+  - [ ] go-github-com-prometheus-client_golang
+  - [ ] go-github-com-smallstep-certificates
+  - [ ] go-github-com-smallstep-cli
+  - [ ] go-github-com-smallstep-nosql
+  - [ ] go-github-com-smallstep-truststore
+  - [X] go-github-com-spf13-cobra
+  - [X] go-github-com-spf13-pflag
+  - [ ] go-github-com-tailscale-tscert
+  - [X] go-github-com-yuin-goldmark
+  - [ ] go-github-com-yuin-goldmark-highlighting
+  - [X] go-golang-org-x-crypto
+  - [X] go-golang-org-x-net
+  - [X] go-golang-org-x-term
+  - [ ] go-google-golang-org-genproto
+  - [ ] go-go-opentelemetry-io-contrib-instrumentation-net-http-otelhttp
+  - [ ] go-go-opentelemetry-io-otel
+  - [ ] go-go-opentelemetry-io-otel-exporters-otlp-otlptrace-otlptracegrpc
+  - [ ] go-go-opentelemetry-io-otel-sdk
+  - [ ] go-gopkg-in-natefinch-lumberjack-v2
+  - [X] go-gopkg-in-yaml-v3
+  - [X] go-go-uber-org-zap

@@ -143,3 +143,5 @@
 - [X] <2022-07-22 Fri> https://issues.guix.gnu.org/56700 <2022-08-04 Thu>
 - [X] <2022-07-23 Sat> https://issues.guix.gnu.org/56730 <2022-08-01 Mon>
 - [X] <2022-07-29 Fri> https://issues.guix.gnu.org/56835 <2022-08-05 Fri>
+- [ ] <2022-09-28 Wed> https://issues.guix.gnu.org/58152
+- [ ] <2022-10-01 Sat> https://issues.guix.gnu.org/58229
