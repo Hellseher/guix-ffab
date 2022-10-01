@@ -92,13 +92,25 @@
               (file-name (git-file-name name version))))
     (build-system gnu-build-system)
     (arguments
-     (list #:make-flags #~(list "SYSTEM=gfortran"
+     ;; FIXME: Tests failed
+     ;; Issue submited upstream https://github.com/danieljprice/splash/issues/67
+     ;;
+     ;; make: *** No rule to make target 'test_interpolate3D.o', needed by 'test1'.  Stop.
+     ;;
+     (list #:tests? #f
+           #:parallel-build? #f ;parallel build fails
+           #:make-flags #~(list "SYSTEM=gfortran" "PREFIX="
                                 (string-append "GIZA_DIR="
-                                               #$(this-package-input "giza")))
+                                               #$(this-package-input "giza"))
+                                (string-append "DESTDIR="
+                                               #$output))
            #:phases #~(modify-phases %standard-phases
-                        (delete 'configure))))
+                        (delete 'configure)
+                        (add-before 'install 'create-install-dirrectories
+                          (lambda _
+                            (mkdir-p (string-append #$output "/bin")))))))
     (native-inputs (list gfortran pkg-config perl python-wrapper))
-    (inputs (list cairo giza))
+    (inputs (list cairo cfitsio giza))
     (home-page "https://users.monash.edu.au/~dprice/splash/")
     (synopsis
      "Astrophysical visualisation tool for smoothed particle hydrodynamics")
