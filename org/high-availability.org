@@ -1,27 +1,29 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-09-26 Mon 21:10:24 BST>
+#+modified: <2022-10-01 Sat 17:03:33 BST>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
-https://www.proxmox.com/en/ which provide out-of-the box clusterisation and virtualization
-management.
+https://www.proxmox.com/en/, oVirt https://www.ovirt.org/ which provide out-of-the box
+clusterisation and virtualization management for High Availability.
 
 * Flow
 ** TODO corosync [0/1][0%] :author:
 - https://github.com/corosync
-*** TODO corosync [0/4][0%] :p1:
+*** TODO corosync [2/4][50%]
 - https://corosync.github.io/corosync/
 - synopsis ::
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2022-09-28 Wed>
+- [X] :patch-sent <2022-09-28 Wed>
 - [ ] :paptch-applied-upstream
-- [-] :inputs [0/6][0%]
-  - [-] libknet [1/4][25%]
+  - https://issues.guix.gnu.org/58152
+- [-] :inputs [5/6][83%]
+  - [-] libknet [3/4][75%]
     - synopsis :: Network abstraction layer designed for High Availability
-    - [ ] :packed
-    - [ ] :patch-sent
+    - [X] :packed <2022-09-28 Wed>
+    - [X] :patch-sent <2022-09-28 Wed>
     - [ ] :paptch-applied-upstream
+      - https://issues.guix.gnu.org/58152
     - [X] :inputs [16/16][100%]
       - [X] autoconf
       - [X] automake
@@ -39,18 +41,41 @@ management.
       - [X] xz
       - [X] zlib
       - [X] zstd "lib"
-  - [ ] libqb
-  - [ ] autoconf
-  - [ ] automake
-  - [ ] libtool
-  - [ ] pkg-config
+  - [X] libqb (updated to the latest, patch sent togather with pacemaker)
+  - [X] autoconf
+  - [X] automake
+  - [X] libtool
+  - [X] pkg-config
+
 ** TODO ClusterLabs [0/1][0%] :author:
 - https://www.clusterlabs.org/
-*** TODO pacemaker [/][%]
+*** TODO pacemaker [2/4][50%]
 - https://www.clusterlabs.org/pacemaker/
 - synopsis ::
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2022-09-28 Wed>
+- [X] :patch-sent <2022-09-28 Wed>
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-  - [ ] corosync
+  - https://issues.guix.gnu.org/58152
+- [-] :inputs [17/18][94%]
+  - [X] autoconf
+  - [X] automake
+  - [X] cmocka
+  - [-] corosync [2/3][66%]
+    - [X] :packed <2022-09-28 Wed>
+    - [X] :patch-sent <2022-09-28 Wed>
+    - [ ] :paptch-applied-upstream
+      - https://issues.guix.gnu.org/58152
+  - [X] dbus
+  - [X] gettext-minimal
+  - [X] glib
+  - [X] gnutls
+  - [X] libqb
+  - [X] libtool
+  - [X] libxml2
+  - [X] libxslt
+  - [X] pkg-config
+  - [X] python
+  - [X] rsync
+  - [X] util-linux
+  - [X] util-linux:lib
+  - [X] valgrind

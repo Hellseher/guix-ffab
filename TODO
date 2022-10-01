@@ -1,5 +1,5 @@
 #+created: <2022-05-29 Sun 12:53:28 BST>
-#+modified: <2022-09-26 Mon 21:04:44 BST>
+#+modified: <2022-10-01 Sat 17:04:07 BST>
 #+file: TODO
 
 #+begin_src sh
@@ -22,7 +22,6 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | emacs-xyz.org:***         | TODO | org-roam-ui         | [/][%]       | :p3: |
 | maths.org:**              | TODO | plplot              | [2/4][50%]   | :p2: |
 | astronomy.org:***         | TODO | sunpy               | [0/4][0%]    | :p2: |
-| astronomy.org:***         | TODO | SPLASH              | [1/4][25%]   | :p2: |
 | astronomy.org:***         | TODO | mpl-animations      | [2/4][50%]   | :p2: |
 | astronomy.org:***         | TODO | drms                | [2/4][50%]   | :p2: |
 | version-control.org:**    | TODO | lazygit             | [0/4][0%]    | :p1: |
@@ -31,7 +30,6 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | lisp-xyz.org:***          | TODO | dirt                | [/][%]       | :p1: |
 | lisp-xyz.org:***          | TODO | cl-soil             | [0/4][0%]    | :p1: |
 | lisp-xyz.org:***          | TODO | classimp            | [/][%]       | :p1: |
-| high-availability.org:*** | TODO | corosync            | [/][%]       | :p1: |
 | golang.org:***            | TODO | miller              | [1/5][20%]   | :p1: |
 | golang.org:**             | TODO | go/tools/gopls      | [/][%]       | :p1: |
 | golang.org:***            | TODO | caddy               | [0/4][0%]    | :p1: |
@@ -58,8 +56,8 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | lisp-xyz.org:**           | TODO | adams               | [1/4][25%]   |      |
 | lisp-check.org:*          | TODO | tests               | [12/26][46%] |      |
 | lisp-check.org:**         | TODO | cacau               | [0/4][0%]    |      |
-| high-availability.org:*** | TODO | pacemaker           | [/][%]       |      |
-| high-availability.org:**  | TODO | ClusterLabs         | [0/1][0%]    |      |
+| high-availability.org:*** | TODO | pacemaker           | [2/4][50%]   |      |
+| high-availability.org:*** | TODO | corosync            | [2/4][50%]   |      |
 | golang.org:***            | TODO | hashicorp/terraform | [0/4][0%]    |      |
 | golang.org:***            | TODO | hashicorp/nomad     | [0/0][100%]  |      |
 | golang.org:***            | TODO | gin-gonic/gin       | [1/4][25%]   |      |
@@ -70,6 +68,7 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | astronomy.org:***         | TODO | stsynphot           | [2/4][50%]   |      |
 | astronomy.org:***         | TODO | stsci.stimage       | [/][%]       |      |
 | astronomy.org:***         | TODO | stsci.imagestats    | [/][%]       |      |
+| astronomy.org:***         | TODO | SPLASH              | [3/4][75%]   |      |
 | astronomy.org:***         | TODO | specutils           | [/][%]       |      |
 | astronomy.org:***         | TODO | skychart            | [0/4][0%]    |      |
 | astronomy.org:***         | TODO | skycat              | [0/4][0%]    |      |
