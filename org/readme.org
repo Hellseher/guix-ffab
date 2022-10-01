@@ -61,7 +61,10 @@ manager.
 #+end_example
 
 * References
-- http://hpc.guix.info/
+- Guix Git Savanha :: https://git.savannah.gnu.org/cgit/guix.git
+- Guix CI :: https://ci.guix.gnu.org Main CI and substitute server
+- Guix Bordeaux :: https://bordeaux.guix.gnu.org/ Substitute server
+- Guix HPC :: http://hpc.guix.info/ Reproducible software deployment for high-performance computing.
 ** Guix channels
 - https://github.com/flatwhatson/guix-channel
 - nonguix :: Guix channel for packages that can't be included upstream. Please do NOT promote or

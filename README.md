@@ -1,16 +1,17 @@
+
 # Table of Contents
 
-1.  [Project structure and layout](#org546084d)
-2.  [Installation](#orgd416864)
-    1.  [Use as channel](#orgfc03ac8)
-    2.  [Use as build/install source](#org7e4365a)
-3.  [References](#org2f0fd19)
-    1.  [Guix channels](#orgec2d38b)
-    2.  [etc](#org593810f)
+1.  [Project structure and layout](#org54889b8)
+2.  [Installation](#orgefd3d5b)
+    1.  [Use as channel](#org95f213d)
+    2.  [Use as build/install source](#orge3df2f0)
+3.  [References](#orgcd8bb00)
+    1.  [Guix channels](#org20d3ca0)
+    2.  [etc](#org91900b0)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
-[![builds.sr.ht status](https://builds.sr.ht/~hellseher/ffab.svg)](https://builds.sr.ht/~hellseher/ffab?)
+    [![builds.sr.ht status](https://builds.sr.ht/~hellseher/ffab.svg)](https://builds.sr.ht/~hellseher/ffab?)
 
 This repository contains patches contributed to <guix-patches@gnu.org> and packaging progress. It
 also can be used as stand alone Guix channel.
@@ -20,7 +21,7 @@ It&rsquo;s concentraited on Astronomical/Astrophisical, Common Lisp, Golan, Pyth
 `master` branch should be buildable all the time, `wip-` could be to be broken.
 
 
-<a id="org546084d"></a>
+<a id="org54889b8"></a>
 
 # Project structure and layout
 
@@ -43,7 +44,7 @@ Layout follows Guix upstream.
 -   **issues.org:** tracks all sent patches to <guix-patches@gnu.org>
 
 
-<a id="orgd416864"></a>
+<a id="orgefd3d5b"></a>
 
 # Installation
 
@@ -51,7 +52,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="orgfc03ac8"></a>
+<a id="org95f213d"></a>
 
 ## Use as channel
 
@@ -64,7 +65,7 @@ manager.
            %default-channels)
 
 
-<a id="org7e4365a"></a>
+<a id="orge3df2f0"></a>
 
 ## Use as build/install source
 
@@ -72,14 +73,17 @@ manager.
     ~$ guix build -L ./guix-channel pgloader
 
 
-<a id="org2f0fd19"></a>
+<a id="orgcd8bb00"></a>
 
 # References
 
--   <http://hpc.guix.info/>
+-   **Guix Git Savanha:** <https://git.savannah.gnu.org/cgit/guix.git>
+-   **Guix CI:** <https://ci.guix.gnu.org> Main CI and substitute server
+-   **Guix Bordeaux:** <https://bordeaux.guix.gnu.org/> Substitute server
+-   **Guix HPC:** <http://hpc.guix.info/> Reproducible software deployment for high-performance computing.
 
 
-<a id="orgec2d38b"></a>
+<a id="org20d3ca0"></a>
 
 ## Guix channels
 
@@ -95,7 +99,7 @@ manager.
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="org593810f"></a>
+<a id="org91900b0"></a>
 
 ## etc
 
