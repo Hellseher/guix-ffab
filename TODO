@@ -1,5 +1,5 @@
 #+created: <2022-05-29 Sun 12:53:28 BST>
-#+modified: <2022-10-01 Sat 17:04:07 BST>
+#+modified: <2022-10-06 Thu 00:49:35 BST>
 #+file: TODO
 
 #+begin_src sh
@@ -68,7 +68,6 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | astronomy.org:***         | TODO | stsynphot           | [2/4][50%]   |      |
 | astronomy.org:***         | TODO | stsci.stimage       | [/][%]       |      |
 | astronomy.org:***         | TODO | stsci.imagestats    | [/][%]       |      |
-| astronomy.org:***         | TODO | SPLASH              | [3/4][75%]   |      |
 | astronomy.org:***         | TODO | specutils           | [/][%]       |      |
 | astronomy.org:***         | TODO | skychart            | [0/4][0%]    |      |
 | astronomy.org:***         | TODO | skycat              | [0/4][0%]    |      |
@@ -104,7 +103,7 @@ grep "TODO\|DONE" ./org/*.org | sed 's/.\/org\///g'  | grep :author
 | astronomy.org:**         | TODO | ATNF                   | [0/1][0%]   | :author:    |
 | astronomy.org:**         | TODO | casacore               | [1/2][50%]  | :author:p1: |
 | astronomy.org:**         | TODO | C-Munipack-library     | [0/0][0%]   | :author:    |
-| astronomy.org:**         | TODO | danieljprice           | [0/1][0%]   | :author:    |
+| astronomy.org:**         | TODO | danieljprice           | [1/1][100%] | :author:    |
 | astronomy.org:**         | TODO | ericmandel             | [0/1][0%]   | :author:p1: |
 | astronomy.org:**         | TODO | ESO                    | [1/3][33%]  | :author:    |
 | astronomy.org:**         | TODO | GreatAttractor         | [2/2][100%] | :author:p5: |
@@ -170,6 +169,7 @@ grep "DONE" ./org/*.org | sed 's/.\/org\///g'
 | astronomy.org:*** | DONE | stiff                       | [3/3][100%] |
 | astronomy.org:*** | DONE | astropy                     | [4/4][100%] |
 | astronomy.org:*** | DONE | casacore                    | [4/4][100%] |
+| astronomy.org:*** | DONE | SPLASH                      | [4/4][100%] |
 | astronomy.org:*** | DONE | qfits                       | [3/3][100%] |
 | astronomy.org:*** | DONE | stackistry                  | [4/4][100%] |
 | astronomy.org:*** | DONE | imppg                       | [4/4][100%] |

@@ -26,8 +26,8 @@
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
-  #:use-module (guix packages
-  #:use-module ((guix licenses) #:prefix license:)))
+  #:use-module (guix packages)
+  #:use-module ((guix licenses) #:prefix license:))
 
 ;; 20210217T224508+0000
 ;; added-to-upstream: ee9c44c76752231ea40f2492304426f204f93a0e
