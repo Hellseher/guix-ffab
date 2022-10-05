@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-01 Sat 22:49:29 BST>
+#+modified: <2022-10-06 Thu 00:47:06 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -367,16 +367,16 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
 
-** TODO danieljprice [0/1][0%] :author:
+** TODO danieljprice [1/1][100%] :author:
 - https://github.com/danieljprice
-*** TODO SPLASH [3/4][75%]
+*** DONE SPLASH [4/4][100%]
 - https://users.monash.edu.au/~dprice/splash/
 - https://github.com/danieljprice/splash
 - synopsis :: SPLASH is an interactive visualisation and plotting tool using kernel interpolation,
   mainly used for Smoothed Particle Hydrodynamics simulations
 - [X] :packed <2022-10-01 Sat>
 - [X] :patch-sent <2022-10-01 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-10-06 Thu>
   - https://issues.guix.gnu.org/58229
 - [X] :inputs [3/3][100%]
   - [X] giza
