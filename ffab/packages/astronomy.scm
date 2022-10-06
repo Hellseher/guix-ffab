@@ -1526,19 +1526,54 @@ provide related services.")
 (define-public python-sunpy
   (package
     (name "python-sunpy")
-    (version "4.0.2")
+    (version "4.0.5")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "sunpy" version))
               (sha256
                (base32
-                "0gx7gjww0hsdwagiswrhv3hwkhcy8idvkh1mln64ia0iscai9k36"))))
+                "0frqii02k93bbfb4wg7272xh1p1r3g8b0yxja13znr4ysidbg3gc"))))
     (build-system python-build-system)
-    (propagated-inputs (list python-astropy python-numpy python-packaging
-                             ;; python-parfive
-                             ))
+    (arguments
+     ;; NOTE: (Sharlatan-20221006T012455+0100): Tests require Internet access to
+     ;; download test-data, some of the native-inputs are not packed yet either.
+     ;; Pack rest, run partial tests without downloading files.
+     (list #:tests? #f
+           #:phases #~(modify-phases %standard-phases
+                        (add-before 'install 'writable-compiler
+                          (lambda _
+                            (make-file-writable "sunpy/_compiler.c")))
+                        (add-before 'check 'writable-compiler
+                          (lambda _
+                            (make-file-writable "sunpy/_compiler.c")))
+                        (replace 'check
+                          (lambda* (#:key inputs outputs tests?
+                                    #:allow-other-keys)
+                            (when tests?
+                              (add-installed-pythonpath inputs outputs)
+                              (setenv "HOME" "/tmp")
+                              (invoke "python"
+                                      "-m"
+                                      "pytest"
+                                      "-vvv"
+                                      "-r"
+                                      "a"
+                                      "--pyargs"
+                                      "sunpy"))))
+                        (delete 'sanity-check))))
+    (native-inputs (list python-extension-helpers
+                         python-aiohttp
+                         python-packaging
+                         python-pytest
+                         python-pytest-astropy
+                         python-pytest-doctestplus
+                         python-pytest-mock
+                         python-pytest-mpl
+                         python-pytest-xdist
+                         python-setuptools-scm))
     (inputs (list python-asdf
                   python-asdf-astropy
+                  python-astropy
                   python-beautifulsoup4
                   python-cdflib
                   python-dask
@@ -1551,14 +1586,10 @@ provide related services.")
                   python-jplephem
                   python-matplotlib
                   python-mpl-animators
-                  ;; python-opencv-python
+                  python-numpy
+                  ;; python-opencv-python ; not packed yet
+                  ;; python-parfive ; not packed yet
                   python-pandas
-                  python-pytest
-                  python-pytest-astropy
-                  python-pytest-doctestplus
-                  python-pytest-mock
-                  python-pytest-mpl
-                  python-pytest-xdist
                   ;; python-reproject
                   python-scikit-image
                   python-scipy
@@ -1567,7 +1598,9 @@ provide related services.")
                   python-zeep))
     (home-page "https://sunpy.org")
     (synopsis "Python library for Solar Physics")
-    (description "SunPy: Python for Solar Physics")
+    (description
+     "SunPy is package for solar physics and is meant to be a free alternative to the
+SolarSoft data analysis environment.")
     (license license:bsd-2)))
 
 ;;20220627T213949+0100
