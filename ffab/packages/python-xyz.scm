@@ -338,3 +338,27 @@ or h5pyd, without relying on the Unidata netCDF library")
      "The @code{mpl_animators} package provides a set of classes which allow the
 easy construction of interactive matplotlib widget based animations.")
     (license license:bsd-3)))
+
+(define-public python-parfive
+  (package
+    (name "python-parfive")
+    (version "2.0.1")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "parfive" version))
+              (sha256
+               (base32
+                "19dcbb6g56l5s3ih0bhs3p4acgc0gf4zdzpj4w87m69li2nhmgpx"))))
+    (build-system python-build-system)
+    (propagated-inputs (list python-aiohttp python-tqdm))
+    (native-inputs (list python-aiofiles
+                         python-pytest
+                         python-pytest-asyncio
+                         python-pytest-cov
+                         python-pytest-localserver
+                         python-pytest-socket))
+    (home-page "https://parfive.readthedocs.io/")
+    (synopsis "A HTTP and FTP parallel file downloader.")
+    (description
+     "This package provides a HTTP and FTP parallel file downloader.")
+    (license license:expat)))
