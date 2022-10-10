@@ -21,7 +21,9 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages web)
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
@@ -50,3 +52,38 @@
      (description
       "Simple Python testing framework")
      (license license:expat))))
+
+;; 20221006T020008+0100
+(define-public python-asynctest
+  (package
+    (name "python-asynctest")
+    (version "0.13.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "asynctest" version))
+              (sha256
+               (base32
+                "1b3zsy7p84gag6q8ai2ylyrhx213qdk2h2zb6im3xn0m5n264y62"))))
+    (build-system python-build-system)
+    (arguments
+     ;; TODO: (Sharlatan-20221006T020935+0100): Tests failed a lot, current
+     ;; version does not support Python 3.8+
+     ;;
+     ;; https://github.com/Martiusweb/asynctest/issues/160
+     ;; https://github.com/Martiusweb/asynctest/issues/158
+     ;;
+     (list #:tests? #f
+           #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? inputs outputs
+                                    #:allow-other-keys)
+                            (when tests?
+                              (add-installed-pythonpath inputs outputs)
+                              (invoke "python" "-m" "unittest" "test")))))))
+    (home-page "https://github.com/Martiusweb/asynctest/")
+    (synopsis "Enchanted Python's unitest package with asyncio support")
+    (description
+     "The package @code{asynctest} is built on top of the standard unittest module and cuts
+down boilerplate code when testing libraries for asyncio.")
+    (license license:asl2.0)))
+
