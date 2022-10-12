@@ -29,6 +29,7 @@
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
+  #:use-module (gnu packages python-crypto)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages xml)
@@ -376,3 +377,42 @@ Features:
 @item One-shot socks server (@code{python -m siosocks})
 @end itemize")
     (license license:expat)))
+
+;; 20221011T224747+0100
+(define-public python-aioftp
+  (package
+    (name "python-aioftp")
+    (version "0.21.3")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "aioftp" version))
+              (sha256
+               (base32
+                "1lkzavjziq1bz3g4mrdgm8sz54yx6vb3ga4k5mdhjzx0785ybnn6"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "pytest" "-vvv")))))))
+    (native-inputs (list python-async-timeout
+                         python-pytest
+                         python-pytest-asyncio
+                         python-pytest-cov
+                         python-siosocks
+                         python-trustme))
+    (home-page "https://github.com/aio-libs/aioftp")
+    (synopsis "FTP client/server for asyncio in Python")
+    (description
+     "FTP client and server for asyncio (Python 3) Library implementing FTP
+protocol, both client and server for Python asyncio module.
+
+ Supported commands as client: USER, PASS, ACCT, PWD, CWD, CDUP, MKD, RMD,
+ MLSD, MLST, RNFR, RNTO, DELE, STOR, APPE, RETR, TYPE, PASV, ABOR, QUIT,
+ REST, LIST (as fallback).
+
+ Supported commands as server: USER, PASS, QUIT, PWD, CWD, CDUP, MKD, RMD,
+ MLSD, LIST (non-standard), MLST, RNFR, RNTO, DELE, STOR, RETR,
+ TYPE (\"I\" and \"A\"), PASV, ABOR, APPE, REST.")
+    (license license:asl2.0)))
