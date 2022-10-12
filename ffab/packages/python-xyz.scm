@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages python-xyz)
+  #:use-module (ffab packages check)
   #:use-module (ffab packages python-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages astronomy)
@@ -236,7 +237,7 @@ easy construction of interactive matplotlib widget based animations.")
                           (lambda* (#:key tests? #:allow-other-keys)
                             (when tests?
                               (invoke "pytest" "-vvv")))))))
-    (native-inputs (list python-pytest python-pytest-asyncio python-pytest-cov
+    (native-inputs (list python-pytest python-pytest-asyncio-ffab python-pytest-cov
                          python-pytest-trio))
     (propagated-inputs (list python-trio))
     (home-page "https://github.com/pohmelie/siosocks")
@@ -260,13 +261,13 @@ Features:
 (define-public python-aioftp
   (package
     (name "python-aioftp")
-    (version "0.21.3")
+    (version "0.21.4")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "aioftp" version))
               (sha256
                (base32
-                "1lkzavjziq1bz3g4mrdgm8sz54yx6vb3ga4k5mdhjzx0785ybnn6"))))
+                "1f8vql2j2b3ykqyh5bxzsp8x5f2if2c1ya232ld3hz3cc7a2dfr8"))))
     (build-system python-build-system)
     (arguments
      (list #:phases #~(modify-phases %standard-phases
@@ -276,7 +277,7 @@ Features:
                               (invoke "pytest" "-vvv")))))))
     (native-inputs (list python-async-timeout
                          python-pytest
-                         python-pytest-asyncio
+                         python-pytest-asyncio-ffab
                          python-pytest-cov
                          python-siosocks
                          python-trustme))
