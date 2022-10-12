@@ -137,37 +137,9 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (license license:expat)))
 
 ;; 20220621T191218+0100
-(define-public python-posix-ipc
-  (package
-    (name "python-posix-ipc")
-    (version "1.0.5")
-    (source
-     (origin
-       ;; The source distributed on PyPI is prebuild.
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/osvenskan/posix_ipc")
-             (commit (string-append "rel" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "17y4d0pmvp199c5hbs602ailhlh9f9zv89kmpbd8jhyl6rgaxsvs"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (add-after 'unpack 'patch-cc-path
-                 (lambda _
-                   (substitute* "prober.py"
-                     (("cmd = .cc")
-                      (string-append "cmd = \"" #$(cc-for-target)))))))))
-    (native-inputs
-     (list python-unittest2))
-    (home-page "http://semanchuk.com/philip/posix_ipc/")
-    (synopsis "POSIX IPC primitives for Python")
-    (description
-     "This package provides POSIX IPC primitives - semaphores, shared memory and
-message queues for Python.")
-    (license license:bsd-3))) ; BSD like Copyright (c) 2018, Philip Semanchuk
+;; (define-public python-posix-ipc
+;; added-to-upstream b12da85668c40be322204e1ca04fb70b4d709411
+;; CommitDate: Fri Aug 5 21:08:49 2022 +0300
 
 ;; 20220621T222117+0100
 (define-public python-progressbar
@@ -190,109 +162,14 @@ message queues for Python.")
     (license (list license:lgpl2.0+ license:bsd-3))))
 
 ;; 20220627T220024+0100
-(define-public python-glymur
-  (package
-    (name "python-glymur")
-    (version "0.10.1")
-    (source
-     (origin
-       (method git-fetch)   ; no tests data in PyPi package
-       (uri (git-reference
-             (url "https://github.com/quintusdias/glymur")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1cq9r8vzwvds1kasy5gc2rxw034jh9l43rraps1n739072pfz6qg"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-after 'unpack 'patch-library-locations
-            (lambda _
-              ;; XXX: It's a workaround for Python inability to find the
-              ;; .so libraries with ctypes.util.find_library()
-              (substitute* '("glymur/config.py")
-                (("path = find_library\\(libname\\)")
-                 (string-append
-                  "if libname == \"openjp2\":\n"
-                  "        path = \""
-                  #$(this-package-input "openjpeg") "/lib/libopenjp2.so\"\n"
-                  "    elif libname == \"tiff\":\n"
-                  "        path = \""
-                  #$(this-package-input "libtiff") "/lib/libtiff.so\"\n"
-                  "    elif libname == \"c\":\n"
-                  "        path = \""
-                  #$(this-package-input "glibc") "/lib/libc.so.6\"\n")))))
-          ;; TODO: implement as a feature of python-build-system (PEP-621,
-          ;; PEP-631, PEP-660)
-          (replace 'build
-            (lambda _
-              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
-              ;; ZIP does not support timestamps before 1980.
-              (setenv "SOURCE_DATE_EPOCH" "315532800")
-              (invoke "python" "-m" "build" "--wheel" "--no-isolation" ".")))
-          (replace 'install
-            (lambda* (#:key outputs #:allow-other-keys)
-              (let ((whl (car (find-files "dist" "\\.whl$"))))
-                (invoke "pip" "--no-cache-dir" "--no-input"
-                        "install" "--no-deps" "--prefix" #$output whl))))
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                ;; Failing test due to inability of
-                ;; ctypes.util.find_library() to determine library path,
-                ;; which is patched above.
-                (delete-file "tests/test_config.py")
-                (invoke "python" "-m" "pytest" "-vv" "tests")))))))
-    (native-inputs
-     (list python-pypa-build python-pytest))
-    (inputs
-     (list openjpeg  ; glymur/lib/openjp2.py
-           libtiff   ; glymur/lib/tiff.py
-           glibc))
-    (propagated-inputs
-     (list python-lxml
-           python-numpy
-           python-packaging))
-     (home-page "https://github.com/quintusdias/glymur")
-    (synopsis "Python interface to OpenJPEG and LibTIFF")
-     (description
-      "This package provides Python interface to the OpenJPEG library which
-allows one to read and write JPEG 2000 files")
-     (license license:expat)))
+;; (define-public python-glymur
+;; added-to-upstream 95ed62c12bb33f6b64daf2f51df0e610f1abc913
+;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
 ;; 20220702T095332+0100
-(define-public python-h5netcdf
-  (package
-    (name "python-h5netcdf")
-    (version "1.0.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "h5netcdf" version))
-       (sha256
-        (base32 "1b2dcgf5rwy7pb7hr4prkc5vgcw9qc2was20dmnj90lbrpx08rvp"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (replace 'check
-                 (lambda* (#:key tests? #:allow-other-keys)
-                   (when tests?
-                     (invoke "pytest" "-vv" "h5netcdf/tests")))))))
-    (native-inputs
-     (list python-setuptools-scm
-           python-pytest
-           python-netcdf4-1.6))
-    (propagated-inputs
-     (list python-h5py python-packaging))
-    (home-page "https://h5netcdf.org")
-    (synopsis "Python interface for the netCDF4 file-format based on h5py")
-    (description "This package provides Python interface for the netCDF4
-file-format that reads and writes local or remote HDF5 files directly via h5py
-or h5pyd, without relying on the Unidata netCDF library")
-    (license license:bsd-3)))
+;; (define-public python-h5netcdf
+;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
+;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
 ;; 20220702T155715+0100
 (define-public python-netcdf4-1.6
