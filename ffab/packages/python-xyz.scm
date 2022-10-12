@@ -338,3 +338,29 @@ or h5pyd, without relying on the Unidata netCDF library")
      "The @code{mpl_animators} package provides a set of classes which allow the
 easy construction of interactive matplotlib widget based animations.")
     (license license:bsd-3)))
+
+;; 20221012T205858+0100
+(define-public python-siosocks
+  (package
+    (name "python-siosocks")
+    (version "0.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "siosocks" version))
+              (sha256
+               (base32
+                "0qqxy8wl5mrmlkblzjq9nsg0cbm5jwgj409mhnhq6gd1ypvbndms"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "pytest" "-vvv")))))))
+    (native-inputs (list python-pytest python-pytest-asyncio python-pytest-cov
+                         python-pytest-trio))
+    (propagated-inputs (list python-trio))
+    (home-page "https://github.com/pohmelie/siosocks")
+    (synopsis "sans-io socks proxy client/server with couple io backends")
+    (description "sans-io socks proxy client/server with couple io backends")
+    (license license:expat)))
