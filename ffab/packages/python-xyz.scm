@@ -361,6 +361,18 @@ easy construction of interactive matplotlib widget based animations.")
                          python-pytest-trio))
     (propagated-inputs (list python-trio))
     (home-page "https://github.com/pohmelie/siosocks")
-    (synopsis "sans-io socks proxy client/server with couple io backends")
-    (description "sans-io socks proxy client/server with couple io backends")
+    (synopsis "Sans-io socks 4/5 client/server library/framework")
+    (description
+     "This package provides Python library and framework for sans-io socks proxy
+client/server with couple io backends.
+
+Features:
+@itemize
+@item Only TCP connect (no BIND, no UDP)
+@item Both client and server
+@item SOCKS versions: 4, 4a, 5
+@item SOCKSv5 auth: no auth, username/password
+@item Couple io backends: @code{asyncio}, @code{trio}, @code{socketserver}
+@item One-shot socks server (@code{python -m siosocks})
+@end itemize")
     (license license:expat)))
