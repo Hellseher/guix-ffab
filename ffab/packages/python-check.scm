@@ -83,8 +83,8 @@
     (home-page "https://github.com/Martiusweb/asynctest/")
     (synopsis "Enchanted Python's unitest package with asyncio support")
     (description
-     "The package @code{asynctest} is built on top of the standard unittest module and cuts
-down boilerplate code when testing libraries for asyncio.")
+     "The package @code{asynctest} is built on top of the standard unittest module
+and cuts down boilerplate code when testing libraries for asyncio.")
     (license license:asl2.0)))
 
 ;; 20221006T014754+0100
