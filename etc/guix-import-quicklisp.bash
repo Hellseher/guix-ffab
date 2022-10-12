@@ -3,10 +3,11 @@
 # Copyright © 2021 Sharlatan Hellseher <sharlatanus@gmail.com>
 
 ## Commentary:
-# This script provide a quick prototype to generate Guix package definition of
-# Common Lisp system availalbe in Quicklisp distribution. It's not a final
+#
+# This script provides a quick prototype to generate Guix package definition of
+# Common Lisp system available in Quicklisp distribution. It's not a final
 # solution, which needs to be implemented in Guile and integrated to Guix, but
-# it would help accelerate package prototyping.
+# it would help to accelerate packaging process.
 #
 # Related to Quicklisp resources:
 #
@@ -212,8 +213,8 @@ _debug()
 }
 
 _curl()
-{ # Quicklisp distributes metadata in plain text format, try to download
-  # metadata files from URL and saved it under DST name.
+{ # Quicklisp distributes metadata in plain text format. Try to download
+  # metadata files from the URL and save it under DST file name.
     local url="$1"
     local dst="$2"
 
@@ -228,7 +229,8 @@ _curl()
 }
 
 fetch_with()
-{ # Use METHOD to obtain PRJ from URL. PRJ could be an absolute destination path.
+{ # Use fetch METHOD to obtain PRJ from URL. PRJ could be an absolute
+  # destination path.
     local method="$1"
     local url="$2"
     local prj="$3"
@@ -323,30 +325,31 @@ get_commit()
             ;;
     esac
 }
+
 guix_sbcl_inputs()
-{ # Return a block of lisp list of provided DEPS
+{ # Return a block of lisp list of provided DEPS.
     local deps="$1"
 
     for d in ${deps[@]}
     do
-        printf "(\"%s\" ,sbcl-%s)\n" "$d" "$d"
+        printf "sbcl-%s\n" "$d"
     done
 }
 
 guix_hash()
-{ # Return base32 sha254sum sum of given SRC and TYPE
+{ # Return base32 sha254sum sum of given SRC and TYPE.
     local src="$1"
     local type="${2:-}"
     local tag
 
     case "${type}" in
         git)
-            guix hash --recursive --exclude-vcs "${src}"
+            guix hash --serializer=nar --exclude-vcs "${src}"
             ;;
         tagged-git)
             tag=$(git --git-dir "${src}/.git" describe --tags --abbrev=0)
             git --git-dir "${src}/.git" checkout "${tag}" &>/dev/null
-            guix hash --recursive --exclude-vcs "${src}"
+            guix hash --serializer=nar --exclude-vcs "${src}"
             ;;
         https | http)
             guix hash "${src}"
@@ -367,7 +370,7 @@ guix_package_available()
 }
 
 chk_require()
-{ # Check that every required command is available.
+{ # Check that every required commands are available.
     declare -a warn
 
     _debug "--- [ $FUNCNAME ] ---"
@@ -413,7 +416,7 @@ guix_package()
           (base32 "${sha256_base32}"))))
       (build-system asdf-build-system/sbcl)
       (inputs
-       \`(${inputs}))
+       (list ${inputs}))
       (home-page "${url}")
       (synopsis "${synopsis}")
       (description

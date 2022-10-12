@@ -1,0 +1,55 @@
+From bc8af5a649cfbd0c342e1281b59627e55a141e7e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Jul 2022 12:44:37 +0100
+Subject: [PATCH 2/2] gnu: Add h5netcdf
+
+* gnu/packages/python-xyz.scm: (python-h5netcdf): New variable.
+---
+ gnu/packages/python-xyz.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index afb7798a5c..93935d3b03 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -1481,6 +1481,37 @@ (define-public python-hdf4
+ @url{http://hdfeos.org/software/pyhdf.php,pyhdf}.")
+    (license license:expat)))
+ 
++(define-public python-h5netcdf
++  (package
++    (name "python-h5netcdf")
++    (version "1.0.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "h5netcdf" version))
++       (sha256
++        (base32 "1b2dcgf5rwy7pb7hr4prkc5vgcw9qc2was20dmnj90lbrpx08rvp"))))
++    (build-system python-build-system)
++    (arguments
++     (list #:phases
++           #~(modify-phases %standard-phases
++               (replace 'check
++                 (lambda* (#:key tests? #:allow-other-keys)
++                   (when tests?
++                     (invoke "pytest" "-vv" "h5netcdf/tests")))))))
++    (native-inputs
++     (list python-netcdf4
++           python-pytest
++           python-setuptools-scm))
++    (propagated-inputs
++     (list python-h5py python-packaging))
++    (home-page "https://h5netcdf.org")
++    (synopsis "Python interface for the netCDF4 file-format based on h5py")
++    (description "This package provides Python interface for the netCDF4
++file-format that reads and writes local or remote HDF5 files directly via h5py
++or h5pyd, without relying on the Unidata netCDF library")
++    (license license:bsd-3)))
++
+ (define-public python-h5py
+   (package
+     (name "python-h5py")
+-- 
+2.36.1
+

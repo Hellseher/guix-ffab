@@ -1,0 +1,55 @@
+From 12c617952c5b9294899da48a56bd936d2cfa5e86 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 23 Jul 2022 22:12:30 +0100
+Subject: [PATCH 2/2] gnu: python-sep: Update to 1.2.1
+
+* gnu/packages/astronomy.scm: (python-sep): Update to 1.2.1.
+  Inherit from libsep
+---
+ gnu/packages/astronomy.scm | 27 +++++++++------------------
+ 1 file changed, 9 insertions(+), 18 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e5f50001fe..83d058d5c4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1650,27 +1650,18 @@ (define-public python-pyerfa
+ 
+ (define-public python-sep
+   (package
++    (inherit libsep)
+     (name "python-sep")
+-    (version "1.1.1")
+-    (source
+-     (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "sep" version))
+-       (sha256
+-        (base32 "0wxdqn92q1grv8k7xi7h88ac6wnznw4xh5bdlz1vz6za2dgsyj4m"))))
+     (build-system python-build-system)
++    (arguments
++     (strip-keyword-arguments
++      '(#:make-flags) (package-arguments libsep)))
+     (native-inputs
+-     (list python-cython python-pytest))
+-    (inputs
+-     (list python-numpy))
+-    (home-page "https://github.com/kbarbary/sep")
+-    (synopsis "Astronomical source extraction and photometry library")
+-    (description
+-     "SEP makes the core algorithms of Source Extractor available as a library
+-of stand-alone functions and classes.")
+-    (license (list license:bsd-3
+-                   license:expat
+-                   license:lgpl3+))))
++     (modify-inputs (package-inputs libsep)
++       (prepend python-cython)))
++    (propagated-inputs
++     (modify-inputs (package-inputs libsep)
++       (prepend python-numpy)))))
+ 
+ (define-public python-asdf
+   (package
+-- 
+2.36.1
+
