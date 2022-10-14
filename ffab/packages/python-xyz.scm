@@ -241,9 +241,9 @@ easy construction of interactive matplotlib widget based animations.")
                          python-pytest-trio))
     (propagated-inputs (list python-trio))
     (home-page "https://github.com/pohmelie/siosocks")
-    (synopsis "Sans-io socks 4/5 client/server library/framework")
+    (synopsis "SOCKSv4 & SOCKSv5 TCP proxy protocol implementation in Python")
     (description
-     "This package provides Python library and framework for sans-io socks proxy
+     "This package provides a Python module and framework for sans-io socks proxy
 client/server with couple io backends.
 
 Features:
@@ -279,9 +279,9 @@ Features:
                          python-pytest
                          python-pytest-asyncio-ffab
                          python-pytest-cov
-                         python-siosocks
                          python-trustme))
-    (home-page "https://github.com/aio-libs/aioftp")
+    (propagated-inputs (list python-siosocks))
+    (home-page "https://aioftp.readthedocs.io/")
     (synopsis "FTP client/server for asyncio in Python")
     (description
      "FTP client and server for asyncio (Python 3) Library implementing FTP
@@ -297,9 +297,9 @@ protocol, both client and server for Python asyncio module.
     (license license:asl2.0)))
 
 ;; 20221010T225525+0100
-(define-public python-parfive
+(define-public parfive
   (package
-    (name "python-parfive")
+    (name "parfive")
     (version "2.0.1")
     (source (origin
               (method url-fetch)

@@ -100,7 +100,8 @@ and cuts down boilerplate code when testing libraries for asyncio.")
                 "1dkr86nxkxc0ka3rdnpmk335m8gl1zh1sy8i7w4w1jsidbf82jvw"))))
     (build-system python-build-system)
     (arguments
-     (list #:tests? #f ;XXX: Tests require Internet access.
+     ;; FIXME: Tests fail a lot, probably requiring Internet access.
+     (list #:tests? #f
            #:phases #~(modify-phases %standard-phases
                         (replace 'build
                           (lambda _
@@ -113,13 +114,20 @@ and cuts down boilerplate code when testing libraries for asyncio.")
                                     "--wheel"
                                     "--no-isolation"
                                     ".")))
+                        ;; XXX: test_asynctest depends on the project which is
+                        ;; not compatible with Python 3.8 and probably
+                        ;; abandoned.
+                        ;; https://github.com/miketheman/pytest-socket/issues/161
+                        (add-before 'check 'disable-unsupported-test
+                          (lambda _
+                            (substitute* "tests/test_async.py"
+                              (("def test_asynctest")
+                               "def __off_test_asynctest"))))
                         (replace 'check
                           (lambda* (#:key tests? #:allow-other-keys)
                             (when tests?
-                              (invoke "python" "-m" "pytest"
-                                      "--disable-socket" "tests")))))))
-    (native-inputs (list python-asynctest
-                         python-httpx
+                              (invoke "python" "-m" "pytest" "-vvv")))))))
+    (native-inputs (list python-httpx
                          python-poetry-core
                          python-pypa-build
                          python-pytest
