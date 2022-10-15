@@ -42,6 +42,7 @@
 (define-public python-fakeredis-0.16.0
   (package
     (inherit python-fakeredis)
+    (name "python-fakeredis-0.16.0")
     (version "0.16.0")
     (source (origin
               (method url-fetch)
@@ -53,6 +54,7 @@
 (define-public python-redis-2.10.6
   (package
     (inherit python-redis)
+    (name "python-redis-2.10.6")
     (version "2.10.6")
     (source (origin
               (method url-fetch)

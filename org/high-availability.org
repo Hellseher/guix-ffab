@@ -1,6 +1,6 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-01 Sat 17:03:33 BST>
+#+modified: <2022-10-10 Mon 22:14:59 BST>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
@@ -8,21 +8,21 @@ https://www.proxmox.com/en/, oVirt https://www.ovirt.org/ which provide out-of-t
 clusterisation and virtualization management for High Availability.
 
 * Flow
-** TODO corosync [0/1][0%] :author:
+** TODO corosync [1/1][100%] :author:
 - https://github.com/corosync
-*** TODO corosync [2/4][50%]
+*** DONE corosync [4/4][100%]
 - https://corosync.github.io/corosync/
 - synopsis ::
 - [X] :packed <2022-09-28 Wed>
 - [X] :patch-sent <2022-09-28 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-10-10 Mon>
   - https://issues.guix.gnu.org/58152
-- [-] :inputs [5/6][83%]
-  - [-] libknet [3/4][75%]
+- [X] :inputs [6/6][100%]
+  - [X] libknet [4/4][100%]
     - synopsis :: Network abstraction layer designed for High Availability
     - [X] :packed <2022-09-28 Wed>
     - [X] :patch-sent <2022-09-28 Wed>
-    - [ ] :paptch-applied-upstream
+    - [X] :paptch-applied-upstream <2022-10-10 Mon>
       - https://issues.guix.gnu.org/58152
     - [X] :inputs [16/16][100%]
       - [X] autoconf
@@ -47,23 +47,23 @@ clusterisation and virtualization management for High Availability.
   - [X] libtool
   - [X] pkg-config
 
-** TODO ClusterLabs [0/1][0%] :author:
+** TODO ClusterLabs [1/1][100%] :author:
 - https://www.clusterlabs.org/
-*** TODO pacemaker [2/4][50%]
+*** DONE pacemaker [4/4][100%]
 - https://www.clusterlabs.org/pacemaker/
 - synopsis ::
 - [X] :packed <2022-09-28 Wed>
 - [X] :patch-sent <2022-09-28 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-10-10 Mon>
   - https://issues.guix.gnu.org/58152
-- [-] :inputs [17/18][94%]
+- [X] :inputs [18/18][100%]
   - [X] autoconf
   - [X] automake
   - [X] cmocka
-  - [-] corosync [2/3][66%]
+  - [X] corosync [3/3][100%]
     - [X] :packed <2022-09-28 Wed>
     - [X] :patch-sent <2022-09-28 Wed>
-    - [ ] :paptch-applied-upstream
+    - [X] :paptch-applied-upstream <2022-10-10 Mon>
       - https://issues.guix.gnu.org/58152
   - [X] dbus
   - [X] gettext-minimal
