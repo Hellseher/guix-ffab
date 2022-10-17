@@ -17,9 +17,11 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages astronomy)
+  #:use-module (ffab packages check)
   #:use-module (ffab packages maths)
   #:use-module (ffab packages python-xyz)
   #:use-module (ffab packages python-web)
+  #:use-module (ffab packages python-check)
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (gnu packages)
@@ -739,21 +741,22 @@ planetarium.")
 ;; (define-public python-astropy
 ;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
-;; 20220707T095318+0100
+;; 20221017T224702+0100
 (define-public python-astropy-5.1
   (package
     (inherit python-astropy)
-    (name "python-astropy-5.1")
     (version "5.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/astropy/astropy")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "13blq7xgysjdbn2sig35w2bmgfszgkkf5b9rmjpid419ciaxd7nj"))))))
+    (name "python-astropy")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "astropy" version))
+       (sha256
+        (base32 "0zkv3ddzlxx21i796azfbqxrqnsxn83vsczscv577iyzxp3v5c8x"))))
+    (native-inputs
+     (modify-inputs (package-native-inputs python-astropy)
+       (replace "python-pytest" python-pytest-7.1)
+       (replace "python-pytest-astropy" python-pytest-astropy-0.10)))))
 
 ;; (define-public python-asdf-astropy
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
