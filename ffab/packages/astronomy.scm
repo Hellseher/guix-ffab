@@ -19,6 +19,7 @@
 (define-module (ffab packages astronomy)
   #:use-module (ffab packages maths)
   #:use-module (ffab packages python-xyz)
+  #:use-module (ffab packages python-web)
   #:use-module ((guix licenses)
                 #:prefix license:)
   #:use-module (gnu packages)
@@ -1538,7 +1539,7 @@ provide related services.")
      ;; NOTE: (Sharlatan-20221006T012455+0100): Tests require Internet access to
      ;; download test-data, some of the native-inputs are not packed yet either.
      ;; Pack rest, run partial tests without downloading files.
-     (list #:tests? #f
+     (list #:tests? #t
            #:phases #~(modify-phases %standard-phases
                         (add-before 'install 'writable-compiler
                           (lambda _
@@ -1570,6 +1571,7 @@ provide related services.")
                          python-pytest-mock
                          python-pytest-mpl
                          python-pytest-xdist
+                         python-semantic-version
                          python-setuptools-scm))
     (inputs (list python-asdf
                   python-asdf-astropy
@@ -1588,7 +1590,7 @@ provide related services.")
                   python-mpl-animators
                   python-numpy
                   ;; python-opencv-python ; not packed yet
-                  ;; python-parfive ; not packed yet
+                  parfive
                   python-pandas
                   ;; python-reproject
                   python-scikit-image
