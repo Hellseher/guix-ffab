@@ -27,6 +27,7 @@
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
+  #:use-module (guix utils)
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
@@ -76,3 +77,24 @@ coroutines, which makes it slightly more difficult to test using normal
 testing tools.  @code{pytest-asyncio} provides useful fixtures and markers
 to make testing async code easier.")
     (license license:asl2.0)))
+
+;; 20221017T223740+0100
+(define-public python-pytest-7.1
+  (package
+    (inherit python-pytest)
+    (version "7.1.3")
+    (name "python-pytest")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pytest" version))
+       (sha256
+        (base32
+         "0f8c31v5r2kgjixvy267n0nhc4xsy65g3n9lz1i1377z5pn5ydjg"))))
+    (arguments
+     (substitute-keyword-arguments (package-arguments python-pytest)
+      ((#:phases phases #~%standard-phases)
+        #~(modify-phases #$phases
+            (add-before 'build 'pretend-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)))))))))
