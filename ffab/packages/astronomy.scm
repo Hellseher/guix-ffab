@@ -1569,7 +1569,7 @@ provide related services.")
                          python-aiohttp
                          python-packaging
                          python-pytest
-                         python-pytest-astropy
+                         python-pytest-astropy-0.10
                          python-pytest-doctestplus
                          python-pytest-mock
                          python-pytest-mpl
@@ -1578,7 +1578,7 @@ provide related services.")
                          python-setuptools-scm))
     (inputs (list python-asdf
                   python-asdf-astropy
-                  python-astropy
+                  python-astropy-5.1
                   python-beautifulsoup4
                   python-cdflib
                   python-dask
