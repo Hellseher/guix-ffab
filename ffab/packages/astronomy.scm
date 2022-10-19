@@ -726,10 +726,68 @@ planetarium.")
 ;; (define-public python-jplephem
 ;; added-to-upstream: 35d13a9099cad3326f0961760bb4ee2ceb692fa9
 ;; CommitDate: Sun Feb 7 10:20:52 2021 +0100
+
+;; https://github.com/asdf-format
+;;+begin-asdf-format
+
+;; 20221019T231950+0100
+(define-public python-asdf-standard
+  (package
+    (name "python-asdf-standard")
+    (version "1.0.3")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/asdf-format/asdf-standard")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "15n6ym8m8rbvg6pgk3yvvnpn4x7sgycn76zq8m33h604cmb2cps7"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:tests? #f ;Dependencies cycle with python-asdf
+           #:phases #~(modify-phases %standard-phases
+                        (replace 'build
+                          (lambda _
+                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                                    #$version)
+                            (setenv "SOURCE_DATE_EPOCH" "315532800")
+                            (invoke "python"
+                                    "-m"
+                                    "build"
+                                    "--wheel"
+                                    "--no-isolation"
+                                    ".")))
+                        (replace 'install
+                          (lambda* (#:key outputs #:allow-other-keys)
+                            (let ((whl (car (find-files "dist" "\\.whl$"))))
+                              (invoke "pip"
+                                      "--no-cache-dir"
+                                      "--no-input"
+                                      "install"
+                                      "--no-deps"
+                                      "--prefix"
+                                      #$output
+                                      whl)))))))
+    (native-inputs (list python-pypa-build python-setuptools
+                         python-setuptools-scm))
+    (propagated-inputs (list python-importlib-resources))
+    (home-page "https://asdf-standard.readthedocs.io/")
+    (synopsis "ASDF standard schemas")
+    (description
+     "This package provides Python implementation of ASDF (Advanced Scientific Data
+Format) - a proposed next generation interchange format for scientific data.
+ASDF aims to exist in the same middle ground that made FITS so successful, by
+being a hybrid text and binary format: containing human editable metadata for
+interchange, and raw binary data that is fast to load and use. Unlike FITS, the
+metadata is highly structured and is designed up-front for extensibility.")
+    (license license:bsd-3)))
 
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
+;;+end-asdf-format
 
 ;; (define-public python-astroalign
 ;; added-to-upstream: d6996fa05277f240b70b18c227419c371cfc737f
