@@ -19,18 +19,18 @@
 (define-module (ffab packages astronomy)
   #:use-module (ffab packages check)
   #:use-module (ffab packages maths)
+  #:use-module (ffab packages photo)
   #:use-module (ffab packages python-xyz)
   #:use-module (ffab packages python-web)
   #:use-module (ffab packages python-check)
-  #:use-module ((guix licenses)
-                #:prefix license:)
-  #:use-module (gnu packages)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages bison)
   #:use-module (gnu packages boost)
   #:use-module (gnu packages check)
+  #:use-module (gnu packages cmake)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages databases)
@@ -39,9 +39,11 @@
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
   #:use-module (gnu packages glib)
+  #:use-module (gnu packages gnome)
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages image-processing)
   #:use-module (gnu packages libusb)
   #:use-module (gnu packages lua)
   #:use-module (gnu packages machine-learning)
@@ -53,6 +55,7 @@
   #:use-module (gnu packages openstack)
   #:use-module (gnu packages pascal)
   #:use-module (gnu packages perl)
+  #:use-module (gnu packages photo)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python)
   #:use-module (gnu packages python-build)
@@ -64,13 +67,16 @@
   #:use-module (gnu packages readline)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages tcl)
+  #:use-module (gnu packages textutils)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
+  #:use-module (gnu packages)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system copy)
   #:use-module (guix build-system gnu)
+  #:use-module (guix build-system meson)
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
@@ -1815,3 +1821,40 @@ technique for creating orbital tori for specified values of the action
 integrals. Given an orbital torus and a star's position at a reference time, one
 can compute its position at any other time, no matter how remote.")
       (license license:gpl2+))))
+
+;; 20221020T220443+0100
+(define-public siril
+  (package
+    (name "siril")
+    (version "1.0.6")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://gitlab.com/free-astro/siril")
+                    (commit version)))
+              (sha256
+               (base32
+                "0iqxb5zmjyygg4b6lwlq8z82mngxg7kjjpahhzk52m0cypfq0l18"))
+              (file-name (git-file-name name version))))
+    (build-system meson-build-system)
+    (inputs (list cfitsio
+                  exiv2
+                  fftwf
+                  gsl
+                  gtk+
+                  json-glib
+                  libraw
+                  librtprocess
+                  opencv))
+    (native-inputs (list cmake git glib libconfig pkg-config))
+    (home-page "https://siril.org/")
+    (synopsis "Image processing software for amateur astronomy")
+    (description
+     "This package provides an astronomical image processing toll - SIRIL.  It is
+specially tailored for noise reduction and improving the signal/noise ratio of
+an image from multiple captures, as required in astronomy.  SIRIL can align
+automatically or manually, stack and enhance pictures from various file formats,
+even image sequence files (films and SER files).  It works well with limited
+system resources, like in embedded platforms, but is also very fast when run on
+more powerful computers.")
+    (license license:gpl3)))
