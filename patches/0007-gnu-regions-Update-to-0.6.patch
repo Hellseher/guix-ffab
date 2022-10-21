@@ -1,0 +1,34 @@
+From b7dc2383e33be7432a4b3286987313ba482a592d Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Oct 2022 23:39:17 +0100
+Subject: [PATCH 7/7] gnu: regions: Update to 0.6
+
+* gnu/packages/astronomy.scm (python-regions): Update to 0.6 which fixed
+  failing tests.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c91ba3e487..c491f63863 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1192,13 +1192,13 @@ (define-public python-pyvo
+ (define-public python-regions
+   (package
+     (name "python-regions")
+-    (version "0.5")
++    (version "0.6")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "regions" version))
+        (sha256
+-        (base32 "1bjrcjchbw3xw1a26d5g198lh7vxpp9m5sal58r7f8mmr1d8g2dc"))))
++        (base32 "0p95bxxw4dgd16rh1yj7zvfbijk52dqvqj20nj6q8kr5ms08acl0"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:test-target "pytest"
+-- 
+2.37.3
+
