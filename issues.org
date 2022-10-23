@@ -147,4 +147,4 @@
 - [X] <2022-10-01 Sat> https://issues.guix.gnu.org/58229 <2022-10-06 Thu>
 - [ ] <2022-10-14 Fri> https://issues.guix.gnu.org/58530
 - [ ] <2022-10-17 Mon> https://issues.guix.gnu.org/58586
-- [ ] <2022-10-19 Wed> https://issues.guix.gnu.org/58645
+- [ ] <2022-10-19 Wed> https://issues.guix.gnu.org/58645 <2022-10-22 Sat>
