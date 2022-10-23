@@ -728,6 +728,58 @@ metadata is highly structured and is designed up-front for extensibility.")
        "This package provides ASDF schemas for validating FITS tags.")
       (license license:bsd-3))))
 
+;; 20221023T225504+0100
+(define-public python-asdf-time-schemas
+  ;; No release
+  (let ((commit "af305d03a0cb292d50c98ba9fe68453dcb96f94b")
+        (revision "1"))
+    (package
+      (name "python-asdf-time-schemas")
+      (version (git-version "0.0.0" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://github.com/asdf-format/asdf-time-schemas")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "03brzwilvqnppx06zqa5fki3n4gh0ypzx4c665d08y6b9z241ly6"))))
+      (build-system python-build-system)
+      (arguments
+       (list #:tests? #f ;Dependencies cycle with python-asdf
+             #:phases #~(modify-phases %standard-phases
+                          (replace 'build
+                            (lambda _
+                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.0")
+                              (setenv "SOURCE_DATE_EPOCH" "315532800")
+                              (invoke "python"
+                                      "-m"
+                                      "build"
+                                      "--wheel"
+                                      "--no-isolation"
+                                      ".")))
+                          (replace 'install
+                            (lambda* (#:key outputs #:allow-other-keys)
+                              (let ((whl (car (find-files "dist" "\\.whl$"))))
+                                (invoke "pip"
+                                        "--no-cache-dir"
+                                        "--no-input"
+                                        "install"
+                                        "--no-deps"
+                                        "--prefix"
+                                        #$output
+                                        whl)))))))
+      (native-inputs (list python-pypa-build python-setuptools
+                           python-setuptools-scm))
+      (propagated-inputs (list python-asdf-standard python-asdf-unit-schemas
+                               python-importlib-resources))
+      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
+      (synopsis "ASDF schemas to support the FITS format")
+      (description
+       "This package provides ASDF schemas for validating FITS tags.")
+      (license license:bsd-3))))
+
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
