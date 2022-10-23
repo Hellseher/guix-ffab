@@ -1,5 +1,5 @@
 #+created: <2022-05-29 Sun 12:53:28 BST>
-#+modified: <2022-10-10 Mon 22:15:48 BST>
+#+modified: <2022-10-23 Sun 14:40:42 BST>
 #+file: TODO
 
 #+begin_src sh
@@ -36,6 +36,7 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | astronomy.org:***      | TODO | pal                 | [0/4][0%]    | :p1: |
 | astronomy.org:***      | TODO | galpy               | [1/4][25%]   | :p1: |
 | astronomy.org:***      | TODO | funtools            | [/][%]       | :p1: |
+| astronomy.org:***      | TODO | asdf-standard       | [0/4][0%]    | :p1: |
 | python-web.org:**      | TODO | pywb                | [1/4][25%]   |      |
 | python-check.org:**    | TODO | assay               | [2/3][66%]   |      |
 | lisp-xyz.org:***       | TODO | weird               | [0/4][0%]    |      |
@@ -86,6 +87,9 @@ grep TODO ./org/*.org | sed 's/.\/org\///g' | grep -v :author | sort -r -k5
 | astronomy.org:***      | TODO | CDF                 | [/][%]       |      |
 | astronomy.org:***      | TODO | ccdciel             | [/][%]       |      |
 | astronomy.org:***      | TODO | astroquery          | [/][%]       |      |
+| astronomy.org:***      | TODO | asdf-unit-schemas   | [0/4][0%]    |      |
+| astronomy.org:***      | TODO | asdf-time-schemas   | [0/4][0%]    |      |
+| astronomy.org:***      | TODO | asdf-fits-schemas   | [0/4][0%]    |      |
 
 
 #+begin_src sh
@@ -96,6 +100,7 @@ grep "TODO\|DONE" ./org/*.org | sed 's/.\/org\///g'  | grep :author
 | astronomy.org:**         | TODO | amusecode              | [/][%]      | :author:    |
 | astronomy.org:**         | TODO | ap-i                   | [1/5][20%]  | :author:p5: |
 | astronomy.org:**         | TODO | aroffringa             | [2/2][100%] | :author:    |
+| astronomy.org:**         | TODO | asdf-format            | [5/9][55%]  | :author:p1: |
 | astronomy.org:**         | TODO | AstrOmatic-software    | [8/10][80%] | :author:p5: |
 | astronomy.org:**         | TODO | astropy                | [1/3][33%]  | :author:    |
 | astronomy.org:**         | TODO | ATNF                   | [0/1][0%]   | :author:    |
@@ -154,51 +159,56 @@ grep "DONE" ./org/*.org | sed 's/.\/org\///g'
 #+end_src
 
 #+RESULTS:
-| astronomy.org:***         | DONE | libpasastro                 | [3/3][100%] |
-| astronomy.org:***         | DONE | AOFlagger                   | [4/4][100%] |
-| astronomy.org:***         | DONE | AOCommon                    | [3/3][100%] |
-| astronomy.org:***         | DONE | eye                         | [3/3][100%] |
-| astronomy.org:***         | DONE | missfits                    | [3/3][100%] |
-| astronomy.org:***         | DONE | sextractor                  | [4/4][100%] |
-| astronomy.org:***         | DONE | skymaker                    | [4/4][100%] |
-| astronomy.org:***         | DONE | stuff                       | [3/3][100%] |
-| astronomy.org:***         | DONE | swarp                       | [3/3][100%] |
-| astronomy.org:***         | DONE | weightwatcher               | [3/3][100%] |
-| astronomy.org:***         | DONE | stiff                       | [3/3][100%] |
-| astronomy.org:***         | DONE | astropy                     | [4/4][100%] |
-| astronomy.org:***         | DONE | casacore                    | [4/4][100%] |
-| astronomy.org:***         | DONE | SPLASH                      | [4/4][100%] |
-| astronomy.org:***         | DONE | qfits                       | [3/3][100%] |
-| astronomy.org:***         | DONE | stackistry                  | [4/4][100%] |
-| astronomy.org:***         | DONE | imppg                       | [4/4][100%] |
-| astronomy.org:***         | DONE | indi                        | [4/4][100%] |
-| astronomy.org:***         | DONE | astoalign                   | [4/4][100%] |
-| astronomy.org:***         | DONE | gwcs                        | [4/4][100%] |
-| cran.org:**               | DONE | opencpu                     | [4/4][100%] |
-| databases.org:*           | DONE | pgloader                    |             |
-| golang.org:***            | DONE | github.com/valyala/fasthttp | [3/4][75%]  |
-| golang.org:***            | DONE | hcl-v2                      | [4/4][100%] |
-| high-availability.org:*** | DONE | corosync                    | [4/4][100%] |
-| high-availability.org:*** | DONE | pacemaker                   | [4/4][100%] |
-| lisp-check.org:**         | DONE | kaputt                      | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | cl-opengl                   | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | glsl-packing                | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | 3b-bmfont                   | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | bknr-datastore              |             |
-| lisp-xyz.org:***          | DONE | cepl                        | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | chronicity                  | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | cl-debug                    | [3/3][100%] |
-| lisp-xyz.org:**           | DONE | cl-diskspace                | [3/3][100%] |
-| lisp-xyz.org:**           | DONE | cl-glfw3                    | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | cl-liballegro               | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | cl-mount-info               | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | cl-posix-mqueue             | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | cl-re                       | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | coalton                     | [4/4][100%] |
-| lisp-xyz.org:**           | DONE | Djula                       | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | cl-nst                      | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | glop                        | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | chirp                       | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | alloy                       | [4/4][100%] |
-| lisp-xyz.org:***          | DONE | radiance                    | [4/4][100%] |
-| maths.org:***             | DONE | giza                        | [4/4][100%] |
+| astronomy.org:***         | DONE | libpasastro                 | [3/3][100%] |        |
+| astronomy.org:***         | DONE | AOFlagger                   | [4/4][100%] |        |
+| astronomy.org:***         | DONE | AOCommon                    | [3/3][100%] |        |
+| astronomy.org:***         | DONE | asdf                        | [1/1]       | [100%] |
+| astronomy.org:***         | DONE | asdf-coordinates-schemas    | [1/1][100%] |        |
+| astronomy.org:***         | DONE | asdf-table-schemas          | [1/1][100%] |        |
+| astronomy.org:***         | DONE | asdf-transform-schemas      | [1/1][100%] |        |
+| astronomy.org:***         | DONE | asdf-wcs-schemas            | [1/1][100%] |        |
+| astronomy.org:***         | DONE | eye                         | [3/3][100%] |        |
+| astronomy.org:***         | DONE | missfits                    | [3/3][100%] |        |
+| astronomy.org:***         | DONE | sextractor                  | [4/4][100%] |        |
+| astronomy.org:***         | DONE | skymaker                    | [4/4][100%] |        |
+| astronomy.org:***         | DONE | stuff                       | [3/3][100%] |        |
+| astronomy.org:***         | DONE | swarp                       | [3/3][100%] |        |
+| astronomy.org:***         | DONE | weightwatcher               | [3/3][100%] |        |
+| astronomy.org:***         | DONE | stiff                       | [3/3][100%] |        |
+| astronomy.org:***         | DONE | astropy                     | [4/4][100%] |        |
+| astronomy.org:***         | DONE | casacore                    | [4/4][100%] |        |
+| astronomy.org:***         | DONE | SPLASH                      | [4/4][100%] |        |
+| astronomy.org:***         | DONE | qfits                       | [3/3][100%] |        |
+| astronomy.org:***         | DONE | stackistry                  | [4/4][100%] |        |
+| astronomy.org:***         | DONE | imppg                       | [4/4][100%] |        |
+| astronomy.org:***         | DONE | indi                        | [4/4][100%] |        |
+| astronomy.org:***         | DONE | astoalign                   | [4/4][100%] |        |
+| astronomy.org:***         | DONE | gwcs                        | [4/4][100%] |        |
+| cran.org:**               | DONE | opencpu                     | [4/4][100%] |        |
+| databases.org:*           | DONE | pgloader                    |             |        |
+| golang.org:***            | DONE | github.com/valyala/fasthttp | [3/4][75%]  |        |
+| golang.org:***            | DONE | hcl-v2                      | [4/4][100%] |        |
+| high-availability.org:*** | DONE | corosync                    | [4/4][100%] |        |
+| high-availability.org:*** | DONE | pacemaker                   | [4/4][100%] |        |
+| lisp-check.org:**         | DONE | kaputt                      | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | cl-opengl                   | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | glsl-packing                | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | 3b-bmfont                   | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | bknr-datastore              |             |        |
+| lisp-xyz.org:***          | DONE | cepl                        | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | chronicity                  | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-debug                    | [3/3][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-diskspace                | [3/3][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-glfw3                    | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-liballegro               | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-mount-info               | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-posix-mqueue             | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | cl-re                       | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | coalton                     | [4/4][100%] |        |
+| lisp-xyz.org:**           | DONE | Djula                       | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | cl-nst                      | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | glop                        | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | chirp                       | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | alloy                       | [4/4][100%] |        |
+| lisp-xyz.org:***          | DONE | radiance                    | [4/4][100%] |        |
+| maths.org:***             | DONE | giza                        | [4/4][100%] |        |
