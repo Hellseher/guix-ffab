@@ -86,49 +86,9 @@
   #:use-module (ice-9 match))
 
 ;; 20220626T221017+0100
-(define-public splash
-  (package
-    (name "splash")
-    (version "3.5.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/danieljprice/splash")
-                    (commit (string-append "v" version))))
-              (sha256
-               (base32
-                "12s3w96wzd4zpxw4adzhalkr57fgdk7cjp6bj596jnd87pz3rhyd"))
-              (file-name (git-file-name name version))))
-    (build-system gnu-build-system)
-    (arguments
-     ;; FIXME: Tests failed
-     ;; Issue submited upstream https://github.com/danieljprice/splash/issues/67
-     ;;
-     ;; make: *** No rule to make target 'test_interpolate3D.o', needed by 'test1'.  Stop.
-     ;;
-     (list #:tests? #f
-           #:parallel-build? #f ;parallel build fails
-           #:make-flags #~(list "SYSTEM=gfortran" "PREFIX="
-                                (string-append "GIZA_DIR="
-                                               #$(this-package-input "giza"))
-                                (string-append "DESTDIR="
-                                               #$output))
-           #:phases #~(modify-phases %standard-phases
-                        (delete 'configure)
-                        (add-before 'install 'create-install-dirrectories
-                          (lambda _
-                            (mkdir-p (string-append #$output "/bin")))))))
-    (native-inputs (list gfortran pkg-config perl python-wrapper))
-    (inputs (list cairo cfitsio giza))
-    (home-page "https://users.monash.edu.au/~dprice/splash/")
-    (synopsis
-     "Astrophysical visualisation tool for smoothed particle hydrodynamics")
-    (description
-     "SPLASH is a free and open source visualisation tool for Smoothed Particle
-Hydrodynamics (SPH) simulations in one, two and three dimensions, developed
-mainly for astrophysics.  It uses a command-line menu but data can be manipulated
-interactively in the plotting window.")
-    (license license:gpl2+)))
+;; (define-public splash
+;; added-to-upstream 43b8df4bece2a207018dc0fedc44d3d188d2d0f0
+;; CommitDate: Thu Oct 6 00:11:18 2022 +0200
 
 ;; 20220619T144120+0100
 (define-public funtools
@@ -416,89 +376,14 @@ radio astronomy.")
 ;;+end-casacore
 
 ;; 20220608T191316+0100
-(define-public aoflagger
-  (package
-    (name "aoflagger")
-    (version "3.2.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://gitlab.com/aroffringa/aoflagger")
-                    (commit (string-append "v" version))))
-              (sha256
-               (base32
-                "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
-              (patches (search-patches
-                        "aoflagger-use-system-provided-pybind11.patch"))
-              (file-name (git-file-name name version))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-           ;; NOTE: (Sharlatan-20220626T175728+0100): Tests require external files
-           ;; download from https://www.astron.nl/citt/ci_data/aoflagger/
-           ;; FIXME: runtest is not found
-           #:tests? #f
-           #:configure-flags #~(list (string-append "-DCASACORE_ROOT_DIR="
-                                                    #$(this-package-input
-                                                       "casacore")))
-           #:phases #~(modify-phases %standard-phases
-                        (add-after 'unpack 'link-submodule-package
-                          (lambda _
-                            (rmdir "external/aocommon")
-                            (symlink #$(this-package-native-input "aocommon")
-                                     (string-append (getcwd)
-                                                    "/external/aocommon")))))))
-    (native-inputs (list aocommon boost pkg-config python pybind11))
-    (inputs (list casacore
-                  cfitsio
-                  fftw
-                  gsl
-                  gtkmm-3
-                  hdf5
-                  lapack
-                  libpng
-                  libsigc++
-                  libxml2
-                  lua
-                  openblas
-                  zlib))
-    (home-page "https://gitlab.com/aroffringa/aoflagger")
-    (synopsis
-     "Astronomical tool that can find and remove radio-frequency interference")
-    (description
-     "AOFlagger is a tool that can find and remove radio-frequency
-interference (RFI) in radio astronomical observations.  It can make use of Lua
-scripts to make flagging strategies flexible, and the tools are applicable to a
-wide set of telescopes.")
-    (license license:gpl3+)))
+;; (define-public aoflagger
+;; added-to-upstream cdff1423c0d03e7d3e8445cf14f1123f694468c8
+;; CommitDate: Thu Aug 4 12:05:47 2022 +0200
 
 ;; 20220614T105114+0100
-(define-public aocommon
-  (let ((commit "7329a075271edab8f6264db649e81e62b2b6ae5e")
-        (revision "1"))
-    (package
-      (name "aocommon")
-      (version (git-version "0.0.0" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://gitlab.com/aroffringa/aocommon")
-                      (commit commit)))
-                (sha256
-                 (base32
-                  "0qcfax6pbzs0yigy0x8xibrkk539wm2pbvjsb4lh50fybir02nix"))
-                (file-name (git-file-name name version))))
-      (build-system copy-build-system)
-      (arguments
-       (list #:install-plan #~'(("include/aocommon" "include/aocommon"))))
-      (home-page "https://gitlab.com/aroffringa/aocommon")
-      (synopsis
-       "Collection of functionality that is reused in astronomical applications")
-      (description
-       "This package provides source-only AOCommon collection of functionality that is
-reused in several astronomical applications, such as @code{wsclean},
-@code{aoflagger}, @code{DP3} and @code{everybeam}.")
-      (license license:gpl3))))
+;; (define-public aocommon
+;; added-to-upstream 4ccd4176a2f63004fe10c9e8c9ccc8ba46b9d408
+;; CommitDate: Thu Aug 4 12:05:47 2022 +0200
 
 ;; 20210415T214924+0100
 ;; NOTE: (Sharlatan-20220704T211255+0100): Needs more love
@@ -574,63 +459,14 @@ reused in several astronomical applications, such as @code{wsclean},
 ;; added-to-upstream: 906155e437c9513462f19baac6e88b976f42b358
 
 ;; 20220724T204740+0100
-(define-public libsep
-  (package
-    (name "libsep")
-    (version "1.2.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/kbarbary/sep")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0sag96am6r1ffh9860yq40js874362v3132ahlm6sq7padczkicf"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list #:make-flags #~(list (string-append "CC="
-                                               #$(cc-for-target))
-                                (string-append "PREFIX="
-                                               #$output))
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (chdir "../source")
-                              (invoke "make"
-                                      (string-append "CC="
-                                                     #$(cc-for-target)) "test")))))))
-    (native-inputs (list python-wrapper))
-    (home-page "https://github.com/kbarbary/sep")
-    (synopsis "Astronomical source extraction and photometry library")
-    (description
-     "SEP makes the core algorithms of
-@url{https://www.astromatic.net/software/sextractor/, sextractor} available as a
-library of stand-alone functions and classes.  These operate directly on
-in-memory arrays (no FITS files or configuration files).  The code is derived
-from the Source Extractor code base (written in C) and aims to produce results
-compatible with Source Extractor whenever possible.  SEP consists of a C library
-with no dependencies outside the standard library, and a Python module that
-wraps the C library in a Pythonic API.  The Python wrapper operates on NumPy
-arrays with NumPy as its only dependency.")
-    (license (list license:expat license:lgpl3+ license:bsd-3))))
+;; (define-public libsep
+;; added-to-upstream 6ad9a094c1a25a4aa1df559943f9bc6ca8870752
+;; CommitDate: Mon Aug 1 14:08:07 2022 +0200
 
-(define-public python-sep
-  (package
-    (inherit libsep)
-    (name "python-sep")
-    (build-system python-build-system)
-    (arguments
-     (strip-keyword-arguments '(#:make-flags)
-                              (package-arguments libsep)))
-    (native-inputs (modify-inputs (package-inputs libsep)
-                     (prepend python-cython)))
-    (propagated-inputs (modify-inputs (package-inputs libsep)
-                         (prepend python-numpy)))))
-
+;; 20210127T001151+0000
 ;; (define-public missfits
 ;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475
+;; CommitDate: Wed Jan 27 10:39:54 2021 +0100
 
 ;; TODO: (Sharlatan-20210415T225235+0100):
 (define-public psfex
@@ -1685,51 +1521,9 @@ used with local NetDRMS sites.")
 ;;+end-sunpy
 
 ;; 20220627T211818+0100
-(define-public python-cdflib
-  (package
-    (name "python-cdflib")
-    (version "0.4.4")
-    (source (origin
-              (method git-fetch) ;no tests in pypi archive
-              (uri (git-reference
-                    (url "https://github.com/MAVENSDC/cdflib")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1h7750xvr6qbhnl2w3bhccs3pwp3hci3624pvvxym0yjinmskjlz"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (setenv "HOME"
-                                      (getcwd))
-                              (invoke "pytest" "-vv" "tests")))))))
-    (propagated-inputs (list python-attrs python-numpy))
-    (native-inputs (list python-astropy
-                         python-hypothesis
-                         python-pytest
-                         python-pytest-cov
-                         python-pytest-remotedata
-                         python-xarray))
-    (home-page "https://github.com/MAVENSDC/cdflib")
-    (synopsis "Python library to deal with NASA's CDF astronmical data format")
-    (description
-     "This package provides a Python CDF reader toolkit
-It provides functionality:
-@itemize
-@item Ability to read variables and attributes from CDF files (see CDF Reader
-Class)
-@item Writes CDF version 3 files (see CDF Writer Class)
-@item Can convert between CDF time types (EPOCH/EPOCH16/TT2000) to other common
-time formats (see CDF Time Conversions)
-@item Can convert CDF files into XArray Dataset objects and vice versa,
-attempting to maintain ISTP compliance (see Working with XArray)
-@end itemize
-")
-    (license license:expat)))
+;; (define-public python-cdflib
+;; added-to-upstream e72c1f148a473d67fa525e49caf18cf138d02e10
+;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
 ;; 20220817T224720+0100
 (define-public libebf-c-cpp
