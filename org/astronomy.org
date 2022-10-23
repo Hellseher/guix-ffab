@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-06 Thu 00:56:48 BST>
+#+modified: <2022-10-23 Sun 14:56:04 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [0/28][0%]
+* Flow [0/29][0%]
 ** TODO amusecode [/][%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -77,6 +77,48 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [X] :patch-sent <2022-06-26 Sun>
 - [X] :paptch-applied-upstream <2022-08-04 Thu>
   - https://issues.guix.gnu.org/56238
+** TODO asdf-format [5/9][55%] :author:p1:
+- https://github.com/asdf-format
+*** DONE asdf [1/1] [100%]
+ - https://github.com/asdf-format/asdf
+ - [X] :packed
+*** DONE asdf-coordinates-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-coordinates-schemas
+- [X] :packed
+*** TODO asdf-fits-schemas [0/4][0%]
+- https://github.com/asdf-format/asdf-fits-schemas
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+*** TODO asdf-standard [0/4][0%] :p1:
+- https://github.com/asdf-format/asdf-standard
+- synopsis :: Standards document describing ASDF, Advanced Scientific Data Format
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+*** DONE asdf-table-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-table-schemas
+- [X] :packed
+*** TODO asdf-time-schemas [0/4][0%]
+- https://github.com/asdf-format/asdf-time-schemas
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+*** DONE asdf-transform-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-transform-schemas
+- [X] :packed
+*** TODO asdf-unit-schemas [0/4][0%]
+- https://github.com/asdf-format/asdf-unit-schemas
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+*** DONE asdf-wcs-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-wcs-schemas
+- [X] :packed
 ** TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
@@ -310,7 +352,6 @@ CLOSED: [2021-11-08 Mon 20:41]
 *** TODO specutils [/][%]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
-
 ** TODO ATNF [0/1][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
