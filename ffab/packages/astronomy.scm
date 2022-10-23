@@ -60,6 +60,7 @@
   #:use-module (gnu packages python)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
+  #:use-module (gnu packages python-compression)
   #:use-module (gnu packages python-crypto)
   #:use-module (gnu packages python-science)
   #:use-module (gnu packages python-web)
@@ -588,8 +589,7 @@ planetarium.")
                 "15n6ym8m8rbvg6pgk3yvvnpn4x7sgycn76zq8m33h604cmb2cps7"))))
     (build-system python-build-system)
     (arguments
-     (list #:tests? #f ;Dependencies cycle with python-asdf
-           #:phases #~(modify-phases %standard-phases
+     (list #:phases #~(modify-phases %standard-phases
                         (replace 'build
                           (lambda _
                             (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
@@ -611,8 +611,24 @@ planetarium.")
                                       "--no-deps"
                                       "--prefix"
                                       #$output
-                                      whl)))))))
-    (native-inputs (list python-pypa-build python-setuptools
+                                      whl))))
+                        (replace 'check
+                          (lambda* (#:key inputs outputs tests?
+                                    #:allow-other-keys)
+                            (when tests?
+                              ;; Remove tests require python-asdf where
+                              ;; python-asdf require python-asdf-standard,
+                              ;; break circular dependencies.
+                              (for-each delete-file
+                                        (list "tests/test_manifests.py"
+                                              "tests/test_integration.py"))
+                              (add-installed-pythonpath inputs outputs)
+                              (invoke "python" "-m" "pytest" "-vvv")))))))
+    (native-inputs (list python-astropy
+                         python-jsonschema-next
+                         python-pypa-build
+                         python-pytest
+                         python-setuptools
                          python-setuptools-scm))
     (propagated-inputs (list python-importlib-resources))
     (home-page "https://asdf-standard.readthedocs.io/")
