@@ -140,17 +140,3 @@ and cuts down boilerplate code when testing libraries for asyncio.")
      "This package provides Pytest extension which disables all network calls flowing
 through Python's socket interface")
     (license license:expat)))
-
-;; 20221017T224302+0100
-(define-public python-pytest-astropy-0.10
-  (package
-    (inherit python-pytest-astropy)
-    (version "0.10.0")
-    (name "python-pytest-astropy")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "pytest-astropy" version))
-       (sha256
-        (base32
-         "04g2rh261s3s6ym8mwi4iv2a6anbgwvwzcvkyilfck6yxrncdqw5"))))))
