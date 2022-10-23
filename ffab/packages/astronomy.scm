@@ -805,23 +805,6 @@ metadata is highly structured and is designed up-front for extensibility.")
 ;; (define-public python-astropy
 ;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
-;; 20221017T224702+0100
-(define-public python-astropy-5.1
-  (package
-    (inherit python-astropy)
-    (version "5.1")
-    (name "python-astropy")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "astropy" version))
-       (sha256
-        (base32 "0zkv3ddzlxx21i796azfbqxrqnsxn83vsczscv577iyzxp3v5c8x"))))
-    (native-inputs
-     (modify-inputs (package-native-inputs python-astropy)
-       (replace "python-pytest" python-pytest-7.1)
-       (replace "python-pytest-astropy" python-pytest-astropy-0.10)))))
-
 ;; (define-public python-asdf-astropy
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
@@ -1633,7 +1616,7 @@ provide related services.")
                          python-aiohttp
                          python-packaging
                          python-pytest
-                         python-pytest-astropy-0.10
+                         python-pytest-astropy
                          python-pytest-doctestplus
                          python-pytest-mock
                          python-pytest-mpl
@@ -1642,7 +1625,7 @@ provide related services.")
                          python-setuptools-scm))
     (inputs (list python-asdf
                   python-asdf-astropy
-                  python-astropy-5.1
+                  python-astropy
                   python-beautifulsoup4
                   python-cdflib
                   python-dask
