@@ -780,6 +780,60 @@ metadata is highly structured and is designed up-front for extensibility.")
        "This package provides ASDF schemas for validating FITS tags.")
       (license license:bsd-3))))
 
+;; 20221023T225515+0100
+(define-public python-asdf-transform-schemas-0.3
+  (package
+    (name "python-asdf-transform-schemas")
+    (version "0.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "asdf_transform_schemas" version))
+              (sha256
+               (base32
+                "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:tests? #f ;Dependencies cycle with python-asdf
+           #:phases #~(modify-phases %standard-phases
+                        (replace 'build
+                          (lambda _
+                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                                    #$version)
+                            (setenv "SOURCE_DATE_EPOCH" "315532800")
+                            (invoke "python"
+                                    "-m"
+                                    "build"
+                                    "--wheel"
+                                    "--no-isolation"
+                                    ".")))
+                        (replace 'install
+                          (lambda* (#:key outputs #:allow-other-keys)
+                            (let ((whl (car (find-files "dist" "\\.whl$"))))
+                              (invoke "pip"
+                                      "--no-cache-dir"
+                                      "--no-input"
+                                      "install"
+                                      "--no-deps"
+                                      "--prefix"
+                                      #$output
+                                      whl))))
+                        (replace 'check
+                          (lambda* (#:key inputs outputs tests?
+                                    #:allow-other-keys)
+                            (when tests?
+                              (add-installed-pythonpath inputs outputs)
+                              (invoke "python" "-m" "pytest")))))))
+    (native-inputs (list python-pypa-build python-setuptools
+                         python-setuptools-scm))
+    (propagated-inputs (list python-asdf-standard python-importlib-resources))
+    (home-page "https://github.com/asdf-format/asdf-transform-schemas")
+    (synopsis "ASDF schemas for transforms")
+    (description
+     "This package provides ASDF schemas for validating transform tags.  Users
+should not need to install this directly; instead, install an implementation
+package such as asdf-astropy.")
+    (license license:bsd-3)))
+
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
