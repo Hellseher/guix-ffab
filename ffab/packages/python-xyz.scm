@@ -172,19 +172,6 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 ;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
 ;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
-;; 20220702T155715+0100
-(define-public python-netcdf4-1.6
-  (package
-    (inherit python-netcdf4)
-    (name "python-netcdf4-1.6")
-    (version "1.6.0") ;; new version
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "netCDF4" version))
-       (sha256
-        (base32 "0qxs8r1qmsmg760wm5q0wqlcm7hdd3k7cghryw6wvqd3v5rs7vwm"))))))
-
 ;; 20220702T165531+0100
 (define-public python-mpl-animators
   (package
