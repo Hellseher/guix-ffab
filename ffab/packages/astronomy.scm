@@ -970,6 +970,42 @@ implementation of the ASDF Standard.")
      (modify-inputs (package-propagated-inputs python-asdf-astropy)
        (replace "python-asdf-transform-schemas" python-asdf-transform-schemas-0.3)))))
 
+(define-public python-reproject
+  (package
+    (name "python-reproject")
+    (version "0.9")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "reproject" version))
+              (sha256
+               (base32
+                "0bbykik31jjpdan632izfrjq4zhb7v5p5ka98xrmy2g5r3hch66f"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:tests? #f ;Circular dependencies with python-sunpy
+           #:phases #~(modify-phases %standard-phases
+                        (add-before 'install 'writable-compiler
+                          (lambda _
+                            (make-file-writable "reproject/_compiler.c")))
+                        (add-before 'check 'writable-compiler
+                          (lambda _
+                            (make-file-writable "reproject/_compiler.c")))
+                        (add-before 'check 'writable-home
+                          (lambda _
+                            (setenv "HOME"
+                                    (getcwd)))))))
+    (propagated-inputs (list python-astropy python-astropy-healpix
+                             python-numpy python-scipy))
+    (native-inputs (list python-cython python-extension-helpers
+                         python-setuptools-scm))
+    (home-page "https://reproject.readthedocs.io")
+    (synopsis "Astronomical image reprojection in Python")
+    (description
+     "This package provides a functionality to reproject astronomical images using
+various techniques via a uniform interface, where reprojection is the
+re-gridding of images from one world coordinate system to another e.g.
+changing the pixel resolution, orientation, coordinate system.")
+    (license license:bsd-3)))
 ;;+end-astropy
 
 ;; https://github.com/jobovy
