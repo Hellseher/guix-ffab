@@ -450,6 +450,10 @@ radio astronomy.")
     (description "Astrometry.net solver interface")
     (license #f)))
 
+;; (define-public imppg
+;; added-to-upstream: bf9a1dfd591d5e166581919ac92e67f47219f0eb
+;; CommitDate: Sun Dec 5 12:35:55 2021 +0100
+
 ;; (define-public eye
 ;; added-to-upstream: 51418c32d95d8188d8877616829f26479f1135c6
 
@@ -837,8 +841,20 @@ package such as asdf-astropy.")
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
-;;+end-asdf-format
+;;
+;; (define-public python-asdf-wcs-schemas
+;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
+;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
+;; (define-public python-asdf-coordinates-schemas
+;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
+;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
+
+;; (define-public python-asdf-transform-schemas
+;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
+;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
+;;+end-asdf-format
+
 ;; (define-public python-astroalign
 ;; added-to-upstream: d6996fa05277f240b70b18c227419c371cfc737f
 ;; CommitDate: Fri Feb 19 11:05:34 2021 +0100
@@ -853,23 +869,30 @@ package such as asdf-astropy.")
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
+;; 20221024T221046+0100
+(define-public python-asdf-astropy-0.2
+  (package
+    (inherit python-asdf-astropy)
+    (version "0.2.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_astropy" version))
+       (sha256
+        (base32
+         "1b0v4cl7xvly3x1k5k2rvc2l32jqgqp0iyf1j20fkvj450sx74f2"))))
+    ;; NOTE: (Sharlatan-20221024T220911+0100): Update upstream package's test
+    ;; phase to have more verbose levels.
+    ;; Tests have warnings:
+    ;;
+    ;; asdf/entry_points.py:44: AsdfWarning: asdf.resource_mappings plugin from
+    ;; package asdf-standard==1.0.3 failed to load:
+    ;;
+    (propagated-inputs
+     (modify-inputs (package-propagated-inputs python-asdf-astropy)
+       (replace "python-asdf-transform-schemas" python-asdf-transform-schemas-0.3)))))
+
 ;;+end-astropy
-
-;; (define-public imppg
-;; added-to-upstream: bf9a1dfd591d5e166581919ac92e67f47219f0eb
-;; CommitDate: Sun Dec 5 12:35:55 2021 +0100
-
-;; (define-public python-asdf-wcs-schemas
-;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
-;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-
-;; (define-public python-asdf-coordinates-schemas
-;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
-;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
-
-;; (define-public python-asdf-transform-schemas
-;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
-;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
 ;; https://github.com/jobovy
 ;;+begin-jobovy
