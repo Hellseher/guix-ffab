@@ -1787,7 +1787,7 @@ provide related services.")
                               (invoke "python"
                                       "-m"
                                       "pytest"
-                                      "-vvv"
+                                      "-v"
                                       "-r"
                                       "a"
                                       "--pyargs"
@@ -1804,8 +1804,8 @@ provide related services.")
                          python-pytest-xdist
                          python-semantic-version
                          python-setuptools-scm))
-    (inputs (list python-asdf
-                  python-asdf-astropy
+    (inputs (list python-asdf-2.13
+                  python-asdf-astropy-0.2
                   python-astropy
                   python-beautifulsoup4
                   python-cdflib
@@ -1823,7 +1823,7 @@ provide related services.")
                   ;; python-opencv-python ; not packed yet
                   parfive
                   python-pandas
-                  ;; python-reproject
+                  python-reproject
                   python-scikit-image
                   python-scipy
                   python-sqlalchemy
