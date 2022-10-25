@@ -1,5 +1,5 @@
 ;; hacks.scm --
-;; Modified : <2022-10-25 Tue 23:20:52 BST>
+;; Modified : <2022-10-25 Tue 23:30:17 BST>
 
 ;; Commentary:
 ;;
@@ -28,3 +28,6 @@
   "Returns a list of dependent packages where PACKAGE is found in any inputs
 e.g. package-inputs, package-native-inputs, package-propagated-inputs."
   (map first (filter (lambda (n) (member package n)) %packages)))
+
+(define (list-packages)
+  (format #t "~{~a~%~}~%" %packages))
