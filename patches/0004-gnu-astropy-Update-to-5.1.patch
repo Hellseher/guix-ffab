@@ -1,0 +1,42 @@
+From 8606589d1b80fc22611b677b4d4d8f3de5355dcc Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Oct 2022 23:15:56 +0100
+Subject: [PATCH 4/7] gnu: astropy: Update to 5.1
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 5.1
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index aaa9207e0e..7001f96ed2 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -879,13 +879,13 @@ (define-public celestia-gtk
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "5.0.1")
++    (version "5.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "09wh589ywjsgjvi76v2d2zqd9sri0461rrnml0b0pah5lbkcv0k3"))
++        (base32 "0zkv3ddzlxx21i796azfbqxrqnsxn83vsczscv577iyzxp3v5c8x"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -948,7 +948,7 @@ (define-public python-astropy
+            python-ipython
+            python-jplephem
+            python-objgraph
+-           python-pytest
++           python-pytest-7.1
+            python-pytest-astropy
+            python-pytest-xdist
+            python-setuptools-scm
+-- 
+2.37.3
+

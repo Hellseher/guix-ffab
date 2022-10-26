@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages python-xyz)
+  #:use-module (ffab packages check)
   #:use-module (ffab packages python-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages astronomy)
@@ -29,6 +30,8 @@
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
+  #:use-module (gnu packages python-crypto)
+  #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages xml)
@@ -44,14 +47,14 @@
 (define-public python-portalocker
   (package
     (name "python-portalocker")
-    (version "2.4.0")
+    (version "2.6.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "portalocker" version))
        (sha256
         (base32
-         "1x1pyqyid3y2kiffv4r11n17p06d480ka5arrdq778lf3dvasj56"))))
+         "0fbvx46nix49vpriipsdskbw2243gp9rxsdw69flp9s2zcq6hkwn"))))
     (build-system python-build-system)
     (arguments
      (list
@@ -135,37 +138,9 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
     (license license:expat)))
 
 ;; 20220621T191218+0100
-(define-public python-posix-ipc
-  (package
-    (name "python-posix-ipc")
-    (version "1.0.5")
-    (source
-     (origin
-       ;; The source distributed on PyPI is prebuild.
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/osvenskan/posix_ipc")
-             (commit (string-append "rel" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "17y4d0pmvp199c5hbs602ailhlh9f9zv89kmpbd8jhyl6rgaxsvs"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (add-after 'unpack 'patch-prober-cc
-                 (lambda _
-                   (substitute* "prober.py"
-                     (("cmd = .cc")
-                      (string-append "cmd = \"" #$(cc-for-target)))))))))
-    (native-inputs
-     (list python-unittest2))
-    (home-page "http://semanchuk.com/philip/posix_ipc/")
-    (synopsis "POSIX IPC primitives for Python")
-    (description
-     "This package provides POSIX IPC primitives - semaphores, shared memory and
-message queues for Python.")
-    (license license:bsd-3))) ; BSD like Copyright (c) 2018, Philip Semanchuk
+;; (define-public python-posix-ipc
+;; added-to-upstream b12da85668c40be322204e1ca04fb70b4d709411
+;; CommitDate: Fri Aug 5 21:08:49 2022 +0300
 
 ;; 20220621T222117+0100
 (define-public python-progressbar
@@ -188,134 +163,26 @@ message queues for Python.")
     (license (list license:lgpl2.0+ license:bsd-3))))
 
 ;; 20220627T220024+0100
-(define-public python-glymur
-  (package
-    (name "python-glymur")
-    (version "0.10.1")
-    (source
-     (origin
-       (method git-fetch)   ; no tests data in PyPi package
-       (uri (git-reference
-             (url "https://github.com/quintusdias/glymur")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1cq9r8vzwvds1kasy5gc2rxw034jh9l43rraps1n739072pfz6qg"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-after 'unpack 'patch-library-locations
-            (lambda _
-              ;; XXX: It's a workaround for Python inability to find the
-              ;; .so libraries with ctypes.util.find_library()
-              (substitute* '("glymur/config.py")
-                (("path = find_library\\(libname\\)")
-                 (string-append
-                  "if libname == \"openjp2\":\n"
-                  "        path = \""
-                  #$(this-package-input "openjpeg") "/lib/libopenjp2.so\"\n"
-                  "    elif libname == \"tiff\":\n"
-                  "        path = \""
-                  #$(this-package-input "libtiff") "/lib/libtiff.so\"\n"
-                  "    elif libname == \"c\":\n"
-                  "        path = \""
-                  #$(this-package-input "glibc") "/lib/libc.so.6\"\n")))))
-          ;; TODO: implement as a feature of python-build-system (PEP-621,
-          ;; PEP-631, PEP-660)
-          (replace 'build
-            (lambda _
-              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
-              ;; ZIP does not support timestamps before 1980.
-              (setenv "SOURCE_DATE_EPOCH" "315532800")
-              (invoke "python" "-m" "build" "--wheel" "--no-isolation" ".")))
-          (replace 'install
-            (lambda* (#:key outputs #:allow-other-keys)
-              (let ((whl (car (find-files "dist" "\\.whl$"))))
-                (invoke "pip" "--no-cache-dir" "--no-input"
-                        "install" "--no-deps" "--prefix" #$output whl))))
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                ;; Failing test due to inability of
-                ;; ctypes.util.find_library() to determine library path,
-                ;; which is patched above.
-                (delete-file "tests/test_config.py")
-                (invoke "python" "-m" "pytest" "-vv" "tests")))))))
-    (native-inputs
-     (list python-pypa-build python-pytest))
-    (inputs
-     (list openjpeg  ; glymur/lib/openjp2.py
-           libtiff   ; glymur/lib/tiff.py
-           glibc))
-    (propagated-inputs
-     (list python-lxml
-           python-numpy
-           python-packaging))
-     (home-page "https://github.com/quintusdias/glymur")
-    (synopsis "Python interface to OpenJPEG and LibTIFF")
-     (description
-      "This package provides Python interface to the OpenJPEG library which
-allows one to read and write JPEG 2000 files")
-     (license license:expat)))
+;; (define-public python-glymur
+;; added-to-upstream 95ed62c12bb33f6b64daf2f51df0e610f1abc913
+;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
 ;; 20220702T095332+0100
-(define-public python-h5netcdf
-  (package
-    (name "python-h5netcdf")
-    (version "1.0.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "h5netcdf" version))
-       (sha256
-        (base32 "1b2dcgf5rwy7pb7hr4prkc5vgcw9qc2was20dmnj90lbrpx08rvp"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (replace 'check
-                 (lambda* (#:key tests? #:allow-other-keys)
-                   (when tests?
-                     (invoke "pytest" "-vv" "h5netcdf/tests")))))))
-    (native-inputs
-     (list python-setuptools-scm
-           python-pytest
-           python-netcdf4-1.6))
-    (propagated-inputs
-     (list python-h5py python-packaging))
-    (home-page "https://h5netcdf.org")
-    (synopsis "Python interface for the netCDF4 file-format based on h5py")
-    (description "This package provides Python interface for the netCDF4
-file-format that reads and writes local or remote HDF5 files directly via h5py
-or h5pyd, without relying on the Unidata netCDF library")
-    (license license:bsd-3)))
-
-;; 20220702T155715+0100
-(define-public python-netcdf4-1.6
-  (package
-    (inherit python-netcdf4)
-    (name "python-netcdf4-1.6")
-    (version "1.6.0") ;; new version
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "netCDF4" version))
-       (sha256
-        (base32 "0qxs8r1qmsmg760wm5q0wqlcm7hdd3k7cghryw6wvqd3v5rs7vwm"))))))
+;; (define-public python-h5netcdf
+;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
+;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
 ;; 20220702T165531+0100
 (define-public python-mpl-animators
   (package
     (name "python-mpl-animators")
-    (version "1.0.1")
+    (version "1.1.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "mpl_animators" version))
        (sha256
-        (base32 "15vzmdb499xq1i8r2l2qj66wgmnv1z0m5r7sdk849c1v5gp929ay"))))
+        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
     (build-system python-build-system)
     (arguments
      (list #:phases
@@ -338,3 +205,122 @@ or h5pyd, without relying on the Unidata netCDF library")
      "The @code{mpl_animators} package provides a set of classes which allow the
 easy construction of interactive matplotlib widget based animations.")
     (license license:bsd-3)))
+
+;; 20221012T205858+0100
+(define-public python-siosocks
+  (package
+    (name "python-siosocks")
+    (version "0.3.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "siosocks" version))
+              (sha256
+               (base32
+                "0qqxy8wl5mrmlkblzjq9nsg0cbm5jwgj409mhnhq6gd1ypvbndms"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "pytest" "-vvv")))))))
+    (native-inputs (list python-pytest python-pytest-asyncio-ffab python-pytest-cov
+                         python-pytest-trio))
+    (propagated-inputs (list python-trio))
+    (home-page "https://github.com/pohmelie/siosocks")
+    (synopsis "SOCKSv4 & SOCKSv5 TCP proxy protocol implementation in Python")
+    (description
+     "This package provides a Python module and framework for sans-io socks proxy
+client/server with couple io backends.
+
+Features:
+@itemize
+@item Only TCP connect (no BIND, no UDP)
+@item Both client and server
+@item SOCKS versions: 4, 4a, 5
+@item SOCKSv5 auth: no auth, username/password
+@item Couple io backends: @code{asyncio}, @code{trio}, @code{socketserver}
+@item One-shot socks server (@code{python -m siosocks})
+@end itemize")
+    (license license:expat)))
+
+;; 20221011T224747+0100
+(define-public python-aioftp
+  (package
+    (name "python-aioftp")
+    (version "0.21.4")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "aioftp" version))
+              (sha256
+               (base32
+                "1f8vql2j2b3ykqyh5bxzsp8x5f2if2c1ya232ld3hz3cc7a2dfr8"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "pytest" "-vvv")))))))
+    (native-inputs (list python-async-timeout
+                         python-pytest
+                         python-pytest-asyncio-ffab
+                         python-pytest-cov
+                         python-trustme))
+    (propagated-inputs (list python-siosocks))
+    (home-page "https://aioftp.readthedocs.io/")
+    (synopsis "FTP client/server for asyncio in Python")
+    (description
+     "FTP client and server for asyncio (Python 3) Library implementing FTP
+protocol, both client and server for Python asyncio module.
+
+ Supported commands as client: USER, PASS, ACCT, PWD, CWD, CDUP, MKD, RMD,
+ MLSD, MLST, RNFR, RNTO, DELE, STOR, APPE, RETR, TYPE, PASV, ABOR, QUIT,
+ REST, LIST (as fallback).
+
+ Supported commands as server: USER, PASS, QUIT, PWD, CWD, CDUP, MKD, RMD,
+ MLSD, LIST (non-standard), MLST, RNFR, RNTO, DELE, STOR, RETR,
+ TYPE (\"I\" and \"A\"), PASV, ABOR, APPE, REST.")
+    (license license:asl2.0)))
+
+;; 20221010T225525+0100
+(define-public parfive
+  (package
+    (name "parfive")
+    (version "2.0.1")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "parfive" version))
+              (sha256
+               (base32
+                "19dcbb6g56l5s3ih0bhs3p4acgc0gf4zdzpj4w87m69li2nhmgpx"))))
+    (build-system python-build-system)
+    (arguments
+     (list #:phases #~(modify-phases %standard-phases
+                        (add-before 'check 'disable-test-requiring-network
+                          (lambda _
+                            (substitute* "parfive/tests/test_downloader.py"
+                              (("def test_ftp")
+                               "def __off_test_ftp"))))
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "python" "-m" "pytest" "-vvv" "parfive")))))))
+    (propagated-inputs (list python-aiofiles python-aioftp python-aiohttp python-tqdm))
+    (native-inputs (list python-pytest
+                         python-pytest-asyncio
+                         python-pytest-cov
+                         python-pytest-localserver
+                         python-pytest-socket
+                         python-setuptools-scm))
+    (home-page "https://parfive.readthedocs.io/")
+    (synopsis "HTTP and FTP parallel file downloader")
+    (description
+     "This package provides CLI tool and Python library @code{parallel} file
+downloader using asyncio. parfive can handle downloading multiple files in
+parallel as well as downloading each file in a number of chunks.
+
+asciicast demo of parfive parfive works by creating a downloader object,
+appending files to it and then running the download. parfive has a synchronous
+API, but uses asyncio to paralellise downloading the files.")
+    (license license:expat)))

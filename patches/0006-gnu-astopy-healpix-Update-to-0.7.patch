@@ -1,0 +1,35 @@
+From c2d5e3056a0522f7df62d5802256613bca916429 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Oct 2022 23:34:18 +0100
+Subject: [PATCH 6/7] gnu: astopy-healpix: Update to 0.7
+
+* gnu/packages/astronomy.scm (astopy-healpix): Update to 0.7
+  [source]: pypy-uri changed from astopy-healpix to astopy_healpix.
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 54c41f9a0c..c91ba3e487 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -974,13 +974,13 @@ (define-public python-astropy
+ (define-public python-astropy-healpix
+   (package
+     (name "python-astropy-healpix")
+-    (version "0.6")
++    (version "0.7")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri "astropy-healpix" version))
++       (uri (pypi-uri "astropy_healpix" version))
+        (sha256
+-        (base32 "1436ml03xkmvx4afzbhfj67ab91418sz1w3lq1b18r43qchnd6j0"))))
++        (base32 "1n1svmd41iv944zf4anbnsigd47zr4dfjf49vrc7m6928gmq9hw8"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:phases
+-- 
+2.37.3
+

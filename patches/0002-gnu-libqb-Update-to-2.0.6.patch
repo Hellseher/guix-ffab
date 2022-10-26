@@ -1,0 +1,51 @@
+From c869314cf7fe6c7c916b1fa995ace8f90c0ea0b6 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 28 Sep 2022 21:26:44 +0100
+Subject: [PATCH 2/5] gnu: libqb: Update to 2.0.6
+
+* gnu/packages/high-availability.scm (libqb): Update to 2.0.6.
+  Run `guix style'  over the package.
+  [native-inputs]: Add autoconf, automake, libtools to fix configure and
+  build phases.
+---
+ gnu/packages/high-availability.scm | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index 1a8c348020..46247c4e13 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -55,9 +55,7 @@ (define-module (gnu packages high-availability)
+ (define-public libqb
+   (package
+     (name "libqb")
+-    ;; NOTE: We are using a Release Candidate version (for 2.0) here because
+-    ;; of the linker issues with the previous release.
+-    (version "1.9.1")
++    (version "2.0.6")
+     (source (origin
+               (method url-fetch)
+               (uri (string-append
+@@ -65,13 +63,14 @@ (define-public libqb
+                     version "/libqb-" version ".tar.xz"))
+               (sha256
+                (base32
+-                "008vvw504kh40br5v2xkqavnp9vpmjvf768faqzv1d00fd53ingn"))))
++                "071k916vz9ppyb69rpk792fzjs3nf3chakn10i496scgiqh49rzi"))))
+     (build-system gnu-build-system)
+-    (native-inputs
+-     (list pkg-config libxml2))
++    (native-inputs (list autoconf automake libtool libxml2 pkg-config))
+     (home-page "https://clusterlabs.github.io/libqb/")
+-    (synopsis "Library providing high performance logging, tracing, ipc, and poll")
+-    (description "Libqb is a library with the primary purpose of providing
++    (synopsis
++     "Library providing high performance logging, tracing, ipc, and poll")
++    (description
++     "Libqb is a library with the primary purpose of providing
+ high-performance, reusable features for client-server architecture, such as
+ logging, tracing, inter-process communication (IPC), and polling.  Libqb is
+ not intended to be an all-encompassing library, but instead provide focused
+-- 
+2.37.3
+
