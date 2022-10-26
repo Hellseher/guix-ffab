@@ -18,12 +18,14 @@
 
 (define-module (ffab packages python-web)
   #:use-module (ffab packages databases)
-  #:use-module (ffab packages python-xyz)
+  #:use-module (ffab packages python-check)
   #:use-module (ffab packages python-crypto)
+  #:use-module (ffab packages python-xyz)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages check)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages databases)
+  #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
   #:use-module (gnu packages python-crypto)
@@ -41,13 +43,13 @@
 (define python-pywb
   (package
     (name "python-pywb")
-    (version "2.6.7")
+    (version "2.6.8")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "pywb" version))
        (sha256
-        (base32 "1akyhx2kzb5gv7ys3c3vvjlb5066d3lixp09sr0ahjw5jmrg3fqr"))))
+        (base32 "0ddiffdrjpzaand7z5igmws1z17g978h1146r8yq5cmi56l97shv"))))
     (build-system python-build-system)
     (arguments
      (list
@@ -58,21 +60,19 @@
               (when tests?
                 (invoke "py.test" "-v" "--cov" "pywb" "tests")))))))
     (native-inputs
-     (list python-coverage
-           python-fakeredis-0.16.0
-           python-httpbin
-           python-lxml
-           python-mock
-           python-pytest
-           python-pytest-cov
-           python-ujson
+     (list python-pytest
            python-urllib3
            python-webtest))
     (propagated-inputs
      (list python-babel
            python-brotli
+           python-fakeredis-0.16.0
+           #;python-brotlipy ; Not packed
+           #;python-dateutil ; Not packed
+           python-fakeredis
            python-gevent
            python-jinja2
+           python-markupsafe
            python-portalocker
            python-py3amf
            python-pyyaml

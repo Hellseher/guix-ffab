@@ -710,7 +710,7 @@ planetarium.")
 ;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
-;; (define-public python-asdf-wcs-schemas
+;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
@@ -718,11 +718,11 @@ planetarium.")
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
-;; (define-public python-asdf-coordinates-schemas
+;; (define python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
-;; (define-public python-asdf-transform-schemas
+;; (define python-asdf-transform-schemas
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
