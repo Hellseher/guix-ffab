@@ -82,29 +82,24 @@
     (license license:expat)))
 
 ;; ;; 20220513T230340+0100
-;; (define-public java-outbackcdx
-;;   (package
-;;     (name "java-outbackcdx")
-;;     (version "0.11.0")
-;;     (source
-;;      (origin
-;;        (method git-fetch)
-;;        (uri (git-reference
-;;              (url "https://github.com/nla/outbackcdx")
-;;              (commit version)))
-;;        (file-name (git-file-name name version))
-;;        (sha256
-;;         (base32
-;;          "1zh91cf465rnd9fkb5ybpcp9lgah5537y298890sg02nlbhspl4x"))))
-;;     (build-system maven-build-system)
-;;     (arguments
-;;      (list
-;;        #:maven-plugins
-;;        (("maven-shade-plugi" ,maven-shade-plugin)
-;;         ,@(default-maven-plugins))))
-;;     (home-page "https://github.com/nla/outbackcdx")
-;;     (synopsis "Web archive index server based on RocksDB")
-;;     (description
-;;      "This package provides a RocksDB-based capture index (CDX) server for web
-;; archives.")
-;;     (license license:asl2.0)))
+(define-public java-outbackcdx
+  (package
+    (name "java-outbackcdx")
+    (version "0.11.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/nla/outbackcdx")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32
+         "1zh91cf465rnd9fkb5ybpcp9lgah5537y298890sg02nlbhspl4x"))))
+    (build-system maven-build-system)
+    (home-page "https://github.com/nla/outbackcdx")
+    (synopsis "Web archive index server based on RocksDB")
+    (description
+     "This package provides a RocksDB-based capture index (CDX) server for web
+archives.")
+    (license license:asl2.0)))

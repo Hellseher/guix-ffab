@@ -139,7 +139,7 @@ libraries.")
 ;; CommitDate: Mon Jan 4 10:40:54 2021 +0100
 
 ;; 20210101T232743+0000
-;; (define-public sbcl-cl-ixf
+;; (define-public sbcl-ixf
 ;; added-to-upstream: 1fc9baeebb24a36431736f1a187e501943918444
 ;; CommitDate: Sat Jan 2 11:13:06 2021 +0100
 
@@ -149,7 +149,7 @@ libraries.")
 ;;+begin-mfiano
 
 ;; 20210203T000433+0000
-;; (define-public sbcl-golden-utlils
+;; (define-public sbcl-golden-utils
 ;; added-to-upstream: ed39a7c1dc6bde13f770e751cb6106c2a85d70c5
 ;; CommitDate: Wed Feb 3 17:41:38 2021 +0100
 
