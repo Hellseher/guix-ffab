@@ -1,315 +1,63 @@
-#+title: gnu/packages/lisp-xyz
+#+title: Common Lisp land
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-07-09 Sat 23:57:46 BST>
+#+modified: <2022-10-26 Wed 23:13:10 BST>
 
-* Flow [13/25][52%]
-** DONE cl-nst [4/4][100%]
-CLOSED: [2021-06-24 Thu 14:40]
-- https://github.com/jphmrst/cl-nst
-- [X] :packed <2021-06-04 Fri>
-- [X] :patch-sent <2021-06-04 Fri>
-- [X] :patch-applied-upstream <2021-06-24 Thu>
-  + https://issues.guix.gnu.org/48835
-- [X] :inputs [2/2][100%]
-  - [X] closer-mop
-  - [X] org-sampler
-    - https://github.com/jphmrst/cl-org-sampler
-    - [X] :packed <2021-06-04 Fri>
-    - [X] :patch-sent <2021-06-04 Fri>
-    - [X] :patch-applied-upstream <2021-06-24 Thu>
-      - https://issues.guix.gnu.org/48835
-    - [X] :inputs [1/1][100%]
-      + [X] iterate
-** DONE cl-glfw3 [4/4][100%]
-CLOSED: [2021-06-15 Tue 10:09]
-- https://github.com/AlexCharlton/cl-glfw3
-- [X] :packed <2021-05-29 Sat>
-- [X] :patch-sent <2021-06-08 Tue>
-- [X] :patch-applied-upstream <2021-06-15 Tue>
-  - https://issues.guix.gnu.org/48928
-- [X] :inputs [5/5][100%]
-  + [X] cffi
+* Synopsis
+This workflow file contains packaging process for Common Lisp related projects, structure follows
+Guix upstream.
+
+- GNU Guix ::
+  - gnu/packages/lisp.scm
+  - gnu/packages/lisp-xyz.scm
+  - gnu/packages/lisp-check.scm
+- FFAB ::
+  - ffab/packages/lisp.scm
+  - ffab/packages/lisp-xyz.scm
+  - ffab/packages/lisp-check.scm
+
+* Flow [11/26][42%]
+** TODO 3b [3/4][75%] :author:
+*** DONE cl-opengl [4/4][100%]
+  - https://github.com/3b/cl-opengl
+  - synopsis :: cl-opengl is a set of CFFI bindings to the OpenGL, GLU and GLUT APIs.
+  - [X] :packed <2021-04-02 Fri>
+  - [X] :patch-sent <2021-04-02 Fri>
+  - [X] :patch-applied-upstream <2021-04-03 Sat>
+    - https://issues.guix.gnu.org/47571
+  - [X] :inputs [6/6]
+    + [X] float-features
+    + [X] alexandria
+    + [X] cffi
+    + [X] mesa
+    + [X] glu
+    + [X] freeglut
+
+*** DONE glsl-packing [4/4][100%]
+- https://github.com/3b/glsl-packing
+- synopsis :: calculate std140/std430 layout for a glsl UBO/SSBO
+- [X] :packed <2021-02-18 Thu>
+- [X] :patch-sent <2021-02-18 Thu>
+- [X] :patch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46626
+- [X] :inputs [1/1][100%]
   + [X] alexandria
-  + [X] glfw
-  + [X] cl-opengl
-  + [X] trivial-main-thread
 
-** DONE marcoheisig [0/1][0%] :author:
-- https://github.com/marcoheisig
-*** TODO cl-mpi [0/4][0%] :p1:
-- https://github.com/marcoheisig/cl-mpi
-- synopsis :: MPI bindings for Common Lisp with many useful extras
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
-** TODO virality [0/4][0%] :p1:
-- https://github.com/bufferswap/ViralityEngine/
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [23/24][95%]
-  + [X] 3b-bmfont [4/4][100%]
-    - https://github.com/3b/3b-bmfont/
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent  <2021-02-02 Tue>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-    - [X] :inputs [5/5]
-      - [X] alexandria
-      - [X] cxml
-      - [X] flexi-streams
-      - [X] jsown
-      - [X] split-sequence
-  + [X] 3b-bmfont/json (part of 3b-bmfont)
-  + [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
-  + [X] cl-cpus [3/3][100%]
-    - https://github.com/muyinliu/cl-cpus.git
-    - [X] :packed <2021-04-03 Sat>
-    - [X] :patch-sent <2021-04-08 Thu>
-    - [X] :patch-applied-upstream <2021-04-08 Thu>
-      - https://issues.guix.gnu.org/47586
-  + [ ] cl-graph [0/3][0%]
-    - https://github.com/gwkkwg/cl-graph
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [ ] :inputs [/][%]
-  + [X] cl-opengl [4/4][100%]
-    - https://github.com/3b/cl-opengl
-    - [X] :packed <2021-04-02 Fri>
-    - [X] :patch-sent <2021-04-02 Fri>
-    - [X] :patch-applied-upstream <2021-04-03 Sat>
-      - https://issues.guix.gnu.org/47571
-    - [X] :inputs [6/6]
-      + [X] float-features
-      + [X] alexandria
-      + [X] cffi
-      + [X] mesa
-      + [X] glu
-      + [X] freeglut
-    - https://github.com/3b/cl-opengl.git
-  + [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
-  + [X] cl-slug [4/4][100%]
-    - https://github.com/EuAndreh/cl-slug/
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-03 Wed>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-    - [X] :inputs [1/1]
-      - [X] cl-ppcre
-  + [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
-  + [X] fast-io (gnu/packages/lisp-xyz.scm:4153:4)
-  + [X] global-vars (gnu/packages/lisp-xyz.scm:6619:4)
-  + [X] jsown (gnu/packages/lisp-xyz.scm:13445:4)
-  + [X] lparallel (gnu/packages/lisp-xyz.scm:2942:2)
-  + [X] net.mfiano.lisp.golden-utils [3/3][100%]
-    - https://git.mfiano.net/mfiano/golden-utils
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-03 Wed>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-  + [X] net.mfiano.lisp.origin [4/4][100%]
-    - https://git.mfiano.net/mfiano/origin
-    - [X] :packed <2021-02-04 Thu>
-    - [X] :patch-sent
-    - [X] :patch-applied-upstream <2021-02-04 Thu>
-      - https://issues.guix.gnu.org/46281
-    - [X] :inputs [2/2][100%]
-      + [X] specialization-store [4/4][100%]
-        - https://github.com/markcox80/specialization-store
-        - [X] :packed <2021-02-04 Thu>
-        - [X] :patch-sent <2021-02-04 Thu>
-        - [X] :patch-applied-upstream <2021-02-04 Thu>
-          + https://issues.guix.gnu.org/46281
-        - [X] :inputs [2/2][100%]
-          + [X] introspect-environment
-          + [X] alexandria
-      + [X] golden-utils
-  + [X] net.mfiano.lisp.shadow [4/4][100%]
-    - https://git.mfiano.net/mfiano/shadow
-    - [X] :packed <2021-04-03 Sat>
-    - [X] :patch-sent <2021-04-08 Thu>
-    - [X] :patch-applied-upstream <2021-04-08 Thu>
-      - https://issues.guix.gnu.org/47586
-    - [X] :inputs [8/8][100%]
-      + [X] cffi
-      + [X] cl-opengl
-      + [X] glsl-packing [4/4][100%]
-        - https://github.com/3b/glsl-packing
-        - [X] :packed <2021-02-18 Thu>
-        - [X] :patch-sent <2021-02-18 Thu>
-        - [X] :patch-applied-upstream <2021-02-19 Fri>
-          - https://issues.guix.gnu.org/46626
-        - [X] :inputs [1/1][100%]
-          + [X] alexandria
-      + [X] golden-utils
-      + [X] origin
-      + [X] split-sequence
-      + [X] static-vectors
-      + [X] varjo [4/4][100%]
-        - https://github.com/cbaggers/varjo
-        - [X] :packed <2021-02-09 Tue>
-        - [X] :patch-sent <2021-02-09 Tue>
-        - [X] :patch-applied-upstream <2021-02-10 Wed>
-          - https://issues.guix.gnu.org/46412
-        - [X] :inputs [10/10][100%]
-          + [X] alexandria
-          + [X] cl-ppcre
-          + [X] documentation-utils
-          + [X] fn
-            - https://github.com/cbaggers/fn.git
-            - [X] :inputs [1/1]
-              + [X] named-readtables
-          + [X] glsl-docs -> glsl-spec
-          + [X] glsl-spec
-            - https://github.com/cbaggers/glsl-spec
-            - [X] :packed <2021-02-09 Tue>
-            - [X] :patch-sent <2021-02-09 Tue>
-            - [X] :patch-applied-upstream <2021-02-10 Wed>
-              + https://issues.guix.gnu.org/46412
-          + [X] glsl-symbols -> glsl-spec
-          + [X] named-readtables
-          + [X] parse-float
-          + [X] vas-string-metrics [3/3][100%]
-            - https://github.com/vsedach/vas-string-metrics
-            - [X] :packed <2021-02-09 Tue>
-            - [X] :patch-sent <2021-02-09 Tue>
-            - [X] :patch-applied-upstream <2021-02-10 Wed>
-              + https://issues.guix.gnu.org/46412
-  + [X] net.mfiano.lisp.umbra [4/4][100%]
-    - https://git.mfiano.net/mfiano/umbra.git
-    - [X] :packed <2021-04-03 Sat>
-    - [X] :patch-sent <2021-04-08 Thu>
-    - [X] :patch-applied-upstream <2021-04-08 Thu>
-      - https://issues.guix.gnu.org/47586
-    - [X] :inputs [3/3][100%]
-      - [X] golden-utils
-      - [X] shadow
-      - [X] varjo
-  + [X] pngload (gnu/packages/lisp-xyz.scm:10764:2)
-  + [X] printv [4/4][100%]
-    - https://github.com/danlentz/printv
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-03 Wed>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-    - [X] :inputs [1/1]
-      - [X] cl-ppcre
-  + [X] queues.simple-queue
-  + [X] sdl2 [4/4][100%]
-    - https://github.com/lispgames/cl-sdl2
-    - [X] :packed <2021-06-23 Wed>
-    - [X] :patch-sent <2021-06-23 Wed>
-    - [X] :patch-applied-upstream <2021-06-24 Thu>
-      - https://issues.guix.gnu.org/49187
-    - [X] :inputs [6/6][100%]
-      + [X] alexandria
-      + [X] cl-autowrap
-      + [X] cl-plus-c (part of cl-autowrap)
-      + [X] cl-ppcre
-      + [X] trivial-channels [4/4][100%]
-        - https://github.com/rpav/trivial-channels.git
-        - [X] :packed <2021-02-17 Wed>
-        - [X] :patch-sent <2021-02-17 Wed>
-        - [X] :patch-applied-upstream <2021-02-18 Thu>
-          - https://issues.guix.gnu.org/46604
-        - [X] :inputs [2/2]
-          - [X] trivial-timeout [3/3][100%]
-            - https://github.com/gwkkwg/trivial-timeout/
-            - [X] :packed <2021-02-02 Tue>
-            - [X] :patch-sent <2021-02-03 Wed>
-            - [X] :patch-applied-upstream <2021-02-03 Wed>
-              + https://issues.guix.gnu.org/46261
-          - [X] bordeaux-threads
-      + [X] trivial-features
-  + [X] split-sequence (gnu/packages/lisp-xyz.scm:1493:2)
-  + [X] static-vectors (gnu/packages/lisp-xyz.scm:4048:2)
-  + [X] trivial-features (gnu/packages/lisp-xyz.scm:1104:4)
-
-- [PATCH 5/5] Add new 3b-bmfont cl-slug golden-utils printv trivial-timeout
-- [PATCH 2/2] Add new origin specialization-store
-- [PATCH 4/4] On the way of Virality Engine: varjo glsl-spec vas-string-metrics fn
-
-** TODO lucerne [/][%]
-- https://github.com/eudoxia0/lucerne
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [4/6][66%]
-
-** TODO cl-plplot [0/4][0%]
-- https://github.com/HazenBabcock/cl-plplot
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
-
-** TODO gwkkwg [0/1][0%] :author:p3:
-- https://github.com/gwkkwg
-
-*** TODO cl-mathstats [0/4][0%] :p4:
-- https://github.com/gwkkwg/cl-mathstats
-- synopsis :: An unordered collection of mathematical routines
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
-
-** DONE cl-mount-info [4/4][100%]
-CLOSED: [2021-03-09 Tue 08:43]
-https://notabug.org/cage/cl-mount-info.git
-- [X] :packed <2021-03-06 Sat>
-- [X] :patch-sent <2021-03-06 Sat>
-- [X] :paptch-applied-upstream <2021-03-08 Mon>
-  - https://issues.guix.gnu.org/46977
-- [X] :inputs [3/3]
+*** DONE 3b-bmfont [4/4][100%]
+- https://github.com/3b/3b-bmfont/
+- synopsis :: read/write bmfont metadata files
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent  <2021-02-02 Tue>
+- [X] :patch-applied-upstream <2021-02-03 Wed>
+  - https://issues.guix.gnu.org/46261
+- [X] :inputs [5/5]
   - [X] alexandria
-  - [X] cffi
-  - [X] cl-ppcre
-
-** DONE cl-diskspace [3/3][100%]
-CLOSED: [2021-03-09 Tue 08:44]
-https://github.com/muyinliu/cl-diskspace
-- [X] :packed <2021-03-06 Sat>
-- [X] :patch-sent <2021-03-06 Sat>
-- [X] :paptch-applied-upstream <2021-03-08 Mon>
-  - https://issues.guix.gnu.org/46977
-
-** DONE chronicity [4/4][100%]
-CLOSED: [2021-03-09 Tue 08:44]
-https://github.com/chaitanyagupta/chronicity
-- [X] :packed <2021-03-06 Sat>
-- [X] :patch-sent <2021-03-06 Sat>
-- [X] :paptch-applied-upstream <2021-03-08 Mon>
-  - https://issues.guix.gnu.org/46977
-- [X] :inputs [3/3]
-  + [X] cl-ppcre
-  + [X] local-time
-  + [X] cl-interpol
-
-** DONE cl-debug [3/3][100%]
-CLOSED: [2021-03-09 Tue 08:44]
-- https://github.com/kmx-io/cl-debug
-- [X] :packed <2021-03-06 Sat>
-- [X] :patch-sent <2021-03-06 Sat>
-- [X] :paptch-applied-upstream <2021-03-08 Mon>
-  - https://issues.guix.gnu.org/46977
-
-** DONE cl-re [4/4][100%]
-CLOSED: [2021-04-25 Sun 17:24]
-- https://github.com/massung/re
-- [X] :packed <2021-03-06 Sat>
-- [X] :patch-sent <2021-03-06 Sat>
-- [X] :paptch-applied-upstream <2021-03-08 Mon>
-  - https://issues.guix.gnu.org/46977
-- [X] :inputs [1/1]
-  + [X] parse [3/3][100%]
-    - [X] :packed <2021-03-06 Sat>
-    - [X] :patch-sent <2021-03-06 Sat>
-    - [X] :paptch-applied-upstream <2021-03-08 Mon>
-      + https://issues.guix.gnu.org/46977
+  - [X] cxml
+  - [X] flexi-streams
+  - [X] jsown
+  - [X] split-sequence
+*** TODO classimp [/][%] :p1:
+- https://github.com/3b/classimp
+- synopsis :: common lisp/cffi bindings for Open Asset Import Library
 
 ** TODO adams [1/4][25%]
 - https://github.com/cl-adams/adams
@@ -329,246 +77,6 @@ CLOSED: [2021-04-25 Sun 17:24]
   + [X] str
   + [X] trivial-utf-8
 
-** DONE Djula [4/4][100%]
-CLOSED: [2021-05-26 Wed 21:57]
-- https://github.com/mmontone/djula
-- [X] :packed <2021-05-23 Sun>
-- [X] :patch-sent
-- [X] :patch-applied-upstream
-  - https://issues.guix.gnu.org/48615
-- [X] :inputs [14/14][100%]
-  + [X] access
-  + [X] alexandria
-  + [X] anaphora
-  + [X] babel
-  + [X] cl-ppcre
-  + [X] split-sequence
-  + [X] local-time
-  + [X] closer-mop
-  + [X] trivial-backtrace
-  + [X] cl-slice [4/4]
-    - https://github.com/tpapp/cl-slice
-    - [X] :packed <2021-05-23 Sun>
-    - [X] :patch-sent
-    - [X] :patch-applied-upstream
-    - [X] :inputs [3/3][100%]
-      + [X] alexandria
-      + [X] anaphora
-      + [X] clunit
-  + [X] cl-locale [4/4]
-    - https://github.com/fukamachi/cl-locale
-    - [X] :packed
-    - [X] :patch-sent
-    - [X] :patch-applied-upstream
-    - [X] :inputs [4/4][100%]
-      + [X] alexandria
-      + [X] arnesi [4/4]
-        - https://github.com/AccelerationNet/arnesi
-        - [X] :packed <2021-05-23 Sun>
-        - [X] :patch-sent
-        - [X] :patch-applied-upstream
-        - [X] :inputs [4/4][100%]
-          + [X] collectors
-          + [X] swank
-          + [X] cl-ppcre
-          + [X] fiveam
-      + [X] cl-annot
-      + [X] cl-syntax
-  + [X] gettext
-    - https://github.com/rotatef/gettext
-    - [X] :packed <2021-05-23 Sun>
-    - [X] :patch-sent
-    - [X] :patch-applied-upstream
-    - [X] :inputs [4/4][100%]
-      + [X] split-sequence
-      + [X] flexi-streams
-      + [X] stefil
-      + [X] yacc
-  + [X] parser-combinators [4/4]
-    - https://github.com/Ramarren/cl-parser-combinators
-    - [X] :packed <2021-05-23 Sun>
-    - [X] :patch-sent
-    - [X] :patch-applied-upstream
-    - [X] :inputs [1/1][100%]
-      - [X] alexandria
-  + [X] iterate
-
-
-    Build results:
-#+BEGIN_SRC sh :results value org :results output replace :exports results
-guix describe
-echo
-guix build --load-path=. --rounds=3 --no-substitutes $(guix refresh --list-transitive --load-path=. sbcl-djula 2>1 | grep "sbcl-" | xargs -d" " -I{} echo {} | awk -F\@ '/sbcl\-/{print $1}' | xargs)
-guix build --load-path=. --rounds=3 --no-substitutes $(guix refresh --list-transitive --load-path=. ecl-djula 2>1 | grep "ecl-" | xargs -d" " -I{} echo {} | awk -F\@ '/ecl\-/{print $1}' | xargs)
-#+end_src
-
-#+RESULTS:
-#+begin_src org
-Generation 51	May 22 2021 19:47:42	(current)
-  guix 015869d
-    repository URL: https://git.savannah.gnu.org/git/guix.git
-    branch: master
-    commit: 015869d4c62c7a450b8231adf6054a7b4b28e628
-
-/gnu/store/rqzhvvxgxvp2ls4a28zpa41c54ym9yaj-sbcl-trivial-backtrace-1.1.0-1.6eb65bd
-/gnu/store/ba3hr1z2vrkl6s53zxfbl50rg41kf7z7-sbcl-lift-1.7.1-2.2594160
-/gnu/store/rksrr4g607l8lsxsmasjgfw03jkbnyn2-sbcl-split-sequence-2.0.0
-/gnu/store/v3vlyzcp3r7irgqblpdnmxmxhgf9amxx-sbcl-fiveam-1.4.2
-/gnu/store/6yz9q1i32c115103yp22l2vhdcqkijad-sbcl-net.didierverna.asdf-flv-2.1
-/gnu/store/7a7sjrjdwnymcs6qvxrgwax6rig9bxbi-sbcl-alexandria-1.2
-/gnu/store/pb7914y5zs42302vpspsivnvg0wwmrak-sbcl-rt-1990.12.19-1.a6a7503
-/gnu/store/kbqls04wzaqaawcs5vrq5s6r2j5fyvig-sbcl-parser-combinators-0.0.0-1.9c7569a
-/gnu/store/2i28q3n372k8y9h95qz61qr62660swby-sbcl-iterate-1.5
-/gnu/store/lyzs5b4cyk0hr4kk3mq0b6yrcfpd0aj5-sbcl-cl-ppcre-2.1.1
-/gnu/store/pqb5ri1zwl4kag2609a3axrxywnfvfh5-sbcl-flexi-streams-1.0.19
-/gnu/store/y3qhrl8ycjzc2fq7zy547avmfzfq6pd9-sbcl-trivial-gray-streams-0.0.0-1.ebd59b1
-/gnu/store/ylzg49vgdbf9w0v2pxl7zknzb0hfd1fy-sbcl-cl-containers-0.12.1-3.3d1df53
-/gnu/store/hgw8xhssy60fqx7affxv0gwm4hqcdz74-sbcl-metatilities-base-0.6.6-1.6eaa9e3
-/gnu/store/j231z3wyj4vw7imvm3ivvpkb2sj6qihq-sbcl-local-time-1.0.6-2.a177eb9
-/gnu/store/gpl2f8dx7ssk74l63ifhyvxz1kndw0g2-sbcl-hu.dwim.stefil-0.0.0-2.414902c
-/gnu/store/s6i5hz4fzcca0v5fa0zhqfzrjza5zbh5-sbcl-hu.dwim.asdf-20200724
-/gnu/store/5li604avil0pdsjm8k6lfjm835wg85gb-sbcl-gettext-0.0.0-1.a432020
-/gnu/store/i4c99mxxcw2cq16c4plzj07fcvya1bwg-sbcl-cl-yacc-0.3
-/gnu/store/119lkrwf5jm2gbclgk1navmhp4ipng1n-sbcl-stefil-0.1-0.0398548
-/gnu/store/1px685m75jjqps16r35kwwlhgm50jppm-sbcl-slime-swank-2.26
-/gnu/store/6swcybi9n5iyza04rbvy6kfsffki180i-sbcl-metabang-bind-0.8.0-1.c93b7f7
-/gnu/store/qq5ha50nmc91sc11wxj3gb4d7b4skr5l-sbcl-closer-mop-1.0.0-2.19c9d33
-/gnu/store/1hbvha4qxdxn1jh0kb0g5zlhaakg5q02-sbcl-cl-slice-0.1.0-1.c531683
-/gnu/store/hqnn27wz0fwqraxfikhyfzb6ycc80pb8-sbcl-let-plus-0.0.0-1.5f14af6
-/gnu/store/nsk0wi50ighxsgxqlc8xycsqbhw4jfd3-sbcl-anaphora-0.9.6
-/gnu/store/avb1y6wbw7my8i07ijv2i0lfijwb2q8x-sbcl-clunit-0.2.3-1.6f6d728
-/gnu/store/7pbfwhkffg736vwdrc5g5j0p7c1m3lds-sbcl-cl-locale-0.1.1-1.0a36cc0
-/gnu/store/dnmwfjc0w4ci6k14hsq0xsvavxbd10hn-sbcl-cl-syntax-0.0.3
-/gnu/store/rcj9mrqn4qj3z2whz4yvf3xclyrq6cd1-sbcl-trivial-types-0.0.1
-/gnu/store/0dwlv9y4s11kw1rbbypp5mwp6r4rrsvd-sbcl-named-readtables-0.9-3.585a28e
-/gnu/store/p00bwnrxwky76ck3qv72hkxdrv2hl9q9-sbcl-cl-interpol-0.2.7-1.70a1137
-/gnu/store/dc65z9k1maiskz853aqn2jh7yipacjxa-sbcl-cl-unicode-0.1.6
-/gnu/store/nh3h07j6cv7zw8xmhiyr9fmki1r2fxvn-sbcl-cl-annot-0.0.0-1.c99e69c
-/gnu/store/qvddf6ixiyfmcrmf502ihc3la6g94szq-sbcl-arnesi-2.0.0-1.1e7dc4c
-/gnu/store/wgjn2yrcwxbgf5fbxcq1nrg8g183y6xn-sbcl-collectors-0.1-1.13acef2
-/gnu/store/qgrkk31ndblgpdyvdxm6iszxfl9q5dzg-sbcl-symbol-munger-0.0.1-1.97598d4
-/gnu/store/n0c1kmq6na7bqm03gvvyn8mxrwc2ggyp-sbcl-lisp-unit2-0.2.0-1.fb97215
-/gnu/store/gfql37hcmq6x6q2i6daa59qk95xxi6h1-sbcl-prove-1.0.0-1.4f9122b
-/gnu/store/58ydhagmj6gnzmjxbbllh37n8air5hqr-sbcl-cl-ansi-text-1.0.0-1.53badf7
-/gnu/store/3zq9sqxfl0kzgfn473kbzdvag404gy6i-sbcl-cl-colors-0.0.0-1.8274105
-/gnu/store/cjfji8am64wq2li20qw7pllhsc0ciqbb-sbcl-babel-0.5.0-1.aeed2d1
-/gnu/store/dcmz3k4kgkxckgm39d1bnvgg2ykrr2ws-sbcl-trivial-features-0.8-1.870d03d
-/gnu/store/34w3g85kv2n7jsc9vndb3mbqcpsjmd81-sbcl-access-1.5.0-1.1b26db3
-/gnu/store/jj0bqiy1v22b26qrvpxhg0cr393cz5yj-sbcl-djula-0.2.0-1.5df7af3
-/gnu/store/iyxddgy29dfdlddr61d3gm0wccrs17hc-ecl-trivial-backtrace-1.1.0-1.6eb65bd
-/gnu/store/c2jf613zvc01n6770ph0aqxy8sgfjvxb-ecl-lift-1.7.1-2.2594160
-/gnu/store/9z1gjwym1lpij97g85p7m2cz4m4j91ap-ecl-split-sequence-2.0.0
-/gnu/store/88vpj3h84i6zxx8p9ak16h1130y65fil-ecl-fiveam-1.4.2
-/gnu/store/ia9bd1dikiw04j533xqz0ch19gfk0jk8-ecl-net.didierverna.asdf-flv-2.1
-/gnu/store/vwcc3sp31gddhlkzb7p14ws6anp8p7iy-ecl-alexandria-1.2
-/gnu/store/zjyifr5gklvhjzr1lk9hkyl9p1y1iqsc-ecl-rt-1990.12.19-1.a6a7503
-/gnu/store/jm2ls7aa1068qw2jfgraqcp63q99sc4q-ecl-parser-combinators-0.0.0-1.9c7569a
-/gnu/store/4wxma5vfd4mjnwsrm3jakpxkqan35b04-ecl-iterate-1.5
-/gnu/store/dsanf87vckinmr6raf0s2ba012nxix2y-ecl-cl-ppcre-2.1.1
-/gnu/store/6l4s6z5mdrv9vnkayi9p6c6bkazig7jx-ecl-flexi-streams-1.0.19
-/gnu/store/dm6lxnizba2bgk2ji65cqxr91n035ms3-ecl-trivial-gray-streams-0.0.0-1.ebd59b1
-/gnu/store/d721rnd85y0ri5v0axbv1rf8dykh40zb-ecl-cl-containers-0.12.1-3.3d1df53
-/gnu/store/zvd01rkld069x6av35r1w1zd77pkj7v5-ecl-metatilities-base-0.6.6-1.6eaa9e3
-/gnu/store/9axlwwmx4wkyjmzh9xf2hqli52m3nmnh-ecl-local-time-1.0.6-2.a177eb9
-/gnu/store/yz3mjs3kd7x54v3h6d7wayli6pck4i8a-ecl-hu.dwim.stefil-0.0.0-2.414902c
-/gnu/store/byfba0c2qw1vsp8jk6951nyrfj7sflcm-ecl-hu.dwim.asdf-20200724
-/gnu/store/9dfqa7dblm7d7mq9a78zsaxkb4zsa8hq-ecl-gettext-0.0.0-1.a432020
-/gnu/store/70rvr1a37ws160igi3kyslx91x7iza1r-ecl-cl-yacc-0.3
-/gnu/store/ghyk1ag2126a1y76kl26v5q2p94y8lhi-ecl-stefil-0.1-0.0398548
-/gnu/store/5ica95l7955r8vrh4hvh62zcjplw37s1-ecl-slime-swank-2.26
-/gnu/store/pfyc11gma4a37zxbaqpnd9ii6w1lbmc5-ecl-metabang-bind-0.8.0-1.c93b7f7
-/gnu/store/5a8zz1hgmjgylgy039f4knpcx3ra8p0i-ecl-closer-mop-1.0.0-2.19c9d33
-/gnu/store/q9wr7pscm3ybi8l5m8wlk2p9jmb4sd8d-ecl-cl-slice-0.1.0-1.c531683
-/gnu/store/726v1hwb34z10zjl4wnd3byasy5y3y53-ecl-let-plus-0.0.0-1.5f14af6
-/gnu/store/hqaan7cxsm6a64gbdgahyn3lvxzm5bxr-ecl-anaphora-0.9.6
-/gnu/store/x70zzbn22h98yaj58anp1j8j23fy2brx-ecl-clunit-0.2.3-1.6f6d728
-/gnu/store/643zsw1bi3hppp8v4bkl7g0pmvw64gxl-ecl-cl-locale-0.1.1-1.0a36cc0
-/gnu/store/kyigmxbd8fg2j5rsgj19hlc6lxc6lppb-ecl-cl-syntax-0.0.3
-/gnu/store/ww16w4n8h12qz4cf7a2h84g5sw2fq2bw-ecl-trivial-types-0.0.1
-/gnu/store/92hjk4mkdqi9fqqm0aq09rnd7097x893-ecl-named-readtables-0.9-3.585a28e
-/gnu/store/772zs2r0w2p6r1v29l9fdx3rilqz8kn1-ecl-cl-interpol-0.2.7-1.70a1137
-/gnu/store/hxic7r1wckr97vamls7qvsdnm1sl7xmg-ecl-cl-unicode-0.1.6
-/gnu/store/72lmjdq96nvv0hf9vck2zj48dzwk94sl-ecl-cl-annot-0.0.0-1.c99e69c
-/gnu/store/a5zr7a4hvcg5ivwdga7gsnw2fvhaipxz-ecl-arnesi-2.0.0-1.1e7dc4c
-/gnu/store/0jgfhrfgp1nch07m2hv4dcqcd35i1m7w-ecl-collectors-0.1-1.13acef2
-/gnu/store/smy6l3rxmn5d9b4ca1llws3m9vw9qd77-ecl-symbol-munger-0.0.1-1.97598d4
-/gnu/store/akbwj1f26q866y8931f4sxxlsl2l6y8p-ecl-lisp-unit2-0.2.0-1.fb97215
-/gnu/store/kwl23pax3axla9m95kg9x7fxnr22vblp-ecl-prove-1.0.0-1.4f9122b
-/gnu/store/w9iygpx9vdg7c3iyp2a3av0qb2r05gv5-ecl-cl-ansi-text-1.0.0-1.53badf7
-/gnu/store/3z5qypb41zmf3j7ikzc4hdlqv3prsl2x-ecl-cl-colors-0.0.0-1.8274105
-/gnu/store/di210ilm4l2v17hkc93z56dxgbwry4ik-ecl-babel-0.5.0-1.aeed2d1
-/gnu/store/5q5rcp11iv64j55b30h16klfs0iil1yr-ecl-trivial-features-0.8-1.870d03d
-/gnu/store/2igznyhw21fghg29amw0lsq9bdj9cl85-ecl-access-1.5.0-1.1b26db3
-/gnu/store/b9rr864pjzwijbivbf87iyb10ybaphh8-ecl-djula-0.2.0-1.5df7af3
-#+end_src
-** DONE coalton [4/4][100%]
-CLOSED: [2021-04-11 Sun 20:33]
-- https://github.com/stylewarning/coalton
-- [X] :packed <2021-04-10 Sat>
-- [X] :patch-sent <2021-04-10 Sat>
-- [X] :patch-applied-upstream
-  - https://issues.guix.gnu.org/47683
-- [X] :inputs [5/5][100%]
-  + [X] alexandria
-  + [X] global-vars
-  + [X] trivial-garbage
-  + [X] optima
-  + [X] abstract-classes
-    - [X] :packed <2021-04-10 Sat>
-    - [X] :patch-sent <2021-04-10 Sat>
-    - [X] :patch-applied-upstream
-      + https://issues.guix.gnu.org/47683
-    - [X] :inputs [1/1][100%]
-      + [X] closer-mop
-
-** TODO weir [3/4][75%]
-- https://github.com/inconvergent/weir
-- [X] :packed <2021-04-17 Sat>
-- [X] :patch-sent <2021-04-21 Wed>
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/47943
-- [X] :inputs [8/8][100%]
-  + [X] alexandria
-  + [X] cl-json
-  + [X] cl-svg
-    - https://github.com/wmannis/cl-svg
-    - [X] :packed <2021-04-15 Thu>
-    - [X] :patch-sent <2021-04-17 Sat>
-    - [X] :patch-applied-upstream <2021-04-19 Mon>
-      - https://issues.guix.gnu.org/47851
-  + [X] inferior-shell
-    - https://gitlab.common-lisp.net/qitab/inferior-shell.git
-    - [X] :packed <2021-04-15 Thu>
-    - [X] :patch-sent <2021-04-17 Sat>
-    - [X] :patch-applied-upstream <2021-04-19 Mon>
-      - https://issues.guix.gnu.org/47851
-    - [X] :inputs [6/6][100%]
-      - [X] alexandria
-      - [X] trivia
-      - [X] trivia.quasiquote
-      - [X] fare-utils
-      - [X] fare-quasiquote-extras
-      - [X] fare-mop
-        - https://gitlab.common-lisp.net/frideau/fare-mop.git
-        - https://github.com/fare/fare-mop
-        - [X] :packed <2021-04-15 Thu>
-        - [X] :patch-sent <2021-04-17 Sat>
-        - [X] :patch-applied-upstream <2021-04-19 Mon>
-          - https://issues.guix.gnu.org/47851
-        - [X] :inputs [1/1][100%]
-          + [X] closer-mop
-  + [X] lparallel
-  + [X] png
-    - https://github.com/ljosa/cl-png
-    - [X] :packed <2021-04-15 Thu>
-    - [X] :patch-sent <2021-04-17 Sat>
-    - [X] :patch-applied-upstream <2021-04-19 Mon>
-      - https://issues.guix.gnu.org/47851
-    - [X] :inputs [1/1][100%]
-      - [X] cffi
-  + [X] split-sequence
-  + [X] zpng
-
 ** DONE bknr-datastore
 CLOSED: [2021-05-02 Sun 20:39]
 - https://github.com/hanshuebner/bknr-datastore
@@ -578,37 +86,6 @@ CLOSED: [2021-05-02 Sun 20:39]
   + https://issues.guix.gnu.org/48105
 - [X] :inputs [1/1][100%]
   - [X] unit-test
-#+begin_example
-[env: /gnu/store/cc4lcxixh1gd06gjivqv3fkr1z3rp8ck-profile]
-> ./pre-inst-env guix build sbcl-unit-test ecl-unit-test
-/gnu/store/7k8qq6a5m31x5a4f47jhh02ag10ccc93-ecl-unit-test-0.0.0-1.266afaf
-/gnu/store/56hp7l1mq067h7nxm5lczg198wfpf2c3-sbcl-unit-test-0.0.0-1.266afaf
-#+end_example
-** DONE cl-posix-mqueue [4/4][100%]
-CLOSED: [2021-06-24 Thu 14:41]
-- https://github.com/xFA25E/cl-posix-mqueue
-- [X] :packed <2021-06-21 Mon>
-- [X] :patch-sent <2021-06-21 Mon>
-- [X] :patch-applied-upstream <2021-06-24 Thu>
-  - https://issues.guix.gnu.org/49152
-- [X] :inputs [4/4][100%]
-  - [X] cffi
-  - [X] alexandria
-  - [X] babel
-  - [X] local-time
-** DONE cl-liballegro [4/4][100%]
-CLOSED: [2021-12-02 Thu 22:38]
-- https://github.com/resttime/cl-liballegro
-- [X] :packed <2021-11-27 Sat>
-- [X] :patch-sent <2021-11-29 Mon>
-- [X] :patch-applied-upstream <2021-12-01 Wed>
-  - https://issues.guix.gnu.org/52187
-- [X] :inputs
-  + [X] cffi
-  + [X] trivial-garbage
-  + [X] trivial-main-thread
-  + [X] float-features
-  + [X] allegro
 
 ** TODO borodust [0/2][0%] :author:p3:
 *** TODO cl-bodge [0/4][0%]
@@ -750,7 +227,520 @@ CLOSED: [2021-12-02 Thu 22:38]
   - [ ] named-readtables
   - [ ] trivial-features))
 
-** TODO Shinmera/Shirakumo [3/12][25%] :author:p5:
+** TODO bufferswap [0/1][0%] :author:
+*** TODO virality [0/4][0%] :p1:
+- https://github.com/bufferswap/ViralityEngine/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [23/24][95%]
+  + [X] 3b-bmfont
+  + [X] 3b-bmfont/json (part of 3b-bmfont)
+  + [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
+  + [X] cl-cpus [3/3][100%]
+    - https://github.com/muyinliu/cl-cpus.git
+    - [X] :packed <2021-04-03 Sat>
+    - [X] :patch-sent <2021-04-08 Thu>
+    - [X] :patch-applied-upstream <2021-04-08 Thu>
+      - https://issues.guix.gnu.org/47586
+  + [ ] cl-graph [0/3][0%]
+    - https://github.com/gwkkwg/cl-graph
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [ ] :patch-applied-upstream
+    - [ ] :inputs [/][%]
+  + [X] cl-opengl
+  + [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
+  + [X] cl-slug [4/4][100%]
+    - https://github.com/EuAndreh/cl-slug/
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-03 Wed>
+    - [X] :patch-applied-upstream <2021-02-03 Wed>
+      - https://issues.guix.gnu.org/46261
+    - [X] :inputs [1/1]
+      - [X] cl-ppcre
+  + [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
+  + [X] fast-io (gnu/packages/lisp-xyz.scm:4153:4)
+  + [X] global-vars (gnu/packages/lisp-xyz.scm:6619:4)
+  + [X] jsown (gnu/packages/lisp-xyz.scm:13445:4)
+  + [X] lparallel (gnu/packages/lisp-xyz.scm:2942:2)
+  + [X] net.mfiano.lisp.golden-utils [3/3][100%]
+    - https://git.mfiano.net/mfiano/golden-utils
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-03 Wed>
+    - [X] :patch-applied-upstream <2021-02-03 Wed>
+      - https://issues.guix.gnu.org/46261
+  + [X] net.mfiano.lisp.origin [4/4][100%]
+    - https://git.mfiano.net/mfiano/origin
+    - [X] :packed <2021-02-04 Thu>
+    - [X] :patch-sent
+    - [X] :patch-applied-upstream <2021-02-04 Thu>
+      - https://issues.guix.gnu.org/46281
+    - [X] :inputs [2/2][100%]
+      + [X] specialization-store [4/4][100%]
+        - https://github.com/markcox80/specialization-store
+        - [X] :packed <2021-02-04 Thu>
+        - [X] :patch-sent <2021-02-04 Thu>
+        - [X] :patch-applied-upstream <2021-02-04 Thu>
+          + https://issues.guix.gnu.org/46281
+        - [X] :inputs [2/2][100%]
+          + [X] introspect-environment
+          + [X] alexandria
+      + [X] golden-utils
+  + [X] net.mfiano.lisp.shadow [4/4][100%]
+    - https://git.mfiano.net/mfiano/shadow
+    - [X] :packed <2021-04-03 Sat>
+    - [X] :patch-sent <2021-04-08 Thu>
+    - [X] :patch-applied-upstream <2021-04-08 Thu>
+      - https://issues.guix.gnu.org/47586
+    - [X] :inputs [8/8][100%]
+      + [X] cffi
+      + [X] cl-opengl
+      + [X] glsl-packing
+      + [X] golden-utils
+      + [X] origin
+      + [X] split-sequence
+      + [X] static-vectors
+      + [X] varjo [4/4][100%]
+        - https://github.com/cbaggers/varjo
+        - [X] :packed <2021-02-09 Tue>
+        - [X] :patch-sent <2021-02-09 Tue>
+        - [X] :patch-applied-upstream <2021-02-10 Wed>
+          - https://issues.guix.gnu.org/46412
+        - [X] :inputs [10/10][100%]
+          + [X] alexandria
+          + [X] cl-ppcre
+          + [X] documentation-utils
+          + [X] fn
+            - https://github.com/cbaggers/fn.git
+            - [X] :inputs [1/1]
+              + [X] named-readtables
+          + [X] glsl-docs -> glsl-spec
+          + [X] glsl-spec
+            - https://github.com/cbaggers/glsl-spec
+            - [X] :packed <2021-02-09 Tue>
+            - [X] :patch-sent <2021-02-09 Tue>
+            - [X] :patch-applied-upstream <2021-02-10 Wed>
+              + https://issues.guix.gnu.org/46412
+          + [X] glsl-symbols -> glsl-spec
+          + [X] named-readtables
+          + [X] parse-float
+          + [X] vas-string-metrics [3/3][100%]
+            - https://github.com/vsedach/vas-string-metrics
+            - [X] :packed <2021-02-09 Tue>
+            - [X] :patch-sent <2021-02-09 Tue>
+            - [X] :patch-applied-upstream <2021-02-10 Wed>
+              + https://issues.guix.gnu.org/46412
+  + [X] net.mfiano.lisp.umbra [4/4][100%]
+    - https://git.mfiano.net/mfiano/umbra.git
+    - [X] :packed <2021-04-03 Sat>
+    - [X] :patch-sent <2021-04-08 Thu>
+    - [X] :patch-applied-upstream <2021-04-08 Thu>
+      - https://issues.guix.gnu.org/47586
+    - [X] :inputs [3/3][100%]
+      - [X] golden-utils
+      - [X] shadow
+      - [X] varjo
+  + [X] pngload (gnu/packages/lisp-xyz.scm:10764:2)
+  + [X] printv [4/4][100%]
+    - https://github.com/danlentz/printv
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-03 Wed>
+    - [X] :patch-applied-upstream <2021-02-03 Wed>
+      - https://issues.guix.gnu.org/46261
+    - [X] :inputs [1/1]
+      - [X] cl-ppcre
+  + [X] queues.simple-queue
+  + [X] sdl2 [4/4][100%]
+    - https://github.com/lispgames/cl-sdl2
+    - [X] :packed <2021-06-23 Wed>
+    - [X] :patch-sent <2021-06-23 Wed>
+    - [X] :patch-applied-upstream <2021-06-24 Thu>
+      - https://issues.guix.gnu.org/49187
+    - [X] :inputs [6/6][100%]
+      + [X] alexandria
+      + [X] cl-autowrap
+      + [X] cl-plus-c (part of cl-autowrap)
+      + [X] cl-ppcre
+      + [X] trivial-channels [4/4][100%]
+        - https://github.com/rpav/trivial-channels.git
+        - [X] :packed <2021-02-17 Wed>
+        - [X] :patch-sent <2021-02-17 Wed>
+        - [X] :patch-applied-upstream <2021-02-18 Thu>
+          - https://issues.guix.gnu.org/46604
+        - [X] :inputs [2/2]
+          - [X] trivial-timeout [3/3][100%]
+            - https://github.com/gwkkwg/trivial-timeout/
+            - [X] :packed <2021-02-02 Tue>
+            - [X] :patch-sent <2021-02-03 Wed>
+            - [X] :patch-applied-upstream <2021-02-03 Wed>
+              + https://issues.guix.gnu.org/46261
+          - [X] bordeaux-threads
+      + [X] trivial-features
+  + [X] split-sequence (gnu/packages/lisp-xyz.scm:1493:2)
+  + [X] static-vectors (gnu/packages/lisp-xyz.scm:4048:2)
+  + [X] trivial-features (gnu/packages/lisp-xyz.scm:1104:4)
+
+- [PATCH 5/5] Add new 3b-bmfont cl-slug golden-utils printv trivial-timeout
+- [PATCH 2/2] Add new origin specialization-store
+- [PATCH 4/4] On the way of Virality Engine: varjo glsl-spec vas-string-metrics fn
+
+** TODO cbaggers [1/3][33%] :author:p2:
+*** DONE cepl [4/4][100%]
+CLOSED: [2021-06-15 Tue 10:09]
+- https://github.com/cbaggers/cepl
+- [X] :packed <2021-06-04 Fri>
+- [X] :patch-sent <2021-06-04 Fri>
+- [X] :patch-applied-upstream <2021-06-15 Tue>
+  - https://issues.guix.gnu.org/48836
+- [X] :inputs [11/11][100%]
+  - [X] alexandriag
+  - [X] bordeaux-threadsg
+  - [X] cffig
+  - [X] cl-openglg
+  - [X] cl-ppcreg
+  - [X] documentation-utilsg
+  - [X] float-featuresg
+  - [X] ieee-floatsg
+  - [X] split-sequenceg
+  - [X] varjog
+  - [X] quickprojectg
+
+*** TODO cl-soil [0/4][0%] :p1:
+- https://github.com/cbaggers/cl-soil
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+*** TODO dirt [/][%] :p1:
+- https://github.com/cbaggers/dirt
+- synopsis :: front-end for cl-soil which loads images straight to cepl:c-arrays and cepl:textures
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+** DONE chronicity [4/4][100%]
+CLOSED: [2021-03-09 Tue 08:44]
+https://github.com/chaitanyagupta/chronicity
+- [X] :packed <2021-03-06 Sat>
+- [X] :patch-sent <2021-03-06 Sat>
+- [X] :paptch-applied-upstream <2021-03-08 Mon>
+  - https://issues.guix.gnu.org/46977
+- [X] :inputs [3/3]
+  + [X] cl-ppcre
+  + [X] local-time
+  + [X] cl-interpol
+
+** DONE cl-debug [3/3][100%]
+CLOSED: [2021-03-09 Tue 08:44]
+- https://github.com/kmx-io/cl-debug
+- [X] :packed <2021-03-06 Sat>
+- [X] :patch-sent <2021-03-06 Sat>
+- [X] :paptch-applied-upstream <2021-03-08 Mon>
+  - https://issues.guix.gnu.org/46977
+
+** DONE cl-diskspace [3/3][100%]
+CLOSED: [2021-03-09 Tue 08:44]
+https://github.com/muyinliu/cl-diskspace
+- [X] :packed <2021-03-06 Sat>
+- [X] :patch-sent <2021-03-06 Sat>
+- [X] :paptch-applied-upstream <2021-03-08 Mon>
+  - https://issues.guix.gnu.org/46977
+
+** DONE cl-glfw3 [4/4][100%]
+CLOSED: [2021-06-15 Tue 10:09]
+- https://github.com/AlexCharlton/cl-glfw3
+- [X] :packed <2021-05-29 Sat>
+- [X] :patch-sent <2021-06-08 Tue>
+- [X] :patch-applied-upstream <2021-06-15 Tue>
+  - https://issues.guix.gnu.org/48928
+- [X] :inputs [5/5][100%]
+  + [X] cffi
+  + [X] alexandria
+  + [X] glfw
+  + [X] cl-opengl
+  + [X] trivial-main-thread
+
+** DONE cl-liballegro [4/4][100%]
+CLOSED: [2021-12-02 Thu 22:38]
+- https://github.com/resttime/cl-liballegro
+- [X] :packed <2021-11-27 Sat>
+- [X] :patch-sent <2021-11-29 Mon>
+- [X] :patch-applied-upstream <2021-12-01 Wed>
+  - https://issues.guix.gnu.org/52187
+- [X] :inputs
+  + [X] cffi
+  + [X] trivial-garbage
+  + [X] trivial-main-thread
+  + [X] float-features
+  + [X] allegro
+
+** DONE cl-mount-info [4/4][100%]
+CLOSED: [2021-03-09 Tue 08:43]
+https://notabug.org/cage/cl-mount-info.git
+- [X] :packed <2021-03-06 Sat>
+- [X] :patch-sent <2021-03-06 Sat>
+- [X] :paptch-applied-upstream <2021-03-08 Mon>
+  - https://issues.guix.gnu.org/46977
+- [X] :inputs [3/3]
+  - [X] alexandria
+  - [X] cffi
+  - [X] cl-ppcre
+
+** DONE cl-posix-mqueue [4/4][100%]
+CLOSED: [2021-06-24 Thu 14:41]
+- https://github.com/xFA25E/cl-posix-mqueue
+- [X] :packed <2021-06-21 Mon>
+- [X] :patch-sent <2021-06-21 Mon>
+- [X] :patch-applied-upstream <2021-06-24 Thu>
+  - https://issues.guix.gnu.org/49152
+- [X] :inputs [4/4][100%]
+  - [X] cffi
+  - [X] alexandria
+  - [X] babel
+  - [X] local-time
+** DONE cl-re [4/4][100%]
+CLOSED: [2021-04-25 Sun 17:24]
+- https://github.com/massung/re
+- [X] :packed <2021-03-06 Sat>
+- [X] :patch-sent <2021-03-06 Sat>
+- [X] :paptch-applied-upstream <2021-03-08 Mon>
+  - https://issues.guix.gnu.org/46977
+- [X] :inputs [1/1]
+  + [X] parse [3/3][100%]
+    - [X] :packed <2021-03-06 Sat>
+    - [X] :patch-sent <2021-03-06 Sat>
+    - [X] :paptch-applied-upstream <2021-03-08 Mon>
+      + https://issues.guix.gnu.org/46977
+
+** DONE coalton [4/4][100%]
+CLOSED: [2021-04-11 Sun 20:33]
+- https://github.com/stylewarning/coalton
+- [X] :packed <2021-04-10 Sat>
+- [X] :patch-sent <2021-04-10 Sat>
+- [X] :patch-applied-upstream
+  - https://issues.guix.gnu.org/47683
+- [X] :inputs [5/5][100%]
+  + [X] alexandria
+  + [X] global-vars
+  + [X] trivial-garbage
+  + [X] optima
+  + [X] abstract-classes
+    - [X] :packed <2021-04-10 Sat>
+    - [X] :patch-sent <2021-04-10 Sat>
+    - [X] :patch-applied-upstream
+      + https://issues.guix.gnu.org/47683
+    - [X] :inputs [1/1][100%]
+      + [X] closer-mop
+
+** DONE Djula [4/4][100%]
+CLOSED: [2021-05-26 Wed 21:57]
+- https://github.com/mmontone/djula
+- [X] :packed <2021-05-23 Sun>
+- [X] :patch-sent
+- [X] :patch-applied-upstream
+  - https://issues.guix.gnu.org/48615
+- [X] :inputs [14/14][100%]
+  + [X] access
+  + [X] alexandria
+  + [X] anaphora
+  + [X] babel
+  + [X] cl-ppcre
+  + [X] split-sequence
+  + [X] local-time
+  + [X] closer-mop
+  + [X] trivial-backtrace
+  + [X] cl-slice [4/4]
+    - https://github.com/tpapp/cl-slice
+    - [X] :packed <2021-05-23 Sun>
+    - [X] :patch-sent
+    - [X] :patch-applied-upstream
+    - [X] :inputs [3/3][100%]
+      + [X] alexandria
+      + [X] anaphora
+      + [X] clunit
+  + [X] cl-locale [4/4]
+    - https://github.com/fukamachi/cl-locale
+    - [X] :packed
+    - [X] :patch-sent
+    - [X] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      + [X] alexandria
+      + [X] arnesi [4/4]
+        - https://github.com/AccelerationNet/arnesi
+        - [X] :packed <2021-05-23 Sun>
+        - [X] :patch-sent
+        - [X] :patch-applied-upstream
+        - [X] :inputs [4/4][100%]
+          + [X] collectors
+          + [X] swank
+          + [X] cl-ppcre
+          + [X] fiveam
+      + [X] cl-annot
+      + [X] cl-syntax
+  + [X] gettext
+    - https://github.com/rotatef/gettext
+    - [X] :packed <2021-05-23 Sun>
+    - [X] :patch-sent
+    - [X] :patch-applied-upstream
+    - [X] :inputs [4/4][100%]
+      + [X] split-sequence
+      + [X] flexi-streams
+      + [X] stefil
+      + [X] yacc
+  + [X] parser-combinators [4/4]
+    - https://github.com/Ramarren/cl-parser-combinators
+    - [X] :packed <2021-05-23 Sun>
+    - [X] :patch-sent
+    - [X] :patch-applied-upstream
+    - [X] :inputs [1/1][100%]
+      - [X] alexandria
+  + [X] iterate
+
+** TODO eudoxia0 [0/1][0%] :author:
+- https://github.com/eudoxia0
+- https://borretti.me/
+*** TODO lucerne [1/4][25%]
+- https://github.com/eudoxia0/lucerne
+- synopsis :: web framework for Common Lisp, built on Clack
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+** TODO gwkkwg [0/1][0%] :author:p3:
+- https://github.com/gwkkwg
+
+*** TODO cl-mathstats [0/4][0%] :p4:
+- https://github.com/gwkkwg/cl-mathstats
+- synopsis :: An unordered collection of mathematical routines
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+
+** TODO HazenBabcock [0/1][0%] :author:
+*** TODO cl-plplot [0/4][0%]
+- https://github.com/HazenBabcock/cl-plplot
+- synopsis :: CFFI based interface to the PLplot scientific plotting library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+
+** TODO inconvergent [0/2][0%] :author:
+- https://github.com/inconvergent
+*** TODO weir [3/4][75%]
+- https://github.com/inconvergent/weir
+- synopsis :: (deprecated) A system for making generative systems
+- [X] :packed <2021-04-17 Sat>
+- [X] :patch-sent <2021-04-21 Wed>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/47943
+- [X] :inputs [8/8][100%]
+  + [X] alexandria
+  + [X] cl-json
+  + [X] cl-svg
+    - https://github.com/wmannis/cl-svg
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
+  + [X] inferior-shell
+    - https://gitlab.common-lisp.net/qitab/inferior-shell.git
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
+    - [X] :inputs [6/6][100%]
+      - [X] alexandria
+      - [X] trivia
+      - [X] trivia.quasiquote
+      - [X] fare-utils
+      - [X] fare-quasiquote-extras
+      - [X] fare-mop
+        - https://gitlab.common-lisp.net/frideau/fare-mop.git
+        - https://github.com/fare/fare-mop
+        - [X] :packed <2021-04-15 Thu>
+        - [X] :patch-sent <2021-04-17 Sat>
+        - [X] :patch-applied-upstream <2021-04-19 Mon>
+          - https://issues.guix.gnu.org/47851
+        - [X] :inputs [1/1][100%]
+          + [X] closer-mop
+  + [X] lparallel
+  + [X] png
+    - https://github.com/ljosa/cl-png
+    - [X] :packed <2021-04-15 Thu>
+    - [X] :patch-sent <2021-04-17 Sat>
+    - [X] :patch-applied-upstream <2021-04-19 Mon>
+      - https://issues.guix.gnu.org/47851
+    - [X] :inputs [1/1][100%]
+      - [X] cffi
+  + [X] split-sequence
+  + [X] zpng
+
+*** TODO weird [0/4][0%]
+- https://github.com/inconvergent/weird
+- synopsis :: Generative art in Common Lisp
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/3][0%]
+  - [ ] sbcl-alexandria
+  - [ ] sbcl-prove
+  - [ ] sbcl-str
+
+** TODO jphmrst [1/1][100%] :author:
+- https://github.com/jphmrst
+- https://maraist.org/
+
+*** DONE cl-nst [4/4][100%]
+CLOSED: [2021-06-24 Thu 14:40]
+- https://github.com/jphmrst/cl-nst
+- [X] :packed <2021-06-04 Fri>
+- [X] :patch-sent <2021-06-04 Fri>
+- [X] :patch-applied-upstream <2021-06-24 Thu>
+  + https://issues.guix.gnu.org/48835
+- [X] :inputs [2/2][100%]
+  - [X] closer-mop
+  - [X] org-sampler
+    - https://github.com/jphmrst/cl-org-sampler
+    - [X] :packed <2021-06-04 Fri>
+    - [X] :patch-sent <2021-06-04 Fri>
+    - [X] :patch-applied-upstream <2021-06-24 Thu>
+      - https://issues.guix.gnu.org/48835
+    - [X] :inputs [1/1][100%]
+      + [X] iterate
+
+** TODO lispgames [0/0][0%] :author:
+*** DONE glop [4/4][100%]
+- https://github.com/lispgames/glop
+- sinopsis :: Direct FFI bindings for OpenGL window and context management
+- [X] :packed <2022-07-09 Sat>
+- [X] :patch-sent <2022-07-09 Sat>
+- [X] :patch-applied-upstream <2022-07-19 Tue>
+  - https://issues.guix.gnu.org/56472
+- [X] :inputs [8/8][100%]
+  - [X] libx11
+  - [X] libxcomposite
+  - [X] libxrandr
+  - [X] mesa
+  - [X] sbcl-cffi
+  - [X] sbcl-cl-opengl
+  - [X] sbcl-split-sequence
+  - [X] sbcl-trivial-garbage
+
+** TODO s-expressionists [0/1][0%] :author:p3:
+*** TODO ctype [0/4][0%]
+- https://github.com/s-expressionists/ctype
+- synopsis :: CL type system implementation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+** TODO Shinmera/Shirakumo [3/11][27%] :author:p5:
 *** TODO qt-libs [/][%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -898,16 +888,16 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] zpng
 - [-] :inputs-additions
   + [X] alloy
-  + [-] backends [1/2]
+  + [X] backends [2/2]
     + [X] trial-glfw [3/3][100%]
       - [X] cl-glfw3
       - [X] trivial-main-thread
       - [X] trivial-garbage
-    + [-] trial-glop [1/2][50%]
+    + [X] trial-glop [2/2][100%]
       - [X] trivial-main-thread
-      - [ ] glop
+      - [X] glop
   + [-] feedback
-  + [ ] assimp
+  + [ ] classimp
   + [ ] harmony
   + [ ] file-notify
   + [ ] cl-steamworks
@@ -926,8 +916,9 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] closer-mop
   - [X] array-utils
 
-*** TODO feedback [/][%]
-*** TODO assimp [/][%]
+*** TODO feedback [/][%] :p1:
+- https://github.com/Shirakumo/feedback
+- synopsis :: Radiance client/server module for anonymous feedback submission
 *** TODO harmony [/][%]
 *** TODO file-notify [/][%]
 *** TODO cl-steamworks [/][%]
@@ -1093,23 +1084,10 @@ https://github.com/Shirakumo/cl-mixed
   + [X] trivial-features
   + [X] documentation-utils
 
-** TODO lispgames [0/1][0%] :author:
-*** TODO glop [1/4][25%]
-- https://github.com/lispgames/glop
-- sinopsis :: Direct FFI bindings for OpenGL window and context management
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] sbcl-cffi
-  - [X] sbcl-cl-opengl
-  - [X] sbcl-glue
-  - [X] sbcl-split-sequence
-  - [X] sbcl-trivial-garbage
-
 ** TODO sjl [0/1][0%] :author:p5:
 *** TODO adopt [1/4][25%]
 - https://github.com/sjl/adopt
+- synopsis :: Damn OPTion parsing library.
 - [X] :packed <2021-06-08 Tue>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1123,42 +1101,6 @@ https://github.com/Shirakumo/cl-mixed
       + [X] split-sequence
   + [X] split-sequence
 
-** TODO s-expressionists [0/1][0%] :author:p3:
-*** TODO ctype [0/4][0%]
-- https://github.com/s-expressionists/ctype
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-** TODO cbaggers [1/3][33%] :author:p2:
-*** DONE cepl [4/4][100%]
-CLOSED: [2021-06-15 Tue 10:09]
-- https://github.com/cbaggers/cepl
-- [X] :packed <2021-06-04 Fri>
-- [X] :patch-sent <2021-06-04 Fri>
-- [X] :patch-applied-upstream <2021-06-15 Tue>
-  - https://issues.guix.gnu.org/48836
-- [X] :inputs [11/11][100%]
-  - [X] alexandriag
-  - [X] bordeaux-threadsg
-  - [X] cffig
-  - [X] cl-openglg
-  - [X] cl-ppcreg
-  - [X] documentation-utilsg
-  - [X] float-featuresg
-  - [X] ieee-floatsg
-  - [X] split-sequenceg
-  - [X] varjog
-  - [X] quickprojectg
-*** TODO cl-soil [0/4][0%] :p1:
-- https://github.com/cbaggers/cl-soil
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO dirt [/][%] :p1:
-- https://github.com/cbaggers/dirt
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+** TODO vindarel [/][%] :author:
+- https://github.com/vindarel
+- https://lisp-journey.gitlab.io/

@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-07-09 Sat 16:20:41 BST>
+#+modified: <2022-10-25 Tue 23:25:49 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,11 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [0/28][0%]
+* Flow [0/29][0%]
+** TODO amusecode [/][%] :author:
+- https://www.amusecode.org/
+- https://github.com/amusecode
+
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -42,12 +46,12 @@ CLOSED: [2021-01-25 Mon 17:25]
 *** TODO eqmodgui [/][%]
 - https://github.com/pchev/eqmodgui
 
-** TODO aroffringa [0/2][0%] :author:
-*** TODO AOFlagger [3/4] :p2:
+** TODO aroffringa [2/2][100%] :author:
+*** DONE AOFlagger [4/4][100%]
 - https://gitlab.com/aroffringa/aoflagger
 - [X] :packed <2022-06-26 Sun>
 - [X] :patch-sent <2022-06-26 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-08-04 Thu>
   - https://issues.guix.gnu.org/56238
 - [X] :inputs [15/15][100%]
   - [X] casacore
@@ -65,191 +69,76 @@ CLOSED: [2021-01-25 Mon 17:25]
   - [X] pybind11
   - [X] python
   - [X] zlib
-*** TODO AOCommon [2/3][66%]
+*** DONE AOCommon [3/3][100%]
 - https://gitlab.com/aroffringa/aocommon
 - synopsis :: A collection of functionality that is reused in several astronomical applications,
   such as wsclean, aoflagger, DP3 and everybeam.
 - [X] :packed <2022-06-26 Sun>
 - [X] :patch-sent <2022-06-26 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-08-04 Thu>
   - https://issues.guix.gnu.org/56238
-** TODO SunPy [0/3][0%] :author:p2:
-- https://sunpy.org/
-*** TODO sunpy [0/4][0%] :p2:
-- https://github.com/sunpy/sunpy
-- synopsis :: SunPy - Python for Solar Physics
-- [ ] :packed
+** TODO asdf-format [5/9][55%] :author:p1:
+- https://github.com/asdf-format
+*** DONE asdf [1/1] [100%]
+ - https://github.com/asdf-format/asdf
+ - [X] :packed
+*** DONE asdf-coordinates-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-coordinates-schemas
+- [X] :packed
+*** TODO asdf-fits-schemas [2/4][50%]
+- https://github.com/asdf-format/asdf-fits-schemas
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [30/34][88%]
-  - [-] docs [2/9]
-    - [X] python-astroquery
-    - [ ] python-ruamel.yaml
-    - [ ] python-sphinx
-    - [ ] python-sphinx-automodapi
-    - [ ] python-sphinx-changelog
-    - [ ] python-sphinx-design
-    - [X] python-sphinx-gallery
-    - [ ] python-sphinxext-opengraph
-    - [ ] python-sunpy-sphinx-theme
-  - [X] python-asdf
-  - [X] python-asdf-astropy
-  - [X] python-astropy
-  - [X] python-beautifulsoup4
-  - [X] python-cdflib [4/4][100%]
-    - https://github.com/MAVENSDC/cdflib
-    - synopsis :: Python module for reading NASA's Common Data Format (cdf) files
-    - [X] :packed <2022-06-27 Mon>
-    - [X] :patch-sent <2022-07-02 Sat>
-    - [X] :paptch-applied-upstream <2022-07-08 Fri>
-      - https://issues.guix.gnu.org/56363
-    - [X] :inputs [7/7][100%]
-      - [X] python-astropy
-      - [X] python-attrs
-      - [X] python-hypothesis
-      - [X] python-numpy
-      - [X] python-pytest
-      - [X] python-pytest-remotedata
-      - [X] python-xarray
-  - [X] python-dask
-  - [X] python-dateutil
-  - [X] python-drms
-    - [X] :packed <2022-06-27 Mon>
-  - [X] python-extension-helpers
-  - [X] python-glymur [4/4][100%]
-    - https://github.com/quintusdias/glymur
-    - synopsis :: Python interface to OpenJPEG and libtiff libraries.
-    - [X] :packed <2022-07-02 Sat>
-    - [X] :patch-sent <2022-07-02 Sat>
-    - [X] :paptch-applied-upstream <2022-07-08 Fri>
-      - https://issues.guix.gnu.org/56364
-    - [X] :inputs [8/8][100%]
-      - [X] libtiff
-      - [X] openjpeg
-      - [X] python-lxml
-      - [X] python-numpy
-      - [X] python-packaging
-      - [X] python-pypa-build
-      - [X] python-pytest
-      - [X] python-setuptools
-  - [-] python-h5netcdf [1/4][25%]
-    - https://github.com/h5netcdf/h5netcdf
-    - synopsis :: Pythonic interface to netCDF4 via h5py
-    - [X] :packed <2022-07-02 Sat>
-    - [ ] :patch-sent
-    - [-] :paptch-applied-upstream
-    - [-] :inputs [5/6][5/6]
-      - [X] python-setuptools-scm
-      - [X] python-pytest
-      - [ ] python-netcdf4 (needs to be upgraded to 1.6.0 to pass tests)
-      - [X] python-h5py
-      - [X] python-packaging
-      - [X] python-numpy
-  - [X] python-h5py
-  - [X] python-hypothesis
-  - [X] python-jplephem
-  - [X] python-matplotlib
-  - [X] python-mpl-animators
-    - [X] :packed <2022-07-02 Sat>
-  - [X] python-numpy
-  - [-] python-opencv-python
-    - https://github.com/opencv/opencv-python
-    - synopsis ::
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [-] :paptch-applied-upstream
-    - [-] :inputs [0/0][0/0]
-  - [X] python-packaging
-  - [X] python-pandas
-  - [-] python-parfive
-    - https://github.com/Cadair/parfive
-    - synopsis :: asyncio based parallel file downloader
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [-] :paptch-applied-upstream
-    - [-] :inputs [0/0][0/0]
-  - [X] python-pytest
-  - [X] python-pytest-astropy
-  - [X] python-pytest-doctestplus
-  - [X] python-pytest-mock
-  - [X] python-pytest-mpl
-  - [X] python-pytest-xdist
-  - [X] python-reproject
-  - [X] python-scikit-image
-  - [X] python-scipy
-  - [X] python-sqlalchemy
-  - [X] python-tqdm
-  - [X] python-zeep
-
-*** TODO drms [2/4][50%] :p2:
-- https://github.com/sunpy/drms
-- synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
-- [X] :packed <2022-06-27 Mon>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pandas
-  - [X] python-pytest-astropy
-
-*** TODO mpl-animations [2/4][50%] :p2:
-- https://github.com/sunpy/mpl-animations
-- synopsis :: Interactive animations with matplotlib
-- [X] :packed <2022-07-02 Sat>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [6/6][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pytest
-  - [X] python-pytest-mpl
+- [X] :inputs [5/5]
+  - [X] python-asdf-standard
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
   - [X] python-setuptools-scm
-
-** TODO QuatroPe [1/2][50%] :author:
-- https://github.com/quatrope
-- https://www.quatrope.org/
-*** DONE astoalign [4/4][100%]
-CLOSED: [2021-02-19 Fri 11:13]
-- https://github.com/quatrope/astroalign
-- synopsis :: Tool to align astronomical images based on asterism matching
-- [X] :packed <2021-02-13 Sat>
-- [X] :patch-sent <2021-02-13 Sat>
-- [X] :paptch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46492
-- [X] :inputs [4/4][100%]
-  - [X] numpy
-  - [X] scikit-image
-  - [X] scipy
-  - [X] sep [4/4][100%]
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-13 Sat>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46492
-    - [X] :inputs [3/3][100%]
-      + [X] cython
-      + [X] numpy
-      + [X] pytest
-*** TODO ois [/][%] :p5:
-- https://github.com/quatrope/ois
-- synopsis :: Optimal Image Subtraction
-
-** TODO danieljprice [0/1][0%] :author:
-- https://github.com/danieljprice
-*** TODO SPLASH [1/4][25%] :p2:
-- https://users.monash.edu.au/~dprice/splash/
-- https://github.com/danieljprice/splash
-- synopsis :: SPLASH is an interactive visualisation and plotting tool using kernel interpolation,
-  mainly used for Smoothed Particle Hydrodynamics simulations
-- [ ] :packed
+*** TODO asdf-standard [2/4][50%] :p1:
+- https://github.com/asdf-format/asdf-standard
+- synopsis :: Standards document describing ASDF, Advanced Scientific Data Format
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [2/2][100%]
-  - [X] giza
-  - [X] gfortran
-
+- [X] :inputs [4/4]
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+*** DONE asdf-table-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-table-schemas
+- [X] :packed
+*** TODO asdf-time-schemas [2/4][50%]
+- https://github.com/asdf-format/asdf-time-schemas
+- [X] :packed <2022-10-23 Sun>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6]
+  - [X] python-asdf-standard
+  - [X] python-asdf-unit-schemas
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+*** DONE asdf-transform-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-transform-schemas
+- [X] :packed
+*** TODO asdf-unit-schemas [2/4][50%]
+- https://github.com/asdf-format/asdf-unit-schemas
+- [X] :packed <2022-10-23 Sun>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5]
+  - [X] python-asdf-standard
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+*** DONE asdf-wcs-schemas [1/1][100%]
+- https://github.com/asdf-format/asdf-wcs-schemas
+- [X] :packed
 ** TODO AstrOmatic-software [8/10][80%] :author:p5:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
@@ -483,7 +372,6 @@ CLOSED: [2021-11-08 Mon 20:41]
 *** TODO specutils [/][%]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
-
 ** TODO ATNF [0/1][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
@@ -539,6 +427,22 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [ ] :patch-sent
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
+
+** TODO danieljprice [1/1][100%] :author:
+- https://github.com/danieljprice
+*** DONE SPLASH [4/4][100%]
+- https://users.monash.edu.au/~dprice/splash/
+- https://github.com/danieljprice/splash
+- synopsis :: SPLASH is an interactive visualisation and plotting tool using kernel interpolation,
+  mainly used for Smoothed Particle Hydrodynamics simulations
+- [X] :packed <2022-10-01 Sat>
+- [X] :patch-sent <2022-10-01 Sat>
+- [X] :paptch-applied-upstream <2022-10-06 Thu>
+  - https://issues.guix.gnu.org/58229
+- [X] :inputs [3/3][100%]
+  - [X] giza
+  - [X] gfortran
+  - [X] cfitsio
 
 ** TODO ericmandel [0/1][0%] :author:p1:
 - https://github.com/ericmandel
@@ -701,35 +605,39 @@ CLOSED: [2021-01-31 Sun 13:07]
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
-*** TODO galpy [0/4][0%] :p1:
+*** TODO galpy [1/4][25%] :p1:
 - https://github.com/jobovy/galpy
 - synopsis :: Galactic Dynamics in python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [7/8][87%]
+- [X] :inputs [8/8][100%]
   - [X] python-future
   - [X] python-matplotlib
   - [X] python-numpy
   - [X] python-pytest
-  - [-] python-pynbody [0/4][0%]
+  - [X] python-pynbody [4/4][100%]
     - https://github.com/pynbody/pynbody
     - synopsis :: N-body and hydro analysis tools
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [ ] :paptch-applied-upstream
-    - [-] :inputs [1/8][12%]
+    - [X] :packed <2022-07-27 Wed>
+    - [X] :patch-sent <2022-07-29 Fri>
+    - [X] :paptch-applied-upstream <2022-08-05 Fri>
+      - https://issues.guix.gnu.org/56835
+    - [X] :inputs [8/8][100%]
       - [X] python-cython
-      - [ ] python-h5py
-      - [ ] python-matplotlib
-      - [ ] python-numpy
-      - [ ] python-pandas
-      - [ ] python-posix-ipc
-      - [ ] python-pytest
-      - [ ] python-scipy
+      - [X] python-h5py
+      - [X] python-matplotlib
+      - [X] python-numpy
+      - [X] python-pandas
+      - [X] python-posix-ipc
+        - https://github.com/osvenskan/posix_ipc
+        - [X] :packed <2022-07-27 Wed>
+      - [X] python-pytest
+      - [X] python-scipy
   - [X] python-scipy
   - [X] python-setuptools
   - [X] python-six
+
 ** TODO kepler-project [/][%] :author:
 https://kepler-project.org/users/downloads.html
 ** TODO linguider [/][%] :author:
@@ -768,6 +676,34 @@ https://kepler-project.org/users/downloads.html
   + [ ] libv4l-dev
   + [ ] libnova-dev
   + [ ] libcurl4-gnutls-dev
+** TODO QuatroPe [1/2][50%] :author:
+- https://github.com/quatrope
+- https://www.quatrope.org/
+*** DONE astoalign [4/4][100%]
+CLOSED: [2021-02-19 Fri 11:13]
+- https://github.com/quatrope/astroalign
+- synopsis :: Tool to align astronomical images based on asterism matching
+- [X] :packed <2021-02-13 Sat>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  - [X] numpy
+  - [X] scikit-image
+  - [X] scipy
+  - [X] sep [4/4][100%]
+    - [X] :packed <2021-02-02 Tue>
+    - [X] :patch-sent <2021-02-13 Sat>
+    - [X] :paptch-applied-upstream <2021-02-19 Fri>
+      - https://issues.guix.gnu.org/46492
+    - [X] :inputs [3/3][100%]
+      + [X] cython
+      + [X] numpy
+      + [X] pytest
+*** TODO ois [/][%] :p5:
+- https://github.com/quatrope/ois
+- synopsis :: Optimal Image Subtraction
+
 ** TODO SAOImageDS9 [0/1][0%] :author:p1:
 - http://ds9.si.edu/
 *** TODO SAOImageDS9 [0/4][0%]
@@ -1031,6 +967,142 @@ https://kepler-project.org/users/downloads.html
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
+** TODO SunPy [0/3][0%] :author:p2:
+- https://sunpy.org/
+*** TODO sunpy [0/4][0%] :p2:
+- https://github.com/sunpy/sunpy
+- synopsis :: SunPy - Python for Solar Physics
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [31/34][91%]
+  - [-] docs [2/9]
+    - [X] python-astroquery
+    - [ ] python-ruamel.yaml
+    - [ ] python-sphinx
+    - [ ] python-sphinx-automodapi
+    - [ ] python-sphinx-changelog
+    - [ ] python-sphinx-design
+    - [X] python-sphinx-gallery
+    - [ ] python-sphinxext-opengraph
+    - [ ] python-sunpy-sphinx-theme
+  - [X] python-asdf
+  - [X] python-asdf-astropy
+  - [X] python-astropy
+  - [X] python-beautifulsoup4
+  - [X] python-cdflib [4/4][100%]
+    - https://github.com/MAVENSDC/cdflib
+    - synopsis :: Python module for reading NASA's Common Data Format (cdf) files
+    - [X] :packed <2022-06-27 Mon>
+    - [X] :patch-sent <2022-07-02 Sat>
+    - [X] :paptch-applied-upstream <2022-07-08 Fri>
+      - https://issues.guix.gnu.org/56363
+    - [X] :inputs [7/7][100%]
+      - [X] python-astropy
+      - [X] python-attrs
+      - [X] python-hypothesis
+      - [X] python-numpy
+      - [X] python-pytest
+      - [X] python-pytest-remotedata
+      - [X] python-xarray
+  - [X] python-dask
+  - [X] python-dateutil
+  - [X] python-drms
+    - [X] :packed <2022-06-27 Mon>
+  - [X] python-extension-helpers
+  - [X] python-glymur [4/4][100%]
+    - https://github.com/quintusdias/glymur
+    - synopsis :: Python interface to OpenJPEG and libtiff libraries.
+    - [X] :packed <2022-07-02 Sat>
+    - [X] :patch-sent <2022-07-02 Sat>
+    - [X] :paptch-applied-upstream <2022-07-08 Fri>
+      - https://issues.guix.gnu.org/56364
+    - [X] :inputs [8/8][100%]
+      - [X] libtiff
+      - [X] openjpeg
+      - [X] python-lxml
+      - [X] python-numpy
+      - [X] python-packaging
+      - [X] python-pypa-build
+      - [X] python-pytest
+      - [X] python-setuptools
+  - [X] python-h5netcdf [4/4][100%]
+    - https://github.com/h5netcdf/h5netcdf
+    - synopsis :: Pythonic interface to netCDF4 via h5py
+    - [X] :packed <2022-07-02 Sat>
+    - [X] :patch-sent <2022-07-22 Fri>
+    - [X] :paptch-applied-upstream <2022-08-04 Thu>
+      - https://issues.guix.gnu.org/56700
+    - [X] :inputs [6/6][6/6]
+      - [X] python-setuptools-scm
+      - [X] python-pytest
+      - [X] python-netcdf4 (needs to be upgraded to 1.6.0 to pass tests)
+      - [X] python-h5py
+      - [X] python-packaging
+      - [X] python-numpy
+  - [X] python-h5py
+  - [X] python-hypothesis
+  - [X] python-jplephem
+  - [X] python-matplotlib
+  - [X] python-mpl-animators
+    - [X] :packed <2022-07-02 Sat>
+  - [X] python-numpy
+  - [-] python-opencv-python
+    - https://github.com/opencv/opencv-python
+    - synopsis ::
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [-] :paptch-applied-upstream
+    - [-] :inputs [0/0][0/0]
+  - [X] python-packaging
+  - [X] python-pandas
+  - [-] python-parfive
+    - https://github.com/Cadair/parfive
+    - synopsis :: asyncio based parallel file downloader
+    - [ ] :packed
+    - [ ] :patch-sent
+    - [-] :paptch-applied-upstream
+    - [-] :inputs [0/0][0/0]
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-pytest-doctestplus
+  - [X] python-pytest-mock
+  - [X] python-pytest-mpl
+  - [X] python-pytest-xdist
+  - [X] python-reproject
+  - [X] python-scikit-image
+  - [X] python-scipy
+  - [X] python-sqlalchemy
+  - [X] python-tqdm
+  - [X] python-zeep
+
+*** TODO drms [2/4][50%] :p2:
+- https://github.com/sunpy/drms
+- synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
+- [X] :packed <2022-06-27 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pandas
+  - [X] python-pytest-astropy
+
+*** TODO mpl-animations [2/4][50%] :p2:
+- https://github.com/sunpy/mpl-animations
+- synopsis :: Interactive animations with matplotlib
+- [X] :packed <2022-07-02 Sat>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-setuptools-scm
+
 ** TODO XEphem [0/4][0%] :author:
 - http://www.clearskyinstitute.com/xephem/
 - synopsis ::
@@ -1038,6 +1110,15 @@ https://kepler-project.org/users/downloads.html
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
+* Coverage
+|   | Project       | URL                                           | in Debian Astro | in Guix |
+|   | missfits      | https://www.astromatic.net/software/missfits/ | t               |   2.8.0 |
+|   | psfex         |                                               | t               |         |
+|   | scamp         |                                               | t               |         |
+|   | sextractor    |                                               | t               |  2.25.0 |
+|   | stiff         |                                               | t               |   2.4.0 |
+|   | swarp         |                                               | t               |         |
+|   | weightwatcher |                                               | t               |         |
 
 * Glosary
 - RFI :: radio-frequency interference

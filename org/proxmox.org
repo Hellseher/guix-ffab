@@ -1,0 +1,46 @@
+#+title: Proxmox Virtual Engine
+#+created: <2022-10-18 Tue 21:51:20 BST>
+#+modified: <2022-10-18 Tue 22:38:57 BST>
+
+* Synopsis
+Packaging process for ProxmoxVE dependencies to deploy full featured cluster enviroment on top on
+Guix.
+
+The project utilized deb packaging facility dramaticaly havealy, which may be a case to resolve
+during packaging to Guix.
+
+It's a perl base project.
+
+https://git.proxmox.com/
+
+* Flow [0/0][0%]
+** Proxmox [0/0][0%] :author:p5:
+*** proxmox-ve [0/4][0%] :p5:
+- https://git.proxmox.com/?p=proxmox-ve.git
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/11][0%]
+  - [ ] apt
+  - [ ] openssh-client
+  - [ ] openssh-server
+  - [ ] proxmox-archive-keyring
+  - [ ] pve-kernel-5.15
+  - [ ] pve-kernel-helper
+  - [ ] pve-manager
+  - [ ] pve-qemu-kvm
+  - [ ] qemu-server
+  - [ ] spiceterm
+    - https://git.proxmox.com/?p=spiceterm.git;a=summary
+  - [ ] vncterm
+    - https://git.proxmox.com/?p=vncterm.git;a=tree
+** github.com/stefanberger [0/0][0%] :author:p5:
+- https://github.com/stefanberger
+*** libtpms [0/4][0%]
+- https://github.com/stefanberger/libtpms
+- synopsis :: The libtpms library provides software emulation of a Trusted Platform Module (TPM 1.2
+  and TPM 2.0)
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]

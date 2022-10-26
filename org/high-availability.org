@@ -1,0 +1,81 @@
+#+title: High availability
+#+created: <2021-01-04 Mon 23:12:53 GMT>
+#+modified: <2022-10-10 Mon 22:14:59 BST>
+
+* Synopsis
+This workflow file contains packaging process for the projects such Prxmox VE
+https://www.proxmox.com/en/, oVirt https://www.ovirt.org/ which provide out-of-the box
+clusterisation and virtualization management for High Availability.
+
+* Flow
+** TODO corosync [1/1][100%] :author:
+- https://github.com/corosync
+*** DONE corosync [4/4][100%]
+- https://corosync.github.io/corosync/
+- synopsis ::
+- [X] :packed <2022-09-28 Wed>
+- [X] :patch-sent <2022-09-28 Wed>
+- [X] :paptch-applied-upstream <2022-10-10 Mon>
+  - https://issues.guix.gnu.org/58152
+- [X] :inputs [6/6][100%]
+  - [X] libknet [4/4][100%]
+    - synopsis :: Network abstraction layer designed for High Availability
+    - [X] :packed <2022-09-28 Wed>
+    - [X] :patch-sent <2022-09-28 Wed>
+    - [X] :paptch-applied-upstream <2022-10-10 Mon>
+      - https://issues.guix.gnu.org/58152
+    - [X] :inputs [16/16][100%]
+      - [X] autoconf
+      - [X] automake
+      - [X] doxygen
+      - [X] libnl
+      - [X] libqb
+      - [X] libtool
+      - [X] libxml2
+      - [X] lksctp-tools
+      - [X] lz4
+      - [X] lzo
+      - [X] nss
+      - [X] openssl
+      - [X] pkg-config
+      - [X] xz
+      - [X] zlib
+      - [X] zstd "lib"
+  - [X] libqb (updated to the latest, patch sent togather with pacemaker)
+  - [X] autoconf
+  - [X] automake
+  - [X] libtool
+  - [X] pkg-config
+
+** TODO ClusterLabs [1/1][100%] :author:
+- https://www.clusterlabs.org/
+*** DONE pacemaker [4/4][100%]
+- https://www.clusterlabs.org/pacemaker/
+- synopsis ::
+- [X] :packed <2022-09-28 Wed>
+- [X] :patch-sent <2022-09-28 Wed>
+- [X] :paptch-applied-upstream <2022-10-10 Mon>
+  - https://issues.guix.gnu.org/58152
+- [X] :inputs [18/18][100%]
+  - [X] autoconf
+  - [X] automake
+  - [X] cmocka
+  - [X] corosync [3/3][100%]
+    - [X] :packed <2022-09-28 Wed>
+    - [X] :patch-sent <2022-09-28 Wed>
+    - [X] :paptch-applied-upstream <2022-10-10 Mon>
+      - https://issues.guix.gnu.org/58152
+  - [X] dbus
+  - [X] gettext-minimal
+  - [X] glib
+  - [X] gnutls
+  - [X] libqb
+  - [X] libtool
+  - [X] libxml2
+  - [X] libxslt
+  - [X] pkg-config
+  - [X] python
+  - [X] rsync
+  - [X] util-linux
+  - [X] util-linux:lib
+  - [X] valgrind

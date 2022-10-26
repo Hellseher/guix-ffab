@@ -1,0 +1,61 @@
+From ac31ebaf1111f89802a33ed1b0fe85e8a49299b3 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 14 Oct 2022 20:59:11 +0100
+Subject: [PATCH 1/4] gnu: Add siosocks
+
+* gnu/packages/python-web.scm (python-siosocks): New variable.
+---
+ gnu/packages/python-web.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 37 insertions(+)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index 6a9d6ee61d..a00c8b7683 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -6674,6 +6674,43 @@ (define-public python-socksio
+ SOCKS protocols.  It can be paired with any I/O library.")
+     (license license:expat)))
+ 
++(define-public python-siosocks
++  (package
++    (name "python-siosocks")
++    (version "0.3.0")
++    (source (origin
++              (method url-fetch)
++              (uri (pypi-uri "siosocks" version))
++              (sha256
++               (base32
++                "0qqxy8wl5mrmlkblzjq9nsg0cbm5jwgj409mhnhq6gd1ypvbndms"))))
++    (build-system python-build-system)
++    (arguments
++     (list #:phases #~(modify-phases %standard-phases
++                        (replace 'check
++                          (lambda* (#:key tests? #:allow-other-keys)
++                            (when tests?
++                              (invoke "pytest" "-vvv")))))))
++    (native-inputs (list python-pytest python-pytest-asyncio python-pytest-cov
++                         python-pytest-trio))
++    (propagated-inputs (list python-trio))
++    (home-page "https://github.com/pohmelie/siosocks")
++    (synopsis "SOCKSv4 & SOCKSv5 TCP proxy protocol implementation in Python")
++    (description
++     "This package provides a Python module and framework for sans-io socks proxy
++client/server with couple io backends.
++
++Features:
++@itemize
++@item Only TCP connect (no BIND, no UDP)
++@item Both client and server
++@item SOCKS versions: 4, 4a, 5
++@item SOCKSv5 auth: no auth, username/password
++@item Couple io backends: @code{asyncio}, @code{trio}, @code{socketserver}
++@item One-shot socks server (@code{python -m siosocks})
++@end itemize")
++    (license license:expat)))
++
+ (define-public python-msrest
+   (package
+     (name "python-msrest")
+-- 
+2.37.3
+
