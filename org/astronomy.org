@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-23 Sun 14:56:04 BST>
+#+modified: <2022-10-26 Wed 23:15:35 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -85,37 +85,57 @@ CLOSED: [2021-01-25 Mon 17:25]
 *** DONE asdf-coordinates-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-coordinates-schemas
 - [X] :packed
-*** TODO asdf-fits-schemas [0/4][0%]
+*** TODO asdf-fits-schemas [2/4][50%]
 - https://github.com/asdf-format/asdf-fits-schemas
-- [ ] :packed
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
-*** TODO asdf-standard [0/4][0%] :p1:
+- [X] :inputs [5/5]
+  - [X] python-asdf-standard
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+*** TODO asdf-standard [2/4][50%] :p1:
 - https://github.com/asdf-format/asdf-standard
 - synopsis :: Standards document describing ASDF, Advanced Scientific Data Format
-- [ ] :packed
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+- [X] :inputs [4/4]
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
 *** DONE asdf-table-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-table-schemas
 - [X] :packed
-*** TODO asdf-time-schemas [0/4][0%]
+*** TODO asdf-time-schemas [2/4][50%]
 - https://github.com/asdf-format/asdf-time-schemas
-- [ ] :packed
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+- [X] :inputs [6/6]
+  - [X] python-asdf-standard
+  - [X] python-asdf-unit-schemas
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
 *** DONE asdf-transform-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-transform-schemas
 - [X] :packed
-*** TODO asdf-unit-schemas [0/4][0%]
+*** TODO asdf-unit-schemas [2/4][50%]
 - https://github.com/asdf-format/asdf-unit-schemas
-- [ ] :packed
+- [X] :packed <2022-10-23 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+- [X] :inputs [5/5]
+  - [X] python-asdf-standard
+  - [X] python-importlib-resources
+  - [X] python-pypa-build
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
 *** DONE asdf-wcs-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-wcs-schemas
 - [X] :packed

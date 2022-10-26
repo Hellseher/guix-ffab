@@ -1,0 +1,70 @@
+(use-modules (guix)
+             (guix graph)
+             (guix scripts graph)
+             (gnu)
+             (ice-9 match)
+             (ice-9 regex)
+             (ice-9 vlist)
+             (ice-9 format)
+             (srfi srfi-1)
+             (srfi srfi-26)
+             (srfi srfi-37)
+             (srfi srfi-71)
+             (ice-9 binary-ports))
+
+(define (all-packages)
+  "Return the list of all the distro's packages."
+  (fold-packages (lambda (package result)
+                   ;; Ignore deprecated packages.
+                   (if (package-superseded package)
+                       result
+                       (cons package result)))
+                 '()
+                 #:select? (const #t)))           ;include hidden packages
+
+(define (list-dependents packages)
+  "List all the things that would need to be rebuilt if PACKAGES are changed."
+  ;; Using %BAG-NODE-TYPE is more accurate than using %PACKAGE-NODE-TYPE
+  ;; because it includes implicit dependencies.
+  (display packages)
+  (define (full-name package)
+    (string-append (package-name package) "@"
+                   (package-version package)))
+
+  (mlet %store-monad ((edges (node-back-edges %bag-node-type
+                                              (package-closure (all-packages)))))
+    (let* ((dependents (node-transitive-edges packages edges))
+           (covering   (filter (lambda (node)
+                                 (null? (edges node)))
+                               dependents)))
+      (match dependents
+        (()
+         (format (current-output-port)
+                 (N_ "No dependents other than itself: ~{~a~}~%"
+                     "No dependents other than themselves: ~{~a~^ ~}~%"
+                     (length packages))
+                 (map full-name packages)))
+
+        ((x)
+         (format (current-output-port)
+                 (G_ "A single dependent package: ~a~%")
+                 (full-name x)))
+        (lst
+         (format (current-output-port)
+                 (N_ "Building the following ~d package would ensure ~d \
+dependent packages are rebuilt: ~{~a~^ ~}~%"
+                     "Building the following ~d packages would ensure ~d \
+dependent packages are rebuilt: ~{~a~^ ~}~%"
+                     (length covering))
+                 (length covering) (length dependents)
+                 (map full-name covering))))
+      (display packages)
+      #;(return #t)
+      )))
+
+;(list-dependents (list (specification->package "python-astropy")))
+
+(format #t ":raw-package ~a~%" (specification->package "python-astropy"))
+(format #t ":name ~a~%" (package-name (specification->package "python-astropy")))
+(format #t ":test ~a~%" (for-each first (package-inputs (specification->package "python-astropy"))))
+(format #t ":all-inputs ~a~%" (first (append (package-inputs (specification->package "python-astropy")) (package-propagated-inputs (specification->package "python-astropy")) (package-native-inputs (specification->package "python-astropy")))))

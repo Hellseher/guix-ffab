@@ -920,7 +920,7 @@ interchange format for scientific data.  This package contains the Python
 implementation of the ASDF Standard.")
       (license license:bsd-3))))
 
-;; (define-public python-asdf-wcs-schemas
+;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
@@ -928,7 +928,7 @@ implementation of the ASDF Standard.")
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
-;; (define-public python-asdf-transform-schemas
+;; (define python-asdf-transform-schemas
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 ;;+end-asdf-format
