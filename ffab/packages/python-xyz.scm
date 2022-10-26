@@ -176,13 +176,13 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 (define-public python-mpl-animators
   (package
     (name "python-mpl-animators")
-    (version "1.0.1")
+    (version "1.1.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "mpl_animators" version))
        (sha256
-        (base32 "15vzmdb499xq1i8r2l2qj66wgmnv1z0m5r7sdk849c1v5gp929ay"))))
+        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
     (build-system python-build-system)
     (arguments
      (list #:phases
