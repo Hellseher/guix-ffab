@@ -47,14 +47,14 @@
 (define-public python-portalocker
   (package
     (name "python-portalocker")
-    (version "2.4.0")
+    (version "2.6.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "portalocker" version))
        (sha256
         (base32
-         "1x1pyqyid3y2kiffv4r11n17p06d480ka5arrdq778lf3dvasj56"))))
+         "0fbvx46nix49vpriipsdskbw2243gp9rxsdw69flp9s2zcq6hkwn"))))
     (build-system python-build-system)
     (arguments
      (list
