@@ -1843,19 +1843,26 @@ SolarSoft data analysis environment.")
 (define-public python-drms
   (package
     (name "python-drms")
-    (version "0.6.2")
+    (version "0.6.3")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "drms" version))
               (sha256
                (base32
-                "1nmpcpaz7bsg35nw2vc5a7rp9fpc49qjlhvy3rhbvaramwy2ppr1"))))
+                "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
     (build-system python-build-system)
     (arguments
-     ;; Tests depends on sunpy, which depends on drms
-     (list #:tests? #f))
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key inputs outputs tests?
+                                    #:allow-other-keys)
+                            (when tests?
+                              (add-installed-pythonpath inputs outputs)
+                              (setenv "JSOC_EMAIL" "jsoc@sunpy.org")
+                              (invoke "python" "-m" "pytest" "-vv")))))))
+    (native-inputs (list python-astropy python-pytest-astropy python-pytest
+                         python-setuptools-scm))
     (propagated-inputs (list python-numpy python-pandas))
-    (native-inputs (list python-astropy python-pytest python-setuptools-scm))
     (home-page "https://sunpy.org")
     (synopsis
      "Access astronomical HMI, AIA and MDI data with Python from the public JSOC DRMS server")
