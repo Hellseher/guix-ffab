@@ -1959,6 +1959,7 @@ can compute its position at any other time, no matter how remote.")
                 "0iqxb5zmjyygg4b6lwlq8z82mngxg7kjjpahhzk52m0cypfq0l18"))
               (file-name (git-file-name name version))))
     (build-system meson-build-system)
+    (native-inputs (list cmake git glib libconfig pkg-config))
     (inputs (list cfitsio
                   exiv2
                   fftwf
@@ -1968,15 +1969,15 @@ can compute its position at any other time, no matter how remote.")
                   libraw
                   librtprocess
                   opencv))
-    (native-inputs (list cmake git glib libconfig pkg-config))
     (home-page "https://siril.org/")
     (synopsis "Image processing software for amateur astronomy")
     (description
-     "This package provides an astronomical image processing toll - SIRIL.  It is
+     "This package provides an astronomical image processing tool - SIRIL.  It is
 specially tailored for noise reduction and improving the signal/noise ratio of
 an image from multiple captures, as required in astronomy.  SIRIL can align
 automatically or manually, stack and enhance pictures from various file formats,
 even image sequence files (films and SER files).  It works well with limited
 system resources, like in embedded platforms, but is also very fast when run on
-more powerful computers.")
+more powerful computers and provides conversion to FITS from a large number of
+image formats.")
     (license license:gpl3)))
