@@ -334,8 +334,12 @@ was made to get a better separation of core libraries and applications.
 (CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
     (license license:gpl2)))
 
+;; TODO: (Sharlatan-20221031T194744+0000): Failed to build, failed to upgrade to
+;; the latest version due to casacore build failure, need more time to
+;; investigate.
+;;
 ;; 20220621T222748+0100
-(define-public python-casacore
+(define python-casacore
   (package
     (name "python-casacore")
     (version "3.4.0")
