@@ -1721,8 +1721,10 @@ provide related services.")
 ;; added-to-upastream: d730bbbbb3d47d566bd24d0b4a44dcc808435f24
 ;; CommitDate: Mon May 30 16:34:40 2022 +0200
 
+;; TODO: (Sharlatan-20221031T193952+0000): Update to 2.3 requires casacore
+;; upgrade which failed during build phase.
 ;; 20220612T205116+0100
-(define-public python-losoto
+(define python-losoto
   (package
     (name "python-losoto")
     (version "2.2.1")
@@ -1740,12 +1742,16 @@ provide related services.")
                              python-matplotlib
                              python-numexpr
                              python-numpy
-                             ;; python-progressbar What's that?
                              python-scipy
                              python-tables))
     (home-page "http://github.com/revoltek/losoto/")
-    (synopsis "Astronomical LOFAR Solution Tool")
-    (description "LOFAR Solution Tool")
+    (synopsis "Low-Frequency Array Solution Tool")
+    (description
+     "@acronym{Low-Frequency Array, LOFAR} Solution Tool is a Python package which
+handles LOFAR solutions in a variety of ways. The data files used by LoSoTo are
+not in the standard parmdb format used by BBS/NDPPP (e.g. the “instrument”
+table). LoSoTo uses instead an innovative data file, called H5parm, which is
+based on the HDF5 standard")
     (license license:gpl3+)))
 
 ;; 20220621T190544+0100
