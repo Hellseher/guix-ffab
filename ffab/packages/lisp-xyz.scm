@@ -959,16 +959,13 @@ performance.")
           (base32 "0cz5g7d6817ajypp876k9m65sxxlf42x4bg04ya73aqci5s1vjwy"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       (list
-        #:test-asd-file "hu.dwim.graphviz.test.asd"
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'patch-graphviz-lib-path
-              (lambda _
-                (substitute* "source/package.lisp"
-                  (("libgvc.so" all)
-                   (string-append #$(this-package-input "graphviz")
-                                  "/lib/" all))))))))
+       (list #:phases
+             #~(modify-phases %standard-phases
+                 (add-after 'unpack 'patch-graphviz-lib-path
+                   (lambda* (#:key inputs #:allow-other-keys)
+                     (substitute* "source/package.lisp"
+                       (("libgvc.so")
+                        (search-input-file inputs "/lib/libgvc.so"))))))))
       (native-inputs
        (list sbcl-hu.dwim.common sbcl-hu.dwim.stefil))
       (inputs
