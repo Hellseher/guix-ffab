@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-10-27 Thu 10:11:55 BST>
+# Modified : <2022-11-01 Tue 20:37:07 GMT>
 
 # TODO: (Sharlatan-20221026T202843+0100): Find the way how to re-build versioned
 # package e.g. python-pytest-7.1, exclude them for now.
@@ -25,12 +25,12 @@ GUIX_REFRESH_FLAGS ?= $(GUIX_FLAGS)
 # commit, update on any major changes.
 #
 # As seen in `guix describe`:
-# Generation 348  Oct 27 2022 10:07:53    (current)
-# guix 95d44c0
-#   repository URL: https://git.savannah.gnu.org/git/guix.git
-#   branch: master
-#   commit: 95d44c0586873d79e897e1f84f7644bdd4696a58
-GUIX_COMMIT ?= 95d44c0586873d79e897e1f84f7644bdd4696a58
+# Generation 351  Nov 01 2022 20:35:02    (current)
+#   guix d0917d7
+#     repository URL: https://git.savannah.gnu.org/git/guix.git
+#     branch: master
+#     commit: d0917d778284ee7d70bc80b0538e3b4ae67870f4
+GUIX_COMMIT ?= d0917d778284ee7d70bc80b0538e3b4ae67870f4
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
