@@ -67,15 +67,16 @@
      (list #:phases #~(modify-phases %standard-phases
                         (delete 'configure)
                         (replace 'check
-                          (lambda _
-                            (invoke "./test.sh")))
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "./test.sh"))))
                         (replace 'install
                           (lambda* (#:key outputs #:allow-other-keys)
                             (let* ((out (assoc-ref outputs "out"))
                                    (bin (string-append out "/bin"))
                                    (share (string-append out "/share"))
                                    (include (string-append out
-                                             "/include/easyexif")))
+                                                           "/include/easyexif")))
                               (for-each (lambda (dir)
                                           (mkdir-p dir))
                                         (list bin include share))
@@ -83,11 +84,11 @@
                               (install-file "exif.cpp" include)
                               (install-file "exif.h" include)
                               (install-file "LICENSE" share)))))))
-    (synopsis "ISO-compliant C++ EXIF parsing library")
     (home-page "https://github.com/mayanklahiri/easyexif")
+    (synopsis "ISO-compliant C++ EXIF parsing library")
     (description
      "EasyEXIF is a tiny, lightweight C++ library that parses basic information
-out of JPEG files. It uses only the std::string library and is otherwise pure
-C++. You pass it the binary contents of a JPEG file, and it parses several of
+out of JPEG files.  It uses only the std::string library and is otherwise pure
+C++.  You pass it the binary contents of a JPEG file, and it parses several of
 the most important EXIF fields for you.")
     (license license:bsd-0)))
