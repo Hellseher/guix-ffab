@@ -1,0 +1,89 @@
+From 59d452275860ff75733704433ff4a7a12579b05f Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Nov 2022 16:55:37 +0000
+Subject: [PATCH 2/3] gnu: Add vcglib
+
+* gnu/packages/engineering.scm (vcglib): New variable.
+---
+ gnu/packages/engineering.scm | 65 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 65 insertions(+)
+
+diff --git a/gnu/packages/engineering.scm b/gnu/packages/engineering.scm
+index 644c0f8ef9..4f705d4b9b 100644
+--- a/gnu/packages/engineering.scm
++++ b/gnu/packages/engineering.scm
+@@ -2741,6 +2741,71 @@ (define-public lib3ds
+ export filters.")
+     (license license:lgpl2.1+)))
+ 
++(define-public vcglib
++  (package
++    (name "vcglib")
++    (version "2022.02")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/cnr-isti-vclab/vcglib")
++                    (commit version)))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "1w9r22wg7452x4xald4frsq4vc03vbxf3qq3d9a2zl04b1bdna2w"))))
++    (build-system cmake-build-system)
++    (arguments
++     (list #:tests? #f ;Has no tests
++           #:configure-flags
++           ;; Make sure we still can build examples which shows nothing major
++           ;; broken.
++           #~(list (string-append "-DVCG_BUILD_EXAMPLES=ON")
++                   (string-append "-DEIGEN3_INCLUDE_DIR="
++                                  #$(this-package-input "eigen")
++                                  "/include/eigen3"))
++           #:phases #~(modify-phases %standard-phases
++                        (replace 'install
++                          (lambda* (#:key outputs #:allow-other-keys)
++                            (let* ((out (assoc-ref outputs "out"))
++                                   (bin (string-append out "/bin"))
++                                   (include (string-append out
++                                                           "/include/vcglib"))
++                                   (wrap (string-append include "/wrap/"))
++                                   (vcg (string-append include "/vcg")))
++                              (for-each (lambda (dir)
++                                          (mkdir-p dir))
++                                        (list bin include wrap vcg))
++                              (install-file "apps/metro/metro" bin)
++                              (install-file "../source/CMakeLists.txt" include)
++                              (copy-recursively "../source/wrap/" wrap)
++                              (copy-recursively "../source/vcg/" vcg)))))))
++    (propagated-inputs (list eigen))
++    (synopsis "C++ library to work with triangle meshes")
++    (home-page "http://vcglib.net/")
++    (description
++     "This package provides @acronym{VCGlib, Visualization and Computer Graphics
++Library} The VCG library is tailored to mostly manage triangular meshes: offers
++many capabilities for processing meshes, such as:
++
++@itemize
++
++@item high quality quadric-error edge-collapse based simplfication
++@item efficient spatial query structures (uniform grids, hashed grids, kdtree,
++etc)
++@item advanced smoothing and fairing algorithms
++@item computation of curvature
++@item optimization of texture coordinates
++@item Hausdorff distance computation
++@item geodesic paths
++@item mesh repairing capabilities
++@item isosurface extraction and advancing front meshing algorithms
++@item Poisson Disk sampling and other tools to sample point distributions over
++meshes
++@item subdivision surfaces
++@end itemize")
++    (license license:gpl3+)))
++
+ (define-public meshlab
+   (package
+     (name "meshlab")
+-- 
+2.37.3
+

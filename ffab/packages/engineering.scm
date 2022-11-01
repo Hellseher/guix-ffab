@@ -61,8 +61,7 @@
                           (lambda* (#:key outputs #:allow-other-keys)
                             (let* ((out (assoc-ref outputs "out"))
                                    (bin (string-append out "/bin"))
-                                   (include (string-append out
-                                                           "/include/vcglib"))
+                                   (include (string-append out "/include/vcglib"))
                                    (wrap (string-append include "/wrap/"))
                                    (vcg (string-append include "/vcg")))
                               (for-each (lambda (dir)
@@ -76,9 +75,8 @@
                               (copy-recursively "../source/wrap/" wrap)
                               (copy-recursively "../source/vcg/" vcg)))))))
     (propagated-inputs (list eigen))
-    (synopsis
-     "C++ library for manipulation, processing, cleaning, and simplifying triangle meshes")
     (home-page "http://vcglib.net/")
+    (synopsis "C++ library to work with triangle meshes")
     (description
      "This package provides @acronym{VCGlib, Visualization and Computer Graphics
 Library} The VCG library is tailored to mostly manage triangular meshes: offers
@@ -122,25 +120,26 @@ meshes
                   ;; the list is changed in the next release.
                   (for-each (lambda (dir)
                               (delete-file-recursively dir))
-                            (list ;; "resources/linux" ; Remove this in future release
-                             ;; "resources/windows"    ; they are present in master.
-                             ;; "resources/macos"
-                             "src/external/OpenCTM-1.0.3"
-                             "src/external/e57"
-                             "src/external/easyexif"
-                             "src/external/glew-2.1.0"
-                             "src/external/levmar-2.3"
-                             "src/external/lib3ds-1.3.0"
-                             "src/external/libigl-2.3.0"
-                             "src/external/muparser_v225"
-                             "src/external/nexus"
-                             "src/external/openkinect"
-                             "src/external/qhull-2020.2"
-                             "src/external/structuresynth-1.5"
-                             "src/external/tinygltf"
-                             "src/external/u3d"
-                             "src/external/xerces"
-                             "src/vcglib")) ))))
+                            (list "src/external/OpenCTM-1.0.3"
+                                  "src/external/e57"
+                                  "src/external/easyexif"
+                                  "src/external/glew-2.1.0"
+                                  "src/external/levmar-2.3"
+                                  "src/external/lib3ds-1.3.0"
+                                  "src/external/libigl-2.3.0"
+                                  "src/external/muparser_v225"
+                                  "src/external/nexus"
+                                  "src/external/openkinect"
+                                  "src/external/qhull-2020.2"
+                                  "src/external/structuresynth-1.5"
+                                  "src/external/tinygltf"
+                                  "src/external/u3d"
+                                  "src/external/xerces"
+                                  "src/vcglib"
+                                  ;; "resources/linux"   ; Remove this in future release
+                                  ;; "resources/windows" ; they are present in master and contains
+                                  ;; "resources/macos"   ; prebuilt libraries
+                                  )) ))))
     (build-system cmake-build-system)
     (inputs
      (list qtbase-5
