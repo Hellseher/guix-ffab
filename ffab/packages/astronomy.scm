@@ -104,18 +104,19 @@
               (sha256
                (base32
                 "1217gfac89j7m3yqsql6f941c7a0bxpk8cgg4bi421i1h3cr23zy"))
-              (file-name (git-file-name name version))))
+              (file-name (git-file-name name version))
+              (modules '((guix build utils)))
+              ;; TODO: (Sharlatan-20221102T221347+0000): Unbundle it
+              #;(snippet
+               #~(begin
+                  ;; Delete bundled libraries.
+                  (delete-file-recursively "wcs")))))
     (build-system gnu-build-system)
     (arguments
      (list #:tests? #f ;No tests
-           #:parallel-build? #f
-           #:configure-flags #~(list "--enable-dl" "--enable-shared"
-                                     "--with-zlib"
-                                     (string-append "--with-wcslib="
-                                                    #$wcslib)
-                                     (string-append "--with-tcl="
-                                                    #$tcl "/lib"))
-           #:make-flags #~(list "all" "shtclfun")
+           #:configure-flags #~(list "--enable-shared"
+                                     "--enable-dl"
+                                     (string-append "--with-tcl=" #$(this-package-input "tcl") "/lib"))
            #:phases #~(modify-phases %standard-phases
                         (replace 'bootstrap
                           (lambda _
@@ -123,16 +124,24 @@
                               (("#!/bin/bash")
                                (string-append "#!"
                                               (which "bash"))))
-                            (invoke "./mkconfigure") #t)))))
-    (native-inputs (list autoconf zlib perl))
-    (inputs (list tcl wcslib))
+                            (invoke "./mkconfigure"))))))
+    (native-inputs (list autoconf pkg-config perl))
+    (inputs (list tcl wcslib zlib))
     (home-page "https://github.com/ericmandel/funtools")
     (synopsis "Astronomical minimal buy-in FITS libray")
     (description
-     "Funtools is a \"minimal buy-in\" FITS library and utility
+     "Funtools is a minimal buy-in FITS library and utility
 package originally developed at the the High Energy Astrophysics Division of
 SAO. Although no longer actively supported at SAO, it is still widely used
-within the astronomical community, especially among X-ray astronomers.")
+within the astronomical community, especially among X-ray astronomers.
+
+The Funtools library provides simplified access to a wide array
+of file types: standard astronomical FITS images and binary tables,
+raw arrays and binary event lists, and even tables of ASCII column
+data. A sophisticated region filtering library (compatible with ds9)
+filters images and tables using Boolean operations between geometric
+shapes, support world coordinates, etc. Funtools also supports
+advanced capabilities such as optimized data searching using index files.")
     (license license:lgpl2.0+)))
 
 
