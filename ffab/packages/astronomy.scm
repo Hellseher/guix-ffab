@@ -2067,3 +2067,31 @@ scalar SHTs, which are roughly twice as fast when using the same CPU
 capabilities.")
     (license license:gpl2)))
 
+;; TODO: (Sharlatan-20221102T213300+0000): Failing on configure step
+;;
+;; checking for sharp_execute in -lsharp... no
+;; configure: error: could not find the libsharp library
+;;
+;; 20221101T215432+0000
+(define healpix
+  (package
+    (name "healpix")
+    (version "3.82.0")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append
+                    "mirror://sourceforge/healpix/Healpix_3.82/healpix_cxx-"
+                    version ".tar.gz"))
+              (sha256
+               (base32
+                "0ll5p8190a436ssdnbqcxfj74v7llblkmbhhxz8mjwq0ryxhn6ww"))))
+    (build-system gnu-build-system)
+    (native-inputs
+     (list autoconf automake libtool pkg-config))
+    (inputs
+     (list cfitsio libsharp zlib))
+    (home-page "https://healpix.sourceforge.io/")
+    (synopsis "Hierarchical Equal Area isoLatitude Pixelization of a sphere")
+    (description "This package provides C++ implementation of @acronim{HEALPix, Hierarchical
+Equal Area isoLatitude Pixelization}.")
+    (license license:gpl2)))
