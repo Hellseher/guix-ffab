@@ -463,8 +463,10 @@ radio astronomy.")
     (description "")
     (license license:gpl3+)))
 
+;; TODO: (Sharlatan-20221102T225942+0000): Complete pacakge
+;;
 ;; 20220607T220301+0100
-(define-public python-astrometry
+(define python-astrometry
   (package
     (name "python-astrometry")
     (version "2.0.0")
@@ -563,7 +565,15 @@ photometry or morphological analyses.")
 ;; added-to-upstream: 33648567dd229b1302d2258e76d8b30593fedce6
 ;; CommitDate: Thu Jan 28 13:43:49 2021 +0100
 
-(define-public skychart
+;; TODO: (Sharlatan-20221102T230446+0000): Configure failing
+
+;; fpc compiler not found!
+;; Please specify the location of the fpc compiler with :
+;; ./configure fpcbin=path_to_fpc
+;; error: in phase 'configure': uncaught exception:
+;;
+;; 20221102T230438+0000
+(define skychart
   (let ((version-major "4")
         (version-minor "2"))
     (package
@@ -579,7 +589,7 @@ photometry or morphological analyses.")
                  (base32
                   "1nb3ilw8swz9q9qjd8s1na3g7k7apb2yrpyl89cq2dfcly9c75mi"))))
       (build-system gnu-build-system)
-      (native-inputs `(("fpc" ,fpc)))
+      (native-inputs (list fpc pkg-config autoconf automake))
       (home-page "https://www.ap-i.net/skychart//en/start")
       (synopsis "Free software to draw sky charts")
       (description
