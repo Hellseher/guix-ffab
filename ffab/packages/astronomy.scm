@@ -668,35 +668,17 @@ metadata is highly structured and is designed up-front for extensibility.")
   (package
     (name "python-asdf-unit-schemas")
     (version "0.1.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/asdf-format/asdf-unit-schemas")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "01gsc34l4zp2jiw5vajs2vxw1lnnqyis9rz6gja8qvfrjz4drblj"))))
-    (build-system python-build-system)
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_unit_schemas" version))
+       (sha256
+        (base32
+         "16grpx3a9h0v1wirp0zqrfsxm867v5c0xyr98pylzziy45kqvds2"))))
+    (build-system pyproject-build-system)
     (arguments
-     (list #:tests? #f ; Dependencies cycle with python-asdf
-           #:phases #~(modify-phases %standard-phases
-                        ;; TODO: implement as a feature of python-build-system (PEP-621,
-                        ;; PEP-631, PEP-660)
-                        (replace 'build
-                          (lambda _
-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
-                            (invoke "python" "-m" "build" "--wheel"
-                                    "--no-isolation" ".")))
-                        (replace 'install
-                          (lambda* (#:key outputs #:allow-other-keys)
-                            (let ((whl (car (find-files "dist" "\\.whl$"))))
-                              (invoke "pip" "--no-cache-dir" "--no-input" "install"
-                                      "--no-deps" "--prefix" #$output whl)))))))
-    (native-inputs (list python-pypa-build
-                         python-setuptools
-                         python-setuptools-scm))
+     ;; Dependencies cycle with python-asdf
+     (list #:tests? #f))
     (propagated-inputs (list python-asdf-standard python-importlib-resources))
     (home-page "https://asdf-unit-schemas.readthedocs.io/")
     (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
