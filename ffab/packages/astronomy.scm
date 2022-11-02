@@ -689,11 +689,11 @@ metadata is highly structured and is designed up-front for extensibility.")
 ;; 20221023T225455+0100
 (define-public python-asdf-fits-schemas
   ;; No relese
-  (let ((commit "6e24f3f99c9a619ef9bb54796742fbf08901b060")
-        (revision "1"))
+  (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
+        (revision "2"))
     (package
       (name "python-asdf-fits-schemas")
-      (version (git-version "0.0.0" revision commit))
+      (version (git-version "0.0.1" revision commit))
       (source (origin
                 (method git-fetch)
                 (uri (git-reference
@@ -702,28 +702,17 @@ metadata is highly structured and is designed up-front for extensibility.")
                 (file-name (git-file-name name version))
                 (sha256
                  (base32
-                  "0dnmii7g8jqdlzrkbbfk7cl6ck8aqfz7kidlrmfax11aann6p9ar"))))
-      (build-system python-build-system)
-      (arguments
+                  "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
+      (build-system pyproject-build-system)
+      #;(arguments
        (list #:tests? #f ; Dependencies cycle with python-asdf
              #:phases #~(modify-phases %standard-phases
-                          ;; TODO: implement as a feature of python-build-system (PEP-621,
-                          ;; PEP-631, PEP-660)
-                          (replace 'build
+                          (add-before 'build 'set-version
                             (lambda _
                               ;; NOTE: (Sharlatan-20221023T220057+0100): Update
                               ;; to valid version when release is availalbe.
-                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.0")
-                              (setenv "SOURCE_DATE_EPOCH" "315532800")
-                              (invoke "python" "-m" "build" "--wheel"
-                                      "--no-isolation" ".")))
-                          (replace 'install
-                            (lambda* (#:key outputs #:allow-other-keys)
-                              (let ((whl (car (find-files "dist" "\\.whl$"))))
-                                (invoke "pip" "--no-cache-dir" "--no-input" "install"
-                                        "--no-deps" "--prefix" #$output whl)))))))
-      (native-inputs (list python-pypa-build python-setuptools
-                           python-setuptools-scm))
+                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
+      (native-inputs (list python-setuptools-scm))
       (propagated-inputs (list python-asdf-standard python-importlib-resources))
       (home-page "https://github.com/asdf-format/asdf-fits-schemas")
       (synopsis "ASDF schemas to support the FITS format")
