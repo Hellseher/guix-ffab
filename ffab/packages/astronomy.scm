@@ -2000,3 +2000,70 @@ system resources, like in embedded platforms, but is also very fast when run on
 more powerful computers and provides conversion to FITS from a large number of
 image formats.")
     (license license:gpl3)))
+
+;; 20221101T215432+0000
+(define-public libsharp
+  (package
+    (name "libsharp")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Libsharp/libsharp")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ih13jl0ippxgia7dchrfldxnpwd84lhb64xqvv9swnail5866ij"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               (replace 'check
+                 (lambda* (#:key tests? #:allow-other-keys)
+                   (when tests?
+                     (invoke "make" "test" "perftest"))))
+               (replace 'install
+                 ;; The Makefile lacks an ‘install’ target.
+                 (lambda* (#:key outputs #:allow-other-keys)
+                   (let* ((out (assoc-ref outputs "out"))
+                          (bin (string-append out "/bin"))
+                          (include (string-append out "/include"))
+                          (lib (string-append out "/lib")))
+                     (mkdir-p (string-append lib "/pkgconfig"))
+                     (with-output-to-file (string-append lib "/pkgconfig/libsharp.pc")
+                       (lambda _
+                         (format #t "prefix=~a~@
+                          exec_prefix=${prefix}~@
+                          libdir=${exec_prefix}/lib~@
+                          includedir=${prefix}/include~@
+                          ~@
+                          Name: libsharp~@
+                          Version: ~a~@
+                          Description: Spherical harmonic transforms revisited~@
+                          Libs: -L${libdir} -lsharp~@
+                          Cflags: -I${includedir}~%"
+                                 out #$version)))
+                     (copy-recursively "auto/bin" bin)
+                     (copy-recursively "auto/include" include)
+                     (copy-recursively "auto/lib" lib)))))))
+    (native-inputs
+     (list autoconf automake))
+    (home-page "https://arxiv.org/abs/1303.4945")
+    (synopsis "Spherical harmonic transforms revisited")
+    (description
+     "@code{libsharp} is a library for spherical harmonic transforms (SHTs),
+which evolved from the libpsht library, addressing several of its shortcomings,
+such as adding MPI support for distributed memory systems and SHTs of fields
+with arbitrary spin, but also supporting new developments in CPU instruction
+sets like the Advanced Vector Extensions (AVX) or fused
+multiply-accumulate (FMA) instructions.
+
+The library is implemented in portable C99 and provides an interface that can be
+easily accessed from other programming languages such as C++, Fortran, Python
+etc. Generally, libsharp's performance is at least on par with that of its
+predecessor; however, significant improvements were made to the algorithms for
+scalar SHTs, which are roughly twice as fast when using the same CPU
+capabilities.")
+    (license license:gpl2)))
+
