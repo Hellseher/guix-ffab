@@ -404,12 +404,26 @@ radio astronomy.")
 ;; added-to-upstream 4ccd4176a2f63004fe10c9e8c9ccc8ba46b9d408
 ;; CommitDate: Thu Aug 4 12:05:47 2022 +0200
 
+;; TODO: (Sharlatan-20220704T211255+0100): Needs more love
+;;
+;; https://astrometrynet.readthedocs.io/en/latest/build.html#build
+;;
+;; /gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh: line 1: /bin/sh: No such file or directory
+;; /gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh: line 1: /bin/sh: No such file or directory
+;; ../util/makefile.deps:44: deps: No such file or directory
+;; make[1]: *** [../util/makefile.tests:31: test_libkd-main.c] Error 127
+;; make[1]: *** Waiting for unfinished jobs....
+;; /gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh: line 1: /bin/sh: No such file or directory
+;; make[1]: *** [../util/makefile.tests:31: test_libkd_io-main.c] Error 127
+;; make[1]: *** [../util/makefile.tests:31: test_dualtree_nn-main.c] Error 127
+;; make[1]: Leaving directory '/tmp/guix-build-astrometry-0.90.drv-0/source/libkd'
+;; make: *** [Makefile:89: libkd] Error 2
+;;
 ;; 20210415T214924+0100
-;; NOTE: (Sharlatan-20220704T211255+0100): Needs more love
 (define astrometry
   (package
     (name "astrometry")
-    (version "0.90")
+    (version "0.91")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -418,32 +432,31 @@ radio astronomy.")
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0dwq48skf1fc9vrmxswnr9gjjvi9xzfmgm6hzm41iggc3v1f1g1g"))))
+                "181cyydhdmfx6x9f8rfc6szfq3cb1n3q2dfx5czfci6gj82h4wlf"))))
     (build-system gnu-build-system)
     (arguments
-     (list #:make-flags #~(list (string-append "RELEASE_VER="
-                                               #$version)
-                                (string-append "INSTALL_DIR="
-                                               #$output))
-           #:phases #~(modify-phases %standard-phases
-                        (delete 'configure)
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "make" "test"))))
-                        (replace 'build
+     (list #:phases #~(modify-phases %standard-phases
+                        (add-after 'unpack 'patch-shebangs
                           (lambda _
-                            (invoke "make")
-                            (invoke "make" "py") #t)))))
-    (native-inputs (list pkg-config swig python-wrapper git))
+                            (substitute* "util/make-tests.sh"
+                              (("/bin/sh") (which "sh"))))))))
+    (native-inputs (list autoconf
+                         automake
+                         git
+                         libtool
+                         pkg-config
+                         python-wrapper
+                         swig))
     (inputs (list cairo
                   bzip2
                   cfitsio
+                  gsl
                   libjpeg-turbo
                   libpng
                   netpbm
                   python-fitsio
                   python-numpy
+                  wcslib
                   zlib))
     (home-page "https://astrometry.net/")
     (synopsis "Automatic recognition of astronomical images")
