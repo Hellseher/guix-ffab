@@ -148,8 +148,10 @@ advanced capabilities such as optimized data searching using index files.")
 ;; http://starlink.eao.hawaii.edu/starlink
 ;;+begin-Starlink
 
+;; TODO: (Sharlatan-20221102T221831+0000): Complete packing
+;;
 ;; 20220619T140953+0100
-(define-public starlink
+(define starlink
   (package
     (name "starlink")
     (version "2021A")
@@ -178,13 +180,16 @@ advanced capabilities such as optimized data searching using index files.")
                    ;; ... and more
                    ))))
 
-;; 20220618T223938+0100
+;; TODO: (Sharlatan-20221102T221905+0000): Complete packing
+;;
 ;; starting phase `bootstrap'
 ;; running './bootstrap'
 ;; patch-shebang: ./bootstrap: changing `/bin/sh' to `/gnu/store/4y5m9lb8k3qkb1y9m02sw9w9a6hacd16-bash-minimal-5.1.8/bin/sh'
 ;; Bootstrapping /tmp/guix-build-starlink-pal-0.9.8.drv-0/source ...
 ;; bootstrap error: The starconf application is not in your path
-(define-public starlink-pal
+;;
+;; 20220618T223938+0100
+(define starlink-pal
   (package
     (name "starlink-pal")
     (version "0.9.8")
