@@ -78,6 +78,7 @@
   #:use-module (guix build-system copy)
   #:use-module (guix build-system gnu)
   #:use-module (guix build-system meson)
+  #:use-module (guix build-system pyproject)
   #:use-module (guix build-system python)
   #:use-module (guix download)
   #:use-module (guix gexp)
@@ -626,57 +627,29 @@ planetarium.")
   (package
     (name "python-asdf-standard")
     (version "1.0.3")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/asdf-format/asdf-standard")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "15n6ym8m8rbvg6pgk3yvvnpn4x7sgycn76zq8m33h604cmb2cps7"))))
-    (build-system python-build-system)
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_standard" version))
+       (sha256
+        (base32
+         "0i7xdjwn5prg2hcnf1zhw57mszc68jjr5sv4rimpzcg7f2dgzn5g"))))
+    (build-system pyproject-build-system)
     (arguments
      (list #:phases #~(modify-phases %standard-phases
-                        (replace 'build
+                        (add-before 'check 'remove-blocking-tests
                           (lambda _
-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
-                                    #$version)
-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
-                            (invoke "python"
-                                    "-m"
-                                    "build"
-                                    "--wheel"
-                                    "--no-isolation"
-                                    ".")))
-                        (replace 'install
-                          (lambda* (#:key outputs #:allow-other-keys)
-                            (let ((whl (car (find-files "dist" "\\.whl$"))))
-                              (invoke "pip"
-                                      "--no-cache-dir"
-                                      "--no-input"
-                                      "install"
-                                      "--no-deps"
-                                      "--prefix"
-                                      #$output
-                                      whl))))
-                        (replace 'check
-                          (lambda* (#:key inputs outputs tests?
-                                    #:allow-other-keys)
-                            (when tests?
-                              ;; Remove tests require python-asdf where
-                              ;; python-asdf require python-asdf-standard,
-                              ;; break circular dependencies.
-                              (for-each delete-file
-                                        (list "tests/test_manifests.py"
-                                              "tests/test_integration.py"))
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "python" "-m" "pytest" "-vvv")))))))
+                            ;; Remove tests require python-asdf where
+                            ;; python-asdf require python-asdf-standard,
+                            ;; break circular dependencies.
+                            (for-each delete-file
+                                      (list "tests/test_manifests.py"
+                                            "tests/test_integration.py")))))))
     (native-inputs (list python-astropy
                          python-jsonschema-next
                          python-pypa-build
-                         python-pytest
-                         python-setuptools
+                         python-pytest-7.1
+                         python-packaging
                          python-setuptools-scm))
     (propagated-inputs (list python-importlib-resources))
     (home-page "https://asdf-standard.readthedocs.io/")
