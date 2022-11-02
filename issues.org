@@ -150,3 +150,4 @@
 - [X] <2022-10-19 Wed> https://issues.guix.gnu.org/58645 <2022-10-22 Sat>
 - [ ] <2022-10-30 Sun> https://issues.guix.gnu.org/58907
 - [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58952
+- [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58953
