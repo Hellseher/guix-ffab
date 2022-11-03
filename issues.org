@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [136/149][91%]
+* Accepted in upstream [137/150][91%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -150,4 +150,7 @@
 - [X] <2022-10-19 Wed> https://issues.guix.gnu.org/58645 <2022-10-22 Sat>
 - [ ] <2022-10-30 Sun> https://issues.guix.gnu.org/58907
 - [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58952
-- [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58953
+  Lisense check
+  - [ ] https://github.com/mayanklahiri/easyexif/issues/43
+  - [ ] https://github.com/cnr-isti-vclab/vcglib/issues/206
+- [X] <2022-11-01 Tue> https://issues.guix.gnu.org/58953 <2022-11-03 Thu>
