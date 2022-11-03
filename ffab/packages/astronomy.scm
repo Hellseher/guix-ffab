@@ -765,41 +765,13 @@ metadata is highly structured and is designed up-front for extensibility.")
               (sha256
                (base32
                 "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
-    (build-system python-build-system)
     (arguments
-     (list #:tests? #f ;Dependencies cycle with python-asdf
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'build
-                          (lambda _
-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
-                                    #$version)
-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
-                            (invoke "python"
-                                    "-m"
-                                    "build"
-                                    "--wheel"
-                                    "--no-isolation"
-                                    ".")))
-                        (replace 'install
-                          (lambda* (#:key outputs #:allow-other-keys)
-                            (let ((whl (car (find-files "dist" "\\.whl$"))))
-                              (invoke "pip"
-                                      "--no-cache-dir"
-                                      "--no-input"
-                                      "install"
-                                      "--no-deps"
-                                      "--prefix"
-                                      #$output
-                                      whl))))
-                        (replace 'check
-                          (lambda* (#:key inputs outputs tests?
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "python" "-m" "pytest")))))))
-    (native-inputs (list python-pypa-build python-setuptools
-                         python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard python-importlib-resources))
+     ;; Dependencies cycle with python-asdf
+     (list #:tests? #f ))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-setuptools-scm))
+    (propagated-inputs (list python-asdf-standard
+                             python-importlib-resources))
     (home-page "https://github.com/asdf-format/asdf-transform-schemas")
     (synopsis "ASDF schemas for transforms")
     (description
