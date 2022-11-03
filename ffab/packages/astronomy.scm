@@ -679,6 +679,7 @@ metadata is highly structured and is designed up-front for extensibility.")
     (arguments
      ;; Dependencies cycle with python-asdf
      (list #:tests? #f))
+    (native-inputs (list python-setuptools-scm))
     (propagated-inputs (list python-asdf-standard python-importlib-resources))
     (home-page "https://asdf-unit-schemas.readthedocs.io/")
     (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
