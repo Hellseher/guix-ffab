@@ -1,6 +1,6 @@
 #+title: Common Lisp land
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-09-22 Thu 22:43:44 BST>
+#+modified: <2022-11-03 Thu 23:13:13 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [11/26][42%]
+* Flow [11/27][40%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -76,8 +76,8 @@ Guix upstream.
   + [X] re
   + [X] str
   + [X] trivial-utf-8
-
-** DONE bknr-datastore
+** DONE hanshuebner [1/1][100%] :author:
+*** DONE bknr-datastore
 CLOSED: [2021-05-02 Sun 20:39]
 - https://github.com/hanshuebner/bknr-datastore
 - [X] :packed <2021-04-29 Thu>
@@ -249,6 +249,7 @@ CLOSED: [2021-05-02 Sun 20:39]
     - [ ] :patch-sent
     - [ ] :patch-applied-upstream
     - [ ] :inputs [/][%]
+      - [ ] hu.dwim.graphviz
   + [X] cl-opengl
   + [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
   + [X] cl-slug [4/4][100%]
@@ -629,6 +630,20 @@ CLOSED: [2021-05-26 Wed 21:57]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
 
+** TODO hu.dwim [1/1][100%] :author:
+- https://github.com/hu-dwim
+- http://dwim.hu/
+*** DONE hu.dwim.graphviz [4/4][100%]
+- synopsis :: Common Lisp FFI for libgvc aka graphviz
+- [X] :packed <2022-11-01 Tue>
+- [X] :patch-sent <2022-11-01 Tue>
+- [X] :patch-applied-upstream <2022-11-03 Thu>
+  - https://issues.guix.gnu.org/58953
+- [X] :inputs [4/4][100%]
+  - [X] sbcl-hu.dwim.common
+  - [X] sbcl-hu.dwim.stefil
+  - [X] graphviz sbcl-cffi
+  - [X] sbcl-metabang-bind
 ** TODO inconvergent [0/2][0%] :author:
 - https://github.com/inconvergent
 *** TODO weir [3/4][75%]
