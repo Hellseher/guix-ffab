@@ -942,45 +942,10 @@ performance.")
 ;; http://dwim.hu
 ;;+begin-hu-dwim
 
-(define-public sbcl-hu.dwim.graphviz
-  (let ((commit "31522ca8b9a04d535b7cec20ef24d8bf3b26d52b")
-        (revision "1"))
-    (package
-      (name "sbcl-hu.dwim.graphviz")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/hu-dwim/hu.dwim.graphviz")
-               (commit commit)))
-         (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
-         (sha256
-          (base32 "0cz5g7d6817ajypp876k9m65sxxlf42x4bg04ya73aqci5s1vjwy"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       (list #:phases
-             #~(modify-phases %standard-phases
-                 (add-after 'unpack 'patch-graphviz-lib-path
-                   (lambda* (#:key inputs #:allow-other-keys)
-                     (substitute* "source/package.lisp"
-                       (("libgvc.so")
-                        (search-input-file inputs "/lib/libgvc.so"))))))))
-      (native-inputs
-       (list sbcl-hu.dwim.common sbcl-hu.dwim.stefil))
-      (inputs
-       (list graphviz sbcl-cffi sbcl-metabang-bind))
-      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz")
-      (synopsis "Graphviz layouting using CFFI bindings")
-      (description
-       "This package provides CFFI bindigs to Graphviz library in Common Lisp.")
-      (license license:public-domain))))
-
-(define-public cl-hu.dwim.graphviz
-  (sbcl-package->cl-source-package sbcl-hu.dwim.graphviz))
-
-(define-public ecl-hu.dwim.graphviz
-  (sbcl-package->ecl-package sbcl-hu.dwim.graphviz))
+;; 20221103T171243+0000
+;; (define-public sbcl-hu.dwim.graphviz
+;; added-to-upstream: 53c8cbb31428322e16c255f73fb7f7670ef7f8aa
+;; CommitDate: Thu Nov 3 15:07:16 2022 +0100
 
 ;;+end-hu-dwim
 
