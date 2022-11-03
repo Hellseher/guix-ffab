@@ -704,7 +704,7 @@ metadata is highly structured and is designed up-front for extensibility.")
                  (base32
                   "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
       (build-system pyproject-build-system)
-      #;(arguments
+      (arguments
        (list #:tests? #f ; Dependencies cycle with python-asdf
              #:phases #~(modify-phases %standard-phases
                           (add-before 'build 'set-version
