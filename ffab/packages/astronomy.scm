@@ -1144,24 +1144,19 @@ Webb Space Telescope}")
 (define-public python-rad
   (package
     (name "python-rad")
-    (version "0.13.0")
+    (version "0.14.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "rad" version))
               (sha256
                (base32
-                "1bwbqj7wfb3fhp1w7rm4qv4hrwwilpdhgkghcwrgjnbr5bj4s6xa"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "pytest" "-vv")))))))
-    (propagated-inputs (list python-asdf))
-    (native-inputs (list python-pytest python-pytest-doctestplus
-                         python-pytest-openfiles python-semantic-version
-                         python-setuptools-scm))
+                "1n0y8mk32dh5kaic634ps4rc6ijaniag2zm91isi0vs8g19pv1hx"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-asdf-2.13))
+    (native-inputs (list python-pytest
+                         python-pytest-doctestplus
+                         python-pytest-openfiles
+                         python-semantic-version))
     (home-page "https://github.com/spacetelescope/rad")
     (synopsis "Roman Attribute Dictionary")
     (description "Roman Attribute Dictionary")
