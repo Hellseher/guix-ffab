@@ -1033,13 +1033,13 @@ for variables with units.")
     ;; NOTE: (Sharlatan-20220716T143923+0100): The maximum compatible version
     ;; with currently packed inputs. Any other higher versions require large
     ;; chane of packages to be upgraded first.
-    (version "1.4.5")
+    (version "1.8.2")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "jwst" version))
               (sha256
                (base32
-                "0vgligv27px7cgk5jjqmcckjm7fb9phmczgghak3n5l8xdr85cgm"))))
+                "049ii2zjckls80qrqaplpjh33vvi43458z52fhnyx8rqq5cnc14h"))))
     (build-system python-build-system)
     (arguments
      (list #:phases #~(modify-phases %standard-phases
