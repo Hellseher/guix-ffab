@@ -1,6 +1,6 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-09-12 Mon 19:41:42 BST>
+#+modified: <2022-11-04 Fri 22:17:38 GMT>
 
 * Flow [0/8][0%]
 ** TODO go/tools/gopls [/][%] :p1:
@@ -39,8 +39,8 @@
 *** TODO age [/][%] :p5:
 - https://github.com/FiloSottile/age
 
-** TODO github.com/valyala [1/1][100%] :author:
-*** DONE github.com/valyala/fasthttp [3/4][75%]
+** TODO valyala [1/1][100%] :author:
+*** DONE valyala/fasthttp [3/4][75%]
 - https://github.com/valyala/fasthttp
 - [X] :packed <2021-12-18 Sat>
 - [X] :patch-sent <2021-12-19 Sun>
