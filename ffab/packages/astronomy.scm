@@ -953,8 +953,13 @@ changing the pixel resolution, orientation, coordinate system.")
 ;; https://github.com/jobovy
 ;;+begin-jobovy
 
-;;20220615T234403+0100
-(define-public python-galpy
+;; FIXME: (Sharlatan-20221104T223758+0000): Complete package, failing build
+;;
+;; FileNotFoundError: [Errno 2] No such file or directory: '/homeless-shelter/.galpyrc'
+;; ImportError: dynamic module does not define module export function (PyInit_libgalpy)
+;;
+;; 20220615T234403+0100
+(define python-galpy
   (package
     (name "python-galpy")
     (version "1.8.0")
