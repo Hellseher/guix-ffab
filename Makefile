@@ -1,13 +1,13 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-10-26 Wed 22:36:37 BST>
+# Modified : <2022-11-01 Tue 20:37:07 GMT>
 
 # TODO: (Sharlatan-20221026T202843+0100): Find the way how to re-build versioned
 # package e.g. python-pytest-7.1, exclude them for now.
-PKGS_ACCEPTED_TOTAL ?= $(shell grep -r ";.*define-public" ffab | cut -d' ' -f3 | sed -e '/.*\..*/d')
-PKGS_TOTAL ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
+PKGS_ACCEPTED ?= $(shell grep -r ";.*define-public" ffab | cut -d' ' -f3 | sed -e '/.*\..*/d')
+PKGS_PENDING ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
 
-PKGS_ASTRONOMY ?= $(shell grep "^.define-public" ffab/packages/astronomy.scm | cut -d' ' -f2)
+PKGS_ASTRONOMY ?= $(shell grep "^.define-public" ffab/packages/astronomy.scm | cut -d' ' -f2 | sed -e '/.*\..*/d')
 PKGS_LISP ?= $(shell grep "^.define-public" ffab/packages/lisp*.scm | cut -d' ' -f2)
 PKGS_PYTHON ?= $(shell grep "^.define-public" ffab/packages/python-*.scm | cut -d' ' -f2)
 PKGS_GOLANG ?= $(shell grep "^.define-public" ffab/packages/golang*.scm | cut -d' ' -f2)
@@ -23,7 +23,14 @@ GUIX_REFRESH_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes.
-GUIX_COMMIT ?= 1f734a6f0a7db5b0e12091a0c869c5c4810ac80e
+#
+# As seen in `guix describe`:
+# Generation 351  Nov 01 2022 20:35:02    (current)
+#   guix d0917d7
+#     repository URL: https://git.savannah.gnu.org/git/guix.git
+#     branch: master
+#     commit: d0917d778284ee7d70bc80b0538e3b4ae67870f4
+GUIX_COMMIT ?= d0917d778284ee7d70bc80b0538e3b4ae67870f4
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
@@ -47,13 +54,13 @@ all: list lint build
 .PHONY: list
 list:
 	$(info :guix-commit $(GUIX_COMMIT))
-	$(info :accepted-packages $(words $(PKGS_ACCEPTED_TOTAL)))
-	$(info :pending-packages $(words $(PKGS_TOTAL)))
+	$(info :accepted $(words $(PKGS_ACCEPTED)))
+	$(info :pending $(words $(PKGS_PENDING)))
 	$(info )
-	$(info :astronomy-packages $(words $(PKGS_ASTRONOMY)))
-	$(info :golang-packages $(words $(PKGS_GOLANG)))
-	$(info :lisp-packages $(words $(PKGS_LISP)))
-	$(info :python-packages $(words $(PKGS_PYTHON)))
+	$(info :astronomy $(words $(PKGS_ASTRONOMY)))
+	$(info :golang $(words $(PKGS_GOLANG)))
+	$(info :lisp $(words $(PKGS_LISP)))
+	$(info :python $(words $(PKGS_PYTHON)))
 
 .PHONY: lint
 lint:
@@ -67,7 +74,7 @@ build:
 # and whether update is required
 PHONY: probe
 probe:
-	$(GUIX) lint $(GUIX_LINT_FLAGS) $(PKGS)
-	$(GUIX) build $(GUIX_BUILD_PROBE_FLAGS) $(PKGS_ACCEPTED_TOTAL)
+	$(GUIX) lint $(GUIX_LINT_FLAGS) $(PKGS_ACCEPTED)
+	$(GUIX) build $(GUIX_BUILD_PROBE_FLAGS) $(PKGS_ACCEPTED)
 
 # End of Makefile

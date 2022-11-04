@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-26 Wed 23:15:35 BST>
+#+modified: <2022-11-04 Fri 22:33:00 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -79,7 +79,7 @@ CLOSED: [2021-01-25 Mon 17:25]
   - https://issues.guix.gnu.org/56238
 ** TODO asdf-format [5/9][55%] :author:p1:
 - https://github.com/asdf-format
-*** DONE asdf [1/1] [100%]
+*** DONE asdf [1/1][100%]
  - https://github.com/asdf-format/asdf
  - [X] :packed
 *** DONE asdf-coordinates-schemas [1/1][100%]
@@ -643,6 +643,23 @@ https://kepler-project.org/users/downloads.html
 ** TODO linguider [/][%] :author:
 - https://sourceforge.net/projects/linguider/
 
+** TODO MAVENSDC [0/3][0%] :author:p2:
+- https://github.com/MAVENSDC
+*** TODO cdflib [0/4][0%] :p2:
+- https://github.com/MAVENSDC/cdflib
+- synopsis :: Python module for reading NASA's Common Data Format (cdf) files
+- [X] :packed <2022-06-27 Mon>
+- [X] :patch-sent <2022-07-02 Sat>
+- [X] :paptch-applied-upstream <2022-07-08 Fri>
+  - https://issues.guix.gnu.org/56363
+- [X] :inputs [7/7][100%]
+  - [X] python-astropy
+  - [X] python-attrs
+  - [X] python-hypothesis
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-remotedata
+  - [X] python-xarray
 ** TODO NASA [0/3][0%] :author:
 *** TODO HEAsoft [/][%]
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
@@ -980,13 +997,14 @@ CLOSED: [2021-02-19 Fri 11:13]
 
 ** TODO SunPy [0/3][0%] :author:p2:
 - https://sunpy.org/
+- https://github.com/sunpy
 *** TODO sunpy [0/4][0%] :p2:
 - https://github.com/sunpy/sunpy
 - synopsis :: SunPy - Python for Solar Physics
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [31/34][91%]
+- [-] :inputs [32/34][94%]
   - [-] docs [2/9]
     - [X] python-astroquery
     - [ ] python-ruamel.yaml
@@ -1001,56 +1019,17 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-asdf-astropy
   - [X] python-astropy
   - [X] python-beautifulsoup4
-  - [X] python-cdflib [4/4][100%]
-    - https://github.com/MAVENSDC/cdflib
-    - synopsis :: Python module for reading NASA's Common Data Format (cdf) files
+  - [X] python-cdflib
     - [X] :packed <2022-06-27 Mon>
-    - [X] :patch-sent <2022-07-02 Sat>
-    - [X] :paptch-applied-upstream <2022-07-08 Fri>
-      - https://issues.guix.gnu.org/56363
-    - [X] :inputs [7/7][100%]
-      - [X] python-astropy
-      - [X] python-attrs
-      - [X] python-hypothesis
-      - [X] python-numpy
-      - [X] python-pytest
-      - [X] python-pytest-remotedata
-      - [X] python-xarray
   - [X] python-dask
   - [X] python-dateutil
   - [X] python-drms
     - [X] :packed <2022-06-27 Mon>
   - [X] python-extension-helpers
-  - [X] python-glymur [4/4][100%]
-    - https://github.com/quintusdias/glymur
-    - synopsis :: Python interface to OpenJPEG and libtiff libraries.
+  - [X] python-glymur [1/1][100%]
     - [X] :packed <2022-07-02 Sat>
-    - [X] :patch-sent <2022-07-02 Sat>
-    - [X] :paptch-applied-upstream <2022-07-08 Fri>
-      - https://issues.guix.gnu.org/56364
-    - [X] :inputs [8/8][100%]
-      - [X] libtiff
-      - [X] openjpeg
-      - [X] python-lxml
-      - [X] python-numpy
-      - [X] python-packaging
-      - [X] python-pypa-build
-      - [X] python-pytest
-      - [X] python-setuptools
   - [X] python-h5netcdf [4/4][100%]
-    - https://github.com/h5netcdf/h5netcdf
-    - synopsis :: Pythonic interface to netCDF4 via h5py
     - [X] :packed <2022-07-02 Sat>
-    - [X] :patch-sent <2022-07-22 Fri>
-    - [X] :paptch-applied-upstream <2022-08-04 Thu>
-      - https://issues.guix.gnu.org/56700
-    - [X] :inputs [6/6][6/6]
-      - [X] python-setuptools-scm
-      - [X] python-pytest
-      - [X] python-netcdf4 (needs to be upgraded to 1.6.0 to pass tests)
-      - [X] python-h5py
-      - [X] python-packaging
-      - [X] python-numpy
   - [X] python-h5py
   - [X] python-hypothesis
   - [X] python-jplephem
@@ -1067,13 +1046,8 @@ CLOSED: [2021-02-19 Fri 11:13]
     - [-] :inputs [0/0][0/0]
   - [X] python-packaging
   - [X] python-pandas
-  - [-] python-parfive
-    - https://github.com/Cadair/parfive
-    - synopsis :: asyncio based parallel file downloader
-    - [ ] :packed
-    - [ ] :patch-sent
-    - [-] :paptch-applied-upstream
-    - [-] :inputs [0/0][0/0]
+  - [X] python-parfive
+    - [X] :packed <2022-10-10 Mon>
   - [X] python-pytest
   - [X] python-pytest-astropy
   - [X] python-pytest-doctestplus
@@ -1147,3 +1121,6 @@ CLOSED: [2021-02-19 Fri 11:13]
   https://kernsuite.info/packages/ https://github.com/kernsuite
 - The Astrophysics Source Code Library http://www.ascl.net/
 - https://ssb.stsci.edu/astroconda/
+- https://github.com/Libsharp/libsharp
+- https://gitlab.mpcdf.mpg.de/mtr/libsharp
+- https://gitlab.mpcdf.mpg.de/mtr/ducc

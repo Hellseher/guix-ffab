@@ -1,100 +1,110 @@
-From f190a7f646d8f1d7d212663a629adeb33414eb6a Mon Sep 17 00:00:00 2001
+From 6410c7c415cc9dff55d725aca161898a615b379f Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
-Date: Fri, 13 May 2022 16:13:57 +0100
-Subject: [PATCH] gnu: Add plplot
+Date: Fri, 28 Oct 2022 23:36:57 +0100
+Subject: [PATCH 1/1] gnu: Add plplot
 
-* gnu/packages/maths.scm (plplot): New variable.
+* gnu/packages/maths.scm (plpot): New variable.
 ---
- gnu/packages/maths.scm | 55 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+ gnu/packages/maths.scm | 79 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
 
 diff --git a/gnu/packages/maths.scm b/gnu/packages/maths.scm
-index 98e239d5bd..641b80f572 100644
+index a21125361a..012f54e647 100644
 --- a/gnu/packages/maths.scm
 +++ b/gnu/packages/maths.scm
-@@ -50,6 +50,7 @@
- ;;; Copyright © 2021 Jean-Baptiste Volatier <jbv@pm.me>
- ;;; Copyright © 2021 Guillaume Le Vaillant <glv@posteo.net>
- ;;; Copyright © 2021 Pierre-Antoine Bouttier <pierre-antoine.bouttier@univ-grenoble-alpes.fr>
-+;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
- ;;;
- ;;; This file is part of GNU Guix.
- ;;;
-@@ -123,6 +124,7 @@ (define-module (gnu packages maths)
-   #:use-module (gnu packages llvm)
-   #:use-module (gnu packages logging)
-   #:use-module (gnu packages lua)
+@@ -113,6 +113,7 @@ (define-module (gnu packages maths)
+   #:use-module (gnu packages flex)
+   #:use-module (gnu packages fltk)
+   #:use-module (gnu packages fontutils)
 +  #:use-module (gnu packages geo)
-   #:use-module (gnu packages gnome)
-   #:use-module (gnu packages guile)
-   #:use-module (gnu packages xorg)
-@@ -152,6 +154,7 @@ (define-module (gnu packages maths)
-   #:use-module (gnu packages serialization)
-   #:use-module (gnu packages shells)
-   #:use-module (gnu packages sphinx)
-+  #:use-module (gnu packages swig)
-   #:use-module (gnu packages tcl)
-   #:use-module (gnu packages texinfo)
-   #:use-module (gnu packages tex)
-@@ -1123,6 +1126,58 @@ (define-public gnuplot
-     (license (license:fsf-free
-               "http://gnuplot.cvs.sourceforge.net/gnuplot/gnuplot/Copyright"))))
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gd)
+@@ -1135,6 +1136,84 @@ (define-public giza
+ @code{cairo} that provides uniform output to multiple devices.")
+     (license license:gpl2+)))
  
 +(define-public plplot
 +  (package
 +    (name "plplot")
 +    (version "5.15.0")
-+    (source
-+     (origin
-+       (method git-fetch)
-+       (uri (git-reference
-+             ;; Mirror: https://github.com/PLplot/PLplot
-+             (url "https://git.code.sf.net/p/plplot/plplot")
-+             (commit (string-append name "-" version))))
-+       (sha256
-+        (base32
-+         "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
-+       (file-name (git-file-name name version))))
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    ;; Mirror: https://github.com/PLplot/PLplot
++                    (url "https://git.code.sf.net/p/plplot/plplot")
++                    (commit (string-append name "-" version))))
++              (sha256
++               (base32
++                "0fn9j251zv9pwlqy30yv4flwcd0cbyxd1nn388n1k158jycw2i91"))
++              (file-name (git-file-name name version))))
 +    (build-system cmake-build-system)
 +    (arguments
-+     (list
-+      #:configure-flags
-+      #~(list
-+         "-DBUILD_TEST=ON"
-+         (string-append "-DCMAKE_INSTALL_LIBDIR=" #$output "/lib")
-+         (string-append "-DCMAKE_INSTALL_PREFIX=" #$output))))
-+    (native-inputs
-+     (list perl
-+           python-wrapper
-+           pkg-config
-+           swig))
-+    (inputs
-+     (list freetype
-+           camlidl
-+           gfortran
-+           libltdl
-+           lua
-+           ocaml
-+           octave
-+           pango
-+           perl-xml-dom
-+           perl-xml-parser
-+           python-numpy
-+           qhull
-+           shapelib
-+           tcl
-+           tk
-+           wxwidgets))
++     (list #:configure-flags #~(list "-DBUILD_TEST=ON"
++                                     (string-append "-DCMAKE_INSTALL_LIBDIR="
++                                                    #$output "/lib")
++                                     (string-append "-DCMAKE_INSTALL_PREFIX="
++                                                    #$output))))
++    (native-inputs (list perl
++                         perl-xml-dom
++                         perl-xml-parser
++                         pkg-config
++                         python-wrapper
++                         swig))
++    (inputs (list freetype
++                  camlidl
++                  gfortran
++                  libltdl
++                  lua
++                  ocaml
++                  octave
++                  pango
++                  python-numpy
++                  qhull
++                  shapelib
++                  tcl
++                  tk
++                  wxwidgets))
 +    (home-page "http://plplot.org/")
 +    (synopsis "Scientific graphics plotting library")
 +    (description
 +     "PLplot is a cross-platform software package for creating scientific plots
-+whose (UTF-8) plot symbols and text.")
++whose (UTF-8) plot symbols and text.
++
++The PLplot core library can be used to create standard x-y plots, semi-log
++plots, log-log plots, contour plots, 3D surface plots, mesh plots, bar charts
++and pie charts.  Multiple graphs (of the same or different sizes) may be placed
++on a single page, and multiple pages are allowed for those device formats that
++support them.
++
++PLplot has core library support for plot symbols and text specified by the user
++in the UTF-8 encoding of Unicode.  This means for our many Unicode-aware devices
++that plot symbols and text are only limited by the collection of glyphs normally
++available via installed system fonts.  Furthermore, a large subset of our
++Unicode-aware devices also support complex text layout (CTL) languages such as
++Arabic, Hebrew, and Indic and Indic-derived CTL scripts such as Devanagari,
++Thai, Lao, and Tibetan.  Thus, for these PLplot devices essentially any language
++that is supported by Unicode and installed system fonts can be used to label
++plots.
++
++Output File Formats
++@itemize
++@item CGM
++@item GIF
++@item JPEG
++@item PBM
++@item PDF
++@item PNG
++@item PostScript
++@item SVG
++@item Xfig
++@item Interactive
++@end itemize")
 +    (license license:lgpl2.0))) ; Other terms are in Copyright file
 +
- (define-public gctp
+ (define-public gnuplot
    (package
-     (name "gctp")
+     (name "gnuplot")
 -- 
-2.35.1
+2.37.3
 

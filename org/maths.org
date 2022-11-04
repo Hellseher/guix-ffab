@@ -1,12 +1,12 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2022-07-04 Mon 20:48:22 BST>
+#+modified: <2022-10-30 Sun 20:43:08 GMT>
 
 * Flow [0/3][0%]
 ** TODO nelib [/][%] :p5:
 - http://www.netlib.org/
 
-** TODO plplot [2/4][50%] :p2:
+** TODO plplot [0/0][0%] :p2:
 + http://plplot.sourceforge.net/
 + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
   (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts
@@ -56,7 +56,10 @@
   - [X] wxwidgets
   - [X] pkg-config
   - [X] swig (gnu/packages/swig.scm)
-    
+
+*** Issues
+- <2022-10-30 Sun> Configure phase still can't find many inputs, need more time to resolve all of
+  the issues.
 ** TODO danieljprice [1/1][100%] :author:
 *** DONE giza [4/4][100%]
 - https://github.com/danieljprice/giza
