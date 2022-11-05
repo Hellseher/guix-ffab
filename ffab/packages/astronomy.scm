@@ -833,6 +833,38 @@ implementation of the ASDF Standard.")
 ;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
+(define ffab-python-asdf-wcs-schemas
+  (package
+    (name "ffab-python-asdf-wcs-schemas")
+    (version "0.1.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_wcs_schemas" version))
+       (sha256
+        (base32 "0khyab9mnf2lv755as8kwhk3lqqpd3f4291ny3b9yp3ik86fzhz1"))))
+    (build-system python-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         (replace 'check
+           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+             (when tests?
+               (add-installed-pythonpath inputs outputs)
+               (invoke "python" "-m" "pytest")))))))
+    (native-inputs
+     (list python-pytest
+           python-setuptools-scm
+           python-semantic-version))
+    (propagated-inputs
+     (list python-asdf))
+    (home-page "https://github.com/asdf-format/asdf-wcs-schemas")
+    (synopsis "ASDF WCS Schemas")
+    (description
+     "This package provides ASDF schemas for validating World Coordinate
+System (WCS) tags.  Users should not need to install this directly; instead,
+install an implementation package such as gwcs.")
+    (license license:bsd-3)))
 
 ;; (define-public python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
@@ -993,6 +1025,51 @@ for variables with units.")
 ;; (define-public python-gwcs
 ;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
+(define-public ffab-python-gwcs
+  (package
+    (name "ffab-python-gwcs")
+    (version "0.18.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "gwcs" version))
+       (sha256
+        (base32 "0v9qcq6zl74d6s882s6xmas144jfalvll6va8rvrxmvpx4vqjzhg"))))
+    (build-system python-build-system)
+    (arguments
+     `(#:phases
+       (modify-phases %standard-phases
+         (replace 'check
+           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+             (when tests?
+               (add-installed-pythonpath inputs outputs)
+               (invoke "python" "-m" "pytest")))))))
+    (native-inputs
+     (list python-jsonschema-next
+           python-jmespath
+           python-pytest
+           python-pytest-doctestplus
+           python-pyyaml
+           python-semantic-version
+           python-setuptools-scm))
+    (propagated-inputs
+     (list python-asdf-2.13
+           python-asdf-astropy-0.2
+           ffab-python-asdf-wcs-schemas
+           python-astropy
+           python-numpy
+           python-scipy))
+    (home-page "https://gwcs.readthedocs.io/en/latest/")
+    (synopsis "Generalized World Coordinate System")
+    (description "Generalized World Coordinate System (GWCS) is an Astropy
+affiliated package providing tools for managing the World Coordinate System of
+astronomical data.
+
+GWCS takes a general approach to the problem of expressing transformations
+between pixel and world coordinates.  It supports a data model which includes
+the entire transformation pipeline from input coordinates (detector by
+default) to world coordinates.")
+    (license license:bsd-3)))
 
 ;; 20220131T235042+0000
 (define-public python-jwst
@@ -1173,37 +1250,27 @@ calibration pipelines.")
 (define-public python-tweakwcs
   (package
     (name "python-tweakwcs")
-    (version "0.7.4")
+    (version "0.8.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "tweakwcs" version))
               (sha256
                (base32
-                "0569xpd5q6fj4k7y3ib6rjqps0q94irnmsxa1hykvmjj1ymclwnf"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (add-after 'unpack 'relax-requirements
-                          (lambda _
-                            (substitute* "setup.py"
-                              (("astropy>=5.0.4")
-                               "astropy>=5.0.1"))))
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "pytest" "-vv"))))
-                        (delete 'sanity-check))))
+                "08b2qgk81vximjjn88db7xc0lwg394rpbivk0jwd63sr3gsbsllb"))))
+    (build-system pyproject-build-system)
     (propagated-inputs (list python-astropy
-                             python-gwcs
+                             ffab-python-gwcs
                              python-numpy
                              python-packaging
                              python-spherical-geometry
                              python-stsci-imagestats
                              python-stsci-stimage))
-    (native-inputs (list python-codecov python-pytest python-pytest-cov
-                         python-setuptools-scm python-scipy))
+    (native-inputs (list python-codecov
+                         python-pytest
+                         python-pytest-cov
+                         python-semantic-version
+                         python-setuptools-scm
+                         python-scipy))
     (home-page "https://tweakwcs.readthedocs.io/en/latest/")
     (synopsis
      "Algorithms for matching and aligning catalogs and for tweaking the WCS")
