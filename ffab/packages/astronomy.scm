@@ -786,81 +786,50 @@ package such as asdf-astropy.")
 
 ;; 20221023T225530+0100
 (define-public python-asdf-2.13
-  ;; NOTE: (Sharlatan-20221023T223142+0100): Upstream's latest commit has fixes
-  ;; for the extension loading process. Use tag when fixes are released.
-  (let ((commit "0e576f3f922f8659c6b36184480c9db8e4d3b802")
-        (revision "1"))
-    (package
-      (name "python-asdf")
-      (version (git-version "2.13.0" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/asdf-format/asdf")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "0cgragdyc6f6rpnmr781dj6a9ifn4vlx29ad978kj4xkfcni6hff"))))
-      (build-system python-build-system)
-      (arguments
-       ;; NOTE: (Sharlatan-20221023T232214+0100): Tests fail a lot with
-       (list #:tests? #f
-             #:phases #~(modify-phases %standard-phases
-                          (replace 'build
-                            (lambda _
-                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "2.13.0")
-                              (setenv "SOURCE_DATE_EPOCH" "315532800")
-                              (invoke "python"
-                                      "-m"
-                                      "build"
-                                      "--wheel"
-                                      "--no-isolation"
-                                      ".")))
-                          (replace 'install
-                            (lambda* (#:key outputs #:allow-other-keys)
-                              (let ((whl (car (find-files "dist" "\\.whl$"))))
-                                (invoke "pip"
-                                        "--no-cache-dir"
-                                        "--no-input"
-                                        "install"
-                                        "--no-deps"
-                                        "--prefix"
-                                        #$output
-                                        whl))))
-                          (replace 'check
-                            (lambda* (#:key inputs outputs tests?
-                                      #:allow-other-keys)
-                              (when tests?
-                                (add-installed-pythonpath inputs outputs)
-                                (invoke "python" "-m" "pytest" "-vvv")))))))
-      (native-inputs (list python-packaging
-                           python-astropy
-                           python-pypa-build
-                           python-psutil
-                           python-pytest
-                           python-pytest-openfiles
-                           python-pytest-doctestplus
-                           python-semantic-version
-                           python-setuptools
-                           python-setuptools-scm))
-      (propagated-inputs (list python-asdf-standard
-                               python-asdf-transform-schemas-0.3
-                               python-asdf-unit-schemas
-                               python-importlib-metadata
-                               python-importlib-resources
-                               python-jmespath
-                               python-jsonschema-next
-                               python-lz4
-                               python-numpy
-                               python-pyyaml))
-      (home-page "https://github.com/asdf-format/asdf")
-      (synopsis "Python tools to handle ASDF files")
-      (description
-       "The Advanced Scientific Data Format (ASDF) is a next-generation
+  (package
+    (name "python-asdf")
+    (version "2.13.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "asdf" version))
+              (sha256
+               (base32
+                "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
+    (build-system pyproject-build-system)
+    (arguments
+     ;; FIXME: (Sharlatan-20221023T232214+0100): Tests fail a lot with
+     ;;
+     ;; ERROR  - _pytest.pathlib.ImportPathMismatchError: ('asdf.conftest', '/gnu/sto...
+     ;;
+     (list
+      #:tests? #f))
+    (native-inputs (list python-packaging
+                         python-astropy
+                         python-psutil
+                         python-pypa-build
+                         python-pytest
+                         python-pytest-doctestplus
+                         python-pytest-openfiles
+                         python-pytest-remotedata
+                         python-semantic-version
+                         python-setuptools-scm))
+    (propagated-inputs (list python-asdf-standard
+                             python-asdf-transform-schemas-0.3
+                             python-asdf-unit-schemas
+                             python-importlib-metadata
+                             python-importlib-resources
+                             python-jmespath
+                             python-jsonschema-next
+                             python-lz4
+                             python-numpy
+                             python-pyyaml))
+    (home-page "https://github.com/asdf-format/asdf")
+    (synopsis "Python tools to handle ASDF files")
+    (description
+     "The Advanced Scientific Data Format (ASDF) is a next-generation
 interchange format for scientific data.  This package contains the Python
 implementation of the ASDF Standard.")
-      (license license:bsd-3))))
+    (license license:bsd-3)))
 
 ;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
