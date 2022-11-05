@@ -806,7 +806,6 @@ package such as asdf-astropy.")
     (native-inputs (list python-packaging
                          python-astropy
                          python-psutil
-                         python-pypa-build
                          python-pytest
                          python-pytest-doctestplus
                          python-pytest-openfiles
