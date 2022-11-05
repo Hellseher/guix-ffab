@@ -1068,6 +1068,9 @@ Webb Space Telescope}")
     (arguments
      (list
       ;; FIXME: (Sharlatan-20221105T071954+0000): Deprecation warnings in tests.
+      ;;
+      ;; 15 xfailed, 388 errors in 3.25s
+      ;;
       #:tests? #f
       #:phases #~(modify-phases %standard-phases
                         (add-before 'check 'set-env-data-path
@@ -1080,10 +1083,17 @@ Webb Space Telescope}")
                              python-pytest-astropy-header
                              python-six))
     (native-inputs (list python-pytest
-                         python-pytest-remotedata))
+                         python-pytest-remotedata
+                         python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/pysynphot")
     (synopsis "Python Synthetic Photometry Utilities")
-    (description "Python Synthetic Photometry Utilities")
+    (description
+"Astrolib PySynphot (hereafter referred to only as pysynphot) is an
+object-oriented replacement for STSDAS SYNPHOT synthetic photometry package in
+IRAF.  @code{pysynphot} simulates photometric data and spectra as they are observed
+with the Hubble Space Telescope (HST). Passbands for standard photometric
+systems are available, and users can incorporate their own filters, spectra, and
+data.")
     (license license:bsd-3)))
 
 ;; 20220513T215637+0100
