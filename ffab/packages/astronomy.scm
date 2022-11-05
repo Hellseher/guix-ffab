@@ -1096,19 +1096,23 @@ Webb Space Telescope}")
               (sha256
                (base32
                 "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
-    (build-system python-build-system)
+    (build-system pyproject-build-system)
     (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (setenv "PYSYN_CDBS"
-                                      (string-append #$output "/crds"))
-                              (invoke "pytest" "pysynphot" "-vv")))))))
-    (propagated-inputs (list python-astropy python-beautifulsoup4 python-numpy
-                             python-pytest-astropy-header python-six))
-    (native-inputs (list python-pytest python-pytest-remotedata
-                         python-setuptools-scm))
+     (list
+      ;; FIXME: (Sharlatan-20221105T071954+0000): Deprecation warnings in tests.
+      #:tests? #f
+      #:phases #~(modify-phases %standard-phases
+                        (add-before 'check 'set-env-data-path
+                          (lambda _
+                            (setenv "PYSYN_CDBS"
+                                    (string-append #$output "/crds")))))))
+    (propagated-inputs (list python-astropy
+                             python-beautifulsoup4
+                             python-numpy
+                             python-pytest-astropy-header
+                             python-six))
+    (native-inputs (list python-pytest
+                         python-pytest-remotedata))
     (home-page "https://github.com/spacetelescope/pysynphot")
     (synopsis "Python Synthetic Photometry Utilities")
     (description "Python Synthetic Photometry Utilities")
