@@ -1537,21 +1537,31 @@ behaviour of the IRAF's")
  image processing functions.")
     (license license:bsd-3)))
 
+;; NOTE: (Sharlatan-20221105T234031+0000): Starting from v1.2.0 project requires
+;; OpenCV Python module which is not packed yet.
+;;
 ;; 20220710T122747+0100
 (define-public python-stcal
   (package
     (name "python-stcal")
-    (version "1.0.0")
+    (version "1.1.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "stcal" version))
               (sha256
                (base32
-                "1i8lr8w3jf4y4ss3zimkakk3a18vpdxxgl68fsmnj86innzj6g70"))))
-    (build-system python-build-system)
-    (propagated-inputs (list python-astropy python-numpy python-scipy))
-    (native-inputs (list python-psutil python-pytest python-pytest-cov
-                         python-pytest-doctestplus python-pytest-openfiles))
+                "1zh70xpzv0da2j94z77cncjfs54nqy8hprngirv7hh48vjchj205"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-astropy
+                             python-numpy
+                             python-scipy))
+    (native-inputs (list python-psutil
+                         python-pytest
+                         ;; python-opencv-python ;; Not availalbe
+                         python-pytest-cov
+                         python-pytest-doctestplus
+                         python-setuptools-scm
+                         python-pytest-openfiles))
     (home-page "https://github.com/spacetelescope/stcal")
     (synopsis "STScI tools and algorithms used in calibration pipelines")
     (description "STScI tools and algorithms used in calibration pipelines")
