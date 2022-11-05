@@ -1281,6 +1281,10 @@ image and reference catalogs. Currently only aligning images with @code{FITS
 WCS} and @code{JWST gWCS} are supported.")
     (license license:bsd-3)))
 
+;; NOTE: (Sharlatan-20221105T230143+0000): 1.2.23 fails to build
+;;
+;; https://github.com/spacetelescope/spherical_geometry/issues/227
+;;
 ;;20220523T215603+0100
 (define-public python-spherical-geometry
   (package
@@ -1315,7 +1319,7 @@ WCS} and @code{JWST gWCS} are supported.")
     (native-inputs (list python-pytest python-setuptools-scm))
     (inputs (list qd))
     (propagated-inputs (list python-astropy python-numpy))
-    (home-page "https://github.com/spacetelescope/tweakwcs")
+    (home-page "https://github.com/spacetelescope/spherical_geometry")
     (synopsis "Python astronimical package for handling spherical polygons")
     (description
      "The @code{spherical_geometry} library is a Python package for handling
