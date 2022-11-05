@@ -1332,37 +1332,37 @@ spherical polygons that represent arbitrary regions of the sky.")
 (define-public python-drizzle
   (package
     (name "python-drizzle")
-    (version "1.13.4")
+    (version "1.13.6")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "drizzle" version))
               (sha256
                (base32
-                "1py3i4c8fka2hjqnpn132gmdmnb6vh5f614fx1bfjy0xw32n24hj"))))
-    (build-system python-build-system)
+                "1bmm52na3p9fyh8im9bn6ylfwzr1mbvhn1v71zssb814hwwgzxlw"))))
+    (build-system pyproject-build-system)
     (arguments
      (list
-           ;; NOTE: (Sharlatan-20220705T212541+0100): Failing for now
-           ;;
-           ;; ImportError: cannot import name 'cdrizzle' from 'drizzle'
-           ;;
-           #:tests? #f
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "pytest" "-vv" "drizzle/tests")))))))
+      ;; NOTE: (Sharlatan-20220705T212541+0100): Failing for now
+      ;;
+      ;; ImportError: cannot import name 'cdrizzle' from 'drizzle'
+      ;;
+      #:tests? #f))
     (propagated-inputs (list python-astropy python-numpy))
-    (native-inputs (list python-coverage python-flake8 python-pytest
-                         python-pytest-cov python-setuptools-scm))
+    (native-inputs (list python-coverage
+                         python-flake8
+                         python-pytest
+                         python-pytest-cov
+                         python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/drizzle")
-    (synopsis
-     "Astronomical tool for combining dithered images into a single image")
+    (synopsis "Astronomical tool for combining dithered images into a single image")
     (description
-     "This package provides a package for combining dithered images into a single
-image")
+     "The drizzle library is a Python package for combining dithered images into
+a single image.  This library is derived from code used in DrizzlePac.  Like
+DrizzlePac, most of the code is implemented in the C language.  The biggest
+change from DrizzlePac is that this code passes an array that maps the input to
+output image into the C code, while the DrizzlePac code computes the mapping by
+using a Python callback.  Switching to using an array allowed the code to be
+greatly simplified.")
     (license license:bsd-3)))
 
 ;; 20220706T114426+0100
