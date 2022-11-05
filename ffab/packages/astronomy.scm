@@ -1342,7 +1342,7 @@ spherical polygons that represent arbitrary regions of the sky.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; NOTE: (Sharlatan-20220705T212541+0100): Failing for now
+      ;; FIXME: (Sharlatan-20220705T212541+0100): Failing for now
       ;;
       ;; ImportError: cannot import name 'cdrizzle' from 'drizzle'
       ;;
@@ -1416,22 +1416,24 @@ telescopes.")
               (sha256
                (base32
                 "0xhfavsgwpxzqg1w6pm43c9mribxfj2c2p0wd8iq19b3ip4yhx84"))))
-    (build-system python-build-system)
+    (build-system pyproject-build-system)
     (arguments
-     (list #:tests? #f
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "pytest" "-vv")))))))
+     (list
+      ;; FIXME: (Sharlatan-20221105T232147+0000): Tests fail with deprecation warning
+      ;;
+      ;; astropy.utils.exceptions.AstropyDeprecationWarning: The
+      ;; enable_deprecations_as_exceptions function is deprecated and may be
+      ;; removed in a future version.
+      ;;
+      #:tests? #f))
     (propagated-inputs (list python-astropy python-numpy python-scipy))
     (native-inputs (list python-pytest python-pytest-astropy
                          python-setuptools-scm))
-    (home-page "https://www.github.com/spacetelescope/synphot_refactor")
-    (synopsis "Synthetic photometry")
-    (description "Synthetic photometry")
+    (home-page "https://github.com/spacetelescope/synphot_refactor")
+    (synopsis "Synthetic photometry using Astropy")
+    (description "This package provides a replacement for IRAF STSDAS SYNPHOT and ASTROLIB
+PYSYNPHOT, utilizing Astropy and covering the non-instrument specific portions
+of the old packages.")
     (license license:bsd-3)))
 
 ;; 20220706T213133+0100
