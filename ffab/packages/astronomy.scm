@@ -1122,27 +1122,36 @@ Webb Space Telescope}")
 (define-public python-roman-datamodels
   (package
     (name "python-roman-datamodels")
-    (version "0.12.2")
+    (version "0.13.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "roman_datamodels" version))
               (sha256
                (base32
-                "0ncmdnz9zz0w1g5n3a3c73x3apzbvxabckymbgqpd8xng7ybjrxb"))))
-    (build-system python-build-system)
-    (propagated-inputs (list python-asdf
-                             python-asdf-astropy
+                "1ywispjkhp0hdlagjzrqfs11gn1fklc8ky6hfhfz5nl2g3hpwmax"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-asdf-2.13
+                             python-asdf-astropy-0.2
                              python-astropy
                              python-jsonschema
                              python-numpy
                              python-psutil
                              python-rad))
-    (native-inputs (list python-pytest python-pytest-doctestplus
-                         python-pytest-openfiles))
+    (native-inputs (list python-pytest
+                         python-pytest-doctestplus
+                         python-pytest-openfiles
+                         python-semantic-version))
     (home-page "https://github.com/spacetelescope/roman_datamodels")
     (synopsis "Roman Datamodels")
-    (description "Roman Datamodels")
-    (license #f)))
+    (description
+     "This package provides Python Roman Datamodels for the calibration pipelines
+started with the JWST calibration pipelines.  The goal for the JWST pipelines was
+motivated primarily by the need to support FITS data files, specifically with
+isolating the details of where metadata and data were located in the FITS file
+from the representation of the same items within the Python code.  That is not a
+concern for Roman since FITS format data files will not be used by the Roman
+calibration pipelines.")
+    (license license:bsd-3)))
 
 ;; 20220513T220144+0100
 (define-public python-rad
