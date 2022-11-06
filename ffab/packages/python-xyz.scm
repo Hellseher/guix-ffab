@@ -326,3 +326,22 @@ asciicast demo of parfive parfive works by creating a downloader object,
 appending files to it and then running the download. parfive has a synchronous
 API, but uses asyncio to paralellise downloading the files.")
     (license license:expat)))
+
+;; TODO: (Sharlatan-20221106T222002+0000): Validate the source
+;;
+;; 20221106T215206+0000
+(define-public python-getch
+  (package
+    (name "python-getch")
+    (version "1.0")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "getch" version))
+              (sha256
+               (base32
+                "1cfqi5h0z6anx4xsg576fl8mnw5gf6qxsyzvp1jwwl80q4bjghm6"))))
+    (build-system python-build-system)
+    (home-page "http://pypi.python.org/pypi/getch")
+    (synopsis "Does single char input, like C getch/getche")
+    (description "Does single char input, like C getch/getche")
+    (license #f)))
