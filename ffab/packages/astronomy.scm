@@ -1701,8 +1701,10 @@ using (multivariate) polynomials.")
 
 ;;+end-spacetelescope
 
+;; TODO: (Sharlatan-20221106T122819+0000): failing build or check write lib
+;;
 ;;20220523T223656+0100
-(define-public python2-sphere
+(define python2-sphere
   (let ((commit "24c99dda4621b2ad77e811e6ff197fa0697f32ba")
         (revision "1"))
     (package
@@ -2002,6 +2004,7 @@ used with local NetDRMS sites.")
     (build-system gnu-build-system)
     (home-page "http://ebfformat.sourceforge.net/")
     (synopsis "Efficient Binary Format C/C++ library")
+    ;; TODO: (Sharlatan-20221106T121832+0000): Need more info here
     (description "")
     (license license:gpl2)))
 
