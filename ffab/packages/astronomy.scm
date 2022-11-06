@@ -1735,6 +1735,64 @@ using (multivariate) polynomials.")
     (description "Thi package provide STScI Jenkis CI/CD helper.")
     (license license:bsd-3)))
 
+;; 20220513T172614+0100
+(define-public python-crds
+  (package
+    (name "python-crds")
+    (version "11.16.16")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "crds" version))
+              (sha256
+               (base32
+                "08xfxjlk7wgzdkbr4w07rpcdrkqahcib0xfg6agy7svir9mwypbp"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; FIXME: (Sharlatan-20221106T001035+0000): Failing tests, missing config
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+            ;; FIXME: (Sharlatan-20221106T001001+0000): Requirement.parse('jsonschema<4.10.0,>=4.0.1'), {'asdf'})
+            (delete 'sanity-check))))
+    (propagated-inputs (list ;awscli
+                             ;; python-jwst ;; circular dependency
+                             python-asdf-2.13
+                             python-astropy
+                             python-boto3
+                             python-filelock
+                             python-lxml
+                             python-numpy
+                             python-parsley
+                             python-pysynphot
+                             python-roman-datamodels
+                             python-stsynphot
+                             python-requests))
+    (native-inputs (list python-bandit
+                         python-flake8
+                         python-ipython
+                         python-lockfile
+                         python-mock
+                         python-nose
+                         python-pylint
+                         python-pytest
+                         python-semantic-version
+                         python-setuptools-scm))
+    (home-page "https://hst-crds.stsci.edu")
+    (synopsis "Calibration Reference Data System for HST and JWST")
+    (description
+     "CRDS is a package used for working with astronomical reference files for
+the HST and JWST telescopes.  CRDS is useful for performing various operations on
+reference files or reference file assignment rules.  CRDS is used to assign,
+check, and compare reference files and rules, and also to predict those datasets
+which should potentially be reprocessed due to changes in reference files or
+assignment rules.  CRDS has versioned rules which define the assignment of
+references for each type and instrument configuration.  CRDS has web sites
+corresponding to each project (http://hst-crds.stsci.edu or
+https://jwst-crds.stsci.edu/) which record information about reference files and
+provide related services.")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;; TODO: (Sharlatan-20221106T122819+0000): failing build or check write lib
@@ -1795,64 +1853,6 @@ using (multivariate) polynomials.")
 in Herschel Common Science System (HCSS).  HCSS was the all encompassing software
 system for the operations and analysis of the ESA satelite Herschel.")
     (license license:gpl3+)))
-
-;; 20220513T172614+0100
-(define-public python-crds
-  (package
-    (name "python-crds")
-    (version "11.16.16")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "crds" version))
-              (sha256
-               (base32
-                "08xfxjlk7wgzdkbr4w07rpcdrkqahcib0xfg6agy7svir9mwypbp"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; FIXME: (Sharlatan-20221106T001035+0000): Failing tests, missing config
-      #:tests? #f
-      #:phases
-      #~(modify-phases %standard-phases
-            ;; FIXME: (Sharlatan-20221106T001001+0000): Requirement.parse('jsonschema<4.10.0,>=4.0.1'), {'asdf'})
-            (delete 'sanity-check))))
-    (propagated-inputs (list ;awscli
-                             ;; python-jwst ;; circular dependency
-                             python-asdf-2.13
-                             python-astropy
-                             python-boto3
-                             python-filelock
-                             python-lxml
-                             python-numpy
-                             python-parsley
-                             python-pysynphot
-                             python-roman-datamodels
-                             python-stsynphot
-                             python-requests))
-    (native-inputs (list python-bandit
-                         python-flake8
-                         python-ipython
-                         python-lockfile
-                         python-mock
-                         python-nose
-                         python-pylint
-                         python-pytest
-                         python-semantic-version
-                         python-setuptools-scm))
-    (home-page "https://hst-crds.stsci.edu")
-    (synopsis "Calibration Reference Data System for HST and JWST")
-    (description
-     "CRDS is a package used for working with astronomical reference files for
-the HST and JWST telescopes.  CRDS is useful for performing various operations on
-reference files or reference file assignment rules.  CRDS is used to assign,
-check, and compare reference files and rules, and also to predict those datasets
-which should potentially be reprocessed due to changes in reference files or
-assignment rules.  CRDS has versioned rules which define the assignment of
-references for each type and instrument configuration.  CRDS has web sites
-corresponding to each project (http://hst-crds.stsci.edu or
-https://jwst-crds.stsci.edu/) which record information about reference files and
-provide related services.")
-    (license license:bsd-3)))
 
 ;; 20220518T205203+0100
 ;; (define-public calceph
