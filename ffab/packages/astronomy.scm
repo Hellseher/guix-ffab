@@ -1699,6 +1699,42 @@ optimal \"matching\" of weighted N-dimensional image intensity data
 using (multivariate) polynomials.")
     (license license:bsd-3)))
 
+;; 20221106T220436+0000
+(define-public python-ci-watson
+  (package
+    (name "python-ci-watson")
+    (version "0.6.1")
+    (source
+     (origin
+       ;; The source distributed on PyPI is outdated.
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/spacetelescope/ci_watson")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1zfysc16avxb90gfihwfbh393r6zj013fg9ca8wh3yvxqjjkhllz"))))
+    (arguments
+     (list
+      #:phases #~(modify-phases %standard-phases
+                   (add-before 'build 'set-version
+                     (lambda _
+                       ;; NOTE: (Sharlatan-20221023T220057+0100): Update
+                       ;; to valid version when release is availalbe.
+                       (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.6.1"))))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-astropy))
+    (native-inputs (list ;python-astropy-header
+                    python-crds
+                    python-pytest
+                    python-requests
+                    python-semantic-version
+                    python-setuptools-scm))
+    (home-page "https://ci-watson.readthedocs.io/")
+    (synopsis "CI helper for STScI Jenkins")
+    (description "Thi package provide STScI Jenkis CI/CD helper.")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;; TODO: (Sharlatan-20221106T122819+0000): failing build or check write lib
