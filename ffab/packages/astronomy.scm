@@ -1662,6 +1662,32 @@ behaviour of the IRAF's")
     (description "Image array manipulation functions")
     (license #f)))
 
+;; 20221106T092616+0000
+(define-public python-wiimatch
+  (package
+    (name "python-wiimatch")
+    (version "0.3.1")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "wiimatch" version))
+              (sha256
+               (base32
+                "0x6p5z6a2cqinckwlpinjxagvmswl149s1jn6ihmdxk4k0h8rrz0"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-numpy python-scipy))
+    (native-inputs (list python-codecov
+                         python-pytest
+                         python-pytest-cov
+                         python-pytest-doctestplus
+                         python-setuptools-scm))
+    (home-page "https://github.com/spacetelescope/wiimatch")
+    (synopsis "Optimal \"matching\" of weighted N-dimensional image intensity data")
+    (description
+     "@code{wiimatch} is a package that provides core computational algorithms for
+optimal \"matching\" of weighted N-dimensional image intensity data
+using (multivariate) polynomials.")
+    (license license:bsd-3)))
+
 ;;+end-spacetelescope
 
 ;;20220523T223656+0100
