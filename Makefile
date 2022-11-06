@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-01 Tue 20:37:07 GMT>
+# Modified : <2022-11-06 Sun 23:18:59 GMT>
 
 # TODO: (Sharlatan-20221026T202843+0100): Find the way how to re-build versioned
 # package e.g. python-pytest-7.1, exclude them for now.
@@ -14,7 +14,7 @@ PKGS_GOLANG ?= $(shell grep "^.define-public" ffab/packages/golang*.scm | cut -d
 
 # Add each group of packages to this macros when all pending changes are
 # completed in corresponded WIP branch.
-PKGS := $(PKGS_PYTHON)
+PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY)
 
 GUIX_FLAGS ?= --load-path=./
 GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --rounds=2 --cores=0
@@ -25,12 +25,12 @@ GUIX_REFRESH_FLAGS ?= $(GUIX_FLAGS)
 # commit, update on any major changes.
 #
 # As seen in `guix describe`:
-# Generation 351  Nov 01 2022 20:35:02    (current)
-#   guix d0917d7
+# Generation 354  Nov 06 2022 23:18:05    (current)
+#   guix 4a34da8
 #     repository URL: https://git.savannah.gnu.org/git/guix.git
 #     branch: master
-#     commit: d0917d778284ee7d70bc80b0538e3b4ae67870f4
-GUIX_COMMIT ?= d0917d778284ee7d70bc80b0538e3b4ae67870f4
+#     commit: 4a34da845ed91821d38ba8a9b65ad650dd7488d1
+GUIX_COMMIT ?= 4a34da845ed91821d38ba8a9b65ad650dd7488d1
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
@@ -61,6 +61,8 @@ list:
 	$(info :golang $(words $(PKGS_GOLANG)))
 	$(info :lisp $(words $(PKGS_LISP)))
 	$(info :python $(words $(PKGS_PYTHON)))
+	@echo
+	@echo :date $$(date)
 
 .PHONY: lint
 lint:

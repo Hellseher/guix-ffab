@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-04 Fri 22:14:15 GMT>
+#+modified: <2022-11-06 Sun 22:45:10 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [2/15][13%]
+* Flow [3/18][16%]
 ** TODO aio-libs [0/1][0%] :author:
 - https://github.com/aio-libs
 
@@ -93,6 +93,14 @@ Guix upstream.
       - [X] python-tldextract
       - [X] python-pytest
       - [X] python-pytest-cov
+** TODO Libsharp [0/1][0%] :author:
+- https://github.com/Libsharp
+*** TODO libsharp [2/4][50%] :p5:
+- https://github.com/Libsharp/libsharp
+- [X] :packed <2022-10-30 Sun>
+- [X] :patch-sent <2022-10-30 Sun>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/58907
 ** TODO Martiusweb [0/1][0%] :author:
 - https://github.com/Martiusweb
 
@@ -121,6 +129,19 @@ Guix upstream.
 - [X] :packed <2022-06-21 Tue>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
+
+** TODO opencv [0/1][0%] :author:
+- https://github.com/opencv
+*** TODO opencv-python [0/4][0%] :p1:
+- https://github.com/opencv/opencv-python
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0/0]
+** DONE osvenskan [1/1][100%] :author:
+*** DONE posix-ipc [/][%]
+- https://github.com/osvenskan/posix_ipc
+- [X] :packed <2022-07-27 Wed>
 
 ** TODO pohmelie [0/1][0%] :author:
 https://github.com/pohmelie
@@ -172,7 +193,7 @@ https://github.com/pohmelie
 ** TODO StdCarrot [0/1][0%] :author:
     - https://github.com/StdCarrot
 
-*** TODO Py3AMF [/][%] :author:
+*** TODO Py3AMF [8/12][66%] :author:
     - https://github.com/StdCarrot/Py3AMF
     - [X] :packed <2022-04-24 Sun>
     - [ ] :patch-sent
@@ -197,7 +218,7 @@ https://github.com/pohmelie
   - [X] python-setuptools-scm
   - [X] python-tqdm
 
-** TODO SunPy [0/1][0%] :author:p2:
+** TODO SunPy [0/0][0%] :author:p2:
 - https://sunpy.org/
 - https://github.com/sunpy
 
@@ -214,7 +235,6 @@ https://github.com/pohmelie
   - [X] python-astropy
   - [X] python-matplotlib
   - [X] python-numpy
-
 ** TODO webrecorder [0/1][0%] :author:p2:
 
 *** TODO pywb [1/4][25%]
