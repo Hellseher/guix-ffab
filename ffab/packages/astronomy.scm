@@ -1660,7 +1660,7 @@ behaviour of the IRAF's")
     (home-page "https://github.com/spacetelescope/stsci.image")
     (synopsis "Image array manipulation functions")
     (description "Image array manipulation functions")
-    (license #f)))
+    (license license:bsd-3)))
 
 ;; 20221106T092616+0000
 (define-public python-wiimatch
