@@ -948,6 +948,30 @@ various techniques via a uniform interface, where reprojection is the
 re-gridding of images from one world coordinate system to another e.g.
 changing the pixel resolution, orientation, coordinate system.")
     (license license:bsd-3)))
+
+;; 20221107T133138+0000
+(define-public python-astroplan
+  (package
+    (name "python-astroplan")
+    (version "0.8")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "astroplan" version))
+              (sha256
+               (base32
+                "1ixx8q4ya7af4br9rs1jmhpivsb0zwqgi7iryxc5ykq39r3n7i0c"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; FIXME: (Sharlatan-20221107T133443+0000): Failing tests
+      #:tests? #f))
+    (propagated-inputs (list python-astropy python-numpy python-pytz python-six))
+    (native-inputs (list python-pytest-astropy))
+    (home-page "https://github.com/astropy/astroplan")
+    (synopsis "Observation planning package for astronomers")
+    (description "Observation planning package for astronomers")
+    (license license:bsd-3)))
+
 ;;+end-astropy
 
 ;; https://github.com/jobovy

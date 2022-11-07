@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-06 Sun 22:54:02 GMT>
+#+modified: <2022-11-07 Mon 13:40:23 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -245,7 +245,7 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO astropy [1/3][33%] :author:
+** TODO astropy [1/4][25%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -379,6 +379,17 @@ CLOSED: [2021-11-08 Mon 20:41]
 *** TODO specutils [/][%]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
+*** TODO astroplan [1/4][25%]
+- https://github.com/astropy/astroplan
+- [ ] :packed <2022-11-07 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-pytz
+  - [X] python-six
+  - [X] python-pytest-astropy
 ** TODO ATNF [0/1][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
