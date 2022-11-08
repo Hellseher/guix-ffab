@@ -655,16 +655,17 @@ planetarium.")
     (home-page "https://asdf-standard.readthedocs.io/")
     (synopsis "ASDF standard schemas")
     (description
-     "This package provides Python implementation of ASDF (Advanced Scientific Data
-Format) - a proposed next generation interchange format for scientific data.
-ASDF aims to exist in the same middle ground that made FITS so successful, by
-being a hybrid text and binary format: containing human editable metadata for
-interchange, and raw binary data that is fast to load and use. Unlike FITS, the
-metadata is highly structured and is designed up-front for extensibility.")
+     "This package provides Python implementation of @acronym{ASDF, Advanced
+Scientific Data Format} - a proposed next generation interchange format for
+scientific data.  ASDF aims to exist in the same middle ground that made FITS
+so successful, by being a hybrid text and binary format: containing human
+editable metadata for interchange, and raw binary data that is fast to load
+and use.  Unlike FITS, the metadata is highly structured and is designed
+up-front for extensibility.")
     (license license:bsd-3)))
 
 ;; 20221023T225444+0100
-(define-public python-asdf-unit-schemas
+(define python-asdf-unit-schemas
   (package
     (name "python-asdf-unit-schemas")
     (version "0.1.0")
@@ -683,68 +684,74 @@ metadata is highly structured and is designed up-front for extensibility.")
     (propagated-inputs (list python-asdf-standard python-importlib-resources))
     (home-page "https://asdf-unit-schemas.readthedocs.io/")
     (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
-    (description
-     "This package provides ASDF schemas for validating unit tags.")
+    (description "This package provides ASDF schemas for validating unit tags.")
     (license license:bsd-3)))
 
 ;; 20221023T225455+0100
-(define-public python-asdf-fits-schemas
-  ;; No relese
+(define python-asdf-fits-schemas
+  ;; TODO: (Sharlatan-20221107T212819+0000): No release, change to tag when it's ready.
   (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
-        (revision "2"))
+        (revision "0"))
     (package
       (name "python-asdf-fits-schemas")
       (version (git-version "0.0.1" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/asdf-format/asdf-fits-schemas")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/asdf-format/asdf-fits-schemas")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32
+           "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
       (build-system pyproject-build-system)
       (arguments
-       (list #:tests? #f ; Dependencies cycle with python-asdf
-             #:phases #~(modify-phases %standard-phases
-                          (add-before 'build 'set-version
-                            (lambda _
-                              ;; NOTE: (Sharlatan-20221023T220057+0100): Update
-                              ;; to valid version when release is availalbe.
-                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
+       ;; Dependencies cycle with python-asdf
+       (list
+        #:tests? #f
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'set-version
+              (lambda _
+                ;; NOTE: (Sharlatan-20221023T220057+0100): Update
+                ;; to valid version when release is availalbe.
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
       (native-inputs (list python-setuptools-scm))
       (propagated-inputs (list python-asdf-standard python-importlib-resources))
       (home-page "https://github.com/asdf-format/asdf-fits-schemas")
       (synopsis "ASDF schemas to support the FITS format")
-      (description
-       "This package provides ASDF schemas for validating FITS tags.")
+      (description "This package provides ASDF schemas for validating FITS tags.")
       (license license:bsd-3))))
 
 ;; 20221023T225504+0100
 (define-public python-asdf-time-schemas
-  ;; No release
+  ;; TODO: (Sharlatan-20221107T214641+0000): No release, change to tag when it's ready.
   (let ((commit "e9174083d9cfd3c6f7ded9eeb360d99ccb8d9d18")
         (revision "2"))
     (package
       (name "python-asdf-time-schemas")
       (version (git-version "0.0.1" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/asdf-format/asdf-time-schemas")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "1i40hcxp8sds2zq939fwczjlshfqb9r9pnzy3a44c3wqdbwhcbdb"))))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/asdf-format/asdf-time-schemas")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32
+           "1i40hcxp8sds2zq939fwczjlshfqb9r9pnzy3a44c3wqdbwhcbdb"))))
       (build-system pyproject-build-system)
       (arguments
-       (list #:tests? #f ;Dependencies cycle with python-asdf
-             #:phases #~(modify-phases %standard-phases
-                          (add-before 'build 'set-version
-                            (lambda _
-                              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
+       (list
+        ;; Dependencies cycle with python-asdf
+        #:tests? #f
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'set-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
       (native-inputs (list python-setuptools-scm))
       (propagated-inputs (list python-asdf-standard
                                python-asdf-unit-schemas
@@ -755,23 +762,22 @@ metadata is highly structured and is designed up-front for extensibility.")
       (license license:bsd-3))))
 
 ;; 20221023T225515+0100
-(define-public python-asdf-transform-schemas-0.3
+(define python-asdf-transform-schemas-0.3
   (package
     (name "python-asdf-transform-schemas")
     (version "0.3.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "asdf_transform_schemas" version))
-              (sha256
-               (base32
-                "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_transform_schemas" version))
+       (sha256
+        (base32 "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
+    (build-system pyproject-build-system)
     (arguments
      ;; Dependencies cycle with python-asdf
-     (list #:tests? #f ))
-    (build-system pyproject-build-system)
+     (list #:tests? #f))
     (native-inputs (list python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard
-                             python-importlib-resources))
+    (propagated-inputs (list python-asdf-standard python-importlib-resources))
     (home-page "https://github.com/asdf-format/asdf-transform-schemas")
     (synopsis "ASDF schemas for transforms")
     (description
@@ -789,12 +795,12 @@ package such as asdf-astropy.")
   (package
     (name "python-asdf")
     (version "2.13.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "asdf" version))
-              (sha256
-               (base32
-                "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf" version))
+       (sha256
+        (base32 "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
     (build-system pyproject-build-system)
     (arguments
      ;; FIXME: (Sharlatan-20221023T232214+0100): Tests fail a lot with
@@ -803,25 +809,27 @@ package such as asdf-astropy.")
      ;;
      (list
       #:tests? #f))
-    (native-inputs (list python-packaging
-                         python-astropy
-                         python-psutil
-                         python-pytest
-                         python-pytest-doctestplus
-                         python-pytest-openfiles
-                         python-pytest-remotedata
-                         python-semantic-version
-                         python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard
-                             python-asdf-transform-schemas-0.3
-                             python-asdf-unit-schemas
-                             python-importlib-metadata
-                             python-importlib-resources
-                             python-jmespath
-                             python-jsonschema-next
-                             python-lz4
-                             python-numpy
-                             python-pyyaml))
+    (native-inputs
+     (list python-astropy
+           python-packaging
+           python-psutil
+           python-pytest
+           python-pytest-doctestplus
+           python-pytest-openfiles
+           python-pytest-remotedata
+           python-semantic-version
+           python-setuptools-scm))
+    (propagated-inputs
+     (list python-asdf-standard
+           python-asdf-transform-schemas-0.3
+           python-asdf-unit-schemas
+           python-importlib-metadata
+           python-importlib-resources
+           python-jmespath
+           python-jsonschema-next
+           python-lz4
+           python-numpy
+           python-pyyaml))
     (home-page "https://github.com/asdf-format/asdf")
     (synopsis "Python tools to handle ASDF files")
     (description

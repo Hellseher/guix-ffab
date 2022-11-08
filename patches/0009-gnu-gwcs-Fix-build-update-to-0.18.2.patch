@@ -1,0 +1,51 @@
+From 3da70b749b59a6e1355861b74de1c7725e45989a Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Nov 2022 22:47:44 +0000
+Subject: [PATCH 9/9] gnu: gwcs: Fix build, update to 0.18.2
+
+* gnu/packages/astronomy.scm (python-gwcs): Fix build and update to 0.18.2.
+  [build-system]: Use pyproject-build-system.
+  [arguments]: Remove redundant.
+  [native-inputs]: Use python-jsonschema-next over python-jsonschema to
+  fix tests failing to run due to python-asdf issue with low version of
+  jsonschema, see https://github.com/asdf-format/asdf/pull/1203.
+---
+ gnu/packages/astronomy.scm | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ead5c39f46..b820494407 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2226,24 +2226,16 @@ (define python-asdf-wcs-schemas
+ (define-public python-gwcs
+   (package
+     (name "python-gwcs")
+-    (version "0.18.0")
++    (version "0.18.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "gwcs" version))
+        (sha256
+-        (base32 "194j49m8xjjzv9pp8cnj06igz8sdxb0nphyybcc7mhigw0f0kr30"))))
+-    (build-system python-build-system)
+-    (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (replace 'check
+-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+-             (when tests?
+-               (add-installed-pythonpath inputs outputs)
+-               (invoke "python" "-m" "pytest")))))))
++        (base32 "0v9qcq6zl74d6s882s6xmas144jfalvll6va8rvrxmvpx4vqjzhg"))))
++    (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-jsonschema
++     (list python-jsonschema-next
+            python-jmespath
+            python-pytest
+            python-pytest-doctestplus
+-- 
+2.38.0
+

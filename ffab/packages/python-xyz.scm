@@ -209,123 +209,19 @@ easy construction of interactive matplotlib widget based animations.")
     (license license:bsd-3)))
 
 ;; 20221012T205858+0100
-(define-public python-siosocks
-  (package
-    (name "python-siosocks")
-    (version "0.3.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "siosocks" version))
-              (sha256
-               (base32
-                "0qqxy8wl5mrmlkblzjq9nsg0cbm5jwgj409mhnhq6gd1ypvbndms"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "pytest" "-vvv")))))))
-    (native-inputs (list python-pytest python-pytest-asyncio-ffab python-pytest-cov
-                         python-pytest-trio))
-    (propagated-inputs (list python-trio))
-    (home-page "https://github.com/pohmelie/siosocks")
-    (synopsis "SOCKSv4 & SOCKSv5 TCP proxy protocol implementation in Python")
-    (description
-     "This package provides a Python module and framework for sans-io socks proxy
-client/server with couple io backends.
-
-Features:
-@itemize
-@item Only TCP connect (no BIND, no UDP)
-@item Both client and server
-@item SOCKS versions: 4, 4a, 5
-@item SOCKSv5 auth: no auth, username/password
-@item Couple io backends: @code{asyncio}, @code{trio}, @code{socketserver}
-@item One-shot socks server (@code{python -m siosocks})
-@end itemize")
-    (license license:expat)))
+;; (define-public python-siosocks
+;; added-to-upstream 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
+;; CommitDate: Mon Nov 7 20:29:18 2022 +0100
 
 ;; 20221011T224747+0100
-(define-public python-aioftp
-  (package
-    (name "python-aioftp")
-    (version "0.21.4")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "aioftp" version))
-              (sha256
-               (base32
-                "1f8vql2j2b3ykqyh5bxzsp8x5f2if2c1ya232ld3hz3cc7a2dfr8"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "pytest" "-vvv")))))))
-    (native-inputs (list python-async-timeout
-                         python-pytest
-                         python-pytest-asyncio-ffab
-                         python-pytest-cov
-                         python-trustme))
-    (propagated-inputs (list python-siosocks))
-    (home-page "https://aioftp.readthedocs.io/")
-    (synopsis "FTP client/server for asyncio in Python")
-    (description
-     "FTP client and server for asyncio (Python 3) Library implementing FTP
-protocol, both client and server for Python asyncio module.
-
- Supported commands as client: USER, PASS, ACCT, PWD, CWD, CDUP, MKD, RMD,
- MLSD, MLST, RNFR, RNTO, DELE, STOR, APPE, RETR, TYPE, PASV, ABOR, QUIT,
- REST, LIST (as fallback).
-
- Supported commands as server: USER, PASS, QUIT, PWD, CWD, CDUP, MKD, RMD,
- MLSD, LIST (non-standard), MLST, RNFR, RNTO, DELE, STOR, RETR,
- TYPE (\"I\" and \"A\"), PASV, ABOR, APPE, REST.")
-    (license license:asl2.0)))
+;; (define-public python-aioftp
+;; added-to-upstream b0db0b2b2d3c6d5fecb6c7727b3173c21b896540
+;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; 20221010T225525+0100
-(define-public parfive
-  (package
-    (name "parfive")
-    (version "2.0.1")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "parfive" version))
-              (sha256
-               (base32
-                "19dcbb6g56l5s3ih0bhs3p4acgc0gf4zdzpj4w87m69li2nhmgpx"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (add-before 'check 'disable-test-requiring-network
-                          (lambda _
-                            (substitute* "parfive/tests/test_downloader.py"
-                              (("def test_ftp")
-                               "def __off_test_ftp"))))
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "python" "-m" "pytest" "-vvv" "parfive")))))))
-    (propagated-inputs (list python-aiofiles python-aioftp python-aiohttp python-tqdm))
-    (native-inputs (list python-pytest
-                         python-pytest-asyncio
-                         python-pytest-cov
-                         python-pytest-localserver
-                         python-pytest-socket
-                         python-setuptools-scm))
-    (home-page "https://parfive.readthedocs.io/")
-    (synopsis "HTTP and FTP parallel file downloader")
-    (description
-     "This package provides CLI tool and Python library @code{parallel} file
-downloader using asyncio. parfive can handle downloading multiple files in
-parallel as well as downloading each file in a number of chunks.
-
-asciicast demo of parfive parfive works by creating a downloader object,
-appending files to it and then running the download. parfive has a synchronous
-API, but uses asyncio to paralellise downloading the files.")
-    (license license:expat)))
+;; (define-public parfive
+;; added-to-upstream 472917ea6c479b3546ffaea02f755ed9c6e8d46b
+;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; TODO: (Sharlatan-20221106T222002+0000): Validate the source
 ;;

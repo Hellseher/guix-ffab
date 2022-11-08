@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-06 Sun 22:45:10 GMT>
+#+modified: <2022-11-08 Tue 11:14:52 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,15 +15,17 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [3/18][16%]
-** TODO aio-libs [0/1][0%] :author:
+* Flow [7/18][38%]
+** DONE aio-libs [1/1][100%] :author:
+CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
 
-*** TODO aioftp [3/4][75%]
+*** DONE aioftp [4/4][100%]
+CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs/aioftp
 - [X] :packed <2022-10-11 Tue>
 - [X] :patch-sent <2022-10-14 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-07 Mon>
   - https://issues.guix.gnu.org/58530
 - [X] :inputs [6/6][100%]
   - [X] python-async-timeout
@@ -32,6 +34,7 @@ Guix upstream.
   - [X] python-pytest-cov
   - [X] python-trustme
   - [X] python-siosocks
+    - [X] :packed <2022-10-12 Wed>
 
 ** TODO brandon-rhodes [0/1][0%] :author:p5:
 *** TODO assay [2/3][66%]
@@ -40,26 +43,30 @@ Guix upstream.
 - [X] :patch-sent <2021-06-18 Fri>
 - [ ] :paptch-applied-upstream
 
-** TODO Cadair [0/1][0%] :author:
+** DONE Cadair [1/1][100%] :author:
+CLOSED: [2022-11-08 Tue 11:08]
 - https://github.com/Cadair
 - http://stuartmumford.uk/
 
-*** TODO parfive [3/4][75%]
+*** DONE parfive [4/4][100%]
+CLOSED: [2022-11-08 Tue 10:58]
 - https://github.com/Cadair/parfive
 - synopsis :: asyncio based parallel file downloader
 - [X] :packed <2022-10-10 Mon>
 - [X] :patch-sent <2022-10-14 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-07 Mon>
   - https://issues.guix.gnu.org/58530
 - [X] :inputs [10/10][100%]
   - [X] python-aiofiles
   - [X] python-aioftp
+    - [X] :packed <2022-10-11 Tue>
   - [X] python-aiohttp
   - [X] python-pytest
   - [X] python-pytest-asyncio
   - [X] python-pytest-cov
   - [X] python-pytest-localserver
   - [X] python-pytest-socket
+    - [X] :packed <2022-10-06 Thu 01:47>
   - [X] python-setuptools-scm
   - [X] python-tqdm
 
@@ -111,16 +118,26 @@ Guix upstream.
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [/][%]
 
-** TODO miketheman [0/1][0%] :author:
+** DONE miketheman [1/1][100%] :author:
+CLOSED: [2022-11-08 Tue 11:14]
 - https://github.com/miketheman
 - https://mike.fiedler.me/
 - author :: Mike Fiedler
-*** TODO pytest-socket [1/3][33%]
+*** DONE pytest-socket [4/4][100%]
+CLOSED: [2022-11-08 Tue 11:02]
 - https://github.com/miketheman/pytest-socket
 - [X] :packed <2022-10-06 Thu 01:47>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :patch-sent
+- [X] :paptch-applied-upstream <2022-11-07 Mon>
+  - https://issues.guix.gnu.org/58530
+- [X] :inputs [7/7][100%]
+  - [X] python-httpx
+  - [X] python-poetry-core
+  - [X] python-pypa-build
+  - [X] python-pytest
+  - [X] python-pytest-httpbin
+  - [X] python-pytest-randomly
+  - [X] python-starlette
 
 ** TODO niltonvolpato [0/1][0%] :author:
 - https://github.com/niltonvolpato
@@ -143,14 +160,16 @@ Guix upstream.
 - https://github.com/osvenskan/posix_ipc
 - [X] :packed <2022-07-27 Wed>
 
-** TODO pohmelie [0/1][0%] :author:
+** DONE pohmelie [1/1][100%] :author:
+CLOSED: [2022-11-08 Tue 11:06]
 https://github.com/pohmelie
 
-*** TODO siosocks [3/4][75%]
+*** DONE siosocks [4/4][100%]
+CLOSED: [2022-11-08 Tue 11:06]
 - https://github.com/pohmelie/siosocks
 - [X] :packed <2022-10-12 Wed>
 - [X] :patch-sent <2022-10-14 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-07 Mon>
   - https://issues.guix.gnu.org/58530
 - [X] :inputs [5/5][100%]
   - [X] python-pytest

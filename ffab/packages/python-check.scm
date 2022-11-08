@@ -88,55 +88,6 @@ and cuts down boilerplate code when testing libraries for asyncio.")
     (license license:asl2.0)))
 
 ;; 20221006T014754+0100
-(define-public python-pytest-socket
-  (package
-    (name "python-pytest-socket")
-    (version "0.5.1")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "pytest-socket" version))
-              (sha256
-               (base32
-                "1dkr86nxkxc0ka3rdnpmk335m8gl1zh1sy8i7w4w1jsidbf82jvw"))))
-    (build-system python-build-system)
-    (arguments
-     ;; FIXME: Tests fail a lot, probably requiring Internet access.
-     (list #:tests? #f
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'build
-                          (lambda _
-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
-                                    #$version)
-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
-                            (invoke "python"
-                                    "-m"
-                                    "build"
-                                    "--wheel"
-                                    "--no-isolation"
-                                    ".")))
-                        ;; XXX: test_asynctest depends on the project which is
-                        ;; not compatible with Python 3.8 and probably
-                        ;; abandoned.
-                        ;; https://github.com/miketheman/pytest-socket/issues/161
-                        (add-before 'check 'disable-unsupported-test
-                          (lambda _
-                            (substitute* "tests/test_async.py"
-                              (("def test_asynctest")
-                               "def __off_test_asynctest"))))
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "python" "-m" "pytest" "-vvv")))))))
-    (native-inputs (list python-httpx
-                         python-poetry-core
-                         python-pypa-build
-                         python-pytest
-                         python-pytest-httpbin
-                         python-pytest-randomly
-                         python-starlette))
-    (home-page "https://pypi.org/project/pytest-socket/")
-    (synopsis "Pytest plugin to disable socket calls during tests")
-    (description
-     "This package provides Pytest extension which disables all network calls flowing
-through Python's socket interface")
-    (license license:expat)))
+;; (define-public python-pytest-socket
+;; added-to-upstream c697ff964192f64dfc22927c09458852ace7dd9a
+;; CommitDate: Mon Nov 7 20:29:21 2022 +0100

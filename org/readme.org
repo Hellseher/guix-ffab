@@ -40,9 +40,9 @@ tree  -d ../
 11 directories
 #+end_src
 
-- issues.org :: Tracks all sent patches to <guix-patches@gnu.org>
-- TODO.md :: Generated report from packaging process in ~org/~ directory.
-- Makefile :: Contains CI aware lint and build targets with convenient tooling for local build.
+- ./issues.org :: Tracks all sent patches to <guix-patches@gnu.org>
+- ./TODO.md :: Generated report from packaging process in ~org/~ directory.
+- ./Makefile :: Contains CI aware lint and build targets with convenient tooling for local build.
 
 #+BEGIN_SRC sh :results value org :results output replace :exports results
 cd ../

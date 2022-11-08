@@ -1,0 +1,46 @@
+From e3fe4db757a06623c727cdf2a6e883749e677a04 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Nov 2022 21:27:07 +0000
+Subject: [PATCH 2/9] gnu: Add asdf-unit-schemas
+
+* gnu/packages/astronomy.scm (python-asdf-unit-schemas): New variable.
+---
+ gnu/packages/astronomy.scm | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 92a807a9a5..56eb9143b1 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2052,6 +2052,28 @@ (define python-asdf-coordinates-schemas
+ install an implementation package such as asdf-astropy.")
+     (license license:bsd-3)))
+ 
++(define python-asdf-unit-schemas
++  (package
++    (name "python-asdf-unit-schemas")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "asdf_unit_schemas" version))
++       (sha256
++        (base32
++         "16grpx3a9h0v1wirp0zqrfsxm867v5c0xyr98pylzziy45kqvds2"))))
++    (build-system pyproject-build-system)
++    (arguments
++     ;; Dependencies cycle with python-asdf
++     (list #:tests? #f))
++    (native-inputs (list python-setuptools-scm))
++    (propagated-inputs (list python-asdf-standard python-importlib-resources))
++    (home-page "https://asdf-unit-schemas.readthedocs.io/")
++    (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
++    (description "This package provides ASDF schemas for validating unit tags.")
++    (license license:bsd-3)))
++
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-- 
+2.38.0
+
