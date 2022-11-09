@@ -25,6 +25,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages web)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system pyproject)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -91,3 +92,40 @@ and cuts down boilerplate code when testing libraries for asyncio.")
 ;; (define-public python-pytest-socket
 ;; added-to-upstream c697ff964192f64dfc22927c09458852ace7dd9a
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
+
+;; 20221109T102829+0000
+(define-public python-nox
+  (package
+    (name "python-nox")
+    (version "2022.8.7")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "nox" version))
+       (sha256
+        (base32 "0jx3c0kh9r40d3nr7kvcvh5x8mfnlmy1j797z64w7i8xam04k28v"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'remove-github-actions-helper-tests
+            (lambda _
+              (delete-file "tests/test_action_helper.py"))))))
+    (propagated-inputs
+     (list python-argcomplete
+           python-colorlog
+           python-packaging
+           python-py
+           python-virtualenv))
+    (native-inputs
+     (list python-jinja2
+           python-pytest
+           python-tox))
+    (home-page "https://nox.thea.codes/")
+    (synopsis "Flexible test automation")
+    (description
+     "@code{nox} is a command-line tool that automates testing in multiple
+Python environments, similar to @code{tox}.  Unlike tox, Nox uses a standard
+Python file for configuration.")
+    (license license:asl2.0)))
