@@ -108,3 +108,23 @@ various layout options, hierarchical menu navigation, and mobile-friendly
 responsive design.  It is configurable, extensible, and can use any number of
 different Bootswatch CSS themes")
     (license license:expat)))
+
+;; 20221109T231725+0000
+(define-public python-sunpy-sphinx-theme
+  (package
+    (name "python-sunpy-sphinx-theme")
+    (version "1.2.36")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sunpy-sphinx-theme" version))
+       (sha256
+        (base32 "04zlb5343sw85kwrv5d69ij0yrs4n7n8macvdfql7sjadw3lkgi0"))))
+    (build-system python-build-system)
+    (propagated-inputs (list python-sphinx-bootstrap-theme))
+    (native-inputs (list python-setuptools-scm))
+    (home-page "https://github.com/sunpy/sunpy-sphinx-theme")
+    (synopsis "Sphinx theme for the SunPy website and documentation")
+    (description "This package contains the sphinx theme for the SunPy website and
+documentation.")
+    (license license:bsd-2)))
