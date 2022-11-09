@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-08 Tue 11:14:52 GMT>
+#+modified: <2022-11-09 Wed 09:38:11 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [7/18][38%]
+* Flow [7/20][35%]
 ** DONE aio-libs [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
@@ -117,6 +117,23 @@ CLOSED: [2022-11-08 Tue 10:58]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [/][%]
+
+** TODO Astropy [0/1][0%] :author:
+- https://docs.astropy.org/en/stable/io/fits/
+- https://www.astropy.org/affiliated/
+- https://github.com/astropy
+*** TODO sphinx-automodapi [2/4][50%]
+- https://github.com/astropy/sphinx-automodapi
+- synopsis :: Sphinx extension for auto-generating API documentation for entire modules
+- [X] :packed <2022-11-08 Tue 06:37>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-codecov
+  - [X] python-coverage
+  - [X] python-cython
+  - [X] python-pytest
+  - [X] python-pytest-cov
 
 ** DONE miketheman [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:14]
