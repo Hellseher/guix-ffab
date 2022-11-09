@@ -17,9 +17,11 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages sphinx)
+  #:use-module (ffab packages python-xyz)
   #:use-module (gnu packages check)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages python-build)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system python)
@@ -59,4 +61,27 @@ modules.  It was originally developed for the Astropy project but is now
 available as a standalone package since it can be used for any other package.
 The documentation can be found on
 @url{https://sphinx-automodapi.readthedocs.io/en/latest/, ReadTheDocs}")
+    (license license:bsd-3)))
+
+;; 20221109T100750+0000
+(define-public python-sphinx-changelog
+  (package
+    (name "python-sphinx-changelog")
+    (version "1.2.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sphinx_changelog" version))
+       (sha256
+        (base32 "1hllh2k5lp8nb6386q8pax60pa3303qmdqd1kg6ynh0a6sljac56"))))
+    (build-system python-build-system)
+    (arguments (list #:tests? #f)) ;; No tests
+    (propagated-inputs (list python-sphinx python-towncrier))
+    (native-inputs (list python-setuptools-scm))
+    (home-page "https://github.com/OpenAstronomy/sphinx-changelog")
+    (synopsis "Changelog renderer for sphinx")
+    (description
+     "This package provides a sphinx extension designed to facilitate rendering
+changelogs into your sphinx documentation.  Currently this supports
+@code{towncrier} and inclusion of a @code{ReST} changelog file.")
     (license license:bsd-3)))
