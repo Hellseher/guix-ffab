@@ -85,3 +85,26 @@ The documentation can be found on
 changelogs into your sphinx documentation.  Currently this supports
 @code{towncrier} and inclusion of a @code{ReST} changelog file.")
     (license license:bsd-3)))
+
+;; TODO: (Sharlatan-20221109T232349+0000): This package contains bundeled
+;; Bootstrap /sphinx_bootstrap_theme/bootstrap/static/
+;;
+;; 20221109T232135+0000
+(define-public python-sphinx-bootstrap-theme
+  (package
+    (name "python-sphinx-bootstrap-theme")
+    (version "0.8.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sphinx-bootstrap-theme" version))
+       (sha256
+        (base32 "1pw0svqsd3041mzfgsc7fwaxjjzzjp7xwvpp940xvnj8airkngk8"))))
+    (build-system python-build-system)
+    (home-page "https://ryan-roemer.github.io/sphinx-bootstrap-theme/README.html")
+    (synopsis "Sphinx Bootstrap Theme.")
+    (description "This Sphinx theme integrates the Bootstrap CSS / JavaScript framework with
+various layout options, hierarchical menu navigation, and mobile-friendly
+responsive design.  It is configurable, extensible, and can use any number of
+different Bootswatch CSS themes")
+    (license license:expat)))
