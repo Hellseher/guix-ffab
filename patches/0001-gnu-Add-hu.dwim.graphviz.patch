@@ -1,0 +1,73 @@
+From a22b5bb428b20052dfc6601c68fd109b3eb4aa72 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Nov 2022 21:26:38 +0000
+Subject: [PATCH 1/1] gnu: Add hu.dwim.graphviz
+
+* gnu/packages/lisp-xyz.scm (ecl-hu.dwim.graphviz, cl-hu.dwim.graphviz,
+  sbcl-hu.dwim.graphviz): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 41 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 80a35f9dd1..bc80d930e1 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -84,6 +84,7 @@ (define-module (gnu packages lisp-xyz)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
++  #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages imagemagick)
+@@ -1868,6 +1869,46 @@ (define-public cl-hu.dwim.asdf
+ (define-public ecl-hu.dwim.asdf
+   (sbcl-package->ecl-package sbcl-hu.dwim.asdf))
+ 
++(define-public sbcl-hu.dwim.graphviz
++  (let ((commit "31522ca8b9a04d535b7cec20ef24d8bf3b26d52b")
++        (revision "1"))
++    (package
++      (name "sbcl-hu.dwim.graphviz")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/hu-dwim/hu.dwim.graphviz")
++               (commit commit)))
++         (file-name (git-file-name "sbcl-hu.dwim.graphviz" version))
++         (sha256
++          (base32 "0cz5g7d6817ajypp876k9m65sxxlf42x4bg04ya73aqci5s1vjwy"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       (list #:phases
++             #~(modify-phases %standard-phases
++                 (add-after 'unpack 'patch-graphviz-lib-path
++                   (lambda* (#:key inputs #:allow-other-keys)
++                     (substitute* "source/package.lisp"
++                       (("libgvc.so")
++                        (search-input-file inputs "/lib/libgvc.so"))))))))
++      (native-inputs
++       (list sbcl-hu.dwim.common sbcl-hu.dwim.stefil))
++      (inputs
++       (list graphviz sbcl-cffi sbcl-metabang-bind))
++      (home-page "https://github.com/hu-dwim/hu.dwim.graphviz")
++      (synopsis "Graphviz layouting using CFFI bindings")
++      (description
++       "This package provides CFFI bindigs to Graphviz library in Common Lisp.")
++      (license license:public-domain))))
++
++(define-public cl-hu.dwim.graphviz
++  (sbcl-package->cl-source-package sbcl-hu.dwim.graphviz))
++
++(define-public ecl-hu.dwim.graphviz
++  (sbcl-package->ecl-package sbcl-hu.dwim.graphviz))
++
+ (define-public sbcl-babel
+   ;; No release since 2014.
+   (let ((commit "f892d0587c7f3a1e6c0899425921b48008c29ee3")
+-- 
+2.37.3
+
