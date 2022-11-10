@@ -1103,3 +1103,56 @@ more robust than systems based on object prevalence.")
 
 (define-public ecl-clobber
   (sbcl-package->ecl-package sbcl-clobber))
+
+;; 20221110T222158+0000
+(define-public sbcl-kons-9
+  (let ((commit "9f9c1ad6504875bf09ea90afdfc0f7ddc68d3df9")
+        (revision "0"))
+    (package
+      (name "sbcl-kons-9")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/kaveh808/kons-9")
+               (commit commit)))
+         (file-name (git-file-name "kons-9" version))
+         (sha256
+          (base32 "154y9mm6qghgwilbc12dn7zxmlk5w593qn3b6axs5d1gxy2a4bqj"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems '("kons-9" "kons-9/testsuite")))
+      (inputs
+       (list sbcl-closer-mop
+             sbcl-trivial-main-thread
+             sbcl-trivial-backtrace
+             sbcl-cffi
+             sbcl-cl-opengl
+             sbcl-cl-glfw3
+             sbcl-cl-vectors
+             sbcl-zpb-ttf
+             sbcl-origin
+             sbcl-clobber))
+      (native-inputs
+       (list sbcl-alexandria sbcl-confidence))
+      (home-page "https://github.com/kaveh808/kons-9")
+      (synopsis "Common Lisp 3D Graphics System")
+      (description
+       "This package provides KONS-9 which can be considered as a traditional user
+interface driven 3D application for general artists, or as a REPL-based
+development environment for technical artists and software developers.  These two
+approaches can be seamlessly combined into a flexible and powerful workflow,
+where non-technical users can immediately benefit from software tools and
+extensions developed by technical users.")
+      (license license:expat))))
+
+(define-public cl-kons-9
+  (sbcl-package->cl-source-package sbcl-kons-9))
+
+;; FIXME: (Sharlatan-20221110T230620+0000): Failed to build on ECL
+;;
+;; https://github.com/kaveh808/kons-9/issues/176
+;;
+;; (define-public ecl-kons-9
+;;   (sbcl-package->ecl-package sbcl-kons-9))
