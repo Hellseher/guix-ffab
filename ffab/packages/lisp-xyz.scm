@@ -252,13 +252,20 @@
 ;; added-to-upstream: 375c44de40827a33369a93f5745f272e491f4150
 ;; CommitDate: Fri Jan 8 10:47:46 2021 +0100
 
+;; TODO: (Sharlatan-20221111T191139+0000): Failed to build:
+;;
+;; Unhandled SB-INT:SIMPLE-FILE-ERROR in thread #<SB-THREAD:THREAD "main thread" RUNNING {100B0F8083}>:
+;;
+;; Error opening #P"/gnu/store/n232d09z31xbzawp0yc19k66z0mi1jrc-sbcl-cl-containers-ffab-0.12.1-3.3d1df53/lib/common-lisp/sbcl/cl-containers-ffab/dev/utilities-integration-tmp1CXFJSK9.fasl":
+;;    Permission denied
+;;
 ;; 20220615T223419+0100
-(define-public sbcl-cl-graph
+(define sbcl-cl-graph
   (let ((commit "3cb786797b24883d784b7350e7372e8b1e743508")
         (revision "1"))
     (package
       (name "sbcl-cl-graph")
-      (version (git-version "0.0.0" revision commit))
+      (version (git-version "0.10.2" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -270,30 +277,27 @@
           (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       (list #:tests? #f
-             #:asd-files #~'("cl-graph.asd"
-                             "cl-graph+hu.dwim.graphviz.asd")))
+       `(#:tests? #f
+         #:asd-systems '("cl-graph")))
       (native-inputs
        (list sbcl-lift sbcl-moptilities))
       (inputs
        (list sbcl-hu.dwim.graphviz
-             sbcl-cl-containers
              sbcl-cl-mathstats
              sbcl-dynamic-classes
              sbcl-metabang-bind
              sbcl-metacopy
-             sbcl-metatilities-base
-             sbcl-moptilities))
+             sbcl-metatilities-base))
       (home-page "https://github.com/gwkkwg/cl-graph")
       (synopsis "Common Lisp library for manipulating graphs and running graph algorithms")
       (description
        "Graph manipulation utilities for Common Lisp")
       (license license:expat))))
 
-(define-public ecl-cl-graph
+(define ecl-cl-graph
   (sbcl-package->ecl-package sbcl-cl-graph))
 
-(define-public cl-graph
+(define cl-graph
   (sbcl-package->cl-source-package sbcl-cl-graph))
 
 ;; 20220627T204024+0100
