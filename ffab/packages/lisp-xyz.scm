@@ -23,6 +23,7 @@
   #:use-module (gnu packages databases)
   #:use-module (gnu packages elf)
   #:use-module (gnu packages game-development)
+  #:use-module (gnu packages gd)
   #:use-module (gnu packages gl)
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gsasl)
@@ -654,11 +655,11 @@ with the help of the @acronym{FEM, Finite Element Method}.")
       (license license:bsd-3))))
 
 (define-public sbcl-cl-gd
-  (let ((commit "9084944079736eac085494523a41c8265d4671b7")
+  (let ((commit "0e1812a38f93ece0c3b183a92be6e440cecfd7e6")
         (revision "1"))
     (package
       (name "sbcl-cl-gd")
-      (version (git-version "0.0.0" revision commit))
+      (version (git-version "0.6.1" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -667,15 +668,26 @@ with the help of the @acronym{FEM, Finite Element Method}.")
                (commit commit)))
          (file-name (git-file-name "cl-gd" version))
          (sha256
-          (base32 "08l2x1jq3vfhh8m14wijd8c78n589cy5hd2py2jfj3yfiqyipasa"))))
+          (base32 "1wa6nv5bdf0v38hzr6cfadkk6mhvvnj9lpl9igcxygdjbnn2a3y6"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       `(("uffi" ,sbcl-uffi)))
+      (arguments
+       `(#:asd-systems '("cl-gd" "cl-gd-test")))
+      (inputs (list sbcl-uffi gd))
       (home-page "https://edicl.github.io/cl-gd/")
-      (synopsis "TBC")
+      (synopsis "UFFI bindings to the GD graphics library")
       (description
-       "TBC")
+       "CL-GD is a library for Common Lisp which provides an interface to the GD
+Graphics Library for the dynamic creation of images. It is based on UFFI and
+should thus be portable to all CL implementations supported by UFFI.")
       (license #f))))
+
+;; NOTE: (Sharlatan-20221111T220120+0000): No ECL build
+;;
+;; (define-public ecl-cl-gd
+;;   (sbcl-package->ecl-package sbcl-cl-gd))
+
+(define-public cl-gd
+  (sbcl-package->cl-source-package sbcl-cl-gd))
 
 ;; TODO: (Sharlatan-20221111T134608+0000): Link mpicc binary int 'mpi/wrap.lisp'
 ;; and others
