@@ -460,60 +460,45 @@ extantion.")
 ;;https://github.com/inconvergent
 ;;+begin-inconvergent
 
-;; <2021-04-15 Thu>
-;; NOTE: (Sharlatan-20210425T171922+0100): Not aplicable with Guix licence policy
-(define-public sbcl-weir
-  (let ((commit "beb4f6f47f0538d2c6d73b1d3c9d7f58ac8aa0e9")
+;; 20221111T210641+0000
+(define-public sbcl-weird
+  (let ((commit "6ec0b640efab270374d308feb608d118e9104b0d")
         (revision "1"))
     (package
-      (name "sbcl-weir")
-      (version (git-version "4.9.1" revision commit))
+      (name "sbcl-weird")
+      (version (git-version "7.0.0" revision commit))
       (source
        (origin
          (method git-fetch)
          (uri (git-reference
-               (url "https://github.com/inconvergent/weir")
+               (url "https://github.com/inconvergent/weird")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "weird" version))
          (sha256
-          (base32 "1vm10kb51g4ba2nl5yixswkk47vwqgwqdlz5031xfff8h9z2a6ad"))))
+          (base32 "05cy492nk9g1kfmhnk5b9g511yj0hvsvigcaankzrf6nbfn2fvb0"))))
       (build-system asdf-build-system/sbcl)
-      (arguments
-       ;; FIXME: (Sharlatan-20210415T165228+0100): All tests have been passed
-       ;; but terminated with error status after `check' phase is completed.
-       ;;
-       ;;  tests:  303
-       ;;  fails:  0
-       ;;  passes: 303
-       ;; "-- at least one catastrophe! --"
-       ;; terminated with status: 1
-       ;; ;
-       ;; ; compilation unit aborted
-       ;; ;   caught 1 fatal ERROR condition
-       ;; ;   caught 3 STYLE-WARNING conditions
-       ;; ;   printed 91 notes
-       `(#:tests? #f))
       (inputs
-       `(("alexandira" ,sbcl-alexandria)
-         ("cl-json" ,sbcl-cl-json)
-         ("cl-svg" ,sbcl-cl-svg)
-         ("inferior-shell" ,sbcl-inferior-shell)
-         ("lparallel" ,sbcl-lparallel)
-         ("png" ,sbcl-png)
-         ("split-sequence" ,sbcl-split-sequence)
-         ("zpng" ,sbcl-zpng)))
-      (home-page "https://github.com/inconvergent/weir")
-      (synopsis "System for making generative systems")
+       (list sbcl-alexandria
+             sbcl-cl-json
+             sbcl-cl-svg
+             sbcl-lparallel
+             sbcl-veq
+             sbcl-zpng))
+      (home-page "https://github.com/inconvergent/weird")
+      (synopsis "Generative art in Common Lisp")
       (description
        "This package provides Common Lisp system for generating 2d and 3d vector
-artworks with SVG and PNG export format.")
+artworks with SVG and PNG export format.  WEIRD is the next iteration of WEIR,
+which was the next iteration of SNEK.")
       (license license:expat))))
 
-(define-public ecl-weir
-  (sbcl-package->ecl-package sbcl-weir))
+;; NOTE: (Sharlatan-20221111T211844+0000): ECL is not supported yet.
+;;
+;; (define-public ecl-weird
+;;   (sbcl-package->ecl-package sbcl-weird))
 
-(define-public cl-weir
-  (sbcl-package->cl-source-package sbcl-weir))
+(define-public cl-weird
+  (sbcl-package->cl-source-package sbcl-weird))
 
 ;; 20221111T211104+0000
 (define-public sbcl-veq
