@@ -627,6 +627,9 @@ with the help of the @acronym{FEM, Finite Element Method}.")
        "TBC")
       (license #f))))
 
+;; TODO: (Sharlatan-20221111T134608+0000): Link mpicc binary int 'mpi/wrap.lisp'
+;; and others
+;;
 ;; 20220709T235535+0100
 (define-public sbcl-cl-mpi
   (let ((commit "ba92be06ec1dca74d0ca5256aa387d8a28c8ad86")
@@ -638,9 +641,9 @@ with the help of the @acronym{FEM, Finite Element Method}.")
        (origin
          (method git-fetch)
          (uri (git-reference
-               (url "https://github.com/marcoheisig/cl-mpi.git")
+               (url "https://github.com/marcoheisig/cl-mpi")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "cl-mpi" version))
          (sha256
           (base32
            "1ykwk7acjhzpsjgm2b5svdpyw2qgrh860gkx3n2ckyrgd9l9q6jb"))))
@@ -655,11 +658,11 @@ with the help of the @acronym{FEM, Finite Element Method}.")
        ;; [localhost:00078] [[INVALID],INVALID] ORTE_ERROR_LOG: Unable to start a daemon on the local node in file ess_singleton_module.c at line 716
        ;; [localhost:00078] [[INVALID],INVALID] ORTE_ERROR_LOG: Unable to start a daemon on the local node in file ess_singleton_module.c at line 172
        ;;
-       (list #:tests? #f
-             #:test-asd-file "cl-mpi-test-suite.asd"
-             #:asd-files #~'("cl-mpi-asdf-integration.asd"
-                             "cl-mpi-extensions.asd"
-                             "cl-mpi.asd")))
+       `(#:tests? #f
+         #:asd-systems '("cl-mpi"
+                         "cl-mpi-asdf-integration"
+                         "cl-mpi-extensions"
+                         "cl-mpi-test-suite")))
       (native-inputs
        (list sbcl-fiveam))
       (inputs
@@ -683,9 +686,19 @@ arguments.")
 (define-public cl-mpi
   (sbcl-package->cl-source-package sbcl-cl-mpi))
 
-(define-public ecl-mpi
-  (sbcl-package->ecl-package sbcl-cl-mpi))
-
+;; FIXME: (Sharlatan-20221111T134434+0000): Failed ECL build:
+;;
+;; An error occurred during initialization:
+;; Unable to load foreign library (WRAP).
+;;
+;; LOAD-FOREIGN-MODULE: Could not load foreign module
+;; "/gnu/store/536whk3pzgfky2bi195f3q8dixal6m2z-ecl-cl-mpi-0.0.0-1.ba92be0/lib/common-lisp/ecl/cl-mpi/mpi/wrap.so"
+;; (Error:
+;; "/gnu/store/536whk3pzgfky2bi195f3q8dixal6m2z-ecl-cl-mpi-0.0.0-1.ba92be0/lib/common-lisp/ecl/cl-mpi/mpi/wrap.so:
+;; undefined symbol: ompi_mpi_char").
+;;
+;; (define-public ecl-cl-mpi
+;
 (define-public sbcl-lfarm
   (let ((commit "f7ba49f1ec01fb99a7aeb8f18e245a44411c361b")
         (revision "1"))
