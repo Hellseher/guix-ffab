@@ -592,8 +592,9 @@ broadcasting and reduction operations.")
 ;; added-to-upstream: 0e007842c9ab3021160596a0de14a2ef1b94acb2
 ;; CommitDate: Tue May 25 10:31:27 2021 +0200
 
-;; 20220709T215009+0100
 ;; TODO: (Sharlatan-20220709T215016+0100): Needs more love
+;;
+;; 20220709T215009+0100
 (define sbcl-femlisp
   (let ((commit "9084944079736eac085494523a41c8265d4671b7")
         (revision "1"))
@@ -606,25 +607,45 @@ broadcasting and reduction operations.")
          (uri (git-reference
                (url "git://git.savannah.nongnu.org/femlisp.git")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "femlisp" version))
          (sha256
           (base32 "08l2x1jq3vfhh8m14wijd8c78n589cy5hd2py2jfj3yfiqyipasa"))))
       (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems '("cl-cpu-affinity"
+                         "ddo"
+                         "dealii-tutorial"
+                         "femlisp-basic"
+                         "femlisp-ddo"
+                         "femlisp-dictionary"
+                         "femlisp-matlisp"
+                         "femlisp-mpi-worker"
+                         "femlisp-parallel"
+                         "femlisp-picture"
+                         "femlisp-save-core"
+                         "femlisp"
+                         "mpi-worker"
+                         "net.scipolis.graphs")
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'cd-systems
+             (lambda _
+               (chdir "systems"))))))
       (native-inputs
-       `(("fiveam" ,sbcl-fiveam)))
+       (list sbcl-fiveam))
       (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("cffi" ,sbcl-cffi)
-         ("cl-gd" ,sbcl-cl-gd)
-         ("cl-mpi" ,sbcl-cl-mpi)
-         ("closer-mop" ,sbcl-closer-mop)
-         ("cl-ppcre" ,sbcl-cl-ppcre)
-         ("femlisp" ,sbcl-femlisp)
-         ("flexi-streams" ,sbcl-flexi-streams)
-         ("lfarm" ,sbcl-lfarm)
-         ("lparallel" ,sbcl-lparallel)
-         ("trees" ,sbcl-trees)))
+       (list sbcl-alexandria
+             sbcl-bordeaux-threads
+             sbcl-cffi
+             sbcl-cl-gd
+             sbcl-cl-mpi
+             sbcl-closer-mop
+             sbcl-cl-ppcre
+             sbcl-femlisp
+             sbcl-flexi-streams
+             sbcl-lfarm
+             sbcl-lparallel
+             sbcl-trees))
       (home-page "http://www.femlisp.org/")
       (synopsis "Common Lisp finite element method framework")
       (description
