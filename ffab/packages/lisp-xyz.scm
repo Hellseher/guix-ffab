@@ -456,6 +456,9 @@ extantion.")
 ;; (define-public sbcl-cl-svg
 ;; added-to-upstream: f7b45ede9f9220a647cd4bae36e629a18a677cfb
 ;; CommitDate: Mon Apr 19 17:11:00 2021 +0200
+
+;;https://github.com/inconvergent
+;;+begin-inconvergent
 
 ;; <2021-04-15 Thu>
 ;; NOTE: (Sharlatan-20210425T171922+0100): Not aplicable with Guix licence policy
@@ -511,6 +514,43 @@ artworks with SVG and PNG export format.")
 
 (define-public cl-weir
   (sbcl-package->cl-source-package sbcl-weir))
+
+;; 20221111T211104+0000
+(define-public sbcl-veq
+  (let ((commit "54d7f31cd6d7bcd0b25f5445fa888269078a848b")
+        (revision "0"))
+    (package
+      (name "sbcl-veq")
+      (version (git-version "3.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/inconvergent/cl-veq")
+               (commit commit)))
+         (file-name (git-file-name "cl-veq" version))
+         (sha256
+          (base32 "00jf675z1bwkzlngxsfy5ja4bgrdd9p9kvvpr7vzp3gjxizj78km"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs (list sbcl-prove))
+      (home-page "https://github.com/inconvergent/weir")
+      (synopsis "2-4d vector and matrix operations")
+      (description
+       "VEQ is a set of convenience utilities for writing (1d/)2d/3d vector
+mathematics.  It suports single vectors or arrays of vectors, with some
+broadcasting and reduction operations.")
+      (license license:expat))))
+
+;; NOTE: (Sharlatan-20221111T211502+0000): ECL is not curently supported
+;;
+;; (define-public ecl-veq
+;;   (sbcl-package->ecl-package sbcl-veq))
+
+(define-public cl-veq
+  (sbcl-package->cl-source-package sbcl-veq))
+
+;;+end-inconvergent
+
 
 ;; <2021-04-29 Thu>
 ;; (define-public sbcl-unit-test
