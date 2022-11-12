@@ -1019,10 +1019,14 @@ performance.")
 ;; https://github.com/borodust
 ;;+begin-borodust
 
+;; NOTE: (Sharlatan-20221112T212701+0000): Complete package, missing long chain.
+;;
+;; https://github.com/borodust/libresect
+;;
 ;; 20220123T112516+0000
-(define-public sbcl-cl-resect
-  (let ((commit "1ae6a4b9ded6e613ca7d58bc6b73f2c5d66e2f67")
-        (revision "1"))
+(define sbcl-cl-resect
+  (let ((commit "9565d941db21785a5b4d2ed492a0cde49c5141ba")
+        (revision "2"))
     (package
       (name "sbcl-cl-resect")
       (version (git-version "1.0" revision commit))
@@ -1036,19 +1040,17 @@ performance.")
          (sha256
           (base32 "0k3i2gpxpjkisj1aycgzr1vicnzfnqx2ch6bxpy521mxcz3nhjgi"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-alexandria
-             sbcl-cffi))
+      (inputs (list sbcl-alexandria sbcl-cffi))
       (home-page "https://github.com/borodust/cl-resect")
       (synopsis "Common Lisp bindings to libresect")
       (description
        "This package provides bindings for Common Lispt for @code{libresect}")
-      (license license:bsd-2))))
+      (license license:expat))))
 
-(define-public cl-resect
+(define cl-resect
   (sbcl-package->cl-source-package sbcl-cl-resect))
 
-(define-public ecl-claw
+(define ecl-claw
   (sbcl-package->ecl-package sbcl-cl-resect))
 ;;+end-borodust
 
