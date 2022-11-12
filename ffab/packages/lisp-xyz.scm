@@ -761,40 +761,56 @@ arguments.")
 ;; undefined symbol: ompi_mpi_char").
 ;;
 ;; (define-public ecl-cl-mpi
-;
-(define-public sbcl-lfarm
+
+;; NOTE: (Sharlatan-20221112T205556+0000): It's depends on Quicklisp in lfarm-launcher.lsip:
+;;
+;; (unless (find-package :quicklisp-client)
+;;   (let ((namestring (merge-pathnames "quicklisp/setup.lisp"
+;;                                      (user-homedir-pathname))))
+;; 20221111T220926+0000
+(define sbcl-lfarm
   (let ((commit "f7ba49f1ec01fb99a7aeb8f18e245a44411c361b")
         (revision "1"))
     (package
       (name "sbcl-lfarm")
-      (version (git-version "0.0.0" revision commit))
+      (version (git-version "0.1.0" revision commit))
       (source
        (origin
          (method git-fetch)
          (uri (git-reference
-               (url "https://github.com/lmj/lfarm.git")
+               (url "https://github.com/lmj/lfarm")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "lfarm" version))
          (sha256
           (base32
            "10kfhfx26wmaa3hk3vc7hc2fzk0rl2xdjwk8ld36x6ivvd48jlkv"))))
       (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems '("lfarm-admin"
+                         "lfarm-client"
+                         "lfarm-common"
+                         "lfarm-gss"
+                         "lfarm-launcher"
+                         "lfarm-server"
+                         "lfarm-test"
+                         "lfarm-ssl")))
       (inputs
-       `(("alexandria" ,sbcl-alexandria)
-         ("bordeaux-threads" ,sbcl-bordeaux-threads)
-         ("cl-gss" ,sbcl-cl-gss)
-         ("cl+ssl" ,sbcl-cl+ssl)
-         ("cl-store" ,sbcl-cl-store)
-         ("external-program" ,sbcl-external-program)
-         ("flexi-streams" ,sbcl-flexi-streams)
-         ("lparallel" ,sbcl-lparallel)
-         ("trivial-gray-streams" ,sbcl-trivial-gray-streams)
-         ("usocket" ,sbcl-usocket)))
+       (list sbcl-alexandria
+             sbcl-bordeaux-threads
+             sbcl-cl-gss
+             sbcl-cl+ssl
+             sbcl-cl-store
+             sbcl-external-program
+             sbcl-flexi-streams
+             sbcl-lparallel
+             sbcl-trivial-gray-streams
+             sbcl-usocket))
       (home-page "https://github.com/lmj/lfarm.git")
-      (synopsis "TBC")
+      (synopsis "Distribute work across machines using the lparallel API")
       (description
-       "TBC")
-      (license #f))))
+       "LFARM is a Common Lisp library for distributing work across machines using the
+LPARALLEL.")
+      (license license:bsd-3))))
 
 ;; 20221112T205831+0000
 (define-public sbcl-cl-gss
