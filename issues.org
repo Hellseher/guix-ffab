@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [140/155][90%]
+* Accepted in upstream [140/157][89%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -159,3 +159,6 @@
 - [ ] <2022-11-07 Mon> https://issues.guix.gnu.org/59113
 - [ ] <2022-11-09 Wed> https://issues.guix.gnu.org/59155
 - [ ] <2022-11-09 Wed> https://issues.guix.gnu.org/59156
+- [ ] <2022-11-12 Sat> https://issues.guix.gnu.org/59230
+  - [ ] https://github.com/Shirakumo/radiance/issues/56
+- [ ] <2022-11-12 Sat> https://issues.guix.gnu.org/59231

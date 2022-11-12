@@ -874,7 +874,7 @@ System (WCS) tags.  Users should not need to install this directly; instead,
 install an implementation package such as gwcs.")
     (license license:bsd-3)))
 
-;; (define-public python-asdf-coordinates-schemas
+;; (define python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 

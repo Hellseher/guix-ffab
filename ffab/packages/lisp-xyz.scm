@@ -829,24 +829,25 @@ LPARALLEL.")
           (base32 "0zhxxn3zarird255s9i56bz0fm6dkv00mn8bbsjrhskg3wpcg4pb"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'patch-gss-lib-path
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "src/functions.lisp"
-                 (("libgssapi_krb5.so")
-                  (search-input-file inputs "/lib/libgssapi_krb5.so"))))))))
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'patch-gss-lib-path
+              (lambda* (#:key inputs #:allow-other-keys)
+                (substitute* "src/functions.lisp"
+                  (("libgssapi_krb5.so")
+                   (search-input-file inputs "/lib/libgssapi_krb5.so"))))))))
       (inputs
        (list mit-krb5
              sbcl-cffi
              sbcl-trivial-garbage
              sbcl-trivial-utf-8))
-      (home-page "https://github.com/lokedhs/cl-gss.git")
+      (home-page "https://github.com/lokedhs/cl-gss")
       (synopsis "Common Lisp CFFI bindings to Generic Security Service (GSS)")
       (description
        "GSSAPI is an API which is designed to provide a standard API to authentication
-services. The API itself is generic, and the system can provide different
-underlying implementations. The most common one is Kerberos, which has several
+services.  The API itself is generic, and the system can provide different
+underlying implementations.  The most common one is Kerberos, which has several
 implementations, the most common of which is probably Active Directory.")
       (license license:bsd-3))))
 

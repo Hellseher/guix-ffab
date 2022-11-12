@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-09 Wed 10:01:00 GMT>
+# Modified : <2022-11-12 Sat 23:01:42 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -60,12 +60,10 @@ PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 
 # Add each group of packages to this macros when all pending changes are
 # completed in corresponded WIP branch.
-PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY)
+PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP)
 
 GUIX_FLAGS ?= --load-path=./
-GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS) --rounds=2 --cores=0
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
-GUIX_REFRESH_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes.
@@ -83,10 +81,11 @@ ifdef CI_BUILD
 $(info :status ci-environemt)
 GUIX_BUILD_FLAGS += --keep-going --quiet
 else
-GUIX_BUILD_FLAGS += --keep-failed
+GUIX_BUILD_FLAGS += --keep-failed --rounds=1 --cores=0
 endif
 
 GUIX_BUILD_PROBE_FLAGS ?=	\
+$(GUIX_FLAGS) 				\
 --check						\
 --cores=0					\
 --keep-going				\
@@ -119,9 +118,9 @@ lint:
 build:
 	$(GUIX) build $(GUIX_BUILD_FLAGS) $(PKGS)
 
-# Try to lint and rebuild accepted packages to make sure they are in good state
-# and whether update is required
-PHONY: probe
+# Try to lint and rebuild accepted packages to make sure they are still in good
+# state and whether update is required
+.PHONY: probe
 probe:
 	$(GUIX) lint $(GUIX_LINT_FLAGS) $(PKGS_ACCEPTED)
 	$(GUIX) build $(GUIX_BUILD_PROBE_FLAGS) $(PKGS_ACCEPTED)

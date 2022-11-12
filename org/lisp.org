@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-12 Sat 21:51:58 GMT>
+#+modified: <2022-11-12 Sat 22:58:03 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [10/30][33%]
+* Flow [11/30][36%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -602,7 +602,8 @@ CLOSED: [2021-05-02 Sun 20:39]
   - [ ] sbcl-prove
   - [ ] sbcl-str
 
-** TODO jphmrst [1/1][100%] :author:
+** DONE jphmrst [1/1][100%] :author:
+CLOSED: [2022-11-12 Sat 22:42]
 - https://github.com/jphmrst
 - https://maraist.org/
 
@@ -660,15 +661,20 @@ CLOSED: [2021-03-09 Tue 08:44]
   - [X] sbcl-split-sequence
   - [X] sbcl-trivial-garbage
 
-** TODO lokedhs [0/0][0%] :author:
+** TODO lokedhs [0/1][0%] :author:
 - https://github.com/lokedhs
 - https://functional.cafe/@loke
-*** cl-gss [1/4][25%] :p1:
+*** TODO cl-gss [3/4][75%] :p1:
 - https://github.com/lokedhs/cl-gss
 - [X] :packed <2022-11-12 Sat>
-- [ ] :patch-sent
+- [X] :patch-sent <2022-11-12 Sat>
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+  - https://issues.guix.gnu.org/59231
+- [X] :inputs [4/4]
+  - [X] mit-krb5
+  - [X] sbcl-cffi
+  - [X] sbcl-trivial-garbage
+  - [X] sbcl-trivial-utf-8
 
 ** DONE massung [1/1][100%] :author:
 - https://github.com/massung
