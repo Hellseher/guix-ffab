@@ -365,8 +365,7 @@
 ;; NOTE: (Sharlatan-20221112T214131+0000): There is no ecl-moptilities variable
 ;; required for tests.
 ;;
-;; (define-public ecl-metacopy
-;;   (sbcl-package->ecl-package sbcl-metacopy))
+;; ecl-metacopy
 
 (define-public cl-metacopy
   (sbcl-package->cl-source-package sbcl-metacopy))
@@ -499,8 +498,7 @@ which was the next iteration of SNEK.")
 
 ;; NOTE: (Sharlatan-20221111T211844+0000): ECL is not supported yet.
 ;;
-;; (define-public ecl-weird
-;;   (sbcl-package->ecl-package sbcl-weird))
+;; ecl-weird
 
 (define-public cl-weird
   (sbcl-package->cl-source-package sbcl-weird))
@@ -533,8 +531,7 @@ broadcasting and reduction operations.")
 
 ;; NOTE: (Sharlatan-20221111T211502+0000): ECL is not curently supported
 ;;
-;; (define-public ecl-veq
-;;   (sbcl-package->ecl-package sbcl-veq))
+;; ecl-veq
 
 (define-public cl-veq
   (sbcl-package->cl-source-package sbcl-veq))
@@ -687,8 +684,7 @@ should thus be portable to all CL implementations supported by UFFI.")
 
 ;; NOTE: (Sharlatan-20221111T220120+0000): No ECL build
 ;;
-;; (define-public ecl-cl-gd
-;;   (sbcl-package->ecl-package sbcl-cl-gd))
+;; ecl-cl-gd
 
 (define-public cl-gd
   (sbcl-package->cl-source-package sbcl-cl-gd))
@@ -763,7 +759,7 @@ arguments.")
 ;; "/gnu/store/536whk3pzgfky2bi195f3q8dixal6m2z-ecl-cl-mpi-0.0.0-1.ba92be0/lib/common-lisp/ecl/cl-mpi/mpi/wrap.so:
 ;; undefined symbol: ompi_mpi_char").
 ;;
-;; (define-public ecl-cl-mpi
+;; ecl-cl-mpi
 
 ;; NOTE: (Sharlatan-20221112T205556+0000): It's depends on Quicklisp in lfarm-launcher.lsip:
 ;;
@@ -1190,5 +1186,4 @@ extensions developed by technical users.")
 ;;
 ;; https://github.com/kaveh808/kons-9/issues/176
 ;;
-;; (define-public ecl-kons-9
-;;   (sbcl-package->ecl-package sbcl-kons-9))
+;; ecl-kons-9
