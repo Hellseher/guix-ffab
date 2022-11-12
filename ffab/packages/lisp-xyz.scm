@@ -795,6 +795,7 @@ arguments.")
        "TBC")
       (license #f))))
 
+;; 20221112T205831+0000
 (define-public sbcl-cl-gss
   (let ((commit "60086f4fd3b82316352e7f2288edbd58f03e08c5")
         (revision "1"))
@@ -807,7 +808,7 @@ arguments.")
          (uri (git-reference
                (url "https://github.com/lokedhs/cl-gss")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "cl-gss" version))
          (sha256
           (base32 "0zhxxn3zarird255s9i56bz0fm6dkv00mn8bbsjrhskg3wpcg4pb"))))
       (build-system asdf-build-system/sbcl)
@@ -817,18 +818,20 @@ arguments.")
            (add-after 'unpack 'patch-gss-lib-path
              (lambda* (#:key inputs #:allow-other-keys)
                (substitute* "src/functions.lisp"
-                 (("libgss.so" all)
-                  (string-append (assoc-ref inputs "gss")
-                                        "/lib/" all))))))))
+                 (("libgssapi_krb5.so")
+                  (search-input-file inputs "/lib/libgssapi_krb5.so"))))))))
       (inputs
-       `(("cffi" ,sbcl-cffi)
-         ("gss" ,gss)
-         ("trivial-garbage" ,sbcl-trivial-garbage)
-         ("trivial-utf-8" ,sbcl-trivial-utf-8)))
+       (list mit-krb5
+             sbcl-cffi
+             sbcl-trivial-garbage
+             sbcl-trivial-utf-8))
       (home-page "https://github.com/lokedhs/cl-gss.git")
       (synopsis "Common Lisp CFFI bindings to Generic Security Service (GSS)")
       (description
-       "TBC")
+       "GSSAPI is an API which is designed to provide a standard API to authentication
+services. The API itself is generic, and the system can provide different
+underlying implementations. The most common one is Kerberos, which has several
+implementations, the most common of which is probably Active Directory.")
       (license license:bsd-3))))
 
 ;;https://github.com/fukamachi
