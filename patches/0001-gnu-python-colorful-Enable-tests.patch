@@ -1,0 +1,43 @@
+From 4e316c3a11ea580ade3c77a34a8b437db9310ae4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 9 Nov 2022 19:45:00 +0000
+Subject: [PATCH] gnu: python-colorful: Enable tests
+
+* gnu/packages/python-xyz.scm (python-colorful): Enable tests.
+  [source]: Use git checkout which has tests.
+  [build-system]: Use pyproject-build-system.
+---
+ gnu/packages/python-xyz.scm | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index e26656fa32..b2fb101409 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -677,16 +677,14 @@ (define-public python-colorful
+     (version "0.5.4")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri
+-        (pypi-uri "colorful" version))
++       (method git-fetch)   ; no tests data in PyPi package
++       (uri (git-reference
++             (url "https://github.com/timofurrer/colorful")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1sh7g2cn1fyz2hzmzs933razdxi2bna9i1lxa790r9pdwba8m146"))))
+-    (build-system python-build-system)
+-    ;; FIXME: tests cannot be computed:
+-    ;; "Can't perform this operation for unregistered loader type"
+-    (arguments
+-     `(#:tests? #f))
++        (base32 "1fcz5v8b318a3dsdha4c874jsf3wmcw3f25bv2csixclyzacli98"))))
++    (build-system pyproject-build-system)
+     (native-inputs
+      (list python-coverage python-flake8 python-pytest))
+     (propagated-inputs
+-- 
+2.38.0
+

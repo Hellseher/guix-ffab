@@ -1,0 +1,84 @@
+From c3a62f94a4186f55f5bdd80eaa1ec6ddfc78eee1 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 4 Nov 2022 20:17:32 +0000
+Subject: [PATCH 1/1] gnu: cl-xmls: Update to 3.2.0
+
+* gnu/packages/lisp-xyz.scm (sbcl-xmls): Update to 3.2.0
+  [package]{version}: Use the latest upstream tag over commit.
+
+* gnu/packages/lisp-xyz.scm (ecl-xmls): Enable tests.  Issue is resolved
+  upstream which allows to enable tests for ECL implementation
+  https://github.com/rpgoldman/xmls/issues/3
+---
+ gnu/packages/lisp-xyz.scm | 48 ++++++++++++++++-----------------------
+ 1 file changed, 20 insertions(+), 28 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 556ac41afc..7894b13dc5 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -13427,41 +13427,33 @@ (define-public ecl-lambda-fiddle
+   (sbcl-package->ecl-package sbcl-lambda-fiddle))
+ 
+ (define-public sbcl-xmls
+-  (let ((commit "18546f0850b1338e03997ffd1696add1cb1800d1") ;; no tagged branch
+-	(revision "1"))
+-    (package
+-      (name "sbcl-xmls")
+-      (version (git-version "3.0.2" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/rpgoldman/xmls")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32 "1lmvfml2ldbb1wkhm25jqqk2bhwsz52hhcgljbnzj1xr8xhc3anp"))))
+-      (native-inputs
+-       (list sbcl-fiveam))
+-      (build-system asdf-build-system/sbcl)
+-      (home-page "https://github.com/rpgoldman/xmls")
+-      (synopsis "Non-validating XML parser for Common Lisp")
+-      (description "Xmls is a self-contained, easily embedded parser that
++  (package
++    (name "sbcl-xmls")
++    (version "3.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/rpgoldman/xmls")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "10406sgap9kdaip7blxldnv6kabiczd6890jgic4pacsrfx6jypk"))))
++    (native-inputs
++     (list sbcl-fiveam))
++    (build-system asdf-build-system/sbcl)
++    (home-page "https://github.com/rpgoldman/xmls")
++    (synopsis "Non-validating XML parser for Common Lisp")
++    (description "Xmls is a self-contained, easily embedded parser that
+ recognizes a useful subset of the XML spec.  It provides a simple mapping from
+ XML to Lisp structures or s-expressions and back.")
+-      (license license:bsd-2))))
++    (license license:bsd-2)))
+ 
+ (define-public cl-xmls
+   (sbcl-package->cl-source-package sbcl-xmls))
+ 
+ (define-public ecl-xmls
+-  (let ((pkg (sbcl-package->ecl-package sbcl-xmls)))
+-    (package
+-      (inherit pkg)
+-      (arguments
+-       (substitute-keyword-arguments (package-arguments pkg)
+-         ;; Upstream doesn't have a test suite adapted for ECL.
+-         ((#:tests? _ #f) #f))))))
++  (sbcl-package->ecl-package sbcl-xmls))
+ 
+ (define-public sbcl-geco
+   (let ((commit "db13c9384491092975f46f6a837ccdc04681a93a")
+-- 
+2.38.0
+

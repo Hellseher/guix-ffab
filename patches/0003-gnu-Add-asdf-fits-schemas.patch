@@ -1,0 +1,58 @@
+From 3e09a81c8f3ba603dc20b193f7dc167ba10934b8 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Nov 2022 21:45:54 +0000
+Subject: [PATCH 3/9] gnu: Add asdf-fits-schemas
+
+* gnu/packages/astronomy.scm (python-asdf-fits-schemas): New variable.
+---
+ gnu/packages/astronomy.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 56eb9143b1..b07bef73b8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2052,6 +2052,40 @@ (define python-asdf-coordinates-schemas
+ install an implementation package such as asdf-astropy.")
+     (license license:bsd-3)))
+ 
++(define python-asdf-fits-schemas
++  ;; TODO: No release, change to tag when it's ready.
++  (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
++        (revision "0"))
++    (package
++      (name "python-asdf-fits-schemas")
++      (version (git-version "0.0.1" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/asdf-format/asdf-fits-schemas")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32
++           "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
++      (build-system pyproject-build-system)
++      (arguments
++       ;; Dependencies cycle with python-asdf
++       (list
++        #:tests? #f
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-before 'build 'set-version
++              (lambda _
++                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
++      (native-inputs (list python-setuptools-scm))
++      (propagated-inputs (list python-asdf-standard python-importlib-resources))
++      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
++      (synopsis "ASDF schemas to support the FITS format")
++      (description "This package provides ASDF schemas for validating FITS tags.")
++      (license license:bsd-3))))
++
+ (define python-asdf-unit-schemas
+   (package
+     (name "python-asdf-unit-schemas")
+-- 
+2.38.0
+

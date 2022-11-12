@@ -1,0 +1,51 @@
+From 49dfdd359695d60aab227499f0a925388fd956f5 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Nov 2022 22:40:50 +0000
+Subject: [PATCH 8/9] gnu: asdf-astropy: Update to 0.2.2
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.2.0.
+  [build-system]: Use pyproject-build-system.
+  [arguments]: Remove redundant.
+---
+ gnu/packages/astronomy.scm | 20 +++++++++-----------
+ 1 file changed, 9 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index cc46006865..ead5c39f46 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2153,22 +2153,20 @@ (define python-asdf-unit-schemas
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.1.2")
++    (version "0.2.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_astropy" version))
+        (sha256
+-        (base32 "0bzgah7gskvnz6jcrzipvzixv8k2jzjkskqwxngzwp4nxgjbcvi4"))))
+-    (build-system python-build-system)
+-    (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (replace 'check
+-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+-             (when tests?
+-               (add-installed-pythonpath inputs outputs)
+-               (invoke "python" "-m" "pytest")))))))
++        (base32 "1b0v4cl7xvly3x1k5k2rvc2l32jqgqp0iyf1j20fkvj450sx74f2"))))
++    (build-system pyproject-build-system)
++    ;; Starting from v0.2.0 the test suite contains massive set of unit tests.
++    ;; It takes 4+ minutes to pass all of them with a lot of warnings
++    ;; but tests are completed successfully in the end:
++    ;; 
++    ;; 4065 passed, 8146 warnings in 271.78s (0:04:31)
++    ;; 
+     (native-inputs
+      (list python-coverage
+            python-h5py
+-- 
+2.38.0
+

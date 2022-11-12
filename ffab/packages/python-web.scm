@@ -19,7 +19,6 @@
 (define-module (ffab packages python-web)
   #:use-module (ffab packages databases)
   #:use-module (ffab packages python-check)
-  #:use-module (ffab packages python-crypto)
   #:use-module (ffab packages python-xyz)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages check)

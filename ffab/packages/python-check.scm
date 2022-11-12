@@ -25,6 +25,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages web)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system pyproject)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -88,55 +89,43 @@ and cuts down boilerplate code when testing libraries for asyncio.")
     (license license:asl2.0)))
 
 ;; 20221006T014754+0100
-(define-public python-pytest-socket
+;; (define-public python-pytest-socket
+;; added-to-upstream c697ff964192f64dfc22927c09458852ace7dd9a
+;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
+
+;; 20221109T102829+0000
+(define-public python-nox
   (package
-    (name "python-pytest-socket")
-    (version "0.5.1")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "pytest-socket" version))
-              (sha256
-               (base32
-                "1dkr86nxkxc0ka3rdnpmk335m8gl1zh1sy8i7w4w1jsidbf82jvw"))))
-    (build-system python-build-system)
+    (name "python-nox")
+    (version "2022.8.7")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "nox" version))
+       (sha256
+        (base32 "0jx3c0kh9r40d3nr7kvcvh5x8mfnlmy1j797z64w7i8xam04k28v"))))
+    (build-system pyproject-build-system)
     (arguments
-     ;; FIXME: Tests fail a lot, probably requiring Internet access.
-     (list #:tests? #f
-           #:phases #~(modify-phases %standard-phases
-                        (replace 'build
-                          (lambda _
-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
-                                    #$version)
-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
-                            (invoke "python"
-                                    "-m"
-                                    "build"
-                                    "--wheel"
-                                    "--no-isolation"
-                                    ".")))
-                        ;; XXX: test_asynctest depends on the project which is
-                        ;; not compatible with Python 3.8 and probably
-                        ;; abandoned.
-                        ;; https://github.com/miketheman/pytest-socket/issues/161
-                        (add-before 'check 'disable-unsupported-test
-                          (lambda _
-                            (substitute* "tests/test_async.py"
-                              (("def test_asynctest")
-                               "def __off_test_asynctest"))))
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "python" "-m" "pytest" "-vvv")))))))
-    (native-inputs (list python-httpx
-                         python-poetry-core
-                         python-pypa-build
-                         python-pytest
-                         python-pytest-httpbin
-                         python-pytest-randomly
-                         python-starlette))
-    (home-page "https://pypi.org/project/pytest-socket/")
-    (synopsis "Pytest plugin to disable socket calls during tests")
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'remove-github-actions-helper-tests
+            (lambda _
+              (delete-file "tests/test_action_helper.py"))))))
+    (propagated-inputs
+     (list python-argcomplete
+           python-colorlog
+           python-packaging
+           python-py
+           python-virtualenv))
+    (native-inputs
+     (list python-jinja2
+           python-pytest
+           python-tox))
+    (home-page "https://nox.thea.codes/")
+    (synopsis "Flexible test automation")
     (description
-     "This package provides Pytest extension which disables all network calls flowing
-through Python's socket interface")
-    (license license:expat)))
+     "@code{nox} is a command-line tool that automates testing in multiple
+Python environments, similar to @code{tox}.  Unlike tox, Nox uses a standard
+Python file for configuration.")
+    (license license:asl2.0)))
