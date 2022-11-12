@@ -948,10 +948,8 @@ influenced by Python's optparse and argparse.")
          (sha256
           (base32 "02lw7w8cbvnxw5acbz405rb5lcqsf4fx7dvj5ldr0lhgbyv1mjnm"))))
       (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("1am" ,sbcl-1am)))
-      (inputs
-       `(("split-sequence" ,sbcl-split-sequence)))
+      (native-inputs (list sbcl-1am))
+      (inputs (list sbcl-split-sequence))
       (home-page "https://hg.stevelosh.com/bobbin")
       (synopsis "Word-wrapping library for strings in Common Lisp")
       (description
