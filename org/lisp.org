@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-12 Sat 21:08:46 GMT>
+#+modified: <2022-11-12 Sat 21:51:58 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
