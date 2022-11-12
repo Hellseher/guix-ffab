@@ -951,30 +951,6 @@ based on magic numbers.  Features include
      "This library allow for enabling Windows terminal color support for Go.")
     (license license:expat)))
 
-;; 20220515T223130+0100
-(define-public go-github-com-lunixbochs-vtclean
-  (package
-    (name "go-github-com-lunixbochs-vtclean")
-    (version "1.0.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/lunixbochs/vtclean")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0jqn33l1kzy4dk66zbvxz7rlgkgg34s9mhc8z0lrz0i88466zhd8"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/lunixbochs/vtclean"))
-    (home-page "https://github.com/lunixbochs/vtclean")
-    (synopsis "Strips terminal escapes from text, can preserve color")
-    (description
-     "This package provides Golang library to clean up raw terminal output by
-stripping escape sequences, optionally preserving color.")
-    (license license:expat)))
-
 ;; 20220515T223750+0100
 (define-public go-github-com-cespare-xxhash
   (package
@@ -1234,29 +1210,6 @@ function calls are platform dependent.")
 
 ;;+end_github.com/go-playground
 
-;; 20220731T212651+0100
-(define-public go-github-com-goccy-go-json
-  (package
-    (name "go-github-com-goccy-go-json")
-    (version "0.9.10")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/goccy/go-json")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1bg8p4c6r8r0kixdxv2m8xmdsmb1zl5sd8czswpccldjk3c358wp"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/goccy/go-json"))
-    (home-page "https://github.com/goccy/go-json")
-    (synopsis "Golang JSON encoder/decoder")
-    (description
-     "Fast JSON encoder/decoder compatible with encoding/json for Golang.")
-    (license license:expat)))
-
 ;; 20220731T213050+0100
 (define-public go-github-com-json-iterator-go
   (package
@@ -1415,30 +1368,6 @@ system's current language.")
     (description "Small parser for git todo files.")
     (license license:public-domain)))
 
-;; 20220803T200630+0100
-(define-public go-git-sr-ht-emersion-go-scfg
-  (package
-    (name "go-git-sr-ht-emersion-go-scfg")
-    (version "0.0.0-20211215104734-c2c7a15d6c99")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://git.sr.ht/~emersion/go-scfg")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "02gn8hz8zfv8y0krysx2wv951gw8hmhdfqf1ysidwm7i293365w4"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "git.sr.ht/~emersion/go-scfg"))
-    (propagated-inputs (list go-github-com-google-shlex
-                             go-github-com-davecgh-go-spew))
-    (home-page "https://git.sr.ht/~emersion/go-scfg")
-    (synopsis "Golang library for scfg")
-    (description "Package scfg parses configuration files.")
-    (license license:expat)))
-
 ;; 20220803T200936+0100
 (define-public go-git-sr-ht-emersion-gqlclient
   (package
@@ -1492,30 +1421,6 @@ system's current language.")
      "Package ansiterm provides a Writer that writes out the ANSI escape codes for
 color and styles.")
     (license license:lgpl3)))
-
-;; 20220803T203926+0100
-(define-public go-github-com-google-shlex
-  (package
-    (name "go-github-com-google-shlex")
-    (version "0.0.0-20191202100458-e7afc7fbc510")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/google/shlex")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "14z8hqyik910wk2qwnzgz8mjsmiamxa0pj55ahbv0jx6j3dgvzfm"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/google/shlex"))
-    (home-page "https://github.com/google/shlex")
-    (synopsis "Golang lexer library")
-    (description
-     "Package shlex implements a simple lexer which splits input in to tokens using
-shell-style rules for quoting and commenting.")
-    (license license:asl2.0)))
 
 ;; 20220803T204415+0100
 (define-public go-github-com-vektah-gqlparser-v2
@@ -2373,29 +2278,6 @@ Highlighted features:
 @item Customizable edition mode.
 @item Easy to build reusable widgets, complex layouts.
 @end itemize")
-    (license license:bsd-3)))
-
-(define-public go-github-com-go-git-gcfg
-  (package
-    (name "go-github-com-go-git-gcfg")
-    (version "1.5.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/go-git/gcfg")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1lb14z4j35pwz2b2rbykkpsq515spwbndb00gwn2xlrzn949xb83"))))
-    (arguments
-     `(#:import-path "github.com/go-git/gcfg"))
-    (native-inputs (list go-gopkg-in-warnings go-github-com-pkg-errors))
-    (propagated-inputs (list go-gopkg-in-warnings))
-    (build-system go-build-system)
-    (home-page "https://github.com/go-git/gcfg/")
-    (synopsis "Gcfg reads INI-style configuration files into Go structs")
-    (description "Gcfg reads INI-style configuration files into Go structs.")
     (license license:bsd-3)))
 
 ;; 20220813T134740+0100
