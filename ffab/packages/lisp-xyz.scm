@@ -917,11 +917,8 @@ implementations, the most common of which is probably Active Directory.")
          (sha256
           (base32 "1b1f9mpp3lkfq3hcpmw4g2cwklscjs5nggdjsfxapj88j2pj73ky"))))
       (build-system asdf-build-system/sbcl)
-      (native-inputs
-       `(("1am" ,sbcl-1am)))
-      (inputs
-       `(("bobbin" ,sbcl-bobbin)
-         ("split-sequence" ,sbcl-split-sequence)))
+      (native-inputs (list sbcl-1am))
+      (inputs (list sbcl-bobbin sbcl-split-sequence))
       (home-page "https://hg.stevelosh.com/adopt")
       (synopsis "Common Lisp A Damn OPTion parsing library")
       (description
