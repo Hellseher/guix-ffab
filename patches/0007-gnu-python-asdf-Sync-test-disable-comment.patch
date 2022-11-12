@@ -1,0 +1,33 @@
+From 87f3931214bc96252cba938092ab35ccbb4941ad Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Nov 2022 22:12:41 +0000
+Subject: [PATCH 7/9] gnu: python-asdf: Sync test disable comment
+
+* gnu/packages/astronomy (python-asdf): Sync comments emailing the
+  reason of disabled tests. python-astropy does not depends on python-asdf
+  any longer but test keep failing due to multiple reasons.
+---
+ gnu/packages/astronomy.scm | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a9bd687e66..cc46006865 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1926,8 +1926,11 @@ (define-public python-asdf
+         (base32 "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     ;; NOTE: (Sharlatan-20211229T201059+0000): Tests depend on astropy and
+-     ;; gwcs, astropy gwcs depend on asdf.  Disable circular dependence.
++     ;; FIXME: Tests fail a lot with
++     ;;
++     ;; ERROR  - _pytest.pathlib.ImportPathMismatchError:
++     ;; ('asdf.conftest', '/gnu/sto...
++     ;;
+      `(#:tests? #f))
+     (native-inputs
+      (list python-astropy
+-- 
+2.38.0
+

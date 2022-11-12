@@ -1,0 +1,122 @@
+From 6ae78869a0ffe78cad6dcc1394ec9dccdc1c7f69 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Nov 2022 17:07:57 +0000
+Subject: [PATCH 3/3] gnu: meshlab: Unbundle vcglib and easyexif
+
+* gnu/packages/engineering.scm (meshlab):
+  [source]: Do not clone the project recursively. Add clean up procedure
+  to remove any bundled libraries and external sources.
+  [inputs]: Add vcglib and easyexif. Sort list alphabetically.
+  [phases]{set-external-libraries}: New phase.
+---
+ gnu/packages/engineering.scm | 69 +++++++++++++++++++++++++++++-------
+ 1 file changed, 57 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/engineering.scm b/gnu/packages/engineering.scm
+index 4f705d4b9b..41ed010d6e 100644
+--- a/gnu/packages/engineering.scm
++++ b/gnu/packages/engineering.scm
+@@ -126,6 +126,7 @@ (define-module (gnu packages engineering)
+   #:use-module (gnu packages parallel)
+   #:use-module (gnu packages pcre)
+   #:use-module (gnu packages perl)
++  #:use-module (gnu packages photo)
+   #:use-module (gnu packages pkg-config)
+   #:use-module (gnu packages pretty-print)
+   #:use-module (gnu packages protobuf)
+@@ -2814,28 +2815,61 @@ (define-public meshlab
+               (method git-fetch)
+               (uri (git-reference
+                     (url "https://github.com/cnr-isti-vclab/meshlab")
+-                    (commit (string-append "MeshLab-" version))
+-                    (recursive? #t)))
++                    (commit (string-append "MeshLab-" version))))
+               (file-name (git-file-name name version))
+               (sha256
+-               (base32 "0dkh9qw9z2160s6gjiv0a601kp6hvl66cplvi8rfc892zcykgiwd"))))
++               (base32 "0dkh9qw9z2160s6gjiv0a601kp6hvl66cplvi8rfc892zcykgiwd"))
++              (modules '((guix build utils)))
++              (snippet
++               '(begin
++                  ;; Remove bundeled libraries and prebuilt binaries, check if
++                  ;; the list is changed in the next release.
++                  (for-each (lambda (dir)
++                              (delete-file-recursively dir))
++                            (list "src/external/OpenCTM-1.0.3"
++                                  "src/external/e57"
++                                  "src/external/easyexif"
++                                  "src/external/glew-2.1.0"
++                                  "src/external/levmar-2.3"
++                                  "src/external/lib3ds-1.3.0"
++                                  "src/external/libigl-2.3.0"
++                                  "src/external/muparser_v225"
++                                  "src/external/nexus"
++                                  "src/external/openkinect"
++                                  "src/external/qhull-2020.2"
++                                  "src/external/structuresynth-1.5"
++                                  "src/external/tinygltf"
++                                  "src/external/u3d"
++                                  "src/external/xerces"
++                                  "src/vcglib"
++                                  ;; XXX: Remove this in future release
++                                  ;; they are present in master and contains
++                                  ;; prebuilt libraries
++                                  ;;
++                                  ;; "resources/linux"
++                                  ;; "resources/windows"
++                                  ;; "resources/macos"
++                                  ))))))
+     (build-system cmake-build-system)
+     (inputs
+-     (list qtbase-5
+-           mesa
+-           glu
++     (list easyexif
++           eigen
+            glew
+-           muparser
++           glu
+            gmp
+-           eigen
+-           libfreenect
+            lib3ds
++           libfreenect
++           mesa
++           muparser
+            openctm
+-           qhull))
++           qhull
++           qtbase-5
++           vcglib))
+     (arguments
+      (list #:tests? #f                  ; Has no tests
+            #:configure-flags
+-           #~(list (string-append "-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath="
++           #~(list (string-append "-DVCGDIR=" #$(this-package-input "vcglib") "/include/vcglib")
++                   (string-append "-DCMAKE_MODULE_LINKER_FLAGS=-Wl,-rpath="
+                                   #$output "/lib/meshlab")
+                    (string-append "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-rpath="
+                                   #$output "/lib/meshlab")
+@@ -2844,7 +2878,18 @@ (define-public meshlab
+            #:phases
+            #~(modify-phases %standard-phases
+                (add-after 'unpack 'go-to-source-dir
+-                 (lambda _ (chdir "src"))))))
++                 (lambda _ (chdir "src")))
++               ;; XXX: Add more substitutions to CMake files if building start
++               ;; failing. GLEW and easyexif comes as hard dependencies for
++               ;; MashLab missing them prevent core built.
++               (add-before 'configure 'set-external-libraries
++                 (lambda* (#:key inputs #:allow-other-keys)
++                   (substitute* "external/easyexif.cmake"
++                     ((".*set.EXIF_DIR.*")
++                      (string-append
++                       "set(EXIF_DIR "
++                       (search-input-directory inputs "/include/easyexif")
++                       ")"))))))))
+     (synopsis "3D triangular mesh processing and editing software")
+     (home-page "https://www.meshlab.net/")
+     (description "MeshLab is a system for the processing and editing of large,
+-- 
+2.37.3
+
