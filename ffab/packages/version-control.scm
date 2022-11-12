@@ -150,33 +150,3 @@ with @code{git} and your code.")
      "This package provides a simple terminal UI for git commands, written in Go with
 the @url{https://github.com/jroimartin/gocui,gocui} library.")
     (license license:expat)))
-
-;; 20220803T200717+0100
-(define-public hut
-  (package
-    (name "hut")
-    (version "0.2.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://git.sr.ht/~emersion/hut")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0ybngrwwmkm00dlkdhvkfcvcjhp5xzs8fh90zqr0h12ssqx9pll3"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "git.sr.ht/~emersion/hut"))
-    (propagated-inputs (list go-git-sr-ht-emersion-go-scfg
-                             go-git-sr-ht-emersion-gqlclient
-                             go-github-com-google-shlex
-                             go-github-com-juju-ansiterm
-                             go-github-com-spf13-cobra-1.5
-                             go-golang-org-x-oauth2
-                             go-golang-org-x-term))
-    (home-page "https://git.sr.ht/~emersion/hut")
-    (synopsis #f)
-    (description "This package provides a CLI tool for
-@url{https://sr.ht/~sircmpwn/sourcehut/,sr.ht}.")
-    (license license:agpl3)))
