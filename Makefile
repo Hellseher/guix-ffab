@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-12 Sat 23:01:42 GMT>
+# Modified : <2022-11-12 Sat 23:45:24 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -63,6 +63,7 @@ PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP)
 
 GUIX_FLAGS ?= --load-path=./
+GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS)
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
@@ -81,7 +82,7 @@ ifdef CI_BUILD
 $(info :status ci-environemt)
 GUIX_BUILD_FLAGS += --keep-going --quiet
 else
-GUIX_BUILD_FLAGS += --keep-failed --rounds=1 --cores=0
+GUIX_BUILD_FLAGS += --keep-failed --rounds=2 --cores=0
 endif
 
 GUIX_BUILD_PROBE_FLAGS ?=	\
