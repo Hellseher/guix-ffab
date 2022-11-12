@@ -28,6 +28,7 @@
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gsasl)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages kerberos)
   #:use-module (gnu packages libevent)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-check)
@@ -833,6 +834,12 @@ services. The API itself is generic, and the system can provide different
 underlying implementations. The most common one is Kerberos, which has several
 implementations, the most common of which is probably Active Directory.")
       (license license:bsd-3))))
+
+(define-public ecl-cl-gss
+  (sbcl-package->ecl-package sbcl-cl-gss))
+
+(define-public cl-gss
+  (sbcl-package->cl-source-package sbcl-cl-gss))
 
 ;;https://github.com/fukamachi
 ;;+begin-fukamachi
