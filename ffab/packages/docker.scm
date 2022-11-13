@@ -47,48 +47,42 @@
      (list
       #:import-path "github.com/wagoodman/dive"))
     (native-inputs
-     (list ;; go-github-com-docker-engine ;; indirect
-      go-github-com-docker-distribution
-      ;; go-gotest-tools ;; indirect
-      ;; go-google-golang-org-grpc ;; indirect
-      ;; go-google-golang-org-genproto ;; indirect
-      go-golang-org-x-text
-      go-golang-org-x-sys
-      go-golang-org-x-net
-      go-github-com-stretchr-testify
-      go-github-com-spf13-viper
-      go-github-com-spf13-pflag
-      go-github-com-spf13-jwalterweatherman
-      go-github-com-spf13-cobra
-      go-github-com-spf13-afero
-      go-github-com-sirupsen-logrus
-      go-github-com-sergi-go-diff
-      go-github-com-phayes-permbits
-      go-github-com-pelletier-go-toml
-      go-github-com-opencontainers-image-spec
-      go-github-com-opencontainers-go-digest
-      ;; go-github-com-morikuni-aec ;; indirect
-      go-github-com-mitchellh-go-homedir
-      go-github-com-mattn-go-isatty
-      go-github-com-mattn-go-colorable
-      go-github-com-magiconair-properties
-      go-github-com-lunixbochs-vtclean
-      go-github-com-logrusorgru-aurora
-      go-github-com-konsorten-go-windows-terminal-sequences
-      go-github-com-gorilla-mux
-      go-github-com-google-uuid
-      ;; go-github-com-google-go-cmp ;; indirect
-      go-github-com-gogo-protobuf
-      go-github-com-fatih-color
-      go-github-com-dustin-go-humanize
-      go-github-com-docker-go-units
-      go-github-com-docker-go-connections
-      go-github-com-docker-cli
-      go-github-com-cespare-xxhash
-      go-github-com-awesome-gocui-keybinding
-      go-github-com-awesome-gocui-gocui
-      go-github-com-microsoft-go-winio
-      go-github-com-azure-go-ansiterm))
+     (list go-github-com-docker-distribution
+           go-golang-org-x-text
+           go-golang-org-x-sys
+           go-golang-org-x-net
+           go-github-com-stretchr-testify
+           go-github-com-spf13-viper
+           go-github-com-spf13-pflag
+           go-github-com-spf13-jwalterweatherman
+           go-github-com-spf13-cobra
+           go-github-com-spf13-afero
+           go-github-com-sirupsen-logrus
+           go-github-com-sergi-go-diff
+           go-github-com-phayes-permbits
+           go-github-com-pelletier-go-toml
+           go-github-com-opencontainers-image-spec
+           go-github-com-opencontainers-go-digest
+           go-github-com-mitchellh-go-homedir
+           go-github-com-mattn-go-isatty
+           go-github-com-mattn-go-colorable
+           go-github-com-magiconair-properties
+           go-github-com-lunixbochs-vtclean
+           go-github-com-logrusorgru-aurora
+           go-github-com-konsorten-go-windows-terminal-sequences
+           go-github-com-gorilla-mux
+           go-github-com-google-uuid
+           go-github-com-gogo-protobuf
+           go-github-com-fatih-color
+           go-github-com-dustin-go-humanize
+           go-github-com-docker-go-units
+           go-github-com-docker-go-connections
+           go-github-com-docker-cli
+           go-github-com-cespare-xxhash
+           go-github-com-awesome-gocui-keybinding
+           go-github-com-awesome-gocui-gocui
+           go-github-com-microsoft-go-winio
+           go-github-com-azure-go-ansiterm))
     (home-page "https://github.com/wagoodman/dive")
     (synopsis "Tool for exploring each layer in a Docker image")
     (description
