@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-12 Sat 23:45:24 GMT>
+# Modified : <2022-11-14 Mon 00:33:01 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -14,8 +14,12 @@ ffab/packages/python-web.scm	\
 ffab/packages/python-check.scm	\
 ffab/packages/sphinx.scm
 
-MODULES_GOLANG :=				\
-ffab/packages/golang.scm
+MODULES_GOLANG :=					\
+ffab/packages/docker.scm			\
+ffab/packages/golang-web.scm		\
+ffab/packages/golang.scm			\
+ffab/packages/terraform.scm			\
+ffab/packages/version-control.scm
 
 MODULES_LISP :=				\
 ffab/packages/lisp.scm		\
@@ -28,7 +32,6 @@ ffab/packages/cinnamon.scm			\
 ffab/packages/cran.scm				\
 ffab/packages/cxx.scm				\
 ffab/packages/databases.scm			\
-ffab/packages/docker.scm			\
 ffab/packages/engineering.scm		\
 ffab/packages/game-development.scm	\
 ffab/packages/geo.scm				\
@@ -43,7 +46,6 @@ ffab/packages/pascal.scm			\
 ffab/packages/photo.scm				\
 ffab/packages/rabbitmq.scm			\
 ffab/packages/rust-app.scm			\
-ffab/packages/terraform.scm			\
 ffab/packages/tls.scm				\
 ffab/packages/web.scm
 
