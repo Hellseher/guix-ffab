@@ -901,8 +901,39 @@ based on magic numbers.  Features include
     (description "Package graphql provides a GraphQL client implementation.")
     (license license:expat)))
 
-
-;;; :end github.com/cli/cli
+(define-public go-github-com-microsoft-go-winio
+  (package
+    (name "go-github-com-microsoft-go-winio")
+    (version "0.6.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/microsoft/go-winio")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1lcnz98bj2bkjlqwqgamdzr96v6fg7wagy3n1v7kvfazfsyh03ad"))))
+    (build-system go-build-system)
+    (arguments
+     (list #:import-path "github.com/Microsoft/go-winio"
+           #:tests? #f ; Source-only package
+           #:phases
+           #~(modify-phases %standard-phases
+               ;; Source-only package
+               (delete 'build))))
+    (propagated-inputs
+     (list go-golang-org-x-mod
+           go-golang-org-x-tools
+           go-golang-org-x-sys
+           go-github-com-sirupsen-logrus))
+    (home-page "https://github.com/Microsoft/go-winio")
+    (synopsis "Win32 IO-related utilities for Go")
+    (description
+     "This package provides utilities for efficiently performing Win32 IO operations
+in Go.  Currently, this package is provides support for genreal IO and
+management of")
+    (license license:expat)))
 
 ;; 20220515T223341+0100
 (define-public go-github-com-logrusorgru-aurora
