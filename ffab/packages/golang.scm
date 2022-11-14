@@ -1297,6 +1297,30 @@ compatibility with code using standard lib.")
     (description "Package toml is a TOML parser and manipulation library.")
     (license license:expat)))
 
+;; 20220515T222656+0100
+(define-public go-github-com-phayes-permbits
+  (let ((commit "39d7c581d2eed692fa2f3f2672e0a1190cd3f767")
+        (revision "1"))
+    (package
+      (name "go-github-com-phayes-permbits")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/phayes/permbits")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1jixy4m65agyyly5mg4icszwzs5hjgj1x7cwvc9a3df6j5lwd41x"))))
+      (build-system go-build-system)
+      (arguments (list #:import-path "github.com/phayes/permbits"))
+      (home-page "https://github.com/phayes/permbits")
+      (synopsis "File permissions for golang")
+      (description
+       "Easy file permissions for golang.  Easily get and set file permission bits.")
+      (license license:expat))))
+
 ;; 20220731T221227+0100
 (define-public go-github-com-ugorji-go-codec
   (package

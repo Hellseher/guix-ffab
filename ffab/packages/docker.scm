@@ -97,28 +97,6 @@
 @end itemize\n")
     (license license:expat)))
 
-;; 20220515T222656+0100
-(define-public go-github-com-phayes-permbits
-  (package
-    (name "go-github-com-phayes-permbits")
-    (version "0.0.0-20190612203442-39d7c581d2ee")
-    (source
-      (origin
-        (method git-fetch)
-        (uri (git-reference
-               (url "https://github.com/phayes/permbits")
-               (commit (go-version->git-ref version))))
-        (file-name (git-file-name name version))
-        (sha256
-          (base32 "1jixy4m65agyyly5mg4icszwzs5hjgj1x7cwvc9a3df6j5lwd41x"))))
-    (build-system go-build-system)
-    (arguments '(#:import-path "github.com/phayes/permbits"))
-    (home-page "https://github.com/phayes/permbits")
-    (synopsis "PermBits")
-    (description
-      "Easy file permissions for golang.  Easily get and set file permission bits.")
-    (license license:expat)))
-
 ;; 20220515T222856+0100
 (define-public go-github-com-opencontainers-image-spec
   (package
