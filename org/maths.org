@@ -1,8 +1,8 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2022-10-30 Sun 20:43:08 GMT>
+#+modified: <2022-11-14 Mon 20:32:42 GMT>
 
-* Flow [0/3][0%]
+* Flow [0/5][0%]
 ** TODO nelib [/][%] :p5:
 - http://www.netlib.org/
 
@@ -60,6 +60,7 @@
 *** Issues
 - <2022-10-30 Sun> Configure phase still can't find many inputs, need more time to resolve all of
   the issues.
+
 ** TODO danieljprice [1/1][100%] :author:
 *** DONE giza [4/4][100%]
 - https://github.com/danieljprice/giza
@@ -72,3 +73,13 @@
   - [X] gfortran
   - [X] cairo
   - [X] freetype
+
+** TODO mtr [0/1][0%] :author:
+- https://gitlab.mpcdf.mpg.de/mtr
+*** TODO ducc
+- https://gitlab.mpcdf.mpg.de/mtr/ducc
+- synopsis :: Basic programming tools for numerical computation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] inputs

@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-12 Sat 22:58:03 GMT>
+#+modified: <2022-11-15 Tue 12:19:31 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -661,20 +661,33 @@ CLOSED: [2021-03-09 Tue 08:44]
   - [X] sbcl-split-sequence
   - [X] sbcl-trivial-garbage
 
-** TODO lokedhs [0/1][0%] :author:
+** TODO lokedhs [1/2][50%] :author:
 - https://github.com/lokedhs
 - https://functional.cafe/@loke
-*** TODO cl-gss [3/4][75%] :p1:
+*** DONE cl-gss [4/4][100%] :p1:
+CLOSED: [2022-11-15 Tue 12:15]
 - https://github.com/lokedhs/cl-gss
 - [X] :packed <2022-11-12 Sat>
 - [X] :patch-sent <2022-11-12 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-15 Tue>
   - https://issues.guix.gnu.org/59231
 - [X] :inputs [4/4]
   - [X] mit-krb5
   - [X] sbcl-cffi
   - [X] sbcl-trivial-garbage
   - [X] sbcl-trivial-utf-8
+
+*** TODO cl-rabbit [0/4][0%] :p3:
+- https://github.com/lokedhs/cl-rabbit
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [4/5]
+  - [X] asdf-cffi
+  - [X] asdf-alexandria
+  - [X] asdf-babel
+  - [X] asdf-cl-ppcre
+  - [ ] RabbitMQ
 
 ** DONE massung [1/1][100%] :author:
 - https://github.com/massung

@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-09 Wed 09:38:11 GMT>
+#+modified: <2022-11-14 Mon 20:16:22 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [7/20][35%]
+* Flow [7/18][38%]
 ** DONE aio-libs [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
@@ -100,14 +100,6 @@ CLOSED: [2022-11-08 Tue 10:58]
       - [X] python-tldextract
       - [X] python-pytest
       - [X] python-pytest-cov
-** TODO Libsharp [0/1][0%] :author:
-- https://github.com/Libsharp
-*** TODO libsharp [2/4][50%] :p5:
-- https://github.com/Libsharp/libsharp
-- [X] :packed <2022-10-30 Sun>
-- [X] :patch-sent <2022-10-30 Sun>
-- [ ] :paptch-applied-upstream
-  - https://issues.guix.gnu.org/58907
 ** TODO Martiusweb [0/1][0%] :author:
 - https://github.com/Martiusweb
 
