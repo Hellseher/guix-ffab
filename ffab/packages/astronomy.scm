@@ -92,6 +92,58 @@
 ;; added-to-upstream 43b8df4bece2a207018dc0fedc44d3d188d2d0f0
 ;; CommitDate: Thu Oct 6 00:11:18 2022 +0200
 
+;; 20221115T204848+0000
+(define-public alfa
+  (package
+   (name "alfa")
+   (version "2.2")
+   (source
+    (origin
+     (method git-fetch)
+     (uri (git-reference
+           (url "https://github.com/rwesson/ALFA")
+           (commit (string-append "v" version))))
+     (sha256
+      (base32 "0aqxqar36822mh373awsl79j7zn8vik4yddyydsxv0c76gn4i2k3"))
+     (file-name (git-file-name name version))))
+   (build-system gnu-build-system)
+   (arguments
+    (list
+     #:parallel-build? #f
+     #:make-flags #~(list (string-append "PREFIX=" #$output)
+                          (string-append "VERSION=" #$version))
+     #:phases
+     #~(modify-phases %standard-phases
+                      (delete 'configure)
+                      (delete 'check)
+                      (add-after 'install 'post-install-check
+                                 (lambda  _
+                                   (invoke "make" "fittest"))))))
+   (inputs (list cfitsio gfortran))
+   (home-page "https://nebulousresearch.org/codes/alfa/")
+   (synopsis "Automated Line Fitting Algorithm")
+   (description
+    "This package provides @acronym{ALFA, Automatic line fitting algorithm}
+which can identify and fit hundreds of lines in emission line spectra in just a
+few seconds with following features:
+@itemize
+
+@item A population of synthetic spectra is generated using a reference line
+catalogue.
+
+@item The goodness of fit for each synthetic spectrum is calculated. The best
+sets of parameters are retained and the rest discarded.
+
+@item A new population of synthetic spectra is obtained by averaging pairs of
+the best performers.
+
+@item A small fraction of the parameters of the lines in the new generation are
+randomly altered.
+
+@item The process repeats until a good fit is obtained.
+@end itemize")
+    (license license:gpl3+)))
+
 ;; 20220619T144120+0100
 (define-public funtools
   (package
