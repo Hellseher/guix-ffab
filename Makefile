@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-17 Thu 22:06:46 GMT>
+# Modified : <2022-11-17 Thu 22:16:39 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -16,10 +16,8 @@ ffab/packages/sphinx.scm
 
 MODULES_GOLANG :=					\
 ffab/packages/docker.scm			\
-ffab/packages/golang-web.scm		\
 ffab/packages/golang.scm			\
-ffab/packages/terraform.scm			\
-ffab/packages/version-control.scm
+ffab/packages/terraform.scm
 
 MODULES_LISP :=				\
 ffab/packages/lisp.scm		\
