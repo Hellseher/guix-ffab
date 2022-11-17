@@ -1,0 +1,43 @@
+From 992e05afeec34aaa9e68e3218257202ce027c373 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 17 Nov 2022 09:46:16 +0000
+Subject: [PATCH 1/2] gnu: python-numexpr: Update to 2.8.4
+
+* gnu/packages/python-xyz.scm (python-numexpr): Update to 2.8.4.
+  [source]: Use git checkout with tests.
+  [arguments]: Enable tests.
+---
+ gnu/packages/python-xyz.scm | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 1758450c2f..8de175dd1a 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -6535,16 +6535,17 @@ (define-public python-numpydoc
+ (define-public python-numexpr
+   (package
+     (name "python-numexpr")
+-    (version "2.7.3")
++    (version "2.8.4")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "numexpr" version))
++       (method git-fetch)   ; no tests data in PyPi package
++       (uri (git-reference
++             (url "https://github.com/pydata/numexpr")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32
+-         "09d8yfsx33ddwfkpn8805w2mxnn4cvf47yc66g4azldpz4lnaqa3"))))
++        (base32 "0cyasc7m9sidgg7ajjqd4ab3pswwzcnrrv6jxfaw7cn6hmg7mpj7"))))
+     (build-system python-build-system)
+-    (arguments `(#:tests? #f))          ; no tests included
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/pydata/numexpr")
+-- 
+2.38.0
+

@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-14 Mon 00:33:01 GMT>
+# Modified : <2022-11-17 Thu 22:06:46 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -69,15 +69,8 @@ GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS)
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
-# commit, update on any major changes.
-#
-# As seen in `guix describe`:
-# Generation 355  Nov 08 2022 11:27:54    (current)
-#   guix 93be56a
-#     repository URL: https://git.savannah.gnu.org/git/guix.git
-#     branch: master
-#     commit: 93be56a3ab28ed0a482f354b7f536681c99b6999
-GUIX_COMMIT ?= 93be56a3ab28ed0a482f354b7f536681c99b6999
+# commit, update on any major changes as seen in `guix describe`.
+GUIX_COMMIT ?= 983906ab72307a5b848a54233b30d9744356de07
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD

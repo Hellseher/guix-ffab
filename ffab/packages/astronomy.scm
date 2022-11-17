@@ -325,9 +325,9 @@ appropriate.")
 ;;  66 - tPath (Failed)
 ;; 189 - tExprNode (Failed)
 ;; NOTE: (Sharlatan-20220624T202307+0100): working on tests
-(define ffab-casacore
+(define casacore-ffab
   (package
-    (name "ffab-casacore")
+    (name "casacore-ffab")
     (version "3.4.0")
     (source (origin
               (method git-fetch)
@@ -895,9 +895,9 @@ implementation of the ASDF Standard.")
 ;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define ffab-python-asdf-wcs-schemas
+(define python-asdf-wcs-schemas-ffab
   (package
-    (name "ffab-python-asdf-wcs-schemas")
+    (name "python-asdf-wcs-schemas-ffab")
     (version "0.1.1")
     (source
      (origin
@@ -1111,9 +1111,9 @@ for variables with units.")
 ;; (define-public python-gwcs
 ;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define-public ffab-python-gwcs
+(define-public python-gwcs-ffab
   (package
-    (name "ffab-python-gwcs")
+    (name "python-gwcs-ffab")
     (version "0.18.2")
     (source
      (origin
@@ -1141,7 +1141,7 @@ for variables with units.")
     (propagated-inputs
      (list python-asdf-2.13
            python-asdf-astropy-0.2
-           ffab-python-asdf-wcs-schemas
+           python-asdf-wcs-schemas-ffab
            python-astropy
            python-numpy
            python-scipy))
@@ -1192,7 +1192,7 @@ default) to world coordinates.")
                              python-bayesicfitting
                              python-crds
                              python-drizzle
-                             ffab-python-gwcs
+                             python-gwcs-ffab
                              python-jsonschema
                              python-numpy
                              python-photutils
@@ -1356,7 +1356,7 @@ calibration pipelines.")
                 "08b2qgk81vximjjn88db7xc0lwg394rpbivk0jwd63sr3gsbsllb"))))
     (build-system pyproject-build-system)
     (propagated-inputs (list python-astropy
-                             ffab-python-gwcs
+                             python-gwcs-ffab
                              python-numpy
                              python-packaging
                              python-spherical-geometry
