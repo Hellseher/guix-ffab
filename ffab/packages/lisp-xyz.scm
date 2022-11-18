@@ -303,101 +303,19 @@
   (sbcl-package->cl-source-package sbcl-cl-graph))
 
 ;; 20220627T204024+0100
-(define-public sbcl-cl-mathstats
-  (let ((commit "4df38ea1b9de069cf939919253565a9ca9538eca")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-mathstats")
-      (version (git-version "0.8.2" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/cl-mathstats")
-               (commit commit)))
-         (file-name (git-file-name "cl-mathstats" version))
-         (sha256
-          (base32 "0gsjvmkmnxc4hp5z9mkm5vsllywqyg7kx8jgz88vnx47yj3va1s8"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-lift))
-      (inputs
-       (list sbcl-cl-containers sbcl-metatilities-base))
-      (home-page "https://github.com/gwkkwg/cl-mathstats")
-      (synopsis "Common Lisp collection of mathematical routines")
-      (description
-       "This package provides Common Lisp math and statistics routines.")
-      (license license:expat))))
-
-(define-public ecl-cl-mathstats
-  (sbcl-package->ecl-package sbcl-cl-mathstats))
-
-(define-public cl-mathstats
-  (sbcl-package->cl-source-package sbcl-cl-mathstats))
+;; (define-public sbcl-cl-mathstats
+;; added-to-upstream 8cbd51d2d53cf8aa3794c7916750c6146eff1e5d
+;; CommitDate: Fri Nov 18 14:33:06 2022 +0100
 
 ;; 20220627T205038+0100
-(define-public sbcl-metacopy
-  (let ((commit "1b5bf443206cc1dea7801ae23d1167bd02122d30")
-        (revision "1"))
-    (package
-      (name "sbcl-metacopy")
-      (version (git-version "0.2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/metacopy")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1rzp112djgw5n76s6hy2aq92bc43p0zd5bgzvqwvgvws4pls42s9"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-lift sbcl-asdf-system-connections))
-      (inputs
-       (list sbcl-contextl sbcl-moptilities))
-      (home-page "https://github.com/gwkkwg/metacopy")
-      (synopsis "Flexible Common Lisp shallow/deep copy mechanism")
-      (description
-       "This package provides flexible Common Lisp shallow/deep copy mechanism.")
-      (license license:expat))))
-
-;; NOTE: (Sharlatan-20221112T214131+0000): There is no ecl-moptilities variable
-;; required for tests.
-;;
-;; ecl-metacopy
-
-(define-public cl-metacopy
-  (sbcl-package->cl-source-package sbcl-metacopy))
+;; (define-public sbcl-metacopy
+;; added-to-upstream f136e83840a2d3ef74864a5147352387f652691a
+;; CommitDate: Fri Nov 18 14:27:18 2022 +0100
 
 ;; 20220707T232742+0100
-(define-public sbcl-asdf-system-connections
-  (let ((commit "9f085240febccccff99d9d3bb687fcaafffd3f5e")
-        (revision "1"))
-    (package
-      (name "sbcl-asdf-system-connections")
-      (version (git-version "0.8.4" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/asdf-system-connections")
-               (commit commit)))
-         (file-name (git-file-name "asdf-system-connections" version))
-         (sha256
-          (base32 "06kg0m8bv383qq3r34x0f8hz6p6zxcw02qn7kj960vcnrp5a5b3y"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/gwkkwg/asdf-system-connections")
-      (synopsis "Common Lisp ASDF system auto-loading extantion")
-      (description "This package povides Common Lisp ASDF system auto-loading
-extantion.")
-      (license license:expat))))
-
-(define-public ecl-asdf-system-connections
-  (sbcl-package->ecl-package sbcl-asdf-system-connections))
-
-(define-public cl-asdf-system-connections
-  (sbcl-package->cl-source-package sbcl-asdf-system-connections))
+;; (define-public sbcl-asdf-system-connections
+;; added-to-upstream 89ebe054c5c32a6bb751548addda6fd31a27d099
+;; CommitDate: Fri Nov 18 14:15:41 2022 +0100
 
 ;;+end-gwkkwg
 

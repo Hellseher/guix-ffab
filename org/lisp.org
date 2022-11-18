@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-18 Fri 00:04:20 GMT>
+#+modified: <2022-11-18 Fri 16:15:31 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -458,6 +458,16 @@ https://github.com/chaitanyagupta/chronicity
   + [X] re
   + [X] str
   + [X] trivial-utf-8
+** TODO EuAndreh [0/1][0%] :autho:
+*** TODO cl-slug [/][%]
+- https://github.com/EuAndreh/cl-slug/
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent <2021-02-03 Wed>
+- [X] :patch-applied-upstream <2021-02-03 Wed>
+  - https://issues.guix.gnu.org/46261
+- [X] :inputs [1/1]
+  - [X] cl-ppcre
+
 ** TODO eudoxia0 [0/1][0%] :author:
 - https://github.com/eudoxia0
 - https://borretti.me/
@@ -480,15 +490,16 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [X] :inputs [1/1]
   - [X] cl-ppcre
 
-** TODO gwkkwg [0/4][0%] :author:p3:
+** TODO gwkkwg [3/4][75%] :author:p3:
 - https://github.com/gwkkwg
 
-*** TODO cl-mathstats [3/4][75%] :p4:
+*** DONE cl-mathstats [4/4][100%] :p4:
+CLOSED: [2022-11-18 Fri 16:15]
 - https://github.com/gwkkwg/cl-mathstats
 - synopsis :: An unordered collection of mathematical routines
 - [X] :packed <2022-11-17 Thu>
 - [X] :patch-sent <2022-11-17 Thu>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-18 Fri>
   - https://issues.guix.gnu.org/59344
 - [X] :inputs [3/3]
   - [X] cl-lift
@@ -510,11 +521,12 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] cl-metatilities-base
   - [X] cl-moptilities
 
-*** TODO metacopy [3/4][75%] :p4:
+*** DONE metacopy [4/4][100%] :p4:
+CLOSED: [2022-11-18 Fri 16:15]
 - https://github.com/gwkkwg/metacopy
 - [X] :packed <2022-11-18 Fri>
 - [X] :patch-sent <2022-11-18 Fri>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-11-18 Fri>
   - https://issues.guix.gnu.org/59344
 - [X] :inputs [4/4][100%]
   - [X] cl-lift
@@ -523,22 +535,13 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] cl-contextl
   - [X] cl-moptilities
 
-*** TODO asdf-system-connections [2/3][66%]
+*** DONE asdf-system-connections [3/3][100%]
+CLOSED: [2022-11-18 Fri 16:15]
 - https://github.com/gwkkwg/asdf-system-connections
 - [X] :packed <2022-11-18 Fri>
 - [X] :patch-sent <2022-11-18 Fri>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-11-18 Fri>
   - https://issues.guix.gnu.org/59344
-
-** TODO EuAndreh [0/1][0%] :autho:
-*** TODO cl-slug [/][%]
-- https://github.com/EuAndreh/cl-slug/
-- [X] :packed <2021-02-02 Tue>
-- [X] :patch-sent <2021-02-03 Wed>
-- [X] :patch-applied-upstream <2021-02-03 Wed>
-  - https://issues.guix.gnu.org/46261
-- [X] :inputs [1/1]
-  - [X] cl-ppcre
 
 ** DONE hanshuebner [1/1][100%] :author:
 *** DONE bknr-datastore [4/4][100%]
