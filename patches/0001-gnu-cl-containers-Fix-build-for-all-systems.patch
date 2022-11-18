@@ -1,0 +1,52 @@
+From 833af578ea0fbe4c9c53e3ff5439f3acccc6bf55 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 18 Nov 2022 22:00:16 +0000
+Subject: [PATCH 1/2] gnu: cl-containers: Fix build for all systems
+
+From cl-containers.asd:
+
+> The CL-Containers system would enjoy having ~ asdf-system-connections
+> around. See http://www.cliki.net/asdf-system-connections for details
+> and download instructions.
+
+* gnu/packages/lisp-xyz.scm (sbcl-cl-containers)[inputs]: Remove
+  labels. Add sbcl-asdf-system-connections, as suggested in worming.
+  [file-name]: Use string for the name field.
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 345932dff9..58c97b5d68 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -7594,7 +7594,7 @@ (define-public ecl-metatilities-base
+ 
+ (define-public sbcl-cl-containers
+   (let ((commit "3d1df53c22403121bffb5d553cf7acb1503850e7")
+-        (revision "3"))
++        (revision "4"))
+     (package
+       (name "sbcl-cl-containers")
+       (version (git-version "0.12.1" revision commit))
+@@ -7604,7 +7604,7 @@ (define-public sbcl-cl-containers
+          (uri (git-reference
+                (url "https://github.com/gwkkwg/cl-containers")
+                (commit commit)))
+-         (file-name (git-file-name name version))
++         (file-name (git-file-name "cl-containers" version))
+          (sha256
+           (base32
+            "18s6jfq11n8nv9k4biz32pm1s7y9zl054ry1gmdbcf39nisy377y"))))
+@@ -7612,7 +7612,7 @@ (define-public sbcl-cl-containers
+       (native-inputs
+        (list sbcl-lift))
+       (inputs
+-       `(("metatilities-base" ,sbcl-metatilities-base)))
++       (list sbcl-metatilities-base sbcl-asdf-system-connections))
+       (arguments
+        '(#:phases
+          (modify-phases %standard-phases
+-- 
+2.38.0
+
