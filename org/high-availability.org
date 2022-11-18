@@ -1,6 +1,6 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-18 Fri 22:43:59 GMT>
+#+modified: <2022-11-18 Fri 22:54:46 GMT>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
@@ -46,13 +46,14 @@ clusterisation and virtualization management for High Availability.
   - [X] automake
   - [X] libtool
   - [X] pkg-config
-*** TODO corosync-qdevice [0/4][0%]
+*** TODO corosync-qdevice [1/4][25%]
 - https://github.com/corosync/corosync-qdevice
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
   - https://issues.guix.gnu.org/58152
-- [ ] :inputs [0/0][0%]
+- [X] :inputs [1/1][100%]
+  - [X] corosync
 
 ** TODO ClusterLabs [1/1][100%] :author:
 - https://www.clusterlabs.org/
