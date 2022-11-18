@@ -279,8 +279,8 @@
           (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
       (build-system asdf-build-system/sbcl)
       (arguments
-       `(#:tests? #f
-         #:asd-systems '("cl-graph")))
+       `(#:tests? #t
+         #:asd-systems '("cl-graph" "cl-graph+hu.dwim.graphviz" "cl-graph-test")))
       (native-inputs
        (list sbcl-lift sbcl-moptilities))
       (inputs
@@ -293,7 +293,7 @@
       (home-page "https://github.com/gwkkwg/cl-graph")
       (synopsis "Common Lisp library for manipulating graphs and running graph algorithms")
       (description
-       "Graph manipulation utilities for Common Lisp")
+       "This package provides Graph manipulation utilities for Common Lisp.")
       (license license:expat))))
 
 (define ecl-cl-graph
@@ -324,9 +324,9 @@
       (inputs
        (list sbcl-cl-containers sbcl-metatilities-base))
       (home-page "https://github.com/gwkkwg/cl-mathstats")
-      (synopsis "Common Lisp unordered collection of mathematical routines")
+      (synopsis "Common Lisp collection of mathematical routines")
       (description
-       "Common Lisp math and statistics routines")
+       "This package provides Common Lisp math and statistics routines.")
       (license license:expat))))
 
 (define-public ecl-cl-mathstats

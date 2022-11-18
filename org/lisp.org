@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-15 Tue 12:19:31 GMT>
+#+modified: <2022-11-18 Fri 00:04:20 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [11/30][36%]
+* Flow [11/31][35%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -226,28 +226,13 @@ CLOSED: [2021-06-15 Tue 10:09]
   + [X] 3b-bmfont/json (part of 3b-bmfont)
   + [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
   + [X] cl-cpus [3/3][100%]
-    - https://github.com/muyinliu/cl-cpus.git
     - [X] :packed <2021-04-03 Sat>
-    - [X] :patch-sent <2021-04-08 Thu>
-    - [X] :patch-applied-upstream <2021-04-08 Thu>
-      - https://issues.guix.gnu.org/47586
-  + [ ] cl-graph [0/3][0%]
-    - https://github.com/gwkkwg/cl-graph
+  + [ ] cl-graph [0/1][0%]
     - [ ] :packed
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [ ] :inputs [/][%]
-      - [ ] hu.dwim.graphviz
   + [X] cl-opengl
   + [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
-  + [X] cl-slug [4/4][100%]
-    - https://github.com/EuAndreh/cl-slug/
-    - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-03 Wed>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      - https://issues.guix.gnu.org/46261
-    - [X] :inputs [1/1]
-      - [X] cl-ppcre
+  + [X] cl-slug [1/1][100%]
+    + [X] :packed <2021-02-02 Tue>
   + [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
   + [X] fast-io (gnu/packages/lisp-xyz.scm:4153:4)
   + [X] global-vars (gnu/packages/lisp-xyz.scm:6619:4)
@@ -495,16 +480,65 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [X] :inputs [1/1]
   - [X] cl-ppcre
 
-** TODO gwkkwg [0/1][0%] :author:p3:
+** TODO gwkkwg [0/4][0%] :author:p3:
 - https://github.com/gwkkwg
 
-*** TODO cl-mathstats [0/4][0%] :p4:
+*** TODO cl-mathstats [3/4][75%] :p4:
 - https://github.com/gwkkwg/cl-mathstats
 - synopsis :: An unordered collection of mathematical routines
+- [X] :packed <2022-11-17 Thu>
+- [X] :patch-sent <2022-11-17 Thu>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/59344
+- [X] :inputs [3/3]
+  - [X] cl-lift
+  - [X] cl-containers
+  - [X] cl-metatilities-base
+
+*** TODO cl-graph [1/4][25%] :p4:
+- https://github.com/gwkkwg/cl-graph
 - [ ] :packed
 - [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+- [ ] :patch-applied-upstream
+- [X] :inputs [8/8][100%]
+  - [X] cl-dynamic-classes
+  - [X] cl-hu.dwim.graphviz
+  - [X] cl-lift
+  - [X] cl-mathstats
+  - [X] cl-metabang-bind
+  - [X] cl-metacopy
+  - [X] cl-metatilities-base
+  - [X] cl-moptilities
+
+*** TODO metacopy [3/4][75%] :p4:
+- https://github.com/gwkkwg/metacopy
+- [X] :packed <2022-11-18 Fri>
+- [X] :patch-sent <2022-11-18 Fri>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/59344
+- [X] :inputs [4/4][100%]
+  - [X] cl-lift
+  - [X] cl-asdf-system-connections
+    - [X] :packed <2022-11-18 Fri>
+  - [X] cl-contextl
+  - [X] cl-moptilities
+
+*** TODO asdf-system-connections [2/3][66%]
+- https://github.com/gwkkwg/asdf-system-connections
+- [X] :packed <2022-11-18 Fri>
+- [X] :patch-sent <2022-11-18 Fri>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/59344
+
+** TODO EuAndreh [0/1][0%] :autho:
+*** TODO cl-slug [/][%]
+- https://github.com/EuAndreh/cl-slug/
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent <2021-02-03 Wed>
+- [X] :patch-applied-upstream <2021-02-03 Wed>
+  - https://issues.guix.gnu.org/46261
+- [X] :inputs [1/1]
+  - [X] cl-ppcre
 
 ** DONE hanshuebner [1/1][100%] :author:
 *** DONE bknr-datastore [4/4][100%]
@@ -771,7 +805,7 @@ CLOSED: [2021-05-26 Wed 21:57]
       - [X] alexandria
   + [X] iterate
 
-** DONE muyinliu [1/1][100%] :author:
+** DONE muyinliu [2/2][100%] :author:
 https://github.com/muyinliu
 *** DONE cl-diskspace [3/3][100%]
 CLOSED: [2021-03-09 Tue 08:44]
@@ -780,6 +814,14 @@ https://github.com/muyinliu/cl-diskspace
 - [X] :patch-sent <2021-03-06 Sat>
 - [X] :paptch-applied-upstream <2021-03-08 Mon>
   - https://issues.guix.gnu.org/46977
+
+*** DONE cl-cpus [/][%]
+CLOSED: [2022-11-17 Thu 23:57]
+- https://github.com/muyinliu/cl-cpus.git
+- [X] :packed <2021-04-03 Sat>
+- [X] :patch-sent <2021-04-08 Thu>
+- [X] :patch-applied-upstream <2021-04-08 Thu>
+  - https://issues.guix.gnu.org/47586
 
 ** TODO noloop [0/1][0%] :author:
 *** TODO cacau [0/4][0%]
