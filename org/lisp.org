@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-18 Fri 16:15:31 GMT>
+#+modified: <2022-11-19 Sat 17:01:06 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [11/31][35%]
+* Flow [12/31][38%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -490,7 +490,8 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [X] :inputs [1/1]
   - [X] cl-ppcre
 
-** TODO gwkkwg [3/4][75%] :author:p3:
+** DONE gwkkwg [4/4][100%] :author:p3:
+CLOSED: [2022-11-19 Sat 17:01]
 - https://github.com/gwkkwg
 
 *** DONE cl-mathstats [4/4][100%] :p4:
@@ -506,11 +507,13 @@ CLOSED: [2022-11-18 Fri 16:15]
   - [X] cl-containers
   - [X] cl-metatilities-base
 
-*** TODO cl-graph [1/4][25%] :p4:
+*** DONE cl-graph [4/4][100%] :p4:
+CLOSED: [2022-11-19 Sat 17:00]
 - https://github.com/gwkkwg/cl-graph
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :packed <2022-06-15 Wed>
+- [X] :patch-sent <2022-11-18 Fri>
+- [X] :patch-applied-upstream <2022-11-19 Sat>
+  - https://issues.guix.gnu.org/59344
 - [X] :inputs [8/8][100%]
   - [X] cl-dynamic-classes
   - [X] cl-hu.dwim.graphviz
