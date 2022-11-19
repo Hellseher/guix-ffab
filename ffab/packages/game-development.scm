@@ -18,11 +18,9 @@
 
 (define-module (ffab packages game-development)
   #:use-module (ffab packages lisp-xyz)
-  #:use-module (ffab packages lisp-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-xyz)
-  #:use-module (gnu packages lisp-check)
   #:use-module (guix build-system asdf)
   #:use-module (guix download)
   #:use-module (guix git-download)
@@ -73,8 +71,6 @@
            sbcl-static-vectors
            sbcl-trivial-features
            sbcl-varjo))
-    (native-inputs
-     (list sbcl-alexandria sbcl-confidence))
     (home-page "https://github.com/bufferswap/ViralityEngine")
     (synopsis "Component-based game engine written in Common Lisp")
     (description
