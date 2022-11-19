@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-19 Sat 19:53:39 GMT>
+#+modified: <2022-11-19 Sat 22:45:51 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -216,11 +216,12 @@ CLOSED: [2021-06-15 Tue 10:09]
 
 ** TODO bufferswap [0/1][0%] :author:
 - https://github.com/bufferswap
-*** TODO ViralityEngine [1/4][25%] :p1:
+*** TODO ViralityEngine [3/4][75%]
 - https://github.com/bufferswap/ViralityEngine/
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2022-11-19 Sat>
+- [X] :patch-sent <2022-11-19 Sat>
 - [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/59391
 - [X] :inputs [24/24][100%]
   + [X] 3b-bmfont
   + [X] 3b-bmfont/json (part of 3b-bmfont)
@@ -238,19 +239,19 @@ CLOSED: [2021-06-15 Tue 10:09]
   + [X] global-vars
   + [X] jsown
   + [X] lparallel
-  + [X] net.mfiano.lisp.golden-utils [3/3][100%]
+  + [X] net.mfiano.lisp.golden-utils [1/1][100%]
     - [X] :packed <2021-02-02 Tue>
-  + [X] net.mfiano.lisp.origin [4/4][100%]
+  + [X] net.mfiano.lisp.origin [1/1][100%]
     - [X] :packed <2021-02-04 Thu>
-  + [X] net.mfiano.lisp.shadow [4/4][100%]
+  + [X] net.mfiano.lisp.shadow [1/1][100%]
     - [X] :packed <2021-04-03 Sat>
-  + [X] net.mfiano.lisp.umbra [4/4][100%]
+  + [X] net.mfiano.lisp.umbra [1/1][100%]
     - [X] :packed <2021-04-03 Sat>
   + [X] pngload
-  + [X] printv [4/4][100%]
+  + [X] printv [1/1][100%]
     - [X] :packed <2021-02-02 Tue>
   + [X] queues.simple-queue
-  + [X] sdl2 [4/4][100%]
+  + [X] sdl2 [1/1][100%]
     - [X] :packed <2021-06-23 Wed>
   + [X] split-sequence
   + [X] static-vectors
