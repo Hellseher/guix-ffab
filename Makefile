@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-17 Thu 22:16:39 GMT>
+# Modified : <2022-11-19 Sat 21:08:20 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -19,10 +19,11 @@ ffab/packages/docker.scm			\
 ffab/packages/golang.scm			\
 ffab/packages/terraform.scm
 
-MODULES_LISP :=				\
-ffab/packages/lisp.scm		\
-ffab/packages/lisp-xyz.scm	\
-ffab/packages/lisp-check.scm
+MODULES_LISP :=						\
+ffab/packages/game-development.scm	\
+ffab/packages/lisp-check.scm		\
+ffab/packages/lisp-xyz.scm			\
+ffab/packages/lisp.scm
 
 MODULES_MISC :=						\
 ffab/packages/check.scm				\
@@ -31,7 +32,6 @@ ffab/packages/cran.scm				\
 ffab/packages/cxx.scm				\
 ffab/packages/databases.scm			\
 ffab/packages/engineering.scm		\
-ffab/packages/game-development.scm	\
 ffab/packages/geo.scm				\
 ffab/packages/gradle.scm			\
 ffab/packages/high-availability.scm \
@@ -68,7 +68,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= 983906ab72307a5b848a54233b30d9744356de07
+GUIX_COMMIT ?= b015b3f3a48ee52773b79ba12bf78d5f82c0e2e9
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD

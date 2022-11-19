@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-16 Wed 22:54:25 GMT>
+#+modified: <2022-11-19 Sat 21:55:23 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,10 +8,34 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [1/40][2%]
+* Flow [1/42][2%]
 ** TODO amusecode [/][%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
+** TODO Gammapy [0/1][0%] :author:
+- https://gammapy.org/
+- https://github.com/gammapy/gammapy
+*** TODO gammapy [0/4][0%] :p1:
+- https://github.com/gammapy/gammapy
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [13/14][92%]
+  - [X]  python-astropy
+  - [X]  python-click
+  - [X]  python-docutils
+  - [ ]  python-iminuit
+    - [ ] :packed
+  - [X]  python-matplotlib
+  - [X]  python-numpy
+  - [X]  python-pydantic
+  - [X]  python-pytest
+  - [X]  python-pytest-astropy
+  - [X]  python-pytest-xdist
+  - [X]  python-pyyaml
+  - [X]  python-regions
+  - [X]  python-scipy
+  - [X]  python-sphinx
 
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
