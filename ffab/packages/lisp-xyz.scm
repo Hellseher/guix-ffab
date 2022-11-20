@@ -764,38 +764,6 @@ influenced by Python's optparse and argparse.")
 (define-public cl-adopt
   (sbcl-package->cl-source-package sbcl-adopt))
 
-(define-public sbcl-bobbin
-  (let ((commit "b454e8241b24ceab674eeeae464c8082b1b6d8ce")
-        (revision "1"))
-    (package
-      (name "sbcl-bobbin")
-      (version (git-version "1.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/sjl/bobbin")
-               (commit commit)))
-         (file-name (git-file-name "bobbin" version))
-         (sha256
-          (base32 "02lw7w8cbvnxw5acbz405rb5lcqsf4fx7dvj5ldr0lhgbyv1mjnm"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-1am))
-      (inputs (list sbcl-split-sequence))
-      (home-page "https://hg.stevelosh.com/bobbin")
-      (synopsis "Word-wrapping library for strings in Common Lisp")
-      (description
-       "This package provides a simple (word) wrapping utilities for strings
-implemented in Common Lisp which aim is to be easy to use without demand on
-performance.")
-      (license license:expat))))
-
-(define-public ecl-bobbin
-  (sbcl-package->ecl-package sbcl-bobbin))
-
-(define-public cl-bobbin
-  (sbcl-package->cl-source-package sbcl-bobbin))
-
 ;;+end-sjl
 
 ;; 20210621T110738+0100

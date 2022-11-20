@@ -1,6 +1,5 @@
     Authors in progress with priorities:
     python.org             brandon-rhodes          [0/1][0%]    :author:p5:
-    lisp.org               sjl                     [0/1][0%]    :author:p5:
     lisp.org               Shinmera/Shirakumo      [3/11][27%]  :author:p5:
     lisp.org               kmx-io                  [1/2][50%]   :author:p5:
     astronomy.org          INDI-Library            [1/3][33%]   :author:p5:
@@ -9,7 +8,6 @@
     astronomy.org          ap-i                    [1/5][20%]   :author:p5:
     astronomy.org          OpenPHDGuiding          [0/1][0%]    :author:p4:
     version-control.org    jesseduffield           [0/1][0%]    :author:p3:
-    lisp.org               s-expressionists        [0/1][0%]    :author:p3:
     lisp.org               borodust                [0/2][0%]    :author:p3:
     python.org             webrecorder             [0/1][0%]    :author:p2:
     python.org             SunPy                   [0/0][0%]    :author:p2:
@@ -34,7 +32,7 @@
     maths.org              danieljprice            [1/1][100%]  :author:
     lisp.org               vsedach                 [1/2][50%]   :author:
     lisp.org               vindarel                [/][%]       :author:
-    lisp.org               rpav                    [0/1][0%]    :author:
+    lisp.org               sjl                     [0/1][0%]    :author:
     lisp.org               noloop                  [0/1][0%]    :author:
     lisp.org               mfiano                  [3/4][75%]   :author:
     lisp.org               markcox80               [1/2][50%]   :author:
@@ -145,7 +143,6 @@
     maths.org              ducc                                 
     lisp.org               weird                   [0/4][0%]    
     lisp.org               weir                    [3/4][75%]   
-    lisp.org               trivial-channels        [/][%]       
     lisp.org               trial                   [4/5][80%]   
     lisp.org               repo                    [0/4][0%]    
     lisp.org               qt-libs                 [/][%]       
@@ -154,7 +151,6 @@
     lisp.org               kandria                 [0/4][0%]    
     lisp.org               harmony                 [/][%]       
     lisp.org               file-notify             [/][%]       
-    lisp.org               ctype                   [0/4][0%]    
     lisp.org               cl-steamworks           [/][%]       
     lisp.org               cl-slug                 [/][%]       
     lisp.org               cl-plplot               [0/4][0%]    
@@ -162,7 +158,7 @@
     lisp.org               cl-bodge                [0/4][0%]    
     lisp.org               claw                    [0/4][0%]    
     lisp.org               cacau                   [0/4][0%]    
-    lisp.org               adopt                   [1/4][25%]   
+    lisp.org               adopt                   [3/4][75%]   
     high-availability.org  corosync-qdevice        [1/4][25%]   
     golang.org             hashicorp/terraform     [0/4][0%]    
     golang.org             hashicorp/nomad         [0/0][100%]  
@@ -282,6 +278,8 @@
     lisp.org               radiance                  [4/4][100%]  
     lisp.org               sdl2                      [4/4][100%]  
     lisp.org               specialization-store      [/][%]       
+    lisp.org               trivial-channels          [/][%]       
+    lisp.org               trivial-timeout           [3/3][100%]  
     lisp.org               trivial-timeout           [3/3][100%]  
     lisp.org               varjo                     [4/4][100%]  
     lisp.org               vas-string-metrics        [/][%]       
@@ -304,6 +302,7 @@
     lisp.org               mmontone                  [1/1][100%]  :author:
     lisp.org               muyinliu                  [2/2][100%]  :author:
     lisp.org               resttime                  [1/1][100%]  :author:
+    lisp.org               rpav                      [1/1][100%]  :author:
     lisp.org               stylewarning              [1/1][100%]  :author:
     lisp.org               xFA25E                    [1/1][100%]  :author:
     python.org             aio-libs                  [1/1][100%]  :author:
@@ -313,7 +312,7 @@
     python.org             osvenskan                 [1/1][100%]  :author:
     python.org             pohmelie                  [1/1][100%]  :author:
     python.org             quintusdias               [1/1][100%]  :author:
-    lisp.org               gwkkwg                    [5/5][100%]  :author:p3:
+    lisp.org               gwkkwg                    [6/6][100%]  :author:p3:
     lisp.org               cl-gss                    [4/4][100%]  :p1:
     astronomy.org          cdflib                    [4/4][100%]  :p2:
     lisp.org               cl-graph                  [4/4][100%]  :p4:

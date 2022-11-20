@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-20 Sun 20:51:13 GMT>
+#+modified: <2022-11-20 Sun 21:37:22 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [12/36][33%]
+* Flow [13/35][37%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -446,7 +446,7 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [X] :inputs [1/1]
   - [X] cl-ppcre
 
-** DONE gwkkwg [5/5][100%] :author:p3:
+** DONE gwkkwg [6/6][100%] :author:p3:
 CLOSED: [2022-11-19 Sat 17:01]
 - https://github.com/gwkkwg
 *** DONE trivial-timeout [3/3][100%]
@@ -507,6 +507,13 @@ CLOSED: [2022-11-18 Fri 16:15]
 - [X] :patch-sent <2022-11-18 Fri>
 - [X] :patch-applied-upstream <2022-11-18 Fri>
   - https://issues.guix.gnu.org/59344
+*** DONE trivial-timeout [3/3][100%]
+CLOSED: [2022-11-20 Sun 21:32]
+- https://github.com/gwkkwg/trivial-timeout/
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent <2021-02-03 Wed>
+- [X] :patch-applied-upstream <2021-02-03 Wed>
+  + https://issues.guix.gnu.org/46261
 ** DONE hanshuebner [1/1][100%] :author:
 *** DONE bknr-datastore [4/4][100%]
 CLOSED: [2021-05-02 Sun 20:39]
@@ -943,8 +950,11 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] float-features
   + [X] allegro
 
-** TODO rpav [0/1][0%] :author:
-*** TODO trivial-channels [/][%]
+** DONE rpav [1/1][100%] :author:
+CLOSED: [2022-11-20 Sun 21:33]
+- https://github.com/rpav
+*** DONE trivial-channels [/][%]
+CLOSED: [2022-11-20 Sun 21:33]
 - https://github.com/rpav/trivial-channels.git
 - [X] :packed <2021-02-17 Wed>
 - [X] :patch-sent <2021-02-17 Wed>
@@ -952,20 +962,14 @@ CLOSED: [2021-12-02 Thu 22:38]
   - https://issues.guix.gnu.org/46604
 - [X] :inputs [2/2]
   - [X] trivial-timeout [3/3][100%]
-    - https://github.com/gwkkwg/trivial-timeout/
     - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-03 Wed>
-    - [X] :patch-applied-upstream <2021-02-03 Wed>
-      + https://issues.guix.gnu.org/46261
 
-** TODO s-expressionists [0/1][0%] :author:p3:
-*** TODO ctype [0/4][0%]
+** s-expressionists :author:
+*** ctype
 - https://github.com/s-expressionists/ctype
 - synopsis :: CL type system implementation
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+It's already packed in 1e180f4523c6bf4c5a32b38df80583defe076da1 byi Pierre Neidhardt
+<mail@ambrevar.xyz>
 
 ** TODO Shinmera/Shirakumo [3/11][27%] :author:p5:
 *** TODO qt-libs [/][%]
@@ -1311,21 +1315,17 @@ https://github.com/Shirakumo/cl-mixed
   + [X] trivial-features
   + [X] documentation-utils
 
-** TODO sjl [0/1][0%] :author:p5:
-*** TODO adopt [1/4][25%]
+** TODO sjl [0/1][0%] :author:
+*** TODO adopt [3/4][75%]
 - https://github.com/sjl/adopt
 - synopsis :: Damn OPTion parsing library.
 - [X] :packed <2021-06-08 Tue>
-- [ ] :patch-sent
+- [X] :patch-sent <2022-11-20 Sun>
 - [ ] :patch-applied-upstream
-- [-] :inputs [2/3][66%]
+ - https://issues.guix.gnu.org/59419
+- [X] :inputs [3/3][100%]
   + [X] 1am
-  + [-] bobbin
-    - [ ] :packed <2021-06-08 Tue>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [X] :inputs [1/1][100%]
-      + [X] split-sequence
+  + [X] bobbin
   + [X] split-sequence
 
 ** DONE stylewarning [1/1][100%] :author:

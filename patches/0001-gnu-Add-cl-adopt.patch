@@ -1,0 +1,54 @@
+From 89e305f98da232b52ffe86b6bb869ab99445afff Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Nov 2022 21:27:11 +0000
+Subject: [PATCH] gnu: Add cl-adopt
+
+* gnu/packages/lisp-xyz.scm (cl-adopt, ecl-adopt, sbcl-adopt): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 27312cb369..406d5268ad 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -708,6 +708,36 @@ (define-public ecl-command-line-arguments
+ (define-public cl-command-line-arguments
+   (sbcl-package->cl-source-package sbcl-command-line-arguments))
+ 
++(define-public sbcl-adopt
++  (package
++    (name "sbcl-adopt")
++    (version "1.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/sjl/adopt")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "adopt" version))
++       (sha256
++        (base32 "16kzkai96qk7vmclp8wxc9aghhnisw8gg9s7hra68300bgj86wzr"))))
++    (build-system asdf-build-system/sbcl)
++    (native-inputs (list sbcl-1am))
++    (inputs (list sbcl-bobbin sbcl-split-sequence))
++    (home-page "https://hg.stevelosh.com/adopt")
++    (synopsis "Common Lisp option parsing library")
++    (description
++     "@acronym{ADOPT, A Damn OPTion} is a simple UNIX-style option parser in
++Common Lisp, heavily influenced by Python's @code{optparse} and
++@code{argparse}.")
++    (license license:expat)))
++
++(define-public ecl-adopt
++  (sbcl-package->ecl-package sbcl-adopt))
++
++(define-public cl-adopt
++  (sbcl-package->cl-source-package sbcl-adopt))
++
+ (define-public sbcl-cl-irc
+   (let ((commit "963823537c7bfcda2edd4c44d172192da6722175")
+         (revision "0"))
+-- 
+2.38.0
+
