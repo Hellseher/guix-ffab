@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-19 Sat 22:45:51 GMT>
+#+modified: <2022-11-20 Sun 20:51:13 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [11/36][30%]
+* Flow [12/36][33%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -77,6 +77,7 @@ CLOSED: [2021-06-15 Tue 10:09]
 ** TODO borodust [0/2][0%] :author:p3:
 *** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
+- synopsis :: Feature-rich game framework for Common Lisp
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -193,6 +194,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [X] trivial-garbage
 *** TODO claw [0/4][0%]
 - https://github.com/borodust/claw
+- symbols :: Common Lisp autowrapping facility for C and C++ libraries
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -214,13 +216,15 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [ ] named-readtables
   - [ ] trivial-features))
 
-** TODO bufferswap [0/1][0%] :author:
+** DONE bufferswap [1/2][50%] :author:
+CLOSED: [2022-11-20 Sun 20:46]
 - https://github.com/bufferswap
-*** TODO ViralityEngine [3/4][75%]
+*** DONE ViralityEngine [4/4][100%]
+CLOSED: [2022-11-20 Sun 20:42]
 - https://github.com/bufferswap/ViralityEngine/
 - [X] :packed <2022-11-19 Sat>
 - [X] :patch-sent <2022-11-19 Sat>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2022-11-20 Sun>
   - https://issues.guix.gnu.org/59391
 - [X] :inputs [24/24][100%]
   + [X] 3b-bmfont
