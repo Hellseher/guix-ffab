@@ -32,7 +32,6 @@
     maths.org              danieljprice            [1/1][100%]  :author:
     lisp.org               vsedach                 [1/2][50%]   :author:
     lisp.org               vindarel                [/][%]       :author:
-    lisp.org               sjl                     [0/1][0%]    :author:
     lisp.org               noloop                  [0/1][0%]    :author:
     lisp.org               mfiano                  [3/4][75%]   :author:
     lisp.org               markcox80               [1/2][50%]   :author:
@@ -158,7 +157,6 @@
     lisp.org               cl-bodge                [0/4][0%]    
     lisp.org               claw                    [0/4][0%]    
     lisp.org               cacau                   [0/4][0%]    
-    lisp.org               adopt                   [3/4][75%]   
     high-availability.org  corosync-qdevice        [1/4][25%]   
     golang.org             hashicorp/terraform     [0/4][0%]    
     golang.org             hashicorp/nomad         [0/0][100%]  
@@ -247,6 +245,7 @@
     high-availability.org  kronosnet                 [4/4][100%]  
     high-availability.org  pacemaker                 [4/4][100%]  
     lisp.org               3b-bmfont                 [4/4][100%]  
+    lisp.org               adopt                     [4/4][100%]  
     lisp.org               alloy                     [4/4][100%]  
     lisp.org               asdf-system-connections   [3/3][100%]  
     lisp.org               bknr-datastore            [4/4][100%]  
@@ -303,6 +302,7 @@
     lisp.org               muyinliu                  [2/2][100%]  :author:
     lisp.org               resttime                  [1/1][100%]  :author:
     lisp.org               rpav                      [1/1][100%]  :author:
+    lisp.org               sjl                       [1/1][100%]  :author:
     lisp.org               stylewarning              [1/1][100%]  :author:
     lisp.org               xFA25E                    [1/1][100%]  :author:
     python.org             aio-libs                  [1/1][100%]  :author:

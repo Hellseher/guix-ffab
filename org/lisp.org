@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-20 Sun 21:37:22 GMT>
+#+modified: <2022-11-21 Mon 20:13:38 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [13/35][37%]
+* Flow [14/35][40%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -1315,14 +1315,19 @@ https://github.com/Shirakumo/cl-mixed
   + [X] trivial-features
   + [X] documentation-utils
 
-** TODO sjl [0/1][0%] :author:
-*** TODO adopt [3/4][75%]
+** DONE sjl [1/1][100%] :author:
+CLOSED: [2022-11-21 Mon 20:13]
+- https://github.com/sjl
+- https://stevelosh.com/projects/
+- author :: Steve Losh
+*** DONE adopt [4/4][100%]
+CLOSED: [2022-11-21 Mon 20:12]
 - https://github.com/sjl/adopt
 - synopsis :: Damn OPTion parsing library.
 - [X] :packed <2021-06-08 Tue>
 - [X] :patch-sent <2022-11-20 Sun>
-- [ ] :patch-applied-upstream
- - https://issues.guix.gnu.org/59419
+- [X] :patch-applied-upstream <2022-11-21 Mon>
+  - https://issues.guix.gnu.org/59419
 - [X] :inputs [3/3][100%]
   + [X] 1am
   + [X] bobbin

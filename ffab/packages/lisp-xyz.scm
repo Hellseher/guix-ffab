@@ -735,34 +735,9 @@ LPARALLEL.")
 ;;+begin-sjl
 
 ;; 20210608T233910+0100
-(define-public sbcl-adopt
-  (package
-    (name "sbcl-adopt")
-    (version "1.2.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/sjl/adopt")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name "adopt" version))
-       (sha256
-        (base32 "16kzkai96qk7vmclp8wxc9aghhnisw8gg9s7hra68300bgj86wzr"))))
-    (build-system asdf-build-system/sbcl)
-    (native-inputs (list sbcl-1am))
-    (inputs (list sbcl-bobbin sbcl-split-sequence))
-    (home-page "https://hg.stevelosh.com/adopt")
-    (synopsis "Common Lisp A Damn OPTion parsing library")
-    (description
-     "Adopt is a simple UNIX-style option parser in Common Lisp, heavily
-influenced by Python's optparse and argparse.")
-    (license license:expat)))
-
-(define-public ecl-adopt
-  (sbcl-package->ecl-package sbcl-adopt))
-
-(define-public cl-adopt
-  (sbcl-package->cl-source-package sbcl-adopt))
+;; (define-public sbcl-adopt
+;; added-to-upstream c0037bd5080460c88aa80000e8fa5d8f3493c335
+;; CommitDate: Mon Nov 21 10:10:27 2022 +0100
 
 ;;+end-sjl
 
