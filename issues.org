@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [148/161][91%]
+* Accepted in upstream [149/161][92%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -155,7 +155,9 @@
 - [X] <2022-11-01 Tue> https://issues.guix.gnu.org/58953 <2022-11-03 Thu>
 - [X] <2022-11-04 Fri> https://issues.guix.gnu.org/59025 <2022-11-05 Sat>
 - [X] <2022-11-04 Fri> https://issues.guix.gnu.org/59030 <2022-11-06 Sun>
-- [ ] <2022-11-07 Mon> https://issues.guix.gnu.org/59113
+- [X] <2022-11-07 Mon> https://issues.guix.gnu.org/59113 <2022-11-21 Mon>
+  Builds only on x86_64
+  - https://github.com/brandon-rhodes/python-sgp4/issues/107
 - [X] <2022-11-09 Wed> https://issues.guix.gnu.org/59155 <2022-11-15 Tue>
 - [X] <2022-11-09 Wed> https://issues.guix.gnu.org/59156 <2022-11-15 Tue>
 - [X] <2022-11-12 Sat> https://issues.guix.gnu.org/59230 <2022-11-15 Tue>

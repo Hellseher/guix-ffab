@@ -677,256 +677,38 @@ planetarium.")
 ;;+begin-asdf-format
 
 ;; 20221019T231950+0100
-(define-public python-asdf-standard
-  (package
-    (name "python-asdf-standard")
-    (version "1.0.3")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_standard" version))
-       (sha256
-        (base32
-         "0i7xdjwn5prg2hcnf1zhw57mszc68jjr5sv4rimpzcg7f2dgzn5g"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (add-before 'check 'remove-blocking-tests
-                          (lambda _
-                            ;; Remove tests require python-asdf where
-                            ;; python-asdf require python-asdf-standard,
-                            ;; break circular dependencies.
-                            (for-each delete-file
-                                      (list "tests/test_manifests.py"
-                                            "tests/test_integration.py")))))))
-    (native-inputs (list python-astropy
-                         python-jsonschema-next
-                         python-pypa-build
-                         python-pytest-7.1
-                         python-packaging
-                         python-setuptools-scm))
-    (propagated-inputs (list python-importlib-resources))
-    (home-page "https://asdf-standard.readthedocs.io/")
-    (synopsis "ASDF standard schemas")
-    (description
-     "This package provides Python implementation of @acronym{ASDF, Advanced
-Scientific Data Format} - a proposed next generation interchange format for
-scientific data.  ASDF aims to exist in the same middle ground that made FITS
-so successful, by being a hybrid text and binary format: containing human
-editable metadata for interchange, and raw binary data that is fast to load
-and use.  Unlike FITS, the metadata is highly structured and is designed
-up-front for extensibility.")
-    (license license:bsd-3)))
+;; (define-public python-asdf-standard
+;; added-to-upstream 1b03c64a05a319631a82cd15b9dda914e94c5142
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225444+0100
-(define python-asdf-unit-schemas
-  (package
-    (name "python-asdf-unit-schemas")
-    (version "0.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_unit_schemas" version))
-       (sha256
-        (base32
-         "16grpx3a9h0v1wirp0zqrfsxm867v5c0xyr98pylzziy45kqvds2"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; Dependencies cycle with python-asdf
-     (list #:tests? #f))
-    (native-inputs (list python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard python-importlib-resources))
-    (home-page "https://asdf-unit-schemas.readthedocs.io/")
-    (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
-    (description "This package provides ASDF schemas for validating unit tags.")
-    (license license:bsd-3)))
+;; (define python-asdf-unit-schemas
+;; added-to-upstream f99a1e257d7ba5995afcf05f429d79d6f097a517
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225455+0100
-(define python-asdf-fits-schemas
-  ;; TODO: (Sharlatan-20221107T212819+0000): No release, change to tag when it's ready.
-  (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
-        (revision "0"))
-    (package
-      (name "python-asdf-fits-schemas")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/asdf-format/asdf-fits-schemas")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
-      (build-system pyproject-build-system)
-      (arguments
-       ;; Dependencies cycle with python-asdf
-       (list
-        #:tests? #f
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'build 'set-version
-              (lambda _
-                ;; NOTE: (Sharlatan-20221023T220057+0100): Update
-                ;; to valid version when release is availalbe.
-                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
-      (native-inputs (list python-setuptools-scm))
-      (propagated-inputs (list python-asdf-standard python-importlib-resources))
-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
-      (synopsis "ASDF schemas to support the FITS format")
-      (description "This package provides ASDF schemas for validating FITS tags.")
-      (license license:bsd-3))))
+;; (define python-asdf-fits-schemas
+;; added-to-upstream 6924f4a866dbda02b15b075f7718d4aa794090f3
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225504+0100
-(define-public python-asdf-time-schemas
-  ;; TODO: (Sharlatan-20221107T214641+0000): No release, change to tag when it's ready.
-  (let ((commit "e9174083d9cfd3c6f7ded9eeb360d99ccb8d9d18")
-        (revision "2"))
-    (package
-      (name "python-asdf-time-schemas")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/asdf-format/asdf-time-schemas")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1i40hcxp8sds2zq939fwczjlshfqb9r9pnzy3a44c3wqdbwhcbdb"))))
-      (build-system pyproject-build-system)
-      (arguments
-       (list
-        ;; Dependencies cycle with python-asdf
-        #:tests? #f
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'build 'set-version
-              (lambda _
-                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
-      (native-inputs (list python-setuptools-scm))
-      (propagated-inputs (list python-asdf-standard
-                               python-asdf-unit-schemas
-                               python-importlib-resources))
-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
-      (synopsis "Schemas for storing time in ASDF")
-      (description "This package provides ASDF schemas for validating time tags.")
-      (license license:bsd-3))))
+;; (define-public python-asdf-time-schemas
+;; added-to-upstream 2959b98a720fb60e54d09128aa08d109f6601f02
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
-;; 20221023T225515+0100
-(define python-asdf-transform-schemas-0.3
-  (package
-    (name "python-asdf-transform-schemas")
-    (version "0.3.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_transform_schemas" version))
-       (sha256
-        (base32 "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; Dependencies cycle with python-asdf
-     (list #:tests? #f))
-    (native-inputs (list python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard python-importlib-resources))
-    (home-page "https://github.com/asdf-format/asdf-transform-schemas")
-    (synopsis "ASDF schemas for transforms")
-    (description
-     "This package provides ASDF schemas for validating transform tags.  Users
-should not need to install this directly; instead, install an implementation
-package such as asdf-astropy.")
-    (license license:bsd-3)))
+;; 20211111234021+0000
+;; (define python-asdf-transform-schemas
+;; added-to-upstream 89a5c53f382eec3dc4e2b60d819b39ada003df44
+;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
+;; 20211111235021+0000
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
 
-;; 20221023T225530+0100
-(define-public python-asdf-2.13
-  (package
-    (name "python-asdf")
-    (version "2.13.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf" version))
-       (sha256
-        (base32 "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; FIXME: (Sharlatan-20221023T232214+0100): Tests fail a lot with
-     ;;
-     ;; ERROR  - _pytest.pathlib.ImportPathMismatchError: ('asdf.conftest', '/gnu/sto...
-     ;;
-     (list
-      #:tests? #f))
-    (native-inputs
-     (list python-astropy
-           python-packaging
-           python-psutil
-           python-pytest
-           python-pytest-doctestplus
-           python-pytest-openfiles
-           python-pytest-remotedata
-           python-semantic-version
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-asdf-standard
-           python-asdf-transform-schemas-0.3
-           python-asdf-unit-schemas
-           python-importlib-metadata
-           python-importlib-resources
-           python-jmespath
-           python-jsonschema-next
-           python-lz4
-           python-numpy
-           python-pyyaml))
-    (home-page "https://github.com/asdf-format/asdf")
-    (synopsis "Python tools to handle ASDF files")
-    (description
-     "The Advanced Scientific Data Format (ASDF) is a next-generation
-interchange format for scientific data.  This package contains the Python
-implementation of the ASDF Standard.")
-    (license license:bsd-3)))
-
 ;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define python-asdf-wcs-schemas-ffab
-  (package
-    (name "python-asdf-wcs-schemas-ffab")
-    (version "0.1.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_wcs_schemas" version))
-       (sha256
-        (base32 "0khyab9mnf2lv755as8kwhk3lqqpd3f4291ny3b9yp3ik86fzhz1"))))
-    (build-system python-build-system)
-    (arguments
-     `(#:phases
-       (modify-phases %standard-phases
-         (replace 'check
-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
-             (when tests?
-               (add-installed-pythonpath inputs outputs)
-               (invoke "python" "-m" "pytest")))))))
-    (native-inputs
-     (list python-pytest
-           python-setuptools-scm
-           python-semantic-version))
-    (propagated-inputs
-     (list python-asdf))
-    (home-page "https://github.com/asdf-format/asdf-wcs-schemas")
-    (synopsis "ASDF WCS Schemas")
-    (description
-     "This package provides ASDF schemas for validating World Coordinate
-System (WCS) tags.  Users should not need to install this directly; instead,
-install an implementation package such as gwcs.")
-    (license license:bsd-3)))
 
 ;; (define python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
@@ -935,6 +717,7 @@ install an implementation package such as gwcs.")
 ;; (define python-asdf-transform-schemas
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
+
 ;;+end-asdf-format
 
 ;; (define-public python-astroalign
@@ -947,32 +730,10 @@ install an implementation package such as gwcs.")
 ;; (define-public python-astropy
 ;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
+;; 20211111235021+0000
 ;; (define-public python-asdf-astropy
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
-
-;; 20221024T221046+0100
-(define-public python-asdf-astropy-0.2
-  (package
-    (inherit python-asdf-astropy)
-    (version "0.2.2")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_astropy" version))
-       (sha256
-        (base32
-         "1b0v4cl7xvly3x1k5k2rvc2l32jqgqp0iyf1j20fkvj450sx74f2"))))
-    ;; NOTE: (Sharlatan-20221024T220911+0100): Update upstream package's test
-    ;; phase to have more verbose levels.
-    ;; Tests have warnings:
-    ;;
-    ;; asdf/entry_points.py:44: AsdfWarning: asdf.resource_mappings plugin from
-    ;; package asdf-standard==1.0.3 failed to load:
-    ;;
-    (propagated-inputs
-     (modify-inputs (package-propagated-inputs python-asdf-astropy)
-       (replace "python-asdf-transform-schemas" python-asdf-transform-schemas-0.3)))))
 
 (define-public python-reproject
   (package
@@ -1108,54 +869,10 @@ for variables with units.")
 ;; https://github.com/spacetelescope
 ;;+begin-spacetelescope
 
+;; 20211111T235042+0000
 ;; (define-public python-gwcs
 ;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define-public python-gwcs-ffab
-  (package
-    (name "python-gwcs-ffab")
-    (version "0.18.2")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "gwcs" version))
-       (sha256
-        (base32 "0v9qcq6zl74d6s882s6xmas144jfalvll6va8rvrxmvpx4vqjzhg"))))
-    (build-system python-build-system)
-    (arguments
-     `(#:phases
-       (modify-phases %standard-phases
-         (replace 'check
-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
-             (when tests?
-               (add-installed-pythonpath inputs outputs)
-               (invoke "python" "-m" "pytest")))))))
-    (native-inputs
-     (list python-jsonschema-next
-           python-jmespath
-           python-pytest
-           python-pytest-doctestplus
-           python-pyyaml
-           python-semantic-version
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-asdf-2.13
-           python-asdf-astropy-0.2
-           python-asdf-wcs-schemas-ffab
-           python-astropy
-           python-numpy
-           python-scipy))
-    (home-page "https://gwcs.readthedocs.io/en/latest/")
-    (synopsis "Generalized World Coordinate System")
-    (description "Generalized World Coordinate System (GWCS) is an Astropy
-affiliated package providing tools for managing the World Coordinate System of
-astronomical data.
-
-GWCS takes a general approach to the problem of expressing transformations
-between pixel and world coordinates.  It supports a data model which includes
-the entire transformation pipeline from input coordinates (detector by
-default) to world coordinates.")
-    (license license:bsd-3)))
 
 ;; 20220131T235042+0000
 (define-public python-jwst
@@ -1186,13 +903,13 @@ default) to world coordinates.")
           ;; Requirement.parse('stcal<1.3,>=1.2.1'), {'jwst'})
           ;;
           (delete 'sanity-check))))
-    (propagated-inputs (list python-asdf-2.13
-                             python-asdf-astropy-0.2
+    (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-astropy
                              python-bayesicfitting
                              python-crds
                              python-drizzle
-                             python-gwcs-ffab
+                             python-gwcs
                              python-jsonschema
                              python-numpy
                              python-photutils
@@ -1296,8 +1013,8 @@ data.")
                             (substitute* "tests/test_stnode.py"
                               (("def test_serialization")
                                "def __off_test_serialization")))))))
-    (propagated-inputs (list python-asdf-2.13
-                             python-asdf-astropy-0.2
+    (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-astropy
                              python-jsonschema-next
                              python-numpy
@@ -1332,7 +1049,7 @@ calibration pipelines.")
                (base32
                 "1n0y8mk32dh5kaic634ps4rc6ijaniag2zm91isi0vs8g19pv1hx"))))
     (build-system pyproject-build-system)
-    (propagated-inputs (list python-asdf-2.13))
+    (propagated-inputs (list python-asdf))
     (native-inputs (list python-pytest
                          python-pytest-doctestplus
                          python-pytest-openfiles
@@ -1356,7 +1073,7 @@ calibration pipelines.")
                 "08b2qgk81vximjjn88db7xc0lwg394rpbivk0jwd63sr3gsbsllb"))))
     (build-system pyproject-build-system)
     (propagated-inputs (list python-astropy
-                             python-gwcs-ffab
+                             python-gwcs
                              python-numpy
                              python-packaging
                              python-spherical-geometry
@@ -1683,7 +1400,7 @@ behaviour of the IRAF's")
       ;; ERROR collecting...
       ;;
       #:tests? #f))
-    (propagated-inputs (list python-asdf-2.13
+    (propagated-inputs (list python-asdf
                              python-astropy
                              python-jsonschema-next
                              python-numpy
@@ -1719,7 +1436,7 @@ behaviour of the IRAF's")
       ;; ERROR collecting...
       ;;
       #:tests? #f))
-    (propagated-inputs (list python-asdf-2.13
+    (propagated-inputs (list python-asdf
                              python-astropy
                              python-crds
                              python-semantic-version
@@ -1843,7 +1560,7 @@ using (multivariate) polynomials.")
             (delete 'sanity-check))))
     (propagated-inputs (list ;awscli
                              ;; python-jwst ;; circular dependency
-                             python-asdf-2.13
+                             python-asdf
                              python-astropy
                              python-boto3
                              python-filelock
@@ -2036,8 +1753,8 @@ based on the HDF5 standard")
                          python-pytest-mpl
                          python-pytest-xdist
                          python-setuptools-scm))
-    (inputs (list python-asdf-2.13
-                  python-asdf-astropy-0.2
+    (inputs (list python-asdf
+                  python-asdf-astropy
                   python-astropy
                   python-beautifulsoup4
                   python-cdflib

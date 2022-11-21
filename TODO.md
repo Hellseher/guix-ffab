@@ -18,7 +18,6 @@
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
     astronomy.org          dokester                [0/1][0%]    :author:p1:
     astronomy.org          casacore                [1/2][50%]   :author:p1:
-    astronomy.org          asdf-format             [5/9][55%]   :author:p1:
     python.org             WoLpH                   [0/1][0%]    :author:
     python.org             StdCarrot               [0/1][0%]    :author:
     python.org             pyga                    [0/1][0%]    :author:
@@ -80,7 +79,7 @@
     astronomy.org          cpinte                  [0/1][0%]    :author:
     astronomy.org          C-Munipack-library      [0/0][0%]    :author:
     astronomy.org          ATNF                    [0/1][0%]    :author:
-    astronomy.org          Astropy                 [1/4][25%]   :author:
+    astronomy.org          Astropy                 [1/5][20%]   :author:
     astronomy.org          aroffringa              [2/2][100%]  :author:
     astronomy.org          amusecode               [/][%]       :author:
     
@@ -129,7 +128,6 @@
     astronomy.org          galpy                   [1/4][25%]   :p1:
     astronomy.org          funtools                [2/4][50%]   :p1:
     astronomy.org          astrometry              [/][%]       :p1:
-    astronomy.org          asdf-standard           [2/4][50%]   :p1:
     lisp.org               EuAndreh                [0/1][0%]    :autho:
     python.org             surt                    [/][%]       
     python.org             sphinx-automodapi       [2/4][50%]   
@@ -204,9 +202,7 @@
     astronomy.org          astroquery              [/][%]       
     astronomy.org          astroplan               [1/4][25%]   
     astronomy.org          astrometry              [/][%]       
-    astronomy.org          asdf-unit-schemas       [2/4][50%]   
-    astronomy.org          asdf-time-schemas       [2/4][50%]   
-    astronomy.org          asdf-fits-schemas       [2/4][50%]   
+    astronomy.org          asdf-astropy            [/][$]       
     astronomy.org          ALFA                    [3/4][75%]   
     
     Completed authors and projects:
@@ -214,9 +210,13 @@
     astronomy.org          AOFlagger                 [4/4][100%]  
     astronomy.org          asdf                      [1/1][100%]  
     astronomy.org          asdf-coordinates-schemas  [1/1][100%]  
+    astronomy.org          asdf-fits-schemas         [4/4][100%]  
+    astronomy.org          asdf-standard             [4/4][100%]  
     astronomy.org          asdf-table-schemas        [1/1][100%]  
+    astronomy.org          asdf-time-schemas         [4/4][100%]  
     astronomy.org          asdf-transform-schemas    [1/1][100%]  
-    astronomy.org          asdf-wcs-schemas          [1/1][100%]  
+    astronomy.org          asdf-unit-schemas         [4/4][100%]  
+    astronomy.org          asdf-wcs-schemas          [2/2][100%]  
     astronomy.org          astroalign                [4/4][100%]  
     astronomy.org          astropy                   [4/4][100%]  
     astronomy.org          casacore                  [4/4][100%]  
@@ -291,6 +291,7 @@
     python.org             posix-ipc                 [/][%]       
     python.org             pytest-socket             [4/4][100%]  
     python.org             siosocks                  [4/4][100%]  
+    astronomy.org          asdf-format               [9/9][100%]  :author:
     astronomy.org          pynbody                   [1/1][100%]  :author:
     lisp.org               AlexCharlton              [1/1][100%]  :author:
     lisp.org               bufferswap                [1/2][50%]   :author:
