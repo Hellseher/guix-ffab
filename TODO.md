@@ -13,6 +13,7 @@
     python.org             SunPy                   [0/0][0%]    :author:p2:
     lisp.org               cbaggers                [4/6][66%]   :author:p2:
     astronomy.org          MAVENSDC                [1/1][100%]  :author:p2:
+    lisp.org               noloop                  [0/5][0%]    :author:p1:
     astronomy.org          SunPy                   [0/3][0%]    :author:p1:
     astronomy.org          SAOImageDS9             [0/1][0%]    :author:p1:
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
@@ -30,7 +31,6 @@
     maths.org              danieljprice            [1/1][100%]  :author:
     lisp.org               vsedach                 [1/2][50%]   :author:
     lisp.org               vindarel                [0/1][0%]    :author:
-    lisp.org               noloop                  [0/1][0%]    :author:
     lisp.org               mfiano                  [4/4][100%]  :author:
     lisp.org               markcox80               [1/2][50%]   :author:
     lisp.org               lokedhs                 [1/2][50%]   :author:
@@ -110,6 +110,7 @@
     astronomy.org          kepler-project       [0/4][0%]    :p3:
     astronomy.org          IIPImage             [1/4][25%]   :p3:
     astronomy.org          HEALPix              [1/4][25%]   :p3:
+    astronomy.org          astrometry.net       [0/4][0%]    :p3:
     python.org             mpl-animators        [1/4][25%]   :p2:
     maths.org              plplot               [0/0][0%]    :p2:
     lisp.org               dirt                 [0/4][0%]    :p2:
@@ -121,8 +122,13 @@
     astronomy.org          mcfost               [/][%]       :p2:
     astronomy.org          drms                 [2/4][50%]   :p2:
     python.org             opencv-python        [0/4][0%]    :p1:
+    lisp.org               simplet              [2/3][66%]   :p1:
+    lisp.org               sbcl-assert-p        [3/4][75%]   :p1:
     lisp.org               feedback             [0/4][0%]    :p1:
+    lisp.org               eventbus             [3/4][75%]   :p1:
     lisp.org               classimp             [/][%]       :p1:
+    lisp.org               cacau                [3/4][75%]   :p1:
+    lisp.org               assertion-error      [3/4][75%]   :p1:
     golang.org             miller               [1/5][20%]   :p1:
     golang.org             go/tools/gopls       [/][%]       :p1:
     golang.org             caddy                [0/4][0%]    :p1:
@@ -133,7 +139,6 @@
     astronomy.org          gammapy              [0/4][0%]    :p1:
     astronomy.org          galpy                [1/4][25%]   :p1:
     astronomy.org          funtools             [2/4][50%]   :p1:
-    astronomy.org          astrometry.net       [0/4][0%]    :p1:
     python.org             surt                 [2/4][50%]   
     python.org             sphinx-automodapi    [2/4][50%]   
     python.org             pywb                 [1/4][25%]   
@@ -157,7 +162,6 @@
     lisp.org               cl-mixed             [1/4][25%]   
     lisp.org               cl-bodge             [0/4][0%]    
     lisp.org               claw                 [0/4][0%]    
-    lisp.org               cacau                [0/4][0%]    
     high-availability.org  corosync-qdevice     [1/4][25%]   
     golang.org             hashicorp/terraform  [0/4][0%]    
     golang.org             hashicorp/nomad      [0/4][0%]    

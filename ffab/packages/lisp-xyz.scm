@@ -769,16 +769,15 @@ LPARALLEL.")
          (uri (git-reference
                (url "https://github.com/noloop/eventbus")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "eventbus" version))
          (sha256
           (base32 "0slqx3zq6sbz3rg4g79j8y25sx4405y6ff3x6l5v8v4v42m1s0p2"))))
       (build-system asdf-build-system/sbcl)
       (native-inputs (list sbcl-simplet))
       (home-page "https://github.com/noloop/eventbus")
       (synopsis "Event bus implementation in Common Lisp")
-      (description
-"This package provides EVENTBUST Common Lisp system.")
-      (license license:gpl3+))))
+      (description "This package provides a Common Lisp system implementing event bus.")
+      (license license:gpl3))))
 
 (define-public ecl-eventbus
   (sbcl-package->ecl-package sbcl-eventbus))

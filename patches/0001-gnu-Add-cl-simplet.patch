@@ -1,0 +1,51 @@
+From 03f075a10cf959b8a9324a278fbf08a90fb09f35 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 22 Nov 2022 22:00:00 +0000
+Subject: [PATCH 1/5] gnu: Add cl-simplet.
+
+* gnu/packages/lisp-check.scm (cl-simplet, ecl-simplet, sbcl-simplet):
+  New variables.
+---
+ gnu/packages/lisp-check.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/lisp-check.scm b/gnu/packages/lisp-check.scm
+index 58b79ba6e5..59033fdbc5 100644
+--- a/gnu/packages/lisp-check.scm
++++ b/gnu/packages/lisp-check.scm
+@@ -841,6 +841,32 @@ (define-public cl-should-test
+ (define-public ecl-should-test
+   (sbcl-package->ecl-package sbcl-should-test))
+ 
++(define-public sbcl-simplet
++  (package
++    (name "sbcl-simplet")
++    (version  "1.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/noloop/simplet")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "simplet" version))
++       (sha256
++        (base32 "1iwp3a43mns885k2arr7gbmyv5rsrjfvgarxickj7r2bfgwp1cnn"))))
++    (build-system asdf-build-system/sbcl)
++    (home-page "https://github.com/noloop/simplet")
++    (synopsis "Simple test runner in Common Lisp")
++    (description "This package provides a Common Lisp test runner system
++SIMPLET.")
++    (license license:gpl3)))
++
++(define-public ecl-simplet
++  (sbcl-package->ecl-package sbcl-simplet))
++
++(define-public cl-simplet
++  (sbcl-package->cl-source-package sbcl-simplet))
++
+ (define-public sbcl-stefil
+   (let ((commit "0398548ec95dceb50fc2c2c03e5fb0ce49b86c7a")
+         (revision "0"))
+-- 
+2.38.0
+

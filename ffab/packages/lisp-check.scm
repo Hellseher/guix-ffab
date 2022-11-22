@@ -52,16 +52,14 @@
        (sha256
         (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
     (build-system asdf-build-system/sbcl)
-    (native-inputs
-     (list sbcl-assert-p))
-    (inputs
-     (list sbcl-assertion-error sbcl-eventbus))
+    (native-inputs (list sbcl-assert-p))
+    (inputs (list sbcl-assertion-error sbcl-eventbus))
     (home-page "https://github.com/noloop/cacau")
     (synopsis "Comon Lisp test runner")
     (description
-     "This package provides Common Lisp testing framework system CACAU which was
+     "This package provides a Common Lisp testing framework system CACAU which was
 built to be independent of assertions systems.")
-    (license license:gpl3+)))
+    (license license:gpl3)))
 
 (define-public ecl-cacau
   (sbcl-package->ecl-package sbcl-cacau))
@@ -82,17 +80,16 @@ built to be independent of assertions systems.")
          (uri (git-reference
                (url "https://github.com/noloop/assertion-error")
                (commit commit)))
-         (file-name (git-file-name name version))
+         (file-name (git-file-name "assertion-error" version))
          (sha256
           (base32 "0ix23kkakmf4nwx852zsssb831jvajr3qyppqfyks7y1ls617svn"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-dissect))
+      (inputs (list sbcl-dissect))
       (home-page "https://github.com/noloop/assertion-error")
       (synopsis "Error pattern for assertion libraries in Common Lisp")
-      (description "This package provides Common Lisp assertion system with
+      (description "This package provides a Common Lisp assertion system with
 minimal dependencies on DISSECT.")
-      (license license:gpl3+))))
+      (license license:gpl3))))
 
 (define-public ecl-assertion-error
   (sbcl-package->ecl-package sbcl-assertion-error))
@@ -111,16 +108,15 @@ minimal dependencies on DISSECT.")
        (uri (git-reference
              (url "https://github.com/noloop/assert-p")
              (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
+       (file-name (git-file-name "assert-p" version))
        (sha256
         (base32 "1x24rkqkqiw8zd26swi9rmhfplkmr5scz3bhjwccah9d2s36b1xs"))))
     (build-system asdf-build-system/sbcl)
-    (inputs
-     (list sbcl-assertion-error sbcl-simplet))
+    (inputs (list sbcl-assertion-error sbcl-simplet))
     (home-page "https://github.com/noloop/assert-p")
     (synopsis "Common Lisp assertion library")
-    (description "This package provides Common Lisp collection of assertions.")
-    (license license:gpl3+)))
+    (description "This package provides a Common Lisp collection of assertions.")
+    (license license:gpl3)))
 
 (define-public ecl-assert-p
   (sbcl-package->ecl-package sbcl-assert-p))
@@ -128,6 +124,7 @@ minimal dependencies on DISSECT.")
 (define-public cl-assert-p
   (sbcl-package->cl-source-package sbcl-assert-p))
 
+;; 20221122T215422+0000
 (define-public sbcl-simplet
   (package
     (name "sbcl-simplet")
@@ -138,15 +135,15 @@ minimal dependencies on DISSECT.")
        (uri (git-reference
              (url "https://github.com/noloop/simplet")
              (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
+       (file-name (git-file-name "simplet" version))
        (sha256
         (base32 "1iwp3a43mns885k2arr7gbmyv5rsrjfvgarxickj7r2bfgwp1cnn"))))
     (build-system asdf-build-system/sbcl)
     (home-page "https://github.com/noloop/simplet")
     (synopsis "Simple test runner in Common Lisp")
-    (description "This package provides Common Lisp test runner system
+    (description "This package provides a Common Lisp test runner system
 SIMPLET.")
-    (license license:gpl3+)))
+    (license license:gpl3)))
 
 (define-public ecl-simplet
   (sbcl-package->ecl-package sbcl-simplet))
