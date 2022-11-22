@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-14 Mon 20:16:22 GMT>
+#+modified: <2022-11-22 Tue 21:37:09 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -90,16 +90,16 @@ CLOSED: [2022-11-08 Tue 10:58]
 
 ** TODO internetarchive [0/1][0%] :author:
     - https://github.com/internetarchive
-*** TODO surt [/][%]
-    - https://github.com/internetarchive/surt
-    - [X] :packed <2022-04-25 Mon>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [X] :inputs [4/4][100%]
-      - [X] python-six
-      - [X] python-tldextract
-      - [X] python-pytest
-      - [X] python-pytest-cov
+*** TODO surt [2/4][50%]
+- https://github.com/internetarchive/surt
+- [X] :packed <2022-04-25 Mon>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [4/4][100%]
+  - [X] python-six
+  - [X] python-tldextract
+  - [X] python-pytest
+  - [X] python-pytest-cov
 ** TODO Martiusweb [0/1][0%] :author:
 - https://github.com/Martiusweb
 
@@ -165,7 +165,7 @@ CLOSED: [2022-11-08 Tue 11:02]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0/0]
 ** DONE osvenskan [1/1][100%] :author:
-*** DONE posix-ipc [/][%]
+*** DONE posix-ipc [1/1][100%]
 - https://github.com/osvenskan/posix_ipc
 - [X] :packed <2022-07-27 Wed>
 
@@ -219,32 +219,15 @@ CLOSED: [2022-11-08 Tue 11:06]
   - [X] python-packaging
 
 ** TODO StdCarrot [0/1][0%] :author:
-    - https://github.com/StdCarrot
+- https://github.com/StdCarrot
 
-*** TODO Py3AMF [8/12][66%] :author:
-    - https://github.com/StdCarrot/Py3AMF
-    - [X] :packed <2022-04-24 Sun>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [X] :inputs [1/1][100%]
-      - [X] python-defusedxml
-
-- https://github.com/Cadair/parfive
-- [X] :packed <2022-10-10 Mon>
-- [X] :patch-sent <2022-10-14 Fri>
-- [ ] :paptch-applied-upstream
-  - https://issues.guix.gnu.org/58530
-- [X] :inputs [10/10][100%]
-  - [X] python-aiofiles
-  - [X] python-aioftp
-  - [X] python-aiohttp
-  - [X] python-pytest
-  - [X] python-pytest-asyncio
-  - [X] python-pytest-cov
-  - [X] python-pytest-localserver
-  - [X] python-pytest-socket
-  - [X] python-setuptools-scm
-  - [X] python-tqdm
+*** TODO Py3AMF [2/4][50%] :p3:
+- https://github.com/StdCarrot/Py3AMF
+- [X] :packed <2022-04-24 Sun>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] python-defusedxml
 
 ** TODO SunPy [0/0][0%] :author:p2:
 - https://sunpy.org/

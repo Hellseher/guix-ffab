@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-21 Mon 20:13:38 GMT>
+#+modified: <2022-11-22 Tue 21:34:27 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -216,7 +216,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [ ] named-readtables
   - [ ] trivial-features))
 
-** DONE bufferswap [1/2][50%] :author:
+** DONE bufferswap [1/1][100%] :author:
 CLOSED: [2022-11-20 Sun 20:46]
 - https://github.com/bufferswap
 *** DONE ViralityEngine [4/4][100%]
@@ -363,7 +363,7 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** DONE chaitanyagupta [1/2][50%] :author:
+** TODO chaitanyagupta [1/2][50%] :author:
 https://github.com/chaitanyagupta
 *** DONE chronicity [4/4][100%]
 CLOSED: [2021-03-09 Tue 08:44]
@@ -405,7 +405,8 @@ https://github.com/chaitanyagupta/chronicity
   + [X] str
   + [X] trivial-utf-8
 ** TODO danlentz [1/1][100%] :author:
-*** DONE printv [/][%]
+- https://github.com/danlentz
+*** DONE printv [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:46]
 - https://github.com/danlentz/printv
 - [X] :packed <2021-02-02 Tue>
@@ -414,8 +415,13 @@ CLOSED: [2022-11-19 Sat 19:46]
   - https://issues.guix.gnu.org/46261
 - [X] :inputs [1/1]
   - [X] cl-ppcre
-** TODO EuAndreh [0/1][0%] :autho:
-*** TODO cl-slug [/][%]
+
+** DONE EuAndreh [1/1][100%] :author:
+CLOSED: [2022-11-22 Tue 20:29]
+- https://github.com/EuAndreh
+- https://euandre.org
+*** DONE cl-slug [4/4][100%]
+CLOSED: [2022-11-22 Tue 20:28]
 - https://github.com/EuAndreh/cl-slug/
 - [X] :packed <2021-02-02 Tue>
 - [X] :patch-sent <2021-02-03 Wed>
@@ -446,30 +452,17 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [X] :inputs [1/1]
   - [X] cl-ppcre
 
-** DONE gwkkwg [6/6][100%] :author:p3:
+** DONE gwkkwg [5/5][100%] :author:
 CLOSED: [2022-11-19 Sat 17:01]
 - https://github.com/gwkkwg
-*** DONE trivial-timeout [3/3][100%]
-CLOSED: [2022-11-19 Sat 19:50]
-- https://github.com/gwkkwg/trivial-timeout/
-- [X] :packed <2021-02-02 Tue>
-- [X] :patch-sent <2021-02-03 Wed>
-- [X] :patch-applied-upstream <2021-02-03 Wed>
-  + https://issues.guix.gnu.org/46261
-*** DONE cl-mathstats [4/4][100%] :p4:
-CLOSED: [2022-11-19 Sat 19:51]
-- https://github.com/gwkkwg/cl-mathstats
-- synopsis :: An unordered collection of mathematical routines
-- [X] :packed <2022-11-17 Thu>
-- [X] :patch-sent <2022-11-17 Thu>
-- [X] :paptch-applied-upstream <2022-11-18 Fri>
+*** DONE asdf-system-connections [3/3][100%]
+CLOSED: [2022-11-18 Fri 16:15]
+- https://github.com/gwkkwg/asdf-system-connections
+- [X] :packed <2022-11-18 Fri>
+- [X] :patch-sent <2022-11-18 Fri>
+- [X] :patch-applied-upstream <2022-11-18 Fri>
   - https://issues.guix.gnu.org/59344
-- [X] :inputs [3/3]
-  - [X] cl-lift
-  - [X] cl-containers
-  - [X] cl-metatilities-base
-
-*** DONE cl-graph [4/4][100%] :p4:
+*** DONE cl-graph [4/4][100%]
 CLOSED: [2022-11-19 Sat 17:00]
 - https://github.com/gwkkwg/cl-graph
 - [X] :packed <2022-06-15 Wed>
@@ -486,7 +479,20 @@ CLOSED: [2022-11-19 Sat 17:00]
   - [X] cl-metatilities-base
   - [X] cl-moptilities
 
-*** DONE metacopy [4/4][100%] :p4:
+*** DONE cl-mathstats [4/4][100%]
+CLOSED: [2022-11-19 Sat 19:51]
+- https://github.com/gwkkwg/cl-mathstats
+- synopsis :: An unordered collection of mathematical routines
+- [X] :packed <2022-11-17 Thu>
+- [X] :patch-sent <2022-11-17 Thu>
+- [X] :paptch-applied-upstream <2022-11-18 Fri>
+  - https://issues.guix.gnu.org/59344
+- [X] :inputs [3/3]
+  - [X] cl-lift
+  - [X] cl-containers
+  - [X] cl-metatilities-base
+
+*** DONE metacopy [4/4][100%]
 CLOSED: [2022-11-18 Fri 16:15]
 - https://github.com/gwkkwg/metacopy
 - [X] :packed <2022-11-18 Fri>
@@ -500,13 +506,6 @@ CLOSED: [2022-11-18 Fri 16:15]
   - [X] cl-contextl
   - [X] cl-moptilities
 
-*** DONE asdf-system-connections [3/3][100%]
-CLOSED: [2022-11-18 Fri 16:15]
-- https://github.com/gwkkwg/asdf-system-connections
-- [X] :packed <2022-11-18 Fri>
-- [X] :patch-sent <2022-11-18 Fri>
-- [X] :patch-applied-upstream <2022-11-18 Fri>
-  - https://issues.guix.gnu.org/59344
 *** DONE trivial-timeout [3/3][100%]
 CLOSED: [2022-11-20 Sun 21:32]
 - https://github.com/gwkkwg/trivial-timeout/
@@ -686,7 +685,7 @@ CLOSED: [2022-11-19 Sat 19:47]
 ** TODO lokedhs [1/2][50%] :author:
 - https://github.com/lokedhs
 - https://functional.cafe/@loke
-*** DONE cl-gss [4/4][100%] :p1:
+*** DONE cl-gss [4/4][100%]
 CLOSED: [2022-11-15 Tue 12:15]
 - https://github.com/lokedhs/cl-gss
 - [X] :packed <2022-11-12 Sat>
@@ -714,7 +713,7 @@ CLOSED: [2022-11-15 Tue 12:15]
 ** TODO markcox80 [1/2][50%] :author:
 - https://github.com/markcox80
 - author :: Mark Cox
-*** DONE specialization-store [/][%]
+*** DONE specialization-store [4/4][100%]
 CLOSED: [2021-02-04 Thu 19:25]
 - https://github.com/markcox80/specialization-store
 - [X] :packed <2021-02-04 Thu>
@@ -747,7 +746,7 @@ CLOSED: [2021-04-25 Sun 17:24]
     - [X] :paptch-applied-upstream <2021-03-08 Mon>
       + https://issues.guix.gnu.org/46977
 
-** TODO mfiano [3/4][75%] :author:
+** TODO mfiano [4/4][100%] :author:
 - https://git.mfiano.net/mfiano/
 - https://github.com/mfiano
 *** DONE golden-utils [3/3][100%]
@@ -768,7 +767,8 @@ CLOSED: [2022-11-19 Sat 19:23]
   - [X] specialization-store [1/1][100%]
     - [X] :packed <2021-02-04 Thu>
   - [X] golden-utils
-*** TODO net.mfiano.lisp.shadow [/][%]
+*** DONE net.mfiano.lisp.shadow [4/4][100%]
+CLOSED: [2022-11-22 Tue 21:27]
 - https://git.mfiano.net/mfiano/shadow
 - [X] :packed <2021-04-03 Sat>
 - [X] :patch-sent <2021-04-08 Thu>
@@ -899,7 +899,7 @@ https://github.com/muyinliu/cl-diskspace
 - [X] :paptch-applied-upstream <2021-03-08 Mon>
   - https://issues.guix.gnu.org/46977
 
-*** DONE cl-cpus [/][%]
+*** DONE cl-cpus [3/3][100%]
 CLOSED: [2022-11-17 Thu 23:57]
 - https://github.com/muyinliu/cl-cpus.git
 - [X] :packed <2021-04-03 Sat>
@@ -953,15 +953,15 @@ CLOSED: [2021-12-02 Thu 22:38]
 ** DONE rpav [1/1][100%] :author:
 CLOSED: [2022-11-20 Sun 21:33]
 - https://github.com/rpav
-*** DONE trivial-channels [/][%]
+*** DONE trivial-channels [4/4][100%]
 CLOSED: [2022-11-20 Sun 21:33]
 - https://github.com/rpav/trivial-channels.git
 - [X] :packed <2021-02-17 Wed>
 - [X] :patch-sent <2021-02-17 Wed>
 - [X] :patch-applied-upstream <2021-02-18 Thu>
   - https://issues.guix.gnu.org/46604
-- [X] :inputs [2/2]
-  - [X] trivial-timeout [3/3][100%]
+- [X] :inputs [1/1]
+  - [X] trivial-timeout [1/1][100%]
     - [X] :packed <2021-02-02 Tue>
 
 ** s-expressionists :author:
@@ -972,7 +972,7 @@ It's already packed in 1e180f4523c6bf4c5a32b38df80583defe076da1 byi Pierre Neidh
 <mail@ambrevar.xyz>
 
 ** TODO Shinmera/Shirakumo [3/11][27%] :author:p5:
-*** TODO qt-libs [/][%]
+*** TODO qt-libs [1/4][25%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
 - [ ] :patch-sent
@@ -1147,12 +1147,31 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] closer-mop
   - [X] array-utils
 
-*** TODO feedback [/][%] :p1:
+*** TODO feedback [0/4][0%] :p1:
 - https://github.com/Shirakumo/feedback
 - synopsis :: Radiance client/server module for anonymous feedback submission
-*** TODO harmony [/][%]
-*** TODO file-notify [/][%]
-*** TODO cl-steamworks [/][%]
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO harmony [0/4][0%]
+- https://github.com/Shirakumo/harmony
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO file-notify [0/4][0%]
+- https://github.com/Shinmera/file-notify
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO cl-steamworks [0/4][0%]
+- https://github.com/Shinmera/cl-steamworks
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 *** DONE radiance [4/4][100%]
 CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
@@ -1161,14 +1180,14 @@ CLOSED: [2021-02-04 Thu 00:28]
 - [X] :patch-applied-upstream <2021-02-04 Thu>
   - https://issues.guix.gnu.org/46250
 - [X] :inputs [15/15][100%]
-  - [X] babel (gnu/packages/lisp-xyz.scm:1192:4)
-  - [X] bordeaux-threads (gnu/packages/lisp-xyz.scm:251:2)
-  - [X] closer-mop (gnu/packages/lisp-xyz.scm:2786:4)
-  - [X] cl-ppcre (gnu/packages/lisp-xyz.scm:424:2)
-  - [X] documentation-utils (gnu/packages/lisp-xyz.scm:7062:4)
-  - [X] form-fiddle (gnu/packages/lisp-xyz.scm:7134:4)
-  - [X] lambda-fiddle (gnu/packages/lisp-xyz.scm:11629:4)
-  - [X] local-time (gnu/packages/lisp-xyz.scm:4365:4)
+  - [X] babel
+  - [X] bordeaux-threads
+  - [X] closer-mop
+  - [X] cl-ppcre
+  - [X] documentation-utils
+  - [X] form-fiddle
+  - [X] lambda-fiddle
+  - [X] local-time
   - [X] modularize-hooks [4/4][100%]
     - https://github.com/Shinmera/modularize-hooks
     - [X] :packed <2021-01-26 Tue>
@@ -1356,14 +1375,22 @@ CLOSED: [2021-04-11 Sun 20:33]
     - [X] :inputs [1/1][100%]
       + [X] closer-mop
 
-** TODO vindarel [/][%] :author:
+** TODO vindarel [0/1][0%] :author:
 - https://github.com/vindarel
 - https://lisp-journey.gitlab.io/
+*** TODO cl-torrents [0/4][0%]
+- https://github.com/vindarel/cl-torrents
+- synopsis :: Searching torrents on popular trackers - CLI, readline, GUI, web client. Tutorial and
+  binaries
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 ** TODO vsedach [1/2][50%] :author:
 - https://github.com/vsedach
 - https://oneofus.la/
 - author :: Vladimir Sedach
-*** DONE vas-string-metrics [/][%]
+*** DONE vas-string-metrics [3/3][100%]
 CLOSED: [2022-11-19 Sat 19:38]
 - https://github.com/vsedach/vas-string-metrics
 - [X] :packed <2021-02-09 Tue>
