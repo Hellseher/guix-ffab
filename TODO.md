@@ -13,7 +13,6 @@
     python.org             SunPy                   [0/0][0%]    :author:p2:
     lisp.org               cbaggers                [4/6][66%]   :author:p2:
     astronomy.org          MAVENSDC                [1/1][100%]  :author:p2:
-    lisp.org               noloop                  [0/5][0%]    :author:p1:
     astronomy.org          SunPy                   [0/3][0%]    :author:p1:
     astronomy.org          SAOImageDS9             [0/1][0%]    :author:p1:
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
@@ -122,13 +121,8 @@
     astronomy.org          mcfost               [/][%]       :p2:
     astronomy.org          drms                 [2/4][50%]   :p2:
     python.org             opencv-python        [0/4][0%]    :p1:
-    lisp.org               simplet              [2/3][66%]   :p1:
-    lisp.org               sbcl-assert-p        [3/4][75%]   :p1:
     lisp.org               feedback             [0/4][0%]    :p1:
-    lisp.org               eventbus             [3/4][75%]   :p1:
     lisp.org               classimp             [/][%]       :p1:
-    lisp.org               cacau                [3/4][75%]   :p1:
-    lisp.org               assertion-error      [3/4][75%]   :p1:
     golang.org             miller               [1/5][20%]   :p1:
     golang.org             go/tools/gopls       [/][%]       :p1:
     golang.org             caddy                [0/4][0%]    :p1:
@@ -255,7 +249,10 @@
     lisp.org               adopt                     [4/4][100%]  
     lisp.org               alloy                     [4/4][100%]  
     lisp.org               asdf-system-connections   [3/3][100%]  
+    lisp.org               assertion-error           [4/4][100%]  
+    lisp.org               assert-p                  [4/4][100%]  
     lisp.org               bknr-datastore            [4/4][100%]  
+    lisp.org               cacau                     [4/4][100%]  
     lisp.org               cepl                      [4/4][100%]  
     lisp.org               chirp                     [4/4][100%]  
     lisp.org               chronicity                [4/4][100%]  
@@ -275,6 +272,7 @@
     lisp.org               cl-slug                   [4/4][100%]  
     lisp.org               coalton                   [4/4][100%]  
     lisp.org               Djula                     [4/4][100%]  
+    lisp.org               eventbus                  [4/4][100%]  
     lisp.org               fn                        [4/4][100%]  
     lisp.org               glop                      [4/4][100%]  
     lisp.org               glsl-packing              [4/4][100%]  
@@ -289,6 +287,7 @@
     lisp.org               printv                    [4/4][100%]  
     lisp.org               radiance                  [4/4][100%]  
     lisp.org               sdl2                      [4/4][100%]  
+    lisp.org               simplet                   [3/3][100%]  
     lisp.org               specialization-store      [4/4][100%]  
     lisp.org               trivial-channels          [4/4][100%]  
     lisp.org               trivial-timeout           [3/3][100%]  
@@ -315,6 +314,7 @@
     lisp.org               massung                   [1/1][100%]  :author:
     lisp.org               mmontone                  [1/1][100%]  :author:
     lisp.org               muyinliu                  [2/2][100%]  :author:
+    lisp.org               noloop                    [5/5][100%]  :author:
     lisp.org               resttime                  [1/1][100%]  :author:
     lisp.org               rpav                      [1/1][100%]  :author:
     lisp.org               sjl                       [1/1][100%]  :author:

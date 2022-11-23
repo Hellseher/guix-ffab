@@ -757,33 +757,9 @@ LPARALLEL.")
 ;;+end-hu-dwim
 
 ;; <2021-11-07 Sun>
-(define-public sbcl-eventbus
-  (let ((commit "92c1fa3846ba0e3cc9e6d7605d765379c8658d84")
-        (revision "1"))
-    (package
-      (name "sbcl-eventbus")
-      (version (git-version "0.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/noloop/eventbus")
-               (commit commit)))
-         (file-name (git-file-name "eventbus" version))
-         (sha256
-          (base32 "0slqx3zq6sbz3rg4g79j8y25sx4405y6ff3x6l5v8v4v42m1s0p2"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-simplet))
-      (home-page "https://github.com/noloop/eventbus")
-      (synopsis "Event bus implementation in Common Lisp")
-      (description "This package provides a Common Lisp system implementing event bus.")
-      (license license:gpl3))))
-
-(define-public ecl-eventbus
-  (sbcl-package->ecl-package sbcl-eventbus))
-
-(define-public cl-eventbus
-  (sbcl-package->cl-source-package sbcl-eventbus))
+;; (define-public sbcl-eventbus
+;; added-to-upstream cd9df33e4144ff9d85fef55cdc6caec4ccc007b4
+;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20211127T133558+0000
 ;; added-to-upstream: 4beb013c84cd44a2e6dc03a2697615c660985f4a

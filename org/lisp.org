@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-22 Tue 22:43:57 GMT>
+#+modified: <2022-11-23 Wed 22:16:36 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [14/35][40%]
+* Flow [15/35][42%]
 ** TODO 3b [3/4][75%] :author:
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
@@ -907,21 +907,24 @@ CLOSED: [2022-11-17 Thu 23:57]
 - [X] :patch-applied-upstream <2021-04-08 Thu>
   - https://issues.guix.gnu.org/47586
 
-** TODO noloop [0/5][0%] :author:p1:
-*** TODO assertion-error [3/4][75%] :p1:
+** DONE noloop [5/5][100%] :author:
+CLOSED: [2022-11-23 Wed 22:08]
+*** DONE assertion-error [4/4][100%]
+CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/assertion-error
 - [X] :packed <2021-11-07 Sun>
 - [X] :patch-sent <2022-11-22 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-23 Wed>
   - https://issues.guix.gnu.org/59494
 - [X] :inputs [1/1][100%]
   - [X] dissect
 
-*** TODO cacau [3/4][75%] :p1:
+*** DONE cacau [4/4][100%]
+CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/cacau
 - [X] :packed <2021-11-07 Sun>
 - [X] :patch-sent <2022-11-22 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-23 Wed>
   - https://issues.guix.gnu.org/59494
 - [X] :inputs [2/2][100%]
   + [X] assertion-error
@@ -929,21 +932,23 @@ CLOSED: [2022-11-17 Thu 23:57]
   + [X] eventbus
     - [X] :packed <2021-11-07 Sun>
 
-*** TODO eventbus [3/4][75%] :p1:
+*** DONE eventbus [4/4][100%]
+CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/eventbus
 - [X] :packed <2021-11-07 Sun>
 - [X] :patch-sent <2022-11-22 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-23 Wed>
   - https://issues.guix.gnu.org/59494
 - [X] :inputs [1/1][100%]
   - [X] simplet
     - [X] :packed <2021-11-07 Sun>
 
-*** TODO sbcl-assert-p [3/4][75%] :p1:
+*** DONE assert-p [4/4][100%]
+CLOSED: [2022-11-23 Wed 22:08]
 - https://github.com/noloop/assert-p
 - [X] :packed <2021-11-07 Sun>
 - [X] :patch-sent <2022-11-22 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-23 Wed>
   - https://issues.guix.gnu.org/59494
 - [X] :inputs [2/2][100%]
   - [X] assertion-error
@@ -951,11 +956,12 @@ CLOSED: [2022-11-17 Thu 23:57]
   - [X] simplet
     - [X] :packed <2021-11-07 Sun>
 
-*** TODO simplet [2/3][66%] :p1:
+*** DONE simplet [3/3][100%]
+CLOSED: [2022-11-23 Wed 22:08]
 - https://github.com/noloop/simplet
 - [X] :packed <2021-11-07 Sun>
 - [X] :patch-sent <2022-11-22 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-11-23 Wed>
   - https://issues.guix.gnu.org/59494
 
 ** DONE resttime [1/1][100%] :author:

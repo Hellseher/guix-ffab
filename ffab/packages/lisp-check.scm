@@ -38,118 +38,24 @@
 ;; (define-public sbcl-kaputt
 
 ;; 20220709T234615+0100
-(define-public sbcl-cacau
-  (package
-    (name "sbcl-cacau")
-    (version "1.0.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/noloop/cacau")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name "cacau" version))
-       (sha256
-        (base32 "0m8v1xw68cr5ldv045rxgvnhigr4iahh7v6v32z6xlq2sj6r55x0"))))
-    (build-system asdf-build-system/sbcl)
-    (native-inputs (list sbcl-assert-p))
-    (inputs (list sbcl-assertion-error sbcl-eventbus))
-    (home-page "https://github.com/noloop/cacau")
-    (synopsis "Comon Lisp test runner")
-    (description
-     "This package provides a Common Lisp testing framework system CACAU which was
-built to be independent of assertions systems.")
-    (license license:gpl3)))
-
-(define-public ecl-cacau
-  (sbcl-package->ecl-package sbcl-cacau))
-
-(define-public cl-cacau
-  (sbcl-package->cl-source-package sbcl-cacau))
+;; (define-public sbcl-cacau
+;; 6ffe15bda7ea0f9dd3858e8e36883a22e726f106
+;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20220709T233237+0100
-(define-public sbcl-assertion-error
-  (let ((commit "8eab692a990d4caa193a46bae99af3e13e717b86")
-        (revision "1"))
-    (package
-      (name "sbcl-assertion-error")
-      (version (git-version "0.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/noloop/assertion-error")
-               (commit commit)))
-         (file-name (git-file-name "assertion-error" version))
-         (sha256
-          (base32 "0ix23kkakmf4nwx852zsssb831jvajr3qyppqfyks7y1ls617svn"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs (list sbcl-dissect))
-      (home-page "https://github.com/noloop/assertion-error")
-      (synopsis "Error pattern for assertion libraries in Common Lisp")
-      (description "This package provides a Common Lisp assertion system with
-minimal dependencies on DISSECT.")
-      (license license:gpl3))))
-
-(define-public ecl-assertion-error
-  (sbcl-package->ecl-package sbcl-assertion-error))
-
-(define-public cl-assertion-error
-  (sbcl-package->cl-source-package sbcl-assertion-error))
+;; (define-public sbcl-assertion-error
+;; added-to-upastream dc95215dc0178b85d1c218494aa8ac7248ab8f0b
+;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20220709T233521+0100
-(define-public sbcl-assert-p
-  (package
-    (name "sbcl-assert-p")
-    (version "1.0.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/noloop/assert-p")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name "assert-p" version))
-       (sha256
-        (base32 "1x24rkqkqiw8zd26swi9rmhfplkmr5scz3bhjwccah9d2s36b1xs"))))
-    (build-system asdf-build-system/sbcl)
-    (inputs (list sbcl-assertion-error sbcl-simplet))
-    (home-page "https://github.com/noloop/assert-p")
-    (synopsis "Common Lisp assertion library")
-    (description "This package provides a Common Lisp collection of assertions.")
-    (license license:gpl3)))
-
-(define-public ecl-assert-p
-  (sbcl-package->ecl-package sbcl-assert-p))
-
-(define-public cl-assert-p
-  (sbcl-package->cl-source-package sbcl-assert-p))
+;; (define-public sbcl-assert-p
+;; added-to-upstream f39a18e7d43fc7bdf18b135d44bae2159e1526ac
+;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20221122T215422+0000
-(define-public sbcl-simplet
-  (package
-    (name "sbcl-simplet")
-    (version  "1.2.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/noloop/simplet")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name "simplet" version))
-       (sha256
-        (base32 "1iwp3a43mns885k2arr7gbmyv5rsrjfvgarxickj7r2bfgwp1cnn"))))
-    (build-system asdf-build-system/sbcl)
-    (home-page "https://github.com/noloop/simplet")
-    (synopsis "Simple test runner in Common Lisp")
-    (description "This package provides a Common Lisp test runner system
-SIMPLET.")
-    (license license:gpl3)))
-
-(define-public ecl-simplet
-  (sbcl-package->ecl-package sbcl-simplet))
-
-(define-public cl-simplet
-  (sbcl-package->cl-source-package sbcl-simplet))
+;; (define-public sbcl-simplet
+;; added-to-upstream 029234bdad83195c7facad5af05d65cda7772c25
+;; CommitDate: Wed Nov 23 09:53:10 2022 +0000
 
 ;; 20221110T225101+0000
 (define-public sbcl-confidence
