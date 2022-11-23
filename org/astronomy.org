@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-22 Tue 21:39:48 GMT>
+#+modified: <2022-11-22 Tue 23:00:39 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1435,9 +1435,9 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-drms
     - [X] :packed <2022-06-27 Mon>
   - [X] python-extension-helpers
-  - [X] python-glymur [1/1][100%]
+  - [X] python-glymur
     - [X] :packed <2022-07-02 Sat>
-  - [X] python-h5netcdf [1/1][100%]
+  - [X] python-h5netcdf
     - [X] :packed <2022-07-02 Sat>
   - [X] python-h5py
   - [X] python-hypothesis
