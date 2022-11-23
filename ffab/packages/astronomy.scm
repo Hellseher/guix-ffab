@@ -1791,28 +1791,32 @@ SolarSoft data analysis environment.")
   (package
     (name "python-drms")
     (version "0.6.3")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "drms" version))
-              (sha256
-               (base32
-                "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "drms" version))
+       (sha256
+        (base32 "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
     (build-system python-build-system)
     (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key inputs outputs tests?
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (setenv "JSOC_EMAIL" "jsoc@sunpy.org")
-                              (invoke "python" "-m" "pytest" "-vv")))))))
-    (native-inputs (list python-astropy python-pytest-astropy python-pytest
-                         python-setuptools-scm))
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key inputs outputs tests?
+                      #:allow-other-keys)
+              (when tests?
+                (add-installed-pythonpath inputs outputs)
+                (setenv "JSOC_EMAIL" "jsoc@sunpy.org")
+                (invoke "python" "-m" "pytest" "-vv")))))))
+    (native-inputs
+     (list python-astropy
+           python-pytest-astropy
+           python-pytest
+           python-setuptools-scm))
     (propagated-inputs (list python-numpy python-pandas))
     (home-page "https://sunpy.org")
-    (synopsis
-     "Access astronomical HMI, AIA and MDI data with Python from the public JSOC DRMS server")
+    (synopsis "Access astronomical HMI, AIA and MDI data with Python")
     (description
      "DRMS module provides an easy-to-use interface for accessing HMI, AIA and MDI
 data with Python.  It uses the publicly accessible
