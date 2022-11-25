@@ -735,34 +735,54 @@ planetarium.")
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
+;; 20221123T230513+0000
 (define-public python-reproject
   (package
     (name "python-reproject")
-    (version "0.9")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "reproject" version))
-              (sha256
-               (base32
-                "0bbykik31jjpdan632izfrjq4zhb7v5p5ka98xrmy2g5r3hch66f"))))
-    (build-system python-build-system)
+    (version "0.9.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "reproject" version))
+       (sha256
+        (base32 "1msysqbhkfi3bmw29wipk250a008bnng7din56md9ipbwiar8x55"))))
+    (build-system pyproject-build-system)
     (arguments
-     (list #:tests? #f ;Circular dependencies with python-sunpy
-           #:phases #~(modify-phases %standard-phases
-                        (add-before 'install 'writable-compiler
-                          (lambda _
-                            (make-file-writable "reproject/_compiler.c")))
-                        (add-before 'check 'writable-compiler
-                          (lambda _
-                            (make-file-writable "reproject/_compiler.c")))
-                        (add-before 'check 'writable-home
-                          (lambda _
-                            (setenv "HOME"
-                                    (getcwd)))))))
-    (propagated-inputs (list python-astropy python-astropy-healpix
-                             python-numpy python-scipy))
-    (native-inputs (list python-cython python-extension-helpers
-                         python-setuptools-scm))
+     (list
+      ;; FIXME: (Sharlatan-20221123T232224+0000): Tests failed
+      ;;
+      ;; reproject/adaptive/core.py:7: in <module>
+      ;; from .deforest import map_coordinates
+      ;; E   ModuleNotFoundError: No module named 'reproject.adaptive.deforest'
+      ;;
+      #:tests? #f
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'install 'writable-compiler
+            (lambda _
+              (make-file-writable "reproject/_compiler.c")))
+          (add-before 'check 'writable-compiler
+            (lambda _
+              (make-file-writable "reproject/_compiler.c")))
+          (add-before 'check 'writable-home
+            (lambda _
+              (setenv "HOME" (getcwd)))))))
+    (propagated-inputs
+     (list python-astropy
+           python-astropy-healpix
+           python-numpy
+           python-pytest
+           python-scipy))
+    (native-inputs
+     (list python-asdf
+           python-cython
+           python-extension-helpers
+           python-gwcs
+           python-pytest-astropy
+           python-pyvo
+           python-semantic-version
+           python-setuptools-scm
+           python-shapely))
     (home-page "https://reproject.readthedocs.io")
     (synopsis "Astronomical image reprojection in Python")
     (description
@@ -1709,12 +1729,12 @@ based on the HDF5 standard")
   (package
     (name "python-sunpy")
     (version "4.0.6")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "sunpy" version))
-              (sha256
-               (base32
-                "0aiirb6l8zshdrpsvh6d5ki759ah9zfm9gbl0in985hprwwxyrq1"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sunpy" version))
+       (sha256
+        (base32 "0aiirb6l8zshdrpsvh6d5ki759ah9zfm9gbl0in985hprwwxyrq1"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -1743,42 +1763,45 @@ based on the HDF5 standard")
                  "def __off_test_main_nonexisting_module")
                 (("def test_main_stdlib_module")
                  "def __off_test_main_stdlib_module")))))))
-    (native-inputs (list python-aiohttp
-                         python-extension-helpers
-                         python-packaging
-                         python-pytest
-                         python-pytest-astropy
-                         python-pytest-doctestplus
-                         python-pytest-mock
-                         python-pytest-mpl
-                         python-pytest-xdist
-                         python-setuptools-scm))
-    (inputs (list python-asdf
-                  python-asdf-astropy
-                  python-astropy
-                  python-beautifulsoup4
-                  python-cdflib
-                  python-dask
-                  python-dateutil
-                  python-drms
-                  python-glymur
-                  python-h5netcdf
-                  python-h5py
-                  python-hypothesis
-                  python-jplephem
-                  python-matplotlib
-                  python-mpl-animators
-                  python-numpy
-                  ;; python-opencv-python ; not packed yet
-                  parfive
-                  python-pandas
-                  python-reproject
-                  python-scikit-image
-                  python-scipy
-                  python-semantic-version
-                  python-sqlalchemy
-                  python-tqdm
-                  python-zeep))
+    (native-inputs
+     (list python-aiohttp
+           python-extension-helpers
+           python-hvpy
+           python-packaging
+           python-pytest
+           python-pytest-astropy
+           python-pytest-doctestplus
+           python-pytest-mock
+           python-pytest-mpl
+           python-pytest-xdist
+           python-setuptools-scm))
+    (propagated-inputs
+     (list parfive
+           python-asdf
+           python-asdf-astropy
+           python-astropy
+           python-beautifulsoup4
+           python-cdflib
+           python-dask
+           python-dateutil
+           python-drms
+           python-glymur
+           python-h5netcdf
+           python-h5py
+           python-hypothesis
+           python-jplephem
+           python-matplotlib
+           python-mpl-animators
+           python-numpy
+           ;; python-opencv-python ; not packed yet
+           python-pandas
+           python-reproject
+           python-scikit-image
+           python-scipy
+           python-semantic-version
+           python-sqlalchemy
+           python-tqdm
+           python-zeep))
     (home-page "https://sunpy.org")
     (synopsis "Python library for Solar Physics")
     (description

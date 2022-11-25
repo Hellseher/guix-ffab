@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-22 Tue 23:00:39 GMT>
+#+modified: <2022-11-25 Fri 21:21:02 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -298,7 +298,7 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO Astropy [2/5][40%] :author:
+** TODO Astropy [3/6][50%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -471,6 +471,28 @@ CLOSED: [2022-11-22 Tue 20:33]
   - [X] python-scipy
   - [X] python-semantic-version
   - [X] python-setuptools-scm
+*** DONE reproject [4/4][100%]
+CLOSED: [2022-11-25 Fri 21:08]
+- https://github.com/astropy/reproject
+- [X] :packed <2022-10-22 Sat>
+- [X] :patch-sent <2022-11-23 Wed>
+- [X] :paptch-applied-upstream <2022-11-25 Fri>
+  - https://issues.guix.gnu.org/59542
+- [X] :inputs [14/14][100%]
+  - [X] python-asdf
+  - [X] python-astropy
+  - [X] python-astropy-healpix
+  - [X] python-cython
+  - [X] python-extension-helpers
+  - [X] python-gwcs
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-pyvo
+  - [X] python-scipy
+  - [X] python-semantic-version
+  - [X] python-setuptools-scm
+  - [X] python-shapely
 ** TODO ATNF [0/1][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
@@ -1414,16 +1436,64 @@ CLOSED: [2021-02-19 Fri 11:13]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO SunPy [0/3][0%] :author:p1:
+** TODO SunPy [4/7][57%] :author:p2:
 - https://sunpy.org/
 - https://github.com/sunpy
-*** TODO sunpy [1/4][25%] :p1:
+*** DONE drms [5/5][100%]
+CLOSED: [2022-11-25 Fri 21:16]
+- https://github.com/sunpy/drms
+- synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
+- [X] :packed <2022-06-27 Mon>
+- [X] :patch-sent <2022-11-23 Wed>
+- [X] :paptch-applied-upstream <2022-11-25 Fri>
+  - https://issues.guix.gnu.org/59542
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pandas
+  - [X] python-pytest-astropy
+
+*** DONE hvpy [4/4][100%]
+CLOSED: [2022-11-25 Fri 21:14]
+- https://github.com/Helioviewer-Project/python-api
+- [X] :packed <2022-11-23 Wed>
+- [X] :patch-sent <2022-11-23 Wed>
+- [X] :paptch-applied-upstream <2022-11-25 Fri>
+  - https://issues.guix.gnu.org/59542
+- [X] :inputs [4/4][100%]
+  - [X] python-pydantic
+  - [X] python-requests
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+*** DONE mpl-animations [4/4][100%]
+CLOSED: [2022-11-25 Fri 21:16]
+- https://github.com/sunpy/mpl-animations
+- synopsis :: Interactive animations with matplotlib
+- [X] :packed <2022-07-02 Sat>
+- [X] :patch-sent <2022-11-23 Wed>
+- [X] :paptch-applied-upstream <2022-11-25 Fri>
+  - https://issues.guix.gnu.org/59542
+- [X] :inputs [6/6][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-setuptools-scm
+*** TODO ndcube [/][%] :p3:
+- https://github.com/sunpy/ndcube
+*** TODO radiospectra [/][%] :p3:
+- https://github.com/sunpy/radiospectra
+*** DONE sunpy [3/4][75%]
+CLOSED: [2022-11-25 Fri 21:10]
 - https://github.com/sunpy/sunpy
 - synopsis :: SunPy - Python for Solar Physics
 - [X] :packed <2022-11-22 Tue>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [32/34][94%]
+- [X] :patch-sent <2022-11-23 Wed>
+- [X] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/59542
+- [-] :inputs [33/34][97%]
   - [X] python-asdf
   - [X] python-asdf-astropy
   - [X] python-astropy
@@ -1440,6 +1510,8 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-h5netcdf
     - [X] :packed <2022-07-02 Sat>
   - [X] python-h5py
+  - [X] python-hvpy
+    - [X] :packed <2022-11-23 Wed>
   - [X] python-hypothesis
   - [X] python-jplephem
   - [X] python-matplotlib
@@ -1459,38 +1531,19 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-pytest-mpl
   - [X] python-pytest-xdist
   - [X] python-reproject
+    - [X] packed <2022-11-24 Thu>
   - [X] python-scikit-image
   - [X] python-scipy
   - [X] python-sqlalchemy
   - [X] python-tqdm
   - [X] python-zeep
 
-*** TODO drms [2/4][50%] :p2:
-- https://github.com/sunpy/drms
-- synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
-- [X] :packed <2022-06-27 Mon>
+*** TODO sunpy-sphinx-theme  [0/4][0%] :p4:
+- https://github.com/sunpy/sunpy-sphinx-theme
+- [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pandas
-  - [X] python-pytest-astropy
-
-*** TODO mpl-animations [2/4][50%] :p2:
-- https://github.com/sunpy/mpl-animations
-- synopsis :: Interactive animations with matplotlib
-- [X] :packed <2022-07-02 Sat>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [6/6][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pytest
-  - [X] python-pytest-mpl
-  - [X] python-setuptools-scm
+- [ ] :inputs [0/0][0%]
 
 ** TODO XEphem [0/4][0%] :author:
 - http://www.clearskyinstitute.com/xephem/

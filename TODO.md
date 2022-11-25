@@ -12,8 +12,8 @@
     python.org             webrecorder             [0/1][0%]    :author:p2:
     python.org             SunPy                   [0/0][0%]    :author:p2:
     lisp.org               cbaggers                [4/6][66%]   :author:p2:
+    astronomy.org          SunPy                   [4/7][57%]   :author:p2:
     astronomy.org          MAVENSDC                [1/1][100%]  :author:p2:
-    astronomy.org          SunPy                   [0/3][0%]    :author:p1:
     astronomy.org          SAOImageDS9             [0/1][0%]    :author:p1:
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
     astronomy.org          dokester                [0/1][0%]    :author:p1:
@@ -78,7 +78,7 @@
     astronomy.org          cpinte                  [0/1][0%]    :author:
     astronomy.org          C-Munipack-library      [0/0][0%]    :author:
     astronomy.org          ATNF                    [0/1][0%]    :author:
-    astronomy.org          Astropy                 [2/5][40%]   :author:
+    astronomy.org          Astropy                 [3/6][50%]   :author:
     astronomy.org          aroffringa              [2/2][100%]  :author:
     astronomy.org          amusecode               [0/1][0%]    :author:
     
@@ -95,6 +95,7 @@
     maths.org              ducc                 [/][%]       :p4:
     lisp.org               Vacietis             [/][%]       :p4:
     lisp.org               basic-binary-ipc     [0/4][0%]    :p4:
+    astronomy.org          sunpy-sphinx-theme   [0/4][0%]    :p4:
     astronomy.org          amuse                [/][%]       :p4:
     python.org             Py3AMF               [2/4][50%]   :p3:
     pascal.org             voc                  [/][%]       :p3:
@@ -106,6 +107,8 @@
     golang.org             bykof/go-plantuml    [/][%]       :p3:
     emacs-xyz.org          org-roam-ui          [/][%]       :p3:
     docker.org             dive                 [0/4][0%]    :p3:
+    astronomy.org          radiospectra         [/][%]       :p3:
+    astronomy.org          ndcube               [/][%]       :p3:
     astronomy.org          kepler-project       [0/4][0%]    :p3:
     astronomy.org          IIPImage             [1/4][25%]   :p3:
     astronomy.org          HEALPix              [1/4][25%]   :p3:
@@ -117,9 +120,7 @@
     astronomy.org          uvsph                [/][%]       :p2:
     astronomy.org          SiriLic              [0/4][0%]    :p2:
     astronomy.org          phantom              [0/4][0%]    :p2:
-    astronomy.org          mpl-animations       [2/4][50%]   :p2:
     astronomy.org          mcfost               [/][%]       :p2:
-    astronomy.org          drms                 [2/4][50%]   :p2:
     python.org             opencv-python        [0/4][0%]    :p1:
     lisp.org               feedback             [0/4][0%]    :p1:
     lisp.org               classimp             [/][%]       :p1:
@@ -127,7 +128,6 @@
     golang.org             go/tools/gopls       [/][%]       :p1:
     golang.org             caddy                [0/4][0%]    :p1:
     astronomy.org          Torus                [1/4][25%]   :p1:
-    astronomy.org          sunpy                [1/4][25%]   :p1:
     astronomy.org          pal                  [0/4][0%]    :p1:
     astronomy.org          jwst                 [2/4][50%]   :p1:
     astronomy.org          gammapy              [0/4][0%]    :p1:
@@ -221,14 +221,18 @@
     astronomy.org          astropy                   [4/4][100%]  
     astronomy.org          casacore                  [4/4][100%]  
     astronomy.org          cdflib                    [4/4][100%]  
+    astronomy.org          drms                      [5/5][100%]  
     astronomy.org          eye                       [3/3][100%]  
     astronomy.org          gwcs                      [4/4][100%]  
+    astronomy.org          hvpy                      [4/4][100%]  
     astronomy.org          imppg                     [4/4][100%]  
     astronomy.org          indi                      [4/4][100%]  
     astronomy.org          libpasastro               [3/3][100%]  
     astronomy.org          missfits                  [3/3][100%]  
+    astronomy.org          mpl-animations            [4/4][100%]  
     astronomy.org          pynbody                   [4/4][100%]  
     astronomy.org          qfits                     [3/3][100%]  
+    astronomy.org          reproject                 [4/4][100%]  
     astronomy.org          sextractor                [4/4][100%]  
     astronomy.org          siril                     [4/4][100%]  
     astronomy.org          skymaker                  [4/4][100%]  
@@ -236,6 +240,7 @@
     astronomy.org          stackistry                [4/4][100%]  
     astronomy.org          stiff                     [3/3][100%]  
     astronomy.org          stuff                     [3/3][100%]  
+    astronomy.org          sunpy                     [3/4][75%]   
     astronomy.org          swarp                     [3/3][100%]  
     astronomy.org          weightwatcher             [3/3][100%]  
     cran.org               opencpu                   [4/4][100%]  
