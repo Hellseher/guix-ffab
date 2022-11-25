@@ -736,61 +736,9 @@ planetarium.")
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
 ;; 20221123T230513+0000
-(define-public python-reproject
-  (package
-    (name "python-reproject")
-    (version "0.9.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "reproject" version))
-       (sha256
-        (base32 "1msysqbhkfi3bmw29wipk250a008bnng7din56md9ipbwiar8x55"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; FIXME: (Sharlatan-20221123T232224+0000): Tests failed
-      ;;
-      ;; reproject/adaptive/core.py:7: in <module>
-      ;; from .deforest import map_coordinates
-      ;; E   ModuleNotFoundError: No module named 'reproject.adaptive.deforest'
-      ;;
-      #:tests? #f
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'install 'writable-compiler
-            (lambda _
-              (make-file-writable "reproject/_compiler.c")))
-          (add-before 'check 'writable-compiler
-            (lambda _
-              (make-file-writable "reproject/_compiler.c")))
-          (add-before 'check 'writable-home
-            (lambda _
-              (setenv "HOME" (getcwd)))))))
-    (propagated-inputs
-     (list python-astropy
-           python-astropy-healpix
-           python-numpy
-           python-pytest
-           python-scipy))
-    (native-inputs
-     (list python-asdf
-           python-cython
-           python-extension-helpers
-           python-gwcs
-           python-pytest-astropy
-           python-pyvo
-           python-semantic-version
-           python-setuptools-scm
-           python-shapely))
-    (home-page "https://reproject.readthedocs.io")
-    (synopsis "Astronomical image reprojection in Python")
-    (description
-     "This package provides a functionality to reproject astronomical images using
-various techniques via a uniform interface, where reprojection is the
-re-gridding of images from one world coordinate system to another e.g.
-changing the pixel resolution, orientation, coordinate system.")
-    (license license:bsd-3)))
+;; (define-public python-reproject
+;; added-to-upstream a3d85918f90e31118bc9b7e483520d0ae6192e3d
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221107T133138+0000
 (define-public python-astroplan
@@ -1725,176 +1673,24 @@ based on the HDF5 standard")
 ;;+begin-sunpy
 
 ;; 20220627T202513+0100
-(define-public python-sunpy
-  (package
-    (name "python-sunpy")
-    (version "4.0.6")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "sunpy" version))
-       (sha256
-        (base32 "0aiirb6l8zshdrpsvh6d5ki759ah9zfm9gbl0in985hprwwxyrq1"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'install 'writable-compiler
-            (lambda _
-              (make-file-writable "sunpy/_compiler.c")))
-          (add-before 'check 'prepare-test-environment
-            (lambda _
-              (setenv "HOME" "/tmp")
-              (make-file-writable "sunpy/_compiler.c")
-              ;; TODO: (Sharlatan-20221106T115800+0000): Review failing tests
-              (substitute* "sunpy/image/tests/test_transform.py"
-                (("def test_clipping") "def __off_test_clipping")
-                (("def test_nans") "def __off_test_nans")
-                (("def test_endian") "def __off_test_endian"))
-              (substitute* "sunpy/map/tests/test_mapbase.py"
-                (("def test_derotating_nonpurerotation_pcij")
-                 "def __off_test_derotating_nonpurerotation_pcij"))
-              (substitute* "sunpy/map/sources/tests/test_mdi_source.py"
-                (("def test_synoptic_source")
-                 "def __off_test_synoptic_source"))
-              (substitute* "sunpy/tests/tests/test_self_test.py"
-                (("def test_main_nonexisting_module")
-                 "def __off_test_main_nonexisting_module")
-                (("def test_main_stdlib_module")
-                 "def __off_test_main_stdlib_module")))))))
-    (native-inputs
-     (list python-aiohttp
-           python-extension-helpers
-           python-hvpy
-           python-packaging
-           python-pytest
-           python-pytest-astropy
-           python-pytest-doctestplus
-           python-pytest-mock
-           python-pytest-mpl
-           python-pytest-xdist
-           python-setuptools-scm))
-    (propagated-inputs
-     (list parfive
-           python-asdf
-           python-asdf-astropy
-           python-astropy
-           python-beautifulsoup4
-           python-cdflib
-           python-dask
-           python-dateutil
-           python-drms
-           python-glymur
-           python-h5netcdf
-           python-h5py
-           python-hypothesis
-           python-jplephem
-           python-matplotlib
-           python-mpl-animators
-           python-numpy
-           ;; python-opencv-python ; not packed yet
-           python-pandas
-           python-reproject
-           python-scikit-image
-           python-scipy
-           python-semantic-version
-           python-sqlalchemy
-           python-tqdm
-           python-zeep))
-    (home-page "https://sunpy.org")
-    (synopsis "Python library for Solar Physics")
-    (description
-     "SunPy is package for solar physics and is meant to be a free alternative to the
-SolarSoft data analysis environment.")
-    (license license:bsd-2)))
+;; (define-public python-sunpy
+;; added-to-upstream 78ee6dcfe13c1561ff1d5cdfc2c2d4fa8afe0883
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;20220627T213949+0100
-(define-public python-drms
-  (package
-    (name "python-drms")
-    (version "0.6.3")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "drms" version))
-       (sha256
-        (base32 "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key inputs outputs tests?
-                      #:allow-other-keys)
-              (when tests?
-                (add-installed-pythonpath inputs outputs)
-                (setenv "JSOC_EMAIL" "jsoc@sunpy.org")
-                (invoke "python" "-m" "pytest" "-vv")))))))
-    (native-inputs
-     (list python-astropy
-           python-pytest-astropy
-           python-pytest
-           python-setuptools-scm))
-    (propagated-inputs (list python-numpy python-pandas))
-    (home-page "https://sunpy.org")
-    (synopsis "Access astronomical HMI, AIA and MDI data with Python")
-    (description
-     "DRMS module provides an easy-to-use interface for accessing HMI, AIA and MDI
-data with Python.  It uses the publicly accessible
-JSOC (@url{http://jsoc.stanford.edu/}) DRMS server by default, but can also be
-used with local NetDRMS sites.")
-    (license license:bsd-2)))
+;; (define-public python-drms
+;; added-to-upstream 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20220702T165531+0100
-(define-public python-mpl-animators
-  (package
-    (name "python-mpl-animators")
-    (version "1.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "mpl_animators" version))
-       (sha256
-        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
-    (build-system pyproject-build-system)
-    (native-inputs
-     (list python-pytest
-           python-pytest-mpl
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-astropy
-           python-matplotlib
-           python-numpy))
-    (home-page "https://sunpy.org")
-    (synopsis "Interactive animations with matplotlib")
-    (description
-     "The @code{mpl_animators} package provides a set of classes which allow the
-easy construction of interactive matplotlib widget based animations.")
-    (license license:bsd-3)))
+;; (define-public python-mpl-animators
+;; added-to-upstream 0458cbd84c03068241dfaf293b0594ec07dc2019
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221123T225008+0000
-(define-public python-hvpy
-  (package
-    (name "python-hvpy")
-    (version "1.0.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "hvpy" version))
-       (sha256
-        (base32 "0r0asyflz2sw9zn5vgs138nh81m0rbwbakmrncbc1ghdr3g6jahv"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list #:tests? #f)) ; Requires HTTP(S) access to api.beta.helioviewer.org
-    (propagated-inputs (list python-pydantic python-requests))
-    (native-inputs (list python-pytest python-pytest-astropy))
-    (home-page "https://helioviewer.org/")
-    (synopsis "Helioviewer Python API Wrapper")
-    (description "@code{hvpy} is a Python API wrapper around the formal @url{Helioviewer API,
-https://api.helioviewer.org/docs/v2/}.")
-    (license license:bsd-2)))
+;; (define-public python-hvpy
+;; added-to-upstream 0575012803683ebacd43029530683af7bdf791f9
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;+end-sunpy
 
