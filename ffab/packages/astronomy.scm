@@ -1824,6 +1824,33 @@ JSOC (@url{http://jsoc.stanford.edu/}) DRMS server by default, but can also be
 used with local NetDRMS sites.")
     (license license:bsd-2)))
 
+;; 20220702T165531+0100
+(define-public python-mpl-animators
+  (package
+    (name "python-mpl-animators")
+    (version "1.1.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "mpl_animators" version))
+       (sha256
+        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
+    (build-system pyproject-build-system)
+    (native-inputs
+     (list python-pytest
+           python-pytest-mpl
+           python-setuptools-scm))
+    (propagated-inputs
+     (list python-astropy
+           python-matplotlib
+           python-numpy))
+    (home-page "https://sunpy.org")
+    (synopsis "Interactive animations with matplotlib")
+    (description
+     "The @code{mpl_animators} package provides a set of classes which allow the
+easy construction of interactive matplotlib widget based animations.")
+    (license license:bsd-3)))
+
 ;; 20221123T225008+0000
 (define-public python-hvpy
   (package

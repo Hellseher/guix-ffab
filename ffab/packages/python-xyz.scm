@@ -176,40 +176,6 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 ;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
 ;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
-;; 20220702T165531+0100
-(define-public python-mpl-animators
-  (package
-    (name "python-mpl-animators")
-    (version "1.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "mpl_animators" version))
-       (sha256
-        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (replace 'check
-                 (lambda* (#:key tests? #:allow-other-keys)
-                   (when tests?
-                     (invoke "pytest" "-vv" "mpl_animators/tests")))))))
-    (native-inputs
-     (list python-pytest
-           python-pytest-mpl
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-astropy
-           python-matplotlib
-           python-numpy))
-    (home-page "https://sunpy.org")
-    (synopsis "Interactive animations with matplotlib")
-    (description
-     "The @code{mpl_animators} package provides a set of classes which allow the
-easy construction of interactive matplotlib widget based animations.")
-    (license license:bsd-3)))
-
 ;; 20221012T205858+0100
 ;; (define-public python-siosocks
 ;; added-to-upstream 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
