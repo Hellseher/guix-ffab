@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-25 Fri 21:21:02 GMT>
+#+modified: <2022-11-27 Sun 23:08:45 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [2/41][4%]
+* Flow [2/42][4%]
 ** TODO amusecode [0/1][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -18,31 +18,6 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [13/14][92%]
-** TODO Gammapy [0/1][0%] :author:
-- https://gammapy.org/
-- https://github.com/gammapy/gammapy
-*** TODO gammapy [0/4][0%] :p1:
-- https://github.com/gammapy/gammapy
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [13/14][92%]
-  - [X] python-astropy
-  - [X] python-click
-  - [X] python-docutils
-  - [ ] python-iminuit
-    - [ ] :packed
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pydantic
-  - [X] python-pytest
-  - [X] python-pytest-astropy
-  - [X] python-pytest-xdist
-  - [X] python-pyyaml
-  - [X] python-regions
-  - [X] python-scipy
-  - [X] python-sphinx
-
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -680,6 +655,31 @@ CLOSED: [2022-11-14 Mon 20:33]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
+** TODO Gammapy [0/1][0%] :author:
+- https://gammapy.org/
+- https://github.com/gammapy/gammapy
+*** TODO gammapy [0/4][0%] :p1:
+- https://github.com/gammapy/gammapy
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [13/14][92%]
+  - [X] python-astropy
+  - [X] python-click
+  - [X] python-docutils
+  - [ ] python-iminuit
+    - [ ] :packed
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pydantic
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-pytest-xdist
+  - [X] python-pyyaml
+  - [X] python-regions
+  - [X] python-scipy
+  - [X] python-sphinx
+
 ** TODO GreatAttractor [2/2][100%] :author:p5:
 *** DONE stackistry [4/4][100%]
 CLOSED: [2021-02-19 Fri 11:15]
@@ -721,21 +721,16 @@ CLOSED: [2021-12-18 Sat 16:12]
 + [ ] :paptch-applied-upstream
 + [ ] :inputs
 
-** TODO ruven [0/1][0%] :author:
-- author :: https://github.com/ruven
-*** TODO IIPImage [1/4][25%] :p3:
-- https://iipimage.sourceforge.io/
-- https://github.com/ruven/iipsrv
-- synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
-  web-based streamed viewing and zooming of ultra high-resolution images. It is designed to be fast
-  and bandwidth-efficient with low processor and memory requirements. The system can comfortably
-  handle gigapixel size images as well as advanced image features such as 8, 16 and 32 bits per
-  channel, CIELAB colorimetric images and scientific imagery such as multispectral images and
-  digital elevation maps.
+** TODO icyphy [0/1][0%] :author:
+- https://github.com/icyphy
+- author :: Industrial Cyberphysical Systems (iCyPhy)
+*** TODO kepler-project [0/4][0%] :p3:
+- https://kepler-project.org/users/downloads.html
+- https://github.com/icyphy/kepler-build/releases/
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+- [ ] :inputs [0/0][0%]
 
 ** TODO indigo-astronomy [0/1][0%] :author:
 - https://www.indigo-astronomy.org/
@@ -836,17 +831,209 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO icyphy [0/1][0%] :author:
-- https://github.com/icyphy
-- author :: Industrial Cyberphysical Systems (iCyPhy)
-*** TODO kepler-project [0/4][0%] :p3:
-- https://kepler-project.org/users/downloads.html
-- https://github.com/icyphy/kepler-build/releases/
-- [ ] :packed
+** TODO JuliaAstro [0/36][0%] :author:p3:
+- https://github.com/JuliaAstro
+- http://juliaastro.org/dev/index.html
+*** TODO julia-astolib [2/4][50%] :p3:
+- https://github.com/JuliaAstro/AstroLib.jl
+- [X] :packed <2022-11-26 Sat>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] julia-staticarrays
+*** TODO julia-astroangles [2/4][50%] :p3:
+- https://github.com/JuliaAstro/AstroAngles.jl
+- synopsis :: Lightweight string parsing and representation of angles.
+- [X] :packed <2022-11-26 Sat>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [2/2][100%]
+  - [X] julia-formatting
+  - [X] julia-stablerngs
+*** TODO julia-astrobase [0/4][0%] :p3:
+- https://github.com/JuliaAstro/AstroBase.jl
+- synopsis :: Interfaces, types, and functions for space science packages.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-
+*** TODO julia-astroimages [0/4][0%] :p3:
+- https://github.com/JuliaAstro/AstroImages.jl
+- synopsis :: Visualization of astronomical images.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/3][0%]
+  - [ ] julia-fitsio
+  - [ ] julia-plots
+  - [ ] julia-images
+*** TODO julia-astroimageview [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-astrotime [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-backgroundmeshes [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-boxleastsquares [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-calceph [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-ccdreduction [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-cfitsio [0/4][0%] :p3:
+- https://github.com/JuliaAstro/CFITSIO.jl
+- synopsis :: C-style interface to the libcfitsio library.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [1/2][50%]
+  - [X] cfitsio
+  - [ ] julia-cfitsio-jll
+*** TODO julia-cosmology [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-dustextinction [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-earthorientation [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-erfa [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-fitsio [0/4][0%] :p3:
+- https://github.com/JuliaAstro/FITSIO.jl
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [1/2][50%]
+  - [X] julia-aqua
+  - [ ] julia-cfitsio
+*** TODO julia-jplephemeris [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-lacosmic [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-lombscargle [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-orbits [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-photometricfilters [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-photometry [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-planck [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-psfmodels [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-pulsarsearch [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-reproject [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-saoimageds9 [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-skycoords [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-spectra [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-spice [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-transits [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-unitfulastro [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-votables [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-wcs [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-wcslib [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
+*** TODO julia-xpa [0/4][0%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [/][%]
 ** TODO Libsharp [0/1][0%] :author:
 - https://github.com/Libsharp
 - https://gitlab.mpcdf.mpg.de/mtr/libsharp
@@ -882,7 +1069,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-pytest
   - [X] python-pytest-remotedata
   - [X] python-xarray
-** TODO NASA [0/4][0%] :author:
+** TODO NASA [0/5][0%] :author:
 *** TODO HEAsoft [0/4][0%]
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
 - [ ] :packed
@@ -914,10 +1101,15 @@ CLOSED: [2021-01-31 Sun 13:07]
 
 *** TODO Xspec [0/4][0%]
 - https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
+-
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+
+*** TODO IDAstroL [/][%] :p5:
+- https://idlastro.gsfc.nasa.gov/homepage.html
+- https://github.com/wlandsman/IDLAstro
 
 ** TODO neuromorphicsystems [0/1][0%] :author:
 *** TODO astrometry [0/4][0%]
@@ -1017,6 +1209,22 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-numpy
   - [X] python-scipy
   - [X] python-tables
+
+** TODO ruven [0/1][0%] :author:
+- author :: https://github.com/ruven
+*** TODO IIPImage [1/4][25%] :p3:
+- https://iipimage.sourceforge.io/
+- https://github.com/ruven/iipsrv
+- synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
+  web-based streamed viewing and zooming of ultra high-resolution images. It is designed to be fast
+  and bandwidth-efficient with low processor and memory requirements. The system can comfortably
+  handle gigapixel size images as well as advanced image features such as 8, 16 and 32 bits per
+  channel, CIELAB colorimetric images and scientific imagery such as multispectral images and
+  digital elevation maps.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
 
 ** TODO rwesson [0/1][0%] :author:
 - https://github.com/rwesson
