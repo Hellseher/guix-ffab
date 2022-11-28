@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-27 Sun 23:08:45 GMT>
+#+modified: <2022-11-28 Mon 22:37:29 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1790,3 +1790,6 @@ CLOSED: [2022-11-25 Fri 21:10]
   https://kernsuite.info/packages/ https://github.com/kernsuite
 - The Astrophysics Source Code Library http://www.ascl.net/
 - https://ssb.stsci.edu/astroconda/
+- https://celestrak.org/
+- https://github.com/dnwrnr/sgp4
+- https://www.danrw.com/sgp4/

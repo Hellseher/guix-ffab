@@ -1,0 +1,35 @@
+From 8cdda5aac87d9bf113579cedb669485f3080ea5b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 28 Nov 2022 22:10:41 +0000
+Subject: [PATCH 1/2] gnu: python-sgp4: Update to 2.21.
+
+The latest version passes build on aarch64-linux system.
+
+* gnu/packages/python-science.scm (python-sgp4): Update to 2.21.
+---
+ gnu/packages/python-science.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-science.scm b/gnu/packages/python-science.scm
+index 52fe1460bb..7af3f8202a 100644
+--- a/gnu/packages/python-science.scm
++++ b/gnu/packages/python-science.scm
+@@ -293,13 +293,13 @@ (define-public python-scikit-allel
+ (define-public python-sgp4
+   (package
+     (name "python-sgp4")
+-    (version "2.12")
++    (version "2.21")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sgp4" version))
+        (sha256
+-        (base32 "0dncp9i5b6afkg7f8mj9j0qzsp008b8v73yc0qkmizhpns7mvwvx"))))
++        (base32 "1vzcrlrlzmhbycdz16m8v241l8zx49vsy81wcd0yjxs80isvhyb1"))))
+     (build-system python-build-system)
+     (propagated-inputs
+      (list python-numpy))
+-- 
+2.38.1
+
