@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-28 Mon 22:37:29 GMT>
+#+modified: <2022-11-29 Tue 22:09:32 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,16 +8,16 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [2/42][4%]
+* Flow [2/43][4%]
 ** TODO amusecode [0/1][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
-*** TODO amuse [/][%] :p4:
+*** TODO amuse [1/4][25%] :p4:
 - https://github.com/amusecode/amuse
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [13/14][92%]
+- [X] :inputs [0/0][0%]
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -1034,6 +1034,53 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+** TODO JuliaSpace [0/8][0%] :author:
+- https://github.com/JuliaSpace
+*** TODO julia-satellitetoolbox [/][%] :p3:
+- https://github.com/JuliaSpace/SatelliteToolbox.jl
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO julia-satelliteanalysis [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO julia-referenceframerotations [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO julia-orekit [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO julia-gmat [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO julia-astrodynamics [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO julia-astrodynpropagators [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO julia-astrodynplots [/][%] :p3:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
 ** TODO Libsharp [0/1][0%] :author:
 - https://github.com/Libsharp
 - https://gitlab.mpcdf.mpg.de/mtr/libsharp
@@ -1779,6 +1826,8 @@ CLOSED: [2022-11-25 Fri 21:10]
 - CDF :: https://cdf.gsfc.nasa.gov/
 - ERFA ::
 - SPH :: Smoothed-particle hydrodynamics
+- AOS :: Acquisition of Signal
+- LOS :: Loss of Signal
 
 * References
 - Debian Astro Team package collection https://salsa.debian.org/debian-astro-team
