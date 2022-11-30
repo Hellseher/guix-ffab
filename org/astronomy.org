@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-29 Tue 22:09:32 GMT>
+#+modified: <2022-11-30 Wed 23:44:26 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,16 +8,278 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [2/43][4%]
-** TODO amusecode [0/1][0%] :author:
+* Flow [3/43][6%]
+** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
-*** TODO amuse [1/4][25%] :p4:
+*** TODO python-amuse [1/4][25%] :p4:
 - https://github.com/amusecode/amuse
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
+*** TODO python-amuse-aarsethzare [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO python-amuse-athena [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-bhtree [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO python-amuse-brutus [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-bse [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-capreole [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-distributed [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-evtwin [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-fastkick [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-fi [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-fractalcluster [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-framework [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-gadget2 [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-galactics [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-galaxia [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-halogen [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-hermite [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-hop [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-huayno [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-kepler [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-kepler-orbiters [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mameclot [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mercury [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mesa [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mesa-r15140 [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mesa-r2208 [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mikkola [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mmams [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mobse [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-mosse [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-petar [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-ph4 [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-phantom [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-phigrape [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-seba [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-secularmultiple [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-simplex [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-smalln [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-sphray [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-sse [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-tests [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-tutorial [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-twobody [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
+*** TODO python-amuse-vader [/][%] :p4:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -65,7 +327,10 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO aroffringa [2/2][100%] :author:
+** DONE aroffringa [2/2][100%] :author:
+CLOSED: [2022-11-30 Wed 23:44]
+- https://gitlab.com/aroffringa
+- author :: André Offringa
 *** DONE AOFlagger [4/4][100%]
 - https://gitlab.com/aroffringa/aoflagger
 - [X] :packed <2022-06-26 Sun>
