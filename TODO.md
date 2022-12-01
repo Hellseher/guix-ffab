@@ -58,7 +58,7 @@
     astronomy.org          Starlink                [0/1][0%]    :author:
     astronomy.org          spacetelescope          [1/20][5%]   :author:
     astronomy.org          schirmermischa          [0/1][0%]    :author:
-    astronomy.org          rwesson                 [0/1][0%]    :author:
+    astronomy.org          rwesson                 [1/2][50%]   :author:
     astronomy.org          ruven                   [0/1][0%]    :author:
     astronomy.org          revoltek                [0/1][0%]    :author:
     astronomy.org          QuatroPe                [1/2][50%]   :author:
@@ -154,6 +154,7 @@
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
     astronomy.org          radiospectra                   [/][%]       :p3:
+    astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          ndcube                         [/][%]       :p3:
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
@@ -292,9 +293,9 @@
     astronomy.org          astroquery                     [0/4][0%]    
     astronomy.org          astroplan                      [1/4][25%]   
     astronomy.org          astrometry                     [0/4][0%]    
-    astronomy.org          ALFA                           [3/4][75%]   
     
     Completed authors and projects:
+    astronomy.org          ALFA                      [4/4][100%]  
     astronomy.org          AOCommon                  [3/3][100%]  
     astronomy.org          AOFlagger                 [4/4][100%]  
     astronomy.org          asdf                      [1/1][100%]  

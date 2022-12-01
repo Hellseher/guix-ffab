@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-30 Wed 23:44:26 GMT>
+#+modified: <2022-12-01 Thu 23:18:36 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1538,20 +1538,29 @@ CLOSED: [2021-02-19 Fri 11:13]
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO rwesson [0/1][0%] :author:
+** TODO rwesson [1/2][50%] :author:
 - https://github.com/rwesson
 - https://nebulousresearch.org/
 
-*** TODO ALFA [3/4][75%]
+*** DONE ALFA [4/4][100%]
+CLOSED: [2022-12-01 Thu 23:15]
 - https://github.com/rwesson/ALFA
 - synopsis :: Automated Line Fitting Algorithm
 - [X] :packed <2022-11-15 Tue>
 - [X] :patch-sent <2022-11-16 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2022-12-01 Thu>
   - https://issues.guix.gnu.org/59323
 - [X] :inputs [2/2][100%]
   - [X] cfitsio
   - [X] gfortran
+
+*** TODO NEAT [0/5][0%] :p3:
+- https://github.com/rwesson/NEAT
+- synopsis :: Empirical analysis of ionised nebulae, with uncertainty propagation.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 ** TODO SAOImageDS9 [0/1][0%] :author:p1:
 - http://ds9.si.edu/
