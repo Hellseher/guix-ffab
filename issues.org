@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [153/166][92%]
+* Accepted in upstream [153/167][91%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -164,6 +164,8 @@
   - https://github.com/Shirakumo/radiance/issues/56
 - [X] <2022-11-12 Sat> https://issues.guix.gnu.org/59231 <2022-11-15 Tue>
 - [X] <2022-11-16 Wed> https://issues.guix.gnu.org/59323 <2022-12-01 Thu>
+  Fails on aarch64-linux
+  - https://github.com/rwesson/ALFA/issues/29
 - [ ] <2022-11-17 Thu> https://issues.guix.gnu.org/59335
 - [X] <2022-11-17 Thu> https://issues.guix.gnu.org/59344 <2022-11-19 Sat>
 - [X] <2022-11-19 Sat> https://issues.guix.gnu.org/59391 <2022-11-20 Sun>
@@ -173,6 +175,7 @@
 - [X] <2022-11-24 Thu> https://issues.guix.gnu.org/59542 <2022-11-25 Fri>
 - [ ] <2022-11-28 Mon> https://issues.guix.gnu.org/59665
 - [ ] <2022-11-29 Tue> https://issues.guix.gnu.org/59697
+- [ ] <2022-12-03 Sat> https://issues.guix.gnu.org/59808
 
 * Never implemented [0/1]
 - [ ] <2021-03-15 Mon> https://issues.guix.gnu.org/47179

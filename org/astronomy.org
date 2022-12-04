@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-01 Thu 23:18:36 GMT>
+#+modified: <2022-12-03 Sat 09:27:41 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [3/43][6%]
+* Flow [3/45][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -1381,7 +1381,39 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-pytest
   - [X] python-pytest-remotedata
   - [X] python-xarray
-** TODO NASA [0/5][0%] :author:
+** TODO OpenSpace [0/2][0%] :author:
+- https://github.com/OpenSpace
+- https://www.openspaceproject.com/
+*** TODO OpenSpace [0/4][0%] :p1:
+- https://github.com/OpenSpace/OpenSpace
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  - [ ] Ghoul
+
+*** TODO Ghoul [0/4]
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [3/14][21%]
+  - [X] assimp
+  - [X] catch2
+  - [X] fmt (cppformat)
+  - [ ] freetype2
+  - [ ] glbinding
+  - [ ] glm
+  - [ ] lua
+  - [ ] lz4
+  - [ ] scnlib
+  - [ ] stackwalker
+  - [ ] stb_image
+  - [ ] tiny-process-library
+  - [ ] tracy
+  - [ ] websocketpp
+
+
+** TODO NASA [0/6][0%] :author:
 *** TODO HEAsoft [0/4][0%]
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
 - [ ] :packed
@@ -1402,6 +1434,8 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] cfitsio
   - [X] libsharp
   - [X] zlib
+*** TODO SPICE [/][%] :p3:
+- https://naif.jpl.nasa.gov/naif/
 
 *** TODO CDF [0/4][0%]
 - https://cdf.gsfc.nasa.gov/

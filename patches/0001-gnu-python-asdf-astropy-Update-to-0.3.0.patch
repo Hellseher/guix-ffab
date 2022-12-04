@@ -1,0 +1,33 @@
+From 4d47dc6e63ff37e78e1fa82774fa3c6df9e2dc19 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 3 Dec 2022 23:12:38 +0000
+Subject: [PATCH] gnu: python-asdf-astropy: Update to 0.3.0.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.3.0.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 759ccbec9e..8da670dc52 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2473,13 +2473,13 @@ (define python-asdf-unit-schemas
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.2.2")
++    (version "0.3.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_astropy" version))
+        (sha256
+-        (base32 "1b0v4cl7xvly3x1k5k2rvc2l32jqgqp0iyf1j20fkvj450sx74f2"))))
++        (base32 "1gp5iav0a9g9q0zb22vhzi3v9vwk5wn2nxvr3mvi3bsdcdj3h23v"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-coverage
+-- 
+2.38.1
+
