@@ -1,0 +1,19 @@
+#+title: Julia Lang land
+#+created: <2021-01-04 Mon 23:12:53 GMT>
+#+modified: <2022-11-26 Sat 21:57:56 GMT>
+
+* Synopsis
+This workflow file contains packaging process for Julia programming language related packages.
+
+- GNU Guix :: gnu/packages/julia-xyz.scm
+- FFAB :: ffab/packages/julia-xyz.scm
+
+* Flow [0/0][0%]
+** JuliaImages [0/0][0%] :p3:
+- https://github.com/JuliaImages
+*** julia-images [0/4][0%] :p3:
+- https://github.com/JuliaImages/Images.jl
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]

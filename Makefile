@@ -1,12 +1,16 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-26 Sat 20:24:10 GMT>
+# Modified : <2022-12-04 Sun 19:53:28 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
 
 MODULES_ASTRO :=	\
 ffab/packages/astronomy.scm
+
+MODULES_JULIA :=			\
+ffab/packages/julia-xyz.scm	\
+ffab/packages/julia-jll.scm	\
 
 MODULES_PYTHON :=				\
 ffab/packages/python-xyz.scm	\
