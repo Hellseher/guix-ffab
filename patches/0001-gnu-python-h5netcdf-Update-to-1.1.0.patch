@@ -1,0 +1,59 @@
+From e61a56e0443fa28e3a84a0578dbfb302e6f1b569 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 5 Dec 2022 22:54:47 +0000
+Subject: [PATCH] gnu: python-h5netcdf: Update to 1.1.0.
+
+* gnu/packages/python-xyz.scm (python-h5netcdf): Update to 1.1.0.
+  [build-system]: Use pyproject-build-system, to simplify package.
+  [description]: Style content and add links to referenced projects.
+---
+ gnu/packages/python-xyz.scm | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 40c3f9c99c..9a0821aebf 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -1692,21 +1692,14 @@ (define-public python-hdf4
+ (define-public python-h5netcdf
+   (package
+     (name "python-h5netcdf")
+-    (version "1.0.1")
++    (version "1.1.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "h5netcdf" version))
+        (sha256
+-        (base32 "1b2dcgf5rwy7pb7hr4prkc5vgcw9qc2was20dmnj90lbrpx08rvp"))))
+-    (build-system python-build-system)
+-    (arguments
+-     (list #:phases
+-           #~(modify-phases %standard-phases
+-               (replace 'check
+-                 (lambda* (#:key tests? #:allow-other-keys)
+-                   (when tests?
+-                     (invoke "pytest" "-vv" "h5netcdf/tests")))))))
++        (base32 "0mmzfr6k55zqxxpb64gvdqisak8s1zb2r04yzkmp0wzd7dbknb4k"))))
++    (build-system pyproject-build-system)
+     (native-inputs
+      (list python-netcdf4
+            python-pytest
+@@ -1715,9 +1708,11 @@ (define-public python-h5netcdf
+      (list python-h5py python-packaging))
+     (home-page "https://h5netcdf.org")
+     (synopsis "Python interface for the netCDF4 file-format based on h5py")
+-    (description "This package provides Python interface for the netCDF4
+-file-format that reads and writes local or remote HDF5 files directly via h5py
+-or h5pyd, without relying on the Unidata netCDF library")
++    (description "This package provides a Python interface for the netCDF4
++file-format that reads and writes local or remote HDF5 files directly via
++@url{h5py, https://www.h5py.org/} or @url{h5pyd,
++https://github.com/HDFGroup/h5pyd}, without relying on the Unidata netCDF
++library.")
+     (license license:bsd-3)))
+ 
+ (define-public python-h5py
+-- 
+2.38.1
+

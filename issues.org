@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [153/167][91%]
+* Accepted in upstream [153/164][93%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -167,15 +167,21 @@
   Fails on aarch64-linux
   - https://github.com/rwesson/ALFA/issues/29
 - [ ] <2022-11-17 Thu> https://issues.guix.gnu.org/59335
+  Waiting for LTS 22.12.1 release of Sanic
+  https://sanic.dev/en/guide/release-notes/v22.9.html#introduction.
 - [X] <2022-11-17 Thu> https://issues.guix.gnu.org/59344 <2022-11-19 Sat>
 - [X] <2022-11-19 Sat> https://issues.guix.gnu.org/59391 <2022-11-20 Sun>
 - [X] <2022-11-20 Sun> https://issues.guix.gnu.org/59419 <2022-11-21 Mon>
 - [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59494 <2022-11-23 Wed>
-- [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59496 <2022-11-23 Wed>
 - [X] <2022-11-24 Thu> https://issues.guix.gnu.org/59542 <2022-11-25 Fri>
-- [ ] <2022-11-28 Mon> https://issues.guix.gnu.org/59665
-- [ ] <2022-11-29 Tue> https://issues.guix.gnu.org/59697
+
+* Package updates [1/4][25%]
+- [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59848
+- [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59847
 - [ ] <2022-12-03 Sat> https://issues.guix.gnu.org/59808
+- [ ] <2022-11-29 Tue> https://issues.guix.gnu.org/59697
+- [X] <2022-11-28 Mon> https://issues.guix.gnu.org/59665 <2022-12-05 Mon>
+- [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59496 <2022-11-23 Wed>
 
 * Never implemented [0/1]
 - [ ] <2021-03-15 Mon> https://issues.guix.gnu.org/47179

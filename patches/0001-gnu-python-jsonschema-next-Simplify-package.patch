@@ -1,0 +1,60 @@
+From f510a590bb0ebd638c830d155921b08a56124013 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 5 Dec 2022 23:43:20 +0000
+Subject: [PATCH] gnu: python-jsonschema-next: Simplify package.
+
+To have this package on the latest version Guix needs to have new Python
+build procedure with Hatch https://hatch.pypa.io/.
+
+* gnu/packages/python-xyz.scm (python-jsonschema-next):
+  [build-system]: Use pyproject-build-system to simplify package.
+  [native-inputs]: Remove python-pypa-build.
+---
+ gnu/packages/python-xyz.scm | 24 +++++-------------------
+ 1 file changed, 5 insertions(+), 19 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 9a0821aebf..0e7b1bdeef 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -3803,6 +3803,8 @@ (define-public python-jsonschema
+ (define-public python-jsonschema-next
+   (package
+     (inherit python-jsonschema)
++    ;; XXX: Update to the latest version requires new build system - Hatch
++    ;; https://hatch.pypa.io/
+     (version "4.5.1")
+     (source
+      (origin
+@@ -3810,25 +3812,9 @@ (define-public python-jsonschema-next
+        (uri (pypi-uri "jsonschema" version))
+        (sha256
+         (base32 "1z0x22691jva7lwfcfh377jdmlz68zhiawxzl53k631l34k8hvbw"))))
+-    (arguments
+-     (substitute-keyword-arguments (package-arguments python-jsonschema)
+-       ((#:phases phases)
+-        #~(modify-phases #$phases
+-            ;; XXX: PEP 517 manual build/install procedures copied from
+-            ;; python-isort.
+-            (replace 'build
+-              (lambda _
+-                ;; ZIP does not support timestamps before 1980.
+-                (setenv "SOURCE_DATE_EPOCH" "315532800")
+-                (invoke "python" "-m" "build" "--wheel" "--no-isolation" ".")))
+-            (replace 'install
+-              (lambda* (#:key outputs #:allow-other-keys)
+-                (let ((whl (car (find-files "dist" "\\.whl$"))))
+-                  (invoke "pip" "--no-cache-dir" "--no-input"
+-                          "install" "--no-deps" "--prefix" #$output whl))))))))
+-    (native-inputs (list python-pypa-build
+-                         python-setuptools-scm
+-                         python-twisted))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-setuptools-scm python-twisted))
+     (propagated-inputs
+      (list python-attrs
+            python-importlib-metadata
+-- 
+2.38.1
+

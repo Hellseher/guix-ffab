@@ -63,8 +63,9 @@
     astronomy.org          revoltek                [0/1][0%]    :author:
     astronomy.org          QuatroPe                [1/2][50%]   :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]    :author:
+    astronomy.org          OpenSpace               [0/2][0%]    :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]    :author:
-    astronomy.org          NASA                    [0/5][0%]    :author:
+    astronomy.org          NASA                    [0/6][0%]    :author:
     astronomy.org          linguider               [0/4][0%]    :author:
     astronomy.org          Libsharp                [0/1][0%]    :author:
     astronomy.org          JuliaSpace              [0/8][0%]    :author:
@@ -153,6 +154,7 @@
     golang.org             bykof/go-plantuml              [/][%]       :p3:
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
+    astronomy.org          SPICE                          [/][%]       :p3:
     astronomy.org          radiospectra                   [/][%]       :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          ndcube                         [/][%]       :p3:
@@ -182,12 +184,12 @@
     astronomy.org          julia-lacosmic                 [0/4][0%]    :p3:
     astronomy.org          julia-jplephemeris             [0/4][0%]    :p3:
     astronomy.org          julia-gmat                     [/][%]       :p3:
-    astronomy.org          julia-fitsio                   [0/4][0%]    :p3:
+    astronomy.org          julia-fitsio                   [2/4][50%]   :p3:
     astronomy.org          julia-erfa                     [0/4][0%]    :p3:
     astronomy.org          julia-earthorientation         [0/4][0%]    :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]    :p3:
     astronomy.org          julia-cosmology                [0/4][0%]    :p3:
-    astronomy.org          julia-cfitsio                  [0/4][0%]    :p3:
+    astronomy.org          julia-cfitsio                  [2/4][50%]   :p3:
     astronomy.org          julia-ccdreduction             [0/4][0%]    :p3:
     astronomy.org          julia-calceph                  [0/4][0%]    :p3:
     astronomy.org          julia-boxleastsquares          [0/4][0%]    :p3:
@@ -220,6 +222,7 @@
     golang.org             caddy                          [0/4][0%]    :p1:
     astronomy.org          Torus                          [1/4][25%]   :p1:
     astronomy.org          pal                            [0/4][0%]    :p1:
+    astronomy.org          OpenSpace                      [0/4][0%]    :p1:
     astronomy.org          jwst                           [2/4][50%]   :p1:
     astronomy.org          gammapy                        [0/4][0%]    :p1:
     astronomy.org          galpy                          [1/4][25%]   :p1:
@@ -281,6 +284,7 @@
     astronomy.org          indi-service-type              [/][%]       
     astronomy.org          indi-3rdparty                  [0/4][0%]    
     astronomy.org          HEAsoft                        [0/4][0%]    
+    astronomy.org          Ghoul                          [0/4]        
     astronomy.org          eqmodgui                       [0/4][0%]    
     astronomy.org          eclipse                        [0/4][0%]    
     astronomy.org          drizzle                        [2/4][50%]   
