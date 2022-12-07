@@ -643,7 +643,7 @@ planetarium.")
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225504+0100
-;; (define-public python-asdf-time-schemas
+;; (define python-asdf-time-schemas
 ;; added-to-upstream 2959b98a720fb60e54d09128aa08d109f6601f02
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 

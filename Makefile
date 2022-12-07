@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-12-04 Sun 19:53:28 GMT>
+# Modified : <2022-12-07 Wed 22:41:35 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -57,9 +57,11 @@ PKGS_ACCEPTED ?= $(shell grep -r ";.*define-public" ffab | cut -d' ' -f3 | sed -
 PKGS_PENDING ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
 
 PKGS_ASTRONOMY ?= $(shell $(GET_MODULES) $(MODULES_ASTRO) $(FILTER_MODULES))
+PKGS_GOLANG ?= $(shell $(GET_MODULES) $(MODULES_GOLANG) $(FILTER_MODULES))
+PKGS_JULIA ?= $(shell $(GET_MODULES) $(MODULES_JULIA) $(FILTER_MODULES))
 PKGS_LISP ?= $(shell $(GET_MODULES) $(MODULES_LISP) $(FILTER_MODULES))
 PKGS_PYTHON ?= $(shell $(GET_MODULES) $(MODULES_PYTHON) $(FILTER_MODULES))
-PKGS_GOLANG ?= $(shell $(GET_MODULES) $(MODULES_GOLANG) $(FILTER_MODULES))
+
 PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 
 # Add each group of packages to this macros when all pending changes are
@@ -72,7 +74,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= bc9234a8f8db3f449141e7961fc44b9c7479e99a
+GUIX_COMMIT ?= 40153fe03358a69c1b2f53237511f73ee83910a2
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD

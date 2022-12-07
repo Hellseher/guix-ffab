@@ -86,7 +86,7 @@
     
     Projects in progress with priorities:
     version-control.org    lazygit                        [0/4][0%]    :p5:
-    maths.org              nelib                          [0/3][0%]    :p5:
+    maths.org              netlib                         [0/1][0%]    :p5:
     lisp.org               zorm                           [0/4][0%]    :p5:
     lisp.org               cl-adams                       [1/4][25%]   :p5:
     golang.org             age                            [/][%]       :p5:
@@ -184,8 +184,8 @@
     astronomy.org          julia-lacosmic                 [0/4][0%]    :p3:
     astronomy.org          julia-jplephemeris             [0/4][0%]    :p3:
     astronomy.org          julia-gmat                     [/][%]       :p3:
-    astronomy.org          julia-fitsio                   [2/4][50%]   :p3:
-    astronomy.org          julia-erfa                     [0/4][0%]    :p3:
+    astronomy.org          julia-fitsio                   [0/4][0%]    :p3:
+    astronomy.org          julia-erfa                     [1/4][25%]   :p3:
     astronomy.org          julia-earthorientation         [0/4][0%]    :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]    :p3:
     astronomy.org          julia-cosmology                [0/4][0%]    :p3:
@@ -235,6 +235,7 @@
     python.org             parsley                        [1/4][25%]   
     python.org             asynctest                      [1/3][33%]   
     python.org             assay                          [2/3][66%]   
+    maths.org              DIERCKX                        [0/4][0%]    
     lisp.org               weird                          [0/4][0%]    
     lisp.org               weir                           [3/4][75%]   
     lisp.org               trial                          [4/5][80%]   

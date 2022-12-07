@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-06 Tue 00:00:19 GMT>
+#+modified: <2022-12-06 Tue 12:48:56 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1121,22 +1121,27 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [ ] :inputs [0/1][0%]
+  - [ ] julia-astrotime
+    - [ ] :packed
 *** TODO julia-astroimages [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroImages.jl
 - synopsis :: Visualization of astronomical images.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/3][0%]
-  - [ ] julia-fitsio
+- [-] :inputs [1/3][33%]
+  - [X] julia-fitsio
   - [ ] julia-plots
   - [ ] julia-images
 *** TODO julia-astroimageview [0/4][0%] :p3:
+- https://github.com/JuliaAstro/AstroImageView.jl
+- synopsis :: UI based AstroImage visualisation.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [ ] :inputs [0/1][0%]
+  - [ ] julia-astroimages
 *** TODO julia-astrotime [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroTime.jl
 - synopsis :: Astronomical time keeping in Julia
@@ -1200,13 +1205,18 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
-*** TODO julia-erfa [0/4][0%] :p3:
+
+*** TODO julia-erfa [1/4][25%] :p3:
+- https://github.com/JuliaAstro/ERFA.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :inputs [2/2][100%]
+  - [X] julia-erfa-jll
+    - [X] :packed <2022-12-06 Tue>
+  - [X] julia-staticarrays
 
-*** TODO julia-fitsio [2/4][50%] :p3:
+*** TODO julia-fitsio [0/4][0%] :p3:
 - https://github.com/JuliaAstro/FITSIO.jl
 - synopsis :: Flexible Image Transport System (FITS) file support for Julia
 - [X] :packed <2022-12-04 Sun>
@@ -1305,11 +1315,18 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-wcs [0/4][0%] :p3:
+- https://github.com/JuliaAstro/WCS.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [-] :inputs [1/2][50%]
+  - [X] julia-wcs-jll
+    - [X] :packed <2022-12-05 Mon>
+  - [ ] julia-constructionbase
+    - [ ] :packed
+
 *** TODO julia-wcslib [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1414,25 +1431,30 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [ ] Ghoul
 
 *** TODO Ghoul [0/4]
+- https://github.com/OpenSpace/Ghoul
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [3/14][21%]
+- [-] :inputs [7/14][50%]
   - [X] assimp
   - [X] catch2
   - [X] fmt (cppformat)
-  - [ ] freetype2
+  - [X] freetype
   - [ ] glbinding
-  - [ ] glm
-  - [ ] lua
-  - [ ] lz4
+    - [ ] :packed
+  - [X] glm
+  - [X] lua
+  - [X] lz4
   - [ ] scnlib
+    - [ ] :packed
   - [ ] stackwalker
+    - [ ] :packed
   - [ ] stb_image
+    - [ ] :packed
   - [ ] tiny-process-library
+    - [ ] :packed
   - [ ] tracy
   - [ ] websocketpp
-
 
 ** TODO NASA [0/6][0%] :author:
 *** TODO HEAsoft [0/4][0%]

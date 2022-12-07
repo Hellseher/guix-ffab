@@ -175,11 +175,12 @@
 - [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59494 <2022-11-23 Wed>
 - [X] <2022-11-24 Thu> https://issues.guix.gnu.org/59542 <2022-11-25 Fri>
 
-* Package updates [1/4][25%]
+* Package updates [3/6][50%]
+- [ ] <2022-12-07 Wed> https://issues.guix.gnu.org/59890
 - [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59848
 - [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59847
 - [ ] <2022-12-03 Sat> https://issues.guix.gnu.org/59808
-- [ ] <2022-11-29 Tue> https://issues.guix.gnu.org/59697
+- [X] <2022-11-29 Tue> https://issues.guix.gnu.org/59697 <2022-12-06 Tue>
 - [X] <2022-11-28 Mon> https://issues.guix.gnu.org/59665 <2022-12-05 Mon>
 - [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59496 <2022-11-23 Wed>
 
