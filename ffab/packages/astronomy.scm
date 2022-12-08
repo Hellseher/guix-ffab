@@ -66,6 +66,7 @@
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages readline)
+  #:use-module (gnu packages sphinx)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages tcl)
   #:use-module (gnu packages textutils)
@@ -1109,25 +1110,23 @@ greatly simplified.")
               (sha256
                (base32
                 "050cn6aabd1dxbi7zihbqnkl79hz6q6d5n6g25zmrpvc4sii171m"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "pytest" "-vv" "poppy/tests")))))))
-    (propagated-inputs (list python-astropy
-                             python-matplotlib
-                             python-numpy
-                             python-scipy
-                             ;; With this package enabled it tries to download from remote host
-                             ;; during tests and failes
-                             ;; python-synphot
-                             ))
-    (native-inputs (list python-h5py python-pytest python-pytest-astropy
-                         python-setuptools-scm))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     ;; XXX: With python-synphot (marked as optional) package added to the list
+     ;; it tries to download from remote host during tests and fails. Overall
+     ;; tests take up to 5-8min to pass.
+     (list python-astropy
+           python-matplotlib
+           python-numpy
+           python-scipy))
+    (native-inputs
+     (list python-docutils
+           python-h5py
+           python-pandas
+           python-pytest
+           python-pytest-astropy
+           python-sphinx
+           python-setuptools-scm))
     (home-page "https://poppy-optics.readthedocs.io/")
     (synopsis "Physical Optics Propagation in Python")
     (description
@@ -1135,7 +1134,14 @@ greatly simplified.")
 simulates physical optical propagation including diffraction.  It implements a
 flexible framework for modeling Fraunhofer and Fresnel diffraction and point
 spread function formation, particularly in the context of astronomical
-telescopes.")
+telescopes.
+
+POPPY was developed as part of a simulation package for the James Webb Space
+Telescope, but is more broadly applicable to many kinds of imaging simulations.
+It is not, however, a substitute for high fidelity optical design software such
+as Zemax or Code V, but rather is intended as a lightweight alternative for
+cases for which diffractive rather than geometric optics is the topic of
+interest, and which require portability between platforms or ease of scripting.")
     (license license:bsd-3)))
 
 ;; 20220706T135507+0100
