@@ -568,7 +568,7 @@ should thus be portable to all CL implementations supported by UFFI.")
 ;; and others
 ;;
 ;; 20220709T235535+0100
-(define-public sbcl-cl-mpi
+(define sbcl-cl-mpi
   (let ((commit "ba92be06ec1dca74d0ca5256aa387d8a28c8ad86")
         (revision "1"))
     (package
