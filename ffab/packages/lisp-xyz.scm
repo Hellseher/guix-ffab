@@ -620,7 +620,7 @@ from working with raw pointers to memory and a plethora of mandatory function
 arguments.")
       (license license:expat))))
 
-(define-public cl-mpi
+(define cl-mpi
   (sbcl-package->cl-source-package sbcl-cl-mpi))
 
 ;; FIXME: (Sharlatan-20221111T134434+0000): Failed ECL build:
