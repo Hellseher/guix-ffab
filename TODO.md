@@ -80,7 +80,7 @@
     astronomy.org          danieljprice            [1/3][33%]   :author:
     astronomy.org          cpinte                  [0/1][0%]    :author:
     astronomy.org          C-Munipack-library      [0/0][0%]    :author:
-    astronomy.org          ATNF                    [0/1][0%]    :author:
+    astronomy.org          ATNF                    [0/37][0%]   :author:
     astronomy.org          Astropy                 [3/6][50%]   :author:
     astronomy.org          amusecode               [0/45][0%]   :author:
     
@@ -98,7 +98,17 @@
     maths.org              ducc                           [/][%]       :p4:
     lisp.org               Vacietis                       [/][%]       :p4:
     lisp.org               basic-binary-ipc               [0/4][0%]    :p4:
+    astronomy.org          WCSLIB                         [/][%]       :p4:
+    astronomy.org          VRI                            [/][%]       :p4:
+    astronomy.org          UniPOPS                        [/][%]       :p4:
+    astronomy.org          Tidy                           [/][%]       :p4:
+    astronomy.org          Tempo2                         [/][%]       :p4:
+    astronomy.org          TCS                            [/][%]       :p4:
+    astronomy.org          SuperMongo                     [/][%]       :p4:
     astronomy.org          sunpy-sphinx-theme             [0/4][0%]    :p4:
+    astronomy.org          SPC                            [/][%]       :p4:
+    astronomy.org          RPFITS                         [/][%]       :p4:
+    astronomy.org          RadialVelocities.              [/][%]       :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -144,6 +154,32 @@
     astronomy.org          python-amuse-athena            [/][%]       :p4:
     astronomy.org          python-amuse-aarsethzare       [/][%]       :p4:
     astronomy.org          python-amuse                   [1/4][25%]   :p4:
+    astronomy.org          PSRCat                         [/][%]       :p4:
+    astronomy.org          Planets.                       [/][%]       :p4:
+    astronomy.org          PGPLOT                         [/][%]       :p4:
+    astronomy.org          MIRIAD                         [/][%]       :p4:
+    astronomy.org          Mathematica                    [/][%]       :p4:
+    astronomy.org          livedata/gridzilla             [/][%]       :p4:
+    astronomy.org          Karma                          [/][%]       :p4:
+    astronomy.org          IRAF                           [/][%]       :p4:
+    astronomy.org          InterSat                       [/][%]       :p4:
+    astronomy.org          INTER                          [/][%]       :p4:
+    astronomy.org          IDL                            [/][%]       :p4:
+    astronomy.org          HEASARC                        [/][%]       :p4:
+    astronomy.org          GIPSY                          [/][%]       :p4:
+    astronomy.org          Gildas                         [/][%]       :p4:
+    astronomy.org          FTOOLS                         [/][%]       :p4:
+    astronomy.org          FITS                           [/][%]       :p4:
+    astronomy.org          Duchamp                        [/][%]       :p4:
+    astronomy.org          DRAO                           [/][%]       :p4:
+    astronomy.org          difmap                         [/][%]       :p4:
+    astronomy.org          Coord.                         [/][%]       :p4:
+    astronomy.org          CASApy                         [/][%]       :p4:
+    astronomy.org          CASAcore                       [/][%]       :p4:
+    astronomy.org          ATOMS                          [/][%]       :p4:
+    astronomy.org          ATELIB                         [/][%]       :p4:
+    astronomy.org          ASKAPSoft                      [/][%]       :p4:
+    astronomy.org          ASAP                           [/][%]       :p4:
     python.org             Py3AMF                         [2/4][50%]   :p3:
     pascal.org             voc                            [/][%]       :p3:
     node-xyz.org           jquery                         [/][%]       :p3:
@@ -277,7 +313,7 @@
     astronomy.org          python-casacore                [1/4][25%]   
     astronomy.org          pysynphot                      [2/4][2/4]   
     astronomy.org          psfex                          [1/4][25%]   
-    astronomy.org          poppy                          [2/4][50%]   
+    astronomy.org          poppy                          [3/4][75%]   
     astronomy.org          phd2                           [0/4][%]     
     astronomy.org          losoto                         [1/4][25%]   
     astronomy.org          libsharp                       [3/3][100%]  
