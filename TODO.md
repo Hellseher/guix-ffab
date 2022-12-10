@@ -66,6 +66,7 @@
     astronomy.org          OpenSpace               [0/2][0%]    :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]    :author:
     astronomy.org          NASA                    [0/6][0%]    :author:
+    astronomy.org          mgckind                 [0/1][0%]    :author:
     astronomy.org          linguider               [0/4][0%]    :author:
     astronomy.org          Libsharp                [0/1][0%]    :author:
     astronomy.org          JuliaSpace              [0/8][0%]    :author:
@@ -76,6 +77,7 @@
     astronomy.org          Gammapy                 [0/1][0%]    :author:
     astronomy.org          free-astro              [1/2][50%]   :author:
     astronomy.org          ESO                     [1/3][33%]   :author:
+    astronomy.org          esheldon                [0/3][0%]    :author:
     astronomy.org          dstndstn                [0/1][0%]    :author:
     astronomy.org          danieljprice            [1/3][33%]   :author:
     astronomy.org          cpinte                  [0/1][0%]    :author:
@@ -107,6 +109,7 @@
     astronomy.org          SuperMongo                     [/][%]       :p4:
     astronomy.org          sunpy-sphinx-theme             [0/4][0%]    :p4:
     astronomy.org          SPC                            [/][%]       :p4:
+    astronomy.org          smatch                         [/][%]       :p4:
     astronomy.org          RPFITS                         [/][%]       :p4:
     astronomy.org          RadialVelocities.              [/][%]       :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
@@ -157,6 +160,7 @@
     astronomy.org          PSRCat                         [/][%]       :p4:
     astronomy.org          Planets.                       [/][%]       :p4:
     astronomy.org          PGPLOT                         [/][%]       :p4:
+    astronomy.org          ngmix                          [/][%]       :p4:
     astronomy.org          MIRIAD                         [/][%]       :p4:
     astronomy.org          Mathematica                    [/][%]       :p4:
     astronomy.org          livedata/gridzilla             [/][%]       :p4:
@@ -170,6 +174,8 @@
     astronomy.org          Gildas                         [/][%]       :p4:
     astronomy.org          FTOOLS                         [/][%]       :p4:
     astronomy.org          FITS                           [/][%]       :p4:
+    astronomy.org          esutil                         [/][%]       :p4:
+    astronomy.org          easyaccess                     [/][%]       :p4:
     astronomy.org          Duchamp                        [/][%]       :p4:
     astronomy.org          DRAO                           [/][%]       :p4:
     astronomy.org          difmap                         [/][%]       :p4:
