@@ -568,7 +568,7 @@ should thus be portable to all CL implementations supported by UFFI.")
 ;; and others
 ;;
 ;; 20220709T235535+0100
-(define-public sbcl-cl-mpi
+(define sbcl-cl-mpi
   (let ((commit "ba92be06ec1dca74d0ca5256aa387d8a28c8ad86")
         (revision "1"))
     (package
@@ -620,7 +620,7 @@ from working with raw pointers to memory and a plethora of mandatory function
 arguments.")
       (license license:expat))))
 
-(define-public cl-mpi
+(define cl-mpi
   (sbcl-package->cl-source-package sbcl-cl-mpi))
 
 ;; FIXME: (Sharlatan-20221111T134434+0000): Failed ECL build:

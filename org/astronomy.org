@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-03 Sat 09:27:41 GMT>
+#+modified: <2022-12-09 Fri 01:30:49 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [3/45][6%]
+* Flow [3/46][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -279,7 +279,11 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-
+** TODO mgckind [0/1][0%] :author:
+- https://github.com/mgckind
+- author :: Matias Carrasco Kind
+*** TODO easyaccess [/][%] :p4:
+- https://github.com/mgckind/easyaccess
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -733,11 +737,89 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
   - [X] python-shapely
-** TODO ATNF [0/1][0%] :author:
+** TODO ATNF [0/37][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
 *** TODO AIPS [/][%] :p5:
 - synopsis :: Astronomical Image Processing System, produced by NRAO.
+*** TODO ASAP [/][%] :p4:
+- synopsis :: The ATNF Spectral Analysis Package.
+*** TODO ASKAPSoft [/][%] :p4:
+- synopsis :: Using CSIRO's ASKAPsoft data reduction package at the Pawsey Supercomputing Centre.
+*** TODO ATELIB [/][%] :p4:
+- synopsis :: Australia Telescope Ephemeris library used by the ATCA.
+*** TODO CASAcore [/][%] :p4:
+- synopsis :: Common Astronomy Software Applications core library, produced by the CASA consortium.
+*** TODO Duchamp [/][%] :p4:
+- synopsis :: Advanced source finding tool, particularly suited to 3-d data.
+*** TODO IDL [/][%] :p4:
+- synopsis :: Commercial data analysis/visualisation package. Available at the ATNF on serpens by
+  typing idl. Information on the local installation is available in /nfs/applic/idl/README.user.
+  Some generic help for astronomers is available on the web.
+*** TODO Karma [/][%] :p4:
+- synopsis :: Package for visualising multi-dimensional images, signal and image processing applications.
+*** TODO livedata/gridzilla [/][%] :p4:
+- synopsis :: Multibeam single-dish data reduction system for bandpass calibration and gridding (includes rp2sdfits). Used for processing Parkes multibeam and Mopra data.
+*** TODO Mathematica [/][%] :p4:
+- synopsis :: Commercial mathematical package/environment. Available on dylan.
+*** TODO MIRIAD [/][%] :p4:
+- synopsis :: ATNF's version of the venerable radio interferometry data reduction package. Used for processing most ATCA synthesis data.
+*** TODO RPFITS [/][%] :p4:
+- synopsis :: Library that implements the FITS-like format in which raw ATNF synthesis and single-dish data is written.
+*** TODO WCSLIB [/][%] :p4:
+- synopsis :: Library that implements of the FITS World Coordinate System (WCS) convention.
+  Installed, but Unsupported
+*** TODO CASApy [/][%] :p4:
+- synopsis :: Common Astronomy Software Applications - the full NRAO package. Produced by the CASA consortium.
+*** TODO Tempo2 [/][%] :p4:
+- synopsis :: pulsar timing software.
+*** TODO PSRCat [/][%] :p4:
+- synopsis :: ATNF pulsar catalogue software.
+*** TODO difmap [/][%] :p4:
+- synopsis :: Synthesis imaging software from Caltech.
+*** TODO DRAO [/][%] :p4:
+- synopsis :: Synthesis imaging software from Canada's Dominion Radio Astronomy Observatory.
+*** TODO FTOOLS [/][%] :p4:
+- synopsis :: FITS file manipulation Tools, from NASA's High Energy Astrophyics Science Archive Research Center.
+*** TODO Gildas [/][%] :p4:
+- synopsis :: Grenoble Image and Line Data Analysis Software - gag, class etc ...
+*** TODO GIPSY [/][%] :p4:
+- synopsis :: Groningen Image Processing System, from the Kapteyn Institute, Dept of Astronomy
+*** TODO IRAF [/][%] :p4:
+- synopsis :: Image Reduction and Analysis Facility.
+*** TODO SPC [/][%] :p4:
+- synopsis :: Spectral Line Reduction package (replaced by ASAP).
+*** TODO UniPOPS [/][%] :p4:
+- synopsis :: A spectral reduction package used with Parkes and Mopra data.
+*** TODO FITS [/][%] :p4:
+- synopsis :: IAU-standard astronomical data format.
+*** TODO PGPLOT [/][%] :p4:
+- synopsis :: Graphics plotting package.
+*** TODO SuperMongo [/][%] :p4:
+- synopsis :: Graphics plotting package. A tutorial is also available.
+*** TODO Tidy [/][%] :p4:
+- synopsis :: Check your web pages' HTML syntax and accessibility level.
+*** TODO VRI [/][%] :p4:
+- synopsis :: The Virtual Radio Interferometer; includes UV-coverage, fourier transforms, and more!
+  Let's you simulate various "what-if" scenarios in radio interferometry.
+*** TODO Coord. [/][%] :p4:
+- synopsis :: Calculate Rise and Set times of Sources
+*** TODO Planets. [/][%] :p4:
+- synopsis :: Position of the planets and moon
+*** TODO RadialVelocities. [/][%] :p4:
+- synopsis :: Calculates the radial velocity components of Earth, Sun etc.
+*** TODO InterSat [/][%] :p4:
+- synopsis :: Plots positions of interfering satelites from any site.
+*** TODO HEASARC [/][%] :p4:
+- synopsis :: HEASARC tools include a coordinate converter which accepts source names as well as
+  coordinates.
+*** TODO ATOMS [/][%] :p4:
+- synopsis :: Australia Telescope Observatory Management System. Used at the ATCA and Mopra.
+*** TODO TCS [/][%] :p4:
+- synopsis :: Telescope Control System. Used for observing at Parkes and Mopra.
+*** TODO INTER [/][%] :p4:
+- synopsis :: Interactive interference characterization program. A description and user manual are
+  available here.
 ** TODO casacore [1/2][50%] :author:p1:
 - https://github.com/casacore
 *** DONE casacore [4/4][100%]
@@ -865,6 +947,17 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] tcl
   - [X] wcslib
   - [X] zlib
+
+** TODO esheldon [0/3][0%] :author:
+- https://github.com/esheldon
+- author :: Erin Sheldon
+
+*** TODO esutil [/][%] :p4:
+- https://github.com/esheldon/esutil
+*** TODO ngmix [/][%] :p4:
+- https://github.com/esheldon/ngmix
+*** TODO smatch [/][%] :p4:
+- https://github.com/esheldon/smatch
 
 ** TODO ESO [1/3][33%] :author:
 *** DONE qfits [3/3][100%]
@@ -1121,23 +1214,30 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [ ] :inputs [0/1][0%]
+  - [ ] julia-astrotime
+    - [ ] :packed
 *** TODO julia-astroimages [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroImages.jl
 - synopsis :: Visualization of astronomical images.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/3][0%]
-  - [ ] julia-fitsio
+- [-] :inputs [1/3][33%]
+  - [X] julia-fitsio
   - [ ] julia-plots
   - [ ] julia-images
 *** TODO julia-astroimageview [0/4][0%] :p3:
+- https://github.com/JuliaAstro/AstroImageView.jl
+- synopsis :: UI based AstroImage visualisation.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [ ] :inputs [0/1][0%]
+  - [ ] julia-astroimages
 *** TODO julia-astrotime [0/4][0%] :p3:
+- https://github.com/JuliaAstro/AstroTime.jl
+- synopsis :: Astronomical time keeping in Julia
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1162,43 +1262,67 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
-*** TODO julia-cfitsio [0/4][0%] :p3:
+
+*** TODO julia-cfitsio [2/4][50%] :p3:
 - https://github.com/JuliaAstro/CFITSIO.jl
 - synopsis :: C-style interface to the libcfitsio library.
-- [ ] :packed
+- [X] :packed <2022-12-04 Sun>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [1/2][50%]
-  - [X] cfitsio
-  - [ ] julia-cfitsio-jll
+- [X] :inputs [2/2][100%]
+  - [X] julia-cfitsio-jll
+  - [X] julia-aqua
 *** TODO julia-cosmology [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 *** TODO julia-dustextinction [0/4][0%] :p3:
+- https://github.com/JuliaAstro/DustExtinction.jl
+- synopsis :: Models for interstellar dust extinction
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [-] :inputs [2/6][33%]
+  - [ ] julia-datadeps
+    - [ ] :packed
+  - [ ] julia-dierckx
+    - [ ] :packed
+  - [X] julia-fitsio
+  - [ ] julia-parameters
+  - [X] julia-unitful
+  - [ ] julia-unitfulastro
+    - [ ] :packed
 *** TODO julia-earthorientation [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
-*** TODO julia-erfa [0/4][0%] :p3:
+
+*** TODO julia-erfa [1/4][25%] :p3:
+- https://github.com/JuliaAstro/ERFA.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :inputs [2/2][100%]
+  - [X] julia-erfa-jll
+    - [X] :packed <2022-12-06 Tue>
+  - [X] julia-staticarrays
+
 *** TODO julia-fitsio [0/4][0%] :p3:
 - https://github.com/JuliaAstro/FITSIO.jl
-- [ ] :packed
+- synopsis :: Flexible Image Transport System (FITS) file support for Julia
+- [X] :packed <2022-12-04 Sun>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [1/2][50%]
+- [X] :inputs [5/5][100%]
   - [X] julia-aqua
-  - [ ] julia-cfitsio
+  - [X] julia-orderedcollections
+  - [X] julia-reexport
+  - [X] julia-tables
+  - [X] julia-cfitsio
+    - [X] :packed<2022-12-04 Sun>
+
 *** TODO julia-jplephemeris [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1284,11 +1408,18 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-wcs [0/4][0%] :p3:
+- https://github.com/JuliaAstro/WCS.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [-] :inputs [1/2][50%]
+  - [X] julia-wcs-jll
+    - [X] :packed <2022-12-05 Mon>
+  - [ ] julia-constructionbase
+    - [ ] :packed
+
 *** TODO julia-wcslib [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1381,38 +1512,6 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-pytest
   - [X] python-pytest-remotedata
   - [X] python-xarray
-** TODO OpenSpace [0/2][0%] :author:
-- https://github.com/OpenSpace
-- https://www.openspaceproject.com/
-*** TODO OpenSpace [0/4][0%] :p1:
-- https://github.com/OpenSpace/OpenSpace
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  - [ ] Ghoul
-
-*** TODO Ghoul [0/4]
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [3/14][21%]
-  - [X] assimp
-  - [X] catch2
-  - [X] fmt (cppformat)
-  - [ ] freetype2
-  - [ ] glbinding
-  - [ ] glm
-  - [ ] lua
-  - [ ] lz4
-  - [ ] scnlib
-  - [ ] stackwalker
-  - [ ] stb_image
-  - [ ] tiny-process-library
-  - [ ] tracy
-  - [ ] websocketpp
-
-
 ** TODO NASA [0/6][0%] :author:
 *** TODO HEAsoft [0/4][0%]
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
@@ -1482,6 +1581,43 @@ CLOSED: [2021-01-31 Sun 13:07]
   + [ ] libv4l-dev
   + [ ] libnova-dev
   + [ ] libcurl4-gnutls-dev
+** TODO OpenSpace [0/2][0%] :author:
+- https://github.com/OpenSpace
+- https://www.openspaceproject.com/
+*** TODO OpenSpace [0/4][0%] :p1:
+- https://github.com/OpenSpace/OpenSpace
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  - [ ] Ghoul
+
+*** TODO Ghoul [0/4]
+- https://github.com/OpenSpace/Ghoul
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [7/14][50%]
+  - [X] assimp
+  - [X] catch2
+  - [X] fmt (cppformat)
+  - [X] freetype
+  - [ ] glbinding
+    - [ ] :packed
+  - [X] glm
+  - [X] lua
+  - [X] lz4
+  - [ ] scnlib
+    - [ ] :packed
+  - [ ] stackwalker
+    - [ ] :packed
+  - [ ] stb_image
+    - [ ] :packed
+  - [ ] tiny-process-library
+    - [ ] :packed
+  - [ ] tracy
+  - [ ] websocketpp
+
 ** TODO PaulMcMillan-Astro [0/1][0%] :author:
 https://github.com/PaulMcMillan-Astro/
 *** TODO Torus [1/4][25%] :p1:
@@ -1793,12 +1929,14 @@ CLOSED: [2022-12-01 Thu 23:15]
     - [X] :packed <2022-11-06 Sun>
   - [X] python-tweakwcs
     - [X] :packed <2022-11-06 Sun>
-*** TODO poppy [2/4][50%]
+
+*** TODO poppy [3/4][75%]
 - https://github.com/spacetelescope/poppy
 - synopsis :: Physical Optics Propagation in Python
 - [X] :packed <2022-11-06 Sun>
-- [ ] :patch-sent
+- [X] :patch-sent <2022-12-08 Thu>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/59892
 - [X] :inputs [8/8][100%]
   - [X] python-astropy
   - [X] python-h5py

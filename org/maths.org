@@ -1,13 +1,17 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2022-11-22 Tue 21:38:34 GMT>
+#+modified: <2022-12-07 Wed 23:09:53 GMT>
 
 * Flow [0/4][0%]
-** TODO nelib [0/3][0%] :p5:
+** TODO netlib [0/1][0%] :p5:
 - http://www.netlib.org/
+*** TODO DIERCKX [0/4][0%]
+- https://netlib.org/dierckx/index.html
+- synopsis :: spline fitting routines for various kinds of data and geometries
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
+- [ ] :inputs
 
 ** TODO plplot [0/0][0%] :p2:
 + http://plplot.sourceforge.net/

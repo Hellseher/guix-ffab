@@ -63,8 +63,10 @@
     astronomy.org          revoltek                [0/1][0%]    :author:
     astronomy.org          QuatroPe                [1/2][50%]   :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]    :author:
+    astronomy.org          OpenSpace               [0/2][0%]    :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]    :author:
-    astronomy.org          NASA                    [0/5][0%]    :author:
+    astronomy.org          NASA                    [0/6][0%]    :author:
+    astronomy.org          mgckind                 [0/1][0%]    :author:
     astronomy.org          linguider               [0/4][0%]    :author:
     astronomy.org          Libsharp                [0/1][0%]    :author:
     astronomy.org          JuliaSpace              [0/8][0%]    :author:
@@ -75,17 +77,18 @@
     astronomy.org          Gammapy                 [0/1][0%]    :author:
     astronomy.org          free-astro              [1/2][50%]   :author:
     astronomy.org          ESO                     [1/3][33%]   :author:
+    astronomy.org          esheldon                [0/3][0%]    :author:
     astronomy.org          dstndstn                [0/1][0%]    :author:
     astronomy.org          danieljprice            [1/3][33%]   :author:
     astronomy.org          cpinte                  [0/1][0%]    :author:
     astronomy.org          C-Munipack-library      [0/0][0%]    :author:
-    astronomy.org          ATNF                    [0/1][0%]    :author:
+    astronomy.org          ATNF                    [0/37][0%]   :author:
     astronomy.org          Astropy                 [3/6][50%]   :author:
     astronomy.org          amusecode               [0/45][0%]   :author:
     
     Projects in progress with priorities:
     version-control.org    lazygit                        [0/4][0%]    :p5:
-    maths.org              nelib                          [0/3][0%]    :p5:
+    maths.org              netlib                         [0/1][0%]    :p5:
     lisp.org               zorm                           [0/4][0%]    :p5:
     lisp.org               cl-adams                       [1/4][25%]   :p5:
     golang.org             age                            [/][%]       :p5:
@@ -97,7 +100,18 @@
     maths.org              ducc                           [/][%]       :p4:
     lisp.org               Vacietis                       [/][%]       :p4:
     lisp.org               basic-binary-ipc               [0/4][0%]    :p4:
+    astronomy.org          WCSLIB                         [/][%]       :p4:
+    astronomy.org          VRI                            [/][%]       :p4:
+    astronomy.org          UniPOPS                        [/][%]       :p4:
+    astronomy.org          Tidy                           [/][%]       :p4:
+    astronomy.org          Tempo2                         [/][%]       :p4:
+    astronomy.org          TCS                            [/][%]       :p4:
+    astronomy.org          SuperMongo                     [/][%]       :p4:
     astronomy.org          sunpy-sphinx-theme             [0/4][0%]    :p4:
+    astronomy.org          SPC                            [/][%]       :p4:
+    astronomy.org          smatch                         [/][%]       :p4:
+    astronomy.org          RPFITS                         [/][%]       :p4:
+    astronomy.org          RadialVelocities.              [/][%]       :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -143,6 +157,35 @@
     astronomy.org          python-amuse-athena            [/][%]       :p4:
     astronomy.org          python-amuse-aarsethzare       [/][%]       :p4:
     astronomy.org          python-amuse                   [1/4][25%]   :p4:
+    astronomy.org          PSRCat                         [/][%]       :p4:
+    astronomy.org          Planets.                       [/][%]       :p4:
+    astronomy.org          PGPLOT                         [/][%]       :p4:
+    astronomy.org          ngmix                          [/][%]       :p4:
+    astronomy.org          MIRIAD                         [/][%]       :p4:
+    astronomy.org          Mathematica                    [/][%]       :p4:
+    astronomy.org          livedata/gridzilla             [/][%]       :p4:
+    astronomy.org          Karma                          [/][%]       :p4:
+    astronomy.org          IRAF                           [/][%]       :p4:
+    astronomy.org          InterSat                       [/][%]       :p4:
+    astronomy.org          INTER                          [/][%]       :p4:
+    astronomy.org          IDL                            [/][%]       :p4:
+    astronomy.org          HEASARC                        [/][%]       :p4:
+    astronomy.org          GIPSY                          [/][%]       :p4:
+    astronomy.org          Gildas                         [/][%]       :p4:
+    astronomy.org          FTOOLS                         [/][%]       :p4:
+    astronomy.org          FITS                           [/][%]       :p4:
+    astronomy.org          esutil                         [/][%]       :p4:
+    astronomy.org          easyaccess                     [/][%]       :p4:
+    astronomy.org          Duchamp                        [/][%]       :p4:
+    astronomy.org          DRAO                           [/][%]       :p4:
+    astronomy.org          difmap                         [/][%]       :p4:
+    astronomy.org          Coord.                         [/][%]       :p4:
+    astronomy.org          CASApy                         [/][%]       :p4:
+    astronomy.org          CASAcore                       [/][%]       :p4:
+    astronomy.org          ATOMS                          [/][%]       :p4:
+    astronomy.org          ATELIB                         [/][%]       :p4:
+    astronomy.org          ASKAPSoft                      [/][%]       :p4:
+    astronomy.org          ASAP                           [/][%]       :p4:
     python.org             Py3AMF                         [2/4][50%]   :p3:
     pascal.org             voc                            [/][%]       :p3:
     node-xyz.org           jquery                         [/][%]       :p3:
@@ -153,6 +196,7 @@
     golang.org             bykof/go-plantuml              [/][%]       :p3:
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
+    astronomy.org          SPICE                          [/][%]       :p3:
     astronomy.org          radiospectra                   [/][%]       :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          ndcube                         [/][%]       :p3:
@@ -183,11 +227,11 @@
     astronomy.org          julia-jplephemeris             [0/4][0%]    :p3:
     astronomy.org          julia-gmat                     [/][%]       :p3:
     astronomy.org          julia-fitsio                   [0/4][0%]    :p3:
-    astronomy.org          julia-erfa                     [0/4][0%]    :p3:
+    astronomy.org          julia-erfa                     [1/4][25%]   :p3:
     astronomy.org          julia-earthorientation         [0/4][0%]    :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]    :p3:
     astronomy.org          julia-cosmology                [0/4][0%]    :p3:
-    astronomy.org          julia-cfitsio                  [0/4][0%]    :p3:
+    astronomy.org          julia-cfitsio                  [2/4][50%]   :p3:
     astronomy.org          julia-ccdreduction             [0/4][0%]    :p3:
     astronomy.org          julia-calceph                  [0/4][0%]    :p3:
     astronomy.org          julia-boxleastsquares          [0/4][0%]    :p3:
@@ -220,6 +264,7 @@
     golang.org             caddy                          [0/4][0%]    :p1:
     astronomy.org          Torus                          [1/4][25%]   :p1:
     astronomy.org          pal                            [0/4][0%]    :p1:
+    astronomy.org          OpenSpace                      [0/4][0%]    :p1:
     astronomy.org          jwst                           [2/4][50%]   :p1:
     astronomy.org          gammapy                        [0/4][0%]    :p1:
     astronomy.org          galpy                          [1/4][25%]   :p1:
@@ -232,6 +277,7 @@
     python.org             parsley                        [1/4][25%]   
     python.org             asynctest                      [1/3][33%]   
     python.org             assay                          [2/3][66%]   
+    maths.org              DIERCKX                        [0/4][0%]    
     lisp.org               weird                          [0/4][0%]    
     lisp.org               weir                           [3/4][75%]   
     lisp.org               trial                          [4/5][80%]   
@@ -273,7 +319,7 @@
     astronomy.org          python-casacore                [1/4][25%]   
     astronomy.org          pysynphot                      [2/4][2/4]   
     astronomy.org          psfex                          [1/4][25%]   
-    astronomy.org          poppy                          [2/4][50%]   
+    astronomy.org          poppy                          [3/4][75%]   
     astronomy.org          phd2                           [0/4][%]     
     astronomy.org          losoto                         [1/4][25%]   
     astronomy.org          libsharp                       [3/3][100%]  
@@ -281,6 +327,7 @@
     astronomy.org          indi-service-type              [/][%]       
     astronomy.org          indi-3rdparty                  [0/4][0%]    
     astronomy.org          HEAsoft                        [0/4][0%]    
+    astronomy.org          Ghoul                          [0/4]        
     astronomy.org          eqmodgui                       [0/4][0%]    
     astronomy.org          eclipse                        [0/4][0%]    
     astronomy.org          drizzle                        [2/4][50%]   

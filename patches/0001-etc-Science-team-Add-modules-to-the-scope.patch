@@ -1,0 +1,34 @@
+From 4d1125c03c45f66ff4f731aa88a96e77c2e5affa Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Dec 2022 23:54:27 +0000
+Subject: [PATCH] etc: Science team: Add modules to the scope.
+
+* etc/teams.scm.in (science): Add algebra, astronomy, geo, chemestry,
+  maths modules to the scope.
+---
+ etc/teams.scm.in | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/etc/teams.scm.in b/etc/teams.scm.in
+index f744204017..57d4357900 100644
+--- a/etc/teams.scm.in
++++ b/etc/teams.scm.in
+@@ -187,7 +187,14 @@ (define-team java
+ 
+ (define-team science
+   (team 'science
+-        #:name "Science team"))
++        #:name "Science team"
++        #:description "The main science disciplines and fields related
++packages (e.g. Astronomy, Chemistry, Math, Physics etc.)"
++        #:scope (list "gnu/packages/algebra.scm"
++                      "gnu/packages/astronomy.scm"
++                      "gnu/packages/geo.scm"
++                      "gnu/packages/chemestry.scm"
++                      "gnu/packages/maths.scm")))
+ 
+ (define-team emacs
+   (team 'emacs
+-- 
+2.38.1
+
