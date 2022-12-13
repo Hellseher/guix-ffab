@@ -94,4 +94,27 @@ JuliaMath.")
     (description "Julia package for enhancing and manipulating image contrast.")
     (license license:expat)))
 
+;; 20221213T211859+0000
+(define-public julia-imagedistances
+  (package
+    (name "julia-imagedistances")
+    (version "0.2.16")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/JuliaImages/ImageDistances.jl")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "18i11lq6flch8vxk4cm4f1ixgkcjwynzdyn3kaq8fi6sqyhwv0aa"))))
+    (build-system julia-build-system)
+    (propagated-inputs
+     (list julia-imagecore ))
+    (home-page "https://github.com/JuliaImages/ImageDistances.jl")
+    (synopsis "Distances between N-dimensional images")
+    (description "This package provides a Julia @code{ImageDistances.jl} following the same API
+as @code{Distances.jl} with support image types and image-specific distances.")
+    (license license:expat)))
+
 ;; julia-xyz.scm ends here
