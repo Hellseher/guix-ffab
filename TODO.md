@@ -46,8 +46,8 @@
     lisp.org               cage                    [1/2][50%]   :author:
     lisp.org               3b                      [3/4][75%]   :author:
     julia-xyz.org          oxinabox                [0/1][0%]    :author:
-    julia-xyz.org          kbarbary                [0/2][0%]    :author:
-    julia-xyz.org          JuliaImages             [0/1][0%]    :author:
+    julia-xyz.org          kbarbary                [0/1][0%]    :author:
+    julia-xyz.org          JuliaImages             [0/3][0%]    :author:
     high-availability.org  Kronosnet               [1/1][100%]  :author:
     high-availability.org  corosync                [1/2][50%]   :author:
     high-availability.org  ClusterLabs             [1/1][100%]  :author:
@@ -198,6 +198,8 @@
     lisp.org               rib                            [0/4][0%]    :p3:
     lisp.org               cl-rabbit                      [0/4][0%]    :p3:
     julia-xyz.org          julia-images                   [0/4][0%]    :p3:
+    julia-xyz.org          julia-imagedistances           [/][%]       :p3:
+    julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
     julia-xyz.org          julia-dierckx                  [/][%]       :p3:
     julia-xyz.org          julia-datadeps                 [/][%]       :p3:
     golang.org             bykof/go-plantuml              [/][%]       :p3:
