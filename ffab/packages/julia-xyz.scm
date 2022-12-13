@@ -116,5 +116,32 @@ JuliaMath.")
     (description "This package provides a Julia @code{ImageDistances.jl} following the same API
 as @code{Distances.jl} with support image types and image-specific distances.")
     (license license:expat)))
+
+
+;; 20221213T213240+0000
+(define-public julia-dierckx
+  (package
+    (name "julia-dierckx")
+    (version "0.5.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/kbarbary/Dierckx.jl")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1sv4ikbhycgv9c21yv0my4hnm2iynpdvavydriilbd2r7qvnahji"))))
+    (build-system julia-build-system)
+    (propagated-inputs
+     (list julia-dierckx-jll))
+    (home-page "https://github.com/kbarbary/Dierckx.jl")
+    (synopsis "Julia package for 1-d and 2-d splines")
+    (description "This is a Julia wrapper for the @code{dierckx} Fortran
+library, the same library underlying the spline classes in scipy.interpolate.
+Some of the functionality here overlaps with @code{Interpolations.jl}, a
+pure-Julia interpolation package. Take a look at it if you have a use case not
+covered here.")
+    (license license:bsd-3)))
 
 ;; julia-xyz.scm ends here
