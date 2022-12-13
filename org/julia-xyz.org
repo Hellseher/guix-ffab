@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-26 Sat 21:57:56 GMT>
+#+modified: <2022-12-10 Sat 22:38:56 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -8,11 +8,53 @@ This workflow file contains packaging process for Julia programming language rel
 - GNU Guix :: gnu/packages/julia-xyz.scm
 - FFAB :: ffab/packages/julia-xyz.scm
 
-* Flow [0/0][0%]
-** JuliaImages [0/0][0%] :p3:
+* Flow [0/3][0%]
+** TODO JuliaImages [0/1][0%] :author:
 - https://github.com/JuliaImages
-*** julia-images [0/4][0%] :p3:
+*** TODO julia-images [0/4][0%] :p3:
 - https://github.com/JuliaImages/Images.jl
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/23][0%]
+  - [ ] julia-fileio
+  - [ ] julia-graphics
+  - [ ] julia-imageaxes
+  - [ ] julia-imagebase
+  - [ ] julia-imagecontrastadjustment
+  - [ ] julia-imagecore
+  - [ ] julia-imagedistances
+  - [ ] julia-imagefiltering
+  - [ ] julia-imageio
+  - [ ] julia-imagemagick
+  - [ ] julia-imagemetadata
+  - [ ] julia-imagemorphology
+  - [ ] julia-imagequalityindexes
+  - [ ] julia-imagesegmentation
+  - [ ] julia-imageshow
+  - [ ] julia-imagetransformations
+  - [ ] julia-indirectarrays
+  - [ ] julia-integralarrays
+  - [ ] julia-reexport
+  - [ ] julia-staticarrays
+  - [ ] julia-statsbase
+  - [ ] julia-suppressor
+  - [ ] julia-tilediteration
+
+** TODO kbarbary [0/2][0%] :author:
+*** TODO julia-dierckx [/][%] :p3:
+- https://github.com/kbarbary/Dierckx.jl
+- synopsis :: Julia package for 1-d and 2-d splines
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+** TODO oxinabox [0/1][0%] :author:
+- https://github.com/oxinabox
+*** TODO julia-datadeps [/][%] :p3:
+- https://github.com/oxinabox/DataDeps.jl
+- synopsis :: reproducible data setup for reproducible science
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
