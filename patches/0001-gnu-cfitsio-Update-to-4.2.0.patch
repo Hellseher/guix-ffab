@@ -1,0 +1,85 @@
+From de533b65a91eb99df1bc9a1047d45226b99732a4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 9 Dec 2022 21:31:39 +0000
+Subject: [PATCH 1/6] gnu: cfitsio: Update to 4.2.0.
+
+Fix build on aarch64-linux as reported in:
+- https://issues.guix.gnu.org/59323
+- https://github.com/rwesson/ALFA/issues/29
+
+The latest version passed build on aarch64-linux system with curl and
+gfortran enabled. wcslib@7.5 passed build with curl enabled (was marked
+as failing in cements).
+
+* gnu/packages/astronomy.scm (cfitsio): Update to 4.2.0.
+  [arguments]: Use Gexp, enable tests.
+  [arguments](phases): Delete check and add post-install-check phases.
+  [native-inputs]: Add gfortran.
+  [inputs]: Add curl, zlib.
+---
+ gnu/packages/astronomy.scm | 33 +++++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c59f4d02a4..8d9cce5158 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -356,7 +356,7 @@ (define-public casacore
+ (define-public cfitsio
+   (package
+     (name "cfitsio")
+-    (version "3.49")
++    (version "4.2.0")
+     (source
+      (origin
+        (method url-fetch)
+@@ -364,18 +364,27 @@ (define-public cfitsio
+              "http://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/"
+              "cfitsio-" version ".tar.gz"))
+        (sha256
+-        (base32 "1cyl1qksnkl3cq1fzl4dmjvkd6329b57y9iqyv44wjakbh6s4rav"))))
++        (base32 "128qsv2q0f0g714ahlsixiikvvbwxi9bg9q9pcr5cd3f7wdkv9gb"))))
+     (build-system gnu-build-system)
+-    ;; XXX Building with curl currently breaks wcslib.  It doesn't use
+-    ;; pkg-config and hence won't link with -lcurl.
+     (arguments
+-     `(#:tests? #f                      ; no tests
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'patch-paths
+-           (lambda _
+-             (substitute* "Makefile.in" (("/bin/") ""))
+-             #t)))))
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'patch-paths
++            (lambda _
++              (substitute* "Makefile.in" (("/bin/") ""))))
++          (delete 'check)
++          ;; TODO: Testing steps are sourced from docs/fitsio.pdf, implement
++          ;; the logic in Guile in the future.
++          (add-after 'install 'post-install-check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (invoke "make" "testprog")
++                (with-output-to-file "testprog.lis" (lambda _(invoke "./testprog")))
++                (invoke "diff" "-r" "testprog.lis" "testprog.out")
++                (invoke "cmp" "-l" "testprog.fit" "testprog.std")))))))
++    (native-inputs (list gfortran))
++    (inputs (list curl zlib))
+     (home-page "https://heasarc.gsfc.nasa.gov/fitsio/fitsio.html")
+     (synopsis "Library for reading and writing FITS files")
+     (description "CFITSIO provides simple high-level routines for reading and
+@@ -384,7 +393,7 @@ (define-public cfitsio
+ provides many advanced features for manipulating and filtering the information
+ in FITS files.")
+     (license (license:non-copyleft "file://License.txt"
+-                          "See License.txt in the distribution."))))
++                                   "See License.txt in the distribution."))))
+ 
+ (define-public python-fitsio
+   (package
+-- 
+2.38.1
+

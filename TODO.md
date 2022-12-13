@@ -45,6 +45,9 @@
     lisp.org               chaitanyagupta          [1/2][50%]   :author:
     lisp.org               cage                    [1/2][50%]   :author:
     lisp.org               3b                      [3/4][75%]   :author:
+    julia-xyz.org          oxinabox                [0/1][0%]    :author:
+    julia-xyz.org          kbarbary                [0/1][0%]    :author:
+    julia-xyz.org          JuliaImages             [0/3][0%]    :author:
     high-availability.org  Kronosnet               [1/1][100%]  :author:
     high-availability.org  corosync                [1/2][50%]   :author:
     high-availability.org  ClusterLabs             [1/1][100%]  :author:
@@ -74,6 +77,7 @@
     astronomy.org          indigo-astronomy        [0/1][0%]    :author:
     astronomy.org          icyphy                  [0/1][0%]    :author:
     astronomy.org          IAUSOFA                 [0/1][0%]    :author:
+    astronomy.org          gnudatalanguage         [/][%]       :author:
     astronomy.org          Gammapy                 [0/1][0%]    :author:
     astronomy.org          free-astro              [1/2][50%]   :author:
     astronomy.org          ESO                     [1/3][33%]   :author:
@@ -193,6 +197,11 @@
     node-xyz.org           bootstrap                      [/][%]       :p3:
     lisp.org               rib                            [0/4][0%]    :p3:
     lisp.org               cl-rabbit                      [0/4][0%]    :p3:
+    julia-xyz.org          julia-images                   [0/4][0%]    :p3:
+    julia-xyz.org          julia-imagedistances           [/][%]       :p3:
+    julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
+    julia-xyz.org          julia-dierckx                  [/][%]       :p3:
+    julia-xyz.org          julia-datadeps                 [/][%]       :p3:
     golang.org             bykof/go-plantuml              [/][%]       :p3:
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
@@ -227,7 +236,7 @@
     astronomy.org          julia-jplephemeris             [0/4][0%]    :p3:
     astronomy.org          julia-gmat                     [/][%]       :p3:
     astronomy.org          julia-fitsio                   [0/4][0%]    :p3:
-    astronomy.org          julia-erfa                     [1/4][25%]   :p3:
+    astronomy.org          julia-erfa                     [2/4][50%]   :p3:
     astronomy.org          julia-earthorientation         [0/4][0%]    :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]    :p3:
     astronomy.org          julia-cosmology                [0/4][0%]    :p3:
