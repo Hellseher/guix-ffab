@@ -25,4 +25,51 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
+;; 20221210T223056+0000
+(define-public julia-images
+  (package
+    (name "julia-images")
+    (version "0.25.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/JuliaImages/Images.jl")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "15zjww6w70gkysxfsw34mh4lrmm577kil4a69f43p909f3yi3d7a"))))
+    (build-system julia-build-system)
+    (propagated-inputs
+     (list julia-fileio
+           julia-graphics
+           julia-imageaxes
+           julia-imagebase
+           ;julia-imagecontrastadjustment
+           julia-imagecore
+           ;julia-imagedistances
+           ;julia-imagefiltering
+           ;julia-imageio
+           julia-imagemagick
+           julia-imagemetadata
+           ;julia-imagemorphology
+           ;julia-imagequalityindexes
+           ;julia-imagesegmentation
+           julia-imageshow
+           julia-imagetransformations
+           julia-indirectarrays
+           ;julia-integralarrays
+           julia-reexport
+           julia-staticarrays
+           julia-statsbase
+           julia-suppressor
+           #;julia-tilediteration))
+    (home-page "https://github.com/JuliaImages/Images.jl")
+    (synopsis "Image library for Julia")
+    (description "Images.jl is increasingly becoming an \"umbrella package\" that exports a set
+of packages which are useful for common image processing tasks. Most of these
+packages are hosted at JuliaImages, JuliaArrays, JuliaIO, JuliaGraphics, and
+JuliaMath.")
+    (license license:expat)))
+
 ;; julia-xyz.scm ends here
