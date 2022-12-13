@@ -72,4 +72,26 @@ packages are hosted at JuliaImages, JuliaArrays, JuliaIO, JuliaGraphics, and
 JuliaMath.")
     (license license:expat)))
 
+;; 20221213T210829+0000
+(define-public julia-imagecontrastadjustment
+  (package
+    (name "julia-imagecontrastadjustment")
+    (version "0.3.10")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/JuliaImages/ImageContrastAdjustment.jl")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "15zjww6w70gkysxfsw34mh4lrmm577kil4a69f43p909f3yi3d7a"))))
+    (build-system julia-build-system)
+    (propagated-inputs
+     (list julia-imagecore julia-imagetransformations))
+    (home-page "https://github.com/JuliaImages/ImageContrastAdjustment.jl")
+    (synopsis "Julia package for enhancing and manipulating image contrast")
+    (description "Julia package for enhancing and manipulating image contrast.")
+    (license license:expat)))
+
 ;; julia-xyz.scm ends here
