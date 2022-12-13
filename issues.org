@@ -174,7 +174,8 @@
 - [X] <2022-12-08 Thu> https://issues.guix.gnu.org/59891 <2022-12-09 Fri>
 - [ ] <2022-12-08 Thu> https://issues.guix.gnu.org/59892
 
-* Package updates [4/7][57%]
+* Package updates [7/11][63%]
+- [ ] <2022-12-11 Sun> https://issues.guix.gnu.org/59978
 - [X] <2022-12-07 Wed> https://issues.guix.gnu.org/59890 <2022-12-09 Fri>
 - [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59848
 - [ ] <2022-12-05 Mon> https://issues.guix.gnu.org/59847

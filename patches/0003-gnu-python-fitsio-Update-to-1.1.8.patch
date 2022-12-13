@@ -1,0 +1,52 @@
+From 39813e974900c2039bc4b163e788f784a11160fe Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Dec 2022 16:44:52 +0000
+Subject: [PATCH 3/6] gnu: python-fitsio: Update to 1.1.8.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.1.8.
+  [arguments]{phases}: skip-bzip2-test remove redundant phase as cfitsio
+  built with bzip2 support.
+  [inputs]: Add curl-minimal.
+---
+ gnu/packages/astronomy.scm | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 794e5ca2b9..5ce94a1f07 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -400,13 +400,13 @@ (define-public cfitsio
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.1.7")
++    (version "1.1.8")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "0q8siijys9kmjnqvyipjgh6hkhf4fwvr1swhsf4if211i9b0m1xy"))
++        (base32 "1y80hgvlkjz1bijfyb2j03853yc1kc63yrf9ab7as31ad2r6kxb1"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio
+@@ -430,13 +430,8 @@ (define-public python-fitsio
+                  (("self.system_fitsio_libdir = None") "pass")
+                  (("self.use_system_fitsio") "True")
+                  (("self.system_fitsio_includedir") includedir)
+-                 (("self.system_fitsio_libdir") libdir)))))
+-         (add-after 'unpack 'skip-bzip2-test
+-           (lambda* (#:key inputs #:allow-other-keys)
+-             ;; The bzip2 test fails because Guix' cfitsio
+-             ;; is built without bzip2 support.
+-             (substitute* "fitsio/test.py"
+-               (("'SKIP_BZIP_TEST' in os.environ") "True")))))))
++                 (("self.system_fitsio_libdir") libdir))))))))
++    (inputs (list curl-minimal))
+     (propagated-inputs
+      (list python-numpy cfitsio))
+     (home-page "https://github.com/esheldon/fitsio")
+-- 
+2.38.1
+
