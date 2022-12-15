@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-13 Tue 21:30:12 GMT>
+#+modified: <2022-12-15 Thu 09:38:53 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -68,13 +68,15 @@ This workflow file contains packaging process for Julia programming language rel
 - [X] :inputs [1/1][100%]
 
 ** TODO kbarbary [0/1][0%] :author:
-*** TODO julia-dierckx [/][%] :p3:
+*** TODO julia-dierckx [0/4][0%] :p3:
 - https://github.com/kbarbary/Dierckx.jl
 - synopsis :: Julia package for 1-d and 2-d splines
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [ ] :inputs [0/1][0%]
+  Wrapper for Fortran library, which is not free.
+  - [ ] julia-dierckx-jll
 
 ** TODO oxinabox [0/1][0%] :author:
 - https://github.com/oxinabox
