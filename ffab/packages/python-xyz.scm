@@ -191,25 +191,6 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 ;; added-to-upstream 472917ea6c479b3546ffaea02f755ed9c6e8d46b
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
-;; TODO: (Sharlatan-20221106T222002+0000): Validate the source
-;;
-;; 20221106T215206+0000
-(define-public python-getch
-  (package
-    (name "python-getch")
-    (version "1.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "getch" version))
-              (sha256
-               (base32
-                "1cfqi5h0z6anx4xsg576fl8mnw5gf6qxsyzvp1jwwl80q4bjghm6"))))
-    (build-system python-build-system)
-    (home-page "http://pypi.python.org/pypi/getch")
-    (synopsis "Does single char input, like C getch/getche")
-    (description "Does single char input, like C getch/getche")
-    (license #f)))
-
 ;; 20221109T101311+0000
 (define-public python-towncrier
   (package
