@@ -94,6 +94,8 @@ JuliaMath.")
     (description "Julia package for enhancing and manipulating image contrast.")
     (license license:expat)))
 
+;; TODO: (Sharlatan-20230105T214504+0000): Fix tests
+;;
 ;; 20221213T211859+0000
 (define-public julia-imagedistances
   (package
@@ -110,12 +112,15 @@ JuliaMath.")
         (base32 "18i11lq6flch8vxk4cm4f1ixgkcjwynzdyn3kaq8fi6sqyhwv0aa"))))
     (build-system julia-build-system)
     (propagated-inputs
-     (list julia-imagecore ))
+     (list julia-distances julia-imagecore))
+    (native-inputs
+     (list julia-itertools julia-referencetests))
     (home-page "https://github.com/JuliaImages/ImageDistances.jl")
     (synopsis "Distances between N-dimensional images")
     (description "This package provides a Julia @code{ImageDistances.jl} following the same API
 as @code{Distances.jl} with support image types and image-specific distances.")
     (license license:expat)))
+
 
 
 ;; 20221213T213240+0000
