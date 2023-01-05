@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2022-11-22 Tue 21:37:09 GMT>
+#+modified: <2023-01-05 Thu 22:02:52 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [7/18][38%]
+* Flow [7/20][35%]
 ** DONE aio-libs [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
@@ -36,8 +36,25 @@ CLOSED: [2022-11-08 Tue 11:00]
   - [X] python-siosocks
     - [X] :packed <2022-10-12 Wed>
 
+** TODO Astropy [0/1][0%] :author:
+- https://docs.astropy.org/en/stable/io/fits/
+- https://www.astropy.org/affiliated/
+- https://github.com/astropy
+*** TODO sphinx-automodapi [2/4][50%]
+- https://github.com/astropy/sphinx-automodapi
+- synopsis :: Sphinx extension for auto-generating API documentation for entire modules
+- [X] :packed <2022-11-08 Tue 06:37>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-codecov
+  - [X] python-coverage
+  - [X] python-cython
+  - [X] python-pytest
+  - [X] python-pytest-cov
+
 ** TODO brandon-rhodes [0/1][0%] :author:p5:
-*** TODO assay [2/3][66%]
+*** TODO python-assay [2/3][66%]
 - https://github.com/brandon-rhodes/assay
 - [X] :packed <2021-02-07 Sun>
 - [X] :patch-sent <2021-06-18 Fri>
@@ -48,7 +65,7 @@ CLOSED: [2022-11-08 Tue 11:08]
 - https://github.com/Cadair
 - http://stuartmumford.uk/
 
-*** DONE parfive [4/4][100%]
+*** DONE python-parfive [4/4][100%]
 CLOSED: [2022-11-08 Tue 10:58]
 - https://github.com/Cadair/parfive
 - synopsis :: asyncio based parallel file downloader
@@ -73,7 +90,7 @@ CLOSED: [2022-11-08 Tue 10:58]
 ** DONE h5netcdf [1/1][100%] :author:
 - https://github.com/h5netcdf
 
-*** DONE h5netcdf [4/4][100%]
+*** DONE python-h5netcdf [4/4][100%]
 - https://github.com/h5netcdf/h5netcdf
 - synopsis :: Pythonic interface to netCDF4 via h5py
 - [X] :packed <2022-07-02 Sat>
@@ -88,9 +105,33 @@ CLOSED: [2022-11-08 Tue 10:58]
   - [X] python-packaging
   - [X] python-numpy
 
+** TODO hawkowl [0/1][0%] :author:p1:
+- https://github.com/hawkowl
+- https://atleastfornow.net/
+- author :: Amber Brown
+
+*** TODO python-towncrier [1/4][25%] :p1:
+- https://github.com/twisted/towncrier
+- https://towncrier.readthedocs.io/en/stable/
+- synopsis :: Manage the release notes for your project
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [10/10][100%]
+  - [X] git
+  - [X] python-click
+  - [X] python-click-default-group
+  - [X] python-incremental
+  - [X] python-jinja2
+  - [X] python-packaging
+  - [X] python-pytest-7.1
+  - [X] python-setuptools
+  - [X] python-tomli
+  - [X] python-twisted
+
 ** TODO internetarchive [0/1][0%] :author:
     - https://github.com/internetarchive
-*** TODO surt [2/4][50%]
+*** TODO python-surt [2/4][50%]
 - https://github.com/internetarchive/surt
 - [X] :packed <2022-04-25 Mon>
 - [ ] :patch-sent
@@ -103,36 +144,19 @@ CLOSED: [2022-11-08 Tue 10:58]
 ** TODO Martiusweb [0/1][0%] :author:
 - https://github.com/Martiusweb
 
-*** TODO asynctest [1/3][33%]
+*** TODO python-asynctest [1/3][33%]
 - https://github.com/Martiusweb/asynctest/
 - [X] :packed <2022-10-06 Thu 00:00>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [/][%]
 
-** TODO Astropy [0/1][0%] :author:
-- https://docs.astropy.org/en/stable/io/fits/
-- https://www.astropy.org/affiliated/
-- https://github.com/astropy
-*** TODO sphinx-automodapi [2/4][50%]
-- https://github.com/astropy/sphinx-automodapi
-- synopsis :: Sphinx extension for auto-generating API documentation for entire modules
-- [X] :packed <2022-11-08 Tue 06:37>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-codecov
-  - [X] python-coverage
-  - [X] python-cython
-  - [X] python-pytest
-  - [X] python-pytest-cov
-
 ** DONE miketheman [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:14]
 - https://github.com/miketheman
 - https://mike.fiedler.me/
 - author :: Mike Fiedler
-*** DONE pytest-socket [4/4][100%]
+*** DONE python-pytest-socket [4/4][100%]
 CLOSED: [2022-11-08 Tue 11:02]
 - https://github.com/miketheman/pytest-socket
 - [X] :packed <2022-10-06 Thu 01:47>
@@ -150,15 +174,30 @@ CLOSED: [2022-11-08 Tue 11:02]
 
 ** TODO niltonvolpato [0/1][0%] :author:
 - https://github.com/niltonvolpato
-*** TODO progressbar [1/3][33%]
+*** TODO python-progressbar [1/3][33%]
 - https://github.com/niltonvolpato/python-progressbar
 - [X] :packed <2022-06-21 Tue>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 
+** TODO OpenAstronomy [0/1][0%] :author:
+- https://github.com/OpenAstronomy
+- https://openastronomy.org/
+
+*** TODO python-sphinx-changelog [0/4][0%] :p1:
+- https://github.com/OpenAstronomy/sphinx-changelog
+- synopsis :: Render changelog into your sphinx documentation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [1/2][50%]
+  - [X] python-sphinx
+  - [ ] python-towncrier
+    - [ ] :packed
+
 ** TODO opencv [0/1][0%] :author:
 - https://github.com/opencv
-*** TODO opencv-python [0/4][0%] :p1:
+*** TODO python-opencv [0/4][0%] :p1:
 - https://github.com/opencv/opencv-python
 - [ ] :packed
 - [ ] :patch-sent
@@ -229,11 +268,11 @@ CLOSED: [2022-11-08 Tue 11:06]
 - [X] :inputs [1/1][100%]
   - [X] python-defusedxml
 
-** TODO SunPy [0/0][0%] :author:p2:
+** TODO SunPy [0/3][0%] :author:p2:
 - https://sunpy.org/
 - https://github.com/sunpy
 
-*** TODO mpl-animators [1/4][25%] :p2:
+*** TODO python-mpl-animators [1/4][25%] :p2:
 - https://github.com/sunpy/mpl-animators
 - synopsis :: Interactive animations with matplotlib
 - [ ] :packed <2022-07-02 Sat>
@@ -246,6 +285,29 @@ CLOSED: [2022-11-08 Tue 11:06]
   - [X] python-astropy
   - [X] python-matplotlib
   - [X] python-numpy
+
+*** TODO python-sunpy-sphinx-theme  [0/4][0%] :p4:
+- https://github.com/sunpy/sunpy-sphinx-theme
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/1][0%]
+  - [ ] python-sphinx-bootstrap-theme
+    - [ ] :packed
+
+*** TODO python-sphinx-automodapi [1/4][25%] :p1:
+- https://github.com/astropy/sphinx-automodapi
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6][100%]
+  - [X] python-codecov
+  - [X] python-coverage
+  - [X] python-cython
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-sphinx
+
 ** TODO webrecorder [0/1][0%] :author:p2:
 
 *** TODO pywb [1/4][25%]

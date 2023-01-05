@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-13 Tue 10:47:52 GMT>
+#+modified: <2023-01-05 Thu 22:00:46 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [3/47][6%]
+* Flow [3/53][5%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -279,21 +279,6 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-** TODO gnudatalanguage [/][%] :author:
-- https://github.com/gnudatalanguage
-- https://gnudatalanguage.github.io/
-GDL - GNU Data Language GDL is a free/libre/open source incremental compiler compatible with IDL
-(Interactive Data Language) and to some extent with PV-WAVE. Together with its library routines it
-serves as a tool for data analysis and visualization in such disciplines as astronomy, geosciences
-and medical imaging. GDL development had been started by Marc Schellens back in early noughties and
-has since continued with help of a team of maintainers, developers, packagers and thanks to feedback
-from users.
-
-** TODO mgckind [0/1][0%] :author:
-- https://github.com/mgckind
-- author :: Matias Carrasco Kind
-*** TODO easyaccess [/][%] :p4:
-- https://github.com/mgckind/easyaccess
 ** TODO ap-i [1/5][20%] :author:p5:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -870,6 +855,16 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-pytest
   - [X] wcslib
 
+** TODO CHIANTI [0/1][0%] :author:
+- http://www.chiantidatabase.org/chianti_download.html
+*** TODO python-chiantipy [0/4][0%]
+- https://github.com/chianti-atomic/ChiantiPy
+- synopsis :: ChiantiPy is a python package to calculate the radiative properties of astrophysical
+  plasmas based on the CHIANTI atomic database
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs
 ** TODO C-Munipack-library [0/0][0%] :author:
 - https://sourceforge.net/p/c-munipack/cmunipack-2.1/ci/master/tree/
   - synopsis ::  The extensive set of functions with simple application interface, that provides the
@@ -1047,6 +1042,16 @@ CLOSED: [2022-11-14 Mon 20:33]
   - [X] python-regions
   - [X] python-scipy
   - [X] python-sphinx
+
+** TODO gnudatalanguage [/][%] :author:
+- https://github.com/gnudatalanguage
+- https://gnudatalanguage.github.io/
+GDL - GNU Data Language GDL is a free/libre/open source incremental compiler compatible with IDL
+(Interactive Data Language) and to some extent with PV-WAVE. Together with its library routines it
+serves as a tool for data analysis and visualization in such disciplines as astronomy, geosciences
+and medical imaging. GDL development had been started by Marc Schellens back in early noughties and
+has since continued with help of a team of maintainers, developers, packagers and thanks to feedback
+from users.
 
 ** TODO GreatAttractor [2/2][100%] :author:p5:
 *** DONE stackistry [4/4][100%]
@@ -1504,6 +1509,33 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
+** TODO LMSAL_HUB [0/1][0%] :author:
+*** TODO python-aiapy [0/4][0%] :p1:
+- https://gitlab.com/LMSAL_HUB/aia_hub/aiapy
+- synopsis :: Analyzing data from the Atmospheric Imaging Assembly (AIA) instrument onboard NASA's
+  Solar Dynamics Observatory spacecraft.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [7/12][58%]
+  - [ ] python-hissw
+    - [ ] packed
+  - [X] python-packaging
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-sphinx
+  - [ ] python-sphinx-automodapi
+    - [ ] :packed
+  - [ ] python-sphinx-changelog
+    - [ ] :packed
+  - [ ] python-sphinx-design
+    - [ ] :packed
+  - [X] python-sphinx-gallery
+  - [X] python-sphinxext-opengraph
+  - [X] python-sunpy
+  - [ ] python-sunpy-sphinx-theme
+    - [ ] :packed
+
 ** TODO MAVENSDC [1/1][100%] :author:p2:
 - https://github.com/MAVENSDC
 - https://lasp.colorado.edu/maven/sdc/public/
@@ -1522,6 +1554,11 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-pytest
   - [X] python-pytest-remotedata
   - [X] python-xarray
+** TODO mgckind [0/1][0%] :author:
+- https://github.com/mgckind
+- author :: Matias Carrasco Kind
+*** TODO easyaccess [/][%] :p4:
+- https://github.com/mgckind/easyaccess
 ** TODO NASA [0/6][0%] :author:
 *** TODO HEAsoft [0/4][0%]
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
@@ -1573,6 +1610,10 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+
+** TODO OpenAstronomy [/][%] :author:
+- https://github.com/OpenAstronomy
+- https://openastronomy.org/
 
 ** TODO OpenPHDGuiding [0/1][0%] :author:p4:
 - https://openphdguiding.org
@@ -2150,7 +2191,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 ** TODO SunPy [4/7][57%] :author:p2:
 - https://sunpy.org/
 - https://github.com/sunpy
-*** DONE drms [5/5][100%]
+*** DONE python-drms [5/5][100%]
 CLOSED: [2022-11-25 Fri 21:16]
 - https://github.com/sunpy/drms
 - synopsis :: Access HMI, AIA and MDI data with Python from the public JSOC DRMS server
@@ -2165,7 +2206,7 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pandas
   - [X] python-pytest-astropy
 
-*** DONE hvpy [4/4][100%]
+*** DONE python-hvpy [4/4][100%]
 CLOSED: [2022-11-25 Fri 21:14]
 - https://github.com/Helioviewer-Project/python-api
 - [X] :packed <2022-11-23 Wed>
@@ -2177,7 +2218,7 @@ CLOSED: [2022-11-25 Fri 21:14]
   - [X] python-requests
   - [X] python-pytest
   - [X] python-pytest-astropy
-*** DONE mpl-animations [4/4][100%]
+*** DONE python-mpl-animations [4/4][100%]
 CLOSED: [2022-11-25 Fri 21:16]
 - https://github.com/sunpy/mpl-animations
 - synopsis :: Interactive animations with matplotlib
@@ -2192,11 +2233,11 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pytest
   - [X] python-pytest-mpl
   - [X] python-setuptools-scm
-*** TODO ndcube [/][%] :p3:
+*** TODO python-ndcube [/][%] :p3:
 - https://github.com/sunpy/ndcube
-*** TODO radiospectra [/][%] :p3:
+*** TODO python-radiospectra [/][%] :p3:
 - https://github.com/sunpy/radiospectra
-*** DONE sunpy [3/4][75%]
+*** DONE python-sunpy [3/4][75%]
 CLOSED: [2022-11-25 Fri 21:10]
 - https://github.com/sunpy/sunpy
 - synopsis :: SunPy - Python for Solar Physics
@@ -2248,14 +2289,18 @@ CLOSED: [2022-11-25 Fri 21:10]
   - [X] python-sqlalchemy
   - [X] python-tqdm
   - [X] python-zeep
-
-*** TODO sunpy-sphinx-theme  [0/4][0%] :p4:
-- https://github.com/sunpy/sunpy-sphinx-theme
-- [ ] :packed
+** TODO SURF [/][%] :author:
+- https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
+The Solar UK Research Facility
+** TODO wtbarnes [0/1][0%] :author:
+- author :: Will Barnes
+*** TODO python-hissw [1/4][25%] :p1:
+- https://github.com/wtbarnes/hissw
+- synopsis :: Lightweight implementain of SolarSoftware stack.
+- [X] :packed <2022-12-20 Tue>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
+- [ ] :inputs
 ** TODO XEphem [0/4][0%] :author:
 - http://www.clearskyinstitute.com/xephem/
 - synopsis ::
