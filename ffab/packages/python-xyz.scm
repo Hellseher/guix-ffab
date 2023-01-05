@@ -195,13 +195,13 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 (define-public python-towncrier
   (package
     (name "python-towncrier")
-    (version "22.8.0")
+    (version "22.12.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "towncrier" version))
        (sha256
-        (base32 "1js2s02kxsm7ln3z5j8c7j9k293hzm6bg0nzapxlb6w56fq3jf3x"))))
+        (base32 "0k83cisk139v28mjsa819b8qz733q45lr45f0bm9lsk4bzkxfjcw"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -222,7 +222,7 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
            python-jinja2
            python-tomli))
     (native-inputs (list python-packaging python-twisted python-pytest-7.1 git))
-    (home-page "https://github.com/hawkowl/towncrier")
+    (home-page "https://github.com/twisted/towncrier")
     (synopsis "Manage the release notes for your project")
     (description
      "@code{towncrier} is a utility to produce useful, summarized news files
