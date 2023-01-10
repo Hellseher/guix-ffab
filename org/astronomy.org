@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-01-05 Thu 22:00:46 GMT>
+#+modified: <2023-01-10 Tue 22:53:16 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -363,16 +363,16 @@ CLOSED: [2022-11-30 Wed 23:44]
 ** DONE asdf-format [9/9][100%] :author:
 CLOSED: [2022-11-21 Mon 20:43]
 - https://github.com/asdf-format
-*** DONE asdf [1/1][100%]
+*** DONE python-asdf [1/1][100%]
  - https://github.com/asdf-format/asdf
  - [X] :packed
-*** DONE asdf-coordinates-schemas [1/1][100%]
+*** DONE python-asdf-coordinates-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-coordinates-schemas
 - [X] :packed <2021-11-11 Thu>
 - [X] :inputs [2/2][100%]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** DONE asdf-fits-schemas [4/4][100%]
+*** DONE pyton-asdf-fits-schemas [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:42]
 - https://github.com/asdf-format/asdf-fits-schemas
 - [X] :packed <2022-10-23 Sun>
@@ -385,7 +385,7 @@ CLOSED: [2022-11-21 Mon 20:42]
   - [X] python-pypa-build
   - [X] python-setuptools
   - [X] python-setuptools-scm
-*** DONE asdf-standard [4/4][100%]
+*** DONE python-asdf-standard [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:41]
 - https://github.com/asdf-format/asdf-standard
 - synopsis :: Standards document describing ASDF, Advanced Scientific Data Format
@@ -398,10 +398,10 @@ CLOSED: [2022-11-21 Mon 20:41]
   - [X] python-pypa-build
   - [X] python-setuptools
   - [X] python-setuptools-scm
-*** DONE asdf-table-schemas [1/1][100%]
+*** DONE pyton-asdf-table-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-table-schemas
 - [X] :packed
-*** DONE asdf-time-schemas [4/4][100%]
+*** DONE python-asdf-time-schemas [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:42]
 - https://github.com/asdf-format/asdf-time-schemas
 - [X] :packed <2022-10-23 Sun>
@@ -415,10 +415,10 @@ CLOSED: [2022-11-21 Mon 20:42]
   - [X] python-pypa-build
   - [X] python-setuptools
   - [X] python-setuptools-scm
-*** DONE asdf-transform-schemas [1/1][100%]
+*** DONE python-asdf-transform-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-transform-schemas
 - [X] :packed
-*** DONE asdf-unit-schemas [4/4][100%]
+*** DONE python-asdf-unit-schemas [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:43]
 - https://github.com/asdf-format/asdf-unit-schemas
 - [X] :packed <2022-10-23 Sun>
@@ -431,7 +431,7 @@ CLOSED: [2022-11-21 Mon 20:43]
   - [X] python-pypa-build
   - [X] python-setuptools
   - [X] python-setuptools-scm
-*** DONE asdf-wcs-schemas [2/2][100%]
+*** DONE python-asdf-wcs-schemas [2/2][100%]
 - https://github.com/asdf-format/asdf-wcs-schemas
 - [X] :packed <2021-11-11 Thu>
 - [X] :inputs [3/3][100%]
@@ -537,14 +537,14 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO Astropy [3/6][50%] :author:
+** TODO Astropy [3/5][60%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
 - synopsis :: The Astropy Project is a community effort to develop a common core package for
   Astronomy in Python and foster an ecosystem of interoperable astronomy packages.
 
-*** DONE astropy [4/4][100%]
+*** DONE python-astropy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:41]
 - https://github.com/astropy/astropy
 - https://pypi.org/project/astropy/
@@ -664,14 +664,6 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-*** TODO astroquery [0/4][0%]
-- https://github.com/astropy/astroquery
-- synopsis :: Functions and classes to access online data resources.
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
 *** TODO specutils [0/4][0%]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
@@ -680,9 +672,9 @@ CLOSED: [2021-11-08 Mon 20:41]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO astroplan [1/4][25%]
+*** TODO astroplan [2/4][50%]
 - https://github.com/astropy/astroplan
-- [ ] :packed <2022-11-07 Mon>
+- [X] :packed <2022-11-07 Mon>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [5/5][100%]
@@ -691,7 +683,8 @@ CLOSED: [2021-11-08 Mon 20:41]
   - [X] python-pytz
   - [X] python-six
   - [X] python-pytest-astropy
-*** DONE asdf-astropy [3/3][100%]
+
+*** DONE python-asdf-astropy [3/3][100%]
 CLOSED: [2022-11-22 Tue 20:33]
 - [X] python-asdf-astropy
 - [X] :packed <2021-11-11 Thu>
@@ -710,7 +703,8 @@ CLOSED: [2022-11-22 Tue 20:33]
   - [X] python-scipy
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** DONE reproject [4/4][100%]
+
+*** DONE python-reproject [4/4][100%]
 CLOSED: [2022-11-25 Fri 21:08]
 - https://github.com/astropy/reproject
 - [X] :packed <2022-10-22 Sat>
@@ -815,6 +809,7 @@ CLOSED: [2022-11-25 Fri 21:08]
 *** TODO INTER [/][%] :p4:
 - synopsis :: Interactive interference characterization program. A description and user manual are
   available here.
+
 ** TODO casacore [1/2][50%] :author:p1:
 - https://github.com/casacore
 *** DONE casacore [4/4][100%]

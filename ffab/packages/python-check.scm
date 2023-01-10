@@ -110,22 +110,22 @@ and cuts down boilerplate code when testing libraries for asyncio.")
         (base32 "1xfd63h75wiiyri4f7qyvy50f2ny0v4r4wx2h4px9ddbkh2k5g9p"))))
     (build-system pyproject-build-system)
     (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; NOTE: (Sharlatan-20230105T233012+0000): I found this manipulation
-          ;; not clear, but upstream package contain "nox/tox_to_nox.jinja2"
-          ;; file which is not copied during install phase. Try to find more
-          ;; simple solution.
-          (add-after 'unpack 'rename-tox-to-nox-jinja2
-            (lambda _
-              (rename-file "nox/tox_to_nox.jinja2" "nox/tox_to_nox.jinja2.py")))
-          (add-after 'install 'rename-tox-to-nox-jinja2-back
-            (lambda _
-              (let* ((src-file (car (find-files (string-append #$output "/lib")
-                                     "tox_to_nox\\.jinja2\\.py$")))
-                     (dst-file (string-drop-right src-file 3)))
-                (rename-file src-file dst-file)))))))
+     (list #:phases
+           #~(modify-phases %standard-phases
+               ;; TODO: (Sharlatan-20230105T233012+0000): This manipulation
+               ;; looks not clear as upstream package contains
+               ;; "nox/tox_to_nox.jinja2" file which is not copied during
+               ;; install phase and causes check and sanity-check phases fail
+               ;; due to missing file. Try to find more simple solution.
+               (add-after 'unpack 'rename-tox-to-nox-jinja2
+                 (lambda _
+                   (rename-file "nox/tox_to_nox.jinja2" "nox/tox_to_nox.jinja2.py")))
+               (add-after 'install 'rename-tox-to-nox-jinja2-back
+                 (lambda _
+                   (let* ((src-file (car (find-files (string-append #$output "/lib")
+                                                     "tox_to_nox\\.jinja2\\.py$")))
+                          (dst-file (string-drop-right src-file 3)))
+                     (rename-file src-file dst-file)))))))
     (propagated-inputs
      (list python-argcomplete
            python-colorlog
