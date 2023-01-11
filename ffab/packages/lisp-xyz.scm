@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages lisp-xyz)
+  #:use-module (ffab packages graphics)
   #:use-module (ffab packages lisp-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
@@ -938,3 +939,50 @@ extensions developed by technical users.")
 ;; https://github.com/kaveh808/kons-9/issues/176
 ;;
 ;; ecl-kons-9
+
+;; 20230110T230445+0000
+(define-public sbcl-classimp
+  (let ((commit "d82a14c59bc733f89a1ea0b3447ebedddce5756e")
+        (revision "0"))
+    (package
+      (name "sbcl-classimp")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/3b/classimp")
+               (commit commit)))
+         (file-name (git-file-name "classimp" version))
+         (sha256
+          (base32 "0pbnz6cf1zb2ayk4kbw0gphjb8nflnjns2rwhv86jz0kf0z1hqha"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'unpack 'patch-assimp-lib-path
+              (lambda* (#:key inputs #:allow-other-keys)
+                (substitute* "library.lisp"
+                  (("libassimp.so.5" _)
+                   (search-input-file inputs "/lib/libassimp.so.5.0.0"))))))))
+      (inputs
+       (list assimp-5.0
+             sbcl-cffi
+             sbcl-split-sequence))
+      (home-page "https://github.com/3b/classimp")
+      (synopsis "Common Lisp CFFI bindings for Open Asset Import Library")
+      (description
+       "This package provides CFFI bindings to @acronym{ASSIMP, Asset Import} library
+for Common Lisp.")
+      (license license:expat))))
+
+(define-public cl-classimp
+  (sbcl-package->cl-source-package sbcl-classimp))
+
+;; FIXME: (Sharlatan-20230111T205213+0000): Failing to link to assimp-5.0
+;;
+;; (define-public ecl-classimp
+;;   (sbcl-package->ecl-package sbcl-classimp))
+
+;; End of lisp-xyz.scm
