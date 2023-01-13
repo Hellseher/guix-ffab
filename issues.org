@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [150/161][93%]
+* Accepted in upstream [151/161][93%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -140,7 +140,7 @@
 - [X] <2022-09-28 Wed> https://issues.guix.gnu.org/58152 <2022-10-10 Mon>
 - [X] <2022-10-01 Sat> https://issues.guix.gnu.org/58229 <2022-10-06 Thu>
 - [X] <2022-10-14 Fri> https://issues.guix.gnu.org/58530 <2022-11-07 Mon>
-- [ ] <2022-10-17 Mon> https://issues.guix.gnu.org/58586
+- [X] <2022-10-17 Mon> https://issues.guix.gnu.org/58586 <2022-12-06 Tue>
 - [X] <2022-10-19 Wed> https://issues.guix.gnu.org/58645 <2022-10-22 Sat>
 - [X] <2022-10-30 Sun> https://issues.guix.gnu.org/58907 <2022-11-14 Mon>
 - [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58952
@@ -172,6 +172,7 @@
 - [X] <2022-12-08 Thu> https://issues.guix.gnu.org/59891 <2022-12-09 Fri>
 - [ ] <2022-12-08 Thu> https://issues.guix.gnu.org/59892
 - [ ] <2023-01-06 Fri> https://issues.guix.gnu.org/60611
+- [ ] <2023-01-13 Fri> https://issues.guix.gnu.org/60790
 
 * Package updates [11/11][100%]
 - [X] <2022-12-11 Sun> https://issues.guix.gnu.org/59978 <2023-01-06 Fri>
@@ -186,7 +187,7 @@
 - [X] <2021-05-17 Mon> https://issues.guix.gnu.org/48485 <2021-05-18 Tue>
 - [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48451 <2021-05-17 Mon>
 
-* Never implemented [0/1]
+* Never implemented [0/4]
 - [ ] <2022-05-20 Fri> https://issues.guix.gnu.org/55546
    It's accepted but not reported as having bundled jQuery.
 - [ ] <2021-05-18 Tue> https://issues.guix.gnu.org/46333

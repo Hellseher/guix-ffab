@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-23 Wed 22:16:36 GMT>
+#+modified: <2023-01-13 Fri 21:46:39 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -55,9 +55,18 @@ Guix upstream.
   - [X] flexi-streams
   - [X] jsown
   - [X] split-sequence
-*** TODO classimp [/][%] :p1:
+
+*** TODO classimp [3/4][75%] :p3:
 - https://github.com/3b/classimp
 - synopsis :: common lisp/cffi bindings for Open Asset Import Library
+- [X] :packed <2023-01-11 Wed>
+- [X] :patch-sent <2023-01-13 Fri>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/60790
+- [X] :inputs
+  - [X] sbcl-cffi
+  - [X] assimp-5.0
+    - [X] :packed <2023-01-11 Wed>
 ** DONE AlexCharlton [1/1][100%] :author:
 - https://github.com/AlexCharlton
 *** DONE cl-glfw3 [4/4][100%]

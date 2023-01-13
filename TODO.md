@@ -204,6 +204,7 @@
     node-xyz.org           bootstrap                      [/][%]       :p3:
     lisp.org               rib                            [0/4][0%]    :p3:
     lisp.org               cl-rabbit                      [0/4][0%]    :p3:
+    lisp.org               classimp                       [3/4][75%]   :p3:
     julia-xyz.org          julia-images                   [0/4][0%]    :p3:
     julia-xyz.org          julia-imagedistances           [/][%]       :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
@@ -277,7 +278,6 @@
     python.org             python-sphinx-automodapi       [1/4][25%]   :p1:
     python.org             python-opencv                  [0/4][0%]    :p1:
     lisp.org               feedback                       [0/4][0%]    :p1:
-    lisp.org               classimp                       [/][%]       :p1:
     golang.org             miller                         [1/5][20%]   :p1:
     golang.org             go/tools/gopls                 [/][%]       :p1:
     golang.org             caddy                          [0/4][0%]    :p1:
