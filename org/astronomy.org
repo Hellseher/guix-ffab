@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-01-17 Tue 20:45:04 GMT>
+#+modified: <2023-01-17 Tue 21:09:06 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1616,7 +1616,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 
 ** TODO OpenPHDGuiding [0/1][0%] :author:p4:
 - https://openphdguiding.org
-*** TODO phd2 [0/4][%]
+*** TODO phd2 [0/4][%] :p5:
 - https://github.com/OpenPHDGuiding/phd2
 - [ ] :packed
 - [ ] :patch-sent
@@ -1642,7 +1642,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :inputs [0/1][0%]
   - [ ] Ghoul
 
-*** TODO Ghoul [0/4]
+*** TODO Ghoul [0/4] :p5:
 - https://github.com/OpenSpace/Ghoul
 - [ ] :packed
 - [ ] :patch-sent
@@ -1724,7 +1724,7 @@ CLOSED: [2021-02-19 Fri 11:13]
 - synopsis :: Optimal Image Subtraction
 
 ** TODO revoltek [0/1][0%] :author:
-*** TODO losoto [1/4][25%]
+*** TODO losoto [1/4][25%] :p5:
 - http://github.com/revoltek/losoto/
   There is issue with casacore build, solve it first then upgrade
   to the lates version
@@ -1784,7 +1784,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 
 ** TODO SAOImageDS9 [0/1][0%] :author:p1:
 - http://ds9.si.edu/
-*** TODO SAOImageDS9 [0/4][0%]
+*** TODO SAOImageDS9 [0/4][0%] :p5:
 - https://github.com/SAOImageDS9/SAOImageDS9
 - synopsis :: DS9 is an astronomical imaging and data visualization application.
 - [ ] :packed
@@ -1808,7 +1808,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 ** TODO schirmermischa [0/1][0%] :author:
 - https://github.com/schirmermischa
 - author :: Mischa Schirmer
-*** TODO THELI [0/4][0%]
+*** TODO THELI [0/4][0%] :p5:
 - https://github.com/schirmermischa/THELI
 - [ ] :packed
 - [ ] :patch-sent
@@ -1818,7 +1818,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 ** TODO spacetelescope [2/20][10%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
-*** TODO ci-watson [1/4][25%]
+*** TODO ci-watson [1/4][25%] :p5:
 - https://github.com/spacetelescope/ci_watson
 - https://ci-watson.readthedocs.io/
 - [X] :packed <2022-11-06 Sun>
@@ -1833,7 +1833,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO crds [1/4][25%]
+*** TODO python-crds [1/4][25%] :p1:
 - https://github.com/spacetelescope/crds
 - https://hst-crds.stsci.edu
 - synopsis :: Calibration Reference Data System for HST and JWST
@@ -1865,7 +1865,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - awscli why?
   - python-jwst ;; circular dependency
 
-*** TODO datamodels [2/4][50%]
+*** TODO python-datamodels [2/4][50%] :p1:
 - https://github.com/spacetelescope/roman_datamodels
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -1885,7 +1885,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO drizzle [2/4][50%]
+*** TODO python-drizzle [2/4][50%] :p1:
 - https://github.com/spacetelescope/drizzle
 - synopsis :: package for combining dithered images into a single image
 - [X] :packed <2022-11-06 Sun>
@@ -1999,7 +1999,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-setuptools-scm
   - python-synphot ; failing with
 
-*** TODO python-pysynphot [2/4][2/4]
+*** TODO python-pysynphot [2/4][2/4] :p1:
 - https://github.com/spacetelescope/pysynphot
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2013,7 +2013,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest-remotedata
   - [X] python-setuptools-scm
   - [X] python-six
-*** TODO python-rad [2/4][50%]
+*** TODO python-rad [2/4][50%] :p1:
 - https://github.com/spacetelescope/rad
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2025,7 +2025,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest-openfiles
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** TODO python-spherical-geometry [2/4][50%]
+*** TODO python-spherical-geometry [2/4][50%] :p1:
 - https://github.com/spacetelescope/spherical_geometry
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2036,14 +2036,14 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest
   - [X] python-setuptools-scm
   - [X] qd
-*** TODO python-stcal [0/4][0%]
+*** TODO python-stcal [0/4][0%] :p1:
 - https://github.com/spacetelescope/stcal
 - sinopsys :: STScI Calibration algorithms and tools.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** TODO python-stdatamodels [2/4][50%]
+*** TODO python-stdatamodels [2/4][50%] :p1:
 - https://github.com/spacetelescope/stdatamodels
 - [X] :packed <2022-07-10 Sun>
 - [ ] :patch-sent
@@ -2060,7 +2060,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-stpipe [2/4][50%]
+*** TODO python-stpipe [2/4][50%] :p1:
 - https://github.com/spacetelescope/stpipe
 - [X] :packed <2022-07-10 Sun>
 - [ ] :patch-sent
@@ -2076,7 +2076,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest-openfiles
   - [X] python-setuptools-scm
 
-*** TODO stsci.image [2/4][50%]
+*** TODO python-stsci-image [2/4][50%] :p1:
 - https://github.com/spacetelescope/stsci.image
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2087,7 +2087,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-scipy
   - [X] python-setuptools-scm
 
-*** TODO stsci.imagestats [2/4][50%]
+*** TODO python-stsci-imagestats [2/4][50%] :p1:
 - https://github.com/spacetelescope/stsci.imagestats
 - synopsis :: STScI clipped image statistics with core functionality of IRAF's imstatistics.
 - [X] :packed <2022-11-06 Sun>
@@ -2096,7 +2096,7 @@ CLOSED: [2023-01-16 Mon 18:38]
 - [X] :inputs [4/4][100%]
   - [X] python-numpy
   - [X] python-setuptools-scm
-*** TODO stsci.stimage [1/4][25%]
+*** TODO python-stsci-stimage [1/4][25%] :p1:
 - https://stscistimage.readthedocs.io/en/latest/
 - [X] :packed <2022-07-10 Sun>
 - [ ] :patch-sent
@@ -2113,7 +2113,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-scipy
   - [X] python-setuptools-scm
 
-*** TODO stsynphot [2/4][50%]
+*** TODO python-stsynphot [2/4][50%] :p1:
 - https://github.com/spacetelescope/stsynphot_refactor
 - synopsis :: Synthetic photometry using Astropy for HST and JWST
 - [X] :packed <2022-07-06 Wed>
@@ -2130,7 +2130,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-setuptools-scm
   - [X] python-synphot
 
-*** TODO synphot [2/4][50%]
+*** TODO python-synphot [2/4][50%] :p1:
 - https://github.com/spacetelescope/synphot_refactor
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2143,7 +2143,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest-astropy
   - [X] python-setuptools-scm
 
-*** TODO tweakwcs [2/4][50%]
+*** TODO python-tweakwcs [2/4][50%] :p1:
 - https://github.com/spacetelescope/tweakwcs
 - synopsis :: Algorithms for matching and aligning catalogs and for tweaking the WCS so as to
   minimize catalog mismatch error
@@ -2165,7 +2165,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-stsci-imagestats
   - [X] python-stsci-stimage
     - [X] :packed <2022-11-06 Sun>
-*** TODO wiimatch [1/4][25%]
+*** TODO wiimatch [1/4][25%] :p1:
 - https://github.com/spacetelescope/wiimatch
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
