@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-01-10 Tue 22:53:16 GMT>
+#+modified: <2023-01-17 Tue 20:45:04 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [3/53][5%]
+* Flow [4/52][7%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -459,7 +459,7 @@ CLOSED: [2021-01-27 Wed 11:26]
 - [X] :paptch-applied-upstream <2021-01-27 Wed>
   - https://issues.guix.gnu.org/46121
 
-*** TODO psfex [1/4][25%]
+*** TODO psfex [1/4][25%] :p5:
 - synosis :: psf modelling and quality assessment
 - http://www.astromatic.net/software/psfex
 - [ ] :packed
@@ -469,7 +469,7 @@ CLOSED: [2021-01-27 Wed 11:26]
   - [X] fftw
   - [X] plplot
 
-*** TODO scamp [0/4][0%]
+*** TODO scamp [0/4][0%] :p5:
 - http://www.astromatic.net/software/scamp
 - synosis :: astrometric calibration and photometric homogenisation
 - [ ] :packed
@@ -664,7 +664,7 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-*** TODO specutils [0/4][0%]
+*** TODO specutils [0/4][0%] :p2:
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
 - [ ] :packed
@@ -672,7 +672,7 @@ CLOSED: [2021-11-08 Mon 20:41]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO astroplan [2/4][50%]
+*** TODO astroplan [2/4][50%] :p2:
 - https://github.com/astropy/astroplan
 - [X] :packed <2022-11-07 Mon>
 - [ ] :patch-sent
@@ -837,7 +837,7 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] readline
   - [X] wcslib (4.20 or later)
 
-*** TODO python-casacore [1/4][25%]
+*** TODO python-casacore [1/4][25%] :p1:
 - https://github.com/casacore/python-casacore
 - synopsis :: Python bindings for casacore, a library used in radio astronomy
 - [ ] :packed <2022-06-24 Fri>
@@ -852,7 +852,7 @@ CLOSED: [2022-11-25 Fri 21:08]
 
 ** TODO CHIANTI [0/1][0%] :author:
 - http://www.chiantidatabase.org/chianti_download.html
-*** TODO python-chiantipy [0/4][0%]
+*** TODO python-chiantipy [0/4][0%] :p1:
 - https://github.com/chianti-atomic/ChiantiPy
 - synopsis :: ChiantiPy is a python package to calculate the radiative properties of astrophysical
   plasmas based on the CHIANTI atomic database
@@ -914,7 +914,7 @@ CLOSED: [2022-11-25 Fri 21:08]
   plane
 
 ** TODO dokester [0/1][0%] :author:p1:
-*** TODO BayesicFitting [2/4][50%]
+*** TODO BayesicFitting [2/4][50%] :p1:
 - https://github.com/dokester/BayesicFitting
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -968,13 +968,13 @@ CLOSED: [2021-02-19 Fri 11:14]
   + [X] :paptch-applied-upstream <2021-02-19 Fri>
     - https://issues.guix.gnu.org/46492
 
-*** TODO eclipse [0/4][0%]
+*** TODO eclipse [0/4][0%] :p5:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO skycat [0/4][0%]
+*** TODO skycat [0/4][0%] :p5:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1016,7 +1016,7 @@ CLOSED: [2022-11-14 Mon 20:33]
 ** TODO Gammapy [0/1][0%] :author:
 - https://gammapy.org/
 - https://github.com/gammapy/gammapy
-*** TODO gammapy [0/4][0%] :p1:
+*** TODO gammapy [0/4][0%] :p3:
 - https://github.com/gammapy/gammapy
 - [ ] :packed
 - [ ] :patch-sent
@@ -1048,7 +1048,9 @@ and medical imaging. GDL development had been started by Marc Schellens back in 
 has since continued with help of a team of maintainers, developers, packagers and thanks to feedback
 from users.
 
-** TODO GreatAttractor [2/2][100%] :author:p5:
+** DONE GreatAttractor [2/2][100%] :author:p5:
+CLOSED: [2023-01-17 Tue 20:41]
+- https://github.com/GreatAttractor
 *** DONE stackistry [4/4][100%]
 CLOSED: [2021-02-19 Fri 11:15]
 - https://github.com/GreatAttractor/stackistry
@@ -1150,7 +1152,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   + [X] fftw
   + [X] curl
 
-*** TODO indi-3rdparty [0/4][0%]
+*** TODO indi-3rdparty [0/4][0%] :p5:
 - https://github.com/indilib/indi-3rdparty
 - [ ] :packed
 - [ ] :patch-sent
@@ -1177,7 +1179,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   + [ ] liblimesuite-dev [0/0][0%]
     - https://github.com/myriadrf/LimeSuite
 
-*** TODO indi-service-type [/][%]
+*** TODO indi-service-type [/][%] :p5:
 
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
@@ -1199,7 +1201,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [0/36][0%] :author:p3:
+** TODO JuliaAstro [0/36][0%] :author:p1:
 - https://github.com/JuliaAstro
 - http://juliaastro.org/dev/index.html
 *** TODO julia-astolib [2/4][50%] :p3:
@@ -1273,15 +1275,17 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-cfitsio [2/4][50%] :p3:
+*** TODO julia-cfitsio [1/4][25%] :p3:
 - https://github.com/JuliaAstro/CFITSIO.jl
 - synopsis :: C-style interface to the libcfitsio library.
 - [X] :packed <2022-12-04 Sun>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [X] :inputs [2/2][100%]
-  - [X] julia-cfitsio-jll
+- [-] :inputs [1/2][50%]
+  - [ ] julia-cfitsio-jll
+    - [ ] :packed <2023-01-13 Fri>
   - [X] julia-aqua
+
 *** TODO julia-cosmology [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1490,11 +1494,11 @@ CLOSED: [2021-01-31 Sun 13:07]
 ** TODO Libsharp [0/1][0%] :author:
 - https://github.com/Libsharp
 - https://gitlab.mpcdf.mpg.de/mtr/libsharp
-*** TODO libsharp [3/3][100%]
+*** TODO libsharp [1/3][33%] :p1:
 - https://github.com/Libsharp/libsharp
 - [X] :packed <2022-10-30 Sun>
-- [X] :patch-sent
-- [X] :paptch-applied-upstream
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
 
 ** TODO linguider [0/4][0%] :author:
 - https://sourceforge.net/projects/linguider/
@@ -1555,7 +1559,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 *** TODO easyaccess [/][%] :p4:
 - https://github.com/mgckind/easyaccess
 ** TODO NASA [0/6][0%] :author:
-*** TODO HEAsoft [0/4][0%]
+*** TODO HEAsoft [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
 - [ ] :packed
 - [ ] :patch-sent
@@ -1578,7 +1582,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 *** TODO SPICE [/][%] :p3:
 - https://naif.jpl.nasa.gov/naif/
 
-*** TODO CDF [0/4][0%]
+*** TODO CDF [0/4][0%] :p5:
 - https://cdf.gsfc.nasa.gov/
 - synopsis ::
 - [ ] :packed
@@ -1586,7 +1590,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO Xspec [0/4][0%]
+*** TODO Xspec [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
 -
 - [ ] :packed
@@ -1599,7 +1603,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - https://github.com/wlandsman/IDLAstro
 
 ** TODO neuromorphicsystems [0/1][0%] :author:
-*** TODO astrometry [0/4][0%]
+*** TODO astrometry [0/4][0%] :p5:
 - https://github.com/neuromorphicsystems/astrometry
 - [ ] :packed
 - [ ] :patch-sent
@@ -1811,7 +1815,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/1][0%]
   - [ ] astropy
-** TODO spacetelescope [1/20][5%] :author:
+** TODO spacetelescope [2/20][10%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** TODO ci-watson [1/4][25%]
@@ -1920,7 +1924,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-jmespath./..///
   - [X] python-jsonschema
 
-*** TODO jwst [2/4][50%] :p1:
+*** TODO python-jwst [2/4][50%] :p1:
 - https://github.com/spacetelescope/jwst
 - version :: 1.8.2
 - [X] :packed <2022-11-06 Sun>
@@ -1976,12 +1980,13 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-tweakwcs
     - [X] :packed <2022-11-06 Sun>
 
-*** TODO poppy [3/4][75%]
+*** DONE python-poppy [4/4][100%]
+CLOSED: [2023-01-16 Mon 18:38]
 - https://github.com/spacetelescope/poppy
 - synopsis :: Physical Optics Propagation in Python
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-sent <2022-12-08 Thu>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-01-16 Mon>
   - https://issues.guix.gnu.org/59892
 - [X] :inputs [8/8][100%]
   - [X] python-astropy
@@ -1994,7 +1999,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-setuptools-scm
   - python-synphot ; failing with
 
-*** TODO pysynphot [2/4][2/4]
+*** TODO python-pysynphot [2/4][2/4]
 - https://github.com/spacetelescope/pysynphot
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2008,7 +2013,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-pytest-remotedata
   - [X] python-setuptools-scm
   - [X] python-six
-*** TODO rad [2/4][50%]
+*** TODO python-rad [2/4][50%]
 - https://github.com/spacetelescope/rad
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2020,7 +2025,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-pytest-openfiles
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** TODO spherical-geometry [2/4][50%]
+*** TODO python-spherical-geometry [2/4][50%]
 - https://github.com/spacetelescope/spherical_geometry
 - [X] :packed <2022-11-06 Sun>
 - [ ] :patch-sent
@@ -2031,14 +2036,14 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-pytest
   - [X] python-setuptools-scm
   - [X] qd
-*** TODO stcal [0/4][0%]
+*** TODO python-stcal [0/4][0%]
 - https://github.com/spacetelescope/stcal
 - sinopsys :: STScI Calibration algorithms and tools.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** TODO stdatamodels [2/4][50%]
+*** TODO python-stdatamodels [2/4][50%]
 - https://github.com/spacetelescope/stdatamodels
 - [X] :packed <2022-07-10 Sun>
 - [ ] :patch-sent
@@ -2055,7 +2060,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO stpipe [2/4][50%]
+*** TODO python-stpipe [2/4][50%]
 - https://github.com/spacetelescope/stpipe
 - [X] :packed <2022-07-10 Sun>
 - [ ] :patch-sent
@@ -2183,7 +2188,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO SunPy [4/7][57%] :author:p2:
+** TODO SunPy [4/6][66%] :author:p2:
 - https://sunpy.org/
 - https://github.com/sunpy
 *** DONE python-drms [5/5][100%]
@@ -2228,10 +2233,13 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pytest
   - [X] python-pytest-mpl
   - [X] python-setuptools-scm
+
 *** TODO python-ndcube [/][%] :p3:
 - https://github.com/sunpy/ndcube
+
 *** TODO python-radiospectra [/][%] :p3:
 - https://github.com/sunpy/radiospectra
+
 *** DONE python-sunpy [3/4][75%]
 CLOSED: [2022-11-25 Fri 21:10]
 - https://github.com/sunpy/sunpy

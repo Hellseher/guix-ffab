@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-12-15 Thu 09:38:53 GMT>
+#+modified: <2023-01-13 Fri 22:20:38 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Julia programming language rel
 - GNU Guix :: gnu/packages/julia-xyz.scm
 - FFAB :: ffab/packages/julia-xyz.scm
 
-* Flow [0/3][0%]
+* Flow [0/4][0%]
 ** TODO JuliaImages [0/3][0%] :author:
 - https://github.com/JuliaImages
 *** TODO julia-images [0/4][0%] :p3:
@@ -87,3 +87,12 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+** TODO JuliaBinaryWrappers [0/1] :author:
+*** TODO julia-cfitrsio-jll [3/4][75%] :p3:
+- https://github.com/JuliaBinaryWrappers/CFITSIO_jll.jl
+- [X] :packed <2023-01-13 Fri>
+- [X] :patch-sent <2023-01-13 Fri>
+- [ ] :patch-applied-upstream
+ - https://issues.guix.gnu.org/60793
+- [X] :inputs [1/1][100%]
+  - [X] cfitrsio

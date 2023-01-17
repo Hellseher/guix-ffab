@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-01-13 Fri 21:46:39 GMT>
+#+modified: <2023-01-17 Tue 20:29:31 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,8 +15,9 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [15/35][42%]
-** TODO 3b [3/4][75%] :author:
+* Flow [16/35][45%]
+** DONE 3b [4/4][100%] :author:
+CLOSED: [2023-01-17 Tue 20:29]
 *** DONE cl-opengl [4/4][100%]
   - https://github.com/3b/cl-opengl
   - synopsis :: cl-opengl is a set of CFFI bindings to the OpenGL, GLU and GLUT APIs.
@@ -56,17 +57,19 @@ Guix upstream.
   - [X] jsown
   - [X] split-sequence
 
-*** TODO classimp [3/4][75%] :p3:
+*** DONE classimp [4/4][100%]
+CLOSED: [2023-01-17 Tue 20:27]
 - https://github.com/3b/classimp
 - synopsis :: common lisp/cffi bindings for Open Asset Import Library
 - [X] :packed <2023-01-11 Wed>
 - [X] :patch-sent <2023-01-13 Fri>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-01-17 Tue>
   - https://issues.guix.gnu.org/60790
 - [X] :inputs
   - [X] sbcl-cffi
   - [X] assimp-5.0
     - [X] :packed <2023-01-11 Wed>
+
 ** DONE AlexCharlton [1/1][100%] :author:
 - https://github.com/AlexCharlton
 *** DONE cl-glfw3 [4/4][100%]

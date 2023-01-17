@@ -22,19 +22,9 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
-(define-public assimp-5.0
-  (package
-    (inherit assimp)
-    (name "assimp")
-    (version "5.0.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/assimp/assimp")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1w2484lg823bql7lpfq84vnsfsnag5v65qrbphslj866z9ia68l7"))))))
+;; 20230110T230445+0000
+;; (define-public assimp-5.0
+;; added-to-upstram 6393f01ab06cd5cb2976fcb0a46a28f17ac0fbea
+;; CommitDate: Tue Jan 17 14:39:06 2023 +0100
 
 ;;; graphics.scm ends here
