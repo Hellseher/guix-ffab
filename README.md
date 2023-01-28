@@ -1,13 +1,13 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#org18b9fd7)
-2.  [Installation](#orgc3ee986)
-    1.  [Use as channel](#org292861b)
-    2.  [Use as build/install source](#org4d702f2)
-3.  [References](#orgf260390)
-    1.  [Guix channels](#orge350637)
-    2.  [etc](#orgbc599ab)
+1.  [Project structure and layout](#org044ec11)
+2.  [Installation](#orgcec2c5c)
+    1.  [Use as channel](#org295cfc9)
+    2.  [Use as build/install source](#org4e74186)
+3.  [References](#org85f80e4)
+    1.  [Guix channels](#org53cdb98)
+    2.  [etc](#org84ae274)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -19,11 +19,11 @@ also can be used as stand alone Guix channel.
 The main target is to collect packages related to Astronomy, Astrophysics and group of languages
 such as **Common Lisp**, **Golan** and **Python**.
 
-`master` branch contains of packages passed lint and build procedure and is intended to be save to
+`master` branch contains packages passed lint and build procedures and is intended to be save to
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="org18b9fd7"></a>
+<a id="org044ec11"></a>
 
 # Project structure and layout
 
@@ -42,29 +42,29 @@ Layout follows Guix upstream.
     ├── scripts
     └── tmp
     
-    11 directories
+    12 directories
 
 -   **./issues.org:** Tracks all sent patches to <guix-patches@gnu.org>
 -   **./TODO.md:** Generated report from packaging process in `org/` directory.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
-    :guix-commit 983906ab72307a5b848a54233b30d9744356de07
-    :accepted 124
-    :pending 170
+    :guix-commit 1bed1d848166a4081051b4e87a5ec4942ddb3397
+    :accepted 144
+    :pending 123
     
-    :astronomy 33
+    :astronomy 25
     :golang 47
-    :lisp 48
-    :python 15
-    :misc 23
+    :lisp 14
+    :python 13
+    :misc 22
     
-    :date Thu 17 Nov 22:09:28 GMT 2022
+    :date Sat 28 Jan 22:20:28 GMT 2023
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
-modifications e.g. newer version, enabled text etc.
+modifications e.g. newer version, enabled tests etc.
 
 
-<a id="orgc3ee986"></a>
+<a id="orgcec2c5c"></a>
 
 # Installation
 
@@ -72,7 +72,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org292861b"></a>
+<a id="org295cfc9"></a>
 
 ## Use as channel
 
@@ -85,7 +85,7 @@ manager.
            %default-channels)
 
 
-<a id="org4d702f2"></a>
+<a id="org4e74186"></a>
 
 ## Use as build/install source
 
@@ -94,19 +94,22 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="orgf260390"></a>
+<a id="org85f80e4"></a>
 
 # References
 
--   **Guix Git :** <https://git.savannah.gnu.org/cgit/guix.git> Read only git repository hosted at Savanha.
--   **Guix CI:** -   <https://ci.guix.gnu.org> Main CI and substitute and substitute server
+Main official resources:
+
+-   **VCS:** <https://git.savannah.gnu.org/cgit/guix.git> Read only git repository hosted at Savanha.
+-   **CI and Substitutes:** -   <https://ci.guix.gnu.org> Main CI and substitute and server
     -   <https://bordeaux.guix.gnu.org/> Secondary substitute server
--   **Guix HPC:** <http://hpc.guix.info/> Reproducible software deployment for high-performance computing.
--   **Guix Data Service:** <https://data.guix.gnu.org/>
--   **Guix QA Service:** <https://qa.guix.gnu.org/>
+-   **HPC:** <http://hpc.guix.info/> Reproducible software deployment for high-performance computing.
+-   **Data Service:** <https://data.guix.gnu.org/>
+-   **QA Service:** <https://qa.guix.gnu.org/>
+-   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="orge350637"></a>
+<a id="org53cdb98"></a>
 
 ## Guix channels
 
@@ -124,11 +127,10 @@ manager.
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="orgbc599ab"></a>
+<a id="org84ae274"></a>
 
 ## etc
 
--   <https://github.com/UMCUGenetics/guix-additions>
 -   <https://github.com/ryanprior/guix-packages>
 -   <https://github.com/BIMSBbioinfo/guix-bimsb>
 -   <https://github.com/techenthusiastsorg/awesome-guix>

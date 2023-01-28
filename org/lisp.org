@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-01-17 Tue 20:29:31 GMT>
+#+modified: <2023-01-22 Sun 22:15:14 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -297,7 +297,36 @@ https://notabug.org/cage/cl-mount-info
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0]
+- [-] :inputs [7/29]
+  - [X] sbcl-alexandria
+  - [X] sbcl-cl+ssl
+  - [ ] sbcl-trivial-ssh
+  - [X] sbcl-drakma
+  - [X] sbcl-cl-ppcre-unicode
+  - [X] sbcl-esrap
+  - [X] sbcl-crypto-shortcuts
+  - [X] sbcl-croatoan
+  - [ ] sbcl-osicat
+  - [ ] sbcl-access
+  - [ ] sbcl-marshal
+  - [ ] sbcl-bordeaux-threads
+  - [ ] sbcl-local-time
+  - [ ] sbcl-cl-colors2
+  - [ ] sbcl-cl-i18n
+  - [ ] sbcl-ieee-floats
+  - [ ] sbcl-parse-number
+  - [ ] sbcl-unix-opts
+  - [ ] sbcl-drakma
+  - [ ] sbcl-usocket
+  - [ ] sbcl-cffi
+  - [ ] sbcl-babel
+  - [ ] sbcl-percent-encoding
+  - [ ] sbcl-cl-smtp
+  - [ ] sbcl-clop
+  - [ ] sbcl-magicffi
+  - [ ] sbcl-croatoan
+  - [ ] sbcl-yason
+  - [ ] sbcl-vom
 
 ** TODO cbaggers [4/6][66%] :author:p2:
 - https://github.com/cbaggers/

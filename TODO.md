@@ -103,17 +103,23 @@
     lisp.org               cl-adams                       [1/4][25%]  :p5:
     golang.org             age                            [/][%]      :p5:
     astronomy.org          Xspec                          [0/4][0%]   :p5:
+    astronomy.org          THELI                          [0/4][0%]   :p5:
     astronomy.org          sofa-c                         [0/4][0%]   :p5:
     astronomy.org          skycat                         [0/4][0%]   :p5:
     astronomy.org          scamp                          [0/4][0%]   :p5:
+    astronomy.org          SAOImageDS9                    [0/4][0%]   :p5:
     astronomy.org          psfex                          [1/4][25%]  :p5:
+    astronomy.org          phd2                           [0/4][%]    :p5:
     astronomy.org          ois                            [/][%]      :p5:
+    astronomy.org          losoto                         [1/4][25%]  :p5:
     astronomy.org          indi-service-type              [/][%]      :p5:
     astronomy.org          INDIGO                         [0/4]       :p5:
     astronomy.org          indi-3rdparty                  [0/4][0%]   :p5:
     astronomy.org          IDAstroL                       [/][%]      :p5:
     astronomy.org          HEAsoft                        [0/4][0%]   :p5:
+    astronomy.org          Ghoul                          [0/4]       :p5:
     astronomy.org          eclipse                        [0/4][0%]   :p5:
+    astronomy.org          ci-watson                      [1/4][25%]  :p5:
     astronomy.org          CDF                            [0/4][0%]   :p5:
     astronomy.org          astrometry                     [0/4][0%]   :p5:
     astronomy.org          AIPS                           [/][%]      :p5:
@@ -293,9 +299,25 @@
     golang.org             miller                         [1/5][20%]  :p1:
     golang.org             go/tools/gopls                 [/][%]      :p1:
     golang.org             caddy                          [0/4][0%]   :p1:
+    astronomy.org          wiimatch                       [1/4][25%]  :p1:
     astronomy.org          Torus                          [1/4][25%]  :p1:
+    astronomy.org          python-tweakwcs                [2/4][50%]  :p1:
+    astronomy.org          python-synphot                 [2/4][50%]  :p1:
+    astronomy.org          python-stsynphot               [2/4][50%]  :p1:
+    astronomy.org          python-stsci-stimage           [1/4][25%]  :p1:
+    astronomy.org          python-stsci-imagestats        [2/4][50%]  :p1:
+    astronomy.org          python-stsci-image             [2/4][50%]  :p1:
+    astronomy.org          python-stpipe                  [2/4][50%]  :p1:
+    astronomy.org          python-stdatamodels            [2/4][50%]  :p1:
+    astronomy.org          python-stcal                   [0/4][0%]   :p1:
+    astronomy.org          python-spherical-geometry      [2/4][50%]  :p1:
+    astronomy.org          python-rad                     [2/4][50%]  :p1:
+    astronomy.org          python-pysynphot               [2/4][2/4]  :p1:
     astronomy.org          python-jwst                    [2/4][50%]  :p1:
     astronomy.org          python-hissw                   [1/4][25%]  :p1:
+    astronomy.org          python-drizzle                 [2/4][50%]  :p1:
+    astronomy.org          python-datamodels              [2/4][50%]  :p1:
+    astronomy.org          python-crds                    [1/4][25%]  :p1:
     astronomy.org          python-chiantipy               [0/4][0%]   :p1:
     astronomy.org          python-casacore                [1/4][25%]  :p1:
     astronomy.org          python-aiapy                   [0/4][0%]   :p1:
@@ -333,31 +355,9 @@
     golang.org             hashicorp/terraform            [0/4][0%]   
     golang.org             hashicorp/nomad                [0/4][0%]   
     golang.org             gin-gonic/gin                  [1/4][25%]  
-    astronomy.org          wiimatch                       [1/4][25%]  
-    astronomy.org          tweakwcs                       [2/4][50%]  
-    astronomy.org          THELI                          [0/4][0%]   
-    astronomy.org          synphot                        [2/4][50%]  
-    astronomy.org          stsynphot                      [2/4][50%]  
-    astronomy.org          stsci.stimage                  [1/4][25%]  
-    astronomy.org          stsci.imagestats               [2/4][50%]  
-    astronomy.org          stsci.image                    [2/4][50%]  
     astronomy.org          skychart                       [0/4][0%]   
-    astronomy.org          SAOImageDS9                    [0/4][0%]   
-    astronomy.org          python-stpipe                  [2/4][50%]  
-    astronomy.org          python-stdatamodels            [2/4][50%]  
-    astronomy.org          python-stcal                   [0/4][0%]   
-    astronomy.org          python-spherical-geometry      [2/4][50%]  
-    astronomy.org          python-rad                     [2/4][50%]  
-    astronomy.org          python-pysynphot               [2/4][2/4]  
-    astronomy.org          phd2                           [0/4][%]    
-    astronomy.org          losoto                         [1/4][25%]  
     astronomy.org          inistarter                     [0/4][0%]   
-    astronomy.org          Ghoul                          [0/4]       
     astronomy.org          eqmodgui                       [0/4][0%]   
-    astronomy.org          drizzle                        [2/4][50%]  
-    astronomy.org          datamodels                     [2/4][50%]  
-    astronomy.org          crds                           [1/4][25%]  
-    astronomy.org          ci-watson                      [1/4][25%]  
     astronomy.org          ccdciel                        [0/4][0%]   
     
     Completed authors and projects:
