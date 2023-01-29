@@ -42,16 +42,15 @@
         (base32 "1k0mqmpyfjr3ibcmda08llw8m166zw0n3lh5y5aj81q37lrxw990"))))
     (build-system julia-build-system)
     (arguments
-     (list
-      #:tests? #f ; no runtests
+     '(#:tests? #f ; no runtests
       #:phases
-      #~(modify-phases %standard-phases
+      (modify-phases %standard-phases
           (add-after 'link-depot 'override-binary-path
             (lambda* (#:key inputs #:allow-other-keys)
               (map
                (lambda (wrapper)
                  (substitute* wrapper
-                   (("using LibCURL_jll") "") ; Not require to download cfitsio.
+                   (("using LibCURL_jll") "") ; We use Guix's cfitsio
                    (("using Zlib_jll") "") ; Not require to upnpack not donwloaded archvie.
                    (("generate_init_header.*") "generate_init_header()\n" )
                    (("generate_wrapper_header.*")
