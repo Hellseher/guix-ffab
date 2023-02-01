@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;; Copyright © 2021-2023 Sharlatan Hellseher <sharlatanus@gmail.com>
 ;;;
 ;;; This file is NOT part of GNU Guix.
 ;;;
@@ -95,51 +95,6 @@ and cuts down boilerplate code when testing libraries for asyncio.")
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; 20221109T102829+0000
-(define-public python-nox
-  (package
-    (name "python-nox")
-    (version "2022.11.21")
-    (source
-     (origin
-       (method git-fetch) ; No test in PyPi
-       (uri (git-reference
-             (url "https://github.com/wntrblm/nox")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1xfd63h75wiiyri4f7qyvy50f2ny0v4r4wx2h4px9ddbkh2k5g9p"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               ;; TODO: (Sharlatan-20230105T233012+0000): This manipulation
-               ;; looks not clear as upstream package contains
-               ;; "nox/tox_to_nox.jinja2" file which is not copied during
-               ;; install phase and causes check and sanity-check phases fail
-               ;; due to missing file. Try to find more simple solution.
-               (add-after 'unpack 'rename-tox-to-nox-jinja2
-                 (lambda _
-                   (rename-file "nox/tox_to_nox.jinja2" "nox/tox_to_nox.jinja2.py")))
-               (add-after 'install 'rename-tox-to-nox-jinja2-back
-                 (lambda _
-                   (let* ((src-file (car (find-files (string-append #$output "/lib")
-                                                     "tox_to_nox\\.jinja2\\.py$")))
-                          (dst-file (string-drop-right src-file 3)))
-                     (rename-file src-file dst-file)))))))
-    (propagated-inputs
-     (list python-argcomplete
-           python-colorlog
-           python-packaging
-           python-py
-           python-virtualenv))
-    (native-inputs
-     (list python-jinja2
-           python-pytest
-           python-tox))
-    (home-page "https://nox.thea.codes/")
-    (synopsis "Flexible test automation")
-    (description
-     "@code{nox} is a command-line tool that automates testing in multiple
-Python environments, similar to @code{tox}.  Unlike tox, Nox uses a standard
-Python file for configuration.")
-    (license license:asl2.0)))
+;; (define-public python-nox
+;; added-to-upstream 8d97c66dfe1ac1fa00e16d30ab55042e2c7ea8f0
+;; CommitDate: Tue Jan 31 23:12:40 2023 +0100
