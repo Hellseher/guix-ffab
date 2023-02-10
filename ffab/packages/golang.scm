@@ -1573,7 +1573,13 @@ simultaneously provides a controller to organize your application code.")
                 "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
     (build-system go-build-system)
     (arguments
-     (list #:import-path "github.com/arbovm/levenshtein"))
+     (list #:import-path "github.com/arbovm/levenshtein"
+           ;; Source-only package
+           #:tests? #f
+           #:phases
+           #~(modify-phases %standard-phases
+               ;; Source-only package
+               (delete 'build))))
     (home-page "https://github.com/arbovm/levenshtein")
     (synopsis "Levenshtein Distance")
     (description
