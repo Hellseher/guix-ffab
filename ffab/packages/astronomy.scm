@@ -20,21 +20,28 @@
   #:use-module (ffab packages check)
   #:use-module (ffab packages maths)
   #:use-module (ffab packages photo)
-  #:use-module (ffab packages python-xyz)
-  #:use-module (ffab packages python-web)
   #:use-module (ffab packages python-check)
+  #:use-module (ffab packages python-web)
+  #:use-module (ffab packages python-xyz)
+  #:use-module (ffab packages xml)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages bison)
+  #:use-module (gnu packages tls)
   #:use-module (gnu packages boost)
+  #:use-module (gnu packages ninja)
+  #:use-module (gnu packages qt)
   #:use-module (gnu packages check)
   #:use-module (gnu packages cmake)
+  #:use-module (gnu packages gettext)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages flex)
+  #:use-module (gnu packages gps)
+  #:use-module (gnu packages documentation)
   #:use-module (gnu packages gawk)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
@@ -1761,6 +1768,74 @@ predecessor; however, significant improvements were made to the algorithms for
 scalar SHTs, which are roughly twice as fast when using the same CPU
 capabilities.")
     (license license:gpl2)))
+
+;; 20230206T221536+0000
+(define-public stellarium-ffab
+  (package
+    (name "stellarium-ffab")
+    (version "1.2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/Stellarium/stellarium")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1655lz848k7m4vqs7n3vxjwn5n4pkykwl6x7nbanqcqzlixm5xnk"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      ;; FIXME: Tests keep failing on 100% when preparing test-suit for INDI.
+      #:tests? #f
+      #:test-target "test"
+      #:configure-flags
+      #~(list "-DENABLE_GPS=1"
+              ;; TODO: Enable when all of the dependencies are availalbe for Qt6.
+              "-DENABLE_QT6=0"
+              ;; TODO: Missing in Guix https://10110111.github.io/CalcMySky/
+              "-DENABLE_SHOWMYSKY=0"
+              "-DENABLE_TESTING=0"
+              (string-append "-DCMAKE_CXX_FLAGS=-isystem "
+                             #$(this-package-input "qtserialport") "/include/qt5"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-offscreen-display
+            (lambda _
+              (setenv "QT_QPA_PLATFORM" "offscreen")
+              (setenv "HOME" "/tmp"))))))
+    (inputs
+     (list gpsd
+           indi
+           libnova
+           openssl
+           qtbase-5
+           qtcharts
+           qtlocation
+           qtmultimedia-5
+           qtpositioning
+           qtscript
+           qtserialport
+           qttranslations
+           qtwebengine-5
+           qxlsx
+           zlib))
+    (native-inputs
+     (list doxygen
+           gettext-minimal
+           graphviz
+           mesa
+           perl
+           python-wrapper
+           qttools-5))
+    (home-page "https://stellarium.org/")
+    (synopsis "3D sky viewer")
+    (description
+     "Stellarium is a planetarium.  It shows a realistic sky in
+3D, just like what you see with the naked eye, binoculars, or a telescope.  It
+can be used to control telescopes over a serial port for tracking celestial
+objects.")
+    (license license:gpl2+)))
 
 ;; TODO: (Sharlatan-20221102T213300+0000): Failing on configure step
 ;;
