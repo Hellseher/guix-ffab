@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2023-01-28 Sat 21:58:27 GMT>
+# Modified : <2023-02-10 Fri 23:44:47 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -66,7 +66,7 @@ PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 
 # Add each group of packages to this macros when all pending changes are
 # completed in corresponded WIP branch.
-PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP)
+PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP) $(PKGS_GOLANG)
 
 GUIX_FLAGS ?= --load-path=./
 GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS)
