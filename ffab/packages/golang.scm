@@ -2237,31 +2237,34 @@ Highlighted features:
      ;; NOTE: (Sharlatan-20220813T142811+0100): Some tests require remote access
      ;; and tryes to download external git repositories
      ;; Disable them or find a way to make them availalbe as inputs.
-     '(#:tests? #f
-       #:import-path "github.com/jesseduffield/go-git"))
+     (list #:tests? #f
+           #:import-path "github.com/jesseduffield/go-git"))
     (native-inputs (list git))
-    (propagated-inputs (list go-github-com-armon-go-socks5
-                             go-github-com-emirpasic-gods
-                             go-github-com-gliderlabs-ssh
-                             go-github-com-go-git-gcfg ;Upstream fix require
-                             go-github-com-go-git-go-billy-v5
-                             go-github-com-go-git-go-git-fixtures-v4
-                             go-github-com-google-go-cmp-cmp
-                             go-github-com-imdario-mergo
-                             go-github-com-jbenet-go-context
-                             go-github-com-jessevdk-go-flags
-                             go-github-com-kevinburke-ssh-config
-                             go-github-com-mitchellh-go-homedir
-                             go-github-com-sergi-go-diff
-                             go-github-com-xanzy-ssh-agent
-                             go-golang-org-x-crypto
-                             go-golang-org-x-net
-                             go-golang-org-x-text
-                             go-gopkg-in-check-v1))
+    (propagated-inputs
+     (list go-github-com-armon-go-socks5
+           go-github-com-emirpasic-gods
+           go-github-com-gliderlabs-ssh
+           go-github-com-go-git-gcfg ;Upstream fix require
+           go-github-com-go-git-go-billy-v5
+           go-github-com-go-git-go-git-fixtures-v4
+           go-github-com-google-go-cmp-cmp
+           go-github-com-imdario-mergo
+           go-github-com-jbenet-go-context
+           go-github-com-jessevdk-go-flags
+           go-github-com-kevinburke-ssh-config
+           go-github-com-mitchellh-go-homedir
+           go-github-com-sergi-go-diff
+           go-github-com-xanzy-ssh-agent
+           go-golang-org-x-crypto
+           go-golang-org-x-net
+           go-golang-org-x-text
+           go-gopkg-in-check-v1
+           go-gopkg-in-warnings))
     (home-page "https://github.com/jesseduffield/go-git")
-    (synopsis "Project Status")
+    (synopsis "Git implementation in pure Go")
     (description
-     "This package provides a highly extensible git implementation in pure Go.")
+     "This package provides a git implementation in pure Go. It's a modified fork of
+original go-git/go-git project.")
     (license license:asl2.0)))
 
 ;; 20220803T215957+0100
