@@ -1083,35 +1083,6 @@ Highlighted features:
 @end itemize")
     (license license:bsd-3)))
 
-;; 20220516T220629+0100
-;; NOTE: (Sharlatan-20220813T150910+0100): Check if it can be removed from
-;; depended package inputs.
-(define go-github-com-microsoft-go-winio
-  (package
-    (name "go-github-com-microsoft-go-winio")
-    (version "0.5.2")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/microsoft/go-winio")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "19rzcwq07c2y7c06pkjjc8pbg68a24g1khwp7cdc5ypfzj509sc3"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/Microsoft/go-winio"))
-    (propagated-inputs `(("go-golang-org-x-sys" ,go-golang-org-x-sys)
-                         ("go-github-com-sirupsen-logrus" ,go-github-com-sirupsen-logrus)))
-    (home-page "https://github.com/Microsoft/go-winio")
-    (synopsis "go-winio")
-    (description
-     "This repository contains utilities for efficiently performing Win32 IO
-operations in Go.  Currently, this is focused on accessing named pipes and other
-file handles, and for using named pipes as a net transport.")
-    (license license:expat)))
-
 ;; 20220516T220713+0100
 (define-public go-github-com-azure-go-ansiterm
   (package
