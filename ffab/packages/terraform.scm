@@ -234,7 +234,7 @@
            go-k8s-io-klog-v2
            go-k8s-io-utils
            go-sigs-k8s-io-structured-merge-diff-v4
-           go-sigs-k8s-io-yaml)
+           go-sigs-k8s-io-yaml))
     (home-page "https://github.com/hashicorp/terraform")
     (synopsis "Declarative configuration manager for cloud and on-premises infrastructure")
     (description
