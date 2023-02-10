@@ -29,7 +29,7 @@
   #:use-module (guix packages))
 
 ;; 20220615T213902+0100
-(define-public dive
+(define dive
   (package
     (name "dive")
     (version "0.10.0")
@@ -98,7 +98,7 @@
     (license license:expat)))
 
 ;; 20220515T222856+0100
-(define-public go-github-com-opencontainers-image-spec
+(define go-github-com-opencontainers-image-spec
   (package
     (name "go-github-com-opencontainers-image-spec")
     (version "1.0.2")
@@ -121,7 +121,7 @@ container image format spec (OCI Image Format).")
     (license license:asl2.0)))
 
 ;; 20220515T222938+0100
-(define-public go-github-com-opencontainers-go-digest
+(define go-github-com-opencontainers-go-digest
   (package
     (name "go-github-com-opencontainers-go-digest")
     (version "1.0.0")
@@ -147,7 +147,7 @@ effort.")
     (license (list license:asl2.0 license:cc-by-sa4.0))))
 
 ;; 20220515T223615+0100
-(define-public go-github-com-docker-cli
+(define go-github-com-docker-cli
   (package
     (name "go-github-com-docker-cli")
     (version "20.10.16+incompatible")

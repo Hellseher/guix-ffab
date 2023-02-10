@@ -29,7 +29,7 @@
   #:use-module (guix packages))
 
 ;; 20211212T190623+0000
-(define-public terraform
+(define terraform
   (package
     (name "terraform")
     (version "1.3.4")
