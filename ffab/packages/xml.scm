@@ -59,6 +59,6 @@
      (home-page "https://qtexcel.github.io/QXlsx/")
      (synopsis "C++ library to read/write Excel XLSX files using Qt")
      (description
-      "QXlsx is a successor of QtXlsx and providies a functionality to work with Excel XLSX
-document format.")
-     (license license:expat )))
+      "QXlsx is a successor of QtXlsx and providies a functionality to work with Excel
+XLSX document format.")
+     (license license:expat)))
