@@ -1559,29 +1559,27 @@ simultaneously provides a controller to organize your application code.")
 
 ;; 20220803T212310+0100
 (define-public go-github-com-arbovm-levenshtein
-  (let ((commit "48b4e1c0c4d0b8b1864f1bd2cd31bb20147e4636")
-        (revision "1"))
-    (package
-      (name "go-github-com-arbovm-levenshtein")
-      (version (git-version "0.0.1" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/arbovm/levenshtein")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
-      (build-system go-build-system)
-      (arguments
-       '(#:import-path "github.com/arbovm/levenshtein"))
-      (home-page "https://github.com/arbovm/levenshtein")
-      (synopsis "Levenshtein Distance")
-      (description
-       "@url{http://golang.org,Go} package to calculate the
+  (package
+    (name "go-github-com-arbovm-levenshtein")
+    (version "0.0.0-20160628152529-48b4e1c0c4d0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/arbovm/levenshtein")
+                    (commit (go-version->git-ref version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0nmx2iip8xpnbmy6gvqpc9ikizr33dr40xgv746h0b0by8n7rv7y"))))
+    (build-system go-build-system)
+    (arguments
+     (list #:import-path "github.com/arbovm/levenshtein"))
+    (home-page "https://github.com/arbovm/levenshtein")
+    (synopsis "Levenshtein Distance")
+    (description
+     "@url{http://golang.org,Go} package to calculate the
 @url{http://en.wikipedia.org/wiki/Levenshtein_distance,Levenshtein Distance}")
-      (license license:bsd-3))))
+    (license license:bsd-3)))
 
 ;; 20220803T210624+0100
 ;; NOTE: (Sharlatan-20220813T150314+0100): Check what is for, fix build.
