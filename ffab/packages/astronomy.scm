@@ -20,21 +20,28 @@
   #:use-module (ffab packages check)
   #:use-module (ffab packages maths)
   #:use-module (ffab packages photo)
-  #:use-module (ffab packages python-xyz)
-  #:use-module (ffab packages python-web)
   #:use-module (ffab packages python-check)
+  #:use-module (ffab packages python-web)
+  #:use-module (ffab packages python-xyz)
+  #:use-module (ffab packages xml)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages algebra)
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages bison)
+  #:use-module (gnu packages tls)
   #:use-module (gnu packages boost)
+  #:use-module (gnu packages ninja)
+  #:use-module (gnu packages qt)
   #:use-module (gnu packages check)
   #:use-module (gnu packages cmake)
+  #:use-module (gnu packages gettext)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages flex)
+  #:use-module (gnu packages gps)
+  #:use-module (gnu packages documentation)
   #:use-module (gnu packages gawk)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages gl)
@@ -66,6 +73,7 @@
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages readline)
+  #:use-module (gnu packages sphinx)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages tcl)
   #:use-module (gnu packages textutils)
@@ -91,6 +99,11 @@
 ;; (define-public splash
 ;; added-to-upstream 43b8df4bece2a207018dc0fedc44d3d188d2d0f0
 ;; CommitDate: Thu Oct 6 00:11:18 2022 +0200
+
+;; 20221115T204848+0000
+;; (define-public alfa
+;; added-to-upstream 594f5ef35107d5641c44dac5cd7e9fb3737b674b
+;; CommitDate: Fri Dec 2 00:02:12 2022 +0100
 
 ;; 20220619T144120+0100
 (define-public funtools
@@ -271,9 +284,9 @@ appropriate.")
 ;;  66 - tPath (Failed)
 ;; 189 - tExprNode (Failed)
 ;; NOTE: (Sharlatan-20220624T202307+0100): working on tests
-(define ffab-casacore
+(define casacore-ffab
   (package
-    (name "ffab-casacore")
+    (name "casacore-ffab")
     (version "3.4.0")
     (source (origin
               (method git-fetch)
@@ -623,256 +636,38 @@ planetarium.")
 ;;+begin-asdf-format
 
 ;; 20221019T231950+0100
-(define-public python-asdf-standard
-  (package
-    (name "python-asdf-standard")
-    (version "1.0.3")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_standard" version))
-       (sha256
-        (base32
-         "0i7xdjwn5prg2hcnf1zhw57mszc68jjr5sv4rimpzcg7f2dgzn5g"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (add-before 'check 'remove-blocking-tests
-                          (lambda _
-                            ;; Remove tests require python-asdf where
-                            ;; python-asdf require python-asdf-standard,
-                            ;; break circular dependencies.
-                            (for-each delete-file
-                                      (list "tests/test_manifests.py"
-                                            "tests/test_integration.py")))))))
-    (native-inputs (list python-astropy
-                         python-jsonschema-next
-                         python-pypa-build
-                         python-pytest-7.1
-                         python-packaging
-                         python-setuptools-scm))
-    (propagated-inputs (list python-importlib-resources))
-    (home-page "https://asdf-standard.readthedocs.io/")
-    (synopsis "ASDF standard schemas")
-    (description
-     "This package provides Python implementation of @acronym{ASDF, Advanced
-Scientific Data Format} - a proposed next generation interchange format for
-scientific data.  ASDF aims to exist in the same middle ground that made FITS
-so successful, by being a hybrid text and binary format: containing human
-editable metadata for interchange, and raw binary data that is fast to load
-and use.  Unlike FITS, the metadata is highly structured and is designed
-up-front for extensibility.")
-    (license license:bsd-3)))
+;; (define-public python-asdf-standard
+;; added-to-upstream 1b03c64a05a319631a82cd15b9dda914e94c5142
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225444+0100
-(define python-asdf-unit-schemas
-  (package
-    (name "python-asdf-unit-schemas")
-    (version "0.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_unit_schemas" version))
-       (sha256
-        (base32
-         "16grpx3a9h0v1wirp0zqrfsxm867v5c0xyr98pylzziy45kqvds2"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; Dependencies cycle with python-asdf
-     (list #:tests? #f))
-    (native-inputs (list python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard python-importlib-resources))
-    (home-page "https://asdf-unit-schemas.readthedocs.io/")
-    (synopsis "ASDF serialization schemas for the units defined by @code{astropy.units}")
-    (description "This package provides ASDF schemas for validating unit tags.")
-    (license license:bsd-3)))
+;; (define python-asdf-unit-schemas
+;; added-to-upstream f99a1e257d7ba5995afcf05f429d79d6f097a517
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225455+0100
-(define python-asdf-fits-schemas
-  ;; TODO: (Sharlatan-20221107T212819+0000): No release, change to tag when it's ready.
-  (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
-        (revision "0"))
-    (package
-      (name "python-asdf-fits-schemas")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/asdf-format/asdf-fits-schemas")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
-      (build-system pyproject-build-system)
-      (arguments
-       ;; Dependencies cycle with python-asdf
-       (list
-        #:tests? #f
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'build 'set-version
-              (lambda _
-                ;; NOTE: (Sharlatan-20221023T220057+0100): Update
-                ;; to valid version when release is availalbe.
-                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
-      (native-inputs (list python-setuptools-scm))
-      (propagated-inputs (list python-asdf-standard python-importlib-resources))
-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
-      (synopsis "ASDF schemas to support the FITS format")
-      (description "This package provides ASDF schemas for validating FITS tags.")
-      (license license:bsd-3))))
+;; (define python-asdf-fits-schemas
+;; added-to-upstream 6924f4a866dbda02b15b075f7718d4aa794090f3
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225504+0100
-(define-public python-asdf-time-schemas
-  ;; TODO: (Sharlatan-20221107T214641+0000): No release, change to tag when it's ready.
-  (let ((commit "e9174083d9cfd3c6f7ded9eeb360d99ccb8d9d18")
-        (revision "2"))
-    (package
-      (name "python-asdf-time-schemas")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/asdf-format/asdf-time-schemas")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32
-           "1i40hcxp8sds2zq939fwczjlshfqb9r9pnzy3a44c3wqdbwhcbdb"))))
-      (build-system pyproject-build-system)
-      (arguments
-       (list
-        ;; Dependencies cycle with python-asdf
-        #:tests? #f
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'build 'set-version
-              (lambda _
-                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
-      (native-inputs (list python-setuptools-scm))
-      (propagated-inputs (list python-asdf-standard
-                               python-asdf-unit-schemas
-                               python-importlib-resources))
-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
-      (synopsis "Schemas for storing time in ASDF")
-      (description "This package provides ASDF schemas for validating time tags.")
-      (license license:bsd-3))))
+;; (define python-asdf-time-schemas
+;; added-to-upstream 2959b98a720fb60e54d09128aa08d109f6601f02
+;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
-;; 20221023T225515+0100
-(define python-asdf-transform-schemas-0.3
-  (package
-    (name "python-asdf-transform-schemas")
-    (version "0.3.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_transform_schemas" version))
-       (sha256
-        (base32 "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; Dependencies cycle with python-asdf
-     (list #:tests? #f))
-    (native-inputs (list python-setuptools-scm))
-    (propagated-inputs (list python-asdf-standard python-importlib-resources))
-    (home-page "https://github.com/asdf-format/asdf-transform-schemas")
-    (synopsis "ASDF schemas for transforms")
-    (description
-     "This package provides ASDF schemas for validating transform tags.  Users
-should not need to install this directly; instead, install an implementation
-package such as asdf-astropy.")
-    (license license:bsd-3)))
+;; 20211111234021+0000
+;; (define python-asdf-transform-schemas
+;; added-to-upstream 89a5c53f382eec3dc4e2b60d819b39ada003df44
+;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
+;; 20211111235021+0000
 ;; (define-public python-asdf
 ;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
 
-;; 20221023T225530+0100
-(define-public python-asdf-2.13
-  (package
-    (name "python-asdf")
-    (version "2.13.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf" version))
-       (sha256
-        (base32 "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
-    (build-system pyproject-build-system)
-    (arguments
-     ;; FIXME: (Sharlatan-20221023T232214+0100): Tests fail a lot with
-     ;;
-     ;; ERROR  - _pytest.pathlib.ImportPathMismatchError: ('asdf.conftest', '/gnu/sto...
-     ;;
-     (list
-      #:tests? #f))
-    (native-inputs
-     (list python-astropy
-           python-packaging
-           python-psutil
-           python-pytest
-           python-pytest-doctestplus
-           python-pytest-openfiles
-           python-pytest-remotedata
-           python-semantic-version
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-asdf-standard
-           python-asdf-transform-schemas-0.3
-           python-asdf-unit-schemas
-           python-importlib-metadata
-           python-importlib-resources
-           python-jmespath
-           python-jsonschema-next
-           python-lz4
-           python-numpy
-           python-pyyaml))
-    (home-page "https://github.com/asdf-format/asdf")
-    (synopsis "Python tools to handle ASDF files")
-    (description
-     "The Advanced Scientific Data Format (ASDF) is a next-generation
-interchange format for scientific data.  This package contains the Python
-implementation of the ASDF Standard.")
-    (license license:bsd-3)))
-
 ;; (define python-asdf-wcs-schemas
 ;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define ffab-python-asdf-wcs-schemas
-  (package
-    (name "ffab-python-asdf-wcs-schemas")
-    (version "0.1.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_wcs_schemas" version))
-       (sha256
-        (base32 "0khyab9mnf2lv755as8kwhk3lqqpd3f4291ny3b9yp3ik86fzhz1"))))
-    (build-system python-build-system)
-    (arguments
-     `(#:phases
-       (modify-phases %standard-phases
-         (replace 'check
-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
-             (when tests?
-               (add-installed-pythonpath inputs outputs)
-               (invoke "python" "-m" "pytest")))))))
-    (native-inputs
-     (list python-pytest
-           python-setuptools-scm
-           python-semantic-version))
-    (propagated-inputs
-     (list python-asdf))
-    (home-page "https://github.com/asdf-format/asdf-wcs-schemas")
-    (synopsis "ASDF WCS Schemas")
-    (description
-     "This package provides ASDF schemas for validating World Coordinate
-System (WCS) tags.  Users should not need to install this directly; instead,
-install an implementation package such as gwcs.")
-    (license license:bsd-3)))
 
 ;; (define python-asdf-coordinates-schemas
 ;; added-to-upastream: 527ee1bdc82d608dc41438c4f3c6e86260aecb85
@@ -881,6 +676,7 @@ install an implementation package such as gwcs.")
 ;; (define python-asdf-transform-schemas
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
+
 ;;+end-asdf-format
 
 ;; (define-public python-astroalign
@@ -893,69 +689,15 @@ install an implementation package such as gwcs.")
 ;; (define-public python-astropy
 ;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
+;; 20211111235021+0000
 ;; (define-public python-asdf-astropy
 ;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
-;; 20221024T221046+0100
-(define-public python-asdf-astropy-0.2
-  (package
-    (inherit python-asdf-astropy)
-    (version "0.2.2")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "asdf_astropy" version))
-       (sha256
-        (base32
-         "1b0v4cl7xvly3x1k5k2rvc2l32jqgqp0iyf1j20fkvj450sx74f2"))))
-    ;; NOTE: (Sharlatan-20221024T220911+0100): Update upstream package's test
-    ;; phase to have more verbose levels.
-    ;; Tests have warnings:
-    ;;
-    ;; asdf/entry_points.py:44: AsdfWarning: asdf.resource_mappings plugin from
-    ;; package asdf-standard==1.0.3 failed to load:
-    ;;
-    (propagated-inputs
-     (modify-inputs (package-propagated-inputs python-asdf-astropy)
-       (replace "python-asdf-transform-schemas" python-asdf-transform-schemas-0.3)))))
-
-(define-public python-reproject
-  (package
-    (name "python-reproject")
-    (version "0.9")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "reproject" version))
-              (sha256
-               (base32
-                "0bbykik31jjpdan632izfrjq4zhb7v5p5ka98xrmy2g5r3hch66f"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:tests? #f ;Circular dependencies with python-sunpy
-           #:phases #~(modify-phases %standard-phases
-                        (add-before 'install 'writable-compiler
-                          (lambda _
-                            (make-file-writable "reproject/_compiler.c")))
-                        (add-before 'check 'writable-compiler
-                          (lambda _
-                            (make-file-writable "reproject/_compiler.c")))
-                        (add-before 'check 'writable-home
-                          (lambda _
-                            (setenv "HOME"
-                                    (getcwd)))))))
-    (propagated-inputs (list python-astropy python-astropy-healpix
-                             python-numpy python-scipy))
-    (native-inputs (list python-cython python-extension-helpers
-                         python-setuptools-scm))
-    (home-page "https://reproject.readthedocs.io")
-    (synopsis "Astronomical image reprojection in Python")
-    (description
-     "This package provides a functionality to reproject astronomical images using
-various techniques via a uniform interface, where reprojection is the
-re-gridding of images from one world coordinate system to another e.g.
-changing the pixel resolution, orientation, coordinate system.")
-    (license license:bsd-3)))
+;; 20221123T230513+0000
+;; (define-public python-reproject
+;; added-to-upstream a3d85918f90e31118bc9b7e483520d0ae6192e3d
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221107T133138+0000
 (define-public python-astroplan
@@ -1054,54 +796,10 @@ for variables with units.")
 ;; https://github.com/spacetelescope
 ;;+begin-spacetelescope
 
+;; 20211111T235042+0000
 ;; (define-public python-gwcs
 ;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
-(define-public ffab-python-gwcs
-  (package
-    (name "ffab-python-gwcs")
-    (version "0.18.2")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "gwcs" version))
-       (sha256
-        (base32 "0v9qcq6zl74d6s882s6xmas144jfalvll6va8rvrxmvpx4vqjzhg"))))
-    (build-system python-build-system)
-    (arguments
-     `(#:phases
-       (modify-phases %standard-phases
-         (replace 'check
-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
-             (when tests?
-               (add-installed-pythonpath inputs outputs)
-               (invoke "python" "-m" "pytest")))))))
-    (native-inputs
-     (list python-jsonschema-next
-           python-jmespath
-           python-pytest
-           python-pytest-doctestplus
-           python-pyyaml
-           python-semantic-version
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-asdf-2.13
-           python-asdf-astropy-0.2
-           ffab-python-asdf-wcs-schemas
-           python-astropy
-           python-numpy
-           python-scipy))
-    (home-page "https://gwcs.readthedocs.io/en/latest/")
-    (synopsis "Generalized World Coordinate System")
-    (description "Generalized World Coordinate System (GWCS) is an Astropy
-affiliated package providing tools for managing the World Coordinate System of
-astronomical data.
-
-GWCS takes a general approach to the problem of expressing transformations
-between pixel and world coordinates.  It supports a data model which includes
-the entire transformation pipeline from input coordinates (detector by
-default) to world coordinates.")
-    (license license:bsd-3)))
 
 ;; 20220131T235042+0000
 (define-public python-jwst
@@ -1132,13 +830,13 @@ default) to world coordinates.")
           ;; Requirement.parse('stcal<1.3,>=1.2.1'), {'jwst'})
           ;;
           (delete 'sanity-check))))
-    (propagated-inputs (list python-asdf-2.13
-                             python-asdf-astropy-0.2
+    (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-astropy
                              python-bayesicfitting
                              python-crds
                              python-drizzle
-                             ffab-python-gwcs
+                             python-gwcs
                              python-jsonschema
                              python-numpy
                              python-photutils
@@ -1242,8 +940,8 @@ data.")
                             (substitute* "tests/test_stnode.py"
                               (("def test_serialization")
                                "def __off_test_serialization")))))))
-    (propagated-inputs (list python-asdf-2.13
-                             python-asdf-astropy-0.2
+    (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-astropy
                              python-jsonschema-next
                              python-numpy
@@ -1278,7 +976,7 @@ calibration pipelines.")
                (base32
                 "1n0y8mk32dh5kaic634ps4rc6ijaniag2zm91isi0vs8g19pv1hx"))))
     (build-system pyproject-build-system)
-    (propagated-inputs (list python-asdf-2.13))
+    (propagated-inputs (list python-asdf))
     (native-inputs (list python-pytest
                          python-pytest-doctestplus
                          python-pytest-openfiles
@@ -1302,7 +1000,7 @@ calibration pipelines.")
                 "08b2qgk81vximjjn88db7xc0lwg394rpbivk0jwd63sr3gsbsllb"))))
     (build-system pyproject-build-system)
     (propagated-inputs (list python-astropy
-                             ffab-python-gwcs
+                             python-gwcs
                              python-numpy
                              python-packaging
                              python-spherical-geometry
@@ -1409,44 +1107,9 @@ greatly simplified.")
     (license license:bsd-3)))
 
 ;; 20220706T114426+0100
-(define-public python-poppy
-  (package
-    (name "python-poppy")
-    (version "1.0.3")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "poppy" version))
-              (sha256
-               (base32
-                "050cn6aabd1dxbi7zihbqnkl79hz6q6d5n6g25zmrpvc4sii171m"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (invoke "pytest" "-vv" "poppy/tests")))))))
-    (propagated-inputs (list python-astropy
-                             python-matplotlib
-                             python-numpy
-                             python-scipy
-                             ;; With this package enabled it tries to download from remote host
-                             ;; during tests and failes
-                             ;; python-synphot
-                             ))
-    (native-inputs (list python-h5py python-pytest python-pytest-astropy
-                         python-setuptools-scm))
-    (home-page "https://poppy-optics.readthedocs.io/")
-    (synopsis "Physical Optics Propagation in Python")
-    (description
-     "@acronym{POPPY, Physical Optics Propagation in Python} is a Python package that
-simulates physical optical propagation including diffraction.  It implements a
-flexible framework for modeling Fraunhofer and Fresnel diffraction and point
-spread function formation, particularly in the context of astronomical
-telescopes.")
-    (license license:bsd-3)))
+;; (define-public python-poppy
+;; added-to-upstream 8514a7532591b97c2adbe8a20cb4e630ff6b8654
+;; CommitDate: Mon Jan 16 12:13:07 2023 -0500
 
 ;; 20220706T135507+0100
 (define-public python-synphot
@@ -1629,7 +1292,7 @@ behaviour of the IRAF's")
       ;; ERROR collecting...
       ;;
       #:tests? #f))
-    (propagated-inputs (list python-asdf-2.13
+    (propagated-inputs (list python-asdf
                              python-astropy
                              python-jsonschema-next
                              python-numpy
@@ -1665,7 +1328,7 @@ behaviour of the IRAF's")
       ;; ERROR collecting...
       ;;
       #:tests? #f))
-    (propagated-inputs (list python-asdf-2.13
+    (propagated-inputs (list python-asdf
                              python-astropy
                              python-crds
                              python-semantic-version
@@ -1789,7 +1452,7 @@ using (multivariate) polynomials.")
             (delete 'sanity-check))))
     (propagated-inputs (list ;awscli
                              ;; python-jwst ;; circular dependency
-                             python-asdf-2.13
+                             python-asdf
                              python-astropy
                              python-boto3
                              python-filelock
@@ -1934,120 +1597,24 @@ based on the HDF5 standard")
 ;;+begin-sunpy
 
 ;; 20220627T202513+0100
-(define-public python-sunpy
-  (package
-    (name "python-sunpy")
-    (version "4.0.6")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "sunpy" version))
-              (sha256
-               (base32
-                "0aiirb6l8zshdrpsvh6d5ki759ah9zfm9gbl0in985hprwwxyrq1"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'install 'writable-compiler
-            (lambda _
-              (make-file-writable "sunpy/_compiler.c")))
-          (add-before 'check 'prepare-test-environment
-            (lambda _
-              (setenv "HOME" "/tmp")
-              (make-file-writable "sunpy/_compiler.c")
-              ;; TODO: (Sharlatan-20221106T115800+0000): Review failing tests
-              (substitute* "sunpy/image/tests/test_transform.py"
-                (("def test_clipping") "def __off_test_clipping")
-                (("def test_nans") "def __off_test_nans")
-                (("def test_endian") "def __off_test_endian"))
-              (substitute* "sunpy/map/tests/test_mapbase.py"
-                (("def test_derotating_nonpurerotation_pcij")
-                 "def __off_test_derotating_nonpurerotation_pcij"))
-              (substitute* "sunpy/map/sources/tests/test_mdi_source.py"
-                (("def test_synoptic_source")
-                 "def __off_test_synoptic_source"))
-              (substitute* "sunpy/tests/tests/test_self_test.py"
-                (("def test_main_nonexisting_module")
-                 "def __off_test_main_nonexisting_module")
-                (("def test_main_stdlib_module")
-                 "def __off_test_main_stdlib_module")))))))
-    (native-inputs (list python-aiohttp
-                         python-extension-helpers
-                         python-packaging
-                         python-pytest
-                         python-pytest-astropy
-                         python-pytest-doctestplus
-                         python-pytest-mock
-                         python-pytest-mpl
-                         python-pytest-xdist
-                         python-setuptools-scm))
-    (inputs (list python-asdf-2.13
-                  python-asdf-astropy-0.2
-                  python-astropy
-                  python-beautifulsoup4
-                  python-cdflib
-                  python-dask
-                  python-dateutil
-                  python-drms
-                  python-glymur
-                  python-h5netcdf
-                  python-h5py
-                  python-hypothesis
-                  python-jplephem
-                  python-matplotlib
-                  python-mpl-animators
-                  python-numpy
-                  ;; python-opencv-python ; not packed yet
-                  parfive
-                  python-pandas
-                  python-reproject
-                  python-scikit-image
-                  python-scipy
-                  python-semantic-version
-                  python-sqlalchemy
-                  python-tqdm
-                  python-zeep))
-    (home-page "https://sunpy.org")
-    (synopsis "Python library for Solar Physics")
-    (description
-     "SunPy is package for solar physics and is meant to be a free alternative to the
-SolarSoft data analysis environment.")
-    (license license:bsd-2)))
+;; (define-public python-sunpy
+;; added-to-upstream 78ee6dcfe13c1561ff1d5cdfc2c2d4fa8afe0883
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;20220627T213949+0100
-(define-public python-drms
-  (package
-    (name "python-drms")
-    (version "0.6.3")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "drms" version))
-              (sha256
-               (base32
-                "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key inputs outputs tests?
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (setenv "JSOC_EMAIL" "jsoc@sunpy.org")
-                              (invoke "python" "-m" "pytest" "-vv")))))))
-    (native-inputs (list python-astropy python-pytest-astropy python-pytest
-                         python-setuptools-scm))
-    (propagated-inputs (list python-numpy python-pandas))
-    (home-page "https://sunpy.org")
-    (synopsis
-     "Access astronomical HMI, AIA and MDI data with Python from the public JSOC DRMS server")
-    (description
-     "DRMS module provides an easy-to-use interface for accessing HMI, AIA and MDI
-data with Python.  It uses the publicly accessible
-JSOC (@url{http://jsoc.stanford.edu/}) DRMS server by default, but can also be
-used with local NetDRMS sites.")
-    (license license:bsd-2)))
+;; (define-public python-drms
+;; added-to-upstream 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
+
+;; 20220702T165531+0100
+;; (define-public python-mpl-animators
+;; added-to-upstream 0458cbd84c03068241dfaf293b0594ec07dc2019
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
+
+;; 20221123T225008+0000
+;; (define-public python-hvpy
+;; added-to-upstream 0575012803683ebacd43029530683af7bdf791f9
+;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;+end-sunpy
 
@@ -2132,42 +1699,9 @@ can compute its position at any other time, no matter how remote.")
       (license license:gpl2+))))
 
 ;; 20221020T220443+0100
-(define-public siril
-  (package
-    (name "siril")
-    (version "1.0.6")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://gitlab.com/free-astro/siril")
-                    (commit version)))
-              (sha256
-               (base32
-                "0iqxb5zmjyygg4b6lwlq8z82mngxg7kjjpahhzk52m0cypfq0l18"))
-              (file-name (git-file-name name version))))
-    (build-system meson-build-system)
-    (native-inputs (list cmake git glib libconfig pkg-config))
-    (inputs (list cfitsio
-                  exiv2
-                  fftwf
-                  gsl
-                  gtk+
-                  json-glib
-                  libraw
-                  librtprocess
-                  opencv))
-    (home-page "https://siril.org/")
-    (synopsis "Image processing software for amateur astronomy")
-    (description
-     "This package provides an astronomical image processing tool - SIRIL.  It is
-specially tailored for noise reduction and improving the signal/noise ratio of
-an image from multiple captures, as required in astronomy.  SIRIL can align
-automatically or manually, stack and enhance pictures from various file formats,
-even image sequence files (films and SER files).  It works well with limited
-system resources, like in embedded platforms, but is also very fast when run on
-more powerful computers and provides conversion to FITS from a large number of
-image formats.")
-    (license license:gpl3)))
+;; (define-public siril
+;; added-to-upstream 8d7c96284a2e32553f86df0faf378f185913cce7
+;; CommitDate: Mon Nov 14 12:31:34 2022 +0100
 
 ;; 20221101T215432+0000
 (define-public libsharp
@@ -2234,6 +1768,74 @@ predecessor; however, significant improvements were made to the algorithms for
 scalar SHTs, which are roughly twice as fast when using the same CPU
 capabilities.")
     (license license:gpl2)))
+
+;; 20230206T221536+0000
+(define-public stellarium-ffab
+  (package
+    (name "stellarium-ffab")
+    (version "1.2")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/Stellarium/stellarium")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1655lz848k7m4vqs7n3vxjwn5n4pkykwl6x7nbanqcqzlixm5xnk"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      ;; FIXME: Tests keep failing on 100% when preparing test-suit for INDI.
+      #:tests? #f
+      #:test-target "test"
+      #:configure-flags
+      #~(list "-DENABLE_GPS=1"
+              ;; TODO: Enable when all of the dependencies are availalbe for Qt6.
+              "-DENABLE_QT6=0"
+              ;; TODO: Missing in Guix https://10110111.github.io/CalcMySky/
+              "-DENABLE_SHOWMYSKY=0"
+              "-DENABLE_TESTING=0"
+              (string-append "-DCMAKE_CXX_FLAGS=-isystem "
+                             #$(this-package-input "qtserialport") "/include/qt5"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-offscreen-display
+            (lambda _
+              (setenv "QT_QPA_PLATFORM" "offscreen")
+              (setenv "HOME" "/tmp"))))))
+    (inputs
+     (list gpsd
+           indi
+           libnova
+           openssl
+           qtbase-5
+           qtcharts
+           qtlocation
+           qtmultimedia-5
+           qtpositioning
+           qtscript
+           qtserialport
+           qttranslations
+           qtwebengine-5
+           qxlsx
+           zlib))
+    (native-inputs
+     (list doxygen
+           gettext-minimal
+           graphviz
+           mesa
+           perl
+           python-wrapper
+           qttools-5))
+    (home-page "https://stellarium.org/")
+    (synopsis "3D sky viewer")
+    (description
+     "Stellarium is a planetarium.  It shows a realistic sky in
+3D, just like what you see with the naked eye, binoculars, or a telescope.  It
+can be used to control telescopes over a serial port for tracking celestial
+objects.")
+    (license license:gpl2+)))
 
 ;; TODO: (Sharlatan-20221102T213300+0000): Failing on configure step
 ;;

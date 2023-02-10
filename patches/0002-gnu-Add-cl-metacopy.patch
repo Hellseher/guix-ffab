@@ -1,0 +1,58 @@
+From fd16e32084766681b683193aac1a8670cd1f4b5e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 17 Nov 2022 23:10:17 +0000
+Subject: [PATCH 2/3] gnu: Add cl-metacopy
+
+* gnu/packages/lisp-xyz.scm (cl-metacopy, sbcl-metacopy): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 8df8579111..9e5d5e76d8 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -17996,6 +17996,40 @@ (define-public ecl-simple-inferiors
+ (define-public cl-simple-inferiors
+   (sbcl-package->cl-source-package sbcl-simple-inferiors))
+ 
++(define-public sbcl-metacopy
++  (let ((commit "1b5bf443206cc1dea7801ae23d1167bd02122d30")
++        (revision "1"))
++    (package
++      (name "sbcl-metacopy")
++      (version (git-version "0.2.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/gwkkwg/metacopy")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1rzp112djgw5n76s6hy2aq92bc43p0zd5bgzvqwvgvws4pls42s9"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs
++       (list sbcl-lift sbcl-asdf-system-connections))
++      (inputs
++       (list sbcl-contextl sbcl-moptilities))
++      (home-page "https://github.com/gwkkwg/metacopy")
++      (synopsis "Flexible Common Lisp shallow/deep copy mechanism")
++      (description
++       "This package provides flexible Common Lisp shallow/deep copy mechanism.")
++      (license license:expat))))
++
++;; NOTE: (Sharlatan-20221112T214131+0000): There is no ecl-moptilities variable
++;; required for tests.
++;;
++;; ecl-metacopy
++
++(define-public cl-metacopy
++  (sbcl-package->cl-source-package sbcl-metacopy))
++
+ (define-public sbcl-legit
+   (let ((commit "5f8a2d4c4f5fb8e53340eeef600433ee20e03fbe")
+         (revision "2"))
+-- 
+2.38.0
+

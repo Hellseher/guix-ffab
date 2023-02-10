@@ -1,6 +1,6 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-10-10 Mon 22:14:59 BST>
+#+modified: <2022-11-18 Fri 22:54:46 GMT>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
@@ -8,7 +8,7 @@ https://www.proxmox.com/en/, oVirt https://www.ovirt.org/ which provide out-of-t
 clusterisation and virtualization management for High Availability.
 
 * Flow
-** TODO corosync [1/1][100%] :author:
+** TODO corosync [1/2][50%] :author:
 - https://github.com/corosync
 *** DONE corosync [4/4][100%]
 - https://corosync.github.io/corosync/
@@ -46,6 +46,14 @@ clusterisation and virtualization management for High Availability.
   - [X] automake
   - [X] libtool
   - [X] pkg-config
+*** TODO corosync-qdevice [1/4][25%]
+- https://github.com/corosync/corosync-qdevice
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/58152
+- [X] :inputs [1/1][100%]
+  - [X] corosync
 
 ** TODO ClusterLabs [1/1][100%] :author:
 - https://www.clusterlabs.org/
@@ -62,9 +70,6 @@ clusterisation and virtualization management for High Availability.
   - [X] cmocka
   - [X] corosync [3/3][100%]
     - [X] :packed <2022-09-28 Wed>
-    - [X] :patch-sent <2022-09-28 Wed>
-    - [X] :paptch-applied-upstream <2022-10-10 Mon>
-      - https://issues.guix.gnu.org/58152
   - [X] dbus
   - [X] gettext-minimal
   - [X] glib
@@ -79,3 +84,32 @@ clusterisation and virtualization management for High Availability.
   - [X] util-linux
   - [X] util-linux:lib
   - [X] valgrind
+
+** TODO Kronosnet [1/1][100%] :author:
+- https://github.com/kronosnet
+*** DONE kronosnet [4/4][100%]
+CLOSED: [2022-11-18 Fri 22:41]
+- https://github.com/kronosnet/kronosnet
+- [X] :packed <2022-09-28 Wed>
+- [X] :patch-sent <2022-09-28 Wed>
+- [X] :paptch-applied-upstream <2022-10-10 Mon>
+  - https://issues.guix.gnu.org/58152
+- [X] :inputs [18/18][100%]
+  - [X] autoconf
+  - [X] automake
+  - [X] doxygen
+  - [X] libtool
+  - [X] net-tools
+  - [X] pkg-config
+  - [X] lksctp-tools
+  - [X] libnl
+  - [X] libqb
+  - [X] libxml2
+  - [X] lz4
+  - [X] lzo
+  - [X] nss
+  - [X] nspr
+  - [X] openssl
+  - [X] xz
+  - [X] zlib
+  - [X] zstd

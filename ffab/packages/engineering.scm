@@ -101,9 +101,9 @@ meshes
     (license license:gpl3+)))
 
 ;; 20221030T195655+0000
-(define-public ffab-meshlab
+(define-public meshlab-ffab
   (package
-    (name "ffab-meshlab")
+    (name "meshlab-ffab")
     (version "2022.02")
     (source (origin
               (method git-fetch)

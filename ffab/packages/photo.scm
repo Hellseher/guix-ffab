@@ -25,28 +25,9 @@
   #:use-module (guix packages))
 
 ;; 20221021T003307+0100
-(define-public librtprocess
-  (package
-    (name "librtprocess")
-    (version "0.12.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/CarVac/librtprocess")
-                    (commit version)))
-              (sha256
-               (base32
-                "0v0zwbdbc1fn7iy6wi0m6zgb86qdx1ijnv548d0ydbr8cm4klnpz"))
-              (file-name (git-file-name name version))))
-    (build-system cmake-build-system)
-    (arguments
-     ;; No tests
-     (list #:tests? #f))
-    (home-page "https://github.com/CarVac/librtprocess")
-    (synopsis "Highly optimized library for processing RAW images")
-    (description
-     "This package provides RawTherapee's highly optimized RAW processing routines.")
-    (license license:gpl3)))
+;; (define-public librtprocess
+;; added-to-upstream cf8e5f4ff8f1757e3e9d71f1b0a63406d835a0df
+;; CommitDate: Mon Nov 14 12:31:34 2022 +0100
 
 ;; 20221029T233737+0100
 (define-public easyexif

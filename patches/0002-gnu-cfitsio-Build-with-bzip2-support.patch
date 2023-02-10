@@ -1,0 +1,37 @@
+From e2bb3527d78639666fe8ef45e9f49cc8679c39f5 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Dec 2022 16:34:15 +0000
+Subject: [PATCH 2/6] gnu: cfitsio: Build with bzip2 support.
+
+* gnu/packages/astronomy.scm (cfitsio):
+  [arguments](configure-flags): Add bzip2 option.
+  [inputs]: Add bzip2.
+---
+ gnu/packages/astronomy.scm | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8d9cce5158..794e5ca2b9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -368,6 +368,8 @@ (define-public cfitsio
+     (build-system gnu-build-system)
+     (arguments
+      (list
++      #:configure-flags
++      #~(list (string-append "--with-bzip2=" #$(this-package-input "bzip2")))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-paths
+@@ -384,7 +386,7 @@ (define-public cfitsio
+                 (invoke "diff" "-r" "testprog.lis" "testprog.out")
+                 (invoke "cmp" "-l" "testprog.fit" "testprog.std")))))))
+     (native-inputs (list gfortran))
+-    (inputs (list curl zlib))
++    (inputs (list bzip2 curl zlib))
+     (home-page "https://heasarc.gsfc.nasa.gov/fitsio/fitsio.html")
+     (synopsis "Library for reading and writing FITS files")
+     (description "CFITSIO provides simple high-level routines for reading and
+-- 
+2.38.1
+

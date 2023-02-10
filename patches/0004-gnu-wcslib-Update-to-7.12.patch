@@ -1,0 +1,70 @@
+From e59e9f8faabae5e873d9b1cc2df55b219d73a6bc Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Dec 2022 21:03:42 +0000
+Subject: [PATCH 4/6] gnu: wcslib: Update to 7.12.
+
+* gnu/packages/astronomy.scm (wcslib): Update to 7.12.
+  [arguments]: Use Gexp, enable parallel tests.
+---
+ gnu/packages/astronomy.scm | 34 +++++++++++++++++-----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5ce94a1f07..1876b0cde0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -525,7 +525,7 @@ (define-public eye
+ (define-public wcslib
+   (package
+     (name "wcslib")
+-    (version "7.5")
++    (version "7.12")
+     (source
+      (origin
+        (method url-fetch)
+@@ -533,26 +533,26 @@ (define-public wcslib
+              "ftp://ftp.atnf.csiro.au/pub/software/wcslib/wcslib-" version
+              ".tar.bz2"))
+        (sha256
+-        (base32 "1536gmcpm6pckn9xrb6j8s4pm1vryjhzvhfaj9wx3jwxcpbdy0dw"))))
++        (base32 "1m3bx6gh5w3c7vvsqcki0x20mg8lilg13m0i8nh7za89w58dxy4w"))))
+     (inputs
+      (list cfitsio))
+     (build-system gnu-build-system)
+     (arguments
+-     `(#:configure-flags
+-       (list (string-append "--with-cfitsiolib="
+-                            (assoc-ref %build-inputs "cfitsio") "/lib")
+-             (string-append "--with-cfitsioinc="
+-                            (assoc-ref %build-inputs "cfitsio") "/include"))
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-before 'configure 'patch-/bin/sh
+-           (lambda _
+-             (substitute* "makedefs.in"
+-               (("/bin/sh") "sh"))
+-             #t))
+-         (delete 'install-license-files)) ; installed by ‘make install’
+-       ;; Parallel execution of the test suite is not supported.
+-       #:parallel-tests? #f))
++     (list
++      #:configure-flags
++      #~(list (string-append "--with-cfitsiolib="
++                             #$(this-package-input "cfitsio") "/lib")
++              (string-append "--with-cfitsioinc="
++                             #$(this-package-input "cfitsio") "/include"))
++      #:phases
++      #~(modify-phases %standard-phases
++          (delete 'install-license-files) ; installed by ‘make install’
++          (add-before 'configure 'patch-/bin/sh
++            (lambda _
++              (substitute* "makedefs.in"
++                (("/bin/sh") "sh")))))))
++    ;; TODO: Fix build with gfortran and pack missing optional pgplot.
++    ;; (inputs (list gfortran pgplot))
+     (home-page "https://www.atnf.csiro.au/people/mcalabre/WCS")
+     (synopsis "Library which implements the FITS WCS standard")
+     (description "The FITS \"World Coordinate System\" (@dfn{WCS}) standard
+-- 
+2.38.1
+

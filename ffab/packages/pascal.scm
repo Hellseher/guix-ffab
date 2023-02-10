@@ -51,56 +51,57 @@
     (build-system gnu-build-system)
     (supported-systems '("i686-linux" "x86_64-linux"))
     (arguments
-     (list #:parallel-build? #f
-           #:make-flags #~(list "FPC=fpc"
-                                "PP=fpc"
-                                "REQUIRE_PACKAGES+=tachartlazaruspkg"
-                                (string-append "INSTALL_PREFIX=" #$output)
-                                (string-append "LAZARUS_INSTALL_DIR=" #$output "/share/lazarus")
-                                (string-append "LDFLAGS=-lX11"
-                                               ",-lXext"
-                                               ",-lXi"
-                                               ",-latk-1.0"
-                                               ",-lc"
-                                               ",-lcairo"
-                                               ",-lgcc_s"
-                                               ",-lgdk-x11-2.0"
-                                               ",-lgdk_pixbuf-2.0"
-                                               ",-lglib-2.0"
-                                               ",-lgtk-x11-2.0"
-                                               ",-lpango-1.0")
-                                "bigide")
-           #:phases #~(modify-phases %standard-phases
-                        (add-after 'unpack 'set-ld-library-path
-                          (lambda _
-                            (format #t "environment variable `LD_LIBRARY_PATH' set to `~a'~%"
-                                    (getenv "LD_LIBRARY_PATH"))
-                            (setenv "LD_LIBRARY_PATH" (getenv "LIBRARY_PATH"))
-                            (format #t "environment variable `LD_LIBRARY_PATH' set to `~a'~%"
-                                    (getenv "LD_LIBRARY_PATH"))
-                            (setenv "LD_DEBUG" "all")
-                            (format #t "environment variable `LD_DEBUG' set to `~a'~%"
-                                    (getenv "LD_DEBUG"))
-                            #;(invoke "false")))
-                        (delete 'configure)
-                        #;(replace 'build
-                          (lambda _
-                            (invoke "make" "clean" "bigide"))))))
-    (native-inputs (list atk
-                         cairo
-                         gdk-pixbuf
-                         glibc
-                         gtk+
-                         ld-wrapper
-                         libtool
-                         libx11
-                         libxi
-                         pango
-                         perl
-                         pkg-config
-                         pkg-config
-                         xorgproto
-                         zlib))
+     (list
+      #:parallel-build? #f
+      #:make-flags
+      #~(list "bigide"
+              "FPC=fpc"
+              "PP=fpc"
+              "REQUIRE_PACKAGES+=tachartlazaruspkg"
+              (string-append "INSTALL_PREFIX=" #$output)
+              (string-append "LAZARUS_INSTALL_DIR=" #$output "/share/lazarus")
+              (string-append "LDFLAGS=-lX11"
+                             ",-lXext"
+                             ",-lXi"
+                             ",-latk-1.0"
+                             ",-lc"
+                             ",-lcairo"
+                             ",-lgcc_s"
+                             ",-lgdk-x11-2.0"
+                             ",-lgdk_pixbuf-2.0"
+                             ",-lglib-2.0"
+                             ",-lgtk-x11-2.0"
+                             ",-lpango-1.0"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure)
+          #;(add-after 'unpack 'set-ld-library-path
+            (lambda _
+              (format #t "environment variable `LD_LIBRARY_PATH' set to `~a'~%"
+                      (getenv "LD_LIBRARY_PATH"))
+              (setenv "LD_LIBRARY_PATH" (getenv "LIBRARY_PATH"))
+              (format #t "environment variable `LD_LIBRARY_PATH' set to `~a'~%"
+                      (getenv "LD_LIBRARY_PATH"))
+              (setenv "LD_DEBUG" "all")
+              (format #t "environment variable `LD_DEBUG' set to `~a'~%"
+                      (getenv "LD_DEBUG"))
+              (invoke "false"))))))
+    (native-inputs
+     (list atk
+           cairo
+           gdk-pixbuf
+           glibc
+           gtk+
+           ld-wrapper
+           libtool
+           libx11
+           libxi
+           pango
+           perl
+           pkg-config
+           pkg-config
+           xorgproto
+           zlib))
     (inputs (list fpc))
     (native-search-paths
      (package-native-search-paths glibc))

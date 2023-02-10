@@ -1,0 +1,57 @@
+From 558e6655c50f29f4c75c1b9d5292caf50d91dd5d Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Jan 2023 22:12:41 +0000
+Subject: [PATCH 2/3] gnu: Add julia-cfitsio.
+
+* gnu/packages/julia-xyz.scm (julia-cfitsio): New variable.
+---
+ gnu/packages/julia-xyz.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 414aba03f0..ff6862c4f6 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -746,6 +746,39 @@ (define-public julia-cenum
+     (description "This package provides a C-compatible enum for Julia.")
+     (license license:expat)))
+ 
++(define-public julia-cfitsio
++  (package
++    (name "julia-cfitsio")
++    (version "1.4.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaAstro/CFITSIO.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "05bxzzjcc021p3hi092h06r2q7qnvql0xz1alggi83i0pp1mxp6d"))))
++    (build-system julia-build-system)
++    (native-inputs (list julia-aqua))
++    (propagated-inputs (list julia-cfitsio-jll))
++    (home-page "https://github.com/JuliaAstro/CFITSIO.jl")
++    (synopsis "C-style interface to the libcfitsio library")
++    (description "This package provides Julia implementation of C-style interface to CFITSIO
++functions with following features:
++@itemize
++
++@item Function names closely mirror the C interface (e.g., @code{fits_open_file()}).
++
++@item Functions operate on @code{FITSFile}, a thin wrapper for fitsfile C struct
++(@code{FITSFile} has concept of \"current HDU\", as in CFITSIO).
++
++@item Note that the wrapper functions do check the return status from CFITSIO
++and throw an error with the appropriate message.
++
++@end itemize")
++    (license license:expat)))
++
+ (define-public julia-chainrules
+   (package
+     (name "julia-chainrules")
+-- 
+2.39.1
+

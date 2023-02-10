@@ -1,0 +1,125 @@
+From 9444f1357787b60b78a989a94e2593ad16e063b0 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 13 Jan 2023 21:37:40 +0000
+Subject: [PATCH] gnu: Add cl-assimp.
+
+The latest upstream commit of classimp does not support assimp library
+higher than 5.0.
+- https://github.com/3b/classimp/issues/18
+
+* gnu/packages/graphics.scm (assimp-5.0): New variable.
+* gnu/packages/lisp-xyz.scm (cl-classimp, sbcl-classimp): New variables.
+---
+ gnu/packages/graphics.scm | 15 ++++++++++++
+ gnu/packages/lisp-xyz.scm | 48 ++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 62 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/graphics.scm b/gnu/packages/graphics.scm
+index f23fad7c50..421522b7e0 100644
+--- a/gnu/packages/graphics.scm
++++ b/gnu/packages/graphics.scm
+@@ -33,6 +33,7 @@
+ ;;; Copyright © 2022 Tobias Kortkamp <tobias.kortkamp@gmail.com>
+ ;;; Copyright © 2022 Paul A. Patience <paul@apatience.com>
+ ;;; Copyright © 2022 dan <i@dan.games>
++;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -594,6 +595,20 @@ (define-public assimp
+ more.")
+     (license license:bsd-3)))
+ 
++(define-public assimp-5.0
++  (package
++    (inherit assimp)
++    (version "5.0.0")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/assimp/assimp")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name "assimp" version))
++              (sha256
++               (base32
++                "1w2484lg823bql7lpfq84vnsfsnag5v65qrbphslj866z9ia68l7"))))))
++
+ (define-public mikktspace
+   ;; The latest commit is used as there is no release.
+   (let ((commit   "3e895b49d05ea07e4c2133156cfa94369e19e409")
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index db20ad00c0..55ed4b21b4 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -20,7 +20,7 @@
+ ;;; Copyright © 2020 Dimakis Dimakakos <me@bendersteed.tech>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020, 2021, 2022 Adam Kandur <rndd@tuta.io>
+-;;; Copyright © 2020, 2021, 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
++;;; Copyright © 2020-2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2021, 2022 Aurora <rind38@disroot.org>
+ ;;; Copyright © 2021 Matthew James Kraai <kraai@ftbfs.org>
+ ;;; Copyright © 2021, 2022, 2023 André A. Gomes <andremegafone@gmail.com>
+@@ -85,6 +85,7 @@ (define-module (gnu packages lisp-xyz)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
++  #:use-module (gnu packages graphics)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages image)
+@@ -10284,6 +10285,51 @@ (define-public cl-async
+ (define-public ecl-cl-async
+   (sbcl-package->ecl-package sbcl-cl-async))
+ 
++(define-public sbcl-classimp
++  (let ((commit "d82a14c59bc733f89a1ea0b3447ebedddce5756e")
++        (revision "0"))
++    (package
++      (name "sbcl-classimp")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/3b/classimp")
++               (commit commit)))
++         (file-name (git-file-name "classimp" version))
++         (sha256
++          (base32 "0pbnz6cf1zb2ayk4kbw0gphjb8nflnjns2rwhv86jz0kf0z1hqha"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-after 'unpack 'patch-assimp-lib-path
++              (lambda* (#:key inputs #:allow-other-keys)
++                (substitute* "library.lisp"
++                  (("libassimp.so.5" _)
++                   (search-input-file inputs "/lib/libassimp.so.5.0.0"))))))))
++      (inputs
++       (list assimp-5.0
++             sbcl-cffi
++             sbcl-split-sequence))
++      (home-page "https://github.com/3b/classimp")
++      (synopsis "Common Lisp CFFI bindings for Open Asset Import Library")
++      (description
++       "This package provides CFFI bindings to @acronym{ASSIMP, Asset Import} library
++for Common Lisp.")
++      (license license:expat))))
++
++(define-public cl-classimp
++  (sbcl-package->cl-source-package sbcl-classimp))
++
++;; FIXME: (Sharlatan-20230113T213459+0000): It tries to link with the current
++;; latest assimp library from which assimp-5.0 was inherited.
++;;
++;; (define-public ecl-classimp
++;;   (sbcl-package->ecl-package sbcl-classimp))
++
+ (define-public sbcl-blackbird
+   (let ((commit "d361f81c1411dec07f6c2dcb11c78f7aea9aaca8")
+         (revision "1"))
+-- 
+2.38.1
+

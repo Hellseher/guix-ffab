@@ -1,284 +1,497 @@
-Authors in progress with priorities:
-
-     1	python.org             brandon-rhodes          [0/1][0%]    :author:p5:
-     2	lisp.org               sjl                     [0/1][0%]    :author:p5:
-     3	lisp.org               Shinmera/Shirakumo      [3/11][27%]  :author:p5:
-     4	lisp.org               kmx-io                  [1/2][50%]   :author:p5:
-     5	astronomy.org          INDI-Library            [1/3][33%]   :author:p5:
-     6	astronomy.org          GreatAttractor          [2/2][100%]  :author:p5:
-     7	astronomy.org          AstrOmatic-software     [8/10][80%]  :author:p5:
-     8	astronomy.org          ap-i                    [1/5][20%]   :author:p5:
-     9	astronomy.org          OpenPHDGuiding          [0/1][0%]    :author:p4:
-    10	version-control.org    jesseduffield           [0/1][0%]    :author:p3:
-    11	lisp.org               s-expressionists        [0/1][0%]    :author:p3:
-    12	lisp.org               gwkkwg                  [0/1][0%]    :author:p3:
-    13	lisp.org               borodust                [0/2][0%]    :author:p3:
-    14	python.org             webrecorder             [0/1][0%]    :author:p2:
-    15	python.org             SunPy                   [0/0][0%]    :author:p2:
-    16	lisp.org               cbaggers                [1/3][33%]   :author:p2:
-    17	astronomy.org          SunPy                   [0/3][0%]    :author:p2:
-    18	astronomy.org          MAVENSDC                [1/1][100%]  :author:p2:
-    19	astronomy.org          SAOImageDS9             [0/1][0%]    :author:p1:
-    20	astronomy.org          ericmandel              [0/1][0%]    :author:p1:
-    21	astronomy.org          dokester                [0/1][0%]    :author:p1:
-    22	astronomy.org          casacore                [1/2][50%]   :author:p1:
-    23	astronomy.org          asdf-format             [5/9][55%]   :author:p1:
-    24	python.org             WoLpH                   [0/1][0%]    :author:
-    25	python.org             StdCarrot               [0/1][0%]    :author:
-    26	python.org             pyga                    [0/1][0%]    :author:
-    27	python.org             Py3AMF                  [8/12][66%]  :author:
-    28	python.org             opencv                  [0/1][0%]    :author:
-    29	python.org             niltonvolpato           [0/1][0%]    :author:
-    30	python.org             Martiusweb              [0/1][0%]    :author:
-    31	python.org             Libsharp                [0/1][0%]    :author:
-    32	python.org             internetarchive         [0/1][0%]    :author:
-    33	python.org             Astropy                 [0/1][0%]    :author:
-    34	maths.org              danieljprice            [1/1][100%]  :author:
-    35	lisp.org               vindarel                [/][%]       :author:
-    36	lisp.org               noloop                  [0/1][0%]    :author:
-    37	lisp.org               lokedhs                 [0/1][0%]    :author:
-    38	lisp.org               lispgames               [0/0][0%]    :author:
-    39	lisp.org               inconvergent            [0/2][0%]    :author:
-    40	lisp.org               hu.dwim                 [1/1][100%]  :author:
-    41	lisp.org               HazenBabcock            [0/1][0%]    :author:
-    42	lisp.org               foretspaisibles         [1/1][100%]  :author:
-    43	lisp.org               eudoxia0                [0/1][0%]    :author:
-    44	lisp.org               cl-adams                [0/1][0%]    :author:
-    45	lisp.org               bufferswap              [0/1][0%]    :author:
-    46	lisp.org               3b                      [3/4][75%]   :author:
-    47	high-availability.org  corosync                [1/1][100%]  :author:
-    48	high-availability.org  ClusterLabs             [1/1][100%]  :author:
-    49	golang.org             valyala                 [1/1][100%]  :author:
-    50	golang.org             github.com/johnkerl     [0/1][0%]    :author:
-    51	golang.org             github.com/hashicorp    [1/3][33%]   :author:
-    52	golang.org             github.com/gin-gonic    [/][%]       :author:
-    53	golang.org             github.com/caddyserver  [0/1][0%]    :author:
-    54	golang.org             FiloSottile             [0/1][0%]    :author:
-    55	astronomy.org          XEphem                  [0/4][0%]    :author:
-    56	astronomy.org          Starlink                [0/1][0%]    :author:
-    57	astronomy.org          spacetelescope          [1/20][5%]   :author:
-    58	astronomy.org          schirmermischa          [0/1][0%]    :author:
-    59	astronomy.org          revoltek                [0/1][0%]    :author:
-    60	astronomy.org          QuatroPe                [1/2][50%]   :author:
-    61	astronomy.org          PaulMcMillan-Astro      [0/1][0%]    :author:
-    62	astronomy.org          neuromorphicsystems     [0/1][0%]    :author:
-    63	astronomy.org          NASA                    [0/4][0%]    :author:
-    64	astronomy.org          linguider               [/][%]       :author:
-    65	astronomy.org          kepler-project          [/][%]       :author:
-    66	astronomy.org          jobovy                  [0/1][0%]    :author:
-    67	astronomy.org          indigo-astronomy        [0/1][0%]    :author:
-    68	astronomy.org          IIPImage                [/][%]       :author:
-    69	astronomy.org          IAUSOFA                 [0/1][0%]    :author:
-    70	astronomy.org          free-astro              [0/1][0%]    :author:
-    71	astronomy.org          ESO                     [1/3][33%]   :author:
-    72	astronomy.org          dstndstn                [0/1][0%]    :author:
-    73	astronomy.org          danieljprice            [1/1][100%]  :author:
-    74	astronomy.org          C-Munipack-library      [0/0][0%]    :author:
-    75	astronomy.org          ATNF                    [0/1][0%]    :author:
-    76	astronomy.org          Astropy                 [1/4][25%]   :author:
-    77	astronomy.org          aroffringa              [2/2][100%]  :author:
-    78	astronomy.org          amusecode               [/][%]       :author:
-
-Projects in progress with priorities:
-
-      1	python.org           libsharp             [2/4][50%]   :p5:
-      2	maths.org            nelib                [/][%]       :p5:
-      3	lisp.org             zorm                 [0/4][0%]    :p5:
-      4	lisp.org             cl-adams             [1/4][25%]   :p5:
-      5	golang.org           age                  [/][%]       :p5:
-      6	astronomy.org        sofa-c               [0/4][0%]    :p5:
-      7	astronomy.org        siril                [3/4][75%]   :p5:
-      8	astronomy.org        ois                  [/][%]       :p5:
-      9	astronomy.org        INDIGO               [0/4]        :p5:
-     10	astronomy.org        AIPS                 [/][%]       :p5:
-     11	lisp.org             cl-mathstats         [0/4][0%]    :p4:
-     12	pascal.org           voc                  [/][%]       :p3:
-     13	node-xyz.org         jquery               [/][%]       :p3:
-     14	node-xyz.org         bootstrap-toggle     [/][%]       :p3:
-     15	node-xyz.org         bootstrap            [/][%]       :p3:
-     16	lisp.org             rib                  [0/4][0%]    :p3:
-     17	golang.org           bykof/go-plantuml    [/][%]       :p3:
-     18	emacs-xyz.org        org-roam-ui          [/][%]       :p3:
-     19	astronomy.org        HEALPix              [1/4][25%]   :p3:
-     20	python.org           mpl-animators        [1/4][25%]   :p2:
-     21	maths.org            plplot               [0/0][0%]    :p2:
-     22	lisp.org             dirt                 [0/4][0%]    :p2:
-     23	lisp.org             cl-soil              [0/4][0%]    :p2:
-     24	astronomy.org        sunpy                [0/4][0%]    :p2:
-     25	astronomy.org        mpl-animations       [2/4][50%]   :p2:
-     26	astronomy.org        drms                 [2/4][50%]   :p2:
-     27	version-control.org  lazygit              [0/4][0%]    :p1:
-     28	python.org           opencv-python        [0/4][0%]    :p1:
-     29	lisp.org             virality             [0/4][0%]    :p1:
-     30	lisp.org             feedback             [/][%]       :p1:
-     31	lisp.org             cl-gss               [3/4][75%]   :p1:
-     32	lisp.org             classimp             [/][%]       :p1:
-     33	golang.org           miller               [1/5][20%]   :p1:
-     34	golang.org           go/tools/gopls       [/][%]       :p1:
-     35	golang.org           caddy                [0/4][0%]    :p1:
-     36	astronomy.org        Torus                [1/4][25%]   :p1:
-     37	astronomy.org        pal                  [0/4][0%]    :p1:
-     38	astronomy.org        jwst                 [2/4][50%]   :p1:
-     39	astronomy.org        galpy                [1/4][25%]   :p1:
-     40	astronomy.org        funtools             [2/4][50%]   :p1:
-     41	astronomy.org        astrometry           [/][%]       :p1:
-     42	astronomy.org        asdf-standard        [2/4][50%]   :p1:
-     43	python.org           surt                 [/][%]       
-     44	python.org           sphinx-automodapi    [2/4][50%]   
-     45	python.org           pywb                 [1/4][25%]   
-     46	python.org           progressbar          [1/3][33%]   
-     47	python.org           portalocker          [2/4][50%]   
-     48	python.org           parsley              [1/4][25%]   
-     49	python.org           asynctest            [1/3][33%]   
-     50	python.org           assay                [2/3][66%]   
-     51	lisp.org             weird                [0/4][0%]    
-     52	lisp.org             weir                 [3/4][75%]   
-     53	lisp.org             trial                [4/5][80%]   
-     54	lisp.org             repo                 [0/4][0%]    
-     55	lisp.org             qt-libs              [/][%]       
-     56	lisp.org             lucerne              [1/4][25%]   
-     57	lisp.org             kandria              [0/4][0%]    
-     58	lisp.org             harmony              [/][%]       
-     59	lisp.org             file-notify          [/][%]       
-     60	lisp.org             ctype                [0/4][0%]    
-     61	lisp.org             cl-steamworks        [/][%]       
-     62	lisp.org             cl-plplot            [0/4][0%]    
-     63	lisp.org             cl-mixed             [1/4][25%]   
-     64	lisp.org             cl-bodge             [0/4][0%]    
-     65	lisp.org             claw                 [0/4][0%]    
-     66	lisp.org             cacau                [0/4][0%]    
-     67	lisp.org             adopt                [1/4][25%]   
-     68	golang.org           hashicorp/terraform  [0/4][0%]    
-     69	golang.org           hashicorp/nomad      [0/0][100%]  
-     70	golang.org           gin-gonic/gin        [1/4][25%]   
-     71	docker.org           dive                 [/][%]       
-     72	astronomy.org        Xspec                [/]          
-     73	astronomy.org        wiimatch             [1/4][25%]   
-     74	astronomy.org        tweakwcs             [2/4][50%]   
-     75	astronomy.org        THELI                [0/0][0%]    
-     76	astronomy.org        synphot              [2/4][50%]   
-     77	astronomy.org        stsynphot            [2/4][50%]   
-     78	astronomy.org        stsci.stimage        [/][%]       
-     79	astronomy.org        stsci.imagestats     [2/4][50%]   
-     80	astronomy.org        stsci.image          [2/4][50%]   
-     81	astronomy.org        stpipe               [2/4][50%]   
-     82	astronomy.org        stdatamodels         [2/4][50%]   
-     83	astronomy.org        stcal                [/][%]       
-     84	astronomy.org        spherical-geometry   [2/4][50%]   
-     85	astronomy.org        specutils            [0/0][100%]  
-     86	astronomy.org        skychart             [0/4][0%]    
-     87	astronomy.org        skycat               [0/4][0%]    
-     88	astronomy.org        scamp                [0/4][0%]    
-     89	astronomy.org        SAOImageDS9          [0/4][0%]    
-     90	astronomy.org        rad                  [2/4][50%]   
-     91	astronomy.org        python-casacore      [1/4][25%]   
-     92	astronomy.org        pysynphot            [2/4][2/4]   
-     93	astronomy.org        psfex                [1/4][25%]   
-     94	astronomy.org        poppy                [2/4][50%]   
-     95	astronomy.org        phd2                 [0/4][%]     
-     96	astronomy.org        losoto               [1/4][25%]   
-     97	astronomy.org        inistarter           [/][%]       
-     98	astronomy.org        indi-service-type    [/][%]       
-     99	astronomy.org        indi-3rdparty        [0/4][0%]    
-    100	astronomy.org        HEAsoft              [0/4][0%]    
-    101	astronomy.org        eqmodgui             [/][%]       
-    102	astronomy.org        eclipse              [0/0][0%]    
-    103	astronomy.org        drizzle              [2/4][50%]   
-    104	astronomy.org        datamodels           [2/4][50%]   
-    105	astronomy.org        crds                 [1/4][25%]   
-    106	astronomy.org        ci-watson            [1/4][25%]   
-    107	astronomy.org        CDF                  [/][%]       
-    108	astronomy.org        ccdciel              [/][%]       
-    109	astronomy.org        BayesicFitting       [2/4][50%]   
-    110	astronomy.org        astroquery           [/][%]       
-    111	astronomy.org        astroplan            [1/4][25%]   
-    112	astronomy.org        astrometry           [/][%]       
-    113	astronomy.org        asdf-unit-schemas    [2/4][50%]   
-    114	astronomy.org        asdf-time-schemas    [2/4][50%]   
-    115	astronomy.org        asdf-fits-schemas    [2/4][50%]   
-
-Completed authors and projects:
-
-     1	astronomy.org          AOCommon                  [3/3][100%]  
-     2	astronomy.org          AOFlagger                 [4/4][100%]  
-     3	astronomy.org          asdf                      [1/1][100%]  
-     4	astronomy.org          asdf-coordinates-schemas  [1/1][100%]  
-     5	astronomy.org          asdf-table-schemas        [1/1][100%]  
-     6	astronomy.org          asdf-transform-schemas    [1/1][100%]  
-     7	astronomy.org          asdf-wcs-schemas          [1/1][100%]  
-     8	astronomy.org          astroalign                [4/4][100%]  
-     9	astronomy.org          astropy                   [4/4][100%]  
-    10	astronomy.org          casacore                  [4/4][100%]  
-    11	astronomy.org          eye                       [3/3][100%]  
-    12	astronomy.org          gwcs                      [4/4][100%]  
-    13	astronomy.org          imppg                     [4/4][100%]  
-    14	astronomy.org          indi                      [4/4][100%]  
-    15	astronomy.org          libpasastro               [3/3][100%]  
-    16	astronomy.org          missfits                  [3/3][100%]  
-    17	astronomy.org          pynbody                   [4/4][/%]    
-    18	astronomy.org          qfits                     [3/3][100%]  
-    19	astronomy.org          sextractor                [4/4][100%]  
-    20	astronomy.org          skymaker                  [4/4][100%]  
-    21	astronomy.org          SPLASH                    [4/4][100%]  
-    22	astronomy.org          stackistry                [4/4][100%]  
-    23	astronomy.org          stiff                     [3/3][100%]  
-    24	astronomy.org          stuff                     [3/3][100%]  
-    25	astronomy.org          swarp                     [3/3][100%]  
-    26	astronomy.org          weightwatcher             [3/3][100%]  
-    27	cran.org               opencpu                   [4/4][100%]  
-    28	databases.org          pgloader                               
-    29	golang.org             hcl-v2                    [4/4][100%]  
-    30	golang.org             valyala/fasthttp          [3/4][75%]   
-    31	high-availability.org  corosync                  [4/4][100%]  
-    32	high-availability.org  pacemaker                 [4/4][100%]  
-    33	lisp.org               3b-bmfont                 [4/4][100%]  
-    34	lisp.org               alloy                     [4/4][100%]  
-    35	lisp.org               bknr-datastore            [4/4][100%]  
-    36	lisp.org               cepl                      [4/4][100%]  
-    37	lisp.org               chirp                     [4/4][100%]  
-    38	lisp.org               chronicity                [4/4][100%]  
-    39	lisp.org               cl-debug                  [3/3][100%]  
-    40	lisp.org               cl-diskspace              [3/3][100%]  
-    41	lisp.org               cl-glfw3                  [4/4][100%]  
-    42	lisp.org               cl-liballegro             [4/4][100%]  
-    43	lisp.org               cl-mount-info             [4/4][100%]  
-    44	lisp.org               cl-nst                    [4/4][100%]  
-    45	lisp.org               cl-opengl                 [4/4][100%]  
-    46	lisp.org               cl-posix-mqueue           [4/4][100%]  
-    47	lisp.org               cl-re                     [4/4][100%]  
-    48	lisp.org               coalton                   [4/4][100%]  
-    49	lisp.org               Djula                     [4/4][100%]  
-    50	lisp.org               glop                      [4/4][100%]  
-    51	lisp.org               glsl-packing              [4/4][100%]  
-    52	lisp.org               hu.dwim.graphviz          [4/4][100%]  
-    53	lisp.org               kaputt                    [4/4][100%]  
-    54	lisp.org               radiance                  [4/4][100%]  
-    55	maths.org              giza                      [4/4][100%]  
-    56	python.org             aioftp                    [4/4][100%]  
-    57	python.org             glymur                    [4/4][100%]  
-    58	python.org             h5netcdf                  [4/4][100%]  
-    59	python.org             parfive                   [4/4][100%]  
-    60	python.org             posix-ipc                 [/][%]       
-    61	python.org             pytest-socket             [4/4][100%]  
-    62	python.org             siosocks                  [4/4][100%]  
-    63	astronomy.org          pynbody                   [1/1][100%]  :author:
-    64	lisp.org               AlexCharlton              [1/1][100%]  :author:
-    65	lisp.org               cage                      [1/2][50%]   :author:
-    66	lisp.org               chaitanyagupta            [1/2][50%]   :author:
-    67	lisp.org               hanshuebner               [1/1][100%]  :author:
-    68	lisp.org               jphmrst                   [1/1][100%]  :author:
-    69	lisp.org               massung                   [1/1][100%]  :author:
-    70	lisp.org               mmontone                  [1/1][100%]  :author:
-    71	lisp.org               muyinliu                  [1/1][100%]  :author:
-    72	lisp.org               resttime                  [1/1][100%]  :author:
-    73	lisp.org               stylewarning              [1/1][100%]  :author:
-    74	lisp.org               xFA25E                    [1/1][100%]  :author:
-    75	python.org             aio-libs                  [1/1][100%]  :author:
-    76	python.org             Cadair                    [1/1][100%]  :author:
-    77	python.org             h5netcdf                  [1/1][100%]  :author:
-    78	python.org             miketheman                [1/1][100%]  :author:
-    79	python.org             osvenskan                 [1/1][100%]  :author:
-    80	python.org             pohmelie                  [1/1][100%]  :author:
-    81	python.org             quintusdias               [1/1][100%]  :author:
-    82	astronomy.org          cdflib                    [4/4][100%]  :p2:
+    Authors in progress with priorities:
+    python.org             brandon-rhodes          [0/1][0%]    :author:p5:
+    lisp.org               Shinmera/Shirakumo      [3/11][27%]  :author:p5:
+    lisp.org               kmx-io                  [1/2][50%]   :author:p5:
+    astronomy.org          INDI-Library            [1/3][33%]   :author:p5:
+    astronomy.org          AstrOmatic-software     [8/10][80%]  :author:p5:
+    astronomy.org          ap-i                    [1/5][20%]   :author:p5:
+    astronomy.org          OpenPHDGuiding          [0/1][0%]    :author:p4:
+    version-control.org    jesseduffield           [0/1][0%]    :author:p3:
+    lisp.org               borodust                [0/2][0%]    :author:p3:
+    python.org             webrecorder             [0/1][0%]    :author:p2:
+    python.org             SunPy                   [0/3][0%]    :author:p2:
+    lisp.org               cbaggers                [4/6][66%]   :author:p2:
+    astronomy.org          SunPy                   [4/6][66%]   :author:p2:
+    astronomy.org          MAVENSDC                [1/1][100%]  :author:p2:
+    python.org             hawkowl                 [0/1][0%]    :author:p1:
+    astronomy.org          SAOImageDS9             [0/1][0%]    :author:p1:
+    astronomy.org          JuliaAstro              [0/36][0%]   :author:p1:
+    astronomy.org          ericmandel              [0/1][0%]    :author:p1:
+    astronomy.org          dokester                [0/1][0%]    :author:p1:
+    astronomy.org          casacore                [1/2][50%]   :author:p1:
+    python.org             WoLpH                   [0/1][0%]    :author:
+    python.org             StdCarrot               [0/1][0%]    :author:
+    python.org             pyga                    [0/1][0%]    :author:
+    python.org             opencv                  [0/1][0%]    :author:
+    python.org             OpenAstronomy           [0/1][0%]    :author:
+    python.org             niltonvolpato           [0/1][0%]    :author:
+    python.org             Martiusweb              [0/1][0%]    :author:
+    python.org             internetarchive         [0/1][0%]    :author:
+    python.org             Astropy                 [0/1][0%]    :author:
+    maths.org              mtr                     [0/1][0%]    :author:
+    maths.org              danieljprice            [1/1][100%]  :author:
+    lisp.org               vsedach                 [1/2][50%]   :author:
+    lisp.org               vindarel                [0/1][0%]    :author:
+    lisp.org               mfiano                  [4/4][100%]  :author:
+    lisp.org               markcox80               [1/2][50%]   :author:
+    lisp.org               lokedhs                 [1/2][50%]   :author:
+    lisp.org               lispgames               [2/2][100%]  :author:
+    lisp.org               inconvergent            [0/2][0%]    :author:
+    lisp.org               hu.dwim                 [1/1][100%]  :author:
+    lisp.org               HazenBabcock            [0/1][0%]    :author:
+    lisp.org               foretspaisibles         [1/1][100%]  :author:
+    lisp.org               eudoxia0                [0/1][0%]    :author:
+    lisp.org               danlentz                [1/1][100%]  :author:
+    lisp.org               cl-adams                [0/1][0%]    :author:
+    lisp.org               chaitanyagupta          [1/2][50%]   :author:
+    lisp.org               cage                    [1/2][50%]   :author:
+    julia-xyz.org          oxinabox                [0/1][0%]    :author:
+    julia-xyz.org          kbarbary                [0/1][0%]    :author:
+    julia-xyz.org          JuliaImages             [0/3][0%]    :author:
+    julia-xyz.org          JuliaBinaryWrappers     [0/1]        :author:
+    high-availability.org  Kronosnet               [1/1][100%]  :author:
+    high-availability.org  corosync                [1/2][50%]   :author:
+    high-availability.org  ClusterLabs             [1/1][100%]  :author:
+    golang.org             github.com/johnkerl     [0/1][0%]    :author:
+    golang.org             github.com/hashicorp    [1/3][33%]   :author:
+    golang.org             github.com/gin-gonic    [0/1][0%]    :author:
+    golang.org             github.com/caddyserver  [0/1][0%]    :author:
+    golang.org             FiloSottile             [0/1][0%]    :author:
+    docker.org             wagoodman               [0/1][0%]    :author:
+    astronomy.org          XEphem                  [0/4][0%]    :author:
+    astronomy.org          wtbarnes                [0/1][0%]    :author:
+    astronomy.org          SURF                    [/][%]       :author:
+    astronomy.org          Starlink                [0/1][0%]    :author:
+    astronomy.org          spacetelescope          [2/20][10%]  :author:
+    astronomy.org          schirmermischa          [0/1][0%]    :author:
+    astronomy.org          rwesson                 [1/2][50%]   :author:
+    astronomy.org          ruven                   [0/1][0%]    :author:
+    astronomy.org          revoltek                [0/1][0%]    :author:
+    astronomy.org          QuatroPe                [1/2][50%]   :author:
+    astronomy.org          PaulMcMillan-Astro      [0/1][0%]    :author:
+    astronomy.org          OpenSpace               [0/2][0%]    :author:
+    astronomy.org          OpenAstronomy           [/][%]       :author:
+    astronomy.org          neuromorphicsystems     [0/1][0%]    :author:
+    astronomy.org          NASA                    [0/6][0%]    :author:
+    astronomy.org          mgckind                 [0/1][0%]    :author:
+    astronomy.org          LMSAL_HUB               [0/1][0%]    :author:
+    astronomy.org          linguider               [0/4][0%]    :author:
+    astronomy.org          Libsharp                [0/1][0%]    :author:
+    astronomy.org          JuliaSpace              [0/8][0%]    :author:
+    astronomy.org          jobovy                  [0/1][0%]    :author:
+    astronomy.org          indigo-astronomy        [0/1][0%]    :author:
+    astronomy.org          icyphy                  [0/1][0%]    :author:
+    astronomy.org          IAUSOFA                 [0/1][0%]    :author:
+    astronomy.org          gnudatalanguage         [/][%]       :author:
+    astronomy.org          Gammapy                 [0/1][0%]    :author:
+    astronomy.org          free-astro              [1/2][50%]   :author:
+    astronomy.org          ESO                     [1/3][33%]   :author:
+    astronomy.org          esheldon                [0/3][0%]    :author:
+    astronomy.org          dstndstn                [0/1][0%]    :author:
+    astronomy.org          danieljprice            [1/3][33%]   :author:
+    astronomy.org          cpinte                  [0/1][0%]    :author:
+    astronomy.org          C-Munipack-library      [0/0][0%]    :author:
+    astronomy.org          CHIANTI                 [0/1][0%]    :author:
+    astronomy.org          ATNF                    [0/37][0%]   :author:
+    astronomy.org          Astropy                 [3/5][60%]   :author:
+    astronomy.org          amusecode               [0/45][0%]   :author:
+    
+    Projects in progress with priorities:
+    version-control.org    lazygit                        [0/4][0%]   :p5:
+    maths.org              netlib                         [0/1][0%]   :p5:
+    lisp.org               zorm                           [0/4][0%]   :p5:
+    lisp.org               cl-adams                       [1/4][25%]  :p5:
+    golang.org             age                            [/][%]      :p5:
+    astronomy.org          Xspec                          [0/4][0%]   :p5:
+    astronomy.org          THELI                          [0/4][0%]   :p5:
+    astronomy.org          sofa-c                         [0/4][0%]   :p5:
+    astronomy.org          skycat                         [0/4][0%]   :p5:
+    astronomy.org          scamp                          [0/4][0%]   :p5:
+    astronomy.org          SAOImageDS9                    [0/4][0%]   :p5:
+    astronomy.org          psfex                          [1/4][25%]  :p5:
+    astronomy.org          phd2                           [0/4][%]    :p5:
+    astronomy.org          ois                            [/][%]      :p5:
+    astronomy.org          losoto                         [1/4][25%]  :p5:
+    astronomy.org          indi-service-type              [/][%]      :p5:
+    astronomy.org          INDIGO                         [0/4]       :p5:
+    astronomy.org          indi-3rdparty                  [0/4][0%]   :p5:
+    astronomy.org          IDAstroL                       [/][%]      :p5:
+    astronomy.org          HEAsoft                        [0/4][0%]   :p5:
+    astronomy.org          Ghoul                          [0/4]       :p5:
+    astronomy.org          eclipse                        [0/4][0%]   :p5:
+    astronomy.org          ci-watson                      [1/4][25%]  :p5:
+    astronomy.org          CDF                            [0/4][0%]   :p5:
+    astronomy.org          astrometry                     [0/4][0%]   :p5:
+    astronomy.org          AIPS                           [/][%]      :p5:
+    python.org             python-sunpy-sphinx-theme      [0/4][0%]   :p4:
+    maths.org              ducc                           [/][%]      :p4:
+    lisp.org               Vacietis                       [/][%]      :p4:
+    lisp.org               basic-binary-ipc               [0/4][0%]   :p4:
+    astronomy.org          WCSLIB                         [/][%]      :p4:
+    astronomy.org          VRI                            [/][%]      :p4:
+    astronomy.org          UniPOPS                        [/][%]      :p4:
+    astronomy.org          Tidy                           [/][%]      :p4:
+    astronomy.org          Tempo2                         [/][%]      :p4:
+    astronomy.org          TCS                            [/][%]      :p4:
+    astronomy.org          SuperMongo                     [/][%]      :p4:
+    astronomy.org          SPC                            [/][%]      :p4:
+    astronomy.org          smatch                         [/][%]      :p4:
+    astronomy.org          RPFITS                         [/][%]      :p4:
+    astronomy.org          RadialVelocities.              [/][%]      :p4:
+    astronomy.org          python-amuse-vader             [/][%]      :p4:
+    astronomy.org          python-amuse-twobody           [/][%]      :p4:
+    astronomy.org          python-amuse-tutorial          [/][%]      :p4:
+    astronomy.org          python-amuse-tests             [/][%]      :p4:
+    astronomy.org          python-amuse-sse               [/][%]      :p4:
+    astronomy.org          python-amuse-sphray            [/][%]      :p4:
+    astronomy.org          python-amuse-smalln            [/][%]      :p4:
+    astronomy.org          python-amuse-simplex           [/][%]      :p4:
+    astronomy.org          python-amuse-secularmultiple   [/][%]      :p4:
+    astronomy.org          python-amuse-seba              [/][%]      :p4:
+    astronomy.org          python-amuse-phigrape          [/][%]      :p4:
+    astronomy.org          python-amuse-phantom           [/][%]      :p4:
+    astronomy.org          python-amuse-ph4               [/][%]      :p4:
+    astronomy.org          python-amuse-petar             [/][%]      :p4:
+    astronomy.org          python-amuse-mosse             [/][%]      :p4:
+    astronomy.org          python-amuse-mobse             [/][%]      :p4:
+    astronomy.org          python-amuse-mmams             [/][%]      :p4:
+    astronomy.org          python-amuse-mikkola           [/][%]      :p4:
+    astronomy.org          python-amuse-mesa-r2208        [/][%]      :p4:
+    astronomy.org          python-amuse-mesa-r15140       [/][%]      :p4:
+    astronomy.org          python-amuse-mesa              [/][%]      :p4:
+    astronomy.org          python-amuse-mercury           [/][%]      :p4:
+    astronomy.org          python-amuse-mameclot          [/][%]      :p4:
+    astronomy.org          python-amuse-kepler            [/][%]      :p4:
+    astronomy.org          python-amuse-kepler-orbiters   [/][%]      :p4:
+    astronomy.org          python-amuse-huayno            [/][%]      :p4:
+    astronomy.org          python-amuse-hop               [/][%]      :p4:
+    astronomy.org          python-amuse-hermite           [/][%]      :p4:
+    astronomy.org          python-amuse-halogen           [/][%]      :p4:
+    astronomy.org          python-amuse-galaxia           [/][%]      :p4:
+    astronomy.org          python-amuse-galactics         [/][%]      :p4:
+    astronomy.org          python-amuse-gadget2           [/][%]      :p4:
+    astronomy.org          python-amuse-framework         [/][%]      :p4:
+    astronomy.org          python-amuse-fractalcluster    [/][%]      :p4:
+    astronomy.org          python-amuse-fi                [/][%]      :p4:
+    astronomy.org          python-amuse-fastkick          [/][%]      :p4:
+    astronomy.org          python-amuse-evtwin            [/][%]      :p4:
+    astronomy.org          python-amuse-distributed       [/][%]      :p4:
+    astronomy.org          python-amuse-capreole          [/][%]      :p4:
+    astronomy.org          python-amuse-bse               [/][%]      :p4:
+    astronomy.org          python-amuse-brutus            [/][%]      :p4:
+    astronomy.org          python-amuse-bhtree            [/][%]      :p4:
+    astronomy.org          python-amuse-athena            [/][%]      :p4:
+    astronomy.org          python-amuse-aarsethzare       [/][%]      :p4:
+    astronomy.org          python-amuse                   [1/4][25%]  :p4:
+    astronomy.org          PSRCat                         [/][%]      :p4:
+    astronomy.org          Planets.                       [/][%]      :p4:
+    astronomy.org          PGPLOT                         [/][%]      :p4:
+    astronomy.org          ngmix                          [/][%]      :p4:
+    astronomy.org          MIRIAD                         [/][%]      :p4:
+    astronomy.org          Mathematica                    [/][%]      :p4:
+    astronomy.org          livedata/gridzilla             [/][%]      :p4:
+    astronomy.org          Karma                          [/][%]      :p4:
+    astronomy.org          IRAF                           [/][%]      :p4:
+    astronomy.org          InterSat                       [/][%]      :p4:
+    astronomy.org          INTER                          [/][%]      :p4:
+    astronomy.org          IDL                            [/][%]      :p4:
+    astronomy.org          HEASARC                        [/][%]      :p4:
+    astronomy.org          GIPSY                          [/][%]      :p4:
+    astronomy.org          Gildas                         [/][%]      :p4:
+    astronomy.org          FTOOLS                         [/][%]      :p4:
+    astronomy.org          FITS                           [/][%]      :p4:
+    astronomy.org          esutil                         [/][%]      :p4:
+    astronomy.org          easyaccess                     [/][%]      :p4:
+    astronomy.org          Duchamp                        [/][%]      :p4:
+    astronomy.org          DRAO                           [/][%]      :p4:
+    astronomy.org          difmap                         [/][%]      :p4:
+    astronomy.org          Coord.                         [/][%]      :p4:
+    astronomy.org          CASApy                         [/][%]      :p4:
+    astronomy.org          CASAcore                       [/][%]      :p4:
+    astronomy.org          ATOMS                          [/][%]      :p4:
+    astronomy.org          ATELIB                         [/][%]      :p4:
+    astronomy.org          ASKAPSoft                      [/][%]      :p4:
+    astronomy.org          ASAP                           [/][%]      :p4:
+    python.org             Py3AMF                         [2/4][50%]  :p3:
+    pascal.org             voc                            [/][%]      :p3:
+    node-xyz.org           jquery                         [/][%]      :p3:
+    node-xyz.org           bootstrap-toggle               [/][%]      :p3:
+    node-xyz.org           bootstrap                      [/][%]      :p3:
+    lisp.org               rib                            [0/4][0%]   :p3:
+    lisp.org               cl-rabbit                      [0/4][0%]   :p3:
+    julia-xyz.org          julia-images                   [0/4][0%]   :p3:
+    julia-xyz.org          julia-imagedistances           [/][%]      :p3:
+    julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]  :p3:
+    julia-xyz.org          julia-dierckx                  [0/4][0%]   :p3:
+    julia-xyz.org          julia-datadeps                 [/][%]      :p3:
+    julia-xyz.org          julia-cfitrsio-jll             [3/4][75%]  :p3:
+    golang.org             bykof/go-plantuml              [/][%]      :p3:
+    emacs-xyz.org          org-roam-ui                    [/][%]      :p3:
+    docker.org             dive                           [0/4][0%]   :p3:
+    astronomy.org          SPICE                          [/][%]      :p3:
+    astronomy.org          python-radiospectra            [/][%]      :p3:
+    astronomy.org          python-ndcube                  [/][%]      :p3:
+    astronomy.org          NEAT                           [0/5][0%]   :p3:
+    astronomy.org          kepler-project                 [0/4][0%]   :p3:
+    astronomy.org          julia-xpa                      [0/4][0%]   :p3:
+    astronomy.org          julia-wcslib                   [0/4][0%]   :p3:
+    astronomy.org          julia-wcs                      [0/4][0%]   :p3:
+    astronomy.org          julia-votables                 [0/4][0%]   :p3:
+    astronomy.org          julia-unitfulastro             [0/4][0%]   :p3:
+    astronomy.org          julia-transits                 [0/4][0%]   :p3:
+    astronomy.org          julia-spice                    [0/4][0%]   :p3:
+    astronomy.org          julia-spectra                  [0/4][0%]   :p3:
+    astronomy.org          julia-skycoords                [0/4][0%]   :p3:
+    astronomy.org          julia-satellitetoolbox         [/][%]      :p3:
+    astronomy.org          julia-satelliteanalysis        [/][%]      :p3:
+    astronomy.org          julia-saoimageds9              [0/4][0%]   :p3:
+    astronomy.org          julia-reproject                [0/4][0%]   :p3:
+    astronomy.org          julia-referenceframerotations  [/][%]      :p3:
+    astronomy.org          julia-pulsarsearch             [0/4][0%]   :p3:
+    astronomy.org          julia-psfmodels                [0/4][0%]   :p3:
+    astronomy.org          julia-planck                   [0/4][0%]   :p3:
+    astronomy.org          julia-photometry               [0/4][0%]   :p3:
+    astronomy.org          julia-photometricfilters       [0/4][0%]   :p3:
+    astronomy.org          julia-orekit                   [/][%]      :p3:
+    astronomy.org          julia-orbits                   [0/4][0%]   :p3:
+    astronomy.org          julia-lombscargle              [0/4][0%]   :p3:
+    astronomy.org          julia-lacosmic                 [0/4][0%]   :p3:
+    astronomy.org          julia-jplephemeris             [0/4][0%]   :p3:
+    astronomy.org          julia-gmat                     [/][%]      :p3:
+    astronomy.org          julia-fitsio                   [0/4][0%]   :p3:
+    astronomy.org          julia-erfa                     [2/4][50%]  :p3:
+    astronomy.org          julia-earthorientation         [0/4][0%]   :p3:
+    astronomy.org          julia-dustextinction           [0/4][0%]   :p3:
+    astronomy.org          julia-cosmology                [0/4][0%]   :p3:
+    astronomy.org          julia-cfitsio                  [1/4][25%]  :p3:
+    astronomy.org          julia-ccdreduction             [0/4][0%]   :p3:
+    astronomy.org          julia-calceph                  [0/4][0%]   :p3:
+    astronomy.org          julia-boxleastsquares          [0/4][0%]   :p3:
+    astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p3:
+    astronomy.org          julia-astrotime                [0/4][0%]   :p3:
+    astronomy.org          julia-astroimageview           [0/4][0%]   :p3:
+    astronomy.org          julia-astroimages              [0/4][0%]   :p3:
+    astronomy.org          julia-astrodynpropagators      [/][%]      :p3:
+    astronomy.org          julia-astrodynplots            [/][%]      :p3:
+    astronomy.org          julia-astrodynamics            [/][%]      :p3:
+    astronomy.org          julia-astrobase                [0/4][0%]   :p3:
+    astronomy.org          julia-astroangles              [2/4][50%]  :p3:
+    astronomy.org          julia-astolib                  [2/4][50%]  :p3:
+    astronomy.org          IIPImage                       [1/4][25%]  :p3:
+    astronomy.org          HEALPix                        [1/4][25%]  :p3:
+    astronomy.org          gammapy                        [0/4][0%]   :p3:
+    astronomy.org          astrometry.net                 [0/4][0%]   :p3:
+    python.org             python-mpl-animators           [1/4][25%]  :p2:
+    maths.org              plplot                         [0/0][0%]   :p2:
+    lisp.org               dirt                           [0/4][0%]   :p2:
+    lisp.org               cl-soil                        [0/4][0%]   :p2:
+    astronomy.org          uvsph                          [/][%]      :p2:
+    astronomy.org          specutils                      [0/4][0%]   :p2:
+    astronomy.org          SiriLic                        [0/4][0%]   :p2:
+    astronomy.org          phantom                        [0/4][0%]   :p2:
+    astronomy.org          mcfost                         [/][%]      :p2:
+    astronomy.org          astroplan                      [2/4][50%]  :p2:
+    python.org             python-towncrier               [1/4][25%]  :p1:
+    python.org             python-sphinx-changelog        [0/4][0%]   :p1:
+    python.org             python-sphinx-automodapi       [1/4][25%]  :p1:
+    python.org             python-opencv                  [0/4][0%]   :p1:
+    lisp.org               feedback                       [0/4][0%]   :p1:
+    golang.org             miller                         [1/5][20%]  :p1:
+    golang.org             go/tools/gopls                 [/][%]      :p1:
+    golang.org             caddy                          [0/4][0%]   :p1:
+    astronomy.org          wiimatch                       [1/4][25%]  :p1:
+    astronomy.org          Torus                          [1/4][25%]  :p1:
+    astronomy.org          python-tweakwcs                [2/4][50%]  :p1:
+    astronomy.org          python-synphot                 [2/4][50%]  :p1:
+    astronomy.org          python-stsynphot               [2/4][50%]  :p1:
+    astronomy.org          python-stsci-stimage           [1/4][25%]  :p1:
+    astronomy.org          python-stsci-imagestats        [2/4][50%]  :p1:
+    astronomy.org          python-stsci-image             [2/4][50%]  :p1:
+    astronomy.org          python-stpipe                  [2/4][50%]  :p1:
+    astronomy.org          python-stdatamodels            [2/4][50%]  :p1:
+    astronomy.org          python-stcal                   [0/4][0%]   :p1:
+    astronomy.org          python-spherical-geometry      [2/4][50%]  :p1:
+    astronomy.org          python-rad                     [2/4][50%]  :p1:
+    astronomy.org          python-pysynphot               [2/4][2/4]  :p1:
+    astronomy.org          python-jwst                    [2/4][50%]  :p1:
+    astronomy.org          python-hissw                   [1/4][25%]  :p1:
+    astronomy.org          python-drizzle                 [2/4][50%]  :p1:
+    astronomy.org          python-datamodels              [2/4][50%]  :p1:
+    astronomy.org          python-crds                    [1/4][25%]  :p1:
+    astronomy.org          python-chiantipy               [0/4][0%]   :p1:
+    astronomy.org          python-casacore                [1/4][25%]  :p1:
+    astronomy.org          python-aiapy                   [0/4][0%]   :p1:
+    astronomy.org          pal                            [0/4][0%]   :p1:
+    astronomy.org          OpenSpace                      [0/4][0%]   :p1:
+    astronomy.org          libsharp                       [1/3][33%]  :p1:
+    astronomy.org          galpy                          [1/4][25%]  :p1:
+    astronomy.org          funtools                       [2/4][50%]  :p1:
+    astronomy.org          BayesicFitting                 [2/4][50%]  :p1:
+    python.org             sphinx-automodapi              [2/4][50%]  
+    python.org             pywb                           [1/4][25%]  
+    python.org             python-surt                    [2/4][50%]  
+    python.org             python-progressbar             [1/3][33%]  
+    python.org             python-asynctest               [1/3][33%]  
+    python.org             python-assay                   [2/3][66%]  
+    python.org             portalocker                    [2/4][50%]  
+    python.org             parsley                        [1/4][25%]  
+    maths.org              DIERCKX                        [0/4][0%]   
+    lisp.org               weird                          [0/4][0%]   
+    lisp.org               weir                           [3/4][75%]  
+    lisp.org               trial                          [4/5][80%]  
+    lisp.org               repo                           [0/4][0%]   
+    lisp.org               qt-libs                        [1/4][25%]  
+    lisp.org               lucerne                        [1/4][25%]  
+    lisp.org               kandria                        [0/4][0%]   
+    lisp.org               harmony                        [0/4][0%]   
+    lisp.org               file-notify                    [0/4][0%]   
+    lisp.org               cl-torrents                    [0/4][0%]   
+    lisp.org               cl-steamworks                  [0/4][0%]   
+    lisp.org               cl-plplot                      [0/4][0%]   
+    lisp.org               cl-mixed                       [1/4][25%]  
+    lisp.org               cl-bodge                       [0/4][0%]   
+    lisp.org               claw                           [0/4][0%]   
+    high-availability.org  corosync-qdevice               [1/4][25%]  
+    golang.org             hashicorp/terraform            [0/4][0%]   
+    golang.org             hashicorp/nomad                [0/4][0%]   
+    golang.org             gin-gonic/gin                  [1/4][25%]  
+    astronomy.org          skychart                       [0/4][0%]   
+    astronomy.org          inistarter                     [0/4][0%]   
+    astronomy.org          eqmodgui                       [0/4][0%]   
+    astronomy.org          ccdciel                        [0/4][0%]   
+    
+    Completed authors and projects:
+    astronomy.org          ALFA                             [4/4][100%]  
+    astronomy.org          AOCommon                         [3/3][100%]  
+    astronomy.org          AOFlagger                        [4/4][100%]  
+    astronomy.org          astroalign                       [4/4][100%]  
+    astronomy.org          casacore                         [4/4][100%]  
+    astronomy.org          cdflib                           [4/4][100%]  
+    astronomy.org          eye                              [3/3][100%]  
+    astronomy.org          gwcs                             [4/4][100%]  
+    astronomy.org          imppg                            [4/4][100%]  
+    astronomy.org          indi                             [4/4][100%]  
+    astronomy.org          libpasastro                      [3/3][100%]  
+    astronomy.org          missfits                         [3/3][100%]  
+    astronomy.org          pynbody                          [4/4][100%]  
+    astronomy.org          python-asdf                      [1/1][100%]  
+    astronomy.org          python-asdf-astropy              [3/3][100%]  
+    astronomy.org          python-asdf-coordinates-schemas  [1/1][100%]  
+    astronomy.org          python-asdf-standard             [4/4][100%]  
+    astronomy.org          python-asdf-time-schemas         [4/4][100%]  
+    astronomy.org          python-asdf-transform-schemas    [1/1][100%]  
+    astronomy.org          python-asdf-unit-schemas         [4/4][100%]  
+    astronomy.org          python-asdf-wcs-schemas          [2/2][100%]  
+    astronomy.org          python-astropy                   [4/4][100%]  
+    astronomy.org          python-drms                      [5/5][100%]  
+    astronomy.org          python-hvpy                      [4/4][100%]  
+    astronomy.org          python-mpl-animations            [4/4][100%]  
+    astronomy.org          python-poppy                     [4/4][100%]  
+    astronomy.org          python-reproject                 [4/4][100%]  
+    astronomy.org          python-sunpy                     [3/4][75%]   
+    astronomy.org          pyton-asdf-fits-schemas          [4/4][100%]  
+    astronomy.org          pyton-asdf-table-schemas         [1/1][100%]  
+    astronomy.org          qfits                            [3/3][100%]  
+    astronomy.org          sextractor                       [4/4][100%]  
+    astronomy.org          siril                            [4/4][100%]  
+    astronomy.org          skymaker                         [4/4][100%]  
+    astronomy.org          SPLASH                           [4/4][100%]  
+    astronomy.org          stackistry                       [4/4][100%]  
+    astronomy.org          stiff                            [3/3][100%]  
+    astronomy.org          stuff                            [3/3][100%]  
+    astronomy.org          swarp                            [3/3][100%]  
+    astronomy.org          weightwatcher                    [3/3][100%]  
+    cran.org               opencpu                          [4/4][100%]  
+    databases.org          pgloader                                      
+    golang.org             hcl-v2                           [4/4][100%]  
+    golang.org             valyala/fasthttp                 [4/4][100%]  
+    high-availability.org  corosync                         [4/4][100%]  
+    high-availability.org  kronosnet                        [4/4][100%]  
+    high-availability.org  pacemaker                        [4/4][100%]  
+    lisp.org               3b-bmfont                        [4/4][100%]  
+    lisp.org               adopt                            [4/4][100%]  
+    lisp.org               alloy                            [4/4][100%]  
+    lisp.org               asdf-system-connections          [3/3][100%]  
+    lisp.org               assertion-error                  [4/4][100%]  
+    lisp.org               assert-p                         [4/4][100%]  
+    lisp.org               bknr-datastore                   [4/4][100%]  
+    lisp.org               cacau                            [4/4][100%]  
+    lisp.org               cepl                             [4/4][100%]  
+    lisp.org               chirp                            [4/4][100%]  
+    lisp.org               chronicity                       [4/4][100%]  
+    lisp.org               classimp                         [4/4][100%]  
+    lisp.org               cl-cpus                          [3/3][100%]  
+    lisp.org               cl-debug                         [3/3][100%]  
+    lisp.org               cl-diskspace                     [3/3][100%]  
+    lisp.org               cl-glfw3                         [4/4][100%]  
+    lisp.org               cl-graph                         [4/4][100%]  
+    lisp.org               cl-gss                           [4/4][100%]  
+    lisp.org               cl-liballegro                    [4/4][100%]  
+    lisp.org               cl-mathstats                     [4/4][100%]  
+    lisp.org               cl-mount-info                    [4/4][100%]  
+    lisp.org               cl-nst                           [4/4][100%]  
+    lisp.org               cl-opengl                        [4/4][100%]  
+    lisp.org               cl-posix-mqueue                  [4/4][100%]  
+    lisp.org               cl-re                            [4/4][100%]  
+    lisp.org               cl-slug                          [4/4][100%]  
+    lisp.org               coalton                          [4/4][100%]  
+    lisp.org               Djula                            [4/4][100%]  
+    lisp.org               eventbus                         [4/4][100%]  
+    lisp.org               fn                               [4/4][100%]  
+    lisp.org               glop                             [4/4][100%]  
+    lisp.org               glsl-packing                     [4/4][100%]  
+    lisp.org               glsl-spec                        [3/3][100%]  
+    lisp.org               golden-utils                     [3/3][100%]  
+    lisp.org               hu.dwim.graphviz                 [4/4][100%]  
+    lisp.org               kaputt                           [4/4][100%]  
+    lisp.org               metacopy                         [4/4][100%]  
+    lisp.org               net.mfiano.lisp.shadow           [4/4][100%]  
+    lisp.org               net.mfiano.lisp.umbra            [4/4][100%]  
+    lisp.org               origin                           [4/4][100%]  
+    lisp.org               printv                           [4/4][100%]  
+    lisp.org               radiance                         [4/4][100%]  
+    lisp.org               sdl2                             [4/4][100%]  
+    lisp.org               simplet                          [3/3][100%]  
+    lisp.org               specialization-store             [4/4][100%]  
+    lisp.org               trivial-channels                 [4/4][100%]  
+    lisp.org               trivial-timeout                  [3/3][100%]  
+    lisp.org               varjo                            [4/4][100%]  
+    lisp.org               vas-string-metrics               [3/3][100%]  
+    lisp.org               ViralityEngine                   [4/4][100%]  
+    maths.org              giza                             [4/4][100%]  
+    python.org             aioftp                           [4/4][100%]  
+    python.org             glymur                           [4/4][100%]  
+    python.org             posix-ipc                        [1/1][100%]  
+    python.org             python-h5netcdf                  [4/4][100%]  
+    python.org             python-parfive                   [4/4][100%]  
+    python.org             python-pytest-socket             [4/4][100%]  
+    python.org             siosocks                         [4/4][100%]  
+    astronomy.org          aroffringa                       [2/2][100%]  :author:
+    astronomy.org          asdf-format                      [9/9][100%]  :author:
+    astronomy.org          pynbody                          [1/1][100%]  :author:
+    golang.org             valyala                          [1/1][100%]  :author:
+    lisp.org               3b                               [4/4][100%]  :author:
+    lisp.org               AlexCharlton                     [1/1][100%]  :author:
+    lisp.org               bufferswap                       [1/1][100%]  :author:
+    lisp.org               EuAndreh                         [1/1][100%]  :author:
+    lisp.org               gwkkwg                           [5/5][100%]  :author:
+    lisp.org               hanshuebner                      [1/1][100%]  :author:
+    lisp.org               jphmrst                          [1/1][100%]  :author:
+    lisp.org               massung                          [1/1][100%]  :author:
+    lisp.org               mmontone                         [1/1][100%]  :author:
+    lisp.org               muyinliu                         [2/2][100%]  :author:
+    lisp.org               noloop                           [5/5][100%]  :author:
+    lisp.org               resttime                         [1/1][100%]  :author:
+    lisp.org               rpav                             [1/1][100%]  :author:
+    lisp.org               sjl                              [1/1][100%]  :author:
+    lisp.org               stylewarning                     [1/1][100%]  :author:
+    lisp.org               xFA25E                           [1/1][100%]  :author:
+    python.org             aio-libs                         [1/1][100%]  :author:
+    python.org             Cadair                           [1/1][100%]  :author:
+    python.org             h5netcdf                         [1/1][100%]  :author:
+    python.org             miketheman                       [1/1][100%]  :author:
+    python.org             osvenskan                        [1/1][100%]  :author:
+    python.org             pohmelie                         [1/1][100%]  :author:
+    python.org             quintusdias                      [1/1][100%]  :author:
+    astronomy.org          GreatAttractor                   [2/2][100%]  :author:p5:
 

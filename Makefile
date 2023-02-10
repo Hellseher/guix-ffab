@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2022-11-12 Sat 23:45:24 GMT>
+# Modified : <2023-01-28 Sat 21:58:27 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -8,19 +8,26 @@ FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
 MODULES_ASTRO :=	\
 ffab/packages/astronomy.scm
 
+MODULES_JULIA :=			\
+ffab/packages/julia-xyz.scm	\
+ffab/packages/julia-jll.scm	\
+
 MODULES_PYTHON :=				\
 ffab/packages/python-xyz.scm	\
 ffab/packages/python-web.scm	\
 ffab/packages/python-check.scm	\
 ffab/packages/sphinx.scm
 
-MODULES_GOLANG :=				\
-ffab/packages/golang.scm
+MODULES_GOLANG :=					\
+ffab/packages/docker.scm			\
+ffab/packages/golang.scm			\
+ffab/packages/terraform.scm
 
-MODULES_LISP :=				\
-ffab/packages/lisp.scm		\
-ffab/packages/lisp-xyz.scm	\
-ffab/packages/lisp-check.scm
+MODULES_LISP :=						\
+ffab/packages/game-development.scm	\
+ffab/packages/lisp-check.scm		\
+ffab/packages/lisp-xyz.scm			\
+ffab/packages/lisp.scm
 
 MODULES_MISC :=						\
 ffab/packages/check.scm				\
@@ -28,9 +35,7 @@ ffab/packages/cinnamon.scm			\
 ffab/packages/cran.scm				\
 ffab/packages/cxx.scm				\
 ffab/packages/databases.scm			\
-ffab/packages/docker.scm			\
 ffab/packages/engineering.scm		\
-ffab/packages/game-development.scm	\
 ffab/packages/geo.scm				\
 ffab/packages/gradle.scm			\
 ffab/packages/high-availability.scm \
@@ -43,7 +48,6 @@ ffab/packages/pascal.scm			\
 ffab/packages/photo.scm				\
 ffab/packages/rabbitmq.scm			\
 ffab/packages/rust-app.scm			\
-ffab/packages/terraform.scm			\
 ffab/packages/tls.scm				\
 ffab/packages/web.scm
 
@@ -53,9 +57,11 @@ PKGS_ACCEPTED ?= $(shell grep -r ";.*define-public" ffab | cut -d' ' -f3 | sed -
 PKGS_PENDING ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
 
 PKGS_ASTRONOMY ?= $(shell $(GET_MODULES) $(MODULES_ASTRO) $(FILTER_MODULES))
+PKGS_GOLANG ?= $(shell $(GET_MODULES) $(MODULES_GOLANG) $(FILTER_MODULES))
+PKGS_JULIA ?= $(shell $(GET_MODULES) $(MODULES_JULIA) $(FILTER_MODULES))
 PKGS_LISP ?= $(shell $(GET_MODULES) $(MODULES_LISP) $(FILTER_MODULES))
 PKGS_PYTHON ?= $(shell $(GET_MODULES) $(MODULES_PYTHON) $(FILTER_MODULES))
-PKGS_GOLANG ?= $(shell $(GET_MODULES) $(MODULES_GOLANG) $(FILTER_MODULES))
+
 PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 
 # Add each group of packages to this macros when all pending changes are
@@ -67,15 +73,8 @@ GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS)
 GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
-# commit, update on any major changes.
-#
-# As seen in `guix describe`:
-# Generation 355  Nov 08 2022 11:27:54    (current)
-#   guix 93be56a
-#     repository URL: https://git.savannah.gnu.org/git/guix.git
-#     branch: master
-#     commit: 93be56a3ab28ed0a482f354b7f536681c99b6999
-GUIX_COMMIT ?= 93be56a3ab28ed0a482f354b7f536681c99b6999
+# commit, update on any major changes as seen in `guix describe`.
+GUIX_COMMIT ?= 1bed1d848166a4081051b4e87a5ec4942ddb3397
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD

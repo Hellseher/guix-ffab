@@ -26,47 +26,7 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
-(define-public sbcl-virality
-  (let ((commit "96ea9dd5448bd26388bbaeee115e12a2678005e5")
-        (revision "2"))
-    (package
-      (name "sbcl-virality")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/bufferswap/ViralityEngine")
-               (commit commit)))
-         (file-name (git-file-name "virality" version))
-         (sha256
-          (base32 "1qh3s8p4hnzbf5a6b9syp2hjd3nz083qgwpjmkddb8dl6yvvy1rj"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-3b-bmfont
-             sbcl-babel
-             sbcl-cl-cpus
-             sbcl-cl-graph ;; not packed
-             sbcl-cl-opengl
-             sbcl-cl-ppcre
-             sbcl-cl-slug
-             sbcl-closer-mop
-             sbcl-fast-io
-             sbcl-global-vars
-             sbcl-golden-utils
-             sbcl-jsown
-             sbcl-lparallel
-             sbcl-origin
-             sbcl-pngload
-             sbcl-printv
-             sbcl-queues
-             sbcl-sdl2
-             sbcl-shadow
-             sbcl-split-sequence
-             sbcl-static-vectors
-             sbcl-umbra
-             sbcl-trivial-features))
-      (home-page "https://github.com/bufferswap/ViralityEngine")
-      (synopsis "Component-based game engine written in Common Lisp")
-      (description "")
-      (license license:expat))))
+;; 20221119T195802+0000
+;; (define-public sbcl-virality
+;; added-to-upstream 9c2d6ddfbed949d55230cb785d0245f5ef21daa6
+;; CommitDate: Sun Nov 20 14:45:00 2022 +0100

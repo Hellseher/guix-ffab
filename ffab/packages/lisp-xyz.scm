@@ -17,6 +17,7 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages lisp-xyz)
+  #:use-module (ffab packages graphics)
   #:use-module (ffab packages lisp-check)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
@@ -254,150 +255,25 @@
 ;; added-to-upstream: 375c44de40827a33369a93f5745f272e491f4150
 ;; CommitDate: Fri Jan 8 10:47:46 2021 +0100
 
-;; TODO: (Sharlatan-20221111T191139+0000): Failed to build:
-;;
-;; Unhandled SB-INT:SIMPLE-FILE-ERROR in thread #<SB-THREAD:THREAD "main thread" RUNNING {100B0F8083}>:
-;;
-;; Error opening #P"/gnu/store/n232d09z31xbzawp0yc19k66z0mi1jrc-sbcl-cl-containers-ffab-0.12.1-3.3d1df53/lib/common-lisp/sbcl/cl-containers-ffab/dev/utilities-integration-tmp1CXFJSK9.fasl":
-;;    Permission denied
-;;
 ;; 20220615T223419+0100
-(define sbcl-cl-graph
-  (let ((commit "3cb786797b24883d784b7350e7372e8b1e743508")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-graph")
-      (version (git-version "0.10.2" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/cl-graph")
-               (commit commit)))
-         (file-name (git-file-name "cl-graph" version))
-         (sha256
-          (base32 "1748rj52f2jmd5jvsy9jwhn0zf73sjzjhwhnljvq6yi2kdqr30kl"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:tests? #f
-         #:asd-systems '("cl-graph")))
-      (native-inputs
-       (list sbcl-lift sbcl-moptilities))
-      (inputs
-       (list sbcl-hu.dwim.graphviz
-             sbcl-cl-mathstats
-             sbcl-dynamic-classes
-             sbcl-metabang-bind
-             sbcl-metacopy
-             sbcl-metatilities-base))
-      (home-page "https://github.com/gwkkwg/cl-graph")
-      (synopsis "Common Lisp library for manipulating graphs and running graph algorithms")
-      (description
-       "Graph manipulation utilities for Common Lisp")
-      (license license:expat))))
-
-(define ecl-cl-graph
-  (sbcl-package->ecl-package sbcl-cl-graph))
-
-(define cl-graph
-  (sbcl-package->cl-source-package sbcl-cl-graph))
+;; (define sbcl-cl-graph
+;; added-to-upstream a02cd9623f1468205d7dee5f7545f4ed76007b4d
+;; CommitDate: Sat Nov 19 12:58:11 2022 +0100
 
 ;; 20220627T204024+0100
-(define-public sbcl-cl-mathstats
-  (let ((commit "4df38ea1b9de069cf939919253565a9ca9538eca")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-mathstats")
-      (version (git-version "0.8.2" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/cl-mathstats")
-               (commit commit)))
-         (file-name (git-file-name "cl-mathstats" version))
-         (sha256
-          (base32 "0gsjvmkmnxc4hp5z9mkm5vsllywqyg7kx8jgz88vnx47yj3va1s8"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-lift))
-      (inputs
-       (list sbcl-cl-containers sbcl-metatilities-base))
-      (home-page "https://github.com/gwkkwg/cl-mathstats")
-      (synopsis "Common Lisp unordered collection of mathematical routines")
-      (description
-       "Common Lisp math and statistics routines")
-      (license license:expat))))
-
-(define-public ecl-cl-mathstats
-  (sbcl-package->ecl-package sbcl-cl-mathstats))
-
-(define-public cl-mathstats
-  (sbcl-package->cl-source-package sbcl-cl-mathstats))
+;; (define-public sbcl-cl-mathstats
+;; added-to-upstream 8cbd51d2d53cf8aa3794c7916750c6146eff1e5d
+;; CommitDate: Fri Nov 18 14:33:06 2022 +0100
 
 ;; 20220627T205038+0100
-(define-public sbcl-metacopy
-  (let ((commit "1b5bf443206cc1dea7801ae23d1167bd02122d30")
-        (revision "1"))
-    (package
-      (name "sbcl-metacopy")
-      (version (git-version "0.2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/metacopy")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1rzp112djgw5n76s6hy2aq92bc43p0zd5bgzvqwvgvws4pls42s9"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-lift sbcl-asdf-system-connections))
-      (inputs
-       (list sbcl-contextl sbcl-moptilities))
-      (home-page "https://github.com/gwkkwg/metacopy")
-      (synopsis "Flexible Common Lisp shallow/deep copy mechanism")
-      (description
-       "This package provides flexible Common Lisp shallow/deep copy mechanism.")
-      (license license:expat))))
-
-;; NOTE: (Sharlatan-20221112T214131+0000): There is no ecl-moptilities variable
-;; required for tests.
-;;
-;; ecl-metacopy
-
-(define-public cl-metacopy
-  (sbcl-package->cl-source-package sbcl-metacopy))
+;; (define-public sbcl-metacopy
+;; added-to-upstream f136e83840a2d3ef74864a5147352387f652691a
+;; CommitDate: Fri Nov 18 14:27:18 2022 +0100
 
 ;; 20220707T232742+0100
-(define-public sbcl-asdf-system-connections
-  (let ((commit "9f085240febccccff99d9d3bb687fcaafffd3f5e")
-        (revision "1"))
-    (package
-      (name "sbcl-asdf-system-connections")
-      (version (git-version "0.8.4" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/gwkkwg/asdf-system-connections")
-               (commit commit)))
-         (file-name (git-file-name "asdf-system-connections" version))
-         (sha256
-          (base32 "06kg0m8bv383qq3r34x0f8hz6p6zxcw02qn7kj960vcnrp5a5b3y"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/gwkkwg/asdf-system-connections")
-      (synopsis "Common Lisp ASDF system auto-loading extantion")
-      (description "This package povides Common Lisp ASDF system auto-loading
-extantion.")
-      (license license:expat))))
-
-(define-public ecl-asdf-system-connections
-  (sbcl-package->ecl-package sbcl-asdf-system-connections))
-
-(define-public cl-asdf-system-connections
-  (sbcl-package->cl-source-package sbcl-asdf-system-connections))
+;; (define-public sbcl-asdf-system-connections
+;; added-to-upstream 89ebe054c5c32a6bb751548addda6fd31a27d099
+;; CommitDate: Fri Nov 18 14:15:41 2022 +0100
 
 ;;+end-gwkkwg
 
@@ -693,7 +569,7 @@ should thus be portable to all CL implementations supported by UFFI.")
 ;; and others
 ;;
 ;; 20220709T235535+0100
-(define-public sbcl-cl-mpi
+(define sbcl-cl-mpi
   (let ((commit "ba92be06ec1dca74d0ca5256aa387d8a28c8ad86")
         (revision "1"))
     (package
@@ -745,7 +621,7 @@ from working with raw pointers to memory and a plethora of mandatory function
 arguments.")
       (license license:expat))))
 
-(define-public cl-mpi
+(define cl-mpi
   (sbcl-package->cl-source-package sbcl-cl-mpi))
 
 ;; FIXME: (Sharlatan-20221111T134434+0000): Failed ECL build:
@@ -812,50 +688,9 @@ LPARALLEL.")
       (license license:bsd-3))))
 
 ;; 20221112T205831+0000
-(define-public sbcl-cl-gss
-  (let ((commit "60086f4fd3b82316352e7f2288edbd58f03e08c5")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-gss")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/lokedhs/cl-gss")
-               (commit commit)))
-         (file-name (git-file-name "cl-gss" version))
-         (sha256
-          (base32 "0zhxxn3zarird255s9i56bz0fm6dkv00mn8bbsjrhskg3wpcg4pb"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       (list
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'patch-gss-lib-path
-              (lambda* (#:key inputs #:allow-other-keys)
-                (substitute* "src/functions.lisp"
-                  (("libgssapi_krb5.so")
-                   (search-input-file inputs "/lib/libgssapi_krb5.so"))))))))
-      (inputs
-       (list mit-krb5
-             sbcl-cffi
-             sbcl-trivial-garbage
-             sbcl-trivial-utf-8))
-      (home-page "https://github.com/lokedhs/cl-gss")
-      (synopsis "Common Lisp CFFI bindings to Generic Security Service (GSS)")
-      (description
-       "GSSAPI is an API which is designed to provide a standard API to authentication
-services.  The API itself is generic, and the system can provide different
-underlying implementations.  The most common one is Kerberos, which has several
-implementations, the most common of which is probably Active Directory.")
-      (license license:bsd-3))))
-
-(define-public ecl-cl-gss
-  (sbcl-package->ecl-package sbcl-cl-gss))
-
-(define-public cl-gss
-  (sbcl-package->cl-source-package sbcl-cl-gss))
+;; (define-public sbcl-cl-gss
+;; added-to-upstream d244282b698087bb6f6cf3c1c4d57b7a5e2e8ffa
+;; CommitDate: Tue Nov 15 11:22:29 2022 +0100
 
 ;;https://github.com/fukamachi
 ;;+begin-fukamachi
@@ -901,68 +736,9 @@ implementations, the most common of which is probably Active Directory.")
 ;;+begin-sjl
 
 ;; 20210608T233910+0100
-(define-public sbcl-adopt
-  (let ((commit "c558dfdd8b8f3ba386f67550268d651e81eff6cf")
-        (revision "1"))
-    (package
-      (name "sbcl-adopt")
-      (version (git-version "1.1.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/sjl/adopt")
-               (commit commit)))
-         (file-name (git-file-name "adopt" version))
-         (sha256
-          (base32 "1b1f9mpp3lkfq3hcpmw4g2cwklscjs5nggdjsfxapj88j2pj73ky"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-1am))
-      (inputs (list sbcl-bobbin sbcl-split-sequence))
-      (home-page "https://hg.stevelosh.com/adopt")
-      (synopsis "Common Lisp A Damn OPTion parsing library")
-      (description
-       "Adopt is a simple UNIX-style option parser in Common Lisp, heavily
-influenced by Python's optparse and argparse.")
-      (license license:expat))))
-
-(define-public ecl-adopt
-  (sbcl-package->ecl-package sbcl-adopt))
-
-(define-public cl-adopt
-  (sbcl-package->cl-source-package sbcl-adopt))
-
-(define-public sbcl-bobbin
-  (let ((commit "b454e8241b24ceab674eeeae464c8082b1b6d8ce")
-        (revision "1"))
-    (package
-      (name "sbcl-bobbin")
-      (version (git-version "1.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/sjl/bobbin")
-               (commit commit)))
-         (file-name (git-file-name "bobbin" version))
-         (sha256
-          (base32 "02lw7w8cbvnxw5acbz405rb5lcqsf4fx7dvj5ldr0lhgbyv1mjnm"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-1am))
-      (inputs (list sbcl-split-sequence))
-      (home-page "https://hg.stevelosh.com/bobbin")
-      (synopsis "Word-wrapping library for strings in Common Lisp")
-      (description
-       "This package provides a simple (word) wrapping utilities for strings
-implemented in Common Lisp which aim is to be easy to use without demand on
-performance.")
-      (license license:expat))))
-
-(define-public ecl-bobbin
-  (sbcl-package->ecl-package sbcl-bobbin))
-
-(define-public cl-bobbin
-  (sbcl-package->cl-source-package sbcl-bobbin))
+;; (define-public sbcl-adopt
+;; added-to-upstream c0037bd5080460c88aa80000e8fa5d8f3493c335
+;; CommitDate: Mon Nov 21 10:10:27 2022 +0100
 
 ;;+end-sjl
 
@@ -982,34 +758,9 @@ performance.")
 ;;+end-hu-dwim
 
 ;; <2021-11-07 Sun>
-(define-public sbcl-eventbus
-  (let ((commit "92c1fa3846ba0e3cc9e6d7605d765379c8658d84")
-        (revision "1"))
-    (package
-      (name "sbcl-eventbus")
-      (version (git-version "0.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/noloop/eventbus")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "0slqx3zq6sbz3rg4g79j8y25sx4405y6ff3x6l5v8v4v42m1s0p2"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-simplet))
-      (home-page "https://github.com/noloop/eventbus")
-      (synopsis "Event bus implementation in Common Lisp")
-      (description
-"This package provides EVENTBUST Common Lisp system.")
-      (license license:gpl3+))))
-
-(define-public ecl-eventbus
-  (sbcl-package->ecl-package sbcl-eventbus))
-
-(define-public cl-eventbus
-  (sbcl-package->cl-source-package sbcl-eventbus))
+;; (define-public sbcl-eventbus
+;; added-to-upstream cd9df33e4144ff9d85fef55cdc6caec4ccc007b4
+;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20211127T133558+0000
 ;; added-to-upstream: 4beb013c84cd44a2e6dc03a2697615c660985f4a
@@ -1188,3 +939,10 @@ extensions developed by technical users.")
 ;; https://github.com/kaveh808/kons-9/issues/176
 ;;
 ;; ecl-kons-9
+
+;; 20230110T230445+0000
+;; (define-public sbcl-classimp
+;; added-to-upstream: 1428e20284e8ae40953000709bce974ee327eff0
+;; CommitDate: Tue Jan 17 15:04:49 2023 +0100
+
+;; End of lisp-xyz.scm

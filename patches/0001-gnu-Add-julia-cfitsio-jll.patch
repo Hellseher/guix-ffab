@@ -1,0 +1,81 @@
+From 6eab42e39fa1468dfa8dacbcd74d1db911f48945 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Jan 2023 22:04:58 +0000
+Subject: [PATCH 1/3] gnu: Add julia-cfitsio-jll.
+
+* gnu/packages/julia-jll.scm (julia-cfitsio-jll): New variable.
+---
+ gnu/packages/julia-jll.scm | 43 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+
+diff --git a/gnu/packages/julia-jll.scm b/gnu/packages/julia-jll.scm
+index 2b0f644736..7625ff512a 100644
+--- a/gnu/packages/julia-jll.scm
++++ b/gnu/packages/julia-jll.scm
+@@ -3,6 +3,7 @@
+ ;;; Copyright © 2021 Simon Tournier <zimon.toutoune@gmail.com>
+ ;;; Copyright © 2021 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Jean-Baptiste Volatier <jbv@pm.me>
++;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -26,6 +27,7 @@ (define-module (gnu packages julia-jll)
+   #:use-module (guix utils)
+   #:use-module (guix build-system julia)
+   #:use-module (gnu packages)
++  #:use-module (gnu packages astronomy)
+   #:use-module (gnu packages audio)
+   #:use-module (gnu packages base)
+   #:use-module (gnu packages compression)
+@@ -146,6 +148,47 @@ (define-public julia-cairo-jll
+     (description "This package provides a wrapper for the cairo library.")
+     (license license:expat)))
+ 
++(define-public julia-cfitsio-jll
++  (package
++    (name "julia-cfitsio-jll")
++    (version "4.0.0+0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaBinaryWrappers/CFITSIO_jll.jl")
++             (commit (string-append "CFITSIO-v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1k0mqmpyfjr3ibcmda08llw8m166zw0n3lh5y5aj81q37lrxw990"))))
++    (build-system julia-build-system)
++    (arguments
++     '(#:tests? #f ; no runtests
++      #:phases
++      (modify-phases %standard-phases
++          (add-after 'link-depot 'override-binary-path
++            (lambda* (#:key inputs #:allow-other-keys)
++              (map
++               (lambda (wrapper)
++                 (substitute* wrapper
++                   (("using LibCURL_jll") "") ; We use Guix's cfitsio
++                   (("using Zlib_jll") "") ; Not require to upnpack not donwloaded archvie.
++                   (("generate_init_header.*") "generate_init_header()\n" )
++                   (("generate_wrapper_header.*")
++                    (string-append
++                     "generate_wrapper_header(\"CFITSIO\", \""
++                     (assoc-ref inputs "cfitsio") "\")\n"))))
++               ;; There's a Julia file for each platform, override them all
++               (find-files "src/wrappers/" "\\.jl$")))))))
++    (inputs
++     (list cfitsio))
++    (propagated-inputs
++     (list julia-jllwrappers))
++    (home-page "https://github.com/JuliaBinaryWrappers/CFITSIO_jll.jl")
++    (synopsis "cfitsio library wrappers")
++    (description "This package provides a wrapper for the cfitsio library.")
++    (license license:expat)))
++
+ (define-public julia-compilersupportlibraries-jll
+   (package
+     (name "julia-compilersupportlibraries-jll")
+-- 
+2.39.1
+

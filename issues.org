@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [140/157][89%]
+* Accepted in upstream [154/162][95%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -75,7 +75,6 @@
 - [X] <2021-03-06 Sat> https://issues.guix.gnu.org/46975 <2021-03-10 Wed>
 - [X] <2021-03-11 Thu> https://issues.guix.gnu.org/47078 <2021-03-12 Fri>
 - [X] <2021-03-11 Thu> https://issues.guix.gnu.org/47079 <2021-03-12 Fri>
-- [ ] <2021-03-15 Mon> https://issues.guix.gnu.org/47179
 - [X] <2021-03-26 Fri> https://issues.guix.gnu.org/47430 <2021-03-29 Mon>
 - [X] <2021-03-31 Wed> https://issues.guix.gnu.org/47530 <2021-04-01 Thu>
 - [X] <2021-03-31 Wed> https://issues.guix.gnu.org/47531 <2021-04-01 Thu>
@@ -83,7 +82,6 @@
 - [X] <2021-04-04 Sun> https://issues.guix.gnu.org/47586 <2021-04-05 Mon>
 - [X] <2021-04-10 Sat> https://issues.guix.gnu.org/47683 <2021-04-10 Sat>
 - [X] <2021-04-17 Sat> https://issues.guix.gnu.org/47851 <2021-04-19 Mon>
-- [ ] <2021-04-19 Mon> https://issues.guix.gnu.org/47901
 - [X] <2021-04-21 Wed> https://issues.guix.gnu.org/47942 <2021-04-22 Thu>
 - [X] <2021-04-21 Wed> https://issues.guix.gnu.org/47943 <2021-04-23 Fri>
 - [X] <2021-04-25 Sun> https://issues.guix.gnu.org/47961 <2021-04-25 Sun>
@@ -96,16 +94,14 @@
 - [X] <2021-05-10 Mon> https://issues.guix.gnu.org/48338 <2021-05-15 Sat>
 - [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48431 <2021-05-15 Sat>
 - [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48438 <2021-05-15 Sat>
-- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48451 <2021-05-17 Mon>
 - [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48453 <2021-05-17 Mon>
 - [ ] <2021-05-15 Sat> https://issues.guix.gnu.org/48454
-- [X] <2021-05-17 Mon> https://issues.guix.gnu.org/48485 <2021-05-18 Tue>
-- [ ] <2021-05-18 Tue> https://issues.guix.gnu.org/46333
 - [X] <2021-05-19 Wed> https://issues.guix.gnu.org/48527 <2021-05-20 Thu>
 - [X] <2021-05-20 Thu> https://issues.guix.gnu.org/48542 <2021-05-23 Sun>
 - [X] <2021-05-20 Thu> https://issues.guix.gnu.org/48550 <2021-05-23 Sun>
 - [X] <2021-05-22 Sat> https://issues.guix.gnu.org/48590 <2021-05-23 Sun>
 - [ ] <2021-05-22 Sat> https://issues.guix.gnu.org/48593
+  - [ ] https://github.com/binghe/portable-threads/issues/4
 - [X] <2021-05-23 Sun> https://issues.guix.gnu.org/48615 <2021-05-26 Wed>
 - [X] <2021-05-26 Wed> https://issues.guix.gnu.org/48684 <2021-07-22 Thu>
 - [X] <2021-05-26 Wed> https://issues.guix.gnu.org/48689 <2021-05-27 Thu>
@@ -131,8 +127,6 @@
 - [X] <2021-12-26 Sun> https://issues.guix.gnu.org/52811 <2021-12-26 Sun>
 - [ ] <2021-12-26 Sun> https://issues.guix.gnu.org/52812
 - [X] <2022-05-18 Wed> https://issues.guix.gnu.org/55509 <2022-05-30 Mon>
-- [ ] <2022-05-20 Fri> https://issues.guix.gnu.org/55546 blocked by jQuery
-- [X] <2022-05-20 Fri> https://issues.guix.gnu.org/55548 <2022-05-21 Sat>
 - [ ] <2022-05-23 Mon> https://issues.guix.gnu.org/55604
 - [X] <2022-06-12 Sun> https://issues.guix.gnu.org/55935 <2022-06-23 Thu>
 - [X] <2022-06-26 Sun> https://issues.guix.gnu.org/56238 <2022-08-04 Thu>
@@ -146,9 +140,9 @@
 - [X] <2022-09-28 Wed> https://issues.guix.gnu.org/58152 <2022-10-10 Mon>
 - [X] <2022-10-01 Sat> https://issues.guix.gnu.org/58229 <2022-10-06 Thu>
 - [X] <2022-10-14 Fri> https://issues.guix.gnu.org/58530 <2022-11-07 Mon>
-- [ ] <2022-10-17 Mon> https://issues.guix.gnu.org/58586
+- [X] <2022-10-17 Mon> https://issues.guix.gnu.org/58586 <2022-12-06 Tue>
 - [X] <2022-10-19 Wed> https://issues.guix.gnu.org/58645 <2022-10-22 Sat>
-- [ ] <2022-10-30 Sun> https://issues.guix.gnu.org/58907
+- [X] <2022-10-30 Sun> https://issues.guix.gnu.org/58907 <2022-11-14 Mon>
 - [ ] <2022-11-01 Tue> https://issues.guix.gnu.org/58952
   License check
   - [ ] https://github.com/mayanklahiri/easyexif/issues/43
@@ -156,9 +150,53 @@
 - [X] <2022-11-01 Tue> https://issues.guix.gnu.org/58953 <2022-11-03 Thu>
 - [X] <2022-11-04 Fri> https://issues.guix.gnu.org/59025 <2022-11-05 Sat>
 - [X] <2022-11-04 Fri> https://issues.guix.gnu.org/59030 <2022-11-06 Sun>
-- [ ] <2022-11-07 Mon> https://issues.guix.gnu.org/59113
-- [ ] <2022-11-09 Wed> https://issues.guix.gnu.org/59155
-- [ ] <2022-11-09 Wed> https://issues.guix.gnu.org/59156
-- [ ] <2022-11-12 Sat> https://issues.guix.gnu.org/59230
-  - [ ] https://github.com/Shirakumo/radiance/issues/56
-- [ ] <2022-11-12 Sat> https://issues.guix.gnu.org/59231
+- [X] <2022-11-07 Mon> https://issues.guix.gnu.org/59113 <2022-11-21 Mon>
+  Builds only on x86_64
+  - https://github.com/brandon-rhodes/python-sgp4/issues/107
+- [X] <2022-11-09 Wed> https://issues.guix.gnu.org/59155 <2022-11-15 Tue>
+- [X] <2022-11-09 Wed> https://issues.guix.gnu.org/59156 <2022-11-15 Tue>
+- [X] <2022-11-12 Sat> https://issues.guix.gnu.org/59230 <2022-11-15 Tue>
+  - https://github.com/Shirakumo/radiance/issues/56
+- [X] <2022-11-12 Sat> https://issues.guix.gnu.org/59231 <2022-11-15 Tue>
+- [X] <2022-11-16 Wed> https://issues.guix.gnu.org/59323 <2022-12-01 Thu>
+  Fails on aarch64-linux
+  - https://github.com/rwesson/ALFA/issues/29
+- [ ] <2022-11-17 Thu> https://issues.guix.gnu.org/59335
+  Waiting for LTS 22.12.1 release of Sanic
+  https://sanic.dev/en/guide/release-notes/v22.9.html#introduction.
+- [X] <2022-11-17 Thu> https://issues.guix.gnu.org/59344 <2022-11-19 Sat>
+- [X] <2022-11-19 Sat> https://issues.guix.gnu.org/59391 <2022-11-20 Sun>
+- [X] <2022-11-20 Sun> https://issues.guix.gnu.org/59419 <2022-11-21 Mon>
+- [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59494 <2022-11-23 Wed>
+- [X] <2022-11-24 Thu> https://issues.guix.gnu.org/59542 <2022-11-25 Fri>
+- [X] <2022-12-08 Thu> https://issues.guix.gnu.org/59891 <2022-12-09 Fri>
+- [X] <2022-12-08 Thu> https://issues.guix.gnu.org/59892 <2023-01-16 Mon>
+- [X] <2023-01-06 Fri> https://issues.guix.gnu.org/60611 <2023-02-01 Wed>
+- [X] <2023-01-13 Fri> https://issues.guix.gnu.org/60790 <2023-01-17 Tue>
+- [ ] <2023-01-13 Fri> https://issues.guix.gnu.org/60793
+
+* Package updates [12/13][92%]
+- [X] <2023-01-22 Sun> https://issues.guix.gnu.org/61012 <2023-01-27 Fri>
+- [ ] <2023-01-19 Thu> https://issues.guix.gnu.org/60944
+  - [ ] https://github.com/McParen/croatoan/issues/49
+- [X] <2022-12-11 Sun> https://issues.guix.gnu.org/59978 <2023-01-06 Fri>
+- [X] <2022-12-07 Wed> https://issues.guix.gnu.org/59890 <2022-12-09 Fri>
+- [X] <2022-12-05 Mon> https://issues.guix.gnu.org/59848 <2023-01-08 Sun>
+- [X] <2022-12-05 Mon> https://issues.guix.gnu.org/59847 <2022-12-13 Tue>
+- [X] <2022-12-03 Sat> https://issues.guix.gnu.org/59808 <2022-12-13 Tue>
+- [X] <2022-11-29 Tue> https://issues.guix.gnu.org/59697 <2022-12-06 Tue>
+- [X] <2022-11-28 Mon> https://issues.guix.gnu.org/59665 <2022-12-05 Mon>
+- [X] <2022-11-22 Tue> https://issues.guix.gnu.org/59496 <2022-11-23 Wed>
+- [X] <2022-05-20 Fri> https://issues.guix.gnu.org/55548 <2022-05-21 Sat>
+- [X] <2021-05-17 Mon> https://issues.guix.gnu.org/48485 <2021-05-18 Tue>
+- [X] <2021-05-15 Sat> https://issues.guix.gnu.org/48451 <2021-05-17 Mon>
+
+* Never implemented [0/4]
+- [ ] <2022-05-20 Fri> https://issues.guix.gnu.org/55546
+   It's accepted but not reported as having bundled jQuery.
+- [ ] <2021-05-18 Tue> https://issues.guix.gnu.org/46333
+  Not resolved issue with Jupiter Notebook for Common List it seems to me abandoned.
+- [ ] <2021-04-19 Mon> https://issues.guix.gnu.org/47901
+  It's just a draft of Quicklisp import written in Bash, I'm not sure it will be ever merge.
+- [ ] <2021-03-15 Mon> https://issues.guix.gnu.org/47179
+  Upstream of org-roam-server is not supported and org-roam v2 started using org-roam-ui

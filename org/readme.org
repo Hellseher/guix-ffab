@@ -12,7 +12,7 @@ also can be used as stand alone Guix channel.
 The main target is to collect packages related to Astronomy, Astrophysics and group of languages
 such as *Common Lisp*, *Golan* and *Python*.
 
-~master~ branch contains of packages passed lint and build procedure and is intended to be save to
+~master~ branch contains packages passed lint and build procedures and is intended to be save to
 use all the time, ~wip-~ branches might be broken on some stage.
 
 * Project structure and layout
@@ -37,7 +37,7 @@ tree  -d ../
 ├── scripts
 └── tmp
 
-11 directories
+12 directories
 #+end_src
 
 - ./issues.org :: Tracks all sent patches to <guix-patches@gnu.org>
@@ -51,17 +51,21 @@ make list
 
 #+RESULTS:
 #+begin_src org
-:guix-commit 4a34da845ed91821d38ba8a9b65ad650dd7488d1
-:accepted 118
-:pending 165
+:guix-commit 1bed1d848166a4081051b4e87a5ec4942ddb3397
+:accepted 144
+:pending 123
 
-:astronomy 34
-:golang 41
-:lisp 42
+:astronomy 25
+:golang 47
+:lisp 14
 :python 13
+:misc 22
 
-:date Sun 6 Nov 23:19:10 GMT 2022
+:date Sat 28 Jan 21:58:31 GMT 2023
 #+end_src
+
+Any packages with suffix *-ffab* are meant to be accepted in Guix upstream but have kind of
+modifications e.g. newer version, enabled tests etc.
 
 * Installation
 All examples are based on assumptions that ~guix~ is the main system or available as package
@@ -85,13 +89,15 @@ manager.
 #+end_example
 
 * References
-- Guix Git  :: https://git.savannah.gnu.org/cgit/guix.git Read only git repository hosted at Savanha.
-- Guix CI ::
-  - https://ci.guix.gnu.org Main CI and substitute and substitute server
+Main official resources:
+- VCS :: https://git.savannah.gnu.org/cgit/guix.git Read only git repository hosted at Savanha.
+- CI and Substitutes ::
+  - https://ci.guix.gnu.org Main CI and substitute and server
   - https://bordeaux.guix.gnu.org/ Secondary substitute server
-- Guix HPC :: http://hpc.guix.info/ Reproducible software deployment for high-performance computing.
-- Guix Data Service :: https://data.guix.gnu.org/
-- Guix QA Service :: https://qa.guix.gnu.org/
+- HPC :: http://hpc.guix.info/ Reproducible software deployment for high-performance computing.
+- Data Service :: https://data.guix.gnu.org/
+- QA Service :: https://qa.guix.gnu.org/
+- Issues :: https://issues.guix.gnu.org/
 
 ** Guix channels
 - https://github.com/flatwhatson/guix-channel
@@ -107,7 +113,6 @@ manager.
 - Emacs channel :: Guix channel for automatically generated emacs packages
   https://github.com/babariviere/guix-emacs
 ** etc
-- https://github.com/UMCUGenetics/guix-additions
 - https://github.com/ryanprior/guix-packages
 - https://github.com/BIMSBbioinfo/guix-bimsb
 - https://github.com/techenthusiastsorg/awesome-guix

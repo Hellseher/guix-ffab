@@ -176,40 +176,6 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 ;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
 ;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
-;; 20220702T165531+0100
-(define-public python-mpl-animators
-  (package
-    (name "python-mpl-animators")
-    (version "1.1.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "mpl_animators" version))
-       (sha256
-        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (replace 'check
-                 (lambda* (#:key tests? #:allow-other-keys)
-                   (when tests?
-                     (invoke "pytest" "-vv" "mpl_animators/tests")))))))
-    (native-inputs
-     (list python-pytest
-           python-pytest-mpl
-           python-setuptools-scm))
-    (propagated-inputs
-     (list python-astropy
-           python-matplotlib
-           python-numpy))
-    (home-page "https://sunpy.org")
-    (synopsis "Interactive animations with matplotlib")
-    (description
-     "The @code{mpl_animators} package provides a set of classes which allow the
-easy construction of interactive matplotlib widget based animations.")
-    (license license:bsd-3)))
-
 ;; 20221012T205858+0100
 ;; (define-public python-siosocks
 ;; added-to-upstream 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
@@ -225,36 +191,17 @@ easy construction of interactive matplotlib widget based animations.")
 ;; added-to-upstream 472917ea6c479b3546ffaea02f755ed9c6e8d46b
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
-;; TODO: (Sharlatan-20221106T222002+0000): Validate the source
-;;
-;; 20221106T215206+0000
-(define-public python-getch
-  (package
-    (name "python-getch")
-    (version "1.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "getch" version))
-              (sha256
-               (base32
-                "1cfqi5h0z6anx4xsg576fl8mnw5gf6qxsyzvp1jwwl80q4bjghm6"))))
-    (build-system python-build-system)
-    (home-page "http://pypi.python.org/pypi/getch")
-    (synopsis "Does single char input, like C getch/getche")
-    (description "Does single char input, like C getch/getche")
-    (license #f)))
-
 ;; 20221109T101311+0000
 (define-public python-towncrier
   (package
     (name "python-towncrier")
-    (version "22.8.0")
+    (version "22.12.0")
     (source
      (origin
        (method url-fetch)
        (uri (pypi-uri "towncrier" version))
        (sha256
-        (base32 "1js2s02kxsm7ln3z5j8c7j9k293hzm6bg0nzapxlb6w56fq3jf3x"))))
+        (base32 "0k83cisk139v28mjsa819b8qz733q45lr45f0bm9lsk4bzkxfjcw"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -275,7 +222,7 @@ easy construction of interactive matplotlib widget based animations.")
            python-jinja2
            python-tomli))
     (native-inputs (list python-packaging python-twisted python-pytest-7.1 git))
-    (home-page "https://github.com/hawkowl/towncrier")
+    (home-page "https://github.com/twisted/towncrier")
     (synopsis "Manage the release notes for your project")
     (description
      "@code{towncrier} is a utility to produce useful, summarized news files
