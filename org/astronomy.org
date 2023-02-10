@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-01-29 Sun 22:36:05 GMT>
+#+modified: <2023-02-10 Fri 23:48:02 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1201,7 +1201,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [0/36][0%] :author:p1:
+** TODO JuliaAstro [2/36][5%] :author:p1:
 - https://github.com/JuliaAstro
 - http://juliaastro.org/dev/index.html
 *** TODO julia-astolib [2/4][50%] :p3:
@@ -1275,12 +1275,13 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-cfitsio [3/4][75%]
+*** DONE julia-cfitsio [4/4][100%]
+CLOSED: [2023-02-10 Fri 23:48]
 - https://github.com/JuliaAstro/CFITSIO.jl
 - synopsis :: C-style interface to the libcfitsio library.
 - [X] :packed <2022-12-04 Sun>
 - [X] :patch-sent <2023-01-29 Sun>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-02-07 Tue>
   - https://issues.guix.gnu.org/60793
 - [X] :inputs [2/2][100%]
   - [X] julia-cfitsio-jll
@@ -1324,12 +1325,13 @@ CLOSED: [2021-01-31 Sun 13:07]
     - [X] :packed <2022-12-06 Tue>
   - [X] julia-staticarrays
 
-*** TODO julia-fitsio [3/4][75%]
+*** DONE julia-fitsio [4/4][100%]
+CLOSED: [2023-02-10 Fri 23:47]
 - https://github.com/JuliaAstro/FITSIO.jl
 - synopsis :: Flexible Image Transport System (FITS) file support for Julia
 - [X] :packed <2022-12-04 Sun>
 - [X] :patch-sent <2023-01-29 Sun>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-02-07 Tue>
   - https://issues.guix.gnu.org/60793
 - [X] :inputs [5/5][100%]
   - [X] julia-aqua
