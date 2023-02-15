@@ -8,7 +8,7 @@
     python.org             SunPy                   [0/3][0%]    :author:p2:
     lisp.org               cbaggers                [4/6][66%]   :author:p2:
     python.org             hawkowl                 [0/1][0%]    :author:p1:
-    astronomy.org          JuliaAstro              [2/36][5%]   :author:p1:
+    astronomy.org          JuliaAstro              [4/35][11%]  :author:p1:
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
     astronomy.org          dokester                [0/1][0%]    :author:p1:
     python.org             WoLpH                   [0/1][0%]    :author:
@@ -182,7 +182,7 @@
     astronomy.org          python-amuse-bhtree            [/][%]      :p4:
     astronomy.org          python-amuse-athena            [/][%]      :p4:
     astronomy.org          python-amuse-aarsethzare       [/][%]      :p4:
-    astronomy.org          python-amuse                   [1/4][25%]  :p4:
+    astronomy.org          python-amuse                   [0/4][0%]   :p4:
     astronomy.org          PSRCat                         [/][%]      :p4:
     astronomy.org          Planets.                       [/][%]      :p4:
     astronomy.org          PGPLOT                         [/][%]      :p4:
@@ -233,16 +233,14 @@
     astronomy.org          NEAT                           [0/5][0%]   :p3:
     astronomy.org          kepler-project                 [0/4][0%]   :p3:
     astronomy.org          julia-xpa                      [0/4][0%]   :p3:
-    astronomy.org          julia-wcslib                   [0/4][0%]   :p3:
-    astronomy.org          julia-wcs                      [0/4][0%]   :p3:
     astronomy.org          julia-votables                 [0/4][0%]   :p3:
     astronomy.org          julia-unitfulastro             [0/4][0%]   :p3:
     astronomy.org          julia-transits                 [0/4][0%]   :p3:
     astronomy.org          julia-spice                    [0/4][0%]   :p3:
     astronomy.org          julia-spectra                  [0/4][0%]   :p3:
     astronomy.org          julia-skycoords                [0/4][0%]   :p3:
-    astronomy.org          julia-satellitetoolbox         [/][%]      :p3:
-    astronomy.org          julia-satelliteanalysis        [/][%]      :p3:
+    astronomy.org          julia-satellitetoolbox         [0/4][0%]   :p3:
+    astronomy.org          julia-satelliteanalysis        [0/4][0%]   :p3:
     astronomy.org          julia-saoimageds9              [0/4][0%]   :p3:
     astronomy.org          julia-reproject                [0/4][0%]   :p3:
     astronomy.org          julia-referenceframerotations  [/][%]      :p3:
@@ -257,7 +255,6 @@
     astronomy.org          julia-lacosmic                 [0/4][0%]   :p3:
     astronomy.org          julia-jplephemeris             [0/4][0%]   :p3:
     astronomy.org          julia-gmat                     [/][%]      :p3:
-    astronomy.org          julia-erfa                     [2/4][50%]  :p3:
     astronomy.org          julia-earthorientation         [0/4][0%]   :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]   :p3:
     astronomy.org          julia-cosmology                [0/4][0%]   :p3:
@@ -265,7 +262,6 @@
     astronomy.org          julia-calceph                  [0/4][0%]   :p3:
     astronomy.org          julia-boxleastsquares          [0/4][0%]   :p3:
     astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p3:
-    astronomy.org          julia-astrotime                [0/4][0%]   :p3:
     astronomy.org          julia-astroimageview           [0/4][0%]   :p3:
     astronomy.org          julia-astroimages              [0/4][0%]   :p3:
     astronomy.org          julia-astrodynpropagators      [/][%]      :p3:
@@ -321,6 +317,7 @@
     astronomy.org          pal                            [0/4][0%]   :p1:
     astronomy.org          OpenSpace                      [0/4][0%]   :p1:
     astronomy.org          libsharp                       [1/3][33%]  :p1:
+    astronomy.org          julia-astrotime                [0/4][0%]   :p1:
     astronomy.org          galpy                          [1/4][25%]  :p1:
     astronomy.org          funtools                       [2/4][50%]  :p1:
     astronomy.org          BayesicFitting                 [2/4][50%]  :p1:
@@ -369,7 +366,9 @@
     astronomy.org          imppg                            [4/4][100%]  
     astronomy.org          indi                             [4/4][100%]  
     astronomy.org          julia-cfitsio                    [4/4][100%]  
+    astronomy.org          julia-erfa                       [4/4][100%]  
     astronomy.org          julia-fitsio                     [4/4][100%]  
+    astronomy.org          julia-wcs                        [4/4][100%]  
     astronomy.org          libpasastro                      [3/3][100%]  
     astronomy.org          missfits                         [3/3][100%]  
     astronomy.org          pynbody                          [4/4][100%]  

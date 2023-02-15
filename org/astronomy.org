@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-02-10 Fri 23:48:02 GMT>
+#+modified: <2023-02-15 Wed 21:55:46 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -12,12 +12,13 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
-*** TODO python-amuse [1/4][25%] :p4:
+*** TODO python-amuse [0/4][0%] :p4:
 - https://github.com/amusecode/amuse
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+- [ ] :inputs [0/0][0%]
+
 *** TODO python-amuse-aarsethzare [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1201,9 +1202,9 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [2/36][5%] :author:p1:
-- https://github.com/JuliaAstro
+** TODO JuliaAstro [4/35][11%] :author:p1:
 - http://juliaastro.org/dev/index.html
+- https://github.com/JuliaAstro
 *** TODO julia-astolib [2/4][50%] :p3:
 - https://github.com/JuliaAstro/AstroLib.jl
 - [X] :packed <2022-11-26 Sat>
@@ -1211,6 +1212,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :paptch-applied-upstream
 - [X] :inputs [1/1][100%]
   - [X] julia-staticarrays
+
 *** TODO julia-astroangles [2/4][50%] :p3:
 - https://github.com/JuliaAstro/AstroAngles.jl
 - synopsis :: Lightweight string parsing and representation of angles.
@@ -1220,6 +1222,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [X] :inputs [2/2][100%]
   - [X] julia-formatting
   - [X] julia-stablerngs
+
 *** TODO julia-astrobase [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroBase.jl
 - synopsis :: Interfaces, types, and functions for space science packages.
@@ -1229,6 +1232,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :inputs [0/1][0%]
   - [ ] julia-astrotime
     - [ ] :packed
+
 *** TODO julia-astroimages [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroImages.jl
 - synopsis :: Visualization of astronomical images.
@@ -1239,6 +1243,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] julia-fitsio
   - [ ] julia-plots
   - [ ] julia-images
+
 *** TODO julia-astroimageview [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroImageView.jl
 - synopsis :: UI based AstroImage visualisation.
@@ -1247,28 +1252,33 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/1][0%]
   - [ ] julia-astroimages
-*** TODO julia-astrotime [0/4][0%] :p3:
+
+*** TODO julia-astrotime [0/4][0%] :p1:
 - https://github.com/JuliaAstro/AstroTime.jl
 - synopsis :: Astronomical time keeping in Julia
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-backgroundmeshes [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-boxleastsquares [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-calceph [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-ccdreduction [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
@@ -1293,6 +1303,7 @@ CLOSED: [2023-02-10 Fri 23:48]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-dustextinction [0/4][0%] :p3:
 - https://github.com/JuliaAstro/DustExtinction.jl
 - synopsis :: Models for interstellar dust extinction
@@ -1309,17 +1320,20 @@ CLOSED: [2023-02-10 Fri 23:48]
   - [X] julia-unitful
   - [ ] julia-unitfulastro
     - [ ] :packed
+
 *** TODO julia-earthorientation [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-erfa [2/4][50%] :p3:
+*** DONE julia-erfa [4/4][100%]
+CLOSED: [2023-02-15 Wed 21:48]
 - https://github.com/JuliaAstro/ERFA.jl
 - [X] :packed <2022-12-06 Tue>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-11 Sat>
+- [X] :patch-applied-upstream <2023-02-15 Wed>
+  - https://issues.guix.gnu.org/61439
 - [X] :inputs [2/2][100%]
   - [X] julia-erfa-jll
     - [X] :packed <2022-12-06 Tue>
@@ -1346,121 +1360,135 @@ CLOSED: [2023-02-10 Fri 23:47]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-lacosmic [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-lombscargle [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-orbits [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-photometricfilters [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-photometry [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-planck [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-psfmodels [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-pulsarsearch [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-reproject [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-saoimageds9 [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-skycoords [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-spectra [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-spice [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-transits [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-unitfulastro [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 *** TODO julia-votables [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-wcs [0/4][0%] :p3:
+*** DONE julia-wcs [4/4][100%]
+CLOSED: [2023-02-15 Wed 21:47]
 - https://github.com/JuliaAstro/WCS.jl
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [1/2][50%]
+- [X] :packed <2023-02-15 Wed>
+- [X] :patch-sent <2023-02-11 Sat>
+- [X] :patch-applied-upstream <2023-02-15 Wed>
+  - https://issues.guix.gnu.org/61439
+- [X] :inputs [2/2][100%]
   - [X] julia-wcs-jll
     - [X] :packed <2022-12-05 Mon>
-  - [ ] julia-constructionbase
-    - [ ] :packed
+  - [X] julia-constructionbase
 
-*** TODO julia-wcslib [0/4][0%] :p3:
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
 *** TODO julia-xpa [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
+
 ** TODO JuliaSpace [0/8][0%] :author:
 - https://github.com/JuliaSpace
-*** TODO julia-satellitetoolbox [/][%] :p3:
+*** TODO julia-satellitetoolbox [0/4][0%] :p3:
 - https://github.com/JuliaSpace/SatelliteToolbox.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
-*** TODO julia-satelliteanalysis [/][%] :p3:
+- [ ] :inputs [0/0][0%]
+
+*** TODO julia-satelliteanalysis [0/4][0%] :p3:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+- [ ] :inputs [0/0][0%]
 
 *** TODO julia-referenceframerotations [/][%] :p3:
 - [ ] :packed
