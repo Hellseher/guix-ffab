@@ -1,0 +1,49 @@
+From 828569f8bae1d016ffee3ccb80b3573e211e0fb0 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 18 Feb 2023 23:13:05 +0000
+Subject: [PATCH 03/10] gnu: Add julia-remotefiles.
+
+* gnu/packages/julia-xyz.scm (julia-remotefiles): New variable.
+---
+ gnu/packages/julia-xyz.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 7eb4cb0dae..bbc1985a4b 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -5001,6 +5001,31 @@ (define-public julia-reexport
+     (description "This package provides tools to re-export modules and symbols.")
+     (license license:expat)))
+ 
++(define-public julia-remotefiles
++  (package
++    (name "julia-remotefiles")
++    (version "0.5.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/helgee/RemoteFiles.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1zpklzpd4ckp7s4wbf93qmq3dyyrx4pzl41x5i9zbiskadhniqnh"))))
++    (build-system julia-build-system)
++    (arguments
++     '(#:tests? #f)) ; Tests try to download from Internet.
++    (propagated-inputs
++     (list julia-fileio julia-http))
++    (home-page "https://github.com/helgee/RemoteFiles.jl")
++    (synopsis "Download files from the Internet and keep them up-to-date")
++    (description
++     "This package provides a functionality of files download with cURL, wget or
++@code{HTTP.jl} backends.")
++    (license license:expat)))
++
+ (define-public julia-referencetests
+   (package
+     (name "julia-referencetests")
+-- 
+2.39.1
+

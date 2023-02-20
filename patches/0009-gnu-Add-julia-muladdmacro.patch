@@ -1,0 +1,51 @@
+From 022970e0ef51a210b5726af2b06830c1e5256038 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 18 Feb 2023 23:45:24 +0000
+Subject: [PATCH 09/10] gnu: Add julia-muladdmacro.
+
+* gnu/packages/julia-xyz.scm (julia-muladdmacro): New variable.
+---
+ gnu/packages/julia-xyz.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 0a8e1a81cd..a07326df6f 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -4223,6 +4223,33 @@ (define-public julia-msgpack
+ Julia, with type-driven, overloadable packing/unpacking functionality.")
+     (license license:expat)))
+ 
++(define-public julia-muladdmacro
++  (package
++    (name "julia-muladdmacro")
++    (version "0.2.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/SciML/MuladdMacro.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0pvmfw7f3igpwx0w8c8i40pls0wfm248b1i662wnlrkqiw56j0yq"))))
++    (build-system julia-build-system)
++    (home-page "https://github.com/SciML/MuladdMacro.jl")
++    (synopsis "Julia macro to convert expressions to use muladd calls and FMA operations")
++    (description
++     "This package provides the @code{@@muladd} macro.  It automatically converts
++expressions with multiplications and additions or subtractions to calls with
++muladd which then fuse via FMA when it would increase the performance of the
++code.  The @code{@@muladd} macro can be placed on code blocks and it will automatically
++find the appropriate expressions and nest muladd expressions when necessary.  In
++mixed expressions summands without multiplication will be grouped together and
++evaluated first but otherwise the order of evaluation of multiplications and
++additions is not changed.")
++    (license license:expat)))
++
+ (define-public julia-mutablearithmetics
+   (package
+     (name "julia-mutablearithmetics")
+-- 
+2.39.1
+

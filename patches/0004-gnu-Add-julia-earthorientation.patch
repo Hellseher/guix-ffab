@@ -1,0 +1,49 @@
+From db6a517f72d6bd3f6349cfbf75ff71f16be56bbf Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 18 Feb 2023 23:15:34 +0000
+Subject: [PATCH 04/10] gnu: Add julia-earthorientation.
+
+* gnu/packages/julia-xyz.scm (julia-earthorientation): New variable.
+---
+ gnu/packages/julia-xyz.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index bbc1985a4b..a0a24e05a5 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -1829,6 +1829,31 @@ (define-public julia-dualnumbers
+ combinations of dual numbers with predefined Julia numeric types.")
+     (license license:expat)))
+ 
++(define-public julia-earthorientation
++  (package
++    (name "julia-earthorientation")
++    (version "0.7.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaAstro/EarthOrientation.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1fschx4qmfd83q0ymgbzqi1dl0drbh45cd7hlcbqnm9lfmw2d847"))))
++    (build-system julia-build-system)
++    (propagated-inputs
++     (list julia-leapseconds
++           julia-optionaldata
++           julia-remotefiles))
++    (home-page "https://github.com/JuliaAstro/EarthOrientation.jl")
++    (synopsis "Calculate Earth orientation parameters from IERS tables in Julia")
++    (description
++     "This package provides a functionality to calculate Earth orientation parameters
++with data retrieved from @acronym{IERS, International Earth Rotation Service}.")
++    (license license:expat)))
++
+ (define-public julia-ellipsisnotation
+   (package
+     (name "julia-ellipsisnotation")
+-- 
+2.39.1
+

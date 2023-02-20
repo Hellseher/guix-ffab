@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-02-15 Wed 21:55:46 GMT>
+#+modified: <2023-02-18 Sat 22:50:46 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1205,15 +1205,7 @@ CLOSED: [2021-01-31 Sun 13:07]
 ** TODO JuliaAstro [4/35][11%] :author:p1:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
-*** TODO julia-astolib [2/4][50%] :p3:
-- https://github.com/JuliaAstro/AstroLib.jl
-- [X] :packed <2022-11-26 Sat>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [1/1][100%]
-  - [X] julia-staticarrays
-
-*** TODO julia-astroangles [2/4][50%] :p3:
+*** TODO julia-astroangles [2/4][50%] :p1:
 - https://github.com/JuliaAstro/AstroAngles.jl
 - synopsis :: Lightweight string parsing and representation of angles.
 - [X] :packed <2022-11-26 Sat>
@@ -1223,15 +1215,17 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] julia-formatting
   - [X] julia-stablerngs
 
-*** TODO julia-astrobase [0/4][0%] :p3:
+*** TODO julia-astrobase [1/4][25%] :p1:
 - https://github.com/JuliaAstro/AstroBase.jl
 - synopsis :: Interfaces, types, and functions for space science packages.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  - [ ] julia-astrotime
-    - [ ] :packed
+- [X] :inputs [2/2][100%]
+  - [X] julia-astrotime
+    - [X] :packed <2023-02-18 Sat>
+  - [X] julia-ReferenceFrameRotations
+    - [X] :packed <2023-02-18 Sat>
 
 *** TODO julia-astroimages [0/4][0%] :p3:
 - https://github.com/JuliaAstro/AstroImages.jl
@@ -1253,25 +1247,55 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :inputs [0/1][0%]
   - [ ] julia-astroimages
 
-*** TODO julia-astrotime [0/4][0%] :p1:
+*** TODO julia-astrolib [2/4][50%] :p3:
+- https://github.com/JuliaAstro/AstroLib.jl
+- [X] :packed <2022-11-26 Sat>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] julia-staticarrays
+
+*** TODO julia-astrotime [2/4][50%] :p1:
 - https://github.com/JuliaAstro/AstroTime.jl
 - synopsis :: Astronomical time keeping in Julia
-- [ ] :packed
+- [X] :packed <2023-02-18 Sat>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :inputs [7/7][100%]
+  - [X] julia-earthorientation
+    - [X] :packed <2023-02-15 Wed>
+  - [X] julia-erfa
+  - [X] julia-macrotools
+  - [X] julia-reexport
+  - [X] julia-measurements
+  - [X] julia-itemgraphs
+    - [X] :packed <2023-02-18 Sat>
+  - [X] julia-muladdmacro
+    - [X] :packed <2023-02-18 Sat>
 
 *** TODO julia-backgroundmeshes [0/4][0%] :p3:
+- https://github.com/JuliaAstro/BackgroundMeshes.jl
+- synopsis :: Create meshes for estimating the background in astronomical images.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [ ] :inputs [0/6][0%]
+  - [ ] julia-biweightstats
+  - [ ] julia-imagefiltering
+  - [ ] julia-imagetransformations
+  - [ ] julia-interpolations
+  - [ ] julia-nearestneighbors
+  - [ ] julia-statsbase
 
 *** TODO julia-boxleastsquares [0/4][0%] :p3:
+- https://github.com/JuliaAstro/BoxLeastSquares.jl
+- synopsis :: Tophats at ludicrous speeds.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [ ] :inputs [0/2][0%]
+  - [ ] julia-loopvectorization
+  - [ ] julia-recipesbase
 
 *** TODO julia-calceph [0/4][0%] :p3:
 - [ ] :packed
@@ -1321,11 +1345,19 @@ CLOSED: [2023-02-10 Fri 23:48]
   - [ ] julia-unitfulastro
     - [ ] :packed
 
-*** TODO julia-earthorientation [0/4][0%] :p3:
-- [ ] :packed
+*** TODO julia-earthorientation [2/4][50%] :p1:
+- https://github.com/JuliaAstro/EarthOrientation.jl
+- synopsis :: Calculate Earth orientation parameters from IERS tables in Julia
+- [X] :packed <2023-02-15 Wed>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :inputs [3/3][100%]
+  - [X] julia-leapseconds
+    - [X] :packed <2023-02-15 Wed>
+  - [X] julia-optionaldata
+    - [X] :packed <2023-02-15 Wed>
+  - [X] julia-remotefiles
+    - [X] :packed <2023-02-15 Wed>
 
 *** DONE julia-erfa [4/4][100%]
 CLOSED: [2023-02-15 Wed 21:48]
@@ -1490,11 +1522,15 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO julia-referenceframerotations [/][%] :p3:
-- [ ] :packed
+*** TODO julia-referenceframerotations [2/4][50%] :p3:
+- https://github.com/JuliaSpace/ReferenceFrameRotations.jl
+- synopsis :: Toolbox to represent 3D rotations of coordinate frames for Julia.
+- [X] :packed <2023-02-18 Sat>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+- [X] :inputs [2/2][100%]
+  - [X] julia-crayons
+  - [X] julia-staticarrays
 *** TODO julia-orekit [/][%] :p3:
 - [ ] :packed
 - [ ] :patch-sent

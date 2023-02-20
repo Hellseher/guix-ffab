@@ -37,10 +37,16 @@
     lisp.org               cl-adams                [0/1][0%]    :author:
     lisp.org               chaitanyagupta          [1/2][50%]   :author:
     lisp.org               cage                    [1/2][50%]   :author:
+    julia-xyz.org          SciML                   [0/1][0%]    :author:
+    julia-xyz.org          sbromberger             [0/1][0%]    :author:
     julia-xyz.org          oxinabox                [0/1][0%]    :author:
     julia-xyz.org          kbarbary                [0/1][0%]    :author:
+    julia-xyz.org          JuliaTime               [0/1][0%]    :author:
+    julia-xyz.org          JuliaLinearAlgebra      [0/1][0%]    :author:
     julia-xyz.org          JuliaImages             [0/3][0%]    :author:
     julia-xyz.org          JuliaBinaryWrappers     [1/1]        :author:
+    julia-xyz.org          helgee                  [0/3][0%]    :author:
+    julia-xyz.org          GunnarFarneback         [0/1][0%]    :author:
     high-availability.org  Kronosnet               [1/1][100%]  :author:
     high-availability.org  corosync                [1/2][50%]   :author:
     high-availability.org  ClusterLabs             [1/1][100%]  :author:
@@ -243,7 +249,7 @@
     astronomy.org          julia-satelliteanalysis        [0/4][0%]   :p3:
     astronomy.org          julia-saoimageds9              [0/4][0%]   :p3:
     astronomy.org          julia-reproject                [0/4][0%]   :p3:
-    astronomy.org          julia-referenceframerotations  [/][%]      :p3:
+    astronomy.org          julia-referenceframerotations  [2/4][50%]  :p3:
     astronomy.org          julia-pulsarsearch             [0/4][0%]   :p3:
     astronomy.org          julia-psfmodels                [0/4][0%]   :p3:
     astronomy.org          julia-planck                   [0/4][0%]   :p3:
@@ -255,21 +261,18 @@
     astronomy.org          julia-lacosmic                 [0/4][0%]   :p3:
     astronomy.org          julia-jplephemeris             [0/4][0%]   :p3:
     astronomy.org          julia-gmat                     [/][%]      :p3:
-    astronomy.org          julia-earthorientation         [0/4][0%]   :p3:
     astronomy.org          julia-dustextinction           [0/4][0%]   :p3:
     astronomy.org          julia-cosmology                [0/4][0%]   :p3:
     astronomy.org          julia-ccdreduction             [0/4][0%]   :p3:
     astronomy.org          julia-calceph                  [0/4][0%]   :p3:
     astronomy.org          julia-boxleastsquares          [0/4][0%]   :p3:
     astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p3:
+    astronomy.org          julia-astrolib                 [2/4][50%]  :p3:
     astronomy.org          julia-astroimageview           [0/4][0%]   :p3:
     astronomy.org          julia-astroimages              [0/4][0%]   :p3:
     astronomy.org          julia-astrodynpropagators      [/][%]      :p3:
     astronomy.org          julia-astrodynplots            [/][%]      :p3:
     astronomy.org          julia-astrodynamics            [/][%]      :p3:
-    astronomy.org          julia-astrobase                [0/4][0%]   :p3:
-    astronomy.org          julia-astroangles              [2/4][50%]  :p3:
-    astronomy.org          julia-astolib                  [2/4][50%]  :p3:
     astronomy.org          IIPImage                       [1/4][25%]  :p3:
     astronomy.org          HEALPix                        [1/4][25%]  :p3:
     astronomy.org          gammapy                        [0/4][0%]   :p3:
@@ -289,6 +292,14 @@
     python.org             python-sphinx-automodapi       [1/4][25%]  :p1:
     python.org             python-opencv                  [0/4][0%]   :p1:
     lisp.org               feedback                       [0/4][0%]   :p1:
+    julia-xyz.org          julia-remotefiles              [2/4][50%]  :p1:
+    julia-xyz.org          julia-optionaldata             [1/4][25%]  :p1:
+    julia-xyz.org          julia-muladdmacro              [2/4][50%]  :p1:
+    julia-xyz.org          julia-lightgraphs              [2/4][50%]  :p1:
+    julia-xyz.org          julia-leapseconds              [2/4][50%]  :p1:
+    julia-xyz.org          julia-itemgraphs               [2/4][50%]  :p1:
+    julia-xyz.org          julia-inflate                  [2/4][50%]  :p1:
+    julia-xyz.org          julia-arnoldimethod            [2/4][50%]  :p1:
     golang.org             miller                         [1/5][20%]  :p1:
     golang.org             go/tools/gopls                 [/][%]      :p1:
     golang.org             caddy                          [0/4][0%]   :p1:
@@ -317,7 +328,10 @@
     astronomy.org          pal                            [0/4][0%]   :p1:
     astronomy.org          OpenSpace                      [0/4][0%]   :p1:
     astronomy.org          libsharp                       [1/3][33%]  :p1:
-    astronomy.org          julia-astrotime                [0/4][0%]   :p1:
+    astronomy.org          julia-earthorientation         [2/4][50%]  :p1:
+    astronomy.org          julia-astrotime                [2/4][50%]  :p1:
+    astronomy.org          julia-astrobase                [1/4][25%]  :p1:
+    astronomy.org          julia-astroangles              [2/4][50%]  :p1:
     astronomy.org          galpy                          [1/4][25%]  :p1:
     astronomy.org          funtools                       [2/4][50%]  :p1:
     astronomy.org          BayesicFitting                 [2/4][50%]  :p1:

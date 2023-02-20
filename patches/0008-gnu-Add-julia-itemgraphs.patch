@@ -1,0 +1,49 @@
+From 3e43a12157ee83dbe7ec303621eb7d1554640ad4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 18 Feb 2023 23:40:36 +0000
+Subject: [PATCH 08/10] gnu: Add julia-itemgraphs.
+
+* gnu/packages/julia-xyz.scm (julia-itemgraphs): New variable.
+---
+ gnu/packages/julia-xyz.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 1d88c09647..0a8e1a81cd 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -3466,6 +3466,31 @@ (define-public julia-irtools
+ Cassette.")
+     (license license:expat)))
+ 
++(define-public julia-itemgraphs
++  (package
++    (name "julia-itemgraphs")
++    (version "0.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/helgee/ItemGraphs.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "16w30y7s922dzp7i64wxdrafv4gy13v3rl4k1z5jkvnmnw68kygg"))))
++    (build-system julia-build-system)
++    (propagated-inputs
++     (list julia-lightgraphs))
++    (home-page "https://github.com/helgee/ItemGraphs.jl")
++    (synopsis "Shortest paths between items")
++    (description
++     "ItemGraphs is a simple wrapper around LightGraphs that enables most
++common use case for graph-like data structures: with collection of items that
++are in relations between each other providing the shortest path between two
++items.")
++    (license license:expat)))
++
+ (define-public julia-iteratorinterfaceextensions
+   (package
+     (name "julia-iteratorinterfaceextensions")
+-- 
+2.39.1
+

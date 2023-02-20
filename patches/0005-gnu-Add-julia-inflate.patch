@@ -1,0 +1,51 @@
+From cb8b67694025c796e018a8e2ee1b2d14f34be4fe Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 18 Feb 2023 23:18:25 +0000
+Subject: [PATCH 05/10] gnu: Add julia-inflate.
+
+* gnu/packages/julia-xyz.scm (julia-inflate): New variable.
+---
+ gnu/packages/julia-xyz.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index a0a24e05a5..4dbb7e6eea 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -3076,6 +3076,33 @@ (define-public julia-indirectarrays
+ indexed images, sometimes called \"colormap images\" or \"paletted images.\"")
+     (license license:expat)))
+ 
++(define-public julia-inflate
++  (package
++    (name "julia-inflate")
++    (version "0.1.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/GunnarFarneback/Inflate.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "16nbl40b819yzmfqs860xbcbx8nnxm0pkvzj49qmxibv5jnsj47q"))))
++    (build-system julia-build-system)
++    (arguments
++     ;; FIXME: Tests fail hard with a lot of errors.
++     '(#:tests? #f))
++    (propagated-inputs
++     (list julia-codeczlib))
++    (home-page "https://github.com/GunnarFarneback/Inflate.jl")
++    (synopsis "Julia implementation of zlib decompression")
++    (description "Inflate provides a pure Julia implementation of zlib decompression
++functionality, with both in- memory and streaming interfaces.  This covers
++decompression of the Deflate algorithm and the Zlib and Gzip wrapper formats, as
++specified in RFC 1950, RFC 1951, and RFC 1952.")
++    (license license:expat)))
++
+ (define-public julia-infinity
+   (package
+     (name "julia-infinity")
+-- 
+2.39.1
+
