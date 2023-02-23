@@ -88,12 +88,14 @@
   #:use-module (guix build-system meson)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system python)
+  #:use-module (guix build utils)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (guix utils)
-  #:use-module (ice-9 match))
+  #:use-module (ice-9 match)
+  #:use-module (srfi srfi-1))
 
 ;; 20220626T221017+0100
 ;; (define-public splash
@@ -104,6 +106,62 @@
 ;; (define-public alfa
 ;; added-to-upstream 594f5ef35107d5641c44dac5cd7e9fb3737b674b
 ;; CommitDate: Fri Dec 2 00:02:12 2022 +0100
+
+;; 20230220T213057+0000
+(define-public calcmysky
+  (package
+    (name "calcmysky")
+    (version "0.2.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/10110111/CalcMySky")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0bib5shy8wzc7j5ph218dl9hqrqip491mn25gakyghbvaqxgm27d"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list #:configure-flags
+           #~(list "-DQT_VERSION=6")))
+    (inputs
+     (list qtbase glm eigen))
+    (home-page "https://10110111.github.io/CalcMySky/")
+    (synopsis "Simulator of light scattering by planetary atmospheres")
+    (description
+     "CalcMySky is a software package that simulates scattering of light by the
+atmosphere to render daytime and twilight skies (without stars). Its primary
+purpose is to enable realistic view of the sky in applications such as
+planetaria. Secondary objective is to make it possible to explore atmospheric
+effects such as glories, fogbows etc., as well as simulate unusual environments
+such as on Mars or an exoplanet orbiting a star with a non-solar spectrum of
+radiation.
+
+This package consists of three parts:
+
+@itemize
+@item @code{calcmysky} utility that does the precomputation of the atmosphere
+model to enable rendering.
+
+@item @code{libShowMySky} library that lets the applications render the
+atmosphere model.
+
+@item @code{ShowMySky} preview GUI that makes it possible to preview the
+rendering of the atmosphere model and examine its properties.
+@end itemize")
+    (license license:gpl3)))
+
+(define-public calcmysky-qt5
+  (package
+    (inherit calcmysky)
+    (name "calcmysky-qt5")
+    (arguments
+     (list #:configure-flags
+           #~(list "-DQT_VERSION=5")))
+    (inputs
+     (alist-replace "qtbase" (list qtbase-5)
+                    (package-inputs calcmysky)))))
 
 ;; 20220619T144120+0100
 (define-public funtools
