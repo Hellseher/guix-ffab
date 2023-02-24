@@ -3,10 +3,8 @@
     lisp.org               Shinmera/Shirakumo      [3/11][27%]  :author:p5:
     lisp.org               kmx-io                  [1/2][50%]   :author:p5:
     version-control.org    jesseduffield           [0/1][0%]    :author:p3:
-    lisp.org               borodust                [0/2][0%]    :author:p3:
     python.org             webrecorder             [0/1][0%]    :author:p2:
     python.org             SunPy                   [0/3][0%]    :author:p2:
-    lisp.org               cbaggers                [4/6][66%]   :author:p2:
     python.org             hawkowl                 [0/1][0%]    :author:p1:
     astronomy.org          JuliaAstro              [4/35][11%]  :author:p1:
     astronomy.org          ericmandel              [0/1][0%]    :author:p1:
@@ -23,20 +21,23 @@
     maths.org              mtr                     [0/1][0%]    :author:
     maths.org              danieljprice            [1/1][100%]  :author:
     lisp.org               vsedach                 [1/2][50%]   :author:
+    lisp.org               VitoVan                 [0/1][0%]    :author:
     lisp.org               vindarel                [0/1][0%]    :author:
     lisp.org               mfiano                  [4/4][100%]  :author:
     lisp.org               markcox80               [1/2][50%]   :author:
     lisp.org               lokedhs                 [1/2][50%]   :author:
-    lisp.org               lispgames               [2/2][100%]  :author:
+    lisp.org               lispgames               [2/3][66%]   :author:
+    lisp.org               jscl-project            [0/1][0%]    :author:
     lisp.org               inconvergent            [0/2][0%]    :author:
     lisp.org               hu.dwim                 [1/1][100%]  :author:
     lisp.org               HazenBabcock            [0/1][0%]    :author:
     lisp.org               foretspaisibles         [1/1][100%]  :author:
     lisp.org               eudoxia0                [0/1][0%]    :author:
-    lisp.org               danlentz                [1/1][100%]  :author:
     lisp.org               cl-adams                [0/1][0%]    :author:
     lisp.org               chaitanyagupta          [1/2][50%]   :author:
+    lisp.org               cbaggers                [4/6][66%]   :author:
     lisp.org               cage                    [1/2][50%]   :author:
+    lisp.org               borodust                [0/2][0%]    :author:
     julia-xyz.org          SciML                   [0/1][0%]    :author:
     julia-xyz.org          sbromberger             [0/1][0%]    :author:
     julia-xyz.org          oxinabox                [0/1][0%]    :author:
@@ -68,6 +69,7 @@
     astronomy.org          ruven                   [0/1][0%]    :author:
     astronomy.org          revoltek                [0/1][0%]    :author:
     astronomy.org          QuatroPe                [1/2][50%]   :author:
+    astronomy.org          poliastro               [0/1][0%]    :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]    :author:
     astronomy.org          OpenSpace               [0/2][0%]    :author:
     astronomy.org          OpenPHDGuiding          [0/1][0%]    :author:
@@ -106,6 +108,9 @@
     version-control.org    lazygit                        [0/4][0%]   :p5:
     maths.org              netlib                         [0/1][0%]   :p5:
     lisp.org               zorm                           [0/4][0%]   :p5:
+    lisp.org               lucerne                        [1/4][25%]  :p5:
+    lisp.org               dirt                           [0/4][0%]   :p5:
+    lisp.org               cl-soil                        [0/4][0%]   :p5:
     lisp.org               cl-adams                       [1/4][25%]  :p5:
     golang.org             age                            [/][%]      :p5:
     astronomy.org          Xspec                          [0/4][0%]   :p5:
@@ -279,8 +284,6 @@
     astronomy.org          astrometry.net                 [0/4][0%]   :p3:
     python.org             python-mpl-animators           [1/4][25%]  :p2:
     maths.org              plplot                         [0/0][0%]   :p2:
-    lisp.org               dirt                           [0/4][0%]   :p2:
-    lisp.org               cl-soil                        [0/4][0%]   :p2:
     astronomy.org          uvsph                          [/][%]      :p2:
     astronomy.org          specutils                      [0/4][0%]   :p2:
     astronomy.org          SiriLic                        [0/4][0%]   :p2:
@@ -292,6 +295,10 @@
     python.org             python-sphinx-automodapi       [1/4][25%]  :p1:
     python.org             python-opencv                  [0/4][0%]   :p1:
     lisp.org               feedback                       [0/4][0%]   :p1:
+    lisp.org               cl-sdl2-mixer                  [2/4][50%]  :p1:
+    lisp.org               cl-jscl                        [/][%]      :p1:
+    lisp.org               cl-calm                        [2/4][50%]  :p1:
+    lisp.org               cl-cairo2                      [1/4][25%]  :p1:
     julia-xyz.org          julia-remotefiles              [2/4][50%]  :p1:
     julia-xyz.org          julia-optionaldata             [1/4][25%]  :p1:
     julia-xyz.org          julia-muladdmacro              [2/4][50%]  :p1:
@@ -317,6 +324,7 @@
     astronomy.org          python-spherical-geometry      [2/4][50%]  :p1:
     astronomy.org          python-rad                     [2/4][50%]  :p1:
     astronomy.org          python-pysynphot               [2/4][2/4]  :p1:
+    astronomy.org          python-poliastro               [/][%]      :p1:
     astronomy.org          python-jwst                    [2/4][50%]  :p1:
     astronomy.org          python-hissw                   [1/4][25%]  :p1:
     astronomy.org          python-drizzle                 [2/4][50%]  :p1:
@@ -349,7 +357,6 @@
     lisp.org               trial                          [4/5][80%]  
     lisp.org               repo                           [0/4][0%]   
     lisp.org               qt-libs                        [1/4][25%]  
-    lisp.org               lucerne                        [1/4][25%]  
     lisp.org               kandria                        [0/4][0%]   
     lisp.org               harmony                        [0/4][0%]   
     lisp.org               file-notify                    [0/4][0%]   
@@ -437,6 +444,7 @@
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  
     lisp.org               cl-glfw3                         [4/4][100%]  
+    lisp.org               cl-glop                          [4/4][100%]  
     lisp.org               cl-graph                         [4/4][100%]  
     lisp.org               cl-gss                           [4/4][100%]  
     lisp.org               cl-liballegro                    [4/4][100%]  
@@ -446,12 +454,13 @@
     lisp.org               cl-opengl                        [4/4][100%]  
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
+    lisp.org               cl-sdl2                          [4/4][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
+    lisp.org               cl-trivial-channels              [4/4][100%]  
     lisp.org               coalton                          [4/4][100%]  
     lisp.org               Djula                            [4/4][100%]  
     lisp.org               eventbus                         [4/4][100%]  
     lisp.org               fn                               [4/4][100%]  
-    lisp.org               glop                             [4/4][100%]  
     lisp.org               glsl-packing                     [4/4][100%]  
     lisp.org               glsl-spec                        [3/3][100%]  
     lisp.org               golden-utils                     [3/3][100%]  
@@ -463,10 +472,8 @@
     lisp.org               origin                           [4/4][100%]  
     lisp.org               printv                           [4/4][100%]  
     lisp.org               radiance                         [4/4][100%]  
-    lisp.org               sdl2                             [4/4][100%]  
     lisp.org               simplet                          [3/3][100%]  
     lisp.org               specialization-store             [4/4][100%]  
-    lisp.org               trivial-channels                 [4/4][100%]  
     lisp.org               trivial-timeout                  [3/3][100%]  
     lisp.org               varjo                            [4/4][100%]  
     lisp.org               vas-string-metrics               [3/3][100%]  
@@ -487,6 +494,7 @@
     lisp.org               3b                               [4/4][100%]  :author:
     lisp.org               AlexCharlton                     [1/1][100%]  :author:
     lisp.org               bufferswap                       [1/1][100%]  :author:
+    lisp.org               danlentz                         [1/1][100%]  :author:
     lisp.org               EuAndreh                         [1/1][100%]  :author:
     lisp.org               gwkkwg                           [5/5][100%]  :author:
     lisp.org               hanshuebner                      [1/1][100%]  :author:
@@ -496,7 +504,7 @@
     lisp.org               muyinliu                         [2/2][100%]  :author:
     lisp.org               noloop                           [5/5][100%]  :author:
     lisp.org               resttime                         [1/1][100%]  :author:
-    lisp.org               rpav                             [1/1][100%]  :author:
+    lisp.org               rpav                             [1/2][50%]   :author:
     lisp.org               sjl                              [1/1][100%]  :author:
     lisp.org               stylewarning                     [1/1][100%]  :author:
     lisp.org               xFA25E                           [1/1][100%]  :author:

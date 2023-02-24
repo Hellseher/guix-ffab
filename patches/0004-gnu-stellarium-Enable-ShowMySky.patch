@@ -1,0 +1,48 @@
+From 4013eb8b26efb57920dc621b07ad1f36f7754e58 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Feb 2023 10:46:25 +0000
+Subject: [PATCH 4/4] gnu: stellarium: Enable ShowMySky.
+
+* gnu/packages/astronomy.scm (stellarium):
+  [arguments]<#:configure-flags>: Enable ShowMySky optional dependencies
+  to simulate scattering of light by the atmosphere.
+  [inputs]: Replace QXLSX to QXLSX-QT5. Add CALCMYSKY-QT5.
+---
+ gnu/packages/astronomy.scm | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f13f74a5e8..e15df2874a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -917,8 +917,6 @@ (define-public stellarium
+       #~(list "-DENABLE_GPS=1"
+               ;; TODO: Enable when all of the dependencies are availalbe for Qt6.
+               "-DENABLE_QT6=0"
+-              ;; TODO: Pack missing in Guix https://10110111.github.io/CalcMySky/
+-              "-DENABLE_SHOWMYSKY=0"
+               "-DENABLE_TESTING=0"
+               (string-append "-DCMAKE_CXX_FLAGS=-isystem "
+                              #$(this-package-input "qtserialport") "/include/qt5"))
+@@ -929,7 +927,8 @@ (define-public stellarium
+               (setenv "QT_QPA_PLATFORM" "offscreen")
+               (setenv "HOME" "/tmp"))))))
+     (inputs
+-     (list gpsd
++     (list calcmysky-qt5
++           gpsd
+            indi
+            libnova
+            openssl
+@@ -942,7 +941,7 @@ (define-public stellarium
+            qtserialport
+            qttranslations
+            qtwebengine-5
+-           qxlsx
++           qxlsx-qt5
+            zlib))
+     (native-inputs
+      (list doxygen
+-- 
+2.39.1
+

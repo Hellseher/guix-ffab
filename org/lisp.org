@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-01-22 Sun 22:15:14 GMT>
+#+modified: <2023-02-24 Fri 21:32:15 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [16/35][45%]
+* Flow [17/38][44%]
 ** DONE 3b [4/4][100%] :author:
 CLOSED: [2023-01-17 Tue 20:29]
 *** DONE cl-opengl [4/4][100%]
@@ -86,7 +86,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   + [X] cl-opengl
   + [X] trivial-main-thread
 
-** TODO borodust [0/2][0%] :author:p3:
+** TODO borodust [0/2][0%] :author:
 *** TODO cl-bodge [0/4][0%]
 - https://github.com/borodust/cl-bodge
 - synopsis :: Feature-rich game framework for Common Lisp
@@ -227,6 +227,23 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [ ] local-time
   - [ ] named-readtables
   - [ ] trivial-features))
+** TODO VitoVan [0/1][0%] :author:
+- https://github.com/VitoVan
+- https://vitovan.com/
+*** TODO cl-calm [2/4][50%] :p1:
+- https://github.com/VitoVan/calm
+- synopsis :: SDL2 vector graphic library for Common Lisp
+- [X] :packed <2023-02-24 Fri>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6]
+  - [X] cl-sdl2
+  - [X] cl-sdl2-image
+  - [X] cl-sdl2-mixer
+  - [X] cl-str
+  - [X] cl-cairo2
+  - [X] cl-slime-swank
+    - [X] :packed <2023-02-24 Fri>
 
 ** DONE bufferswap [1/1][100%] :author:
 CLOSED: [2022-11-20 Sun 20:46]
@@ -301,6 +318,7 @@ https://notabug.org/cage/cl-mount-info
   - [X] sbcl-alexandria
   - [X] sbcl-cl+ssl
   - [ ] sbcl-trivial-ssh
+    - [ ] :packed
   - [X] sbcl-drakma
   - [X] sbcl-cl-ppcre-unicode
   - [X] sbcl-esrap
@@ -328,7 +346,7 @@ https://notabug.org/cage/cl-mount-info
   - [ ] sbcl-yason
   - [ ] sbcl-vom
 
-** TODO cbaggers [4/6][66%] :author:p2:
+** TODO cbaggers [4/6][66%] :author:
 - https://github.com/cbaggers/
 *** DONE cepl [4/4][100%]
 CLOSED: [2021-06-15 Tue 10:09]
@@ -389,16 +407,26 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [X] :inputs [1/1]
   + [X] named-readtables
 
-*** TODO cl-soil [0/4][0%] :p2:
+*** TODO cl-soil [0/4][0%] :p5:
 - https://github.com/cbaggers/cl-soil
+- synopsis :: Common lisp wrapper around the SOIL library
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO dirt [0/4][0%] :p2:
+*** TODO dirt [0/4][0%] :p5:
 - https://github.com/cbaggers/dirt
 - synopsis :: front-end for cl-soil which loads images straight to cepl:c-arrays and cepl:textures
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+** TODO jscl-project [0/1][0%] :author:
+
+*** TODO cl-jscl [/][%] :p1:
+- https://github.com/jscl-project/jscl
+- synopsis :: A Lisp-to-JavaScript compiler bootstrapped from Common Lisp
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -445,7 +473,8 @@ https://github.com/chaitanyagupta/chronicity
   + [X] re
   + [X] str
   + [X] trivial-utf-8
-** TODO danlentz [1/1][100%] :author:
+** DONE danlentz [1/1][100%] :author:
+CLOSED: [2023-02-23 Thu 22:34]
 - https://github.com/danlentz
 *** DONE printv [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:46]
@@ -474,7 +503,7 @@ CLOSED: [2022-11-22 Tue 20:28]
 ** TODO eudoxia0 [0/1][0%] :author:
 - https://github.com/eudoxia0
 - https://borretti.me/
-*** TODO lucerne [1/4][25%]
+*** TODO lucerne [1/4][25%] :p5:
 - https://github.com/eudoxia0/lucerne
 - synopsis :: web framework for Common Lisp, built on Clack
 - [ ] :packed
@@ -691,8 +720,8 @@ CLOSED: [2021-03-09 Tue 08:44]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO lispgames [2/2][100%] :author:
-*** DONE glop [4/4][100%]
+** TODO lispgames [2/3][66%] :author:
+*** DONE cl-glop [4/4][100%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
 - [X] :packed <2022-07-09 Sat>
@@ -709,7 +738,7 @@ CLOSED: [2021-03-09 Tue 08:44]
   - [X] sbcl-split-sequence
   - [X] sbcl-trivial-garbage
 
-*** DONE sdl2 [4/4][100%]
+*** DONE cl-sdl2 [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:47]
 - https://github.com/lispgames/cl-sdl2
 - [X] :packed <2021-06-23 Wed>
@@ -723,6 +752,20 @@ CLOSED: [2022-11-19 Sat 19:47]
   + [X] trivial-channels [1/1][100%]
     - [X] :packed <2021-02-17 Wed>
   + [X] trivial-features
+
+*** TODO cl-sdl2-mixer [2/4][50%] :p1:
+- https://github.com/lispgames/cl-sdl2-mixer
+- synopsis :: Bindings for SDL2_mixer
+- [X] :packed <2023-02-24 Fri>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] cl-alexandria
+  - [X] cl-autowrap
+  - [X] cl-sdl2
+  - [X] cl-trivial-garbage
+  - [X] sdl2-mixer
+
 ** TODO lokedhs [1/2][50%] :author:
 - https://github.com/lokedhs
 - https://functional.cafe/@loke
@@ -1021,10 +1064,10 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] float-features
   + [X] allegro
 
-** DONE rpav [1/1][100%] :author:
+** DONE rpav [1/2][50%] :author:
 CLOSED: [2022-11-20 Sun 21:33]
 - https://github.com/rpav
-*** DONE trivial-channels [4/4][100%]
+*** DONE cl-trivial-channels [4/4][100%]
 CLOSED: [2022-11-20 Sun 21:33]
 - https://github.com/rpav/trivial-channels.git
 - [X] :packed <2021-02-17 Wed>
@@ -1034,6 +1077,24 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [X] :inputs [1/1]
   - [X] trivial-timeout [1/1][100%]
     - [X] :packed <2021-02-02 Tue>
+*** TODO cl-cairo2 [1/4][25%] :p1:
+- https://github.com/rpav/cl-cairo2
+- synopsis :: Cairo bindings for Common Lisp
+- [X] :packed <2023-02-24 Fri>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [7/9][77%]
+  - [X] cairo
+  - [X] cl-cffi
+  - [X] cl-colors
+  - [X] cl-utilities
+  - [X] cl-trivial-features
+  - [X] cl-trivial-garbage
+  - [ ] cl-xcb-xlib
+    - [ ] :packed
+  - [X] cl-metabang-bind
+  - [ ] cl-gtk2
+    - [ ] :packed
 
 ** s-expressionists :author:
 *** ctype

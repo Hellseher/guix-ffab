@@ -1,0 +1,54 @@
+From 2460b54048e10cb05d02996f62ac362b43d0b46e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 24 Feb 2023 21:53:29 +0000
+Subject: [PATCH 2/5] gnu: cl-sdl2: Remove input labels.
+
+* gnu/packages/lisp.scm (sbcl-sdl2):
+  [arguments]{asd-systems}: Add sdl2/examples.
+  {phases}<fix-path>: Remove trailing #f from lambda, use
+  search-input-file to link SO library.
+  [inputs]: Remove labels, add sbcl-cl-opengl.
+---
+ gnu/packages/lisp-xyz.scm | 21 +++++++++++----------
+ 1 file changed, 11 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 648141b19b..4772be6cef 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -20138,21 +20138,22 @@ (define-public sbcl-sdl2
+           (base32 "0sjy4k04k0hdhwpr57ns16ag3za0kz4laclbk17i91ql7qdjw9z2"))))
+       (build-system asdf-build-system/sbcl)
+       (arguments
+-       `(#:phases
++       `(#:asd-systems '("sdl2" "sdl2/examples")
++         #:phases
+          (modify-phases %standard-phases
+            (add-after 'unpack 'fix-paths
+              (lambda* (#:key inputs #:allow-other-keys)
+                (substitute* "src/library.lisp"
+-                 (("libSDL2-2.0.so.0" all)
+-                  (string-append (assoc-ref inputs "libsdl2") "/lib/" all)))
+-               #t)))))
++                 (("libSDL2-2.0.so.0")
++                  (search-input-file inputs "/lib/libSDL2-2.0.so.0"))))))))
+       (inputs
+-       `(("alexandria" ,sbcl-alexandria)
+-         ("cl-autowrap" ,sbcl-cl-autowrap)
+-         ("cl-ppcre" ,sbcl-cl-ppcre)
+-         ("libsdl2" ,sdl2)
+-         ("trivial-channels" ,sbcl-trivial-channels)
+-         ("trivial-features" ,sbcl-trivial-features)))
++       (list sbcl-alexandria
++             sbcl-cl-autowrap
++             sbcl-cl-opengl
++             sbcl-cl-ppcre
++             sbcl-trivial-channels
++             sbcl-trivial-features
++             sdl2))
+       (home-page "https://github.com/lispgames/cl-sdl2")
+       (synopsis "Common Lisp bindings for SDL2 using C2FFI")
+       (description
+-- 
+2.39.1
+

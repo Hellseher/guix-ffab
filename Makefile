@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2023-02-10 Fri 23:44:47 GMT>
+# Modified : <2023-02-23 Thu 22:55:03 GMT>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d'
@@ -74,7 +74,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= 1bed1d848166a4081051b4e87a5ec4942ddb3397
+GUIX_COMMIT ?= c756c62cfdba8d4079be1ba9e370779b850f16b6
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
@@ -122,6 +122,7 @@ build:
 # state and whether update is required
 .PHONY: probe
 probe:
+	$(GUIX) refresh $(PKGS_ACCEPTED) 2>&1 | grep "would be upgraded"
 	$(GUIX) lint $(GUIX_LINT_FLAGS) $(PKGS_ACCEPTED)
 	$(GUIX) build $(GUIX_BUILD_PROBE_FLAGS) $(PKGS_ACCEPTED)
 

@@ -1,0 +1,32 @@
+From 79bd9f8f201ba27d151249d1468979959e5de724 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Feb 2023 10:41:54 +0000
+Subject: [PATCH 3/4] gnu: Add qxlsx-qt5.
+
+* gnu/packages/qt.scm (qxlsx-qt5): New variable.
+---
+ gnu/packages/qt.scm | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/gnu/packages/qt.scm b/gnu/packages/qt.scm
+index 4985a79db4..b2e14e5757 100644
+--- a/gnu/packages/qt.scm
++++ b/gnu/packages/qt.scm
+@@ -1156,6 +1156,14 @@ (define-public qxlsx
+ XLSX document format.")
+      (license license:expat)))
+ 
++(define-public qxlsx-qt5
++  (package
++    (inherit qxlsx)
++    (name "qxlsx-qt5")
++    (inputs
++     (list qtbase-5))
++    (synopsis "Qt5 build for the qxlsx library.")))
++
+ (define-public qtxmlpatterns
+   (package (inherit qtsvg-5)
+     (name "qtxmlpatterns")
+-- 
+2.39.1
+

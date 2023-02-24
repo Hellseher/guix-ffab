@@ -1,0 +1,28 @@
+From e14099fb6fad1b0fc80dbda2ba660b4b9aac03c7 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Feb 2023 10:32:19 +0000
+Subject: [PATCH 2/4] gnu: qxlsx: Use Qt6.
+
+* gnu/packages/qt.scm (qxlsx):
+  [inputs]: Use QTBASE (Qt6) instead QTBASE-5. Add LIBXKBCOMMON,
+  VULKAN-HEADERS.
+---
+ gnu/packages/qt.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/qt.scm b/gnu/packages/qt.scm
+index 76e9e519c7..4985a79db4 100644
+--- a/gnu/packages/qt.scm
++++ b/gnu/packages/qt.scm
+@@ -1148,7 +1148,7 @@ (define-public qxlsx
+                   (invoke "make" "-j" (number->string (parallel-job-count)))
+                   (invoke "./TestExcel"))))))))
+      (inputs
+-      (list qtbase-5))
++      (list libxkbcommon qtbase vulkan-headers))
+      (home-page "https://qtexcel.github.io/QXlsx/")
+      (synopsis "C++ library to read/write Excel XLSX files using Qt")
+      (description
+-- 
+2.39.1
+

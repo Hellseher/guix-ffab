@@ -1,0 +1,37 @@
+From 1c18143ec9e0eb8ca8ed51fe36b1138ee148af33 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 24 Feb 2023 21:42:39 +0000
+Subject: [PATCH 1/5] gnu: cl-sdl2: Update to 0.0.0-2.80410b5.
+
+* gnu/packages/lisp-xyz.scm (sbcl-sdl2): Update to 0.0.0-2.80410b5.
+---
+ gnu/packages/lisp-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index a4e0c89694..648141b19b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -20122,8 +20122,8 @@ (define-public cl-glop
+   (sbcl-package->cl-source-package sbcl-glop))
+ 
+ (define-public sbcl-sdl2
+-  (let ((commit "bb2aa2a41cf799e3bb1ddf50de41fe389c6db668")
+-        (revision "1"))
++  (let ((commit "80410b514570ca06894675d4a2a5fc93287ea7b6")
++        (revision "2"))
+     (package
+       (name "sbcl-sdl2")
+       (version (git-version "0.0.0" revision commit))
+@@ -20135,7 +20135,7 @@ (define-public sbcl-sdl2
+                (commit commit)))
+          (file-name (git-file-name "cl-sdl2" version))
+          (sha256
+-          (base32 "1a4904310z2wwq80grnlixmyz30452vgd4lh74y105j2yrr43z97"))))
++          (base32 "0sjy4k04k0hdhwpr57ns16ag3za0kz4laclbk17i91ql7qdjw9z2"))))
+       (build-system asdf-build-system/sbcl)
+       (arguments
+        `(#:phases
+-- 
+2.39.1
+
