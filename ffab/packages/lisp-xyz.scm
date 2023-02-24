@@ -776,6 +776,60 @@ LPARALLEL.")
 ;; added-to-upstream: e101a117eb5af9affcf68e27e91d68d3bfd72986
 ;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
 
+;; https://github.com/rpav
+;;+begin-rpav
+
+(define-public sbcl-cl-cairo2
+  (let ((commit "41ae45aac86553c46f4bb460f80e1fb620930f5b")
+        (revision "1"))
+    (package
+      (name "sbcl-cl-cairo2")
+      (version (git-version "1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/rpav/cl-cairo2")
+               (commit commit)))
+         (file-name (git-file-name "cl-cairo2" version))
+         (sha256
+          (base32 "0cpfgyxw6pz7y033dlya8c4vjmkpw127zdq3a9xclp9q8jbdlb7q"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:asd-systems '(;; "cl-cairo2-gtk2" ; cl-gtk2 is not packed and quite old.
+                         ;; "cl-cairo2-quartz" ; Failing when enabled.
+                         ;; "cl-cairo2-xlib" ; cl-xcb-xlib is not packed yet and quite old.
+                         ;; "cl-cairo2-xcb"
+                         "cl-cairo2")
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'fix-paths
+             (lambda* (#:key inputs #:allow-other-keys)
+               (substitute* "src/load-libraries.lisp"
+                 (("libcairo.so.2")
+                  (search-input-file inputs "/lib/libcairo.so.2"))))))))
+      (inputs
+       (list cairo
+             sbcl-cffi
+             sbcl-cl-colors
+             sbcl-cl-freetype2
+             sbcl-cl-utilities
+             sbcl-metabang-bind
+             sbcl-trivial-features
+             sbcl-trivial-garbage))
+      (home-page "https://github.com/rpav/cl-cairo2")
+      (synopsis "Cairo bindings for Common Lisp")
+      (description
+       "It's very basic implementation of channels and queue for Common Lisp.")
+      (license license:bsd-2))))
+
+(define-public ecl-cl-cairo2
+  (sbcl-package->ecl-package sbcl-cl-cairo2))
+
+(define-public cl-cairo2
+  (sbcl-package->cl-source-package sbcl-cl-cairo2))
+;;+end-rpav
+
 ;; https://github.com/sjl
 ;;+begin-sjl
 
