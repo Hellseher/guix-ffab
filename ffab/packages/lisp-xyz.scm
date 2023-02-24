@@ -840,6 +840,47 @@ LPARALLEL.")
 
 ;;+end-sjl
 
+;; https://github.com/VitoVan
+;;+begin-VitoVan
+
+(define-public sbcl-calm
+  (package
+    (name "sbcl-calm")
+    (version "0.0.33")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/VitoVan/calm")
+             (commit version)))
+       (file-name (git-file-name "calm" version))
+       (sha256
+        (base32 "0dh8100facv95yl8j9sbss6v2xplsl57fz32xdxmhbx5qq2vs77x"))))
+    (build-system asdf-build-system/sbcl)
+    (inputs
+     (list sbcl-cl-cairo2
+           sbcl-cl-str
+           sbcl-sdl2
+           sbcl-sdl2-image
+           sbcl-sdl2-mixer
+           sbcl-slime-swank))
+    (home-page "https://github.com/VitoVan/calm")
+    (synopsis "Vector graphic library for Common Lisp")
+    (description
+     "This package provides a SDL2 based vector graphic library for Common Lisp.")
+    (license license:gpl2)))
+
+(define-public cl-calm
+  (sbcl-package->cl-source-package sbcl-calm))
+
+;; TODO: ECL is not supported yet:
+;; https://github.com/VitoVan/calm/issues/70
+
+;; (define-public ecl-calm
+;;   (sbcl-package->ecl-package sbcl-calm))
+
+;;+end-VitoVan
+
 ;; 20210621T110738+0100
 ;; added-to-upstream: ad4a46b028378f38f897c74ca5728e6cb77689ca
 ;; CommitDate: Thu Jun 24 10:33:04 2021 +0200
