@@ -31,6 +31,7 @@
   #:use-module (gnu packages image)
   #:use-module (gnu packages kerberos)
   #:use-module (gnu packages libevent)
+  #:use-module (gnu packages gtk)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-check)
   #:use-module (gnu packages lisp-xyz)
@@ -64,6 +65,49 @@
 ;; (define-public sbcl-glop
 ;; added-to-upstream c62b3e6575d0ce68b07bace59014ae2f374c1068
 ;; CommitDate: Tue Jul 19 23:00:36 2022 +0200
+
+(define-public sbcl-sdl2-mixer
+  (let ((commit "fdcc7ee7935dd01fd338e22690451db2cf126156")
+        (revision "1"))
+    (package
+      (name "sbcl-sdl2-mixer")
+      (version (git-version "1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/lispgames/cl-sdl2-mixer")
+               (commit commit)))
+         (file-name (git-file-name "sdl2-mixer" version))
+         (sha256
+          (base32 "0g6ywb3gqr0rif4z6kkz6m8vyv8nrr5wr1w9sc6d3zypbbnqgbp6"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       (list #:phases
+             #~(modify-phases %standard-phases
+                 (add-after 'unpack 'fix-paths
+                   (lambda* (#:key inputs #:allow-other-keys)
+                     (substitute* "src/library.lisp"
+                       (("libSDL2_mixer-2.0.so.0")
+                        (search-input-file inputs "/lib/libSDL2_mixer-2.0.so.0"))))))))
+      (inputs
+       (list sbcl-alexandria
+             sbcl-cl-autowrap
+             sbcl-sdl2
+             sbcl-trivial-garbage
+             sdl2-mixer))
+      (home-page "https://github.com/lispgames/cl-sdl2-mixer")
+      (synopsis "Bindings for sdl2_mixer using autowrap for Common Lisp")
+      (description
+       "This package provides a Common Lisp wrapper system for the SDL 2.0 Mixer C
+Library.")
+      (license license:expat))))
+
+(define-public ecl-sdl2-mixer
+  (sbcl-package->ecl-package sbcl-sdl2-mixer))
+
+(define-public cl-sdl2-mixer
+  (sbcl-package->cl-source-package sbcl-sdl2-mixer))
 
 ;;+end-lispgames
 
