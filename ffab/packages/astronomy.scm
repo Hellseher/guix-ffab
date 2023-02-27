@@ -38,6 +38,7 @@
   #:use-module (gnu packages gettext)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages curl)
+  #:use-module (gnu packages graph)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages flex)
   #:use-module (gnu packages gps)
@@ -124,7 +125,8 @@
     (build-system cmake-build-system)
     (arguments
      (list #:configure-flags
-           #~(list "-DQT_VERSION=6")))
+           #~(list "-DQT_VERSION=6"
+                   "-DCMAKE_CXX_FLAGS=-fPIC")))
     (inputs
      (list qtbase glm eigen))
     (home-page "https://10110111.github.io/CalcMySky/")
@@ -158,7 +160,8 @@ rendering of the atmosphere model and examine its properties.
     (name "calcmysky-qt5")
     (arguments
      (list #:configure-flags
-           #~(list "-DQT_VERSION=5")))
+           #~(list "-DQT_VERSION=5"
+                   "-DCMAKE_CXX_FLAGS=-fPIC")))
     (inputs
      (alist-replace "qtbase" (list qtbase-5)
                     (package-inputs calcmysky)))))
