@@ -66,48 +66,10 @@
 ;; added-to-upstream c62b3e6575d0ce68b07bace59014ae2f374c1068
 ;; CommitDate: Tue Jul 19 23:00:36 2022 +0200
 
-(define-public sbcl-sdl2-mixer
-  (let ((commit "fdcc7ee7935dd01fd338e22690451db2cf126156")
-        (revision "1"))
-    (package
-      (name "sbcl-sdl2-mixer")
-      (version (git-version "1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/lispgames/cl-sdl2-mixer")
-               (commit commit)))
-         (file-name (git-file-name "sdl2-mixer" version))
-         (sha256
-          (base32 "0g6ywb3gqr0rif4z6kkz6m8vyv8nrr5wr1w9sc6d3zypbbnqgbp6"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       (list #:phases
-             #~(modify-phases %standard-phases
-                 (add-after 'unpack 'fix-paths
-                   (lambda* (#:key inputs #:allow-other-keys)
-                     (substitute* "src/library.lisp"
-                       (("libSDL2_mixer-2.0.so.0")
-                        (search-input-file inputs "/lib/libSDL2_mixer-2.0.so.0"))))))))
-      (inputs
-       (list sbcl-alexandria
-             sbcl-cl-autowrap
-             sbcl-sdl2
-             sbcl-trivial-garbage
-             sdl2-mixer))
-      (home-page "https://github.com/lispgames/cl-sdl2-mixer")
-      (synopsis "Bindings for sdl2_mixer using autowrap for Common Lisp")
-      (description
-       "This package provides a Common Lisp wrapper system for the SDL 2.0 Mixer C
-Library.")
-      (license license:expat))))
-
-(define-public ecl-sdl2-mixer
-  (sbcl-package->ecl-package sbcl-sdl2-mixer))
-
-(define-public cl-sdl2-mixer
-  (sbcl-package->cl-source-package sbcl-sdl2-mixer))
+;; 20230227T231520+0100
+;; (define-public sbcl-sdl2-mixer
+;; added-to-upstream ad854e06b4300d70bcb04ca8ed483d864f3114c7
+;; CommitDate: Mon Feb 27 13:51:23 2023 +0100
 
 ;;+end-lispgames
 
@@ -779,55 +741,11 @@ LPARALLEL.")
 ;; https://github.com/rpav
 ;;+begin-rpav
 
-(define-public sbcl-cl-cairo2
-  (let ((commit "41ae45aac86553c46f4bb460f80e1fb620930f5b")
-        (revision "1"))
-    (package
-      (name "sbcl-cl-cairo2")
-      (version (git-version "1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/rpav/cl-cairo2")
-               (commit commit)))
-         (file-name (git-file-name "cl-cairo2" version))
-         (sha256
-          (base32 "0cpfgyxw6pz7y033dlya8c4vjmkpw127zdq3a9xclp9q8jbdlb7q"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems '(;; "cl-cairo2-gtk2" ; cl-gtk2 is not packed and quite old.
-                         ;; "cl-cairo2-quartz" ; Failing when enabled.
-                         ;; "cl-cairo2-xlib" ; cl-xcb-xlib is not packed yet and quite old.
-                         ;; "cl-cairo2-xcb"
-                         "cl-cairo2")
-         #:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'fix-paths
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "src/load-libraries.lisp"
-                 (("libcairo.so.2")
-                  (search-input-file inputs "/lib/libcairo.so.2"))))))))
-      (inputs
-       (list cairo
-             sbcl-cffi
-             sbcl-cl-colors
-             sbcl-cl-freetype2
-             sbcl-cl-utilities
-             sbcl-metabang-bind
-             sbcl-trivial-features
-             sbcl-trivial-garbage))
-      (home-page "https://github.com/rpav/cl-cairo2")
-      (synopsis "Cairo bindings for Common Lisp")
-      (description
-       "It's very basic implementation of channels and queue for Common Lisp.")
-      (license license:bsd-2))))
+;; 20220227T233910+0100
+;; (define-public sbcl-cl-cairo2
+;; added-to-upstream a71e4554419e48cf24bb7f96b6e3f74427d65de5
+;; CommitDate: Mon Feb 27 14:02:28 2023 +0100
 
-(define-public ecl-cl-cairo2
-  (sbcl-package->ecl-package sbcl-cl-cairo2))
-
-(define-public cl-cairo2
-  (sbcl-package->cl-source-package sbcl-cl-cairo2))
 ;;+end-rpav
 
 ;; https://github.com/sjl
@@ -843,41 +761,10 @@ LPARALLEL.")
 ;; https://github.com/VitoVan
 ;;+begin-VitoVan
 
-(define-public sbcl-calm
-  (package
-    (name "sbcl-calm")
-    (version "0.0.33")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/VitoVan/calm")
-             (commit version)))
-       (file-name (git-file-name "calm" version))
-       (sha256
-        (base32 "0dh8100facv95yl8j9sbss6v2xplsl57fz32xdxmhbx5qq2vs77x"))))
-    (build-system asdf-build-system/sbcl)
-    (inputs
-     (list sbcl-cl-cairo2
-           sbcl-cl-str
-           sbcl-sdl2
-           sbcl-sdl2-image
-           sbcl-sdl2-mixer
-           sbcl-slime-swank))
-    (home-page "https://github.com/VitoVan/calm")
-    (synopsis "Vector graphic library for Common Lisp")
-    (description
-     "This package provides a SDL2 based vector graphic library for Common Lisp.")
-    (license license:gpl2)))
-
-(define-public cl-calm
-  (sbcl-package->cl-source-package sbcl-calm))
-
-;; TODO: ECL is not supported yet:
-;; https://github.com/VitoVan/calm/issues/70
-
-;; (define-public ecl-calm
-;;   (sbcl-package->ecl-package sbcl-calm))
+;; 20220227T233910+0100
+;; (define-public sbcl-calm
+;; added-to-upstream 55054c1235ff2048079d4b83840cf22a61d04e5a
+;; CommitDate: Mon Feb 27 14:13:11 2023 +0100
 
 ;;+end-VitoVan
 

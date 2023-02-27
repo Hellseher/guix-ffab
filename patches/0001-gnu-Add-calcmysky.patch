@@ -1,15 +1,15 @@
-From 8dfcda09a418d04b21cfbc2ab71284921562fc72 Mon Sep 17 00:00:00 2001
+From 478563ebb1272d3b4d911060d1279b9121c98878 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Mon, 20 Feb 2023 23:05:15 +0000
 Subject: [PATCH 1/4] gnu: Add calcmysky.
 
 * gnu/packages/astronomy.scm (calcmysky, calcmysky-qt5): New variables.
 ---
- gnu/packages/astronomy.scm | 57 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+ gnu/packages/astronomy.scm | 59 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 5cee981671..f13f74a5e8 100644
+index 5cee981671..0f3176bc3e 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -26,6 +26,7 @@
@@ -20,7 +20,7 @@ index 5cee981671..f13f74a5e8 100644
    #:use-module ((guix licenses) #:prefix license:)
    #:use-module (gnu packages algebra)
    #:use-module (gnu packages autotools)
-@@ -209,6 +210,62 @@ (define-public calceph
+@@ -209,6 +210,64 @@ (define-public calceph
  @end itemize\n")
      (license license:cecill)))
  
@@ -40,7 +40,8 @@ index 5cee981671..f13f74a5e8 100644
 +    (build-system cmake-build-system)
 +    (arguments
 +     (list #:configure-flags
-+           #~(list "-DQT_VERSION=6")))
++           #~(list "-DQT_VERSION=6"
++                   "-DCMAKE_CXX_FLAGS=-fPIC")))
 +    (inputs
 +     (list eigen glm qtbase))
 +    (home-page "https://10110111.github.io/CalcMySky/")
@@ -74,7 +75,8 @@ index 5cee981671..f13f74a5e8 100644
 +    (name "calcmysky-qt5")
 +    (arguments
 +     (list #:configure-flags
-+           #~(list "-DQT_VERSION=5")))
++           #~(list "-DQT_VERSION=5"
++                   "-DCMAKE_CXX_FLAGS=-fPIC")))
 +    (inputs
 +     (alist-replace "qtbase" (list qtbase-5)
 +                    (package-inputs calcmysky)))

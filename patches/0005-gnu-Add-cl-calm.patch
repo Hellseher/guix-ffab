@@ -1,0 +1,60 @@
+From 6b1348ff686001f3eaf036adf6bedc324797109f Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 24 Feb 2023 22:12:56 +0000
+Subject: [PATCH 5/5] gnu: Add cl-calm.
+
+* gnu/packages/lisp-xyz.scm (cl-calm, sbcl-calm): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index e37a386232..99300e12e2 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -2801,6 +2801,42 @@ (define-public cl-calispel
+ (define-public ecl-calispel
+   (sbcl-package->ecl-package sbcl-calispel))
+ 
++(define-public sbcl-calm
++  (package
++    (name "sbcl-calm")
++    (version "0.0.33")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/VitoVan/calm")
++             (commit version)))
++       (file-name (git-file-name "calm" version))
++       (sha256
++        (base32 "0dh8100facv95yl8j9sbss6v2xplsl57fz32xdxmhbx5qq2vs77x"))))
++    (build-system asdf-build-system/sbcl)
++    (inputs
++     (list sbcl-cl-cairo2
++           sbcl-cl-str
++           sbcl-sdl2
++           sbcl-sdl2-image
++           sbcl-sdl2-mixer
++           sbcl-slime-swank))
++    (home-page "https://github.com/VitoVan/calm")
++    (synopsis "Vector graphic library for Common Lisp")
++    (description
++     "This package provides a SDL2 based vector graphic library for Common Lisp.")
++    (license license:gpl2)))
++
++(define-public cl-calm
++  (sbcl-package->cl-source-package sbcl-calm))
++
++;; TODO: ECL is not supported yet:
++;; https://github.com/VitoVan/calm/issues/70
++
++;; (define-public ecl-calm
++;;   (sbcl-package->ecl-package sbcl-calm))
++
+ (define-public sbcl-esrap
+   (let ((commit "4c82a863871e117f0041b9ef37e61c0b62318aa7")
+         (revision "3"))
+-- 
+2.39.1
+

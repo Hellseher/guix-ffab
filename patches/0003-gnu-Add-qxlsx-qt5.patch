@@ -1,4 +1,4 @@
-From 79bd9f8f201ba27d151249d1468979959e5de724 Mon Sep 17 00:00:00 2001
+From 638deaa3d55ff1b10558c65a54f49eae99516945 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 21 Feb 2023 10:41:54 +0000
 Subject: [PATCH 3/4] gnu: Add qxlsx-qt5.

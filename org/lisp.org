@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-02-24 Fri 21:32:15 GMT>
+#+modified: <2023-02-27 Mon 21:43:16 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -227,24 +227,6 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [ ] local-time
   - [ ] named-readtables
   - [ ] trivial-features))
-** TODO VitoVan [0/1][0%] :author:
-- https://github.com/VitoVan
-- https://vitovan.com/
-*** TODO cl-calm [2/4][50%] :p1:
-- https://github.com/VitoVan/calm
-- synopsis :: SDL2 vector graphic library for Common Lisp
-- [X] :packed <2023-02-24 Fri>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [6/6]
-  - [X] cl-sdl2
-  - [X] cl-sdl2-image
-  - [X] cl-sdl2-mixer
-  - [X] cl-str
-  - [X] cl-cairo2
-  - [X] cl-slime-swank
-    - [X] :packed <2023-02-24 Fri>
-
 ** DONE bufferswap [1/1][100%] :author:
 CLOSED: [2022-11-20 Sun 20:46]
 - https://github.com/bufferswap
@@ -422,16 +404,6 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-** TODO jscl-project [0/1][0%] :author:
-
-*** TODO cl-jscl [/][%] :p1:
-- https://github.com/jscl-project/jscl
-- synopsis :: A Lisp-to-JavaScript compiler bootstrapped from Common Lisp
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
 ** TODO chaitanyagupta [1/2][50%] :author:
 https://github.com/chaitanyagupta
 *** DONE chronicity [4/4][100%]
@@ -702,7 +674,17 @@ CLOSED: [2021-06-24 Thu 14:40]
     - [X] :inputs [1/1][100%]
       + [X] iterate
 
-** TODO kmx-io [1/2][50%] :author:p5:
+** TODO jscl-project [0/1][0%] :author:
+
+*** TODO cl-jscl [/][%] :p1:
+- https://github.com/jscl-project/jscl
+- synopsis :: A Lisp-to-JavaScript compiler bootstrapped from Common Lisp
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+** TODO kmx-io [1/2][50%] :author:
 - https://github.com/kmx-io
 
 *** DONE cl-debug [3/3][100%]
@@ -720,7 +702,7 @@ CLOSED: [2021-03-09 Tue 08:44]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO lispgames [2/3][66%] :author:
+** TODO lispgames [3/3][100%] :author:
 *** DONE cl-glop [4/4][100%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
@@ -753,12 +735,14 @@ CLOSED: [2022-11-19 Sat 19:47]
     - [X] :packed <2021-02-17 Wed>
   + [X] trivial-features
 
-*** TODO cl-sdl2-mixer [2/4][50%] :p1:
+*** DONE cl-sdl2-mixer [4/4][100%] :p1:
+CLOSED: [2023-02-27 Mon 21:03]
 - https://github.com/lispgames/cl-sdl2-mixer
 - synopsis :: Bindings for SDL2_mixer
 - [X] :packed <2023-02-24 Fri>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-24 Fri>
+- [X] :patch-applied-upstream <2023-02-27 Mon>
+  - https://issues.guix.gnu.org/61772
 - [X] :inputs [5/5][100%]
   - [X] cl-alexandria
   - [X] cl-autowrap
@@ -1077,12 +1061,13 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [X] :inputs [1/1]
   - [X] trivial-timeout [1/1][100%]
     - [X] :packed <2021-02-02 Tue>
-*** TODO cl-cairo2 [1/4][25%] :p1:
+*** TODO cl-cairo2 [3/4][75%] :p4:
 - https://github.com/rpav/cl-cairo2
 - synopsis :: Cairo bindings for Common Lisp
 - [X] :packed <2023-02-24 Fri>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-24 Fri>
+- [X] :patch-applied-upstream <2023-02-27 Mon>
+  - https://issues.guix.gnu.org/61772
 - [-] :inputs [7/9][77%]
   - [X] cairo
   - [X] cl-cffi
@@ -1096,14 +1081,17 @@ CLOSED: [2022-11-20 Sun 21:33]
   - [ ] cl-gtk2
     - [ ] :packed
 
-** s-expressionists :author:
-*** ctype
-- https://github.com/s-expressionists/ctype
-- synopsis :: CL type system implementation
-It's already packed in 1e180f4523c6bf4c5a32b38df80583defe076da1 byi Pierre Neidhardt
-<mail@ambrevar.xyz>
+** TODO s-expressionists [0/1][0%] :author:
+- https://github.com/s-expressionists
+*** TODO cl-khazern [0/4][0%] :p5:
+- https://github.com/s-expressionists/Khazern
+- synopsis :: Portible LOOP implementation in Common Lisp
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0]
 
-** TODO Shinmera/Shirakumo [3/11][27%] :author:p5:
+** TODO Shinmera/Shirakumo [3/11][27%] :author:
 *** TODO qt-libs [1/4][25%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -1518,6 +1506,33 @@ CLOSED: [2021-04-11 Sun 20:33]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+** TODO VitoVan [1/2][50%] :author:
+- https://github.com/VitoVan
+- https://vitovan.com/
+*** DONE cl-calm [4/4][100%]
+CLOSED: [2023-02-27 Mon 21:08]
+- https://github.com/VitoVan/calm
+- synopsis :: SDL2 vector graphic library for Common Lisp
+- [X] :packed <2023-02-24 Fri>
+- [X] :patch-sent <2023-02-24 Fri>
+- [X] :paptch-applied-upstream <2023-02-27 Mon>
+  - https://issues.guix.gnu.org/61772
+- [X] :inputs [6/6]
+  - [X] cl-sdl2
+  - [X] cl-sdl2-image
+  - [X] cl-sdl2-mixer
+  - [X] cl-str
+  - [X] cl-cairo2
+  - [X] cl-slime-swank
+    - [X] :packed <2023-02-24 Fri>
+*** TODO cl-pkr [0/4][0%] :p3:
+- https://github.com/VitoVan/cl-pkr
+- synopsis :: Cross platform colour picker.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0]
+
 ** TODO vsedach [1/2][50%] :author:
 - https://github.com/vsedach
 - https://oneofus.la/
@@ -1549,31 +1564,49 @@ CLOSED: [2021-06-24 Thu 14:41]
   - [X] babel
   - [X] local-time
 
-* Tests
-https://sabracrolleton.github.io/testing-framewo
-- [ ] 1am
-- [ ] 2am (not in quicklisp)
-- [ ] cacau
-- [ ] cardiogram (e)
-- [ ] clunit (a)
-- [ ] clunit2
-- [ ] com.gigamonkeys.test-framework
-- [X] fiasco (b)
-- [X] fiveam
-- [X] kaputt
-- [X] lift
-- [ ] lisp-unit
-- [ ] lisp-unit2
-- [X] nst
-- [X] parachute
-- [X] prove
-- [X] ptester
-- [X] rove
-- [X] rt
-- [X] should-test
-- [ ] simplet
-- [X] stefil (f)
-- [ ] tap-unit-test (d)
-- [ ] unit-test
-- [ ] xlunit
-- [ ] xptest
+* Testing Frameworks and helper utilities
+The list is sourced from this URL https://sabracrolleton.github.io/testing-framework to keep track
+of the system to be promoted to Guix.
+- completion [26/42][61%]
+  - [ ] 1am https://github.com/lmj/1am
+  - [ ] 2am https://gitlab.common-lisp.net/dkochmanski/2am
+  - [X] assertion-error https://github.com/noloop/assertion-error
+  - [X] assert-p https://github.com/noloop/assert-p
+  - [X] cacau https://github.com/noloop/cacau
+  - [ ] cardiogram https://gitlab.com/a.aguilar/cardiogram
+  - [X] check-it https://github.com/DalekBaldwin/check-it
+  - [X] checkl https://github.com/rpav/CheckL
+  - [ ] cl-fuzz https://github.com/ndantam/cl-fuzz/
+  - [X] cl-quickcheck https://github.com/mcandre/cl-quickcheck
+  - [X] clunit2 https://notabug.org/cage/clunit2
+  - [X] clunit http://tgutu.github.io/clunit/
+  - [ ] com.gigamonkeys.test-framework https://github.com/gigamonkey/monkeylib-test-framework
+  - [ ] cover https://gist.github.com/aamedina/ea994fc8f6e501dd862a2e866c9a08fa
+  - [X] fiasco https://github.com/joaotavora/fiasco
+  - [X] fiveam https://github.com/lispci/fiveam
+  - [X] hamcrest https://github.com/40ants/cl-hamcrest
+  - [X] kaputt https://github.com/gwkkwg/lift
+  - [X] lift https://github.com/gwkkwg/lift
+  - [X] lisp-unit2 https://github.com/AccelerationNet/lisp-unit2
+  - [X] lisp-unit https://github.com/OdonataResearchLLC/lisp-unit
+  - [ ] mockingbird https://github.com/Chream/mockingbird
+  - [X] nst https://github.com/jphmrst/cl-nst
+  - [X] parachute https://github.com/Shinmera/parachute
+  - [ ] portch https://github.com/nallen05/portch
+  - [ ] protest https://github.com/phoe/protest/
+  - [X] prove https://github.com/fukamachi/prove
+  - [X] ptester http://git.kpe.io/?p=ptester.git;a=summary
+  - [X] rove https://github.com/fukamachi/rove
+  - [X] rt
+  - [ ] rtch http://downloads.sourceforge.net/retch/rtch_0.1.3.tar.gz
+  - [X] should-test https://github.com/vseloved/should-test
+  - [X] simplet https://github.com/noloop/simplet
+  - [ ] slite https://github.com/tdrhq/slite/
+  - [X] stefil http://dwim.hu/darcsweb/darcsweb.cgi?r=HEAD%20hu.dwim.stefil;a=summary
+  - [ ] tap-unit-test https://github.com/jhanley634/tap-unit-test
+  - [ ] testbild https://github.com/e-user/testbild
+  - [ ] test-utils https://github.com/inaimathi/test-utils
+  - [X] try https://github.com/melisgl/try
+  - [X] unit-test https://github.com/hanshuebner/unit-test
+  - [ ] xlunit http://git.kpe.io/?p=xlunit.git;a=tree
+  - [ ] xptest

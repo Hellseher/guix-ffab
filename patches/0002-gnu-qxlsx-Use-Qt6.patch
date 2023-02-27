@@ -1,4 +1,4 @@
-From e14099fb6fad1b0fc80dbda2ba660b4b9aac03c7 Mon Sep 17 00:00:00 2001
+From 785cc433633cd307e15685d5d17b5631b7b7b2d2 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 21 Feb 2023 10:32:19 +0000
 Subject: [PATCH 2/4] gnu: qxlsx: Use Qt6.
