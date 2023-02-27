@@ -1,8 +1,8 @@
 #+TITLE: gnu/packages/version-control
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-22 Tue 20:45:18 GMT>
+#+modified: <2023-02-27 Mon 21:10:07 GMT>
 
-* TODO jesseduffield [0/1][0%] :author:p3:
+* TODO jesseduffield [0/1][0%] :author:
 ** TODO lazygit [0/4][0%] :p5:
 - https://github.com/jesseduffield/lazygit
 - [ ] :packed <2022-11-22 Tue> Older version is packed wip-golang, not keen to update +20 new

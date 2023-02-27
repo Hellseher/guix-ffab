@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2023-01-05 Thu 22:02:52 GMT>
+#+modified: <2023-02-27 Mon 21:10:18 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -53,7 +53,7 @@ CLOSED: [2022-11-08 Tue 11:00]
   - [X] python-pytest
   - [X] python-pytest-cov
 
-** TODO brandon-rhodes [0/1][0%] :author:p5:
+** TODO brandon-rhodes [0/1][0%] :author:
 *** TODO python-assay [2/3][66%]
 - https://github.com/brandon-rhodes/assay
 - [X] :packed <2021-02-07 Sun>
@@ -105,7 +105,7 @@ CLOSED: [2022-11-08 Tue 10:58]
   - [X] python-packaging
   - [X] python-numpy
 
-** TODO hawkowl [0/1][0%] :author:p1:
+** TODO hawkowl [0/1][0%] :author:
 - https://github.com/hawkowl
 - https://atleastfornow.net/
 - author :: Amber Brown
@@ -268,7 +268,7 @@ CLOSED: [2022-11-08 Tue 11:06]
 - [X] :inputs [1/1][100%]
   - [X] python-defusedxml
 
-** TODO SunPy [0/3][0%] :author:p2:
+** TODO SunPy [0/3][0%] :author:
 - https://sunpy.org/
 - https://github.com/sunpy
 
@@ -308,7 +308,7 @@ CLOSED: [2022-11-08 Tue 11:06]
   - [X] python-pytest-cov
   - [X] python-sphinx
 
-** TODO webrecorder [0/1][0%] :author:p2:
+** TODO webrecorder [0/1][0%] :author:
 
 *** TODO pywb [1/4][25%]
 - https://github.com/webrecorder/pywb

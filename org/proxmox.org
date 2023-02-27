@@ -1,6 +1,6 @@
 #+title: Proxmox Virtual Engine
 #+created: <2022-10-18 Tue 21:51:20 BST>
-#+modified: <2022-10-18 Tue 22:38:57 BST>
+#+modified: <2023-02-27 Mon 21:11:07 GMT>
 
 * Synopsis
 Packaging process for ProxmoxVE dependencies to deploy full featured cluster enviroment on top on
@@ -14,7 +14,7 @@ It's a perl base project.
 https://git.proxmox.com/
 
 * Flow [0/0][0%]
-** Proxmox [0/0][0%] :author:p5:
+** Proxmox [0/0][0%] :author:
 *** proxmox-ve [0/4][0%] :p5:
 - https://git.proxmox.com/?p=proxmox-ve.git
 - [ ] :packed
@@ -34,7 +34,7 @@ https://git.proxmox.com/
     - https://git.proxmox.com/?p=spiceterm.git;a=summary
   - [ ] vncterm
     - https://git.proxmox.com/?p=vncterm.git;a=tree
-** github.com/stefanberger [0/0][0%] :author:p5:
+** github.com/stefanberger [0/0][0%] :author:
 - https://github.com/stefanberger
 *** libtpms [0/4][0%]
 - https://github.com/stefanberger/libtpms

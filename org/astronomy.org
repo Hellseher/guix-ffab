@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-02-23 Thu 23:03:02 GMT>
+#+modified: <2023-02-27 Mon 21:10:50 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [4/54][7%]
+* Flow [4/53][7%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -924,7 +924,7 @@ CLOSED: [2022-11-25 Fri 21:08]
 - synopsis :: Image reconstruction for radio astronomy using SPH kernel interpolation in the uv
   plane
 
-** TODO dokester [0/1][0%] :author:p1:
+** TODO dokester [0/1][0%] :author:
 *** TODO BayesicFitting [2/4][50%] :p1:
 - https://github.com/dokester/BayesicFitting
 - [X] :packed <2022-11-06 Sun>
@@ -943,7 +943,7 @@ CLOSED: [2022-11-25 Fri 21:08]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-** TODO ericmandel [0/1][0%] :author:p1:
+** TODO ericmandel [0/1][0%] :author:
 - https://github.com/ericmandel
 *** TODO funtools [2/4][50%] :p1:
 - https://github.com/ericmandel/funtools
@@ -1212,7 +1212,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [4/35][11%] :author:p1:
+** TODO JuliaAstro [4/35][11%] :author:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
 *** TODO julia-astroangles [2/4][50%] :p1:
@@ -1893,7 +1893,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/1][0%]
   - [ ] astropy
-** TODO spacetelescope [2/20][10%] :author:
+** TODO spacetelescope [3/20][15%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** TODO ci-watson [1/4][25%] :p5:
@@ -2103,17 +2103,21 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-pytest-openfiles
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** TODO python-spherical-geometry [2/4][50%] :p1:
+
+*** DONE python-spherical-geometry [4/4][100%]
+CLOSED: [2023-02-24 Fri 23:23]
 - https://github.com/spacetelescope/spherical_geometry
-- [X] :packed <2022-11-06 Sun>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :packed <2022-05-23 Mon>
+- [X] :patch-sent <2022-05-24 Tue>
+- [X] :paptch-applied-upstream <2023-02-24 Fri>
+  - https://issues.guix.gnu.org/55604
 - [X] :inputs [5/5][100%]
   - [X] python-astropy
   - [X] python-numpy
   - [X] python-pytest
   - [X] python-setuptools-scm
   - [X] qd
+
 *** TODO python-stcal [0/4][0%] :p1:
 - https://github.com/spacetelescope/stcal
 - sinopsys :: STScI Calibration algorithms and tools.
@@ -2240,6 +2244,7 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
   - [X] python-spherical-geometry
+    - [X] :packed <2022-05-23 Mon>
   - [X] python-stsci-imagestats
   - [X] python-stsci-stimage
     - [X] :packed <2022-11-06 Sun>
