@@ -1,0 +1,35 @@
+From 20880f7c86735669dcf6ca6bfcc7e28c7097f2d2 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 28 Feb 2023 23:01:47 +0000
+Subject: [PATCH] gnu: splash: Update to 3.7.2.
+
+* gnu/packages/astronomy.scm (splash): Update to 3.7.2.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4039e8c038..1c39c2a181 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -761,7 +761,7 @@ (define-public siril
+ (define-public splash
+   (package
+     (name "splash")
+-    (version "3.5.1")
++    (version "3.7.2")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -769,7 +769,7 @@ (define-public splash
+                     (commit (string-append "v" version))))
+               (sha256
+                (base32
+-                "12s3w96wzd4zpxw4adzhalkr57fgdk7cjp6bj596jnd87pz3rhyd"))
++                "0nsm6rk0bi99xz7wclk0zy4bpqf0qcsdln5cdjb30lhpf37i2fpa"))
+               (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
+     (arguments
+-- 
+2.39.1
+
