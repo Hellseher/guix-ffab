@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-02-18 Sat 21:48:32 GMT>
+#+modified: <2023-03-03 Fri 21:28:34 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -99,54 +99,64 @@ CLOSED: [2023-02-10 Fri 23:45]
 - [X] :inputs [1/1][100%]
   - [X] cfitrsio
 
-** TODO JuliaTime [0/1][0%] :author:
+** TODO JuliaTime [1/1][100%] :author:
 - https://github.com/JuliaTime
-*** TODO julia-leapseconds [2/4][50%] :p1:
+*** DONE julia-leapseconds [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:28]
 - https://github.com/JuliaTime/LeapSeconds.jl
 - synopsis :: Leap seconds in Julia
 - [X] :packed <2023-02-15 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [1/1][100%]
   - [X] julia-erfa
 
-** TODO helgee [0/3][0%] :author:
+** TODO helgee [3/3][100%] :author:
 - author :: Helge Eichhorn
-*** TODO julia-optionaldata [1/4][25%] :p1:
+*** DONE julia-optionaldata [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:27]
 - https://github.com/helgee/OptionalData.jl
 - synopsis :: Work with global data that might not be available
 - [X] :packed <2023-02-15 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO julia-remotefiles [2/4][50%] :p1:
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
+- [X] :inputs [0/0][0%]
+*** DONE julia-remotefiles [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:25]
 - https://github.com/helgee/RemoteFiles.jl
 - synopsis :: Download files from the Internet and keep them up-to-date
 - [X] :packed <2023-02-15 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [2/2][100%]
   - [X] julia-fileio
   - [X] julia-http
 
-*** TODO julia-itemgraphs [2/4][50%] :p1:
+*** DONE julia-itemgraphs [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:22]
 - https://github.com/helgee/ItemGraphs.jl
 - synopsis :: Shortest paths between items
 - [X] :packed <2023-02-18 Sat>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [1/1][100%]
   - [X] julia-lightgraphs
     - [X] :packed <2023-02-18 Sat>
 
-** TODO sbromberger [0/1][0%] :author:
+** TODO sbromberger [1/1][100%] :author:
 - https://github.com/sbromberger/LightGraphs.jl
-*** TODO julia-lightgraphs [2/4][50%] :p1:
+*** DONE julia-lightgraphs [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:22]
 - https://github.com/sbromberger/LightGraphs.jl
 - synopsis :: An optimized graphs package for the Julia programming language
 - [X] :packed <2023-02-18 Sat>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [4/4][100%]
   - [X] julia-arnoldimethod
     - [X] :packed <2023-02-18 Sat>
@@ -155,38 +165,44 @@ CLOSED: [2023-02-10 Fri 23:45]
     - [X] :packed <2023-02-17 Fri>
   - [X] julia-simpletraits
 
-** TODO GunnarFarneback [0/1][0%] :author:
+** TODO GunnarFarneback [1/1][100%] :author:
 - https://github.com/GunnarFarneback
-*** TODO julia-inflate [2/4][50%] :p1:
+*** DONE julia-inflate [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:24]
 - https://github.com/GunnarFarneback/Inflate.jl
 - synopsis :: Julia implementation of zlib decompression
 - [X] :packed <2023-02-17 Fri>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [1/1][100%]
   - [X] julia-codeczlib
 
-** TODO JuliaLinearAlgebra [0/1][0%] :author:
+** TODO JuliaLinearAlgebra [1/1][100%] :author:
 - https://julialinearalgebra.org/
 - https://github.com/JuliaLinearAlgebra
-*** TODO julia-arnoldimethod [2/4][50%] :p1:
+*** DONE julia-arnoldimethod [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:23]
 - https://github.com/JuliaLinearAlgebra/ArnoldiMethod.jl
 - synopsis :: Implicitly Restarted Arnoldi Method, natively in Julia
 - [X] :packed <2023-02-18 Sat>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [2/2][100%]
   - [X] julia-staticarrays
   - [X] julia-genericschur
 
-** TODO SciML [0/1][0%] :author:
+** TODO SciML [1/1][100%] :author:
 - https://github.com/SciML
 - https://sciml.ai/
-*** TODO julia-muladdmacro [2/4][50%] :p1:
+*** DONE julia-muladdmacro [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:18]
 - https://github.com/SciML/MuladdMacro.jl
 - synopsis :: Julia Macro to convert expressions to use muladd calls and fused-multiply-add (FMA)
   operations
 - [X] :packed <2023-02-18 Sat>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [0/0][0%]

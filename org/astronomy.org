@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-02-27 Mon 21:10:50 GMT>
+#+modified: <2023-03-03 Fri 21:26:12 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1212,7 +1212,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [4/35][11%] :author:
+** TODO JuliaAstro [6/35][17%] :author:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
 *** TODO julia-astroangles [2/4][50%] :p1:
@@ -1265,12 +1265,14 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [X] :inputs [1/1][100%]
   - [X] julia-staticarrays
 
-*** TODO julia-astrotime [2/4][50%] :p1:
+*** DONE julia-astrotime [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:17]
 - https://github.com/JuliaAstro/AstroTime.jl
 - synopsis :: Astronomical time keeping in Julia
 - [X] :packed <2023-02-18 Sat>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [7/7][100%]
   - [X] julia-earthorientation
     - [X] :packed <2023-02-15 Wed>
@@ -1355,12 +1357,14 @@ CLOSED: [2023-02-10 Fri 23:48]
   - [ ] julia-unitfulastro
     - [ ] :packed
 
-*** TODO julia-earthorientation [2/4][50%] :p1:
+*** DONE julia-earthorientation [4/4][100%]
+CLOSED: [2023-03-03 Fri 21:24]
 - https://github.com/JuliaAstro/EarthOrientation.jl
 - synopsis :: Calculate Earth orientation parameters from IERS tables in Julia
 - [X] :packed <2023-02-15 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
+- [X] :patch-sent <2023-02-19 Sun>
+- [X] :patch-applied-upstream <2023-03-03 Fri>
+  - https://issues.guix.gnu.org/61611
 - [X] :inputs [3/3][100%]
   - [X] julia-leapseconds
     - [X] :packed <2023-02-15 Wed>
