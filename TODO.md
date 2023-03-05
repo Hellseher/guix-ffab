@@ -36,14 +36,17 @@
     lisp.org               cbaggers                [4/6][66%]   :author:
     lisp.org               cage                    [1/2][50%]   :author:
     lisp.org               borodust                [0/2][0%]    :author:
+    julia-xyz.org          timholy                 [0/1][0%]    :author:
     julia-xyz.org          SciML                   [1/1][100%]  :author:
     julia-xyz.org          sbromberger             [1/1][100%]  :author:
     julia-xyz.org          oxinabox                [0/1][0%]    :author:
     julia-xyz.org          kbarbary                [0/1][0%]    :author:
     julia-xyz.org          JuliaTime               [1/1][100%]  :author:
+    julia-xyz.org          JuliaSIMD               [0/2][0%]    :author:
     julia-xyz.org          JuliaLinearAlgebra      [1/1][100%]  :author:
     julia-xyz.org          JuliaImages             [0/3][0%]    :author:
     julia-xyz.org          JuliaBinaryWrappers     [1/1]        :author:
+    julia-xyz.org          JuliaArrays             [0/1][0%]    :author:
     julia-xyz.org          helgee                  [3/3][100%]  :author:
     julia-xyz.org          GunnarFarneback         [1/1][100%]  :author:
     high-availability.org  Kronosnet               [1/1][100%]  :author:
@@ -80,6 +83,7 @@
     astronomy.org          linguider               [0/4][0%]    :author:
     astronomy.org          Libsharp                [0/1][0%]    :author:
     astronomy.org          JuliaSpace              [0/8][0%]    :author:
+    astronomy.org          JuliaAstroSim           [0/9][0%]    :author:
     astronomy.org          JuliaAstro              [6/35][17%]  :author:
     astronomy.org          jobovy                  [0/1][0%]    :author:
     astronomy.org          INDI-Library            [1/3][33%]   :author:
@@ -125,6 +129,7 @@
     astronomy.org          phd2                           [0/4][%]    :p5:
     astronomy.org          ois                            [/][%]      :p5:
     astronomy.org          losoto                         [1/4][25%]  :p5:
+    astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p5:
     astronomy.org          indi-service-type              [/][%]      :p5:
     astronomy.org          INDIGO                         [0/4]       :p5:
     astronomy.org          indi-3rdparty                  [0/4][0%]   :p5:
@@ -261,9 +266,14 @@
     astronomy.org          julia-referenceframerotations  [2/4][50%]  :p3:
     astronomy.org          julia-pulsarsearch             [0/4][0%]   :p3:
     astronomy.org          julia-psfmodels                [0/4][0%]   :p3:
+    astronomy.org          julia-progressmeter            [/][%]      :p3:
     astronomy.org          julia-planck                   [0/4][0%]   :p3:
+    astronomy.org          julia-physicaltrees            [/][%]      :p3:
+    astronomy.org          julia-physicalparticles        [/][%]      :p3:
+    astronomy.org          julia-physicalmeshes           [/][%]      :p3:
     astronomy.org          julia-photometry               [0/4][0%]   :p3:
     astronomy.org          julia-photometricfilters       [0/4][0%]   :p3:
+    astronomy.org          julia-paralleloperations       [/][%]      :p3:
     astronomy.org          julia-orekit                   [/][%]      :p3:
     astronomy.org          julia-orbits                   [0/4][0%]   :p3:
     astronomy.org          julia-lombscargle              [0/4][0%]   :p3:
@@ -275,13 +285,16 @@
     astronomy.org          julia-ccdreduction             [0/4][0%]   :p3:
     astronomy.org          julia-calceph                  [0/4][0%]   :p3:
     astronomy.org          julia-boxleastsquares          [0/4][0%]   :p3:
-    astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p3:
-    astronomy.org          julia-astrolib                 [2/4][50%]  :p3:
+    astronomy.org          julia-benchmarkplots           [/][%]      :p3:
+    astronomy.org          julia-astroplot                [/][%]      :p3:
+    astronomy.org          julia-astronbodysim            [/][%]      :p3:
+    astronomy.org          julia-astroio                  [/][%]      :p3:
     astronomy.org          julia-astroimageview           [0/4][0%]   :p3:
     astronomy.org          julia-astroimages              [0/4][0%]   :p3:
     astronomy.org          julia-astrodynpropagators      [/][%]      :p3:
     astronomy.org          julia-astrodynplots            [/][%]      :p3:
     astronomy.org          julia-astrodynamics            [/][%]      :p3:
+    astronomy.org          julia-astrobase                [1/4][25%]  :p3:
     astronomy.org          IIPImage                       [1/4][25%]  :p3:
     astronomy.org          HEALPix                        [1/4][25%]  :p3:
     astronomy.org          gammapy                        [0/4][0%]   :p3:
@@ -293,6 +306,7 @@
     astronomy.org          SiriLic                        [0/4][0%]   :p2:
     astronomy.org          phantom                        [0/4][0%]   :p2:
     astronomy.org          mcfost                         [/][%]      :p2:
+    astronomy.org          julia-astrolib                 [2/4][50%]  :p2:
     astronomy.org          astroplan                      [2/4][50%]  :p2:
     python.org             python-towncrier               [1/4][25%]  :p1:
     python.org             python-sphinx-changelog        [0/4][0%]   :p1:
@@ -300,6 +314,10 @@
     python.org             python-opencv                  [0/4][0%]   :p1:
     lisp.org               feedback                       [0/4][0%]   :p1:
     lisp.org               cl-jscl                        [/][%]      :p1:
+    julia-xyz.org          julia-vectorizationbase        [0/4][0%]   :p1:
+    julia-xyz.org          julia-staticarrayinterface     [0/4][0%]   :p1:
+    julia-xyz.org          julia-snoopprecompile          [0/4][0%]   :p1:
+    julia-xyz.org          julia-loopvectorization        [0/4][0%]   :p1:
     golang.org             miller                         [1/5][20%]  :p1:
     golang.org             go/tools/gopls                 [/][%]      :p1:
     golang.org             caddy                          [0/4][0%]   :p1:
@@ -328,7 +346,6 @@
     astronomy.org          pal                            [0/4][0%]   :p1:
     astronomy.org          OpenSpace                      [0/4][0%]   :p1:
     astronomy.org          libsharp                       [1/3][33%]  :p1:
-    astronomy.org          julia-astrobase                [1/4][25%]  :p1:
     astronomy.org          julia-astroangles              [2/4][50%]  :p1:
     astronomy.org          galpy                          [1/4][25%]  :p1:
     astronomy.org          funtools                       [2/4][50%]  :p1:
@@ -457,7 +474,6 @@
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
     lisp.org               cl-sdl2                          [4/4][100%]  
-    lisp.org               cl-sdl2-mixer                    [4/4][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
     lisp.org               cl-trivial-channels              [4/4][100%]  
     lisp.org               coalton                          [4/4][100%]  
@@ -518,4 +534,5 @@
     python.org             osvenskan                        [1/1][100%]  :author:
     python.org             pohmelie                         [1/1][100%]  :author:
     python.org             quintusdias                      [1/1][100%]  :author:
+    lisp.org               cl-sdl2-mixer                    [4/4][100%]  :p1:
 

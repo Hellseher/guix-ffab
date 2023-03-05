@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-03 Fri 21:28:34 GMT>
+#+modified: <2023-03-04 Sat 21:14:31 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Julia programming language rel
 - GNU Guix :: gnu/packages/julia-xyz.scm
 - FFAB :: ffab/packages/julia-xyz.scm
 
-* Flow [0/10][0%]
+* Flow [0/14][0%]
 ** TODO JuliaImages [0/3][0%] :author:
 - https://github.com/JuliaImages
 *** TODO julia-images [0/4][0%] :p3:
@@ -112,6 +112,69 @@ CLOSED: [2023-03-03 Fri 21:28]
 - [X] :inputs [1/1][100%]
   - [X] julia-erfa
 
+** TODO JuliaSIMD [0/2][0%] :author:
+- https://github.com/JuliaSIMD
+*** TODO julia-loopvectorization [0/4][0%] :p1:
+- https://github.com/JuliaSIMD/LoopVectorization.jl
+- synopsis :: Macro(s) for vectorizing loops.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [9/21][42%]
+  - [X] julia-arrayinterface
+  - [ ] julia-arrayinterfacecore
+    - [ ] :packed
+  - [ ] julia-cpusummary
+    - [ ] :packed
+  - [X] julia-chainrulescore
+  - [ ] julia-closeopenintervals
+    - [ ] :packed
+  - [X] julia-docstringextensions
+  - [X] julia-forwarddiff
+  - [ ] julia-hostcpufeatures
+    - [ ] :packed
+  - [X] julia-ifelse
+  - [ ] julia-layoutpointers
+    - [ ] :packed
+  - [X] julia-offsetarrays
+  - [ ] julia-polyesterweave
+    - [ ] :packed
+  - [ ] julia-simdtypes
+    - [ ] :packed
+  - [ ] julia-sleefpirates
+    - [ ] :packed
+  - [ ] julia-snoopprecompile
+    - [ ] :packed
+  - [X] julia-specialfunctions
+  - [X] julia-static
+  - [ ] julia-staticarrayinterface
+    - [ ] :packed
+  - [ ] julia-threadingutilities
+    - [ ] :packed
+  - [X] julia-unpack
+  - [ ] julia-vectorizationbase
+    - [ ] :packed
+*** TODO julia-vectorizationbase [0/4][0%] :p1:
+- https://github.com/JuliaSIMD/VectorizationBase.jl
+- synopsis :: Base library providing vectorization-tools
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [3/8][37%]
+  - [X] julia-arrayinterface
+  - [ ] julia-cpusummary
+    - [ ] :packed
+  - [ ] julia-hostcpufeatures
+    - [ ] :packed
+  - [X] julia-ifelse
+  - [ ] julia-layoutpointers
+    - [ ] :packed
+  - [ ] julia-simdtypes
+    - [ ] :packed
+  - [X] julia-static
+  - [ ] julia-staticarrayinterface
+    - [ ] :packed
+
 ** TODO helgee [3/3][100%] :author:
 - author :: Helge Eichhorn
 *** DONE julia-optionaldata [4/4][100%]
@@ -146,6 +209,32 @@ CLOSED: [2023-03-03 Fri 21:22]
 - [X] :inputs [1/1][100%]
   - [X] julia-lightgraphs
     - [X] :packed <2023-02-18 Sat>
+** TODO JuliaArrays [0/1][0%] :author:
+*** TODO julia-staticarrayinterface [0/4][0%] :p1:
+- https://github.com/JuliaArrays/StaticArrayInterface.jl
+- synopsis :: Interface designs for enforcing static computations in array functions with Julia
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [6/8][75%]
+  - [X] julia-arrayinterface
+  - [X] julia-compat
+  - [X] julia-ifelse
+  - [X] julia-linearalgebra
+  - [X] julia-requires
+  - [ ] julia-snoopprecompile
+    - [ ] :packed
+  - [X] julia-static
+** TODO timholy [0/1][0%] :author:
+- https://github.com/timholy
+- http://holylab.wustl.edu/
+*** TODO julia-snoopprecompile [0/4][0%] :p1:
+- https://github.com/timholy/SnoopCompile.jl
+- synopsis :: Making packages work faster with more extensive precompilation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [0/0][0%]
 
 ** TODO sbromberger [1/1][100%] :author:
 - https://github.com/sbromberger/LightGraphs.jl
