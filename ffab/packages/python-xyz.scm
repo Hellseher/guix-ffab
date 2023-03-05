@@ -46,6 +46,97 @@
   #:use-module (guix build utils)
   #:use-module (guix packages))
 
+;; 20230212T194438+0000
+(define-public python-gallia
+  (package
+    (name "python-gallia")
+    ;; TODO: This is the latest version supporting current Guix's Python 3.9.
+    ;; Update when more fresh Python is available.
+    (version "1.0.3")
+    (source
+     (origin
+       ;; There are no tests in the PyPI tarball.
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/Fraunhofer-AISEC/gallia")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0nkzpy3cybpxbcm1hvnki7mnzpnb111p61i29cd3f4mf46g7g1ha"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list #:phases
+           #~(modify-phases %standard-phases
+               ;; NOTE: Test steps are sourced from GitHub Actions attached to
+               ;; the project. This is a minimal test suite, more precise tests
+               ;; require setting up local service.
+               (replace 'check
+                 (lambda* (#:key tests? #:allow-other-keys)
+                   (when tests?
+                     (invoke "python" "-m" "pytest" "-v" "tests/python")))))))
+    (native-inputs
+     (list python-poetry-core
+           python-pytest
+           python-pytest-asyncio))
+    (propagated-inputs
+     (list python-aiohttp
+           python-aiofiles-0.8
+           python-aiosqlite
+           python-argcomplete-next
+           python-can
+           python-construct
+           python-tabulate
+           python-zstandard-0.17
+           ))
+    (home-page "https://github.com/Fraunhofer-AISEC/gallia")
+    (synopsis "Extendable Pentesting Framework")
+    (description
+     "Gallia is an extendable pentesting framework with the focus on the
+automotive domain.  The scope of the toolchain is conducting penetration tests
+from a single ECU up to whole cars.")
+    (license license:apsl2)))
+
+;; 20230212T200910+0000
+;; For python-gallia@1.0.3
+(define-public python-zstandard-0.17
+  (package
+    (inherit python-zstandard)
+    (name "python-zstandard")
+    (version "0.17.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "zstandard" version))
+       (sha256
+        (base32 "1dmzmx5k6zw8fhv9gp8hrdv8iqsb335w9pd358jgf7a4j75r94gs"))))))
+
+;; 20230212T201907+0000
+(define-public python-argcomplete-next
+  (package
+    (inherit python-argcomplete)
+    (name "python-argcomplete")
+    (version "2.0.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "argcomplete" version))
+       (sha256
+        (base32 "082v88i9s6rglm7fkksm2wwmni386qjsw60l20sj0rlxr1waswk3"))))))
+
+;; 20230212T202602+0000
+;; For python-gallia@1.0.3
+(define-public python-aiofiles-0.8
+  (package
+    (inherit python-aiofiles)
+    (name "python-aiofiles")
+    (version "0.8.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "aiofiles" version))
+       (sha256
+        (base32 "0n8yj2d4srlkrhk72fcnkfb3jkv74a5aghxjhcp3p2i46lrg4d43"))))))
+
 ;; 20221104T210916+0000
 (define-public python-portalocker
   (package
