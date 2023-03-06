@@ -19,6 +19,7 @@
 (define-module (ffab packages lisp-xyz)
   #:use-module (ffab packages graphics)
   #:use-module (ffab packages lisp-check)
+  #:use-module (ffab packages game-development)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages databases)
@@ -970,5 +971,51 @@ extensions developed by technical users.")
 ;; (define-public sbcl-classimp
 ;; added-to-upstream: 1428e20284e8ae40953000709bce974ee327eff0
 ;; CommitDate: Tue Jan 17 15:04:49 2023 +0100
+
+;; 20230306T212509+0000
+(define-public sbcl-cl-raylib
+  (let ((commit "985ceebef4cb56c651cddc23bd71812f2be38c2d")
+        (revision "0"))
+    (package
+      (name "sbcl-cl-raylib")
+      (version (git-version "0.0.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/longlene/cl-raylib")
+               (commit commit)))
+         (file-name (git-file-name "cl-raylib" version))
+         (sha256
+          (base32 "1kighj35g6dn426mhr2ppz3gm49v1q4n42ydn619pclrqwyrnc2z"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:tests? #f ; no tests
+         #:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'fix-paths
+             (lambda* (#:key inputs #:allow-other-keys)
+               (substitute* "src/library.lisp"
+                 (("libraylib\\.so")
+                  (search-input-file inputs "/lib/libraylib.so"))))))))
+      (inputs
+       (list raylib-ffab
+             sbcl-cffi
+             sbcl-alexandria
+             sbcl-3d-vectors
+             sbcl-3d-matrices))
+      (native-inputs
+       (list sbcl-alexandria sbcl-confidence))
+      (home-page "https://github.com/longlene/cl-raylib")
+      (synopsis "Common Lisp bindings to raylib")
+      (description "This package provides a Common Lisp CFFI bindings to game
+development library Ralib.")
+      (license license:expat))))
+
+(define-public cl-raylib
+  (sbcl-package->cl-source-package sbcl-cl-raylib))
+
+(define-public ecl-cl-raylib
+  (sbcl-package->ecl-package sbcl-cl-raylib))
 
 ;; End of lisp-xyz.scm

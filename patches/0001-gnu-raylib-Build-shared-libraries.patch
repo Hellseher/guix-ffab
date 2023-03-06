@@ -1,0 +1,35 @@
+From 214074e63b7e5e6049ffc177f600accac6492bb5 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 6 Mar 2023 23:24:37 +0000
+Subject: [PATCH 1/2] gnu: raylib: Build shared libraries.
+
+* gnu/packages/game-development.scm (raylib):
+  [arguments]{#:configure-flags}: Enable building shared libraries.
+---
+ gnu/packages/game-development.scm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/game-development.scm b/gnu/packages/game-development.scm
+index a0de1b339e..a384572a9d 100644
+--- a/gnu/packages/game-development.scm
++++ b/gnu/packages/game-development.scm
+@@ -2847,12 +2847,15 @@ (define-public raylib
+                     (url "https://github.com/raysan5/raylib/")
+                     (commit version)))
+               (file-name (git-file-name name version))
++              ;; TODO: Unbundle src/external
+               (sha256
+                (base32
+                 "14v5iwxh8grywiyw9agpd2sfpyriq1rwwkd9f2s4iihh0z5j7hk8"))))
+     (build-system cmake-build-system)
+     (arguments
+-     (list #:tests? #f)) ;no test
++     (list #:tests? #f  ;no test
++           #:configure-flags
++           #~(list "-DBUILD_SHARED_LIBS=ON" )))
+     (inputs (list alsa-lib
+                   libx11
+                   libxrandr
+-- 
+2.39.1
+
