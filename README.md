@@ -117,7 +117,7 @@ Main official resources:
 -   **nonguix:** Guix channel for packages that can&rsquo;t be included upstream. Please do NOT promote or
     refer to this repository on any official Guix communication channels.
     <https://gitlab.com/nonguix/nonguix>
--   **guixrus:** Curated collection of packages with goal to promote them to upastream
+-   **guixrus:** Curated collection of packages with goal to promote them to upstream
     <https://sr.ht/~whereiseveryone/guixrus/>
 -   **Guix Gaming Channels:** A collection of gaming-oriented channels for Guix
     <https://gitlab.com/guix-gaming-channels>
