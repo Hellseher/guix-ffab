@@ -334,7 +334,7 @@
     astronomy.org          python-stcal                   [0/4][0%]   :p1:
     astronomy.org          python-rad                     [2/4][50%]  :p1:
     astronomy.org          python-pysynphot               [2/4][2/4]  :p1:
-    astronomy.org          python-poliastro               [/][%]      :p1:
+    astronomy.org          python-poliastro               [1/4][25%]  :p1:
     astronomy.org          python-jwst                    [2/4][50%]  :p1:
     astronomy.org          python-hissw                   [1/4][25%]  :p1:
     astronomy.org          python-drizzle                 [2/4][50%]  :p1:
@@ -474,6 +474,7 @@
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
     lisp.org               cl-sdl2                          [4/4][100%]  
+    lisp.org               cl-sdl2-mixer                    [4/4][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
     lisp.org               cl-trivial-channels              [4/4][100%]  
     lisp.org               coalton                          [4/4][100%]  
@@ -534,5 +535,4 @@
     python.org             osvenskan                        [1/1][100%]  :author:
     python.org             pohmelie                         [1/1][100%]  :author:
     python.org             quintusdias                      [1/1][100%]  :author:
-    lisp.org               cl-sdl2-mixer                    [4/4][100%]  :p1:
 

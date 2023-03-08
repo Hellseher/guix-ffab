@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-03 Fri 22:10:32 GMT>
+#+modified: <2023-03-08 Wed 22:11:33 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -280,16 +280,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-** TODO poliastro [0/1][0%] :author:
-- https://github.com/poliastro
-- https://www.poliastro.space/
-*** TODO python-poliastro [/][%] :p1:
-- https://github.com/poliastro/poliastro
-- synopsis :: Astrodynamics in Python
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+
 ** TODO ap-i [1/5][20%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -1212,17 +1203,6 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstroSim [0/9][0%] :author:
-- https://github.com/JuliaAstroSim
-*** TODO julia-astroio [/][%] :p3:
-*** TODO julia-astronbodysim [/][%] :p3:
-*** TODO julia-astroplot [/][%] :p3:
-*** TODO julia-benchmarkplots [/][%] :p3:
-*** TODO julia-paralleloperations [/][%] :p3:
-*** TODO julia-physicalmeshes [/][%] :p3:
-*** TODO julia-physicalparticles [/][%] :p3:
-*** TODO julia-physicaltrees [/][%] :p3:
-*** TODO julia-progressmeter [/][%] :p3:
 ** TODO JuliaAstro [6/35][17%] :author:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
@@ -1534,6 +1514,17 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
+** TODO JuliaAstroSim [0/9][0%] :author:
+- https://github.com/JuliaAstroSim
+*** TODO julia-astroio [/][%] :p3:
+*** TODO julia-astronbodysim [/][%] :p3:
+*** TODO julia-astroplot [/][%] :p3:
+*** TODO julia-benchmarkplots [/][%] :p3:
+*** TODO julia-paralleloperations [/][%] :p3:
+*** TODO julia-physicalmeshes [/][%] :p3:
+*** TODO julia-physicalparticles [/][%] :p3:
+*** TODO julia-physicaltrees [/][%] :p3:
+*** TODO julia-progressmeter [/][%] :p3:
 ** TODO JuliaSpace [0/8][0%] :author:
 - https://github.com/JuliaSpace
 *** TODO julia-satellitetoolbox [0/4][0%] :p3:
@@ -1772,6 +1763,17 @@ https://github.com/PaulMcMillan-Astro/
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/1][0%]
   - [ ] libebf-c-cpp
+** TODO poliastro [0/1][0%] :author:
+- https://github.com/poliastro
+- https://www.poliastro.space/
+*** TODO python-poliastro [1/4][25%] :p1:
+- https://github.com/poliastro/poliastro
+- synopsis :: Astrodynamics in Python
+- [X] :packed <2023-03-06 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
 ** DONE pynbody [1/1][100%] :author:
 *** DONE pynbody [4/4][100%]
 - https://github.com/pynbody/pynbody
@@ -2447,3 +2449,4 @@ The Solar UK Research Facility
 - https://celestrak.org/
 - https://github.com/dnwrnr/sgp4
 - https://www.danrw.com/sgp4/
+- https://github.com/mbiesiad/awesome-astronomy

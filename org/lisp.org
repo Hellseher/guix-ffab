@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-02-27 Mon 21:43:16 GMT>
+#+modified: <2023-03-08 Wed 22:12:00 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -18,31 +18,6 @@ Guix upstream.
 * Flow [17/38][44%]
 ** DONE 3b [4/4][100%] :author:
 CLOSED: [2023-01-17 Tue 20:29]
-*** DONE cl-opengl [4/4][100%]
-  - https://github.com/3b/cl-opengl
-  - synopsis :: cl-opengl is a set of CFFI bindings to the OpenGL, GLU and GLUT APIs.
-  - [X] :packed <2021-04-02 Fri>
-  - [X] :patch-sent <2021-04-02 Fri>
-  - [X] :patch-applied-upstream <2021-04-03 Sat>
-    - https://issues.guix.gnu.org/47571
-  - [X] :inputs [6/6]
-    + [X] float-features
-    + [X] alexandria
-    + [X] cffi
-    + [X] mesa
-    + [X] glu
-    + [X] freeglut
-
-*** DONE glsl-packing [4/4][100%]
-- https://github.com/3b/glsl-packing
-- synopsis :: calculate std140/std430 layout for a glsl UBO/SSBO
-- [X] :packed <2021-02-18 Thu>
-- [X] :patch-sent <2021-02-18 Thu>
-- [X] :patch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46626
-- [X] :inputs [1/1][100%]
-  + [X] alexandria
-
 *** DONE 3b-bmfont [4/4][100%]
 - https://github.com/3b/3b-bmfont/
 - synopsis :: read/write bmfont metadata files
@@ -69,6 +44,31 @@ CLOSED: [2023-01-17 Tue 20:27]
   - [X] sbcl-cffi
   - [X] assimp-5.0
     - [X] :packed <2023-01-11 Wed>
+
+*** DONE cl-opengl [4/4][100%]
+  - https://github.com/3b/cl-opengl
+  - synopsis :: cl-opengl is a set of CFFI bindings to the OpenGL, GLU and GLUT APIs.
+  - [X] :packed <2021-04-02 Fri>
+  - [X] :patch-sent <2021-04-02 Fri>
+  - [X] :patch-applied-upstream <2021-04-03 Sat>
+    - https://issues.guix.gnu.org/47571
+  - [X] :inputs [6/6]
+    + [X] float-features
+    + [X] alexandria
+    + [X] cffi
+    + [X] mesa
+    + [X] glu
+    + [X] freeglut
+
+*** DONE glsl-packing [4/4][100%]
+- https://github.com/3b/glsl-packing
+- synopsis :: calculate std140/std430 layout for a glsl UBO/SSBO
+- [X] :packed <2021-02-18 Thu>
+- [X] :patch-sent <2021-02-18 Thu>
+- [X] :patch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46626
+- [X] :inputs [1/1][100%]
+  + [X] alexandria
 
 ** DONE AlexCharlton [1/1][100%] :author:
 - https://github.com/AlexCharlton
@@ -735,7 +735,7 @@ CLOSED: [2022-11-19 Sat 19:47]
     - [X] :packed <2021-02-17 Wed>
   + [X] trivial-features
 
-*** DONE cl-sdl2-mixer [4/4][100%] :p1:
+*** DONE cl-sdl2-mixer [4/4][100%]
 CLOSED: [2023-02-27 Mon 21:03]
 - https://github.com/lispgames/cl-sdl2-mixer
 - synopsis :: Bindings for SDL2_mixer
