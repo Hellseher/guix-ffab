@@ -1,26 +1,18 @@
-From 478563ebb1272d3b4d911060d1279b9121c98878 Mon Sep 17 00:00:00 2001
+From dd8390be90bf0becc7ac1c9e84bc2dda723e3a07 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Mon, 20 Feb 2023 23:05:15 +0000
-Subject: [PATCH 1/4] gnu: Add calcmysky.
+Subject: [PATCH v3 1/4] gnu: Add calcmysky.
 
 * gnu/packages/astronomy.scm (calcmysky, calcmysky-qt5): New variables.
 ---
- gnu/packages/astronomy.scm | 59 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+ gnu/packages/astronomy.scm | 57 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 5cee981671..0f3176bc3e 100644
+index 5cee981671..bf022c1804 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -26,6 +26,7 @@
- ;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
- 
- (define-module (gnu packages astronomy)
-+  #:use-module ((guix build utils) #:select (alist-replace))
-   #:use-module ((guix licenses) #:prefix license:)
-   #:use-module (gnu packages algebra)
-   #:use-module (gnu packages autotools)
-@@ -209,6 +210,64 @@ (define-public calceph
+@@ -209,6 +209,63 @@ (define-public calceph
  @end itemize\n")
      (license license:cecill)))
  
@@ -67,19 +59,18 @@ index 5cee981671..0f3176bc3e 100644
 +@item @code{ShowMySky} preview GUI that makes it possible to preview the
 +rendering of the atmosphere model and examine its properties.
 +@end itemize")
-+    (license license:gpl3)))
++    (license license:gpl3+)))
 +
 +(define-public calcmysky-qt5
-+  (package
-+    (inherit calcmysky)
++  (package/inherit calcmysky
 +    (name "calcmysky-qt5")
 +    (arguments
 +     (list #:configure-flags
 +           #~(list "-DQT_VERSION=5"
 +                   "-DCMAKE_CXX_FLAGS=-fPIC")))
 +    (inputs
-+     (alist-replace "qtbase" (list qtbase-5)
-+                    (package-inputs calcmysky)))
++     (modify-inputs (package-inputs calcmysky)
++       (replace "qtbase" qtbase-5)))
 +    (synopsis "Qt5 build for the CalcMySky library.")))
 +
  (define-public aoflagger

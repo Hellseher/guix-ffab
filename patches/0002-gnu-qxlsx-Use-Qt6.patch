@@ -1,7 +1,7 @@
-From 785cc433633cd307e15685d5d17b5631b7b7b2d2 Mon Sep 17 00:00:00 2001
+From ae7ee1567dd464c6a250957e0df2e3bae8d4ae9d Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 21 Feb 2023 10:32:19 +0000
-Subject: [PATCH 2/4] gnu: qxlsx: Use Qt6.
+Subject: [PATCH v3 2/4] gnu: qxlsx: Use Qt6.
 
 * gnu/packages/qt.scm (qxlsx):
   [inputs]: Use QTBASE (Qt6) instead QTBASE-5. Add LIBXKBCOMMON,

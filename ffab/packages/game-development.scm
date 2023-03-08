@@ -38,37 +38,4 @@
 ;; CommitDate: Sun Nov 20 14:45:00 2022 +0100
 
 ;; 20230306T225833+0000
-(define-public raylib-ffab
-  (package
-    (name "raylib-ffab")
-    (version "4.2.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/raysan5/raylib/")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "14v5iwxh8grywiyw9agpd2sfpyriq1rwwkd9f2s4iihh0z5j7hk8"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      #:tests? #f ;no test
-      #:configure-flags
-      #~(list "-DBUILD_SHARED_LIBS=ON" )))
-    (inputs (list alsa-lib
-                  libx11
-                  libxrandr
-                  libxi
-                  libxinerama
-                  libxcursor
-                  mesa))
-    (native-inputs (list pkg-config))
-    (synopsis "C library for videogame programming")
-    (description
-     "raylib is a high-level library for video game programming.  It aims to
-  abstract away platform and graphics details, allowing you to focus on
-  writing your game.")
-    (home-page "https://www.raylib.com/")
-    (license license:zlib)))
+;; (define-public raylib-ffab

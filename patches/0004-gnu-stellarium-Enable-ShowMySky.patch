@@ -1,7 +1,7 @@
-From a1544b7454b8109effe721a27e4efee8f6a8075a Mon Sep 17 00:00:00 2001
+From f875db568bfa0843844b55f53fba13fb52d6b82f Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 21 Feb 2023 10:46:25 +0000
-Subject: [PATCH 4/4] gnu: stellarium: Enable ShowMySky.
+Subject: [PATCH v3 4/4] gnu: stellarium: Enable ShowMySky.
 
 * gnu/packages/astronomy.scm (stellarium):
   [arguments]<#:configure-flags>: Enable ShowMySky optional dependencies
@@ -12,10 +12,10 @@ Subject: [PATCH 4/4] gnu: stellarium: Enable ShowMySky.
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 0f3176bc3e..ffce19e8fc 100644
+index bf022c1804..473e7ce63a 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -919,8 +919,6 @@ (define-public stellarium
+@@ -917,8 +917,6 @@ (define-public stellarium
        #~(list "-DENABLE_GPS=1"
                ;; TODO: Enable when all of the dependencies are availalbe for Qt6.
                "-DENABLE_QT6=0"
@@ -24,7 +24,7 @@ index 0f3176bc3e..ffce19e8fc 100644
                "-DENABLE_TESTING=0"
                (string-append "-DCMAKE_CXX_FLAGS=-isystem "
                               #$(this-package-input "qtserialport") "/include/qt5"))
-@@ -931,7 +929,8 @@ (define-public stellarium
+@@ -929,7 +927,8 @@ (define-public stellarium
                (setenv "QT_QPA_PLATFORM" "offscreen")
                (setenv "HOME" "/tmp"))))))
      (inputs
@@ -34,7 +34,7 @@ index 0f3176bc3e..ffce19e8fc 100644
             indi
             libnova
             openssl
-@@ -944,7 +943,7 @@ (define-public stellarium
+@@ -942,7 +941,7 @@ (define-public stellarium
             qtserialport
             qttranslations
             qtwebengine-5

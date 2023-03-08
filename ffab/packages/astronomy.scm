@@ -109,62 +109,9 @@
 ;; CommitDate: Fri Dec 2 00:02:12 2022 +0100
 
 ;; 20230220T213057+0000
-(define-public calcmysky
-  (package
-    (name "calcmysky")
-    (version "0.2.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/10110111/CalcMySky")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0bib5shy8wzc7j5ph218dl9hqrqip491mn25gakyghbvaqxgm27d"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list #:configure-flags
-           #~(list "-DQT_VERSION=6"
-                   "-DCMAKE_CXX_FLAGS=-fPIC")))
-    (inputs
-     (list qtbase glm eigen))
-    (home-page "https://10110111.github.io/CalcMySky/")
-    (synopsis "Simulator of light scattering by planetary atmospheres")
-    (description
-     "CalcMySky is a software package that simulates scattering of light by the
-atmosphere to render daytime and twilight skies (without stars). Its primary
-purpose is to enable realistic view of the sky in applications such as
-planetaria. Secondary objective is to make it possible to explore atmospheric
-effects such as glories, fogbows etc., as well as simulate unusual environments
-such as on Mars or an exoplanet orbiting a star with a non-solar spectrum of
-radiation.
-
-This package consists of three parts:
-
-@itemize
-@item @code{calcmysky} utility that does the precomputation of the atmosphere
-model to enable rendering.
-
-@item @code{libShowMySky} library that lets the applications render the
-atmosphere model.
-
-@item @code{ShowMySky} preview GUI that makes it possible to preview the
-rendering of the atmosphere model and examine its properties.
-@end itemize")
-    (license license:gpl3)))
-
-(define-public calcmysky-qt5
-  (package
-    (inherit calcmysky)
-    (name "calcmysky-qt5")
-    (arguments
-     (list #:configure-flags
-           #~(list "-DQT_VERSION=5"
-                   "-DCMAKE_CXX_FLAGS=-fPIC")))
-    (inputs
-     (alist-replace "qtbase" (list qtbase-5)
-                    (package-inputs calcmysky)))))
+;; (define-public calcmysky
+;; added-to-upstream aaf7e31d1912cc05c9bf3163a951bfa91bc129db
+;; CommitDate: Tue Mar 7 11:39:50 2023 +0100
 
 ;; 20220619T144120+0100
 (define-public funtools
@@ -1907,70 +1854,8 @@ capabilities.")
 ;; 20230206T221536+0000
 (define-public stellarium-ffab
   (package
-    (name "stellarium-ffab")
-    (version "1.2")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/Stellarium/stellarium")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1655lz848k7m4vqs7n3vxjwn5n4pkykwl6x7nbanqcqzlixm5xnk"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      ;; FIXME: Tests keep failing on 100% when preparing test-suit for INDI.
-      #:tests? #f
-      #:test-target "test"
-      #:configure-flags
-      #~(list "-DENABLE_GPS=1"
-              ;; TODO: Enable when all of the dependencies are availalbe for Qt6.
-              "-DENABLE_QT6=0"
-              ;; TODO: Missing in Guix https://10110111.github.io/CalcMySky/
-              "-DENABLE_SHOWMYSKY=0"
-              "-DENABLE_TESTING=0"
-              (string-append "-DCMAKE_CXX_FLAGS=-isystem "
-                             #$(this-package-input "qtserialport") "/include/qt5"))
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-offscreen-display
-            (lambda _
-              (setenv "QT_QPA_PLATFORM" "offscreen")
-              (setenv "HOME" "/tmp"))))))
-    (inputs
-     (list gpsd
-           indi
-           libnova
-           openssl
-           qtbase-5
-           qtcharts
-           qtlocation
-           qtmultimedia-5
-           qtpositioning
-           qtscript
-           qtserialport
-           qttranslations
-           qtwebengine-5
-           qxlsx
-           zlib))
-    (native-inputs
-     (list doxygen
-           gettext-minimal
-           graphviz
-           mesa
-           perl
-           python-wrapper
-           qttools-5))
-    (home-page "https://stellarium.org/")
-    (synopsis "3D sky viewer")
-    (description
-     "Stellarium is a planetarium.  It shows a realistic sky in
-3D, just like what you see with the naked eye, binoculars, or a telescope.  It
-can be used to control telescopes over a serial port for tracking celestial
-objects.")
-    (license license:gpl2+)))
+   (inherit stellarium)
+   (name "stellarium-ffab")))
 
 ;; TODO: (Sharlatan-20221102T213300+0000): Failing on configure step
 ;;
