@@ -25,15 +25,21 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages commencement)
   #:use-module (gnu packages databases)
+  #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gcc)
+  #:use-module (gnu packages geo)
   #:use-module (gnu packages image)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
   #:use-module (gnu packages python-crypto)
+  #:use-module (gnu packages python-science)
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages serialization)
   #:use-module (gnu packages sphinx)
+  #:use-module (gnu packages statistics)
+  #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages)
@@ -322,4 +328,33 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 Rather than reading the Git history, or having one single file which developers
 all write to and produce merge conflicts, @code{towncrier} reads \"news
 fragments\" which contain information useful to end users.")
+    (license license:expat)))
+
+;; 20230301T210252+0000
+(define-public python-czml3
+  (package
+    (name "python-czml3")
+    (version "0.7.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/poliastro/czml3")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0pbwcsmc9nw591rck586ca9hwwhmm54rjjmp8gflhzq8b7f48lkc"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-attrs
+           python-dateutil
+           python-w3lib))
+    (native-inputs
+     (list python-astropy
+           python-pytest
+           python-pytest-cov
+           python-pytest-mypy))
+    (home-page "https://github.com/poliastro/czml3")
+    (synopsis "Python 3 library to write CZML")
+    (description "Python 3 library to write CZML")
     (license license:expat)))
