@@ -2285,3 +2285,35 @@ complexeties.")
     (synopsis "Go module providing interface to ast.Node maping")
     (description "Build Go code from arbitrary value in Go.")
     (license license:expat)))
+
+;; 20230311T201930+0000
+(define-public go-github-com-itchyny-go-flags
+  (package
+    (name "go-github-com-itchyny-go-flags")
+    (version "1.5.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/itchyny/go-flags")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "0qfh7gn95aldlsigk72jl87npmwvx15kb7df1100d6j0nbakd8b5"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/itchyny/go-flags"
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'fix-tests
+            (lambda _
+              ;; SOURCE_DATE_EPOCH messes with the date on the man page test.
+              (substitute* "src/github.com/itchyny/go-flags/help_test.go"
+                (("TestMan") "DisabledTestMan")))))))
+    (propagated-inputs (list go-golang-org-x-sys))
+    (home-page "https://github.com/itchyny/go-flags")
+    (synopsis "Go library for parsing command line arguments")
+    (description
+     "Fork version of @code{jessevdk/go-flags}")
+    (license license:bsd-3)))
