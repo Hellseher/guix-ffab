@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-08 Wed 22:11:33 GMT>
+#+modified: <2023-03-08 Wed 23:32:57 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1704,6 +1704,8 @@ CLOSED: [2023-02-15 Wed 21:47]
 - https://openphdguiding.org
 *** TODO phd2 [0/4][%] :p5:
 - https://github.com/OpenPHDGuiding/phd2
+- synopsis :: PHD2 is the enhanced, second generation version of the popular PHD
+guiding software from Stark Labs.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1722,6 +1724,8 @@ CLOSED: [2023-02-15 Wed 21:47]
 - https://www.openspaceproject.com/
 *** TODO OpenSpace [0/4][0%] :p1:
 - https://github.com/OpenSpace/OpenSpace
+- synopsis :: an open source astrovisualization project. For instructions on how to build and run
+  OpenSpace, see the Getting Started Guides on the wiki page at
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1730,6 +1734,8 @@ CLOSED: [2023-02-15 Wed 21:47]
 
 *** TODO Ghoul [0/4] :p5:
 - https://github.com/OpenSpace/Ghoul
+- synopsis :: The General Helpful Open Utility Library is a feature-rich support library written in
+  C++
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1763,16 +1769,40 @@ https://github.com/PaulMcMillan-Astro/
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/1][0%]
   - [ ] libebf-c-cpp
+
 ** TODO poliastro [0/1][0%] :author:
 - https://github.com/poliastro
 - https://www.poliastro.space/
-*** TODO python-poliastro [1/4][25%] :p1:
+
+*** TODO python-poliastro [3/4][75%] :p3:
 - https://github.com/poliastro/poliastro
 - synopsis :: Astrodynamics in Python
 - [X] :packed <2023-03-06 Mon>
-- [ ] :patch-sent
+- [X] :patch-sent <2023-03-08 Wed>
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+  - https://issues.guix.gnu.org/62061
+- [X] :inputs [20/20][100%]
+  - [X] python-astropy
+  - [X] python-astroquery
+  - [X] python-coverage
+  - [X] python-czml3
+    - [X] :packed <2023-03-06 Mon>
+  - [X] python-flit-core
+  - [X] python-hypothesis
+  - [X] python-jplephem
+  - [X] python-matplotlib
+  - [X] python-mypy
+  - [X] python-numba
+  - [X] python-numpy
+  - [X] python-pandas
+  - [X] python-plotly
+  - [X] python-pyerfa
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-pytest-doctestplus
+  - [X] python-pytest-mpl
+  - [X] python-pytest-mypy
+  - [X] python-scipy
 
 ** DONE pynbody [1/1][100%] :author:
 *** DONE pynbody [4/4][100%]

@@ -355,8 +355,11 @@ fragments\" which contain information useful to end users.")
            python-pytest-cov
            python-pytest-mypy))
     (home-page "https://github.com/poliastro/czml3")
-    (synopsis "Python 3 library to write CZML")
-    (description "Python 3 library to write CZML")
+    (synopsis "Python library to write CZML")
+    (description
+     "Python 3 library to write CZML, a JSON format for describing a
+time-dynamic graphical scene, primarily for display in a web browser running
+Cesium.")
     (license license:expat)))
 
 ;; 20230308T213240+0000
