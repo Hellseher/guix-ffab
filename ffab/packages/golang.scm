@@ -2263,3 +2263,25 @@ original go-git/go-git project.")
 subcommands, positional values, and any-position flags without unnecessary
 complexeties.")
     (license license:unlicense)))
+
+;; 20230311T201510+0000
+(define-public go-github-com-itchyny-astgen-go
+  (package
+    (name "go-github-com-itchyny-astgen-go")
+    (version "0.0.0-20210914105503-cc8fccf6f972")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/itchyny/astgen-go")
+                    (commit (go-version->git-ref version))))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1q3qkyw5fjal6sdwppyg8zrrzwk6kbl6zla6kw3pz42fzlydrfki"))))
+    (build-system go-build-system)
+    (arguments
+     '(#:import-path "github.com/itchyny/astgen-go"))
+    (home-page "https://github.com/itchyny/astgen-go")
+    (synopsis "Go module providing interface to ast.Node maping")
+    (description "Build Go code from arbitrary value in Go.")
+    (license license:expat)))
