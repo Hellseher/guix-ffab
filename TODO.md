@@ -18,7 +18,7 @@
     lisp.org               vsedach                 [1/2][50%]   :author:
     lisp.org               VitoVan                 [1/2][50%]   :author:
     lisp.org               vindarel                [0/1][0%]    :author:
-    lisp.org               Shinmera/Shirakumo      [3/11][27%]  :author:
+    lisp.org               Shinmera/Shirakumo      [9/17][52%]  :author:
     lisp.org               s-expressionists        [0/1][0%]    :author:
     lisp.org               mfiano                  [4/4][100%]  :author:
     lisp.org               markcox80               [1/2][50%]   :author:
@@ -249,6 +249,7 @@
     docker.org             dive                           [0/4][0%]   :p3:
     astronomy.org          SPICE                          [/][%]      :p3:
     astronomy.org          python-radiospectra            [/][%]      :p3:
+    astronomy.org          python-poliastro               [3/4][75%]  :p3:
     astronomy.org          python-ndcube                  [/][%]      :p3:
     astronomy.org          NEAT                           [0/5][0%]   :p3:
     astronomy.org          kepler-project                 [0/4][0%]   :p3:
@@ -334,7 +335,6 @@
     astronomy.org          python-stcal                   [0/4][0%]   :p1:
     astronomy.org          python-rad                     [2/4][50%]  :p1:
     astronomy.org          python-pysynphot               [2/4][2/4]  :p1:
-    astronomy.org          python-poliastro               [1/4][25%]  :p1:
     astronomy.org          python-jwst                    [2/4][50%]  :p1:
     astronomy.org          python-hissw                   [1/4][25%]  :p1:
     astronomy.org          python-drizzle                 [2/4][50%]  :p1:
@@ -457,25 +457,31 @@
     lisp.org               cepl                             [4/4][100%]  
     lisp.org               chirp                            [4/4][100%]  
     lisp.org               chronicity                       [4/4][100%]  
+    lisp.org               cl-3d-matrices                   [4/4][100%]  
+    lisp.org               cl-3d-vectors                    [4/4][100%]  
     lisp.org               classimp                         [4/4][100%]  
     lisp.org               cl-calm                          [4/4][100%]  
     lisp.org               cl-cpus                          [3/3][100%]  
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  
+    lisp.org               cl-gamepad                       [/][%]       
     lisp.org               cl-glfw3                         [4/4][100%]  
     lisp.org               cl-glop                          [4/4][100%]  
     lisp.org               cl-graph                         [4/4][100%]  
     lisp.org               cl-gss                           [4/4][100%]  
     lisp.org               cl-liballegro                    [4/4][100%]  
     lisp.org               cl-mathstats                     [4/4][100%]  
+    lisp.org               cl-messagebox                    [4/4][100%]  
     lisp.org               cl-mount-info                    [4/4][100%]  
     lisp.org               cl-nst                           [4/4][100%]  
     lisp.org               cl-opengl                        [4/4][100%]  
+    lisp.org               cl-pathname-utils                [4/4][100%]  
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
     lisp.org               cl-sdl2                          [4/4][100%]  
     lisp.org               cl-sdl2-mixer                    [4/4][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
+    lisp.org               cl-terrable                      [4/4][100%]  
     lisp.org               cl-trivial-channels              [4/4][100%]  
     lisp.org               coalton                          [4/4][100%]  
     lisp.org               Djula                            [4/4][100%]  

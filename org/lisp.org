@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-08 Wed 22:12:00 GMT>
+#+modified: <2023-03-12 Sun 10:33:00 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1091,7 +1091,7 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO Shinmera/Shirakumo [3/11][27%] :author:
+** TODO Shinmera/Shirakumo [9/17][52%] :author:
 *** TODO qt-libs [1/4][25%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
@@ -1118,6 +1118,47 @@ CLOSED: [2021-06-15 Tue 10:00]
     + [X] split-sequence
     + [X] uuid
     + [X] yason
+
+*** DONE cl-3d-matrices [4/4][100%]
+CLOSED: [2021-05-08 Sat 10:28]
+- https://github.com/Shinmera/3d-matrices
+- synopsis :: A utility library implementing 2x2, 3x3, 4x4, and NxM matrix functionality.
+- [X] :packed <2021-05-03 Mon>
+- [X] :patch-sent <2021-05-03 Mon>
+- [X] :patch-applied-upstream <2021-05-08 Sat>
+  - https://issues.guix.gnu.org/48208
+- [X] :inputs [3/3][100%]
+  + [X] cl-3d-vectors
+    - [X] :packed <2021-04-11 Sun>
+  + [X] documentation-utils
+  + [X] cl-parachute
+
+*** DONE cl-3d-vectors [4/4][100%]
+CLOSED: [2021-05-08 Sat 10:27]
+- https://github.com/Shinmera/3d-vectors
+- synopsis :: A library for 2D, 3D, and 4D vectors in CL.
+- [X] :packed <2021-04-11 Sun>
+- [X] :patch-sent <2021-05-03 Mon>
+- [X] :patch-applied-upstream <2021-05-08 Sat>
+  + https://issues.guix.gnu.org/48208
+- [X] :inputs [2/2][100%]
+  - [X] cl-parachute
+  - [X] cl-documentation-utils
+
+*** DONE cl-gamepad [/][%]
+CLOSED: [2021-06-24 Thu 10:31]
+- https://github.com/Shirakumo/cl-gamepad
+- synopsis :: A native portability library for access to gamepads and joystick input devices
+- [X] :packed <2021-05-27 Thu>
+- [X] :patch-sent <2021-05-27 Thu>
+- [X] :patch-applied-upstream <2021-06-24 Thu>
+  - https://issues.guix.gnu.org/48708
+- [X] :inputs [4/4][100%]
+  - [X] cl-cffi
+  - [X] cl-documentation-utils
+  - [X] cl-trivial-features
+  - [X] libevdev
+
 *** TODO trial [4/5][80%]
 - https://github.com/Shirakumo/trial/
 - [X] :packed <2021-05-27 Thu>
@@ -1125,42 +1166,21 @@ CLOSED: [2021-06-15 Tue 10:00]
 - [X] :patch-applied-upstream <2021-06-24 Thu>
   - https://issues.guix.gnu.org/48708
 - [X] :inputs [32/32][100%]
-  - [X] 3d-matrices
-    + https://github.com/Shinmera/3d-matrices
+  - [X] cl-3d-matrices
     + [X] :packed <2021-05-03 Mon>
-    + [X] :patch-sent <2021-05-03 Mon>
-    + [X] :patch-applied-upstream <2021-05-08 Sat>
-      - https://issues.guix.gnu.org/48208
-    + [X] :inputs [2/2][100%]
-      + [X] 3d-vectors
-        - [X] :packed <2021-04-11 Sun>
-        - [X] :patch-sent <2021-05-03 Mon>
-        - [X] :patch-applied-upstream <2021-05-08 Sat>
-          + https://issues.guix.gnu.org/48208
-      + [X] documentation-utils
-    + [X] documentation-utils
-  - [X] alexandria
-  - [X] 3d-vectors
-  - [X] bordeaux-threads
+  - [X] cl-alexandria
+  - [X] cl-3d-vectors
+  - [X] cl-bordeaux-threads
   - [X] cl-gamepad
-    - https://github.com/Shirakumo/cl-gamepad
     - [X] :packed <2021-05-27 Thu>
-    - [X] :patch-sent <2021-05-27 Thu>
-    - [X] :patch-applied-upstream <2021-06-24 Thu>
-      - https://issues.guix.gnu.org/48708
-    - [X] :inputs [4/4][100%]
-      - [X] cffi
-      - [X] documentation-utils
-      - [X] trivial-features
-      - [X] libevdev
   - [X] cl-jpeg
   - [X] cl-opengl
-  - [X] closer-mop
+  - [X] cl-closer-mop
   - [X] cl-ppcre
   - [X] cl-tga
-  - [X] deploy
-  - [X] fast-io
-  - [X] flare
+  - [X] cl-deploy
+  - [X] cl-fast-io
+  - [X] cl-flare
     - https://github.com/Shinmera/flare
     - [X] :packed <2021-05-26 Wed>
     - [X] :patch-sent <2021-05-26 Wed>
@@ -1208,38 +1228,26 @@ CLOSED: [2021-06-15 Tue 10:00]
   - [X] jsown
   - [X] lambda-fiddle
   - [X] lquery
-  - [X] messagebox [4/4]
-    + https://github.com/Shinmera/messagebox
+  - [X] messagebox
     + [X] :packed <2021-05-08 Sat>
-    + [X] :patch-sent <2021-05-08 Sat>
-    + [X] :patch-applied-upstream <2021-05-11 Tue>
-      - https://issues.guix.gnu.org/48297
-    + [X] :inputs [2/2][100%]
-      - [X] documentation-utils
-      - [X] trivial-features
   - [X] mmap
-  - [X] pathname-utils [3/3]
-    - https://github.com/Shinmera/pathname-utils.git
+  - [X] pathname-utils
     - [X] :packed <2021-04-21 Wed>
-    - [X] :patch-sent <2021-04-21 Wed>
-    - [X] :patch-applied-upstream <2021-04-22 Thu>
-      - https://issues.guix.gnu.org/47942
   - [X] pngload
   - [X] retrospectiff
   - [X] static-vectors
   - [X] terrable
-    - https://github.com/Shirakumo/terrable.git
     - [X] :packed <2021-04-25 Sun>
-    - [X] :patch-sent <2021-04-25 Sun>
-    - [X] :patch-applied-upstream <2021-04-25 Sun>
-      - https://issues.guix.gnu.org/47961
   - [X] trivial-garbage
   - [X] trivial-indent
   - [X] verbose
   - [X] zpng
+
 - [-] :inputs-additions
-  + [X] alloy
-  + [X] backends [2/2]
+  - notes :: Additional system which may need to be availalbe to make trial full fiture operational.
+  - [X] alloy
+    + [X] :packed <2021-11-07 Sun>
+  - [-] backends [2/4]
     + [X] trial-glfw [3/3][100%]
       - [X] cl-glfw3
       - [X] trivial-main-thread
@@ -1247,11 +1255,53 @@ CLOSED: [2021-06-15 Tue 10:00]
     + [X] trial-glop [2/2][100%]
       - [X] trivial-main-thread
       - [X] glop
-  + [-] feedback
-  + [ ] classimp
-  + [ ] harmony
-  + [ ] file-notify
-  + [ ] cl-steamworks
+    + [ ] qt [0/0]
+    + [ ] sdl2
+  - [ ] feedback
+    + [ ] :packed
+  - [ ] classimp
+  - [ ] harmony
+  - [ ] file-notify
+  - [ ] cl-steamworks
+
+*** DONE cl-messagebox [4/4][100%]
+CLOSED: [2021-05-11 Tue 10:21]
+- https://github.com/Shinmera/messagebox
+- synopsis :: Display a native GUI message box
+- [X] :packed <2021-05-08 Sat>
+- [X] :patch-sent <2021-05-08 Sat>
+- [X] :patch-applied-upstream <2021-05-11 Tue>
+  - https://issues.guix.gnu.org/48297
+- [X] :inputs [3/3][100%]
+  - [X] cl-documentation-utils
+  - [X] cl-trivial-features
+  - [X] zenity
+
+*** DONE cl-pathname-utils [4/4][100%]
+CLOSED: [2021-04-22 Thu 10:17]
+- https://github.com/Shinmera/pathname-utils.git
+- synopsis :: A collection of utilities to help with pathname operations.
+- [X] :packed <2021-04-21 Wed>
+- [X] :patch-sent <2021-04-21 Wed>
+- [X] :patch-applied-upstream <2021-04-22 Thu>
+  - https://issues.guix.gnu.org/47942
+- [X] :inputs [1/1][100%]
+  - [X] cl-parachute
+
+*** DONE cl-terrable [4/4][100%]
+CLOSED: [2021-04-25 Sun 10:11]
+- https://github.com/Shirakumo/terrable.git
+- synopsis :: A file parser library for Terragen TER terrain files.
+- [X] :packed <2021-04-25 Sun>
+- [X] :patch-sent <2021-04-25 Sun>
+- [X] :patch-applied-upstream <2021-04-25 Sun>
+  - https://issues.guix.gnu.org/47961
+- [X] :inputs [5/5][100%]
+  - [X] cl-documentation-utils
+  - [X] cl-fast-io
+  - [X] cl-ieee-floats
+  - [X] cl-static-vectors
+  - [X] cl-trivial-garbage
 
 *** DONE alloy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:49]
