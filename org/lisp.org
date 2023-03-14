@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-12 Sun 10:33:00 GMT>
+#+modified: <2023-03-12 Sun 12:26:38 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1091,13 +1091,21 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO Shinmera/Shirakumo [9/17][52%] :author:
-*** TODO qt-libs [1/4][25%]
-- https://github.com/Shinmera/qt-libs
-- [X] :packed <2021-05-12 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+** TODO Shinmera/Shirakumo [13/21][61%] :author:
+*** DONE alloy [4/4][100%]
+CLOSED: [2021-11-08 Mon 20:49]
+- https://github.com/Shirakumo/alloy
+- [X] :packed <2021-11-07 Sun>
+- [X] :patch-sent <2021-11-07 Sun>
+- [X] :patch-applied-upstream <2021-11-08 Mon>
+  - https://issues.guix.gnu.org/51670
+- [X] :inputs [5/5][100%]
+  - [X] alexandria
+  - [X] parachute
+  - [X] documentation-utils
+  - [X] closer-mop
+  - [X] array-utils
+
 *** DONE chirp [4/4][100%]
 CLOSED: [2021-06-15 Tue 10:00]
   - https://github.com/Shinmera/chirp
@@ -1145,7 +1153,49 @@ CLOSED: [2021-05-08 Sat 10:27]
   - [X] cl-parachute
   - [X] cl-documentation-utils
 
-*** DONE cl-gamepad [/][%]
+*** DONE cl-flare [4/4][100%]
+CLOSED: [2021-05-27 Thu 12:08]
+- https://github.com/Shinmera/flare
+- synopsis :: Easy particle systems with fine grained control.
+- [X] :packed <2021-05-26 Wed>
+- [X] :patch-sent <2021-05-26 Wed>
+- [X] :patch-applied-upstream <2021-05-27 Thu>
+  - https://issues.guix.gnu.org/48689
+- [X] :inputs [6/6][100%]
+  - [X] cl-3d-vectors
+  - [X] cl-array-utils
+  - [X] cl-documentation-utils
+  - [X] cl-for
+    - [X] :packed <2021-05-08 Sat>
+  - [X] cl-lambda-fiddle
+  - [X] cl-trivial-garbage
+
+*** DONE cl-flow [4/4][100%]
+CLOSED: [2021-06-08 Tue 12:11]
+- https://github.com/Shinmera/flow
+- synopsis :: Tools for the representation of graphs and flowcharts
+- [X] :packed <2021-05-27 Thu>
+- [X] :patch-sent <2021-05-27 Thu>
+- [X] :patch-applied-upstream <2021-06-08 Tue>
+  - https://issues.guix.gnu.org/48708
+- [X] :inputs [2/2][100%]
+  + [X] cl-closer-mop
+  + [X] cl-documentation-utils
+
+*** DONE cl-for [4/4][100%]
+CLOSED: [2021-05-27 Thu 12:15]
+- https://github.com/Shinmera/for
+- synopsis :: An extensible iteration macro library.
+- [X] :packed <2021-05-08 Sat>
+- [X] :patch-sent <2021-05-26 Wed>
+- [X] :patch-applied-upstream <2021-05-27 Thu>
+  - https://issues.guix.gnu.org/48689
+- [X] :inputs [3/3][100%]
+  - [X] cl-documentation-utils
+  - [X] cl-form-fiddle
+  - [X] cl-lambda-fiddle
+
+*** DONE cl-gamepad [4/4][100%]
 CLOSED: [2021-06-24 Thu 10:31]
 - https://github.com/Shirakumo/cl-gamepad
 - synopsis :: A native portability library for access to gamepads and joystick input devices
@@ -1159,110 +1209,19 @@ CLOSED: [2021-06-24 Thu 10:31]
   - [X] cl-trivial-features
   - [X] libevdev
 
-*** TODO trial [4/5][80%]
-- https://github.com/Shirakumo/trial/
-- [X] :packed <2021-05-27 Thu>
-- [X] :patch-sent <2021-05-27 Thu>
-- [X] :patch-applied-upstream <2021-06-24 Thu>
-  - https://issues.guix.gnu.org/48708
-- [X] :inputs [32/32][100%]
-  - [X] cl-3d-matrices
-    + [X] :packed <2021-05-03 Mon>
-  - [X] cl-alexandria
-  - [X] cl-3d-vectors
-  - [X] cl-bordeaux-threads
-  - [X] cl-gamepad
-    - [X] :packed <2021-05-27 Thu>
-  - [X] cl-jpeg
-  - [X] cl-opengl
-  - [X] cl-closer-mop
+*** DONE cl-glsl-toolkit [4/4][100%]
+CLOSED: [2021-05-11 Tue 12:17]
+- https://github.com/Shirakumo/glsl-toolkit
+- synopsis :: A parser for OpenGL Shader Language source files
+- [X] :packed <2021-05-08 Sat>
+- [X] :patch-sent <2021-05-08 Sat>
+- [X] :patch-applied-upstream <2021-05-11 Tue>
+  - https://issues.guix.gnu.org/48297
+- [X] :inputs [4/4][100%]
+  - [X] cl-documentation-utils
+  - [X] cl-parse-float
   - [X] cl-ppcre
-  - [X] cl-tga
-  - [X] cl-deploy
-  - [X] cl-fast-io
-  - [X] cl-flare
-    - https://github.com/Shinmera/flare
-    - [X] :packed <2021-05-26 Wed>
-    - [X] :patch-sent <2021-05-26 Wed>
-    - [X] :patch-applied-upstream <2021-05-27 Thu>
-      - https://issues.guix.gnu.org/48689
-    - [X] :inputs [6/6][100%]
-      + [X] lambda-fiddle
-      + [X] array-utils
-      + [X] trivial-garbage
-      + [X] 3d-vectors
-      + [X] documentation-utils
-      + [X] for
-  - [X] float-features
-  - [X] flow
-    - https://github.com/Shinmera/flow
-    - [X] :packed <2021-05-27 Thu>
-    - [X] :patch-sent <2021-05-27 Thu>
-    - [X] :patch-applied-upstream <2021-06-08 Tue>
-      - https://issues.guix.gnu.org/48708
-    - [X] :inputs [2/2][100%]
-      + [X] closer-mop
-      + [X] documentation-utils
-  - [X] for
-    - https://github.com/Shinmera/for
-    - [X] :packed <2021-05-08 Sat>
-    - [X] :patch-sent <2021-05-26 Wed>
-    - [X] :patch-applied-upstream <2021-05-27 Thu>
-      - https://issues.guix.gnu.org/48689
-    - [X] :inputs [3/3][100%]
-      - [X] documentation-utils
-      - [X] form-fiddle
-      - [X] lambda-fiddle
-  - [X] glsl-toolkit
-    - https://github.com/Shirakumo/glsl-toolkit
-    - [X] :packed <2021-05-08 Sat>
-    - [X] :patch-sent <2021-05-08 Sat>
-    - [X] :patch-applied-upstream <2021-05-11 Tue>
-      - https://issues.guix.gnu.org/48297
-    - [X] :inputs [4/4][100%]
-      - [X] documentation-utils
-      - [X] trivial-indent
-      - [X] parse-float
-      - [X] cl-ppcre
-  - [X] ieee-floats
-  - [X] jsown
-  - [X] lambda-fiddle
-  - [X] lquery
-  - [X] messagebox
-    + [X] :packed <2021-05-08 Sat>
-  - [X] mmap
-  - [X] pathname-utils
-    - [X] :packed <2021-04-21 Wed>
-  - [X] pngload
-  - [X] retrospectiff
-  - [X] static-vectors
-  - [X] terrable
-    - [X] :packed <2021-04-25 Sun>
-  - [X] trivial-garbage
-  - [X] trivial-indent
-  - [X] verbose
-  - [X] zpng
-
-- [-] :inputs-additions
-  - notes :: Additional system which may need to be availalbe to make trial full fiture operational.
-  - [X] alloy
-    + [X] :packed <2021-11-07 Sun>
-  - [-] backends [2/4]
-    + [X] trial-glfw [3/3][100%]
-      - [X] cl-glfw3
-      - [X] trivial-main-thread
-      - [X] trivial-garbage
-    + [X] trial-glop [2/2][100%]
-      - [X] trivial-main-thread
-      - [X] glop
-    + [ ] qt [0/0]
-    + [ ] sdl2
-  - [ ] feedback
-    + [ ] :packed
-  - [ ] classimp
-  - [ ] harmony
-  - [ ] file-notify
-  - [ ] cl-steamworks
+  - [X] cl-trivial-indent
 
 *** DONE cl-messagebox [4/4][100%]
 CLOSED: [2021-05-11 Tue 10:21]
@@ -1277,6 +1236,18 @@ CLOSED: [2021-05-11 Tue 10:21]
   - [X] cl-trivial-features
   - [X] zenity
 
+*** TODO cl-mixed [1/4][25%]
+https://github.com/Shirakumo/cl-mixed
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [5/5][100%]
+  + [X] alexandria
+  + [X] static-vectors
+  + [X] cffi
+  + [X] trivial-features
+  + [X] documentation-utils
+
 *** DONE cl-pathname-utils [4/4][100%]
 CLOSED: [2021-04-22 Thu 10:17]
 - https://github.com/Shinmera/pathname-utils.git
@@ -1288,6 +1259,13 @@ CLOSED: [2021-04-22 Thu 10:17]
 - [X] :inputs [1/1][100%]
   - [X] cl-parachute
 
+*** TODO cl-steamworks [0/4][0%]
+- https://github.com/Shinmera/cl-steamworks
+- synopsis :: A bindings library for the Valve SteamWorks API.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 *** DONE cl-terrable [4/4][100%]
 CLOSED: [2021-04-25 Sun 10:11]
 - https://github.com/Shirakumo/terrable.git
@@ -1303,29 +1281,9 @@ CLOSED: [2021-04-25 Sun 10:11]
   - [X] cl-static-vectors
   - [X] cl-trivial-garbage
 
-*** DONE alloy [4/4][100%]
-CLOSED: [2021-11-08 Mon 20:49]
-- https://github.com/Shirakumo/alloy
-- [X] :packed <2021-11-07 Sun>
-- [X] :patch-sent <2021-11-07 Sun>
-- [X] :patch-applied-upstream <2021-11-08 Mon>
-  - https://issues.guix.gnu.org/51670
-- [X] :inputs [5/5][100%]
-  - [X] alexandria
-  - [X] parachute
-  - [X] documentation-utils
-  - [X] closer-mop
-  - [X] array-utils
-
 *** TODO feedback [0/4][0%] :p1:
 - https://github.com/Shirakumo/feedback
 - synopsis :: Radiance client/server module for anonymous feedback submission
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO harmony [0/4][0%]
-- https://github.com/Shirakumo/harmony
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1336,9 +1294,47 @@ CLOSED: [2021-11-08 Mon 20:49]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** TODO cl-steamworks [0/4][0%]
-- https://github.com/Shinmera/cl-steamworks
+*** TODO harmony [0/4][0%]
+- https://github.com/Shirakumo/harmony
 - [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO kandria [0/4][0%]
+- https://github.com/Shinmera/kandria
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [4/26][15%]
+  + [X] deploy
+  + [ ] trial-glfw
+  + [ ] trial-alloy
+  + [ ] trial-harmony
+  + [ ] trial-steam
+  + [ ] trial-notify
+  + [ ] alloy-constraint
+  + [ ] zip
+  + [ ] fast-io
+  + [ ] ieee-floats
+  + [ ] babel
+  + [ ] form-fiddle
+  + [ ] array-utils
+  + [ ] lambda-fiddle
+  + [ ] trivial-arguments
+  + [ ] trivial-indent
+  + [ ] speechless
+  + [ ] kandria-quest
+  + [ ] alexandria
+  + [ ] file-select
+  + [ ] feedback-client
+  + [ ] cl-mixed-wav
+  + [ ] cl-mixed-mpg123
+  + [X] zpng
+  + [X] jsown
+  + [X] swank
+*** TODO qt-libs [1/4][25%]
+- https://github.com/Shinmera/qt-libs
+- [X] :packed <2021-05-12 Wed>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
@@ -1460,49 +1456,75 @@ CLOSED: [2021-02-04 Thu 00:28]
 **** Modules
 - https://gitlab.com/jason.melbye/r-djula
 - https://github.com/Shirakumo/radiance-contribs
-*** TODO kandria [0/4][0%]
-- https://github.com/Shinmera/kandria
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [4/26][15%]
-  + [X] deploy
-  + [ ] trial-glfw
-  + [ ] trial-alloy
-  + [ ] trial-harmony
-  + [ ] trial-steam
-  + [ ] trial-notify
-  + [ ] alloy-constraint
-  + [ ] zip
-  + [ ] fast-io
-  + [ ] ieee-floats
-  + [ ] babel
-  + [ ] form-fiddle
-  + [ ] array-utils
-  + [ ] lambda-fiddle
-  + [ ] trivial-arguments
-  + [ ] trivial-indent
-  + [ ] speechless
-  + [ ] kandria-quest
-  + [ ] alexandria
-  + [ ] file-select
-  + [ ] feedback-client
-  + [ ] cl-mixed-wav
-  + [ ] cl-mixed-mpg123
-  + [X] zpng
-  + [X] jsown
-  + [X] swank
-*** TODO cl-mixed [1/4][25%]
-https://github.com/Shirakumo/cl-mixed
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [X] :inputs [5/5][100%]
-  + [X] alexandria
-  + [X] static-vectors
-  + [X] cffi
-  + [X] trivial-features
-  + [X] documentation-utils
+*** TODO trial [4/5][80%]
+- https://github.com/Shirakumo/trial/
+- [X] :packed <2021-05-27 Thu>
+- [X] :patch-sent <2021-05-27 Thu>
+- [X] :patch-applied-upstream <2021-06-24 Thu>
+  - https://issues.guix.gnu.org/48708
+- [X] :inputs [32/32][100%]
+  - [X] cl-3d-matrices
+    + [X] :packed <2021-05-03 Mon>
+  - [X] cl-3d-vectors
+  - [X] cl-alexandria
+  - [X] cl-bordeaux-threads
+  - [X] cl-closer-mop
+  - [X] cl-deploy
+  - [X] cl-fast-io
+  - [X] cl-flare
+    - [X] :packed <2021-05-26 Wed>
+  - [X] cl-float-features
+  - [X] cl-flow
+    - [X] :packed <2021-05-27 Thu>
+  - [X] cl-for
+    - [X] :packed <2021-05-08 Sat>
+  - [X] cl-gamepad
+    - [X] :packed <2021-05-27 Thu>
+  - [X] cl-glsl-toolkit
+    - [X] :packed <2021-05-08 Sat>
+  - [X] cl-ieee-floats
+  - [X] cl-jpeg
+  - [X] cl-jsown
+  - [X] cl-lambda-fiddle
+  - [X] cl-lquery
+  - [X] cl-messagebox
+    + [X] :packed <2021-05-08 Sat>
+  - [X] cl-mmap
+  - [X] cl-opengl
+  - [X] cl-pathname-utils
+    - [X] :packed <2021-04-21 Wed>
+  - [X] cl-pngload
+  - [X] cl-ppcre
+  - [X] cl-retrospectiff
+  - [X] cl-static-vectors
+  - [X] cl-terrable
+    - [X] :packed <2021-04-25 Sun>
+  - [X] cl-tga
+  - [X] cl-trivial-garbage
+  - [X] cl-trivial-indent
+  - [X] cl-verbose
+  - [X] cl-zpng
+
+- [-] :inputs-additions
+  - notes :: Additional system which may need to be availalbe to make trial full fiture operational.
+  - [X] alloy
+    + [X] :packed <2021-11-07 Sun>
+  - [-] backends [2/4]
+    + [X] trial-glfw [3/3][100%]
+      - [X] cl-glfw3
+      - [X] cl-trivial-main-thread
+      - [X] cl-trivial-garbage
+    + [X] trial-glop [2/2][100%]
+      - [X] trivial-main-thread
+      - [X] glop
+    + [ ] trial-qt [0/0]
+    + [ ] trial-sdl2
+  - [ ] feedback
+    + [ ] :packed
+  - [ ] classimp
+  - [ ] harmony
+  - [ ] file-notify
+  - [ ] cl-steamworks
 
 ** DONE sjl [1/1][100%] :author:
 CLOSED: [2022-11-21 Mon 20:13]

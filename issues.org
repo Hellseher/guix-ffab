@@ -181,12 +181,12 @@
 - [X] <2023-03-06 Mon> https://issues.guix.gnu.org/62017 <2023-03-06 Mon>
 - [ ] <2023-03-08 Wed> https://issues.guix.gnu.org/62061
 
-* Package updates [15/16][93%]
-- [ ] <2023-02-28 Tue> https://issues.guix.gnu.org/61878
+* Package updates [16/16][100%]
+- [X] <2023-02-28 Tue> https://issues.guix.gnu.org/61878 <2023-03-14 Tue>
 - [X] <2023-02-12 Sun> https://issues.guix.gnu.org/61464 <2023-02-20 Mon>
 - [X] <2023-02-08 Wed> https://issues.guix.gnu.org/61357 <2023-02-20 Mon>
 - [X] <2023-01-22 Sun> https://issues.guix.gnu.org/61012 <2023-01-27 Fri>
-- [X] <2023-01-19 Thu> https://issues.guix.gnu.org/60944
+- [X] <2023-01-19 Thu> https://issues.guix.gnu.org/60944 <2023-02-15 Wed>
   - [X] https://github.com/McParen/croatoan/issues/49
 - [X] <2022-12-11 Sun> https://issues.guix.gnu.org/59978 <2023-01-06 Fri>
 - [X] <2022-12-07 Wed> https://issues.guix.gnu.org/59890 <2022-12-09 Fri>
