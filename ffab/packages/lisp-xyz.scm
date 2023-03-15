@@ -279,6 +279,39 @@ transition of promise objects in your control, making it easy to integrate.")
 (define-public cl-gltf
   (sbcl-package->cl-source-package sbcl-cl-gltf))
 
+;; 20230314T220728+0000
+(define-public sbcl-dns-client
+  (let ((commit "9f252e9c2bb61c57a6cd367e21ad366b0d3e87e0")
+        (revision "0"))
+    (package
+      (name "sbcl-dns-client")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/dns-client")
+               (commit commit)))
+         (file-name (git-file-name "cl-gltf" version))
+         (sha256
+          (base32 "1b6g2wvydwmv1k68favjyq4gfalfxfyl5i0hyh640wdaz2rfvi4n"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       ;; No tests provided.
+       `(#:tests? #f))
+      (inputs
+       (list sbcl-documentation-utils sbcl-usocket))
+      (home-page "https://shinmera.github.io/dns-client")
+      (synopsis "DNS protocol client for Common Lisp")
+      (description
+       "This package provides a pure-lisp implementation of a DNS client.  It can be
+used to resolve hostnames, reverse-lookup IP addresses, and fetch other kinds of
+DNS records.")
+      (license license:zlib))))
+
+(define-public cl-dns-client
+  (sbcl-package->cl-source-package sbcl-dns-client))
+
 ;; 20211107T173633+0000
 ;; (define-public sbcl-alloy
 ;; added-to-upstream: 6ec0c6c7678234ff5ab4c892903e0b682cbd876d
