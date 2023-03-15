@@ -168,10 +168,44 @@
 ;; added-to-upstream: 440217b1e5e8f7c4570e23494f932ff620eedee2
 ;; CommitDate: Sat May 8 13:43:17 2021 +0200
 
+(define-public sbcl-3d-matrices-ffab
+  (let ((commit "b4f5a58299f8437fad2d77f0879c374e3430f4b5")
+        (revision "2"))
+    (package
+      (inherit sbcl-3d-matrices)
+      (name "sbcl-3d-matrices")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/3d-matrices")
+               (commit commit)))
+         (file-name (git-file-name "3d-matrices" version))
+         (sha256
+          (base32 "1s8b4zlmqwyplghs73riz1khf0c5sk64w6b12jd599091d5nr6sr")))))))
+
 ;; <2021-05-03 Mon>
 ;; (define-public sbcl-3d-vectors
 ;; added-to-upstream: e961f15083e71abfd16b74a10331c9297960370d
 ;; CommitDate: Sat May 8 13:43:17 2021 +0200
+
+(define-public sbcl-3d-vectors-ffab
+  (let ((commit "257969402864ac3859d77b981abf0aa5373c4e78")
+        (revision "2"))
+    (package
+      (inherit sbcl-3d-vectors)
+      (name "sbcl-3d-vectors")
+      (version (git-version "3.1.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/3d-vectors")
+               (commit commit)))
+         (file-name (git-file-name "3d-matrices" version))
+         (sha256
+          (base32 "0vmf7nycc49ydcy0dfs25cgs655kwjc6jcjvpwxw61jq4gl2fh7x")))))))
 
 ;; <2021-04-22>
 ;; (define-public sbcl-terrable
