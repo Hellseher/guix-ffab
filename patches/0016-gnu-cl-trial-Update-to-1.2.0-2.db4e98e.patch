@@ -1,0 +1,149 @@
+From 3ade111f1a6bf3b19429224405249e4406421607 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 14 Mar 2023 22:57:12 +0000
+Subject: [PATCH 16/17] gnu: cl-trial: Update to 1.2.0-2.db4e98e.
+
+* gnu/packages/lisp-xyz.scm (sbcl-trial): Update to 1.2.0-2.db4e98e.
+  [arguments]{asd-systems}: Enable trial-alloy, trial-animation,
+  trial-assimp, trial-gif, trial-glfw, trial-gltf, trial-jpeg,
+  trial-notify, tiral-png, trial-sdl2, trial-terragen, trial-tga,
+  trial-tiff, trial-workbench
+  [inputs]: Sort list alphabetically and add sbcl-3d-quaternions,
+  sbcl-3d-transforms, sbcl-alloy, sbcl-atomics, sbcl-cl-glfw3,
+  sbcl-cl-gltf, sbcl-classimp, sbcl-dns-client, sbcl-file-notify,
+  sbcl-glop, sbcl-jzon, sbcl-language-codes, sbcl-promise, sbcl-sdl2,
+  sbcl-simple-tasks, sbcl-system-locale,
+  sbcl-trivial-extensible-sequences, sbcl-trivial-main-thread.
+  Remove sbcl-jsow.
+* gnu/packages/lisp-xyz.scm (ecl-trial): Disable this while upstream
+  issue is in review.
+---
+ gnu/packages/lisp-xyz.scm | 66 ++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 58 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 11db31948e..06e7f05586 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -20857,8 +20857,8 @@ (define-public cl-gamepad
+   (sbcl-package->cl-source-package sbcl-cl-gamepad))
+ 
+ (define-public sbcl-trial
+-  (let ((commit "ba178cac3a5528c570c7e8dad66c58cc770db53a")
+-        (revision "1"))
++  (let ((commit "db4e98ede16640238bd51bf5d63cda57c75a51ae")
++        (revision "2"))
+     (package
+       (name "sbcl-trial")
+       (version (git-version "1.2.0" revision commit))
+@@ -20870,42 +20870,90 @@ (define-public sbcl-trial
+                (commit commit)))
+          (file-name (git-file-name "trial" version))
+          (sha256
+-          (base32 "1vpv9nrpq93fz1c5cyi1hazaaz9ijbrf1l7zwp7gammndr5v028r"))))
++          (base32 "0haslkzcgivz42k23n90w1dzw8zdgdrqcndadl33pqqlf0d20ilw"))))
+       (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:asd-systems '("trial"
++                         "trial-alloy"
++                         "trial-animation"
++                         "trial-assimp"
++                         ;; TODO: It requires a long packaging journey.
++                         ;; "trial-feedback"
++                         "trial-gif"
++                         "trial-glfw"
++                         ;; FIXME: Check why this system is failing:
++                         ;; WARNING: Invalid qualifiers for APPEND method
++                         ;; combination in method
++                         ;; ...
++                         ;; "trial-glop"
++                         "trial-gltf"
++                         ;; TODO: It requires a long packaging journey.
++                         ;; "trial-harmony"
++                         "trial-jpeg"
++                         "trial-notify"
++                         "trial-png"
++                         ;; TODO: I'm not sure which QOI system to use here. There are two:
++                         ;; - https://github.com/bpanthi977/qoi
++                         ;; - https://github.com/mfiano/qoi
++                         ;; "trial-qoi"
++                         ;; TODO: It requires a long packaging journey.
++                         ;; "trial-qt"
++                         "trial-sdl2"
++                         "trial-terragen"
++                         "trial-tga"
++                         "trial-tiff"
++                         "trial-workbench")))
+       (native-inputs
+        (list sbcl-trivial-features))
+       (inputs
+-       (list sbcl-alexandria
+-             sbcl-3d-matrices
++       (list sbcl-3d-matrices
++             sbcl-3d-quaternions
++             sbcl-3d-transforms
+              sbcl-3d-vectors
++             sbcl-alexandria
++             sbcl-alloy
++             sbcl-atomics
+              sbcl-bordeaux-threads
+              sbcl-cl-gamepad
++             sbcl-cl-glfw3
++             sbcl-cl-gltf
+              sbcl-cl-jpeg
+              sbcl-cl-opengl
+              sbcl-cl-ppcre
+              sbcl-cl-tga
++             sbcl-classimp
+              sbcl-closer-mop
+              sbcl-deploy
++             sbcl-dns-client
+              sbcl-fast-io
++             sbcl-file-notify
+              sbcl-flare
+              sbcl-float-features
+              sbcl-flow
+              sbcl-for
+              sbcl-form-fiddle
++             sbcl-glop
+              sbcl-glsl-toolkit
+              sbcl-ieee-floats
+-             sbcl-jsown
++             sbcl-jzon
+              sbcl-lambda-fiddle
++             sbcl-language-codes
+              sbcl-lquery
+              sbcl-messagebox
+              sbcl-mmap
+              sbcl-pathname-utils
+              sbcl-pngload
++             sbcl-promise
+              sbcl-retrospectiff
++             sbcl-sdl2
++             sbcl-simple-tasks
+              sbcl-static-vectors
++             sbcl-system-locale
+              sbcl-terrable
++             sbcl-trivial-extensible-sequences
+              sbcl-trivial-garbage
+              sbcl-trivial-indent
++             sbcl-trivial-main-thread
+              sbcl-verbose
+              sbcl-zpng))
+       (home-page "https://github.com/Shirakumo/trial")
+@@ -20916,8 +20964,10 @@ (define-public sbcl-trial
+ fit together as required by any particular game.")
+       (license license:zlib))))
+ 
+-(define-public ecl-trial
+-  (sbcl-package->ecl-package sbcl-trial))
++;; TODO: Enable with new ECL when this issue is fixed:
++;; https://github.com/Shinmera/3d-quaternions/issues/2
++;; (define-public ecl-trial
++;;   (sbcl-package->ecl-package sbcl-trial))
+ 
+ (define-public cl-trial
+   (sbcl-package->cl-source-package sbcl-trial))
+-- 
+2.39.2
+

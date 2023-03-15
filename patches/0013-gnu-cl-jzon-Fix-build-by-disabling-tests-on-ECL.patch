@@ -1,0 +1,32 @@
+From da8d450632aa06957bd657f3fadf2301d60a0d47 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 14 Mar 2023 21:17:04 +0000
+Subject: [PATCH 13/17] gnu: cl-jzon: Fix build by disabling tests on ECL.
+
+* gnu/packages/lisp-xyz.scm (ecl-jzon): Disable tests.
+---
+ gnu/packages/lisp-xyz.scm | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index d6e3fe835b..b3dddd8c82 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -24608,7 +24608,13 @@ (define-public cl-jzon
+   (sbcl-package->cl-source-package sbcl-jzon))
+ 
+ (define-public ecl-jzon
+-  (sbcl-package->ecl-package sbcl-jzon))
++  (let ((pkg (sbcl-package->ecl-package sbcl-jzon)))
++    (package
++      (inherit pkg)
++      (arguments
++       (substitute-keyword-arguments (package-arguments pkg)
++         ;; FIXME: Tests fail on ECL:  https://github.com/Zulu-Inuoe/jzon/issues/36
++         ((#:tests? _ #f) #f))))))
+ 
+ (define-public sbcl-simple-routes
+   (let ((commit "6f88c38945a4de73e85786d3499c39cacb400598")
+-- 
+2.39.2
+

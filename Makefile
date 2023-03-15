@@ -1,9 +1,9 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2023-03-12 Sun 12:03:26 GMT>
+# Modified : <2023-03-15 Wed 21:12:05 GMT>
 
 GET_MODULES := grep "^.define-public"
-FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d' -e '/.*-next/d'
+FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
 
 MODULES_ASTRO :=	\
 ffab/packages/astronomy.scm
@@ -53,7 +53,7 @@ ffab/packages/web.scm
 
 # TODO: (Sharlatan-20221026T202843+0100): Find the way how to re-build versioned
 # package e.g. python-pytest-7.1, exclude them for now.
-PKGS_ACCEPTED ?= $(shell grep -r ";; define-public" ffab | cut -d' ' -f3 | sed -e '/.*\..*/d')
+PKGS_ACCEPTED ?= $(shell grep -r ";;..define-public" ffab | cut -d' ' -f3 | sed -e '/.*\..*/d')
 PKGS_PENDING ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
 
 PKGS_ASTRONOMY ?= $(shell $(GET_MODULES) $(MODULES_ASTRO) $(FILTER_MODULES))

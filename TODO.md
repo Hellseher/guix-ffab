@@ -18,7 +18,7 @@
     lisp.org               vsedach                 [1/2][50%]    :author:
     lisp.org               VitoVan                 [1/2][50%]    :author:
     lisp.org               vindarel                [0/1][0%]     :author:
-    lisp.org               Shinmera/Shirakumo      [13/21][61%]  :author:
+    lisp.org               Shinmera/Shirakumo      [13/26][50%]  :author:
     lisp.org               s-expressionists        [0/1][0%]     :author:
     lisp.org               mfiano                  [4/4][100%]   :author:
     lisp.org               markcox80               [1/2][50%]    :author:
@@ -144,6 +144,7 @@
     python.org             python-sunpy-sphinx-theme      [0/4][0%]   :p4:
     maths.org              ducc                           [/][%]      :p4:
     lisp.org               Vacietis                       [/][%]      :p4:
+    lisp.org               cl-pkr                         [0/4][0%]   :p4:
     lisp.org               cl-cairo2                      [3/4][75%]  :p4:
     lisp.org               basic-binary-ipc               [0/4][0%]   :p4:
     astronomy.org          WCSLIB                         [/][%]      :p4:
@@ -238,7 +239,11 @@
     node-xyz.org           bootstrap                      [/][%]      :p3:
     lisp.org               rib                            [0/4][0%]   :p3:
     lisp.org               cl-rabbit                      [0/4][0%]   :p3:
-    lisp.org               cl-pkr                         [0/4][0%]   :p3:
+    lisp.org               cl-promise                     [3/4][75%]  :p3:
+    lisp.org               cl-gltf                        [3/4][75%]  :p3:
+    lisp.org               cl-dns-client                  [/][%]      :p3:
+    lisp.org               cl-3d-transforms               [3/4][75%]  :p3:
+    lisp.org               cl-3d-quaternions              [3/4][75%]  :p3:
     julia-xyz.org          julia-images                   [0/4][0%]   :p3:
     julia-xyz.org          julia-imagedistances           [/][%]      :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]  :p3:
@@ -313,8 +318,8 @@
     python.org             python-sphinx-changelog        [0/4][0%]   :p1:
     python.org             python-sphinx-automodapi       [1/4][25%]  :p1:
     python.org             python-opencv                  [0/4][0%]   :p1:
-    lisp.org               feedback                       [0/4][0%]   :p1:
     lisp.org               cl-jscl                        [/][%]      :p1:
+    lisp.org               cl-feedback                    [0/4][0%]   :p1:
     julia-xyz.org          julia-vectorizationbase        [0/4][0%]   :p1:
     julia-xyz.org          julia-staticarrayinterface     [0/4][0%]   :p1:
     julia-xyz.org          julia-snoopprecompile          [0/4][0%]   :p1:
@@ -363,14 +368,13 @@
     lisp.org               weir                           [3/4][75%]  
     lisp.org               trial                          [4/5][80%]  
     lisp.org               repo                           [0/4][0%]   
-    lisp.org               qt-libs                        [1/4][25%]  
     lisp.org               kandria                        [0/4][0%]   
-    lisp.org               harmony                        [0/4][0%]   
-    lisp.org               file-notify                    [0/4][0%]   
     lisp.org               cl-torrents                    [0/4][0%]   
     lisp.org               cl-steamworks                  [0/4][0%]   
+    lisp.org               cl-qt-libs                     [1/4][25%]  
     lisp.org               cl-plplot                      [0/4][0%]   
     lisp.org               cl-mixed                       [1/4][25%]  
+    lisp.org               cl-harmony                     [0/4][0%]   
     lisp.org               cl-bodge                       [0/4][0%]   
     lisp.org               claw                           [0/4][0%]   
     high-availability.org  corosync-qdevice               [1/4][25%]  
@@ -448,19 +452,19 @@
     julia-xyz.org          julia-remotefiles                [4/4][100%]  
     lisp.org               3b-bmfont                        [4/4][100%]  
     lisp.org               adopt                            [4/4][100%]  
-    lisp.org               alloy                            [4/4][100%]  
     lisp.org               asdf-system-connections          [3/3][100%]  
     lisp.org               assertion-error                  [4/4][100%]  
     lisp.org               assert-p                         [4/4][100%]  
     lisp.org               bknr-datastore                   [4/4][100%]  
     lisp.org               cacau                            [4/4][100%]  
     lisp.org               cepl                             [4/4][100%]  
-    lisp.org               chirp                            [4/4][100%]  
     lisp.org               chronicity                       [4/4][100%]  
     lisp.org               cl-3d-matrices                   [4/4][100%]  
     lisp.org               cl-3d-vectors                    [4/4][100%]  
+    lisp.org               cl-alloy                         [4/4][100%]  
     lisp.org               classimp                         [4/4][100%]  
     lisp.org               cl-calm                          [4/4][100%]  
+    lisp.org               cl-chirp                         [4/4][100%]  
     lisp.org               cl-cpus                          [3/3][100%]  
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  

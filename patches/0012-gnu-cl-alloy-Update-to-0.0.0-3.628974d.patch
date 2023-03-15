@@ -1,0 +1,56 @@
+From 60f1769cc1319c277ea9d03e083add58f30481e4 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 13 Mar 2023 23:49:19 +0000
+Subject: [PATCH 12/17] gnu: cl-alloy: Update to 0.0.0-3.628974d.
+
+* gnu/packages/lisp-xyz.scm (sbcl-alloy): Upate to 0.0.0-3.628974d.
+  [arguments]{asd-systems}: Sort them alphabetically.
+---
+ gnu/packages/lisp-xyz.scm | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index d08bfa6314..d6e3fe835b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -20989,8 +20989,8 @@ (define-public cl-font-discovery
+   (sbcl-package->cl-source-package sbcl-font-discovery))
+ 
+ (define-public sbcl-alloy
+-  (let ((commit "ea02e4576fd92917201b3c9b63dd3cdc72045dbf")
+-        (revision "2"))
++  (let ((commit "628974de537affb5b44ad548347f67c16efffcfc")
++        (revision "3"))
+     (package
+       (name "sbcl-alloy")
+       (version (git-version "0.0.0" revision commit))
+@@ -21002,7 +21002,7 @@ (define-public sbcl-alloy
+                (commit commit)))
+          (file-name (git-file-name "alloy" version))
+          (sha256
+-          (base32 "1g8ibvlajhlbdrmny7ck55ilv1shjdpj38q380wri4mavfymjw5f"))))
++          (base32 "0fx294qwxshgijss000pbjbnbwxqvxyw6p3mva36qljhbbkw2fxy"))))
+       (build-system asdf-build-system/sbcl)
+       (native-inputs
+        (list sbcl-alexandria sbcl-parachute))
+@@ -21014,13 +21014,13 @@ (define-public sbcl-alloy
+        ;; Dismiss alloy-svg, since it is not completed:
+        ;; https://github.com/Shirakumo/alloy/issues/24
+        '(#:asd-systems '("alloy"
+-                         "alloy-windowing"
+                          "alloy-animation"
+-                         "alloy-simple"
+-                         "alloy-simple-presentations"
+                          "alloy-opengl"
+                          "alloy-opengl-msdf"
+-                         "alloy-opengl-png")))
++                         "alloy-opengl-png"
++                         "alloy-simple"
++                         "alloy-simple-presentations"
++                         "alloy-windowing")))
+       (home-page "https://shirakumo.github.io/alloy/")
+       (synopsis
+        "Common Lisp user interface protocol and toolkit implementation")
+-- 
+2.39.2
+

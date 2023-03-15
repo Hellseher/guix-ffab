@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-12 Sun 12:26:38 GMT>
+#+modified: <2023-03-15 Wed 21:32:09 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1091,8 +1091,8 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO Shinmera/Shirakumo [13/21][61%] :author:
-*** DONE alloy [4/4][100%]
+** TODO Shinmera/Shirakumo [13/26][50%] :author:
+*** DONE cl-alloy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:49]
 - https://github.com/Shirakumo/alloy
 - [X] :packed <2021-11-07 Sun>
@@ -1106,7 +1106,7 @@ CLOSED: [2021-11-08 Mon 20:49]
   - [X] closer-mop
   - [X] array-utils
 
-*** DONE chirp [4/4][100%]
+*** DONE cl-chirp [4/4][100%]
 CLOSED: [2021-06-15 Tue 10:00]
   - https://github.com/Shinmera/chirp
   - [X] :packed <2021-05-12 Wed>
@@ -1141,6 +1141,32 @@ CLOSED: [2021-05-08 Sat 10:28]
   + [X] documentation-utils
   + [X] cl-parachute
 
+*** TODO cl-3d-quaternions [3/4][75%] :p3:
+- https://github.com/Shinmera/3d-quaternions
+- synopsis :: A utility library implementing quaternion and dual-quaternion functionality.
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/issue/62195
+- [X] :inputs [4/4][100%]
+  - [X] cl-3d-matrices
+  - [X] cl-3d-vectors
+  - [X] cl-documentation-utils
+  - [X] cl-parachute
+
+*** TODO cl-3d-transforms [3/4][75%] :p3:
+- https://github.com/Shinmera/3d-transforms
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/62195
+- [X] :inputs [5/5][100%]
+  - [X] sbcl-3d-matrices-ffab
+  - [X] sbcl-3d-quaternions
+  - [X] sbcl-3d-vectors-ffab
+  - [X] sbcl-documentation-utils
+  - [X] sbcl-parachute
+
 *** DONE cl-3d-vectors [4/4][100%]
 CLOSED: [2021-05-08 Sat 10:27]
 - https://github.com/Shinmera/3d-vectors
@@ -1152,6 +1178,16 @@ CLOSED: [2021-05-08 Sat 10:27]
 - [X] :inputs [2/2][100%]
   - [X] cl-parachute
   - [X] cl-documentation-utils
+
+*** TODO cl-dns-client [/][%] :p3:
+- https://github.com/Shinmera/dns-client
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/62195
+- [X] :inputs [2/2][100%]
+  - [X] sbcl-documentation-utils
+  - [X] sbcl-unsocket
 
 *** DONE cl-flare [4/4][100%]
 CLOSED: [2021-05-27 Thu 12:08]
@@ -1223,6 +1259,22 @@ CLOSED: [2021-05-11 Tue 12:17]
   - [X] cl-ppcre
   - [X] cl-trivial-indent
 
+*** TODO cl-gltf [3/4][75%] :p3:
+- https://github.com/Shirakumo/cl-gltf
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/62195
+- [X] :inputs [8/8][100%]
+  - [X] sbcl-documentation-utils
+  - [X] sbcl-cffi
+  - [X] sbcl-jzon
+  - [X] sbcl-mmap
+  - [X] sbcl-nibbles
+  - [X] sbcl-qbase64
+  - [X] sbcl-static-vectors
+  - [X] sbcl-trivial-extensible-sequences
+
 *** DONE cl-messagebox [4/4][100%]
 CLOSED: [2021-05-11 Tue 10:21]
 - https://github.com/Shinmera/messagebox
@@ -1259,6 +1311,16 @@ CLOSED: [2021-04-22 Thu 10:17]
 - [X] :inputs [1/1][100%]
   - [X] cl-parachute
 
+*** TODO cl-promise [3/4][75%] :p3:
+- https://github.com/Shinmera/promise
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/62195
+- [X] :inputs [2/2][100%]
+  - [X] sbcl-documentation-utils
+  - [X] sbcl-parachute
+
 *** TODO cl-steamworks [0/4][0%]
 - https://github.com/Shinmera/cl-steamworks
 - synopsis :: A bindings library for the Valve SteamWorks API.
@@ -1281,20 +1343,14 @@ CLOSED: [2021-04-25 Sun 10:11]
   - [X] cl-static-vectors
   - [X] cl-trivial-garbage
 
-*** TODO feedback [0/4][0%] :p1:
+*** TODO cl-feedback [0/4][0%] :p1:
 - https://github.com/Shirakumo/feedback
 - synopsis :: Radiance client/server module for anonymous feedback submission
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** TODO file-notify [0/4][0%]
-- https://github.com/Shinmera/file-notify
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO harmony [0/4][0%]
+*** TODO cl-harmony [0/4][0%]
 - https://github.com/Shirakumo/harmony
 - [ ] :packed
 - [ ] :patch-sent
@@ -1332,7 +1388,7 @@ CLOSED: [2021-04-25 Sun 10:11]
   + [X] zpng
   + [X] jsown
   + [X] swank
-*** TODO qt-libs [1/4][25%]
+*** TODO cl-qt-libs [1/4][25%]
 - https://github.com/Shinmera/qt-libs
 - [X] :packed <2021-05-12 Wed>
 - [ ] :patch-sent
@@ -1597,7 +1653,7 @@ CLOSED: [2023-02-27 Mon 21:08]
   - [X] cl-cairo2
   - [X] cl-slime-swank
     - [X] :packed <2023-02-24 Fri>
-*** TODO cl-pkr [0/4][0%] :p3:
+*** TODO cl-pkr [0/4][0%] :p4:
 - https://github.com/VitoVan/cl-pkr
 - synopsis :: Cross platform colour picker.
 - [ ] :packed
