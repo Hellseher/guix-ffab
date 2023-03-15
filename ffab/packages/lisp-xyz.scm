@@ -179,6 +179,35 @@ alternative 4x4 matrix representation.")
 (define-public cl-3d-transforms
   (sbcl-package->cl-source-package sbcl-3d-transforms))
 
+;; 20230312T214734+0000
+(define-public sbcl-trivial-extensible-sequences
+  (let ((commit "d40b2da23716601578b1f645727047f80baeb49a")
+        (revision "0"))
+    (package
+      (name "sbcl-trivial-extensible-sequences")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/trivial-extensible-sequences")
+               (commit commit)))
+         (file-name (git-file-name "trivial-extensible-sequences" version))
+         (sha256
+          (base32 "0352psdd8j0phjycr6ldckwspyal4jcf0f2fizi6fwdp7nvadng7"))))
+      (build-system asdf-build-system/sbcl)
+      (home-page "https://shinmera.github.io/trivial-extensible-sequences/")
+      (synopsis "Portability library for the extensible sequences protocol")
+      (description
+       "This package provides a portability layer for the extensible sequences standard
+extension to Common Lisp.  Extensible sequences allow you to create your own
+sequence types that integrate with the rest of the functions and operations that
+interact with sequences.")
+      (license license:zlib))))
+
+(define-public cl-trivial-extensible-sequences
+  (sbcl-package->cl-source-package sbcl-trivial-extensible-sequences))
+
 ;; 20211107T173633+0000
 ;; (define-public sbcl-alloy
 ;; added-to-upstream: 6ec0c6c7678234ff5ab4c892903e0b682cbd876d
