@@ -276,9 +276,6 @@ transition of promise objects in your control, making it easy to integrate.")
        "This package provides a Common Lisp parser for glTF file format.")
       (license license:zlib))))
 
-(define-public ecl-cl-gltf
-  (sbcl-package->ecl-package sbcl-cl-gltf))
-
 (define-public cl-gltf
   (sbcl-package->cl-source-package sbcl-cl-gltf))
 
