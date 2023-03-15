@@ -241,6 +241,47 @@ transition of promise objects in your control, making it easy to integrate.")
 (define-public cl-promise
   (sbcl-package->cl-source-package sbcl-promise))
 
+;; 20230314T002946+0000
+(define-public sbcl-cl-gltf
+  (let ((commit "7f9193acec80cad775b61b1c7a125c14a7b35a0c")
+        (revision "0"))
+    (package
+      (name "sbcl-cl-gltf")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shirakumo/cl-gltf")
+               (commit commit)))
+         (file-name (git-file-name "cl-gltf" version))
+         (sha256
+          (base32 "0ni42242a4x052dqlycwrg5j6piwm87s4wgbn2q0a9s3l9f811vk"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       ;; No tests provided.
+       `(#:tests? #f))
+      (inputs
+       (list sbcl-documentation-utils
+             sbcl-cffi
+             sbcl-jzon
+             sbcl-mmap
+             sbcl-nibbles
+             sbcl-qbase64
+             sbcl-static-vectors
+             sbcl-trivial-extensible-sequences))
+      (home-page "https://shirakumo.github.io/cl-gltf/")
+      (synopsis "Common Lisp parser for glTF file format")
+      (description
+       "This package provides a Common Lisp parser for glTF file format.")
+      (license license:zlib))))
+
+(define-public ecl-cl-gltf
+  (sbcl-package->ecl-package sbcl-cl-gltf))
+
+(define-public cl-gltf
+  (sbcl-package->cl-source-package sbcl-cl-gltf))
+
 ;; 20211107T173633+0000
 ;; (define-public sbcl-alloy
 ;; added-to-upstream: 6ec0c6c7678234ff5ab4c892903e0b682cbd876d
