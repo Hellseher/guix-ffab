@@ -108,6 +108,41 @@
 ;; https://github.com/Shinmera
 ;;+begin-shirakumo
 
+;; 20230312T202241+0000
+(define-public sbcl-3d-quaternions
+  (let ((commit "b79c15cca8d9c409216a6cee8ec9e182dcdec9e2")
+        (revision "0"))
+    (package
+      (name "sbcl-3d-quaternions")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shinmera/3d-quaternions")
+               (commit commit)))
+         (file-name (git-file-name "3d-quaternions" version))
+         (sha256
+          (base32 "1mrq6yhb90mhvxdkg3fx58ci5yj5xlixbbzf1q6p76wyq40qjv76"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       (list sbcl-parachute))
+      (inputs
+       (list sbcl-3d-matrices-ffab sbcl-3d-vectors-ffab sbcl-documentation-utils))
+      (home-page "https://shinmera.github.io/3d-quaternions/")
+      (synopsis "Quaternion and dual-quaternion functionality in Common Lisp")
+      (description
+       "This is a library for quaternions.  It contains most of the quaternion
+operations one would usually expect out of such a library and offers them both
+in non-modifying and modifying versions where applicable.  It also tries to be
+efficient where plausible.  Each quaternion is made up of @code{float}s, which by
+default are @code{single-float}s, as they do not require value boxing on most
+modern systems and compilers.")
+      (license license:zlib))))
+
+(define-public cl-3d-quaternions
+  (sbcl-package->cl-source-package sbcl-3d-quaternions))
+
 ;; 20211107T173633+0000
 ;; (define-public sbcl-alloy
 ;; added-to-upstream: 6ec0c6c7678234ff5ab4c892903e0b682cbd876d
