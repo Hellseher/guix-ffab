@@ -109,208 +109,34 @@
 ;;+begin-shirakumo
 
 ;; 20230312T202241+0000
-(define-public sbcl-3d-quaternions
-  (let ((commit "b79c15cca8d9c409216a6cee8ec9e182dcdec9e2")
-        (revision "0"))
-    (package
-      (name "sbcl-3d-quaternions")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/3d-quaternions")
-               (commit commit)))
-         (file-name (git-file-name "3d-quaternions" version))
-         (sha256
-          (base32 "1mrq6yhb90mhvxdkg3fx58ci5yj5xlixbbzf1q6p76wyq40qjv76"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-parachute))
-      (inputs
-       (list sbcl-3d-matrices-ffab sbcl-3d-vectors-ffab sbcl-documentation-utils))
-      (home-page "https://shinmera.github.io/3d-quaternions/")
-      (synopsis "Quaternion and dual-quaternion functionality in Common Lisp")
-      (description
-       "This is a library for quaternions.  It contains most of the quaternion
-operations one would usually expect out of such a library and offers them both
-in non-modifying and modifying versions where applicable.  It also tries to be
-efficient where plausible.  Each quaternion is made up of @code{float}s, which by
-default are @code{single-float}s, as they do not require value boxing on most
-modern systems and compilers.")
-      (license license:zlib))))
-
-(define-public cl-3d-quaternions
-  (sbcl-package->cl-source-package sbcl-3d-quaternions))
+;; (define-public sbcl-3d-quaternions
+;; added-to-upstream ff7649d379cc9f100c68232a28b6a8804682ae58
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20230312T213827+0000
-(define-public sbcl-3d-transforms
-  (let ((commit "1d44509387d0747cd0351e95a533eca609058632")
-        (revision "0"))
-    (package
-      (name "sbcl-3d-transforms")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/3d-transforms")
-               (commit commit)))
-         (file-name (git-file-name "3d-transforms" version))
-         (sha256
-          (base32 "03pmv7dh1j6kl16ch6lnvxzjrld4jbr3jx8slzkiipgzdxg74pcx"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-parachute))
-      (inputs
-       (list sbcl-3d-matrices-ffab
-             sbcl-3d-quaternions
-             sbcl-3d-vectors-ffab
-             sbcl-documentation-utils))
-      (home-page "https://shinmera.github.io/3d-transforms/")
-      (synopsis "Common structure to encapsulate spatial transformations in Common Lisp")
-      (description
-       "This is a library that uses the other 3d-* math libraries to present an
-encapsulation for a spatial transformation.  It offers convenience functions for
-operating on such transformations and for converting between them and the
-alternative 4x4 matrix representation.")
-      (license license:zlib))))
-
-(define-public cl-3d-transforms
-  (sbcl-package->cl-source-package sbcl-3d-transforms))
+;; (define-public sbcl-3d-transforms
+;; added-to-upstream 92db5a79db8aabd20e71e675304267326371ef3d
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20230312T214734+0000
-(define-public sbcl-trivial-extensible-sequences
-  (let ((commit "d40b2da23716601578b1f645727047f80baeb49a")
-        (revision "0"))
-    (package
-      (name "sbcl-trivial-extensible-sequences")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/trivial-extensible-sequences")
-               (commit commit)))
-         (file-name (git-file-name "trivial-extensible-sequences" version))
-         (sha256
-          (base32 "0352psdd8j0phjycr6ldckwspyal4jcf0f2fizi6fwdp7nvadng7"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://shinmera.github.io/trivial-extensible-sequences/")
-      (synopsis "Portability library for the extensible sequences protocol")
-      (description
-       "This package provides a portability layer for the extensible sequences standard
-extension to Common Lisp.  Extensible sequences allow you to create your own
-sequence types that integrate with the rest of the functions and operations that
-interact with sequences.")
-      (license license:zlib))))
-
-(define-public cl-trivial-extensible-sequences
-  (sbcl-package->cl-source-package sbcl-trivial-extensible-sequences))
+;; (define-public sbcl-trivial-extensible-sequences
+;; added-to-upstream df6edddc5c6561b2e52111e380d6f9cf3b6ac523
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20230312T220004+0000
-(define-public sbcl-promise
-  (let ((commit "801db8f853da7935ae2e487fd7f8763acbc5ad2a")
-        (revision "0"))
-    (package
-      (name "sbcl-promise")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/promise")
-               (commit commit)))
-         (file-name (git-file-name "promise" version))
-         (sha256
-          (base32 "07cvz6vb5y1d9vndcwq7q1cp54aqvyqzv6wk8vmymbz3lawq2wsn"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-parachute))
-      (inputs
-       (list sbcl-documentation-utils))
-      (home-page "https://shinmera.github.io/promise/")
-      (synopsis "Promise mechanism for asynchronous operations")
-      (description
-       "This library implements a basic promise datastructure, which is useful for
-dealing with asynchronous behaviours.  Importantly, this library does not use any
-other libraries or frameworks, and instead leaves the execution and state
-transition of promise objects in your control, making it easy to integrate.")
-      (license license:zlib))))
-
-(define-public cl-promise
-  (sbcl-package->cl-source-package sbcl-promise))
+;; (define-public sbcl-promise
+;; added-to-upstream 4ec1589a43cec5350e651e96d61aa125bd9bdcb9
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20230314T002946+0000
-(define-public sbcl-cl-gltf
-  (let ((commit "7f9193acec80cad775b61b1c7a125c14a7b35a0c")
-        (revision "0"))
-    (package
-      (name "sbcl-cl-gltf")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/cl-gltf")
-               (commit commit)))
-         (file-name (git-file-name "cl-gltf" version))
-         (sha256
-          (base32 "0ni42242a4x052dqlycwrg5j6piwm87s4wgbn2q0a9s3l9f811vk"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       ;; No tests provided.
-       `(#:tests? #f))
-      (inputs
-       (list sbcl-documentation-utils
-             sbcl-cffi
-             sbcl-jzon
-             sbcl-mmap
-             sbcl-nibbles
-             sbcl-qbase64
-             sbcl-static-vectors
-             sbcl-trivial-extensible-sequences))
-      (home-page "https://shirakumo.github.io/cl-gltf/")
-      (synopsis "Common Lisp parser for glTF file format")
-      (description
-       "This package provides a Common Lisp parser for glTF file format.")
-      (license license:zlib))))
-
-(define-public cl-gltf
-  (sbcl-package->cl-source-package sbcl-cl-gltf))
+;; (define-public sbcl-cl-gltf
+;; added-to-upstream 37b70cfece179dc5f925d977d3c1c0c441d0c097
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20230314T220728+0000
-(define-public sbcl-dns-client
-  (let ((commit "9f252e9c2bb61c57a6cd367e21ad366b0d3e87e0")
-        (revision "0"))
-    (package
-      (name "sbcl-dns-client")
-      (version (git-version "1.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shinmera/dns-client")
-               (commit commit)))
-         (file-name (git-file-name "cl-gltf" version))
-         (sha256
-          (base32 "1b6g2wvydwmv1k68favjyq4gfalfxfyl5i0hyh640wdaz2rfvi4n"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       ;; No tests provided.
-       `(#:tests? #f))
-      (inputs
-       (list sbcl-documentation-utils sbcl-usocket))
-      (home-page "https://shinmera.github.io/dns-client")
-      (synopsis "DNS protocol client for Common Lisp")
-      (description
-       "This package provides a pure-lisp implementation of a DNS client.  It can be
-used to resolve hostnames, reverse-lookup IP addresses, and fetch other kinds of
-DNS records.")
-      (license license:zlib))))
-
-(define-public cl-dns-client
-  (sbcl-package->cl-source-package sbcl-dns-client))
+;; (define-public sbcl-dns-client
+;; added-to-upstream 12b2507295d77be4ea5e3a5e3ef3b9c751b08301
+;; CommitDate: Thu Mar 16 15:50:29 2023 +0100
 
 ;; 20211107T173633+0000
 ;; (define-public sbcl-alloy

@@ -18,7 +18,7 @@
     lisp.org               vsedach                 [1/2][50%]    :author:
     lisp.org               VitoVan                 [1/2][50%]    :author:
     lisp.org               vindarel                [0/1][0%]     :author:
-    lisp.org               Shinmera/Shirakumo      [13/26][50%]  :author:
+    lisp.org               Shinmera/Shirakumo      [18/25][72%]  :author:
     lisp.org               s-expressionists        [0/1][0%]     :author:
     lisp.org               mfiano                  [4/4][100%]   :author:
     lisp.org               markcox80               [1/2][50%]    :author:
@@ -70,7 +70,7 @@
     astronomy.org          ruven                   [0/1][0%]     :author:
     astronomy.org          revoltek                [0/1][0%]     :author:
     astronomy.org          QuatroPe                [1/2][50%]    :author:
-    astronomy.org          poliastro               [0/1][0%]     :author:
+    astronomy.org          poliastro               [2/2][100%]   :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]     :author:
     astronomy.org          OpenSpace               [0/2][0%]     :author:
     astronomy.org          OpenPHDGuiding          [0/1][0%]     :author:
@@ -239,11 +239,6 @@
     node-xyz.org           bootstrap                      [/][%]      :p3:
     lisp.org               rib                            [0/4][0%]   :p3:
     lisp.org               cl-rabbit                      [0/4][0%]   :p3:
-    lisp.org               cl-promise                     [3/4][75%]  :p3:
-    lisp.org               cl-gltf                        [3/4][75%]  :p3:
-    lisp.org               cl-dns-client                  [/][%]      :p3:
-    lisp.org               cl-3d-transforms               [3/4][75%]  :p3:
-    lisp.org               cl-3d-quaternions              [3/4][75%]  :p3:
     julia-xyz.org          julia-images                   [0/4][0%]   :p3:
     julia-xyz.org          julia-imagedistances           [/][%]      :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]  :p3:
@@ -254,7 +249,6 @@
     docker.org             dive                           [0/4][0%]   :p3:
     astronomy.org          SPICE                          [/][%]      :p3:
     astronomy.org          python-radiospectra            [/][%]      :p3:
-    astronomy.org          python-poliastro               [3/4][75%]  :p3:
     astronomy.org          python-ndcube                  [/][%]      :p3:
     astronomy.org          NEAT                           [0/5][0%]   :p3:
     astronomy.org          kepler-project                 [0/4][0%]   :p3:
@@ -318,7 +312,10 @@
     python.org             python-sphinx-changelog        [0/4][0%]   :p1:
     python.org             python-sphinx-automodapi       [1/4][25%]  :p1:
     python.org             python-opencv                  [0/4][0%]   :p1:
+    lisp.org               cl-qt-libs                     [0/4][0%]   :p1:
+    lisp.org               cl-mixed                       [1/4][25%]  :p1:
     lisp.org               cl-jscl                        [/][%]      :p1:
+    lisp.org               cl-harmony                     [0/4][0%]   :p1:
     lisp.org               cl-feedback                    [0/4][0%]   :p1:
     julia-xyz.org          julia-vectorizationbase        [0/4][0%]   :p1:
     julia-xyz.org          julia-staticarrayinterface     [0/4][0%]   :p1:
@@ -371,10 +368,7 @@
     lisp.org               kandria                        [0/4][0%]   
     lisp.org               cl-torrents                    [0/4][0%]   
     lisp.org               cl-steamworks                  [0/4][0%]   
-    lisp.org               cl-qt-libs                     [1/4][25%]  
     lisp.org               cl-plplot                      [0/4][0%]   
-    lisp.org               cl-mixed                       [1/4][25%]  
-    lisp.org               cl-harmony                     [0/4][0%]   
     lisp.org               cl-bodge                       [0/4][0%]   
     lisp.org               claw                           [0/4][0%]   
     high-availability.org  corosync-qdevice               [1/4][25%]  
@@ -415,9 +409,11 @@
     astronomy.org          python-asdf-unit-schemas         [4/4][100%]  
     astronomy.org          python-asdf-wcs-schemas          [2/2][100%]  
     astronomy.org          python-astropy                   [4/4][100%]  
+    astronomy.org          python-czml3                     [4/4][100%]  
     astronomy.org          python-drms                      [5/5][100%]  
     astronomy.org          python-hvpy                      [4/4][100%]  
     astronomy.org          python-mpl-animations            [4/4][100%]  
+    astronomy.org          python-poliastro                 [4/4][100%]  
     astronomy.org          python-poppy                     [4/4][100%]  
     astronomy.org          python-reproject                 [4/4][100%]  
     astronomy.org          python-spherical-geometry        [4/4][100%]  
@@ -451,7 +447,6 @@
     julia-xyz.org          julia-optionaldata               [4/4][100%]  
     julia-xyz.org          julia-remotefiles                [4/4][100%]  
     lisp.org               3b-bmfont                        [4/4][100%]  
-    lisp.org               adopt                            [4/4][100%]  
     lisp.org               asdf-system-connections          [3/3][100%]  
     lisp.org               assertion-error                  [4/4][100%]  
     lisp.org               assert-p                         [4/4][100%]  
@@ -460,14 +455,19 @@
     lisp.org               cepl                             [4/4][100%]  
     lisp.org               chronicity                       [4/4][100%]  
     lisp.org               cl-3d-matrices                   [4/4][100%]  
+    lisp.org               cl-3d-quaternions                [4/4][100%]  
+    lisp.org               cl-3d-transforms                 [4/4][100%]  
     lisp.org               cl-3d-vectors                    [4/4][100%]  
+    lisp.org               cl-adopt                         [4/4][100%]  
     lisp.org               cl-alloy                         [4/4][100%]  
     lisp.org               classimp                         [4/4][100%]  
     lisp.org               cl-calm                          [4/4][100%]  
     lisp.org               cl-chirp                         [4/4][100%]  
+    lisp.org               cl-coalton                       [4/4][100%]  
     lisp.org               cl-cpus                          [3/3][100%]  
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  
+    lisp.org               cl-dns-client                    [4/4][100%]  
     lisp.org               cl-flare                         [4/4][100%]  
     lisp.org               cl-flow                          [4/4][100%]  
     lisp.org               cl-for                           [4/4][100%]  
@@ -475,6 +475,7 @@
     lisp.org               cl-glfw3                         [4/4][100%]  
     lisp.org               cl-glop                          [4/4][100%]  
     lisp.org               cl-glsl-toolkit                  [4/4][100%]  
+    lisp.org               cl-gltf                          [4/4][100%]  
     lisp.org               cl-graph                         [4/4][100%]  
     lisp.org               cl-gss                           [4/4][100%]  
     lisp.org               cl-liballegro                    [4/4][100%]  
@@ -485,13 +486,13 @@
     lisp.org               cl-opengl                        [4/4][100%]  
     lisp.org               cl-pathname-utils                [4/4][100%]  
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
+    lisp.org               cl-promise                       [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
     lisp.org               cl-sdl2                          [4/4][100%]  
     lisp.org               cl-sdl2-mixer                    [4/4][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
     lisp.org               cl-terrable                      [4/4][100%]  
     lisp.org               cl-trivial-channels              [4/4][100%]  
-    lisp.org               coalton                          [4/4][100%]  
     lisp.org               Djula                            [4/4][100%]  
     lisp.org               eventbus                         [4/4][100%]  
     lisp.org               fn                               [4/4][100%]  

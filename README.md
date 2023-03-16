@@ -1,13 +1,13 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#org044ec11)
-2.  [Installation](#orgcec2c5c)
-    1.  [Use as channel](#org295cfc9)
-    2.  [Use as build/install source](#org4e74186)
-3.  [References](#org85f80e4)
-    1.  [Guix channels](#org53cdb98)
-    2.  [etc](#org84ae274)
+1.  [Project structure and layout](#org3e3d13e)
+2.  [Installation](#orga8649a3)
+    1.  [Use as channel](#org8affe1e)
+    2.  [Use as build/install source](#orgfc71e5c)
+3.  [References](#org07c22c4)
+    1.  [Guix channels](#orgf8d4c46)
+    2.  [etc](#orga16a4c6)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -23,7 +23,7 @@ such as **Common Lisp**, **Golan** and **Python**.
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="org044ec11"></a>
+<a id="org3e3d13e"></a>
 
 # Project structure and layout
 
@@ -48,23 +48,23 @@ Layout follows Guix upstream.
 -   **./TODO.md:** Generated report from packaging process in `org/` directory.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
-    :guix-commit 1bed1d848166a4081051b4e87a5ec4942ddb3397
-    :accepted 144
-    :pending 123
+    :guix-commit 9cb17464679de2c29aa6db0b0a11142bfb4ca042
+    :accepted 162
+    :pending 165
     
-    :astronomy 25
-    :golang 47
+    :astronomy 24
+    :golang 70
     :lisp 14
     :python 13
-    :misc 22
+    :misc 20
     
-    :date Sat 28 Jan 22:20:28 GMT 2023
+    :date Thu 16 Mar 22:16:48 GMT 2023
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
 
-<a id="orgcec2c5c"></a>
+<a id="orga8649a3"></a>
 
 # Installation
 
@@ -72,7 +72,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org295cfc9"></a>
+<a id="org8affe1e"></a>
 
 ## Use as channel
 
@@ -85,7 +85,7 @@ manager.
            %default-channels)
 
 
-<a id="org4e74186"></a>
+<a id="orgfc71e5c"></a>
 
 ## Use as build/install source
 
@@ -94,7 +94,7 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="org85f80e4"></a>
+<a id="org07c22c4"></a>
 
 # References
 
@@ -109,7 +109,7 @@ Main official resources:
 -   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="org53cdb98"></a>
+<a id="orgf8d4c46"></a>
 
 ## Guix channels
 
@@ -117,7 +117,7 @@ Main official resources:
 -   **nonguix:** Guix channel for packages that can&rsquo;t be included upstream. Please do NOT promote or
     refer to this repository on any official Guix communication channels.
     <https://gitlab.com/nonguix/nonguix>
--   **guixrus:** Curated collection of packages with goal to promote them to upastream
+-   **guixrus:** Curated collection of packages with goal to promote them to upstream
     <https://sr.ht/~whereiseveryone/guixrus/>
 -   **Guix Gaming Channels:** A collection of gaming-oriented channels for Guix
     <https://gitlab.com/guix-gaming-channels>
@@ -127,7 +127,7 @@ Main official resources:
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="org84ae274"></a>
+<a id="orga16a4c6"></a>
 
 ## etc
 

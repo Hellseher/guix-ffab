@@ -331,36 +331,9 @@ fragments\" which contain information useful to end users.")
     (license license:expat)))
 
 ;; 20230301T210252+0000
-(define-public python-czml3
-  (package
-    (name "python-czml3")
-    (version "0.7.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/poliastro/czml3")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0pbwcsmc9nw591rck586ca9hwwhmm54rjjmp8gflhzq8b7f48lkc"))))
-    (build-system pyproject-build-system)
-    (propagated-inputs
-     (list python-attrs
-           python-dateutil
-           python-w3lib))
-    (native-inputs
-     (list python-astropy
-           python-pytest
-           python-pytest-cov
-           python-pytest-mypy))
-    (home-page "https://github.com/poliastro/czml3")
-    (synopsis "Python library to write CZML")
-    (description
-     "Python 3 library to write CZML, a JSON format for describing a
-time-dynamic graphical scene, primarily for display in a web browser running
-Cesium.")
-    (license license:expat)))
+;; (define-public python-czml3
+;; added-to-upstream 0689a842710e5831d9de12964ec1fd38b360e022
+;; CommitDate: Thu Mar 16 00:10:58 2023 +0100
 
 ;; 20230308T213240+0000
 (define-public python-plotly-ffab

@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-08 Wed 23:32:57 GMT>
+#+modified: <2023-03-16 Thu 22:13:41 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1770,16 +1770,34 @@ https://github.com/PaulMcMillan-Astro/
 - [ ] :inputs [0/1][0%]
   - [ ] libebf-c-cpp
 
-** TODO poliastro [0/1][0%] :author:
+** TODO poliastro [2/2][100%] :author:
 - https://github.com/poliastro
 - https://www.poliastro.space/
 
-*** TODO python-poliastro [3/4][75%] :p3:
+*** DONE python-czml3 [4/4][100%]
+CLOSED: [2023-03-16 Thu 21:57]
+- https://github.com/poliastro/czml3
+- synopsis :: Python library to write CZML
+- [X] :packed <2023-03-01 Wed>
+- [X] :patch-sent <2023-03-08 Wed>
+- [X] :paptch-applied-upstream <2023-03-16 Thu>
+  - https://issues.guix.gnu.org/62061
+- [X] :inputs [7/7][100%]
+  - [X] python-astropy
+  - [X] python-attrs
+  - [X] python-dateutil
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-pytest-mypy
+  - [X] python-w3lib
+
+*** DONE python-poliastro [4/4][100%]
+CLOSED: [2023-03-16 Thu 21:54]
 - https://github.com/poliastro/poliastro
 - synopsis :: Astrodynamics in Python
 - [X] :packed <2023-03-06 Mon>
 - [X] :patch-sent <2023-03-08 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-03-16 Thu>
   - https://issues.guix.gnu.org/62061
 - [X] :inputs [20/20][100%]
   - [X] python-astropy

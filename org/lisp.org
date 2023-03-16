@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-15 Wed 21:32:09 GMT>
+#+modified: <2023-03-16 Thu 22:10:44 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1091,7 +1091,61 @@ CLOSED: [2022-11-20 Sun 21:33]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO Shinmera/Shirakumo [13/26][50%] :author:
+** TODO Shinmera/Shirakumo [18/25][72%] :author:
+*** DONE cl-3d-matrices [4/4][100%]
+CLOSED: [2021-05-08 Sat 10:28]
+- https://github.com/Shinmera/3d-matrices
+- synopsis :: A utility library implementing 2x2, 3x3, 4x4, and NxM matrix functionality.
+- [X] :packed <2021-05-03 Mon>
+- [X] :patch-sent <2021-05-03 Mon>
+- [X] :patch-applied-upstream <2021-05-08 Sat>
+  - https://issues.guix.gnu.org/48208
+- [X] :inputs [3/3][100%]
+  + [X] cl-3d-vectors
+    - [X] :packed <2021-04-11 Sun>
+  + [X] documentation-utils
+  + [X] cl-parachute
+
+*** DONE cl-3d-quaternions [4/4][100%]
+CLOSED: [2023-03-16 Thu 22:10]
+- https://github.com/Shinmera/3d-quaternions
+- synopsis :: A utility library implementing quaternion and dual-quaternion functionality.
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [X] :patch-applied-upstream <2023-03-16 Thu>
+  - https://issues.guix.gnu.org/issue/62195
+- [X] :inputs [4/4][100%]
+  - [X] cl-3d-matrices
+  - [X] cl-3d-vectors
+  - [X] cl-documentation-utils
+  - [X] cl-parachute
+
+*** DONE cl-3d-transforms [4/4][100%]
+CLOSED: [2023-03-16 Thu 22:04]
+- https://github.com/Shinmera/3d-transforms
+- [X] :packed <2023-03-12 Sun>
+- [X] :patch-sent <2023-03-14 Tue>
+- [X] :patch-applied-upstream <2023-03-16 Thu>
+  - https://issues.guix.gnu.org/62195
+- [X] :inputs [5/5][100%]
+  - [X] cl-3d-matrices-ffab
+  - [X] cl-3d-quaternions
+  - [X] cl-3d-vectors-ffab
+  - [X] cl-documentation-utils
+  - [X] cl-parachute
+
+*** DONE cl-3d-vectors [4/4][100%]
+CLOSED: [2021-05-08 Sat 10:27]
+- https://github.com/Shinmera/3d-vectors
+- synopsis :: A library for 2D, 3D, and 4D vectors in CL.
+- [X] :packed <2021-04-11 Sun>
+- [X] :patch-sent <2021-05-03 Mon>
+- [X] :patch-applied-upstream <2021-05-08 Sat>
+  + https://issues.guix.gnu.org/48208
+- [X] :inputs [2/2][100%]
+  - [X] cl-parachute
+  - [X] cl-documentation-utils
+
 *** DONE cl-alloy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:49]
 - https://github.com/Shirakumo/alloy
@@ -1127,67 +1181,24 @@ CLOSED: [2021-06-15 Tue 10:00]
     + [X] uuid
     + [X] yason
 
-*** DONE cl-3d-matrices [4/4][100%]
-CLOSED: [2021-05-08 Sat 10:28]
-- https://github.com/Shinmera/3d-matrices
-- synopsis :: A utility library implementing 2x2, 3x3, 4x4, and NxM matrix functionality.
-- [X] :packed <2021-05-03 Mon>
-- [X] :patch-sent <2021-05-03 Mon>
-- [X] :patch-applied-upstream <2021-05-08 Sat>
-  - https://issues.guix.gnu.org/48208
-- [X] :inputs [3/3][100%]
-  + [X] cl-3d-vectors
-    - [X] :packed <2021-04-11 Sun>
-  + [X] documentation-utils
-  + [X] cl-parachute
-
-*** TODO cl-3d-quaternions [3/4][75%] :p3:
-- https://github.com/Shinmera/3d-quaternions
-- synopsis :: A utility library implementing quaternion and dual-quaternion functionality.
-- [X] :packed <2023-03-12 Sun>
-- [X] :patch-sent <2023-03-14 Tue>
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/issue/62195
-- [X] :inputs [4/4][100%]
-  - [X] cl-3d-matrices
-  - [X] cl-3d-vectors
-  - [X] cl-documentation-utils
-  - [X] cl-parachute
-
-*** TODO cl-3d-transforms [3/4][75%] :p3:
-- https://github.com/Shinmera/3d-transforms
-- [X] :packed <2023-03-12 Sun>
-- [X] :patch-sent <2023-03-14 Tue>
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/62195
-- [X] :inputs [5/5][100%]
-  - [X] sbcl-3d-matrices-ffab
-  - [X] sbcl-3d-quaternions
-  - [X] sbcl-3d-vectors-ffab
-  - [X] sbcl-documentation-utils
-  - [X] sbcl-parachute
-
-*** DONE cl-3d-vectors [4/4][100%]
-CLOSED: [2021-05-08 Sat 10:27]
-- https://github.com/Shinmera/3d-vectors
-- synopsis :: A library for 2D, 3D, and 4D vectors in CL.
-- [X] :packed <2021-04-11 Sun>
-- [X] :patch-sent <2021-05-03 Mon>
-- [X] :patch-applied-upstream <2021-05-08 Sat>
-  + https://issues.guix.gnu.org/48208
-- [X] :inputs [2/2][100%]
-  - [X] cl-parachute
-  - [X] cl-documentation-utils
-
-*** TODO cl-dns-client [/][%] :p3:
+*** DONE cl-dns-client [4/4][100%]
+CLOSED: [2023-03-16 Thu 22:04]
 - https://github.com/Shinmera/dns-client
 - [X] :packed <2023-03-12 Sun>
 - [X] :patch-sent <2023-03-14 Tue>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-03-16 Thu>
   - https://issues.guix.gnu.org/62195
 - [X] :inputs [2/2][100%]
-  - [X] sbcl-documentation-utils
-  - [X] sbcl-unsocket
+  - [X] cl-documentation-utils
+  - [X] cl-unsocket
+
+*** TODO cl-feedback [0/4][0%] :p1:
+- https://github.com/Shirakumo/feedback
+- synopsis :: Radiance client/server module for anonymous feedback submission
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 *** DONE cl-flare [4/4][100%]
 CLOSED: [2021-05-27 Thu 12:08]
@@ -1259,21 +1270,30 @@ CLOSED: [2021-05-11 Tue 12:17]
   - [X] cl-ppcre
   - [X] cl-trivial-indent
 
-*** TODO cl-gltf [3/4][75%] :p3:
+*** DONE cl-gltf [4/4][100%]
+CLOSED: [2023-03-16 Thu 22:05]
 - https://github.com/Shirakumo/cl-gltf
 - [X] :packed <2023-03-12 Sun>
 - [X] :patch-sent <2023-03-14 Tue>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-03-16 Thu>
   - https://issues.guix.gnu.org/62195
 - [X] :inputs [8/8][100%]
-  - [X] sbcl-documentation-utils
-  - [X] sbcl-cffi
-  - [X] sbcl-jzon
-  - [X] sbcl-mmap
-  - [X] sbcl-nibbles
-  - [X] sbcl-qbase64
-  - [X] sbcl-static-vectors
-  - [X] sbcl-trivial-extensible-sequences
+  - [X] cl-documentation-utils
+  - [X] cl-cffi
+  - [X] cl-jzon
+  - [X] cl-mmap
+  - [X] cl-nibbles
+  - [X] cl-qbase64
+  - [X] cl-static-vectors
+  - [X] cl-trivial-extensible-sequences
+
+*** TODO cl-harmony [0/4][0%] :p1:
+- https://github.com/Shirakumo/harmony
+- synopsis :: A Common Lisp sound system
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 *** DONE cl-messagebox [4/4][100%]
 CLOSED: [2021-05-11 Tue 10:21]
@@ -1288,7 +1308,7 @@ CLOSED: [2021-05-11 Tue 10:21]
   - [X] cl-trivial-features
   - [X] zenity
 
-*** TODO cl-mixed [1/4][25%]
+*** TODO cl-mixed [1/4][25%] :p1:
 https://github.com/Shirakumo/cl-mixed
 - [ ] :packed
 - [ ] :patch-sent
@@ -1311,15 +1331,23 @@ CLOSED: [2021-04-22 Thu 10:17]
 - [X] :inputs [1/1][100%]
   - [X] cl-parachute
 
-*** TODO cl-promise [3/4][75%] :p3:
+*** DONE cl-promise [4/4][100%]
+CLOSED: [2023-03-16 Thu 22:05]
 - https://github.com/Shinmera/promise
 - [X] :packed <2023-03-12 Sun>
 - [X] :patch-sent <2023-03-14 Tue>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream <2023-03-16 Thu>
   - https://issues.guix.gnu.org/62195
 - [X] :inputs [2/2][100%]
-  - [X] sbcl-documentation-utils
-  - [X] sbcl-parachute
+  - [X] cl-documentation-utils
+  - [X] cl-parachute
+
+*** TODO cl-qt-libs [0/4][0%] :p1:
+- https://github.com/Shinmera/qt-libs
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 *** TODO cl-steamworks [0/4][0%]
 - https://github.com/Shinmera/cl-steamworks
@@ -1328,6 +1356,7 @@ CLOSED: [2021-04-22 Thu 10:17]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+
 *** DONE cl-terrable [4/4][100%]
 CLOSED: [2021-04-25 Sun 10:11]
 - https://github.com/Shirakumo/terrable.git
@@ -1343,28 +1372,15 @@ CLOSED: [2021-04-25 Sun 10:11]
   - [X] cl-static-vectors
   - [X] cl-trivial-garbage
 
-*** TODO cl-feedback [0/4][0%] :p1:
-- https://github.com/Shirakumo/feedback
-- synopsis :: Radiance client/server module for anonymous feedback submission
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO cl-harmony [0/4][0%]
-- https://github.com/Shirakumo/harmony
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
 *** TODO kandria [0/4][0%]
 - https://github.com/Shinmera/kandria
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [4/26][15%]
+- [-] :inputs [6/26][23%]
   + [X] deploy
-  + [ ] trial-glfw
-  + [ ] trial-alloy
+  + [X] trial-glfw
+  + [X] trial-alloy
   + [ ] trial-harmony
   + [ ] trial-steam
   + [ ] trial-notify
@@ -1388,12 +1404,7 @@ CLOSED: [2021-04-25 Sun 10:11]
   + [X] zpng
   + [X] jsown
   + [X] swank
-*** TODO cl-qt-libs [1/4][25%]
-- https://github.com/Shinmera/qt-libs
-- [X] :packed <2021-05-12 Wed>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+
 *** DONE radiance [4/4][100%]
 CLOSED: [2021-02-04 Thu 00:28]
 - https://github.com/Shirakumo/radiance
@@ -1587,7 +1598,7 @@ CLOSED: [2022-11-21 Mon 20:13]
 - https://github.com/sjl
 - https://stevelosh.com/projects/
 - author :: Steve Losh
-*** DONE adopt [4/4][100%]
+*** DONE cl-adopt [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:12]
 - https://github.com/sjl/adopt
 - synopsis :: Damn OPTion parsing library.
@@ -1603,7 +1614,7 @@ CLOSED: [2022-11-21 Mon 20:12]
 ** DONE stylewarning [1/1][100%] :author:
 - https://github.com/stylewarning
 - author :: Robert Smith
-*** DONE coalton [4/4][100%]
+*** DONE cl-coalton [4/4][100%]
 CLOSED: [2021-04-11 Sun 20:33]
 - https://github.com/stylewarning/coalton
 - [X] :packed <2021-04-10 Sat>
