@@ -1,0 +1,167 @@
+From 77c44e22535c58fee11736f8e2670798af153a7b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 17 Mar 2023 21:32:25 +0000
+Subject: [PATCH 2/2] gnu: haproxy: Move to (gnu packages high-availability).
+
+Copyright records were synchronized based on commit history.
+
+* gnu/packages/networking.scm (haproxy): Move this variable from here...
+* gnu/packages/high-availability.scm (haproxy): ...to here.
+---
+ gnu/packages/high-availability.scm | 53 +++++++++++++++++++++++++++++-
+ gnu/packages/networking.scm        | 48 +--------------------------
+ 2 files changed, 53 insertions(+), 48 deletions(-)
+
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index 108ea553ef..ad6db537e5 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -1,4 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2020 Brice Waegeneire <brice@waegenei.re>
++;;; Copyright © 2020, 2022 Tobias Geerinckx-Rice <me@tobias.gr>
+ ;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+@@ -34,8 +36,10 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages hardware)
+   #:use-module (gnu packages linux)
++  #:use-module (gnu packages lua)
+   #:use-module (gnu packages networking)
+   #:use-module (gnu packages nss)
++  #:use-module (gnu packages pcre)
+   #:use-module (gnu packages pkg-config)
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages rsync)
+@@ -45,13 +49,60 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages xml)
+   #:use-module (gnu packages)
+   #:use-module (guix build-system gnu)
+-  #:use-module (guix gexp)
+   #:use-module (guix download)
++  #:use-module (guix gexp)
+   #:use-module (guix git-download)
+   #:use-module (guix packages)
++  #:use-module (guix utils)
+   #:use-module ((guix licenses)
+                 #:prefix license:))
+ 
++(define-public haproxy
++  (package
++    (name "haproxy")
++    (version "2.7.5")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append "https://www.haproxy.org/download/"
++                           (version-major+minor version)
++                           "/src/haproxy-" version ".tar.gz"))
++       (sha256
++        (base32 "00j5lwvrf8lgfid3108gclxbd46v3mnd4lh0lw4l0nn3f0rf9ip2"))))
++    (build-system gnu-build-system)
++    (arguments
++     (list
++      #:tests? #f  ; there are only regression tests, using varnishtest
++      #:make-flags
++      #~(list "LUA_LIB_NAME=lua"
++              "TARGET=linux-glibc"
++              "USE_LUA=1"
++              "USE_OPENSSL=1"
++              "USE_PCRE2=1"
++              "USE_PCRE2_JIT=1"
++              "USE_PROMEX=1"
++              "USE_ZLIB=1"
++              (string-append "CC=" #$(cc-for-target))
++              (string-append "DOCDIR=" #$output "/share/" #$name)
++              (string-append "LUA_INC=" #$(this-package-input "lua") "/include")
++              (string-append "LUA_LIB=" #$(this-package-input "lua") "/lib")
++              (string-append "PREFIX=" #$output))
++      #:phases
++      #~(modify-phases %standard-phases
++          (delete 'configure))))
++    (inputs
++     (list lua openssl pcre2 zlib))
++    (home-page "https://www.haproxy.org/")
++    (synopsis "Reliable, high performance TCP/HTTP load balancer")
++    (description "HAProxy offers @acronym{HA, high availability}, load
++balancing, and proxying for TCP and HTTP-based applications.  It is particularly
++suited to Web sites crawling under very high loads while needing persistence or
++Layer 7 processing.  Supporting tens of thousands of connections is clearly
++realistic with today's hardware.")
++    (license (list license:gpl2+
++                   license:lgpl2.1
++                   license:lgpl2.1+))))
++
+ (define-public libqb
+   (package
+     (name "libqb")
+diff --git a/gnu/packages/networking.scm b/gnu/packages/networking.scm
+index feff20afb1..5962da3d0d 100644
+--- a/gnu/packages/networking.scm
++++ b/gnu/packages/networking.scm
+@@ -30,7 +30,7 @@
+ ;;; Copyright © 2019 Vasile Dumitrascu <va511e@yahoo.com>
+ ;;; Copyright © 2019 Julien Lepiller <julien@lepiller.eu>
+ ;;; Copyright © 2019 Timotej Lazar <timotej.lazar@araneo.si>
+-;;; Copyright © 2019, 2020, 2021 Brice Waegeneire <brice@waegenei.re>
++;;; Copyright © 2019, 2021 Brice Waegeneire <brice@waegenei.re>
+ ;;; Copyright © 2019, 2020 Alex Griffin <a@ajgrf.com>
+ ;;; Copyright © 2019, 2020 Jan Wielkiewicz <tona_kosmicznego_smiecia@interia.pl>
+ ;;; Copyright © 2019 Daniel Schaefer <git@danielschaefer.me>
+@@ -4240,52 +4240,6 @@ (define-public vde2
+                     "file://COPYING.slirpvde"
+                     "See COPYING.slirpvde in the distribution."))))))
+ 
+-(define-public haproxy
+-  (package
+-    (name "haproxy")
+-    (version "2.7.5")
+-    (source
+-     (origin
+-       (method url-fetch)
+-       (uri (string-append "https://www.haproxy.org/download/"
+-                           (version-major+minor version)
+-                           "/src/haproxy-" version ".tar.gz"))
+-       (sha256
+-        (base32 "00j5lwvrf8lgfid3108gclxbd46v3mnd4lh0lw4l0nn3f0rf9ip2"))))
+-    (build-system gnu-build-system)
+-    (arguments
+-     (list
+-      #:tests? #f  ; there are only regression tests, using varnishtest
+-      #:make-flags
+-      #~(list "LUA_LIB_NAME=lua"
+-              "TARGET=linux-glibc"
+-              "USE_LUA=1"
+-              "USE_OPENSSL=1"
+-              "USE_PCRE2=1"
+-              "USE_PCRE2_JIT=1"
+-              "USE_PROMEX=1"
+-              "USE_ZLIB=1"
+-              (string-append "CC=" #$(cc-for-target))
+-              (string-append "DOCDIR=" #$output "/share/" #$name)
+-              (string-append "LUA_INC=" #$(this-package-input "lua") "/include")
+-              (string-append "LUA_LIB=" #$(this-package-input "lua") "/lib")
+-              (string-append "PREFIX=" #$output))
+-      #:phases
+-      #~(modify-phases %standard-phases
+-          (delete 'configure))))
+-    (inputs
+-     (list lua openssl pcre2 zlib))
+-    (home-page "https://www.haproxy.org/")
+-    (synopsis "Reliable, high performance TCP/HTTP load balancer")
+-    (description "HAProxy offers @acronym{HA, high availability}, load
+-balancing, and proxying for TCP and HTTP-based applications.  It is particularly
+-suited to Web sites crawling under very high loads while needing persistence or
+-Layer 7 processing.  Supporting tens of thousands of connections is clearly
+-realistic with today's hardware.")
+-    (license (list license:gpl2+
+-                   license:lgpl2.1
+-                   license:lgpl2.1+))))
+-
+ (define-public lldpd
+   (package
+     (name "lldpd")
+-- 
+2.39.2
+

@@ -182,7 +182,8 @@
 - [X] <2023-03-08 Wed> https://issues.guix.gnu.org/62061 <2023-03-16 Thu>
 - [X] <2023-03-14 Tue> https://issues.guix.gnu.org/62195 <2023-03-16 Thu>
 
-* Package updates [17/17][100%]
+* Package updates [17/18][94%]
+- [ ] <2023-03-17 Fri> https://issues.guix.gnu.org/62247
 - [X] <2023-03-15 Wed> https://issues.guix.gnu.org/62212 <2023-03-15 Wed>
 - [X] <2023-02-28 Tue> https://issues.guix.gnu.org/61878 <2023-03-14 Tue>
 - [X] <2023-02-12 Sun> https://issues.guix.gnu.org/61464 <2023-02-20 Mon>
