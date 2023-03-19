@@ -1,0 +1,55 @@
+From 6522046beeac59f03362e3d0eca113ba4cf73c4e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 Mar 2023 14:07:35 +0000
+Subject: [PATCH 2/3] gnu: Add cl-clobber
+
+* gnu/packages/lisp-xyz.scm (cl-clobber, ecl-clobber, sbcl-clobber):
+  New variables.
+---
+ gnu/packages/lisp-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index a1b291be20..ce8af93a8f 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -4612,6 +4612,36 @@ (define-public cl-ucons
+ (define-public ecl-ucons
+   (sbcl-package->ecl-package sbcl-ucons))
+ 
++(define-public sbcl-clobber
++  (let ((commit "212721c24a8bb792714314ba52dfe818641f2e98")
++        (revision "0"))
++    (package
++      (name "sbcl-clobber")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/robert-strandh/Clobber")
++               (commit commit)))
++         (file-name (git-file-name "clobber" version))
++         (sha256
++          (base32 "0pqzfn2wqbzzwlwc3l84iv3i3wa9zfgnh14mq67h9qkib8wjzx3n"))))
++      (build-system asdf-build-system/sbcl)
++      (home-page "https://github.com/robert-strandh/Clobber")
++      (synopsis "Common Lisp Library for transaction-oriented data bases")
++      (description
++       "CLOBER is an alternative to so-called \"object prevalence\", and in
++particular to @code{cl-prevalence}.  Clobber is both simpler, more flexible, and
++more robust than systems based on object prevalence.")
++      (license license:bsd-3))))
++
++(define-public cl-clobber
++  (sbcl-package->cl-source-package sbcl-clobber))
++
++(define-public ecl-clobber
++  (sbcl-package->ecl-package sbcl-clobber))
++
+ (define-public sbcl-closer-mop
+   (let ((commit "7b86f2add029208ebc74ec6a41c2ccfd3c382dbc")
+         (revision "3"))
+-- 
+2.39.2
+

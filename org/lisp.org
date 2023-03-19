@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-16 Thu 22:10:44 GMT>
+#+modified: <2023-03-19 Sun 20:28:52 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [17/38][44%]
+* Flow [17/42][40%]
 ** DONE 3b [4/4][100%] :author:
 CLOSED: [2023-01-17 Tue 20:29]
 *** DONE 3b-bmfont [4/4][100%]
@@ -204,7 +204,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [X] static-vectors
   - [X] trivial-features
   - [X] trivial-garbage
-*** TODO claw [0/4][0%]
+*** TODO cl-claw [0/4][0%]
 - https://github.com/borodust/claw
 - symbols :: Common Lisp autowrapping facility for C and C++ libraries
 - [ ] :packed
@@ -289,7 +289,7 @@ https://notabug.org/cage/cl-mount-info
   - [X] cffi
   - [X] cl-ppcre
 
-*** TODO rib [0/4][0%] :p3:
+*** TODO cl-rib [0/4][0%] :p3:
 - https://notabug.org/cage/rib
 - synopsis :: tool to run periodic task, in its current form is used as test tool for network
   services but could be used as a general scheduler as well
@@ -330,7 +330,7 @@ https://notabug.org/cage/cl-mount-info
 
 ** TODO cbaggers [4/6][66%] :author:
 - https://github.com/cbaggers/
-*** DONE cepl [4/4][100%]
+*** DONE cl-cepl [4/4][100%]
 CLOSED: [2021-06-15 Tue 10:09]
 - https://github.com/cbaggers/cepl
 - [X] :packed <2021-06-04 Fri>
@@ -350,7 +350,7 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [X] varjog
   - [X] quickprojectg
 
-*** DONE varjo [4/4][100%]
+*** DONE cl-varjo [4/4][100%]
 CLOSED: [2021-02-09 Tue 19:35]
 - https://github.com/cbaggers/varjo
 - [X] :packed <2021-02-09 Tue>
@@ -371,7 +371,7 @@ CLOSED: [2021-02-09 Tue 19:35]
   + [X] vas-string-metrics [3/3][100%]
     - [X] :packed <2021-02-09 Tue>
 
-*** DONE glsl-spec [3/3][100%]
+*** DONE cl-glsl-spec [3/3][100%]
 CLOSED: [2021-02-09 Tue 19:36]
 - https://github.com/cbaggers/glsl-spec
 - [X] :packed <2021-02-09 Tue>
@@ -379,7 +379,7 @@ CLOSED: [2021-02-09 Tue 19:36]
 - [X] :patch-applied-upstream <2021-02-10 Wed>
   + https://issues.guix.gnu.org/46412
 
-*** DONE fn [4/4][100%]
+*** DONE cm-fn [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:37]
 - https://github.com/cbaggers/fn.git
 - [X] :packed <2021-02-09 Tue>
@@ -397,7 +397,7 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO dirt [0/4][0%] :p5:
+*** TODO cl-dirt [0/4][0%] :p5:
 - https://github.com/cbaggers/dirt
 - synopsis :: front-end for cl-soil which loads images straight to cepl:c-arrays and cepl:textures
 - [ ] :packed
@@ -406,7 +406,7 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [ ] :inputs [0/0][0%]
 ** TODO chaitanyagupta [1/2][50%] :author:
 https://github.com/chaitanyagupta
-*** DONE chronicity [4/4][100%]
+*** DONE cl-chronicity [4/4][100%]
 CLOSED: [2021-03-09 Tue 08:44]
 https://github.com/chaitanyagupta/chronicity
 - [X] :packed <2021-03-06 Sat>
@@ -448,7 +448,7 @@ https://github.com/chaitanyagupta/chronicity
 ** DONE danlentz [1/1][100%] :author:
 CLOSED: [2023-02-23 Thu 22:34]
 - https://github.com/danlentz
-*** DONE printv [4/4][100%]
+*** DONE cl-printv [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:46]
 - https://github.com/danlentz/printv
 - [X] :packed <2021-02-02 Tue>
@@ -475,7 +475,7 @@ CLOSED: [2022-11-22 Tue 20:28]
 ** TODO eudoxia0 [0/1][0%] :author:
 - https://github.com/eudoxia0
 - https://borretti.me/
-*** TODO lucerne [1/4][25%] :p5:
+*** TODO cl-lucerne [1/4][25%] :p5:
 - https://github.com/eudoxia0/lucerne
 - synopsis :: web framework for Common Lisp, built on Clack
 - [ ] :packed
@@ -484,7 +484,7 @@ CLOSED: [2022-11-22 Tue 20:28]
 - [X] :inputs [0/0][0%]
 
 ** TODO foretspaisibles [1/1][100%] :author:
-*** DONE kaputt [4/4][100%]
+*** DONE cl-kaputt [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:49]
 - https://github.com/foretspaisibles/cl-kaputt
 - [X] :packed <2021-11-07 Sun>
@@ -534,7 +534,7 @@ CLOSED: [2022-11-19 Sat 19:51]
   - [X] cl-containers
   - [X] cl-metatilities-base
 
-*** DONE metacopy [4/4][100%]
+*** DONE cl-metacopy [4/4][100%]
 CLOSED: [2022-11-18 Fri 16:15]
 - https://github.com/gwkkwg/metacopy
 - [X] :packed <2022-11-18 Fri>
@@ -548,7 +548,7 @@ CLOSED: [2022-11-18 Fri 16:15]
   - [X] cl-contextl
   - [X] cl-moptilities
 
-*** DONE trivial-timeout [3/3][100%]
+*** DONE cl-trivial-timeout [3/3][100%]
 CLOSED: [2022-11-20 Sun 21:32]
 - https://github.com/gwkkwg/trivial-timeout/
 - [X] :packed <2021-02-02 Tue>
@@ -556,7 +556,7 @@ CLOSED: [2022-11-20 Sun 21:32]
 - [X] :patch-applied-upstream <2021-02-03 Wed>
   + https://issues.guix.gnu.org/46261
 ** DONE hanshuebner [1/1][100%] :author:
-*** DONE bknr-datastore [4/4][100%]
+*** DONE cl-bknr-datastore [4/4][100%]
 CLOSED: [2021-05-02 Sun 20:39]
 - https://github.com/hanshuebner/bknr-datastore
 - [X] :packed <2021-04-29 Thu>
@@ -578,7 +578,7 @@ CLOSED: [2021-05-02 Sun 20:39]
 ** TODO hu.dwim [1/1][100%] :author:
 - https://github.com/hu-dwim
 - http://dwim.hu/
-*** DONE hu.dwim.graphviz [4/4][100%]
+*** DONE cl-hu.dwim.graphviz [4/4][100%]
 - synopsis :: Common Lisp FFI for libgvc aka graphviz
 - [X] :packed <2022-11-01 Tue>
 - [X] :patch-sent <2022-11-01 Tue>
@@ -591,7 +591,7 @@ CLOSED: [2021-05-02 Sun 20:39]
   - [X] sbcl-metabang-bind
 ** TODO inconvergent [0/2][0%] :author:
 - https://github.com/inconvergent
-*** TODO weir [3/4][75%]
+*** TODO cl-weir [3/4][75%]
 - https://github.com/inconvergent/weir
 - synopsis :: (deprecated) A system for making generative systems
 - [X] :packed <2021-04-17 Sat>
@@ -640,7 +640,7 @@ CLOSED: [2021-05-02 Sun 20:39]
   + [X] split-sequence
   + [X] zpng
 
-*** TODO weird [0/4][0%]
+*** TODO cl-weird [0/4][0%]
 - https://github.com/inconvergent/weird
 - synopsis :: Generative art in Common Lisp
 - [ ] :packed
@@ -683,6 +683,29 @@ CLOSED: [2021-06-24 Thu 14:40]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+
+** TODO kaveh808 [/][%] :author:
+*** TODO cl-kons-9 [2/4][50%] :p3:
+- https://github.com/kaveh808/kons-9
+- [X] :packed <2022-11-10 Thu>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/47683
+- [X] :inputs [12/12][100%]
+  - [X] cl-alexandria
+  - [X] cl-confidence
+    - [X] :packed <2023-03-19 Sun>
+  - [X] cl-closer-mop
+  - [X] cl-cffi
+  - [X] cl-cl-glfw3
+  - [X] cl-cl-opengl
+  - [X] cl-cl-vectors
+  - [X] cl-clobber
+    - [X] :packed <2023-03-19 Sun>
+  - [X] cl-origin
+  - [X] cl-trivial-backtrace
+  - [X] cl-trivial-main-thread
+  - [X] cl-zpb-ttf
 
 ** TODO kmx-io [1/2][50%] :author:
 - https://github.com/kmx-io
@@ -781,7 +804,7 @@ CLOSED: [2022-11-15 Tue 12:15]
 ** TODO markcox80 [1/2][50%] :author:
 - https://github.com/markcox80
 - author :: Mark Cox
-*** DONE specialization-store [4/4][100%]
+*** DONE cl-specialization-store [4/4][100%]
 CLOSED: [2021-02-04 Thu 19:25]
 - https://github.com/markcox80/specialization-store
 - [X] :packed <2021-02-04 Thu>
@@ -791,7 +814,7 @@ CLOSED: [2021-02-04 Thu 19:25]
 - [X] :inputs [2/2][100%]
   + [X] introspect-environment
   + [X] alexandria
-*** TODO basic-binary-ipc [0/4][0%] :p4:
+*** TODO cl-basic-binary-ipc [0/4][0%] :p4:
 - https://github.com/markcox80/basic-binary-ipc
 - [ ] :packed
 - [ ] :patch-sent
@@ -814,17 +837,27 @@ CLOSED: [2021-04-25 Sun 17:24]
     - [X] :paptch-applied-upstream <2021-03-08 Mon>
       + https://issues.guix.gnu.org/46977
 
+** TODO melusina-org [/][%] :author:
+- https://github.com/melusina-org
+*** TODO cl-confidence [2/4][50%] :p3:
+- https://github.com/melusina-org/cl-confidence
+- [X] :packed <2022-11-10 Thu>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/47683
+- [X] :inputs [1/1][100%]
+  - [X] cl-alexandria
 ** TODO mfiano [4/4][100%] :author:
 - https://git.mfiano.net/mfiano/
 - https://github.com/mfiano
-*** DONE golden-utils [3/3][100%]
+*** DONE cl-golden-utils [3/3][100%]
 CLOSED: [2021-02-03 Wed 18:57]
 - https://git.mfiano.net/mfiano/golden-utils
 - [X] :packed <2021-02-02 Tue>
 - [X] :patch-sent <2021-02-03 Wed>
 - [X] :patch-applied-upstream <2021-02-03 Wed>
   - https://issues.guix.gnu.org/46261
-*** DONE origin [4/4][100%]
+*** DONE cl-origin [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:23]
 - https://git.mfiano.net/mfiano/origin
 - [X] :packed <2021-02-04 Thu>
@@ -835,7 +868,7 @@ CLOSED: [2022-11-19 Sat 19:23]
   - [X] specialization-store [1/1][100%]
     - [X] :packed <2021-02-04 Thu>
   - [X] golden-utils
-*** DONE net.mfiano.lisp.shadow [4/4][100%]
+*** DONE cl-net.mfiano.lisp.shadow [4/4][100%]
 CLOSED: [2022-11-22 Tue 21:27]
 - https://git.mfiano.net/mfiano/shadow
 - [X] :packed <2021-04-03 Sat>
@@ -880,7 +913,7 @@ CLOSED: [2022-11-22 Tue 21:27]
         - [X] :patch-sent <2021-02-09 Tue>
         - [X] :patch-applied-upstream <2021-02-10 Wed>
           + https://issues.guix.gnu.org/46412
-*** DONE net.mfiano.lisp.umbra [4/4][100%]
+*** DONE cl-net.mfiano.lisp.umbra [4/4][100%]
 CLOSED: [2022-11-19 Sat 19:45]
 - https://git.mfiano.net/mfiano/umbra.git
 - [X] :packed <2021-04-03 Sat>
@@ -977,7 +1010,7 @@ CLOSED: [2022-11-17 Thu 23:57]
 
 ** DONE noloop [5/5][100%] :author:
 CLOSED: [2022-11-23 Wed 22:08]
-*** DONE assertion-error [4/4][100%]
+*** DONE cl-assertion-error [4/4][100%]
 CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/assertion-error
 - [X] :packed <2021-11-07 Sun>
@@ -987,7 +1020,7 @@ CLOSED: [2022-11-23 Wed 22:07]
 - [X] :inputs [1/1][100%]
   - [X] dissect
 
-*** DONE cacau [4/4][100%]
+*** DONE cl-cacau [4/4][100%]
 CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/cacau
 - [X] :packed <2021-11-07 Sun>
@@ -1000,7 +1033,7 @@ CLOSED: [2022-11-23 Wed 22:07]
   + [X] eventbus
     - [X] :packed <2021-11-07 Sun>
 
-*** DONE eventbus [4/4][100%]
+*** DONE cl-eventbus [4/4][100%]
 CLOSED: [2022-11-23 Wed 22:07]
 - https://github.com/noloop/eventbus
 - [X] :packed <2021-11-07 Sun>
@@ -1011,7 +1044,7 @@ CLOSED: [2022-11-23 Wed 22:07]
   - [X] simplet
     - [X] :packed <2021-11-07 Sun>
 
-*** DONE assert-p [4/4][100%]
+*** DONE cl-assert-p [4/4][100%]
 CLOSED: [2022-11-23 Wed 22:08]
 - https://github.com/noloop/assert-p
 - [X] :packed <2021-11-07 Sun>
@@ -1024,7 +1057,7 @@ CLOSED: [2022-11-23 Wed 22:08]
   - [X] simplet
     - [X] :packed <2021-11-07 Sun>
 
-*** DONE simplet [3/3][100%]
+*** DONE cl-simplet [3/3][100%]
 CLOSED: [2022-11-23 Wed 22:08]
 - https://github.com/noloop/simplet
 - [X] :packed <2021-11-07 Sun>
@@ -1047,6 +1080,17 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] trivial-main-thread
   + [X] float-features
   + [X] allegro
+
+** TODO robert-strandh [0/2][0%] :author:
+- https://github.com/robert-strandh/
+- http://metamodular.com/
+*** TODO cl-clobber [/][%] :p3:
+- https://github.com/robert-strandh/clober
+- [X] :packed <2022-11-10 Thu>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+  - https://issues.guix.gnu.org/47683
+- [X] :inputs [1/1][100%]
 
 ** DONE rpav [1/2][50%] :author:
 CLOSED: [2022-11-20 Sun 21:33]
@@ -1576,7 +1620,7 @@ CLOSED: [2021-02-04 Thu 00:28]
   - notes :: Additional system which may need to be availalbe to make trial full fiture operational.
   - [X] alloy
     + [X] :packed <2021-11-07 Sun>
-  - [-] backends [2/4]
+  - [-] backends [3/4]
     + [X] trial-glfw [3/3][100%]
       - [X] cl-glfw3
       - [X] cl-trivial-main-thread
@@ -1585,7 +1629,7 @@ CLOSED: [2021-02-04 Thu 00:28]
       - [X] trivial-main-thread
       - [X] glop
     + [ ] trial-qt [0/0]
-    + [ ] trial-sdl2
+    + [X] trial-sdl2
   - [ ] feedback
     + [ ] :packed
   - [ ] classimp
@@ -1676,7 +1720,7 @@ CLOSED: [2023-02-27 Mon 21:08]
 - https://github.com/vsedach
 - https://oneofus.la/
 - author :: Vladimir Sedach
-*** DONE vas-string-metrics [3/3][100%]
+*** DONE cl-vas-string-metrics [3/3][100%]
 CLOSED: [2022-11-19 Sat 19:38]
 - https://github.com/vsedach/vas-string-metrics
 - [X] :packed <2021-02-09 Tue>

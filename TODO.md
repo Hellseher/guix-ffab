@@ -20,11 +20,14 @@
     lisp.org               vindarel                [0/1][0%]     :author:
     lisp.org               Shinmera/Shirakumo      [18/25][72%]  :author:
     lisp.org               s-expressionists        [0/1][0%]     :author:
+    lisp.org               robert-strandh          [0/2][0%]     :author:
     lisp.org               mfiano                  [4/4][100%]   :author:
+    lisp.org               melusina-org            [/][%]        :author:
     lisp.org               markcox80               [1/2][50%]    :author:
     lisp.org               lokedhs                 [1/2][50%]    :author:
     lisp.org               lispgames               [3/3][100%]   :author:
     lisp.org               kmx-io                  [1/2][50%]    :author:
+    lisp.org               kaveh808                [/][%]        :author:
     lisp.org               jscl-project            [0/1][0%]     :author:
     lisp.org               inconvergent            [0/2][0%]     :author:
     lisp.org               hu.dwim                 [1/1][100%]   :author:
@@ -113,10 +116,10 @@
     version-control.org    lazygit                        [0/4][0%]   :p5:
     maths.org              netlib                         [0/1][0%]   :p5:
     lisp.org               zorm                           [0/4][0%]   :p5:
-    lisp.org               lucerne                        [1/4][25%]  :p5:
-    lisp.org               dirt                           [0/4][0%]   :p5:
     lisp.org               cl-soil                        [0/4][0%]   :p5:
+    lisp.org               cl-lucerne                     [1/4][25%]  :p5:
     lisp.org               cl-khazern                     [0/4][0%]   :p5:
+    lisp.org               cl-dirt                        [0/4][0%]   :p5:
     lisp.org               cl-adams                       [1/4][25%]  :p5:
     golang.org             age                            [/][%]      :p5:
     astronomy.org          Xspec                          [0/4][0%]   :p5:
@@ -146,7 +149,7 @@
     lisp.org               Vacietis                       [/][%]      :p4:
     lisp.org               cl-pkr                         [0/4][0%]   :p4:
     lisp.org               cl-cairo2                      [3/4][75%]  :p4:
-    lisp.org               basic-binary-ipc               [0/4][0%]   :p4:
+    lisp.org               cl-basic-binary-ipc            [0/4][0%]   :p4:
     astronomy.org          WCSLIB                         [/][%]      :p4:
     astronomy.org          VRI                            [/][%]      :p4:
     astronomy.org          UniPOPS                        [/][%]      :p4:
@@ -237,8 +240,11 @@
     node-xyz.org           jquery                         [/][%]      :p3:
     node-xyz.org           bootstrap-toggle               [/][%]      :p3:
     node-xyz.org           bootstrap                      [/][%]      :p3:
-    lisp.org               rib                            [0/4][0%]   :p3:
+    lisp.org               cl-rib                         [0/4][0%]   :p3:
     lisp.org               cl-rabbit                      [0/4][0%]   :p3:
+    lisp.org               cl-kons-9                      [2/4][50%]  :p3:
+    lisp.org               cl-confidence                  [2/4][50%]  :p3:
+    lisp.org               cl-clobber                     [/][%]      :p3:
     julia-xyz.org          julia-images                   [0/4][0%]   :p3:
     julia-xyz.org          julia-imagedistances           [/][%]      :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]  :p3:
@@ -352,6 +358,11 @@
     astronomy.org          galpy                          [1/4][25%]  :p1:
     astronomy.org          funtools                       [2/4][50%]  :p1:
     astronomy.org          BayesicFitting                 [2/4][50%]  :p1:
+    services.org           prometheus                     [/][%]      
+    services.org           pacemaker                      [/][%]      
+    services.org           nsqd                           [/][%]      
+    services.org           haproxy                        [/][%]      
+    services.org           corosync                       [/][%]      
     python.org             sphinx-automodapi              [2/4][50%]  
     python.org             pywb                           [1/4][25%]  
     python.org             python-surt                    [2/4][50%]  
@@ -361,16 +372,16 @@
     python.org             portalocker                    [2/4][50%]  
     python.org             parsley                        [1/4][25%]  
     maths.org              DIERCKX                        [0/4][0%]   
-    lisp.org               weird                          [0/4][0%]   
-    lisp.org               weir                           [3/4][75%]  
     lisp.org               trial                          [4/5][80%]  
     lisp.org               repo                           [0/4][0%]   
     lisp.org               kandria                        [0/4][0%]   
+    lisp.org               cl-weird                       [0/4][0%]   
+    lisp.org               cl-weir                        [3/4][75%]  
     lisp.org               cl-torrents                    [0/4][0%]   
     lisp.org               cl-steamworks                  [0/4][0%]   
     lisp.org               cl-plplot                      [0/4][0%]   
+    lisp.org               cl-claw                        [0/4][0%]   
     lisp.org               cl-bodge                       [0/4][0%]   
-    lisp.org               claw                           [0/4][0%]   
     high-availability.org  corosync-qdevice               [1/4][25%]  
     golang.org             hashicorp/terraform            [0/4][0%]   
     golang.org             hashicorp/nomad                [0/4][0%]   
@@ -448,70 +459,70 @@
     julia-xyz.org          julia-remotefiles                [4/4][100%]  
     lisp.org               3b-bmfont                        [4/4][100%]  
     lisp.org               asdf-system-connections          [3/3][100%]  
-    lisp.org               assertion-error                  [4/4][100%]  
-    lisp.org               assert-p                         [4/4][100%]  
-    lisp.org               bknr-datastore                   [4/4][100%]  
-    lisp.org               cacau                            [4/4][100%]  
-    lisp.org               cepl                             [4/4][100%]  
-    lisp.org               chronicity                       [4/4][100%]  
     lisp.org               cl-3d-matrices                   [4/4][100%]  
     lisp.org               cl-3d-quaternions                [4/4][100%]  
     lisp.org               cl-3d-transforms                 [4/4][100%]  
     lisp.org               cl-3d-vectors                    [4/4][100%]  
     lisp.org               cl-adopt                         [4/4][100%]  
     lisp.org               cl-alloy                         [4/4][100%]  
+    lisp.org               cl-assertion-error               [4/4][100%]  
+    lisp.org               cl-assert-p                      [4/4][100%]  
     lisp.org               classimp                         [4/4][100%]  
+    lisp.org               cl-bknr-datastore                [4/4][100%]  
+    lisp.org               cl-cacau                         [4/4][100%]  
     lisp.org               cl-calm                          [4/4][100%]  
+    lisp.org               cl-cepl                          [4/4][100%]  
     lisp.org               cl-chirp                         [4/4][100%]  
+    lisp.org               cl-chronicity                    [4/4][100%]  
     lisp.org               cl-coalton                       [4/4][100%]  
     lisp.org               cl-cpus                          [3/3][100%]  
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  
     lisp.org               cl-dns-client                    [4/4][100%]  
+    lisp.org               cl-eventbus                      [4/4][100%]  
     lisp.org               cl-flare                         [4/4][100%]  
     lisp.org               cl-flow                          [4/4][100%]  
     lisp.org               cl-for                           [4/4][100%]  
     lisp.org               cl-gamepad                       [4/4][100%]  
     lisp.org               cl-glfw3                         [4/4][100%]  
     lisp.org               cl-glop                          [4/4][100%]  
+    lisp.org               cl-glsl-spec                     [3/3][100%]  
     lisp.org               cl-glsl-toolkit                  [4/4][100%]  
     lisp.org               cl-gltf                          [4/4][100%]  
+    lisp.org               cl-golden-utils                  [3/3][100%]  
     lisp.org               cl-graph                         [4/4][100%]  
     lisp.org               cl-gss                           [4/4][100%]  
+    lisp.org               cl-hu.dwim.graphviz              [4/4][100%]  
+    lisp.org               cl-kaputt                        [4/4][100%]  
     lisp.org               cl-liballegro                    [4/4][100%]  
     lisp.org               cl-mathstats                     [4/4][100%]  
     lisp.org               cl-messagebox                    [4/4][100%]  
+    lisp.org               cl-metacopy                      [4/4][100%]  
     lisp.org               cl-mount-info                    [4/4][100%]  
+    lisp.org               cl-net.mfiano.lisp.shadow        [4/4][100%]  
+    lisp.org               cl-net.mfiano.lisp.umbra         [4/4][100%]  
     lisp.org               cl-nst                           [4/4][100%]  
     lisp.org               cl-opengl                        [4/4][100%]  
+    lisp.org               cl-origin                        [4/4][100%]  
     lisp.org               cl-pathname-utils                [4/4][100%]  
     lisp.org               cl-posix-mqueue                  [4/4][100%]  
+    lisp.org               cl-printv                        [4/4][100%]  
     lisp.org               cl-promise                       [4/4][100%]  
     lisp.org               cl-re                            [4/4][100%]  
     lisp.org               cl-sdl2                          [4/4][100%]  
     lisp.org               cl-sdl2-mixer                    [4/4][100%]  
+    lisp.org               cl-simplet                       [3/3][100%]  
     lisp.org               cl-slug                          [4/4][100%]  
+    lisp.org               cl-specialization-store          [4/4][100%]  
     lisp.org               cl-terrable                      [4/4][100%]  
     lisp.org               cl-trivial-channels              [4/4][100%]  
+    lisp.org               cl-trivial-timeout               [3/3][100%]  
+    lisp.org               cl-varjo                         [4/4][100%]  
+    lisp.org               cl-vas-string-metrics            [3/3][100%]  
+    lisp.org               cm-fn                            [4/4][100%]  
     lisp.org               Djula                            [4/4][100%]  
-    lisp.org               eventbus                         [4/4][100%]  
-    lisp.org               fn                               [4/4][100%]  
     lisp.org               glsl-packing                     [4/4][100%]  
-    lisp.org               glsl-spec                        [3/3][100%]  
-    lisp.org               golden-utils                     [3/3][100%]  
-    lisp.org               hu.dwim.graphviz                 [4/4][100%]  
-    lisp.org               kaputt                           [4/4][100%]  
-    lisp.org               metacopy                         [4/4][100%]  
-    lisp.org               net.mfiano.lisp.shadow           [4/4][100%]  
-    lisp.org               net.mfiano.lisp.umbra            [4/4][100%]  
-    lisp.org               origin                           [4/4][100%]  
-    lisp.org               printv                           [4/4][100%]  
     lisp.org               radiance                         [4/4][100%]  
-    lisp.org               simplet                          [3/3][100%]  
-    lisp.org               specialization-store             [4/4][100%]  
-    lisp.org               trivial-timeout                  [3/3][100%]  
-    lisp.org               varjo                            [4/4][100%]  
-    lisp.org               vas-string-metrics               [3/3][100%]  
     lisp.org               ViralityEngine                   [4/4][100%]  
     maths.org              giza                             [4/4][100%]  
     python.org             aioftp                           [4/4][100%]  
