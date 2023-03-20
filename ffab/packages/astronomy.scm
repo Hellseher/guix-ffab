@@ -1778,3 +1778,77 @@ capabilities.")
     (description "This package provides C++ implementation of @acronim{HEALPix, Hierarchical
 Equal Area isoLatitude Pixelization}.")
     (license license:gpl2)))
+
+;; 20230319T204258+0000
+(define-public phd2
+  (package
+    (name "phd2")
+    (version "2.6.11")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/OpenPHDGuiding/phd2")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0n87xsv9gzrwk1ygws4vw397ffq40xybp5b3c3bd5kcmff0avaw9"))
+       (modules '((guix build utils)))
+       (snippet
+        '(begin
+           ;; NOTE: Keep eye on the thirdparty directory as the bundled names
+           ;; change from relase to release.
+           ;;
+           ;; Remove bundles.
+           (with-directory-excursion "thirdparty"
+             (for-each delete-file-recursively
+                       '("HID_Utilities"
+                         "MallincamGuider-OSX-dylib-source.zip"
+                         "VidCapture"
+                         "cfitsio-3.47-patched.tar.gz"
+                         "cfitsio-README-PHD2.txt"
+                         "cfitsio-snprintf.patch"
+                         "eigen-eigen-67e894c6cd8f.tar.bz2"
+                         "gettext-0.14.4-bin.zip"
+                         "gettext-0.14.4-dep.zip"
+                         "gtest-1.7.0.zip"
+                         "indiclient-44aaf5d3-win32.zip"
+                         "libcurl-7.54.0-win32.zip"
+                         "libdc1394-2.2.2.tar.gz"
+                         "libindi-58b26c584049e1b9ecd55aa5f4a225677a417898.tar.gz"
+                         "libusb-1.0.21.tar.bz2"
+                         "openssag")))))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      #:configure-flags
+      #~(list "-DOPENSOURCE_ONLY=yes"
+              "-DUSE_SYSTEM_CFITSIO=yes"
+              "-DUSE_SYSTEM_EIGEN3=yes"
+              "-DUSE_SYSTEM_GTEST=yes"
+              "-DUSE_SYSTEM_LIBINDI=yes"
+              "-DUSE_SYSTEM_LIBUSB=yes")))
+    (native-inputs
+     (list gettext-minimal
+           googletest
+           perl
+           pkg-config
+           python-wrapper))
+    (inputs
+     (list cfitsio
+           curl-minimal
+           eigen
+           gtk+
+           indi
+           libnova
+           libusb
+           wxwidgets
+           zlib))
+    (home-page "https://openphdguiding.org")
+    (synopsis "Teleskope guiding software")
+    (description
+     "PHD2 is the enhanced, second generation version of the PHD guiding software
+from Stark Labs.")
+    (license license:bsd-3)))
+
+;; End of astronomy.scm
