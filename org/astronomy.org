@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-16 Thu 22:13:41 GMT>
+#+modified: <2023-03-20 Mon 23:59:39 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [4/54][7%]
+* Flow [4/56][7%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -1702,23 +1702,30 @@ CLOSED: [2023-02-15 Wed 21:47]
 
 ** TODO OpenPHDGuiding [0/1][0%] :author:
 - https://openphdguiding.org
-*** TODO phd2 [0/4][%] :p5:
+*** TODO phd2 [3/4][75%] :p3:
 - https://github.com/OpenPHDGuiding/phd2
 - synopsis :: PHD2 is the enhanced, second generation version of the popular PHD
 guiding software from Stark Labs.
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2023-03-19 Sun>
+- [X] :patch-sent <2023-03-20 Mon>
 - [ ] :paptch-applied-upstream
-- [-] :inputs [2/9][22%]
-  + [ ] libwxgtk3.0-dev
-  + [ ] libgtk2.0-dev
-  + [X] cfitsio
-  + [X] opencv
-  + [ ] libusb-1.0-0-dev
-  + [ ] libudev-dev
-  + [ ] libv4l-dev
-  + [ ] libnova-dev
-  + [ ] libcurl4-gnutls-dev
+  - https://issues.guix.gnu.org/62306
+- [X] :inputs [14/14][100%]
+  - [X] cfitsio
+  - [X] curl-minimal
+  - [X] eigen
+  - [X] gettext-minimal
+  - [X] googletest
+  - [X] gtk+
+  - [X] indi
+  - [X] libnova
+  - [X] libusb
+  - [X] perl
+  - [X] pkg-config
+  - [X] python-wrapper
+  - [X] wxwidgets
+  - [X] zlib
+
 ** TODO OpenSpace [0/2][0%] :author:
 - https://github.com/OpenSpace
 - https://www.openspaceproject.com/
@@ -1843,7 +1850,7 @@ CLOSED: [2023-03-16 Thu 21:54]
 ** TODO QuatroPe [1/2][50%] :author:
 - https://github.com/quatrope
 - https://www.quatrope.org/
-*** DONE astroalign [4/4][100%]
+*** DONE python-astroalign [4/4][100%]
 CLOSED: [2021-02-19 Fri 11:13]
 - https://github.com/quatrope/astroalign
 - synopsis :: Tool to align astronomical images based on asterism matching
@@ -1852,21 +1859,11 @@ CLOSED: [2021-02-19 Fri 11:13]
 - [X] :paptch-applied-upstream <2021-02-19 Fri>
   - https://issues.guix.gnu.org/46492
 - [X] :inputs [4/4][100%]
-  - [X] numpy
-  - [X] scikit-image
-  - [X] scipy
+  - [X] python-numpy
+  - [X] python-scikit-image
+  - [X] python-scipy
   - [X] sep [4/4][100%]
     - [X] :packed <2021-02-02 Tue>
-    - [X] :patch-sent <2021-02-13 Sat>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46492
-    - [X] :inputs [3/3][100%]
-      + [X] cython
-      + [X] numpy
-      + [X] pytest
-*** TODO ois [/][%] :p5:
-- https://github.com/quatrope/ois
-- synopsis :: Optimal Image Subtraction
 
 ** TODO revoltek [0/1][0%] :author:
 *** TODO losoto [1/4][25%] :p5:
@@ -1886,6 +1883,17 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-numpy
   - [X] python-scipy
   - [X] python-tables
+** TODO kbarbary [/][%] :author:
+*** TODO python-sep [4/4][100%]
+- https://github.com/kbarbary/sep
+- [X] :packed <2021-02-02 Tue>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [3/3][100%]
+  + [X] python-cython
+  + [X] python-numpy
+  + [X] python-pytest
 
 ** TODO ruven [0/1][0%] :author:
 - author :: https://github.com/ruven
@@ -1958,8 +1966,22 @@ CLOSED: [2022-12-01 Thu 23:15]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  - [ ] astropy
+- [-] :inputs [11/13][84%]
+  - [X] cfitsio
+  - [X] curl
+  - [X] fftw
+  - [X] gsl
+  - [X] lapack
+  - [X] libraw
+  - [X] libtiff
+  - [X] openblas
+  - [X] qtbase-5
+  - [X] qttools-5
+  - [ ] scamp
+    - [ ] :packed
+  - [X] wcslib
+  - [ ] plplot
+    - [ ] :packed
 ** TODO spacetelescope [3/20][15%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
