@@ -1,13 +1,13 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#org3e3d13e)
-2.  [Installation](#orga8649a3)
-    1.  [Use as channel](#org8affe1e)
-    2.  [Use as build/install source](#orgfc71e5c)
-3.  [References](#org07c22c4)
-    1.  [Guix channels](#orgf8d4c46)
-    2.  [etc](#orga16a4c6)
+1.  [Project structure and layout](#org7e561a9)
+2.  [Installation](#orgda86348)
+    1.  [Use as channel](#org4f814f1)
+    2.  [Use as build/install source](#org7eda763)
+3.  [References](#orgd2335c9)
+    1.  [Guix channels](#org63adfc1)
+    2.  [etc](#orge68a41b)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -23,7 +23,7 @@ such as **Common Lisp**, **Golan** and **Python**.
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="org3e3d13e"></a>
+<a id="org7e561a9"></a>
 
 # Project structure and layout
 
@@ -49,22 +49,22 @@ Layout follows Guix upstream.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
     :guix-commit 9cb17464679de2c29aa6db0b0a11142bfb4ca042
-    :accepted 162
-    :pending 165
+    :accepted 165
+    :pending 158
     
-    :astronomy 24
+    :astronomy 25
     :golang 70
-    :lisp 14
+    :lisp 6
     :python 13
     :misc 20
     
-    :date Thu 16 Mar 22:16:48 GMT 2023
+    :date Wed 22 Mar 20:13:20 GMT 2023
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
 
-<a id="orga8649a3"></a>
+<a id="orgda86348"></a>
 
 # Installation
 
@@ -72,7 +72,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org8affe1e"></a>
+<a id="org4f814f1"></a>
 
 ## Use as channel
 
@@ -85,7 +85,7 @@ manager.
            %default-channels)
 
 
-<a id="orgfc71e5c"></a>
+<a id="org7eda763"></a>
 
 ## Use as build/install source
 
@@ -94,7 +94,7 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="org07c22c4"></a>
+<a id="orgd2335c9"></a>
 
 # References
 
@@ -109,7 +109,7 @@ Main official resources:
 -   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="orgf8d4c46"></a>
+<a id="org63adfc1"></a>
 
 ## Guix channels
 
@@ -127,7 +127,7 @@ Main official resources:
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="orga16a4c6"></a>
+<a id="orge68a41b"></a>
 
 ## etc
 

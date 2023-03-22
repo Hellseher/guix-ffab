@@ -949,87 +949,14 @@ in a native template application.")
   (sbcl-package->ecl-package sbcl-clog))
 
 ;; 20221110T222158+0000
-(define-public sbcl-clobber
-  (let ((commit "212721c24a8bb792714314ba52dfe818641f2e98")
-        (revision "0"))
-    (package
-      (name "sbcl-clobber")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/robert-strandh/Clobber")
-               (commit commit)))
-         (file-name (git-file-name "clobber" version))
-         (sha256
-          (base32 "0pqzfn2wqbzzwlwc3l84iv3i3wa9zfgnh14mq67h9qkib8wjzx3n"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/robert-strandh/Clobber")
-      (synopsis "Common Lisp Library for transaction-oriented data bases")
-      (description
-       "Clobber is an alternative to so-called \"object prevalence\", and in
-particular to @code{cl-prevalence}.  Clobber is both simpler, more flexible, and
-more robust than systems based on object prevalence.")
-      (license license:bsd-3))))
-
-(define-public cl-clobber
-  (sbcl-package->cl-source-package sbcl-clobber))
-
-(define-public ecl-clobber
-  (sbcl-package->ecl-package sbcl-clobber))
+;; (define-public sbcl-clobber
+;; added-to-upstream 1f146d4714152823cabca8a9281b2f1495d8a4c8
+;; CommitDate: Wed Mar 22 10:35:48 2023 +0100
 
 ;; 20221110T222158+0000
-(define-public sbcl-kons-9
-  (let ((commit "9f9c1ad6504875bf09ea90afdfc0f7ddc68d3df9")
-        (revision "0"))
-    (package
-      (name "sbcl-kons-9")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/kaveh808/kons-9")
-               (commit commit)))
-         (file-name (git-file-name "kons-9" version))
-         (sha256
-          (base32 "154y9mm6qghgwilbc12dn7zxmlk5w593qn3b6axs5d1gxy2a4bqj"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems '("kons-9" "kons-9/testsuite")))
-      (inputs
-       (list sbcl-closer-mop
-             sbcl-trivial-main-thread
-             sbcl-trivial-backtrace
-             sbcl-cffi
-             sbcl-cl-opengl
-             sbcl-cl-glfw3
-             sbcl-cl-vectors
-             sbcl-zpb-ttf
-             sbcl-origin
-             sbcl-clobber))
-      (native-inputs
-       (list sbcl-alexandria sbcl-confidence))
-      (home-page "https://github.com/kaveh808/kons-9")
-      (synopsis "Common Lisp 3D Graphics System")
-      (description
-       "This package provides KONS-9 which can be considered as a traditional user
-interface driven 3D application for general artists, or as a REPL-based
-development environment for technical artists and software developers.  These two
-approaches can be seamlessly combined into a flexible and powerful workflow,
-where non-technical users can immediately benefit from software tools and
-extensions developed by technical users.")
-      (license license:expat))))
-
-(define-public cl-kons-9
-  (sbcl-package->cl-source-package sbcl-kons-9))
-
-;; FIXME: (Sharlatan-20221110T230620+0000): Failed to build on ECL
-;;
-;; https://github.com/kaveh808/kons-9/issues/176
-;;
-;; ecl-kons-9
+;; (define-public sbcl-kons-9
+;; added-to-upstream cfccc9acdb2c9892d4c41ff56ed95347f1750e3f
+;; CommitDate: Wed Mar 22 10:35:49 2023 +0100
 
 ;; 20230110T230445+0000
 ;; (define-public sbcl-classimp

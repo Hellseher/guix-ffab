@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;; Copyright © 2021-2023 Sharlatan Hellseher <sharlatanus@gmail.com>
 ;;;
 ;;; This file is NOT part of GNU Guix.
 ;;;
@@ -58,36 +58,6 @@
 ;; CommitDate: Wed Nov 23 09:53:10 2022 +0000
 
 ;; 20221110T225101+0000
-(define-public sbcl-confidence
-  (let ((commit "14dc40a0fde822f4aab4fefc9b40ef5fdcbcd666")
-        (revision "0"))
-    (package
-      (name "sbcl-confidence")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/melusina-org/cl-confidence")
-               (commit commit)))
-         (file-name (git-file-name "cl-confidence" version))
-         (sha256
-          (base32 "17xb8k53ncpp7h8b5g9y56cg5imrczxx8zpr5xkslrvlsb551i1q"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:asd-systems '("org.melusina.confidence"
-                         "org.melusina.confidence/testsuite")))
-      (inputs (list sbcl-alexandria))
-      (home-page "https://github.com/melusina-org/cl-confidence")
-      (synopsis "Interactive Test Framework for Common Lisp")
-      (description
-       "Confidence is a test framework for Common Lisp that focuses on simplicty. It
-avoids bureacracy and makes it easy to work interactively, without a complicated
-setup, and with explicit functions and decisions.")
-      (license license:expat))))
-
-(define-public ecl-confidence
-  (sbcl-package->ecl-package sbcl-confidence))
-
-(define-public cl-confidence
-  (sbcl-package->cl-source-package sbcl-confidence))
+;; (define-public sbcl-confidence
+;; added-to-upstream bad546939f3668610c173f931d905176e26c59c4
+;; CommitDate: Wed Mar 22 10:35:48 2023 +0100

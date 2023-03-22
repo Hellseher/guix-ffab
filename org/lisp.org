@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-19 Sun 20:28:52 GMT>
+#+modified: <2023-03-22 Wed 20:09:13 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -254,19 +254,19 @@ CLOSED: [2022-11-20 Sun 20:42]
   + [X] global-vars
   + [X] jsown
   + [X] lparallel
-  + [X] net.mfiano.lisp.golden-utils [1/1][100%]
+  + [X] net.mfiano.lisp.golden-utils
     - [X] :packed <2021-02-02 Tue>
-  + [X] net.mfiano.lisp.origin [1/1][100%]
+  + [X] net.mfiano.lisp.origin
     - [X] :packed <2021-02-04 Thu>
-  + [X] net.mfiano.lisp.shadow [1/1][100%]
+  + [X] net.mfiano.lisp.shadow
     - [X] :packed <2021-04-03 Sat>
-  + [X] net.mfiano.lisp.umbra [1/1][100%]
+  + [X] net.mfiano.lisp.umbra
     - [X] :packed <2021-04-03 Sat>
   + [X] pngload
-  + [X] printv [1/1][100%]
+  + [X] printv
     - [X] :packed <2021-02-02 Tue>
   + [X] queues.simple-queue
-  + [X] sdl2 [1/1][100%]
+  + [X] sdl2
     - [X] :packed <2021-06-23 Wed>
   + [X] split-sequence
   + [X] static-vectors
@@ -404,6 +404,7 @@ CLOSED: [2022-11-19 Sat 19:37]
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
+
 ** TODO chaitanyagupta [1/2][50%] :author:
 https://github.com/chaitanyagupta
 *** DONE cl-chronicity [4/4][100%]
@@ -418,7 +419,7 @@ https://github.com/chaitanyagupta/chronicity
   + [X] local-time
   + [X] cl-interpol
 
-*** TODO zorm [0/4][0%] :p5:
+*** TODO cl-zorm [0/4][0%] :p5:
 - https://github.com/chaitanyagupta/zorm
 - synopsis :: Common Lisp ORM for PostgreSQL
 - [ ] :packed
@@ -684,13 +685,14 @@ CLOSED: [2021-06-24 Thu 14:40]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO kaveh808 [/][%] :author:
-*** TODO cl-kons-9 [2/4][50%] :p3:
+** TODO kaveh808 [1/1][100%] :author:
+*** DONE cl-kons-9 [4/4][100%]
+CLOSED: [2023-03-22 Wed 19:48]
 - https://github.com/kaveh808/kons-9
 - [X] :packed <2022-11-10 Thu>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/47683
+- [X] :patch-sent <2023-03-19 Sun>
+- [X] :patch-applied-upstream <2023-03-22 Wed>
+  - https://issues.guix.gnu.org/62273
 - [X] :inputs [12/12][100%]
   - [X] cl-alexandria
   - [X] cl-confidence
@@ -789,6 +791,23 @@ CLOSED: [2022-11-15 Tue 12:15]
   - [X] sbcl-trivial-garbage
   - [X] sbcl-trivial-utf-8
 
+*** TODO cl-maxima-client [0/4][0%] :p3:
+- https://github.com/lokedhs/maxima-client
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/10]
+  - [ ] cl-alexandria
+  - [ ] cl-clim-listener
+  - [ ] cl-lambda-fiddle
+  - [ ] cl-log4cl
+  - [ ] cl-maxima
+  - [ ] cl-mcclim
+  - [ ] cl-ppcre
+  - [ ] cl-split-sequence
+  - [ ] cl-trivial-arguments
+  - [ ] cl-trivial-gray-streams
+
 *** TODO cl-rabbit [0/4][0%] :p3:
 - https://github.com/lokedhs/cl-rabbit
 - [ ] :packed
@@ -837,14 +856,15 @@ CLOSED: [2021-04-25 Sun 17:24]
     - [X] :paptch-applied-upstream <2021-03-08 Mon>
       + https://issues.guix.gnu.org/46977
 
-** TODO melusina-org [/][%] :author:
+** TODO melusina-org [1/1][100%] :author:
 - https://github.com/melusina-org
-*** TODO cl-confidence [2/4][50%] :p3:
+*** DONE cl-confidence [4/4][100%]
+CLOSED: [2023-03-22 Wed 19:49]
 - https://github.com/melusina-org/cl-confidence
 - [X] :packed <2022-11-10 Thu>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/47683
+- [X] :patch-sent <2023-03-19 Sun>
+- [X] :patch-applied-upstream <2023-03-22 Wed>
+  - https://issues.guix.gnu.org/62273
 - [X] :inputs [1/1][100%]
   - [X] cl-alexandria
 ** TODO mfiano [4/4][100%] :author:
@@ -1081,16 +1101,17 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] float-features
   + [X] allegro
 
-** TODO robert-strandh [0/2][0%] :author:
+** TODO robert-strandh [1/1][100%] :author:
 - https://github.com/robert-strandh/
 - http://metamodular.com/
-*** TODO cl-clobber [/][%] :p3:
+*** DONE cl-clobber [4/4][100%]
+CLOSED: [2023-03-22 Wed 19:50]
 - https://github.com/robert-strandh/clober
 - [X] :packed <2022-11-10 Thu>
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-  - https://issues.guix.gnu.org/47683
-- [X] :inputs [1/1][100%]
+- [X] :patch-sent <2023-03-19 Sun>
+- [X] :patch-applied-upstream <2023-03-22 Wed>
+  - https://issues.guix.gnu.org/62273
+- [X] :inputs [0/0][0%]
 
 ** DONE rpav [1/2][50%] :author:
 CLOSED: [2022-11-20 Sun 21:33]

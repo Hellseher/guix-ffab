@@ -20,14 +20,14 @@
     lisp.org               vindarel                [0/1][0%]     :author:
     lisp.org               Shinmera/Shirakumo      [18/25][72%]  :author:
     lisp.org               s-expressionists        [0/1][0%]     :author:
-    lisp.org               robert-strandh          [0/2][0%]     :author:
+    lisp.org               robert-strandh          [1/1][100%]   :author:
     lisp.org               mfiano                  [4/4][100%]   :author:
-    lisp.org               melusina-org            [/][%]        :author:
+    lisp.org               melusina-org            [1/1][100%]   :author:
     lisp.org               markcox80               [1/2][50%]    :author:
     lisp.org               lokedhs                 [1/2][50%]    :author:
     lisp.org               lispgames               [3/3][100%]   :author:
     lisp.org               kmx-io                  [1/2][50%]    :author:
-    lisp.org               kaveh808                [/][%]        :author:
+    lisp.org               kaveh808                [1/1][100%]   :author:
     lisp.org               jscl-project            [0/1][0%]     :author:
     lisp.org               inconvergent            [0/2][0%]     :author:
     lisp.org               hu.dwim                 [1/1][100%]   :author:
@@ -116,7 +116,7 @@
     Projects in progress with priorities:
     version-control.org    lazygit                        [0/4][0%]    :p5:
     maths.org              netlib                         [0/1][0%]    :p5:
-    lisp.org               zorm                           [0/4][0%]    :p5:
+    lisp.org               cl-zorm                        [0/4][0%]    :p5:
     lisp.org               cl-soil                        [0/4][0%]    :p5:
     lisp.org               cl-lucerne                     [1/4][25%]   :p5:
     lisp.org               cl-khazern                     [0/4][0%]    :p5:
@@ -241,9 +241,7 @@
     node-xyz.org           bootstrap                      [/][%]       :p3:
     lisp.org               cl-rib                         [0/4][0%]    :p3:
     lisp.org               cl-rabbit                      [0/4][0%]    :p3:
-    lisp.org               cl-kons-9                      [2/4][50%]   :p3:
-    lisp.org               cl-confidence                  [2/4][50%]   :p3:
-    lisp.org               cl-clobber                     [/][%]       :p3:
+    lisp.org               cl-maxima-client               [0/4][0%]    :p3:
     julia-xyz.org          julia-images                   [0/4][0%]    :p3:
     julia-xyz.org          julia-imagedistances           [/][%]       :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
@@ -475,7 +473,9 @@
     lisp.org               cl-cepl                          [4/4][100%]  
     lisp.org               cl-chirp                         [4/4][100%]  
     lisp.org               cl-chronicity                    [4/4][100%]  
+    lisp.org               cl-clobber                       [4/4][100%]  
     lisp.org               cl-coalton                       [4/4][100%]  
+    lisp.org               cl-confidence                    [4/4][100%]  
     lisp.org               cl-cpus                          [3/3][100%]  
     lisp.org               cl-debug                         [3/3][100%]  
     lisp.org               cl-diskspace                     [3/3][100%]  
@@ -495,6 +495,7 @@
     lisp.org               cl-gss                           [4/4][100%]  
     lisp.org               cl-hu.dwim.graphviz              [4/4][100%]  
     lisp.org               cl-kaputt                        [4/4][100%]  
+    lisp.org               cl-kons-9                        [4/4][100%]  
     lisp.org               cl-liballegro                    [4/4][100%]  
     lisp.org               cl-mathstats                     [4/4][100%]  
     lisp.org               cl-messagebox                    [4/4][100%]  
