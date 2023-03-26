@@ -1793,31 +1793,30 @@ Equal Area isoLatitude Pixelization}.")
        (file-name (git-file-name name version))
        (sha256
         (base32 "0n87xsv9gzrwk1ygws4vw397ffq40xybp5b3c3bd5kcmff0avaw9"))
-       (modules '((guix build utils)))
+       (modules '((guix build utils)
+                  (ice-9 ftw)
+                  (srfi srfi-26)))
        (snippet
-        '(begin
-           ;; NOTE: Keep eye on the thirdparty directory as the bundled names
-           ;; change from relase to release.
-           ;;
-           ;; Remove bundles.
-           (with-directory-excursion "thirdparty"
-             (for-each delete-file-recursively
-                       '("HID_Utilities"
-                         "MallincamGuider-OSX-dylib-source.zip"
-                         "VidCapture"
-                         "cfitsio-3.47-patched.tar.gz"
-                         "cfitsio-README-PHD2.txt"
-                         "cfitsio-snprintf.patch"
-                         "eigen-eigen-67e894c6cd8f.tar.bz2"
-                         "gettext-0.14.4-bin.zip"
-                         "gettext-0.14.4-dep.zip"
-                         "gtest-1.7.0.zip"
-                         "indiclient-44aaf5d3-win32.zip"
-                         "libcurl-7.54.0-win32.zip"
-                         "libdc1394-2.2.2.tar.gz"
-                         "libindi-58b26c584049e1b9ecd55aa5f4a225677a417898.tar.gz"
-                         "libusb-1.0.21.tar.bz2"
-                         "openssag")))))))
+        #~(begin
+            ;; TODO: This snippet is sourced from
+            ;; guix/gnu/packages/vnc.scm. It might be merged with
+            ;; `delete-file-recursively' which can have `ignore' optional
+            ;; argument.
+            (define (delete-all-but directory . preserve)
+              (define (directory? x)
+                (and=> (stat x #f)
+                       (compose (cut eq? 'directory <>) stat:type)))
+              (with-directory-excursion directory
+                (let* ((pred
+                        (negate (cut member <> (append '("." "..") preserve))))
+                       (items (scandir "." pred)))
+                  (for-each (lambda (item)
+                              (if (directory? item)
+                                  (delete-file-recursively item)
+                                  (delete-file item)))
+                            items))))
+            ;; XXX: Check this list of ignored files in next release.
+            (delete-all-but "thirdparty" "thirdparty.cmake")))))
     (build-system cmake-build-system)
     (arguments
      (list
