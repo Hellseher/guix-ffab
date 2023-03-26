@@ -18,6 +18,7 @@
 
 (define-module (ffab packages lisp-xyz)
   #:use-module (ffab packages graphics)
+  #:use-module (ffab packages audio)
   #:use-module (ffab packages lisp-check)
   #:use-module (ffab packages game-development)
   #:use-module ((guix licenses) #:prefix license:)
@@ -29,16 +30,17 @@
   #:use-module (gnu packages gl)
   #:use-module (gnu packages graphviz)
   #:use-module (gnu packages gsasl)
+  #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
   #:use-module (gnu packages kerberos)
   #:use-module (gnu packages libevent)
-  #:use-module (gnu packages gtk)
   #:use-module (gnu packages lisp)
   #:use-module (gnu packages lisp-check)
   #:use-module (gnu packages lisp-xyz)
   #:use-module (gnu packages mp3)
   #:use-module (gnu packages mpi)
   #:use-module (gnu packages sdl)
+  #:use-module (gnu packages xiph)
   #:use-module (gnu packages xorg)
   #:use-module (guix build lisp-utils)
   #:use-module (guix build-system asdf)
@@ -107,6 +109,54 @@
 ;; https://github.com/Shirakumo
 ;; https://github.com/Shinmera
 ;;+begin-shirakumo
+
+;; 20230326T200840+0100
+(define-public sbcl-cl-flac
+  (let ((commit "d094d33d3cc2cf263263b917798d338eded3c532")
+        (revision "0"))
+    (package
+      (name "sbcl-cl-flac")
+      (version (git-version "2.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/Shirakumo/cl-flac")
+               (commit commit)))
+         (file-name (git-file-name "cl-flac" version))
+         (sha256
+          (base32 "1dgr5xqf175hzq3sxpbixxia2k2g3rz0pn6msch4dnvk7a1naqlc"))
+         (modules '((guix build utils)))
+         (snippet
+          ;; Delete bundled libraries.
+          `(begin
+             (delete-file-recursively "static")))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       `(#:phases
+         (modify-phases %standard-phases
+           (add-after 'unpack 'fix-paths
+             (lambda* (#:key inputs #:allow-other-keys)
+               (substitute* "low-level.lisp"
+                 (("libflac.so")
+                  (search-input-file inputs "/lib/libFLAC.so"))))))))
+      (inputs
+       (list flac
+             sbcl-cffi
+             sbcl-documentation-utils
+             sbcl-trivial-features
+             sbcl-trivial-garbage))
+      (home-page "https://shirakumo.github.io/cl-flac")
+      (synopsis "CFFI binding to libflac for Common Lisp")
+      (description "This package provides a CFFI bindings to @code{libflac}
+audio library for Common Lisp")
+      (license license:zlib))))
+
+(define-public ecl-cl-flac
+  (sbcl-package->ecl-package sbcl-cl-flac))
+
+(define-public cl-flac
+  (sbcl-package->cl-source-package sbcl-cl-flac))
 
 ;; 20230312T202241+0000
 ;; (define-public sbcl-3d-quaternions
