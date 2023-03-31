@@ -1,0 +1,17 @@
+#+title: Audio
+
+* Flow [0/2][0%]
+** TODO Shinmera/Shirakumo [1/1][100%] :author:
+*** DONE libmixed [4/4][100%]
+CLOSED: [2023-03-31 Fri 20:59]
+- https://github.com/Shirakumo/cl-mixed
+- synopsis ::
+- [X] :packed <2023-03-26 Sun>
+- [X] :patch-sent <2023-03-27 Mon>
+- [X] :patch-applied-upstream <2023-03-30 Thu>
+  - https://issues.guix.gnu.org/62477
+- [X] :inputs [4/4][100%]
+  - [X] doxygen
+  - [X] graphviz
+  - [X] mpg123
+  - [X] ncurses

@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 202e Sharlatan Hellseher <sharlatanus@gmail.com>
+;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
 ;;;
 ;;; This file is NOT part of GNU Guix.
 ;;;
@@ -28,47 +28,6 @@
   #:use-module (guix packages))
 
 ;; 20230326T101746+0100
-(define-public libmixed
-  ;; Release is much outdated.
-  (let ((commit "91e6b9f2438bca41205fade02c9d8f4f938838b6")
-        (revision "0"))
-    (package
-      (name "libmixed")
-      (version (git-version "2.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/libmixed")
-               (commit commit)))
-         (file-name (git-file-name "libmixed" version))
-         (sha256
-          (base32 "01vwgv8ivpg7a4y95krkgh656mmklsn1k3fmhwp474aj82grd3m4"))))
-      (build-system cmake-build-system)
-      (arguments
-       (list
-        ;; FIXME: (Sharlatan-20230326T121542+0100): test failed 1/34, 1 failed,
-        ;; 33 passed. There is not simple way to disable just one test.
-        ;; https://github.com/Shirakumo/libmixed/issues/13
-        #:tests? #f
-        #:configure-flags
-        #~(list "-DCMAKE_CXX_FLAGS=-O3 -fPIC"
-                "-DCMAKE_C_FLAGS=-O3 -fPIC")
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-after 'unpack 'fix-paths
-              (lambda _
-                (substitute* "CMakeLists.txt"
-                  (("/usr/local") #$output))))
-            (replace 'check
-              (lambda* (#:key tests? #:allow-other-keys)
-                (when tests?
-                  (invoke "./tester")))))))
-      (native-inputs (list doxygen graphviz))
-      (inputs (list ncurses mpg123))
-      (home-page "https://github.com/Shirakumo/libmixed")
-      (synopsis "Low-level audio mixer pipeline library")
-      (description
-       "Libmixed is a library for real-time audio processing pipelines for use in
-audio/video/games.  It can serve as a base architecture for complex DSP systems.")
-      (license license:zlib))))
+;; (define-public libmixed
+;; added-to-upstream c27301e8274eb3b821b08f14566e3bf706260108
+;; CommitDate: Thu Mar 30 11:32:46 2023 +0200

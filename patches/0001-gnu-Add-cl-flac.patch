@@ -1,0 +1,79 @@
+From 4c25322b8fbcef871ed490468e30c6eb59f6071f Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 26 Mar 2023 21:35:23 +0100
+Subject: [PATCH 1/6] gnu: Add cl-flac.
+
+* gnu/packages/lisp-xyz.scm (cl-flac, ecl-cl-flac, sbcl-cl-flac): New variables.
+---
+ gnu/packages/lisp-xyz.scm | 48 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 20ea82cd6f..ae8524657b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -119,6 +119,7 @@ (define-module (gnu packages lisp-xyz)
+   #:use-module (gnu packages web)
+   #:use-module (gnu packages webkit)
+   #:use-module (gnu packages xdisorg)
++  #:use-module (gnu packages xiph)
+   #:use-module (gnu packages xml)
+   #:use-module (gnu packages xorg)
+   #:use-module (ice-9 match)
+@@ -6728,6 +6729,53 @@ (define-public cl-fastcgi
+ (define-public ecl-cl-fastcgi
+   (sbcl-package->ecl-package sbcl-cl-fastcgi))
+ 
++(define-public sbcl-cl-flac
++  (let ((commit "d094d33d3cc2cf263263b917798d338eded3c532")
++        (revision "0"))
++    (package
++      (name "sbcl-cl-flac")
++      (version (git-version "2.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/Shirakumo/cl-flac")
++               (commit commit)))
++         (file-name (git-file-name "cl-flac" version))
++         (sha256
++          (base32 "1dgr5xqf175hzq3sxpbixxia2k2g3rz0pn6msch4dnvk7a1naqlc"))
++         (modules '((guix build utils)))
++         (snippet
++          ;; Delete bundled libraries.
++          `(begin
++             (delete-file-recursively "static")))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       `(#:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'fix-paths
++             (lambda* (#:key inputs #:allow-other-keys)
++               (substitute* "low-level.lisp"
++                 (("libflac.so")
++                  (search-input-file inputs "/lib/libFLAC.so"))))))))
++      (inputs
++       (list flac
++             sbcl-cffi
++             sbcl-documentation-utils
++             sbcl-trivial-features
++             sbcl-trivial-garbage))
++      (home-page "https://shirakumo.github.io/cl-flac")
++      (synopsis "CFFI binding to libflac for Common Lisp")
++      (description "This package provides a CFFI bindings to @code{libflac}
++audio library for Common Lisp")
++      (license license:zlib))))
++
++(define-public ecl-cl-flac
++  (sbcl-package->ecl-package sbcl-cl-flac))
++
++(define-public cl-flac
++  (sbcl-package->cl-source-package sbcl-cl-flac))
++
+ (define-public sbcl-clack
+   (let ((commit "6fd0279424f7ba5fd4f92d69a1970846b0b11222")
+         (revision "2"))
+-- 
+2.39.2
+

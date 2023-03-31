@@ -15,10 +15,11 @@
     python.org             Astropy                 [0/1][0%]     :author:
     maths.org              mtr                     [0/1][0%]     :author:
     maths.org              danieljprice            [1/1][100%]   :author:
+    lisp.org               zombie-raptor           [/][%]        :author:
     lisp.org               vsedach                 [1/2][50%]    :author:
     lisp.org               VitoVan                 [1/2][50%]    :author:
     lisp.org               vindarel                [0/1][0%]     :author:
-    lisp.org               Shinmera/Shirakumo      [18/25][72%]  :author:
+    lisp.org               Shinmera/Shirakumo      [22/28][78%]  :author:
     lisp.org               s-expressionists        [0/1][0%]     :author:
     lisp.org               robert-strandh          [1/1][100%]   :author:
     lisp.org               mfiano                  [4/4][100%]   :author:
@@ -61,6 +62,7 @@
     golang.org             github.com/caddyserver  [0/1][0%]     :author:
     golang.org             FiloSottile             [0/1][0%]     :author:
     docker.org             wagoodman               [0/1][0%]     :author:
+    audio.org              Shinmera/Shirakumo      [1/1][100%]   :author:
     astronomy.org          XEphem                  [0/4][0%]     :author:
     astronomy.org          wtbarnes                [0/1][0%]     :author:
     astronomy.org          SURF                    [/][%]        :author:
@@ -145,6 +147,7 @@
     astronomy.org          AIPS                           [/][%]       :p5:
     python.org             python-sunpy-sphinx-theme      [0/4][0%]    :p4:
     maths.org              ducc                           [/][%]       :p4:
+    lisp.org               zombie-raptor                  [/][%]       :p4:
     lisp.org               Vacietis                       [/][%]       :p4:
     lisp.org               cl-pkr                         [0/4][0%]    :p4:
     lisp.org               cl-cairo2                      [3/4][75%]   :p4:
@@ -316,10 +319,8 @@
     python.org             python-sphinx-changelog        [0/4][0%]    :p1:
     python.org             python-sphinx-automodapi       [1/4][25%]   :p1:
     python.org             python-opencv                  [0/4][0%]    :p1:
-    lisp.org               cl-qt-libs                     [0/4][0%]    :p1:
-    lisp.org               cl-mixed                       [1/4][25%]   :p1:
+    lisp.org               cl-qtools                      [0/4][0%]    :p1:
     lisp.org               cl-jscl                        [/][%]       :p1:
-    lisp.org               cl-harmony                     [0/4][0%]    :p1:
     lisp.org               cl-feedback                    [0/4][0%]    :p1:
     julia-xyz.org          julia-vectorizationbase        [0/4][0%]    :p1:
     julia-xyz.org          julia-staticarrayinterface     [0/4][0%]    :p1:
@@ -370,13 +371,14 @@
     python.org             portalocker                    [2/4][50%]   
     python.org             parsley                        [1/4][25%]   
     maths.org              DIERCKX                        [0/4][0%]    
-    lisp.org               trial                          [4/5][80%]   
+    lisp.org               trial                          [3/5][60%]   
     lisp.org               repo                           [0/4][0%]    
     lisp.org               kandria                        [0/4][0%]    
     lisp.org               cl-weird                       [0/4][0%]    
     lisp.org               cl-weir                        [3/4][75%]   
     lisp.org               cl-torrents                    [0/4][0%]    
     lisp.org               cl-steamworks                  [0/4][0%]    
+    lisp.org               cl-qt-libs                     [0/5][0%]    
     lisp.org               cl-plplot                      [0/4][0%]    
     lisp.org               cl-claw                        [0/4][0%]    
     lisp.org               cl-bodge                       [0/4][0%]    
@@ -440,6 +442,7 @@
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
     astronomy.org          weightwatcher                    [3/3][100%]  
+    audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  
     databases.org          pgloader                                      
     golang.org             hcl-v2                           [4/4][100%]  
@@ -481,6 +484,7 @@
     lisp.org               cl-diskspace                     [3/3][100%]  
     lisp.org               cl-dns-client                    [4/4][100%]  
     lisp.org               cl-eventbus                      [4/4][100%]  
+    lisp.org               cl-flac                          [4/4][100%]  
     lisp.org               cl-flare                         [4/4][100%]  
     lisp.org               cl-flow                          [4/4][100%]  
     lisp.org               cl-for                           [4/4][100%]  
@@ -493,6 +497,7 @@
     lisp.org               cl-golden-utils                  [3/3][100%]  
     lisp.org               cl-graph                         [4/4][100%]  
     lisp.org               cl-gss                           [4/4][100%]  
+    lisp.org               cl-harmony                       [4/4][100%]  
     lisp.org               cl-hu.dwim.graphviz              [4/4][100%]  
     lisp.org               cl-kaputt                        [4/4][100%]  
     lisp.org               cl-kons-9                        [4/4][100%]  
@@ -500,6 +505,7 @@
     lisp.org               cl-mathstats                     [4/4][100%]  
     lisp.org               cl-messagebox                    [4/4][100%]  
     lisp.org               cl-metacopy                      [4/4][100%]  
+    lisp.org               cl-mixed                         [4/4][100%]  
     lisp.org               cl-mount-info                    [4/4][100%]  
     lisp.org               cl-net.mfiano.lisp.shadow        [4/4][100%]  
     lisp.org               cl-net.mfiano.lisp.umbra         [4/4][100%]  
@@ -521,6 +527,7 @@
     lisp.org               cl-trivial-timeout               [3/3][100%]  
     lisp.org               cl-varjo                         [4/4][100%]  
     lisp.org               cl-vas-string-metrics            [3/3][100%]  
+    lisp.org               cl-vorbis                        [4/4][100%]  
     lisp.org               cm-fn                            [4/4][100%]  
     lisp.org               Djula                            [4/4][100%]  
     lisp.org               glsl-packing                     [4/4][100%]  

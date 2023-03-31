@@ -1,0 +1,37 @@
+From 1161f6eff450e30ce5f4b407e02cdffa76951c91 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 26 Mar 2023 21:58:18 +0100
+Subject: [PATCH 6/6] gnu: cl-trial: Activate trial-harmony system.
+
+* gnu/packages/lisp-xyz.scm (sbcl-trial):
+  [arguments]<asd-systems>: Activate trial-harmony.
+  [inputs]: Add sbcl-harmony.
+---
+ gnu/packages/lisp-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 3240669919..6375175485 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -21252,8 +21252,7 @@ (define-public sbcl-trial
+                          ;; ...
+                          ;; "trial-glop"
+                          "trial-gltf"
+-                         ;; TODO: It requires a long packaging journey.
+-                         ;; "trial-harmony"
++                         "trial-harmony"
+                          "trial-jpeg"
+                          "trial-notify"
+                          "trial-png"
+@@ -21299,6 +21298,7 @@ (define-public sbcl-trial
+              sbcl-form-fiddle
+              sbcl-glop
+              sbcl-glsl-toolkit
++             sbcl-harmony
+              sbcl-ieee-floats
+              sbcl-jzon
+              sbcl-lambda-fiddle
+-- 
+2.39.2
+

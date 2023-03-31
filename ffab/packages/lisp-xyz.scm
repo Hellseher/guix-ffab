@@ -111,221 +111,24 @@
 ;;+begin-shirakumo
 
 ;; 20230326T100349+0100
-(define-public sbcl-harmony
-  (let ((commit "0b57483cc0341936c201b620f82a8542c606991f")
-        (revision "0"))
-    (package
-      (name "sbcl-harmony")
-      (version (git-version "2.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/harmony")
-               (commit commit)))
-         (file-name (git-file-name "harmony" version))
-         (sha256
-          (base32 "0pqmfi3yi3gi7b7dyayrb621hp60rn7hasq0cl0fis3vg0fp5dja"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-atomics
-             sbcl-bordeaux-threads
-             sbcl-cl-mixed
-             sbcl-stealth-mixin
-             sbcl-trivial-features))
-      (home-page "https://shirakumo.github.io/harmony/")
-      (synopsis "Common Lisp sound server and sound processing library")
-      (description
-       "HARMONY is a library that provides you with audio processing tools as well as
-an audio server to play back music, sfx, and so forth.  It is most suited for use
-in a game engine, but may feasibly also used for more advanced things such as a
-DAW")
-      (license license:zlib))))
-
-(define-public ecl-harmony
-  (sbcl-package->ecl-package sbcl-harmony))
-
-(define-public cl-harmony
-  (sbcl-package->cl-source-package sbcl-harmony))
+;; (define-public sbcl-harmony
+;; added-to-upstream c5a943e016414afc38418c14320e72587e5d9393
+;; CommitDate: Thu Mar 30 11:32:46 2023 +0200
 
 ;; 20230326T100851+0100
-(define-public sbcl-cl-mixed
-  (let ((commit "4aaff134d3902d93a2a8605c10de4bcfc62d7afa")
-        (revision "0"))
-    (package
-      (name "sbcl-cl-mixed")
-      (version (git-version "2.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/cl-mixed")
-               (commit commit)))
-         (file-name (git-file-name "cl-mixed" version))
-         (sha256
-          (base32 "1mrj95lxb1gbxxm89x8gy1ifw2ic1p5wwpapkxcd2jr8abw7zny0"))
-         (modules '((guix build utils)))
-         (snippet
-          ;; Delete bundled libraries.
-          `(begin
-             (delete-file-recursively "static")))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       '(#:asd-systems '("cl-mixed"
-                         "cl-mixed-examples"
-                         "cl-mixed-flac"
-                         "cl-mixed-vorbis"
-                         "cl-mixed-alsa"
-                         "cl-mixed-jack"
-                         "cl-mixed-mpg123"
-                         "cl-mixed-mpt"
-                         "cl-mixed-out123"
-                         "cl-mixed-pulse"
-                         "cl-mixed-sdl2")
-         #:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'fix-paths
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "low-level.lisp"
-                 (("libmixed.so.2")
-                  (search-input-file inputs "/lib/libmixed.so.2"))))))))
-      (inputs
-       (list libmixed
-             sbcl-alexandria
-             sbcl-cffi
-             sbcl-cl-flac
-             sbcl-cl-mpg123
-             sbcl-cl-out123
-             sbcl-cl-vorbis
-             sbcl-documentation-utils
-             sbcl-sdl2
-             sbcl-static-vectors
-             sbcl-trivial-features))
-      (home-page "https://shirakumo.github.io/cl-mixed")
-      (synopsis "Extended audio library for Common Lisp")
-      (description
-       "This packages provides CFFI binding to @code{libmixed} audio library for
-Common Lisp with support of other audio formats available on GNU/Linux systems:
-
-@itemize
-
-@item @acronym{Alsa, Advanced Linux Sound Architecture}
-@item @acronym{Jack, JackAudio toolkit}
-@item @acronym{Openmpt, Libopenmpt playback drain for tracker files}
-@item @acronym{PulseAudio, PulseAudio based playback drain}
-@item Flac (via CL-FLAC)
-@item Mpg123 (via CL-MPG123)
-@item Ogg/vorbis (via CL-VORBIS)
-@item Out123 (via CL-OUT123)
-
-@end itemize")
-      (license license:zlib))))
-
-(define-public ecl-cl-mixed
-  (sbcl-package->ecl-package sbcl-cl-mixed))
-
-(define-public cl-mixed
-  (sbcl-package->cl-source-package sbcl-cl-mixed))
+;; (define-public sbcl-cl-mixed
+;; added-to-upstream c54033619482705f4c57dc798f5b388c54e4f5ac
+;; CommitDate: Thu Mar 30 11:32:46 2023 +0200
 
 ;; 20230326T194048+0100
-(define-public sbcl-cl-vorbis
-  (let ((commit "c5835cd7091aea9e2e389ad359d244542d637758")
-        (revision "0"))
-    (package
-      (name "sbcl-cl-vorbis")
-      (version (git-version "2.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/cl-vorbis")
-               (commit commit)))
-         (file-name (git-file-name "cl-vorbis" version))
-         (sha256
-          (base32 "0713pl5c2khfpf8m3h1l2y0ilack7akf580h70jq6qcrnq3h4b40"))
-         (modules '((guix build utils)))
-         (snippet
-          ;; Delete bundled libraries, GlibC and Vorbis sources.
-          `(begin
-             (delete-file-recursively "static")
-             (for-each delete-file '("glibc-2.13.h"
-                                     "stb_vorbis.c"
-                                     "stb_vorbis_patch.c"))))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'fix-paths
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "low-level.lisp"
-                 (("libvorbis-lin-amd64.so")
-                  (search-input-file inputs "/lib/libvorbis.so"))))))))
-      (inputs
-       (list libvorbis
-             sbcl-cffi
-             sbcl-documentation-utils
-             sbcl-static-vectors
-             sbcl-trivial-features
-             sbcl-trivial-garbage))
-      (home-page "https://shirakumo.github.io/cl-vorbis")
-      (synopsis "OGG/Vorbis decoding using stb_vorbis for Common Lisp")
-      (description "This package provides a CFFI binding of @code{ctb_vorbis}
-audio library to Common Lisp.")
-      (license license:zlib))))
-
-(define-public ecl-cl-vorbis
-  (sbcl-package->ecl-package sbcl-cl-vorbis))
-
-(define-public cl-vorbis
-  (sbcl-package->cl-source-package sbcl-cl-vorbis))
+;; (define-public sbcl-cl-vorbis
+;; added-to-upstram 03387bd17f2890f74e5b38bb80d0e4be7fcbc928
+;; CommitDate: Thu Mar 30 11:32:46 2023 +0200
 
 ;; 20230326T200840+0100
-(define-public sbcl-cl-flac
-  (let ((commit "d094d33d3cc2cf263263b917798d338eded3c532")
-        (revision "0"))
-    (package
-      (name "sbcl-cl-flac")
-      (version (git-version "2.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/Shirakumo/cl-flac")
-               (commit commit)))
-         (file-name (git-file-name "cl-flac" version))
-         (sha256
-          (base32 "1dgr5xqf175hzq3sxpbixxia2k2g3rz0pn6msch4dnvk7a1naqlc"))
-         (modules '((guix build utils)))
-         (snippet
-          ;; Delete bundled libraries.
-          `(begin
-             (delete-file-recursively "static")))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-       `(#:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'fix-paths
-             (lambda* (#:key inputs #:allow-other-keys)
-               (substitute* "low-level.lisp"
-                 (("libflac.so")
-                  (search-input-file inputs "/lib/libFLAC.so"))))))))
-      (inputs
-       (list flac
-             sbcl-cffi
-             sbcl-documentation-utils
-             sbcl-trivial-features
-             sbcl-trivial-garbage))
-      (home-page "https://shirakumo.github.io/cl-flac")
-      (synopsis "CFFI binding to libflac for Common Lisp")
-      (description "This package provides a CFFI bindings to @code{libflac}
-audio library for Common Lisp")
-      (license license:zlib))))
-
-(define-public ecl-cl-flac
-  (sbcl-package->ecl-package sbcl-cl-flac))
-
-(define-public cl-flac
-  (sbcl-package->cl-source-package sbcl-cl-flac))
+;; (define-public sbcl-cl-flac
+;; added-to-upstram 2ab0c55e3f4718034fc3253ec6aa435b490fc4f0
+;; CommitDate: Thu Mar 30 11:32:46 2023 +0200
 
 ;; 20230312T202241+0000
 ;; (define-public sbcl-3d-quaternions

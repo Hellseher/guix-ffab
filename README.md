@@ -1,13 +1,13 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#org7e561a9)
-2.  [Installation](#orgda86348)
-    1.  [Use as channel](#org4f814f1)
-    2.  [Use as build/install source](#org7eda763)
-3.  [References](#orgd2335c9)
-    1.  [Guix channels](#org63adfc1)
-    2.  [etc](#orge68a41b)
+1.  [Project structure and layout](#org11c04e8)
+2.  [Installation](#org9f6d3d6)
+    1.  [Use as channel](#orgc6bb1b6)
+    2.  [Use as build/install source](#org245ec6e)
+3.  [References](#orgdb3f8b5)
+    1.  [Guix channels](#org1e49f71)
+    2.  [etc](#org411829b)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -23,7 +23,7 @@ such as **Common Lisp**, **Golan** and **Python**.
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="org7e561a9"></a>
+<a id="org11c04e8"></a>
 
 # Project structure and layout
 
@@ -48,8 +48,8 @@ Layout follows Guix upstream.
 -   **./TODO.md:** Generated report from packaging process in `org/` directory.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
-    :guix-commit 9cb17464679de2c29aa6db0b0a11142bfb4ca042
-    :accepted 165
+    :guix-commit 47ea688fd27d0ce0c8ea5481f1f94d0ebc3e37eb
+    :accepted 170
     :pending 158
     
     :astronomy 25
@@ -58,13 +58,13 @@ Layout follows Guix upstream.
     :python 13
     :misc 20
     
-    :date Wed 22 Mar 20:13:20 GMT 2023
+    :date Fri 31 Mar 21:07:16 BST 2023
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
 
-<a id="orgda86348"></a>
+<a id="org9f6d3d6"></a>
 
 # Installation
 
@@ -72,7 +72,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org4f814f1"></a>
+<a id="orgc6bb1b6"></a>
 
 ## Use as channel
 
@@ -85,7 +85,7 @@ manager.
            %default-channels)
 
 
-<a id="org7eda763"></a>
+<a id="org245ec6e"></a>
 
 ## Use as build/install source
 
@@ -94,7 +94,7 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="orgd2335c9"></a>
+<a id="orgdb3f8b5"></a>
 
 # References
 
@@ -109,7 +109,7 @@ Main official resources:
 -   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="org63adfc1"></a>
+<a id="org1e49f71"></a>
 
 ## Guix channels
 
@@ -127,7 +127,7 @@ Main official resources:
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="orge68a41b"></a>
+<a id="org411829b"></a>
 
 ## etc
 
