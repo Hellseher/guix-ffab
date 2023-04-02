@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-31 Fri 21:01:37 BST>
+#+modified: <2023-03-31 Fri 21:23:36 BST>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1266,7 +1266,15 @@ CLOSED: [2023-03-16 Thu 22:04]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [ ] :inputs [0/8][0%]
+  - [ ] cl-r-data-model
+  - [ ] cl-r-oauth
+  - [ ] cl-r-clip
+  - [ ] cl-i-json
+  - [ ] cl-markless-plump
+  - [ ] cl-ppcre
+  - [ ] cl-csv
+  - [ ] cl-local-time
 
 *** DONE cl-flac [4/4][100%]
 CLOSED: [2023-03-31 Fri 20:59]
