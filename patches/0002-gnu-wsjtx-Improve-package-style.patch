@@ -1,0 +1,64 @@
+From 610d61d90a8e376983d0e924a2a30231977e80d9 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 5 Apr 2023 22:55:32 +0100
+Subject: [PATCH 2/2] gnu: wsjtx: Improve package style.
+
+* gnu/package/radio.scm (wsjtx)
+  Improve package style by shifting order of components.
+  [native-inputs]: Columnize, sort alphabetically.
+  [inputs]: Remove labels, sort alphabetically.
+---
+ gnu/packages/radio.scm | 28 ++++++++++++++++------------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/radio.scm b/gnu/packages/radio.scm
+index d3bd3b9dee..c589f95954 100644
+--- a/gnu/packages/radio.scm
++++ b/gnu/packages/radio.scm
+@@ -1521,19 +1521,24 @@ (define-public wsjtx
+        (sha256
+         (base32 "1lqd77v9xm58k9g9kfwxva3mmzm1yyk1v27nws5j1a293zfg2hkw"))))
+     (build-system qt-build-system)
++    (arguments
++     (list #:tests? #f)) ; No test suite
+     (native-inputs
+-     (list asciidoc gfortran pkg-config qttools-5 ruby-asciidoctor))
++     (list asciidoc
++           gfortran
++           pkg-config
++           qttools-5
++           ruby-asciidoctor))
+     (inputs
+-     `(("boost" ,boost)
+-       ("fftw" ,fftw)
+-       ("fftwf" ,fftwf)
+-       ("hamlib" ,wsjtx-hamlib)
+-       ("libusb" ,libusb)
+-       ("qtbase" ,qtbase-5)
+-       ("qtmultimedia-5" ,qtmultimedia-5)
+-       ("qtserialport" ,qtserialport)))
+-    (arguments
+-     `(#:tests? #f)) ; No test suite
++     (list boost
++           fftw
++           fftwf
++           libusb
++           qtbase-5
++           qtmultimedia-5
++           qtserialport
++           wsjtx-hamlib))
++    (home-page "https://www.physics.princeton.edu/pulsar/k1jt/wsjtx.html")
+     (synopsis "Weak-signal ham radio communication program")
+     (description
+      "WSJT-X implements communication protocols or modes called FT4, FT8,
+@@ -1541,7 +1546,6 @@ (define-public wsjtx
+ detecting and measuring your own radio signals reflected from the Moon.  These
+ modes were all designed for making reliable, confirmed QSOs under extreme
+ weak-signal conditions.")
+-    (home-page "https://www.physics.princeton.edu/pulsar/k1jt/wsjtx.html")
+     (license license:gpl3)))
+ 
+ (define-public jtdx
+-- 
+2.39.2
+
