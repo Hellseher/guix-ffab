@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-20 Mon 23:59:39 GMT>
+#+modified: <2023-04-08 Sat 21:06:37 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1746,7 +1746,7 @@ guiding software from Stark Labs.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [7/14][50%]
+- [-] :inputs [8/14][57%]
   - [X] assimp
   - [X] catch2
   - [X] fmt (cppformat)
@@ -1765,7 +1765,8 @@ guiding software from Stark Labs.
   - [ ] tiny-process-library
     - [ ] :packed
   - [ ] tracy
-  - [ ] websocketpp
+    - [ ] :packed
+  - [X] websocketpp
 
 ** TODO PaulMcMillan-Astro [0/1][0%] :author:
 https://github.com/PaulMcMillan-Astro/
