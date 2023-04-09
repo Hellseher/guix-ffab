@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-04-08 Sat 21:06:37 BST>
+#+modified: <2023-04-09 Sun 19:31:41 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1736,8 +1736,11 @@ guiding software from Stark Labs.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  - [ ] Ghoul
+- [ ] :inputs [0/2][0%]
+  - [ ] ghoul
+    - [ ] :packed
+  - [ ] spice
+    - [ ] :packed
 
 *** TODO Ghoul [0/4] :p5:
 - https://github.com/OpenSpace/Ghoul
