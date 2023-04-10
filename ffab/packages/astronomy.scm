@@ -100,17 +100,17 @@
 
 ;; 20220626T221017+0100
 ;; (define-public splash
-;; added-to-upstream 43b8df4bece2a207018dc0fedc44d3d188d2d0f0
+;; added-to-downstream-guix 43b8df4bece2a207018dc0fedc44d3d188d2d0f0
 ;; CommitDate: Thu Oct 6 00:11:18 2022 +0200
 
 ;; 20221115T204848+0000
 ;; (define-public alfa
-;; added-to-upstream 594f5ef35107d5641c44dac5cd7e9fb3737b674b
+;; added-to-downstream-guix 594f5ef35107d5641c44dac5cd7e9fb3737b674b
 ;; CommitDate: Fri Dec 2 00:02:12 2022 +0100
 
 ;; 20230220T213057+0000
 ;; (define-public calcmysky
-;; added-to-upstream aaf7e31d1912cc05c9bf3163a951bfa91bc129db
+;; added-to-downstream-guix aaf7e31d1912cc05c9bf3163a951bfa91bc129db
 ;; CommitDate: Tue Mar 7 11:39:50 2023 +0100
 
 ;; 20220619T144120+0100
@@ -418,12 +418,12 @@ radio astronomy.")
 
 ;; 20220608T191316+0100
 ;; (define-public aoflagger
-;; added-to-upstream cdff1423c0d03e7d3e8445cf14f1123f694468c8
+;; added-to-downstream-guix cdff1423c0d03e7d3e8445cf14f1123f694468c8
 ;; CommitDate: Thu Aug 4 12:05:47 2022 +0200
 
 ;; 20220614T105114+0100
 ;; (define-public aocommon
-;; added-to-upstream 4ccd4176a2f63004fe10c9e8c9ccc8ba46b9d408
+;; added-to-downstream-guix 4ccd4176a2f63004fe10c9e8c9ccc8ba46b9d408
 ;; CommitDate: Thu Aug 4 12:05:47 2022 +0200
 
 ;; TODO: (Sharlatan-20220704T211255+0100): Needs more love
@@ -506,26 +506,26 @@ radio astronomy.")
     (license #f)))
 
 ;; (define-public imppg
-;; added-to-upstream: bf9a1dfd591d5e166581919ac92e67f47219f0eb
+;; added-to-downstream-guix bf9a1dfd591d5e166581919ac92e67f47219f0eb
 ;; CommitDate: Sun Dec 5 12:35:55 2021 +0100
 
 ;; (define-public eye
-;; added-to-upstream: 51418c32d95d8188d8877616829f26479f1135c6
+;; added-to-downstream-guix 51418c32d95d8188d8877616829f26479f1135c6
 
 ;; (define-public indi
-;; added-to-upstream: ae416e852ad6b305ffaf67343d7192bd7c4c89aa
+;; added-to-downstream-guix ae416e852ad6b305ffaf67343d7192bd7c4c89aa
 
 ;; (define-public libpasastro
-;; added-to-upstream: 906155e437c9513462f19baac6e88b976f42b358
+;; added-to-downstream-guix 906155e437c9513462f19baac6e88b976f42b358
 
 ;; 20220724T204740+0100
 ;; (define-public libsep
-;; added-to-upstream 6ad9a094c1a25a4aa1df559943f9bc6ca8870752
+;; added-to-downstream-guix 6ad9a094c1a25a4aa1df559943f9bc6ca8870752
 ;; CommitDate: Mon Aug 1 14:08:07 2022 +0200
 
 ;; 20210127T001151+0000
 ;; (define-public missfits
-;; added-to-upstream: 1aee32a26e1a96dd457fcf62f97f514c7a562475
+;; added-to-downstream-guix 1aee32a26e1a96dd457fcf62f97f514c7a562475
 ;; CommitDate: Wed Jan 27 10:39:54 2021 +0100
 
 ;; TODO: (Sharlatan-20210415T225235+0100): Failing on build phase
@@ -576,15 +576,15 @@ photometry or morphological analyses.")
     (license license:gpl3+)))
 
 ;; (define-public weightwatcher
-;; added-to-upstream: a80d489227738dffea24713555c9d940f5ffcce0
+;; added-to-downstream-guix a80d489227738dffea24713555c9d940f5ffcce0
 ;; CommitDate: Fri Jan 29 11:11:13 2021 +0100
 
 ;; (define-public stuff
-;; added-to-upstream: c21ad767d4368dbd9ff37a6fd5cdea8aa37fec57
+;; added-to-downstream-guix c21ad767d4368dbd9ff37a6fd5cdea8aa37fec57
 ;; CommitDate: Fri Jan 29 10:54:17 2021 +0100
 
 ;; (define-public skymaker
-;; added-to-upstream: 33648567dd229b1302d2258e76d8b30593fedce6
+;; added-to-downstream-guix 33648567dd229b1302d2258e76d8b30593fedce6
 ;; CommitDate: Thu Jan 28 13:43:49 2021 +0100
 
 ;; TODO: (Sharlatan-20221102T230446+0000): Configure failing
@@ -629,15 +629,15 @@ planetarium.")
       (license license:gpl3+))))
 
 ;; (define-public sextractor
-;; added-to-upstream: b2d6f127c24787df00bffd918fa879842f933817
+;; added-to-downstream-guix b2d6f127c24787df00bffd918fa879842f933817
 ;; CommitDate: Mon Jan 25 17:59:02 2021 +0100
 
 ;; (define-public python-sep
-;; added-to-upstream: d1bd22b9fb17e94931b7ebe23c6d9735b195442a
+;; added-to-downstream-guix d1bd22b9fb17e94931b7ebe23c6d9735b195442a
 ;; CommitDate: Fri Feb 19 11:05:33 2021 +0100
 
 ;; (define-public python-jplephem
-;; added-to-upstream: 35d13a9099cad3326f0961760bb4ee2ceb692fa9
+;; added-to-downstream-guix 35d13a9099cad3326f0961760bb4ee2ceb692fa9
 ;; CommitDate: Sun Feb 7 10:20:52 2021 +0100
 
 ;; https://github.com/asdf-format
@@ -645,36 +645,36 @@ planetarium.")
 
 ;; 20221019T231950+0100
 ;; (define-public python-asdf-standard
-;; added-to-upstream 1b03c64a05a319631a82cd15b9dda914e94c5142
+;; added-to-downstream-guix 1b03c64a05a319631a82cd15b9dda914e94c5142
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225444+0100
 ;; (define python-asdf-unit-schemas
-;; added-to-upstream f99a1e257d7ba5995afcf05f429d79d6f097a517
+;; added-to-downstream-guix f99a1e257d7ba5995afcf05f429d79d6f097a517
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225455+0100
 ;; (define python-asdf-fits-schemas
-;; added-to-upstream 6924f4a866dbda02b15b075f7718d4aa794090f3
+;; added-to-downstream-guix 6924f4a866dbda02b15b075f7718d4aa794090f3
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20221023T225504+0100
 ;; (define python-asdf-time-schemas
-;; added-to-upstream 2959b98a720fb60e54d09128aa08d109f6601f02
+;; added-to-downstream-guix 2959b98a720fb60e54d09128aa08d109f6601f02
 ;; CommitDate: Mon Nov 21 14:25:12 2022 +0000
 
 ;; 20211111234021+0000
 ;; (define python-asdf-transform-schemas
-;; added-to-upstream 89a5c53f382eec3dc4e2b60d819b39ada003df44
+;; added-to-downstream-guix 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
 ;; 20211111235021+0000
 ;; (define-public python-asdf
-;; added-to-upstream: f498823e7843379499d35ae397c38dc879fb9844
+;; added-to-downstream-guix f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
 
 ;; (define python-asdf-wcs-schemas
-;; added-to-upstream: 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
+;; added-to-downstream-guix 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
 ;; (define python-asdf-coordinates-schemas
@@ -688,23 +688,23 @@ planetarium.")
 ;;+end-asdf-format
 
 ;; (define-public python-astroalign
-;; added-to-upstream: d6996fa05277f240b70b18c227419c371cfc737f
+;; added-to-downstream-guix d6996fa05277f240b70b18c227419c371cfc737f
 ;; CommitDate: Fri Feb 19 11:05:34 2021 +0100
 
 ;;  http://www.astropy.org https://github.com/astropy
 ;;+begin-astropy
 
 ;; (define-public python-astropy
-;; added-to-upstream 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
+;; added-to-downstream-guix 9371cf2138711ea7305951d82c5cf0b36ac4d6f1
 
 ;; 20211111235021+0000
 ;; (define-public python-asdf-astropy
-;; added-to-upstream: 7b2747c81d52dd4727cc642df2ebbce485c7e204
+;; added-to-downstream-guix 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
 
 ;; 20221123T230513+0000
 ;; (define-public python-reproject
-;; added-to-upstream a3d85918f90e31118bc9b7e483520d0ae6192e3d
+;; added-to-downstream-guix a3d85918f90e31118bc9b7e483520d0ae6192e3d
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221107T133138+0000
@@ -806,7 +806,7 @@ for variables with units.")
 
 ;; 20211111T235042+0000
 ;; (define-public python-gwcs
-;; added-to-upstream: 3e497b3a4c8146b4e67807f64bea3d986df9894a
+;; added-to-downstream-guix 3e497b3a4c8146b4e67807f64bea3d986df9894a
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
 
 ;; 20220131T235042+0000
@@ -1036,7 +1036,7 @@ WCS} and @code{JWST gWCS} are supported.")
 ;;
 ;;20220523T215603+0100
 ;; (define-public python-spherical-geometry
-;; added-to-upstream b12ee1ee5b8b53bf27b79ce81b1b2158cc7de484
+;; added-to-downstream-guix b12ee1ee5b8b53bf27b79ce81b1b2158cc7de484
 ;; CommitDate: Sat Feb 25 00:00:34 2023 +0100
 
 ;; 20220705T162506+0100
@@ -1078,12 +1078,12 @@ greatly simplified.")
 
 ;; 20220706T114426+0100
 ;; (define-public python-poppy
-;; added-to-upstream 8514a7532591b97c2adbe8a20cb4e630ff6b8654
+;; added-to-downstream-guix 8514a7532591b97c2adbe8a20cb4e630ff6b8654
 ;; CommitDate: Mon Jan 16 12:13:07 2023 -0500
 
 ;; 20230227T230548+0000
 ;; (define-public python-poliastro
-;; added-to-upstream e36a9148782af0a9f930fa7c8a4c26f38617af0f
+;; added-to-downstream-guix e36a9148782af0a9f930fa7c8a4c26f38617af0f
 ;; CommitDate: Thu Mar 16 00:16:07 2023 +0100
 
 ;; 20220706T135507+0100
@@ -1573,29 +1573,29 @@ based on the HDF5 standard")
 
 ;; 20220627T202513+0100
 ;; (define-public python-sunpy
-;; added-to-upstream 78ee6dcfe13c1561ff1d5cdfc2c2d4fa8afe0883
+;; added-to-downstream-guix 78ee6dcfe13c1561ff1d5cdfc2c2d4fa8afe0883
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;20220627T213949+0100
 ;; (define-public python-drms
-;; added-to-upstream 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
+;; added-to-downstream-guix 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20220702T165531+0100
 ;; (define-public python-mpl-animators
-;; added-to-upstream 0458cbd84c03068241dfaf293b0594ec07dc2019
+;; added-to-downstream-guix 0458cbd84c03068241dfaf293b0594ec07dc2019
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221123T225008+0000
 ;; (define-public python-hvpy
-;; added-to-upstream 0575012803683ebacd43029530683af7bdf791f9
+;; added-to-downstream-guix 0575012803683ebacd43029530683af7bdf791f9
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;;+end-sunpy
 
 ;; 20220627T211818+0100
 ;; (define-public python-cdflib
-;; added-to-upstream e72c1f148a473d67fa525e49caf18cf138d02e10
+;; added-to-downstream-guix e72c1f148a473d67fa525e49caf18cf138d02e10
 ;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
 ;; 20220817T224720+0100
@@ -1675,7 +1675,7 @@ can compute its position at any other time, no matter how remote.")
 
 ;; 20221020T220443+0100
 ;; (define-public siril
-;; added-to-upstream 8d7c96284a2e32553f86df0faf378f185913cce7
+;; added-to-downstream-guix 8d7c96284a2e32553f86df0faf378f185913cce7
 ;; CommitDate: Mon Nov 14 12:31:34 2022 +0100
 
 ;; 20221101T215432+0000
@@ -1851,34 +1851,8 @@ from Stark Labs.")
     (license license:bsd-3)))
 
 ;; 20230408T210741+0100
-(define-public libxisf
-  (package
-    (name "libxisf")
-    ;; TODO: (Sharlatan-20230408T213717+0100): v0.2.2 failed to build on
-    ;; configure phase, issue was open directly with author as he hosts source
-    ;; on seflhosted gitea.
-    (version "0.2.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://gitea.nouspiro.space/nou/libXISF")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0fz9mmj1nz5v7hlr53q8na7khadfn1hm0d1gfpzzw3167bqpy2xv"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list #:configure-flags
-           #~(list "-DUSE_BUNDLED_LIBS=OFF")))
-    (native-inputs
-     (list pkg-config))
-    (inputs
-     (list lz4 pugixml zlib))
-    (home-page "https://nouspiro.space/?page_id=306")
-    (synopsis "Astronomical library to load and write XISF file format")
-    (description "LibXISF is C++ library that can read and write XISF files produced by
-PixInsight. It implement XISF 1.0 specification.")
-    (license license:gpl3+)))
+;; (define-public libxisf
+;; added-to-downstream-guix a4e9842a70775a54bbe1369881b739e7ea9a6432
+;; CommitDate: Sun Apr 9 21:00:06 2023 +0200
 
 ;; End of astronomy.scm

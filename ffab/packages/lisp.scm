@@ -24,6 +24,6 @@
   #:use-module (gnu packages lisp))
 
 ;; 20210116T221116+0000
-;; added-to-upstream: 014845591a406a367082903da3e70d103b78bc44
+;; added-to-downstream-guix 014845591a406a367082903da3e70d103b78bc44
 ;; CommitDate: Sun Jan 17 10:17:38 2021 +0100
 ;; (define-public buildapp

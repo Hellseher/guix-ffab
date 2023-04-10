@@ -29,5 +29,5 @@
 
 ;; 20230326T101746+0100
 ;; (define-public libmixed
-;; added-to-upstream c27301e8274eb3b821b08f14566e3bf706260108
+;; added-to-downstream-guix c27301e8274eb3b821b08f14566e3bf706260108
 ;; CommitDate: Thu Mar 30 11:32:46 2023 +0200

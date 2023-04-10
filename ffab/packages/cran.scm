@@ -31,16 +31,16 @@
   #:use-module (guix packages))
 
 ;; <2021-05-26 Wed>
-;; added-to-upstream: 9cfa6c3c587766a310252f4c1271503d819bdd8a
+;; added-to-downstream-guix 9cfa6c3c587766a310252f4c1271503d819bdd8a
 ;; CommitDate: Thu Jul 22 11:37:25 2021 +0200
 ;; (define-public r-opencpu
 
 ;; <2021-05-26 Wed>
-;; added-to-upstream: 2b6dd1bde5bac375d61da8ead1efdf9a164aa787
+;; added-to-downstream-guix 2b6dd1bde5bac375d61da8ead1efdf9a164aa787
 ;; CommitDate: Thu Jul 22 11:37:25 2021 +0200
 ;; (define-public r-protolite
 
 ;; <2021-05-26 Wed>
-;; added-to-upstream: c5baff179687991c12a0beb514bc6c156f543018
+;; added-to-downstream-guix c5baff179687991c12a0beb514bc6c156f543018
 ;; CommitDate: Thu Jul 22 11:37:21 2021 +0200
 ;; (define-public r-webutils

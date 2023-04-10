@@ -31,6 +31,6 @@
   #:use-module ((guix licenses) #:prefix license:))
 
 ;; 20210212T121631+0000
-;; added-to-upstream: bc7879cca6196905b3f1e2c9db6c674ef0b7f8ca
+;; added-to-downstream-guix bc7879cca6196905b3f1e2c9db6c674ef0b7f8ca
 ;; CommitDate: Sat Feb 13 10:38:13 2021 +0800
 ;; (define-public swappy

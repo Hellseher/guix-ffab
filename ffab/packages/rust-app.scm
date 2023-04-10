@@ -28,6 +28,6 @@
   #:use-module (guix packages))
 
 ;; 20210120T152652+0000
-;; added-to-upstream: fb51912d37b85463dc11a821b004c71e1306a642
+;; added-to-downstream-guix fb51912d37b85463dc11a821b004c71e1306a642
 ;; CommitDate: Sat Jan 23 12:25:29 2021 +0100
 ;; (define-public drill

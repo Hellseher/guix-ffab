@@ -23,6 +23,6 @@
   #:use-module (gnu packages autotools)
   #:use-module ((guix licenses) #:prefix license:))
 
-;; added-to-upstream: 6be6945251dd72d4558fd6babeb7f595b332ea41
+;; added-to-downstream-guix 6be6945251dd72d4558fd6babeb7f595b332ea41
 ;; CommitDate: Wed Jan 27 21:31:35 2021 +0100
 ;; (define-public shapelib

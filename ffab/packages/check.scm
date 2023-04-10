@@ -80,5 +80,5 @@ to make testing async code easier.")
 
 ;; 20221017T223740+0100
 ;; (define-public python-pytest-7.1
-;; added-to-upstream 64b342ab321ddc513464bfcff39357306f32efc7
+;; added-to-downstream-guix 64b342ab321ddc513464bfcff39357306f32efc7
 ;; CommitDate: Sat Oct 22 13:50:50 2022 +0200

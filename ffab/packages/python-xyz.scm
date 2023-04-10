@@ -240,7 +240,7 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 
 ;; 20220621T191218+0100
 ;; (define-public python-posix-ipc
-;; added-to-upstream b12da85668c40be322204e1ca04fb70b4d709411
+;; added-to-downstream-guix b12da85668c40be322204e1ca04fb70b4d709411
 ;; CommitDate: Fri Aug 5 21:08:49 2022 +0300
 
 ;; 20220621T222117+0100
@@ -265,27 +265,27 @@ language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
 
 ;; 20220627T220024+0100
 ;; (define-public python-glymur
-;; added-to-upstream 95ed62c12bb33f6b64daf2f51df0e610f1abc913
+;; added-to-downstream-guix 95ed62c12bb33f6b64daf2f51df0e610f1abc913
 ;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
 ;; 20220702T095332+0100
 ;; (define-public python-h5netcdf
-;; added-to-upstream 3bd2b1b544c45e5e341010e48bcedcb0ba593480
+;; added-to-downstream-guix 3bd2b1b544c45e5e341010e48bcedcb0ba593480
 ;; CommitDate: Thu Aug 4 12:05:53 2022 +0200
 
 ;; 20221012T205858+0100
 ;; (define-public python-siosocks
-;; added-to-upstream 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
+;; added-to-downstream-guix 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
 ;; CommitDate: Mon Nov 7 20:29:18 2022 +0100
 
 ;; 20221011T224747+0100
 ;; (define-public python-aioftp
-;; added-to-upstream b0db0b2b2d3c6d5fecb6c7727b3173c21b896540
+;; added-to-downstream-guix b0db0b2b2d3c6d5fecb6c7727b3173c21b896540
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; 20221010T225525+0100
 ;; (define-public parfive
-;; added-to-upstream 472917ea6c479b3546ffaea02f755ed9c6e8d46b
+;; added-to-downstream-guix 472917ea6c479b3546ffaea02f755ed9c6e8d46b
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; 20221109T101311+0000
@@ -332,7 +332,7 @@ fragments\" which contain information useful to end users.")
 
 ;; 20230301T210252+0000
 ;; (define-public python-czml3
-;; added-to-upstream 0689a842710e5831d9de12964ec1fd38b360e022
+;; added-to-downstream-guix 0689a842710e5831d9de12964ec1fd38b360e022
 ;; CommitDate: Thu Mar 16 00:10:58 2023 +0100
 
 ;; 20230308T213240+0000

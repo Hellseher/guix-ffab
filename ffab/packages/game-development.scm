@@ -34,7 +34,7 @@
 
 ;; 20221119T195802+0000
 ;; (define-public sbcl-virality
-;; added-to-upstream 9c2d6ddfbed949d55230cb785d0245f5ef21daa6
+;; added-to-downstream-guix 9c2d6ddfbed949d55230cb785d0245f5ef21daa6
 ;; CommitDate: Sun Nov 20 14:45:00 2022 +0100
 
 ;; 20230306T225833+0000

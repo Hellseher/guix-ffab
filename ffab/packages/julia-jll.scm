@@ -27,7 +27,7 @@
 
 ;; 20221204T093314+0000
 ;; (define-public julia-cfitsio-jll
-;; added-to-upstream 1973ddbb6c6255c67e256efbaeaccd1dc4587102
+;; added-to-downstream-guix 1973ddbb6c6255c67e256efbaeaccd1dc4587102
 ;; CommitDate: Wed Feb 8 09:26:21 2023 +0200
 
 (define-public julia-erfa-jll

@@ -91,10 +91,10 @@ and cuts down boilerplate code when testing libraries for asyncio.")
 
 ;; 20221006T014754+0100
 ;; (define-public python-pytest-socket
-;; added-to-upstream c697ff964192f64dfc22927c09458852ace7dd9a
+;; added-to-downstream-guix c697ff964192f64dfc22927c09458852ace7dd9a
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
 
 ;; 20221109T102829+0000
 ;; (define-public python-nox
-;; added-to-upstream 8d97c66dfe1ac1fa00e16d30ab55042e2c7ea8f0
+;; added-to-downstream-guix 8d97c66dfe1ac1fa00e16d30ab55042e2c7ea8f0
 ;; CommitDate: Tue Jan 31 23:12:40 2023 +0100

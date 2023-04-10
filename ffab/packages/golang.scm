@@ -135,42 +135,42 @@ replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
 
 ;; 20220731T214024+0100
 ;; (define-public go-github-com-hashicorp-hcl
-;; added-to-upstream: 97657689507a0681aa9699407d292383ff22c330
+;; added-to-downstream-guix 97657689507a0681aa9699407d292383ff22c330
 ;; CommitDate: Wed Jan 5 23:44:20 2022 +0100
 
 ;; <2021-12-12 Sun>
 ;; (define-public go-github-com-hashicorp-hcl-v2
-;; added-to-upstream: 63b194080d3038bdfc54d66355bdd59e86197214
+;; added-to-downstream-guix 63b194080d3038bdfc54d66355bdd59e86197214
 ;; CommitDate: Fri Jan 28 10:36:01 2022 +0100
 
 ;; 20220128T103316+0100
 ;; (define-public go-github-com-agext-levenshtein
-;; added-to-upstream: 52850033d37ea2153210974acbb969b616d3ba20
+;; added-to-downstream-guix 52850033d37ea2153210974acbb969b616d3ba20
 ;; CommitDate: Fri Jan 28 10:33:16 2022 +0100
 
 ;; 20220128T103150+0100
 ;; (define-public go-github-com-apparentlymart-go-textseg-v13
-;; added-to-upstream: 433f04136b443cb935a0911fa7560fa87f029e64
+;; added-to-downstream-guix 433f04136b443cb935a0911fa7560fa87f029e64
 ;; CommitDate: Fri Jan 28 10:31:50 2022 +0100
 
 ;; 20220128T103150+0100
 ;; (define-public go-github-com-apparentlymart-go-textseg-autoversion
-;; added-to-upstream: 433f04136b443cb935a0911fa7560fa87f029e64
+;; added-to-downstream-guix 433f04136b443cb935a0911fa7560fa87f029e64
 ;; CommitDate: Fri Jan 28 10:31:50 2022 +0100
 
 ;; 20220128T103434+0100
 ;; (define-public go-github-com-zclconf-go-cty
-;; added-to-upstream: a222ae9146404e6d04276682a0a5ad4fe4bc6743
+;; added-to-downstream-guix a222ae9146404e6d04276682a0a5ad4fe4bc6743
 ;; CommitDate: Fri Jan 28 10:34:34 2022 +0100
 
 ;; 20220128T103709+0100
 ;; (define-public go-github-com-vmihailenco-msgpack-v4
-;; added-to-upstream: 4db80f3f0cc32d4f6a487cb51a3ac393694affe3
+;; added-to-downstream-guix 4db80f3f0cc32d4f6a487cb51a3ac393694affe3
 ;; CommitDate: Fri Jan 28 10:37:09 2022 +0100
 
 ;; 20220128T102859+0100
 ;; (define-public go-github-com-vmihailenco-tagparser
-;; added-to-upstream: cd355a8dafb0ccb748ab48604ac3890ba1931e1e
+;; added-to-downstream-guix cd355a8dafb0ccb748ab48604ac3890ba1931e1e
 ;; CommitDate: Fri Jan 28 10:28:59 2022 +0100
 
 ;; 20220731T214100+0100
@@ -295,22 +295,22 @@ too.")
     (license license:bsd-2)))
 
 ;; 20211217T213122+0000
-;; added-to-upstream: 61f1ec9f60186c23dd609ad3bc569f06c48f3f61
+;; added-to-downstream-guix 61f1ec9f60186c23dd609ad3bc569f06c48f3f61
 ;; CommitDate: Fri Jan 28 10:47:21 2022 +0100
 ;; (define-public go-github-com-valyala-fasthttp
 
 ;; 20211217T213241+0000
-;; added-to-upstream: 0467ecbe0dda4aead3afdabf7a29e4143d6afa17
+;; added-to-downstream-guix 0467ecbe0dda4aead3afdabf7a29e4143d6afa17
 ;; CommitDate: Fri Jan 28 10:46:36 2022 +0100
 ;; (define-public go-github-com-valyala-tcplisten
 
 ;; 20211217T213438+0000
-;; added-to-upstream: 1d948dbd97e93dec92dd486efbb8075271f3fde9
+;; added-to-downstream-guix 1d948dbd97e93dec92dd486efbb8075271f3fde9
 ;; CommitDate: Fri Jan 28 10:45:33 2022 +0100
 ;; (define-public go-github-com-valyala-bytebufferpool
 
 ;; 20211217T213727+0000
-;; added-to-upstream: 72274434a8419d80d036b9e91af50a291cda644c
+;; added-to-downstream-guix 72274434a8419d80d036b9e91af50a291cda644c
 ;; CommitDate: Fri Jan 28 10:44:46 2022 +0100
 ;; (define-public go-github-com-andybalholm-brotli
 

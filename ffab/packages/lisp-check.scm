@@ -28,12 +28,12 @@
   #:use-module (guix packages))
 
 ;; 20210604T194236+0100
-;; added-to-upstream: 8a40a964e01ba07bf0c6ecdd90c5d064a697f9d6
+;; added-to-downstream-guix 8a40a964e01ba07bf0c6ecdd90c5d064a697f9d6
 ;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
 ;; (define-public sbcl-nst
 
 ;; 20211107T194006+0000
-;; added-to-upstream: 07a68587b0e00a7b7c231d1360bbc5fb47fc51bf
+;; added-to-downstream-guix 07a68587b0e00a7b7c231d1360bbc5fb47fc51bf
 ;; CommitDate: Mon Nov 8 09:25:25 2021 +0100
 ;; (define-public sbcl-kaputt
 
@@ -49,15 +49,15 @@
 
 ;; 20220709T233521+0100
 ;; (define-public sbcl-assert-p
-;; added-to-upstream f39a18e7d43fc7bdf18b135d44bae2159e1526ac
+;; added-to-downstream-guix f39a18e7d43fc7bdf18b135d44bae2159e1526ac
 ;; CommitDate: Wed Nov 23 09:53:11 2022 +0000
 
 ;; 20221122T215422+0000
 ;; (define-public sbcl-simplet
-;; added-to-upstream 029234bdad83195c7facad5af05d65cda7772c25
+;; added-to-downstream-guix 029234bdad83195c7facad5af05d65cda7772c25
 ;; CommitDate: Wed Nov 23 09:53:10 2022 +0000
 
 ;; 20221110T225101+0000
 ;; (define-public sbcl-confidence
-;; added-to-upstream bad546939f3668610c173f931d905176e26c59c4
+;; added-to-downstream-guix bad546939f3668610c173f931d905176e26c59c4
 ;; CommitDate: Wed Mar 22 10:35:48 2023 +0100

@@ -30,7 +30,7 @@
   #:use-module ((guix licenses) #:prefix license:))
 
 ;; 20210217T224508+0000
-;; added-to-upstream: ee9c44c76752231ea40f2492304426f204f93a0e
+;; added-to-downstream-guix ee9c44c76752231ea40f2492304426f204f93a0e
 ;; CommitDate: Tue Apr 6 23:59:47 2021 +0200
 ;; (define-public camlidl
 

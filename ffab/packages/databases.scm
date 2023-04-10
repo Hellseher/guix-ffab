@@ -30,12 +30,12 @@
   #:use-module (guix packages))
 
 ;; <2021-01-10 Sun>
-;; added-to-upstream: 0c0a2831b0c114dc5645482dcfef7f69e8a8298f
+;; added-to-downstream-guix 0c0a2831b0c114dc5645482dcfef7f69e8a8298f
 ;; CommitDate: Thu Jan 14 10:22:50 2021 +0100
 ;; (define-public freetds
 
 ;; <2020-12-05 Sat>
-;; added-to-upstream: 100a4f84fec03bdf31523232f9f6587bb201ea7c
+;; added-to-downstream-guix 100a4f84fec03bdf31523232f9f6587bb201ea7c
 ;; CommitDate: Wed Jan 20 10:43:25 2021 +0100
 ;; (define-public pgloader
 

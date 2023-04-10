@@ -26,7 +26,7 @@
 
 ;; 20221021T003307+0100
 ;; (define-public librtprocess
-;; added-to-upstream cf8e5f4ff8f1757e3e9d71f1b0a63406d835a0df
+;; added-to-downstream-guix cf8e5f4ff8f1757e3e9d71f1b0a63406d835a0df
 ;; CommitDate: Mon Nov 14 12:31:34 2022 +0100
 
 ;; 20221029T233737+0100

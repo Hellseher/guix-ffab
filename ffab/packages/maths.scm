@@ -125,5 +125,5 @@ plots.")
 
 ;; 20220626T221034+0100
 ;; (define-public giza
-;; added-to-upstream: e8e7b4cdae251abebf4ae139d02e8369cc90fd01
+;; added-to-downstream-guix e8e7b4cdae251abebf4ae139d02e8369cc90fd01
 ;; CommitDate: Mon Jul 4 12:29:05 2022 +0200
