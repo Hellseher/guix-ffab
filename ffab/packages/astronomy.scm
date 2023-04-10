@@ -1835,7 +1835,7 @@ Equal Area isoLatitude Pixelization}.")
            python-wrapper))
     (inputs
      (list cfitsio
-           curl-minimal
+           curl
            eigen
            gtk+
            indi

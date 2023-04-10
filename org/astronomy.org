@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-04-09 Sun 19:31:41 BST>
+#+modified: <2023-04-10 Mon 10:20:07 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1712,7 +1712,7 @@ guiding software from Stark Labs.
   - https://issues.guix.gnu.org/62306
 - [X] :inputs [14/14][100%]
   - [X] cfitsio
-  - [X] curl-minimal
+  - [X] curl
   - [X] eigen
   - [X] gettext-minimal
   - [X] googletest
