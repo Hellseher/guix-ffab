@@ -1780,75 +1780,9 @@ Equal Area isoLatitude Pixelization}.")
     (license license:gpl2)))
 
 ;; 20230319T204258+0000
-(define-public phd2
-  (package
-    (name "phd2")
-    (version "2.6.11")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/OpenPHDGuiding/phd2")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0n87xsv9gzrwk1ygws4vw397ffq40xybp5b3c3bd5kcmff0avaw9"))
-       (modules '((guix build utils)
-                  (ice-9 ftw)
-                  (srfi srfi-26)))
-       (snippet
-        #~(begin
-            ;; TODO: This snippet is sourced from
-            ;; guix/gnu/packages/vnc.scm. It might be merged with
-            ;; `delete-file-recursively' which can have `ignore' optional
-            ;; argument.
-            (define (delete-all-but directory . preserve)
-              (define (directory? x)
-                (and=> (stat x #f)
-                       (compose (cut eq? 'directory <>) stat:type)))
-              (with-directory-excursion directory
-                (let* ((pred
-                        (negate (cut member <> (append '("." "..") preserve))))
-                       (items (scandir "." pred)))
-                  (for-each (lambda (item)
-                              (if (directory? item)
-                                  (delete-file-recursively item)
-                                  (delete-file item)))
-                            items))))
-            ;; XXX: Check this list of ignored files in next release.
-            (delete-all-but "thirdparty" "thirdparty.cmake")))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      #:configure-flags
-      #~(list "-DOPENSOURCE_ONLY=yes"
-              "-DUSE_SYSTEM_CFITSIO=yes"
-              "-DUSE_SYSTEM_EIGEN3=yes"
-              "-DUSE_SYSTEM_GTEST=yes"
-              "-DUSE_SYSTEM_LIBINDI=yes"
-              "-DUSE_SYSTEM_LIBUSB=yes")))
-    (native-inputs
-     (list gettext-minimal
-           googletest
-           perl
-           pkg-config
-           python-wrapper))
-    (inputs
-     (list cfitsio
-           curl
-           eigen
-           gtk+
-           indi
-           libnova
-           libusb
-           wxwidgets
-           zlib))
-    (home-page "https://openphdguiding.org")
-    (synopsis "Teleskope guiding software")
-    (description
-     "PHD2 is the enhanced, second generation version of the PHD guiding software
-from Stark Labs.")
-    (license license:bsd-3)))
+;; (define-public phd2
+;; added-to-downstream-guix 55350a87aa20023720f7f6ca02a082f1b8343306
+;; CommitDate: Tue Apr 11 11:59:33 2023 -0400
 
 ;; 20230408T210741+0100
 ;; (define-public libxisf

@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-04-10 Mon 10:20:07 BST>
+#+modified: <2023-04-11 Tue 21:52:01 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [4/56][7%]
+* Flow [5/55][9%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -1700,15 +1700,17 @@ CLOSED: [2023-02-15 Wed 21:47]
 - https://github.com/OpenAstronomy
 - https://openastronomy.org/
 
-** TODO OpenPHDGuiding [0/1][0%] :author:
+** DONE OpenPHDGuiding [1/1][100%] :author:
+CLOSED: [2023-04-11 Tue 21:52]
 - https://openphdguiding.org
-*** TODO phd2 [3/4][75%] :p3:
+*** DONE phd2 [4/4][100%]
+CLOSED: [2023-04-11 Tue 21:51]
 - https://github.com/OpenPHDGuiding/phd2
 - synopsis :: PHD2 is the enhanced, second generation version of the popular PHD
 guiding software from Stark Labs.
 - [X] :packed <2023-03-19 Sun>
 - [X] :patch-sent <2023-03-20 Mon>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-04-11 Tue>
   - https://issues.guix.gnu.org/62306
 - [X] :inputs [14/14][100%]
   - [X] cfitsio

@@ -78,7 +78,6 @@
     astronomy.org          poliastro               [2/2][100%]   :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]     :author:
     astronomy.org          OpenSpace               [0/2][0%]     :author:
-    astronomy.org          OpenPHDGuiding          [0/1][0%]     :author:
     astronomy.org          OpenAstronomy           [/][%]        :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]     :author:
     astronomy.org          NASA                    [0/6][0%]     :author:
@@ -256,7 +255,6 @@
     astronomy.org          SPICE                          [/][%]       :p3:
     astronomy.org          python-radiospectra            [/][%]       :p3:
     astronomy.org          python-ndcube                  [/][%]       :p3:
-    astronomy.org          phd2                           [3/4][75%]   :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
@@ -410,6 +408,7 @@
     astronomy.org          julia-wcs                        [4/4][100%]  
     astronomy.org          libpasastro                      [3/3][100%]  
     astronomy.org          missfits                         [3/3][100%]  
+    astronomy.org          phd2                             [4/4][100%]  
     astronomy.org          pynbody                          [4/4][100%]  
     astronomy.org          python-asdf                      [1/1][100%]  
     astronomy.org          python-asdf-astropy              [3/3][100%]  
@@ -544,6 +543,7 @@
     astronomy.org          aroffringa                       [2/2][100%]  :author:
     astronomy.org          asdf-format                      [9/9][100%]  :author:
     astronomy.org          GreatAttractor                   [2/2][100%]  :author:
+    astronomy.org          OpenPHDGuiding                   [1/1][100%]  :author:
     astronomy.org          pynbody                          [1/1][100%]  :author:
     golang.org             valyala                          [1/1][100%]  :author:
     lisp.org               3b                               [4/4][100%]  :author:
