@@ -995,4 +995,36 @@ in a native template application.")
 ;; added-to-downstream-guix 3905bd72996578a83dcc5aa40c0bdcee1cd08cc6
 ;; CommitDate: Tue Apr 4 09:38:41 2023 +0200
 
+;; 20230424T214253+0100
+(define-public sbcl-chlorophyll
+  (let ((commit "f2a50ad36d2fb11823c0e5a8da08a0de89c5c35f")
+        (revision "1"))
+    (package
+      (name "sbcl-chlorophyll")
+      (version (git-version "0.0.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/gorozhin/chlorophyll")
+               (commit commit)))
+         (file-name (git-file-name "chlorophyll" version))
+         (sha256
+          (base32 "1hgl8sjsmyqx4gs77q4p94b63zgpxk1wi9w9niki8j0213dr1s3y"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs (list sbcl-fiveam))
+      (inputs (list sbcl-alexandria))
+      (home-page "https://github.com/gorozhin/chlorophyll")
+      (synopsis "ANSI escape code library for Common Lisp")
+      (description
+"This package provides a Common Lisp system CHLOROPHYLL which implements an
+ANSI escape code functionality.")
+      (license license:expat))))
+
+(define-public cl-chlorophyll
+  (sbcl-package->cl-source-package sbcl-chlorophyll))
+
+(define-public ecl-chlorophyll
+  (sbcl-package->ecl-package sbcl-chlorophyll))
+
 ;; End of lisp-xyz.scm
