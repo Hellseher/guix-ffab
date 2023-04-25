@@ -1,0 +1,35 @@
+From a64d6b3dcd8ffa851e74d36357e2febff87fdf2f Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Apr 2023 22:25:02 +0100
+Subject: [PATCH 1/2] gnu: calcmysky: Update to 0.3.0.
+
+* gnu/packages/astronomy.scm (calcmysky): Update to 0.3.0.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0d7212791a..ba4304f438 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -214,7 +214,7 @@ (define-public calceph
+ (define-public calcmysky
+   (package
+     (name "calcmysky")
+-    (version "0.2.1")
++    (version "0.3.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -223,7 +223,7 @@ (define-public calcmysky
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0bib5shy8wzc7j5ph218dl9hqrqip491mn25gakyghbvaqxgm27d"))))
++        (base32 "1lgn937px4am0lggniwby1f1dl3v4l3iigq72rl9rlhx58zv4lj1"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list #:configure-flags
+-- 
+2.39.2
+

@@ -1,22 +1,23 @@
-From e27bfaf49c1483e2498da120398f2e0d2c37fab9 Mon Sep 17 00:00:00 2001
+From 5eea7ee9e72ce8afd92c34540b94c418e807c724 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Wed, 12 Apr 2023 21:39:37 +0100
-Subject: [PATCH 4/4] gnu: python-astroalign: Update to 2.4.2.
+Subject: [PATCH v2 4/4] gnu: python-astroalign: Update to 2.4.2.
 
 * gnu/packages/astronomy.scm (python-astroalign): Update to 2.4.2.
-  [source]: Use git checkout instead PyPI to enable tests.
-  [build-system]: Use pyproject-build-system.
-  [propagated-inputs]: Migrate from inputs. Remove labels. Add optional python-bottleneck.
-  [native-inputs]: Add python-astropy, python-ccdproc, python-pillow.
+[source]: Use git checkout instead PyPI to enable tests.
+[build-system]: Use pyproject-build-system.
+[propagated-inputs]: Migrate from inputs. Remove labels. Add optional
+python-bottleneck.
+[native-inputs]: Add python-astropy, python-ccdproc, python-pillow.
 ---
- gnu/packages/astronomy.scm | 30 +++++++++++++++++-------------
- 1 file changed, 17 insertions(+), 13 deletions(-)
+ gnu/packages/astronomy.scm | 29 ++++++++++++++++-------------
+ 1 file changed, 16 insertions(+), 13 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 9961e19695..0d7212791a 100644
+index 086bf8d69f..d02f74b196 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -3070,22 +3070,26 @@ (define-public python-gwcs
+@@ -3067,22 +3067,25 @@ (define-public python-gwcs
  (define-public python-astroalign
    (package
      (name "python-astroalign")
@@ -45,8 +46,7 @@ index 9961e19695..0d7212791a 100644
 -       ("sep" ,python-sep)))
 +        (base32 "0hly20a65540hr3l1lsd1i4d90a0vdrbwnn6zx3z8s89ha9lq3pb"))))
 +    (build-system pyproject-build-system)
-+    (native-inputs
-+     (list python-astropy python-ccdproc python-pillow))
++    (native-inputs (list python-astropy python-ccdproc python-pillow))
 +    (propagated-inputs
 +     (list python-bottleneck
 +           python-numpy

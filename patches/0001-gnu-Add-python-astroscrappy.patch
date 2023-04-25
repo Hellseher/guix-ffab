@@ -1,18 +1,18 @@
-From 6cf8e14578fc2c443ca8f6c62b9f4736ffe76e0a Mon Sep 17 00:00:00 2001
+From 8715954df0015d7d92a29952e4a5d1fb3dbd2f99 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 11 Apr 2023 23:06:48 +0100
-Subject: [PATCH 1/4] gnu: Add python-astroscrappy.
+Subject: [PATCH v2 1/4] gnu: Add python-astroscrappy.
 
 * gnu/packages/astronomy.scm (python-astroscrappy): New variable.
 ---
- gnu/packages/astronomy.scm | 48 ++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ gnu/packages/astronomy.scm | 44 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index db290f5987..f162be6006 100644
+index 97a3255ef9..fb841ed65d 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -1302,6 +1302,54 @@ (define-public python-astroquery
+@@ -1302,6 +1302,50 @@ (define-public python-astroquery
  to access online Astronomical data.  Each web service has its own sub-package.")
      (license license:bsd-3)))
  
@@ -29,21 +29,17 @@ index db290f5987..f162be6006 100644
 +    (build-system pyproject-build-system)
 +    (arguments
 +     (list
++      #:test-flags #~(list "--pyargs" "astroscrappy")
 +      #:phases
 +      #~(modify-phases %standard-phases
 +          (add-after 'unpack 'preparations
 +            (lambda _ (setenv "HOME" "/tmp")))
 +          (add-before 'install 'writable-compiler
 +            (lambda _ (make-file-writable "astroscrappy/_compiler.c")))
-+          (add-before 'check 'writable-compiler
-+            (lambda _ (make-file-writable "astroscrappy/_compiler.c")))
-+          (replace 'check
-+            (lambda* (#:key inputs outputs tests? #:allow-other-keys)
-+              (when tests?
-+                (add-installed-pythonpath inputs outputs)
-+                ;; Extensions have to be rebuilt before running the tests.
-+                (invoke "python" "setup.py" "build_ext" "--inplace")
-+                (invoke "python" "-m" "pytest" "--pyargs" "astroscrappy")))))))
++          (add-before 'check 'tests-preparation
++            (lambda _
++              (make-file-writable "astroscrappy/_compiler.c")
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
 +    (native-inputs
 +     (list python-cython
 +           python-extension-helpers
@@ -51,8 +47,8 @@ index db290f5987..f162be6006 100644
 +           python-pandas
 +           python-pytest-astropy
 +           python-scikit-image
-+           python-setuptools-scm
-+           python-scipy))
++           python-scipy
++           python-setuptools-scm))
 +    (propagated-inputs (list python-astropy python-numpy))
 +    (home-page "https://github.com/astropy/astroscrappy")
 +    (synopsis "Speedy Cosmic Ray Annihilation Package in Python")

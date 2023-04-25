@@ -1,18 +1,18 @@
-From 2b8d504b8a9c733231a037ee82ce56804bbcad16 Mon Sep 17 00:00:00 2001
+From bec83fa1388ec1f3ed5ab3788c8b71f386965130 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Wed, 12 Apr 2023 21:00:30 +0100
-Subject: [PATCH 2/4] gnu: Add python-memory-profiler.
+Subject: [PATCH v2 2/4] gnu: Add python-memory-profiler.
 
 * gnu/packages/python-check.scm (python-memory-profiler): New variable.
 ---
- gnu/packages/python-check.scm | 49 +++++++++++++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ gnu/packages/python-check.scm | 51 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
 diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
-index 41a6997190..0affd2896b 100644
+index 9ce093697d..f1980a28a9 100644
 --- a/gnu/packages/python-check.scm
 +++ b/gnu/packages/python-check.scm
-@@ -1771,6 +1771,55 @@ (define-public python-atpublic
+@@ -1779,6 +1779,57 @@ (define-public python-atpublic
      (license (list license:asl2.0
                     license:lgpl3))))    ; only for setup_helpers.py
  
@@ -35,9 +35,9 @@ index 41a6997190..0affd2896b 100644
 +     (list
 +      #:phases
 +      #~(modify-phases %standard-phases
-+          ;; XXX: @profile is not loaded in some test files and there are 3 tests
-+          ;; which were failed, disable them for now.
-+          (add-after 'unpack 'disable-fialing-tests
++          ;; XXX: @profile is not loaded in some test files and there are 3
++          ;; tests fail, disable them for now.
++          (add-after 'unpack 'disable-failing-tests
 +            (lambda _
 +              (with-directory-excursion "test"
 +                (for-each delete-file
@@ -55,8 +55,10 @@ index 41a6997190..0affd2896b 100644
 +              (substitute* "test/test_stream_unicode.py"
 +                (("def test_unicode") "def __off_test_unicode"))
 +              (substitute* "test/test_tracemalloc.py"
-+                (("def test_memory_profiler") "def __off_test_memory_profiler")))))))
-+    (native-inputs (list python-pytest-7.1 python-pytest-fixture-config python-safety))
++                (("def test_memory_profiler")
++                 "def __off_test_memory_profiler")))))))
++    (native-inputs
++     (list python-pytest-7.1 python-pytest-fixture-config python-safety))
 +    (propagated-inputs (list python-psutil))
 +    (home-page "https://github.com/pythonprofilers/memory_profiler")
 +    (synopsis "Monitor Memory usage of Python code")

@@ -1,15 +1,15 @@
-From f68c01ed2df444760dd63bb39a2035602142e048 Mon Sep 17 00:00:00 2001
+From f1d74763a0cc374ff387b4f4b105f843e4166d27 Mon Sep 17 00:00:00 2001
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Wed, 12 Apr 2023 21:32:00 +0100
-Subject: [PATCH 3/4] gnu: Add python-ccdproc.
+Subject: [PATCH v2 3/4] gnu: Add python-ccdproc.
 
 * gnu/packages/astronomy.scm (python-ccdproc): New variable.
 ---
- gnu/packages/astronomy.scm | 33 ++++++++++++++++++++++++++++++++-
- 1 file changed, 32 insertions(+), 1 deletion(-)
+ gnu/packages/astronomy.scm | 34 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index f162be6006..9961e19695 100644
+index fb841ed65d..086bf8d69f 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -5,7 +5,7 @@
@@ -21,7 +21,7 @@ index f162be6006..9961e19695 100644
  ;;; Copyright © 2021, 2022 Vinicius Monego <monego@posteo.net>
  ;;; Copyright © 2021 Greg Hogan <code@greghogan.com>
  ;;; Copyright © 2021 Foo Chuan Wei <chuanwei.foo@hotmail.com>
-@@ -1350,6 +1350,37 @@ (define-public python-astroscrappy
+@@ -1346,6 +1346,38 @@ (define-public python-astroscrappy
  specifically in the C code.")
      (license license:bsd-3)))
  
@@ -39,6 +39,7 @@ index f162be6006..9961e19695 100644
 +    (arguments
 +     ;; FIXME: Test failed a lot with: DeprecationWarning: distutils Version
 +     ;; classes are deprecated. Use packaging.version instead.
++     ;; (see https://github.com/astropy/ccdproc/issues/805)
 +     (list #:tests? #f))
 +    (native-inputs
 +     (list python-memory-profiler python-pytest-astropy))
