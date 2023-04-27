@@ -1,0 +1,33 @@
+From 69c435daed7374e539c0b85c637f36976f4ed53b Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 Apr 2023 23:49:00 +0100
+Subject: [PATCH 10/14] gnu: python-skyfield: Update to 1.46.
+
+* gnu/packages/astronomy.scm (python-skyfield): Update to 1.46.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3344f87e63..bd7fb22a31 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3017,13 +3017,13 @@ (define-public python-astroalign
+ (define-public python-skyfield
+   (package
+     (name "python-skyfield")
+-    (version "1.39")
++    (version "1.46")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "skyfield" version))
+        (sha256
+-        (base32 "1qh3k7g9dm6idppk87hnwxpx9a22xx98vav0zk31p6291drak3as"))))
++        (base32 "1r4kpsh1pa4h3diyxy3gyapp0rykfjdqmn5w348a2ck2qkdlx997"))))
+     (build-system python-build-system)
+     (arguments
+      ;; NOTE: (Sharlatan-20210207T163305+0000): tests depend on custom test
+-- 
+2.39.2
+

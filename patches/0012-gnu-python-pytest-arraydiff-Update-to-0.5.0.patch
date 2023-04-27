@@ -1,0 +1,47 @@
+From af244d6fe18c977a3678d06f7d3616abbb17c6de Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 27 Apr 2023 20:18:54 +0100
+Subject: [PATCH 12/14] gnu: python-pytest-arraydiff: Update to 0.5.0.
+
+* gnu/packages/python-check.scm (python-pytest-arraydiff): Update to
+0.5.0.
+[native-inputs]: Add python-setuptools-scm.
+[propagated-inputs]: Remove python-six.
+---
+ gnu/packages/python-check.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 71bbf59d49..9a61f59d56 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -541,22 +541,22 @@ (define-public python-pytest-astropy
+ (define-public python-pytest-arraydiff
+   (package
+     (name "python-pytest-arraydiff")
+-    (version "0.3")
++    (version "0.5.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pytest-arraydiff" version))
+        (sha256
+-        (base32 "05bcvhh2ycxa35znl8b3l9vkcmx7vwm5c3fpakbpw46c7vsn4bfy"))))
++        (base32 "1livzfbi7ag17hskd5845dh1kdir24f7jrbw8y2s1pyhzyz4jhbi"))))
+     (build-system python-build-system)
+     (arguments
+      ;; Tests require python-astropy, which itself requires this package.
+      ;; Disable tests to avoid the circular dependency problem.
+      '(#:tests? #f))
+     (native-inputs
+-     (list python-pytest)) ; for sanity-check
++     (list python-pytest python-setuptools-scm)) ; for sanity-check
+     (propagated-inputs
+-     (list python-numpy python-six))
++     (list python-numpy))
+     (home-page "https://github.com/astropy/pytest-arraydiff")
+     (synopsis "Pytest plugin to help with comparing array output from tests")
+     (description
+-- 
+2.39.2
+

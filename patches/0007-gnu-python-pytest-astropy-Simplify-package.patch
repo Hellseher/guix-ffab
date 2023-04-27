@@ -1,0 +1,36 @@
+From 26a0e048180bfaa48d1dc55d48973cb674af806e Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 Apr 2023 23:21:25 +0100
+Subject: [PATCH 07/14] gnu: python-pytest-astropy: Simplify package.
+
+* gnu/package/python-check.scm (python-pytest-astropy): Simplify package.
+[arguments]<phases>: Remove remove-requirement phase.
+---
+ gnu/packages/python-check.scm | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 3be8920e3c..b5a68143f3 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -518,16 +518,7 @@ (define-public python-pytest-astropy
+        (sha256
+         (base32 "04g2rh261s3s6ym8mwi4iv2a6anbgwvwzcvkyilfck6yxrncdqw5"))))
+     (build-system python-build-system)
+-    (arguments
+-     `(#:tests? #f ; there are no tests
+-       #:phases
+-       (modify-phases %standard-phases
+-         ;; There is a bug somewhere that makes pytest-filter-subpackage appear
+-         ;; as version 0.0.0 to setup.py.  Remove it from the requirements.
+-         (add-after 'unpack 'remove-requirement
+-           (lambda _
+-             (substitute* "setup.cfg"
+-               ((".*pytest-filter-subpackage.*") "")))))))
++    (arguments (list #:tests? #f)) ; there are no tests
+     (native-inputs
+      (list python-attrs python-pytest-mock python-setuptools-scm))
+     (propagated-inputs
+-- 
+2.39.2
+

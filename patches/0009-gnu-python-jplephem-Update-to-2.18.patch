@@ -1,0 +1,33 @@
+From 702cef04a10fe42272ffc24e3be3811339d27917 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 Apr 2023 23:47:25 +0100
+Subject: [PATCH 09/14] gnu: python-jplephem: Update to 2.18.
+
+* gnu/packages/astronomy.scm (python-jplephem): Update to 2.18.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 888e5bb1d7..3344f87e63 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2474,13 +2474,13 @@ (define-public sunclock
+ (define-public python-jplephem
+   (package
+     (name "python-jplephem")
+-    (version "2.17")
++    (version "2.18")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "jplephem" version))
+        (sha256
+-        (base32 "09xaibxnwbzzs3x9g3ibqa2la17z3r6in93321glh02dbibfbip1"))))
++        (base32 "1rgswy52ismij0bkmfqwbml5zikzvzzs1f833dwk0y64lkl12aa9"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:phases
+-- 
+2.39.2
+

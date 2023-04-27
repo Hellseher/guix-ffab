@@ -1,0 +1,143 @@
+From 6d2dad80c99e117cb919aee551dc43e604e61f67 Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 Apr 2023 22:16:55 +0100
+Subject: [PATCH 05/14] gnu: Add python-timezonefinder.
+
+* gnu/packages/time.scm (python-timezonefinder): New variable.
+* gnu/packages/geo.scm (h3-3, python-h3-3): New variables. The latest
+compatible versions to build python-timezonefinder.
+---
+ gnu/packages/geo.scm  | 37 +++++++++++++++++++++++++++++++++++++
+ gnu/packages/time.scm | 37 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 74 insertions(+)
+
+diff --git a/gnu/packages/geo.scm b/gnu/packages/geo.scm
+index a5a2567d83..907eb2cc93 100644
+--- a/gnu/packages/geo.scm
++++ b/gnu/packages/geo.scm
+@@ -251,6 +251,23 @@ (define-public h3
+ subdivisions.")
+     (license license:asl2.0)))
+ 
++;; For python-timezonefinder, remove it when it starts supporting newer
++;; version.
++(define-public h3-3
++  (package
++    (inherit h3)
++    (name "h3")
++    (version "3.7.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/uber/h3")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0bvsljfxmjvl23v9gxykc4aynjzh5xfy3wg02bxad7cknr1amx9j"))))))
++
+ (define-public python-h3
+   (package
+     (name "python-h3")
+@@ -305,6 +322,26 @@ (define-public python-h3
+ hierarchical hexagonal geospatial indexing system")
+     (license license:asl2.0)))
+ 
++;; For python-timezonefinder, remove it when it starts supporting newer
++;; version.
++(define-public python-h3-3
++  (package
++    (inherit python-h3)
++    (name "python-h3")
++    (version "3.7.6")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/uber/h3-py")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "16gxa1sivghxw179rik87r918mjasars2qkzidlwq83qfa4axn20"))))
++    (inputs
++     (modify-inputs (package-inputs python-h3)
++       (replace "h3" h3-3)))))
++
+ (define-public memphis
+   (package
+     (name "memphis")
+diff --git a/gnu/packages/time.scm b/gnu/packages/time.scm
+index c0bcb848b3..36b561b041 100644
+--- a/gnu/packages/time.scm
++++ b/gnu/packages/time.scm
+@@ -21,6 +21,7 @@
+ ;;; Copyright © 2021 Ryan Prior <rprior@protonmail.com>
+ ;;; Copyright © 2021 Foo Chuan Wei <chuanwei.foo@hotmail.com>
+ ;;; Copyright © 2022 Pradana AUMARS <paumars@courrier.dev>
++;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -40,7 +41,9 @@
+ (define-module (gnu packages time)
+   #:use-module (gnu packages check)
+   #:use-module (gnu packages compression)
++  #:use-module (gnu packages geo)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages libffi)
+   #:use-module (gnu packages perl)
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages python-build)
+@@ -50,8 +53,10 @@ (define-module (gnu packages time)
+   #:use-module (gnu packages)
+   #:use-module (guix build-system gnu)
+   #:use-module (guix build-system go)
++  #:use-module (guix build-system pyproject)
+   #:use-module (guix build-system python)
+   #:use-module (guix download)
++  #:use-module (guix gexp)
+   #:use-module (guix git-download)
+   #:use-module (guix licenses)
+   #:use-module (guix packages))
+@@ -278,6 +283,38 @@ (define-public python-ciso8601
+ Python datetime objects.")
+     (license expat)))
+ 
++(define-public python-timezonefinder
++  (package
++    (name "python-timezonefinder")
++    (version "6.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       ;; The PyPi distribution doesn't include the tests.
++       (uri (git-reference
++             (url "https://github.com/jannikmi/timezonefinder")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0qv9rh6j8c1cqwh4sxrfl1m1ah4aqrf0w2kyrf5cgrpfxi6xr94z"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; TODO: Guix has lower python-pytz than required in the latest
++      ;; version:  pytz.exceptions.UnknownTimeZoneError:
++      ;; 'America/Ciudad_Juarez'
++      ;; It's optional, remove this constrain where python-pytz is updated.
++      #:test-flags #~(list "-k" "not test_with_pytz")))
++    (native-inputs
++     (list python-poetry-core python-pytest))
++    (propagated-inputs
++     (list python-cffi python-h3-3 python-numba python-numpy python-pytz))
++    (home-page "https://timezonefinder.michelfe.it/gui")
++    (synopsis "Finding the timezone of any coordinates on Earth offline")
++    (description "This is a python package for looking up the corresponding
++timezone for given coordinates on earth entirely offline.")
++    (license expat)))
++
+ (define-public python-tzlocal
+   (package
+     (name "python-tzlocal")
+-- 
+2.39.2
+

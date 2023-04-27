@@ -1,0 +1,57 @@
+From 4ca80b6e4cd0bae9d0f82935f97d8d479bdd72aa Mon Sep 17 00:00:00 2001
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 25 Apr 2023 22:32:43 +0100
+Subject: [PATCH 02/14] gnu: Add h3.
+
+* gnu/packages/geo.scm (h3): New variable.
+---
+ gnu/packages/geo.scm | 26 +++++++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/geo.scm b/gnu/packages/geo.scm
+index cd56f50bf0..7b327a930d 100644
+--- a/gnu/packages/geo.scm
++++ b/gnu/packages/geo.scm
+@@ -14,7 +14,7 @@
+ ;;; Copyright © 2020, 2022 Marius Bakke <marius@gnu.org>
+ ;;; Copyright © 2020 Christopher Baines <mail@cbaines.net>
+ ;;; Copyright © 2020, 2021, 2022, 2023 Felix Gruber <felgru@posteo.net>
+-;;; Copyright © 2021 Sharlatan Hellseher <sharlatanus@gmail.com>
++;;; Copyright © 2021, 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2021, 2023 Vinicius Monego <monego@posteo.net>
+ ;;; Copyright © 2021 Clément Lassieur <clement@lassieur.org>
+ ;;; Copyright © 2021, 2022 Nikolay Korotkiy <sikmir@disroot.org>
+@@ -227,6 +227,30 @@ (define-public cdo
+ than 600 operators available.")
+     (license license:bsd-3)))
+ 
++(define-public h3
++  (package
++    (name "h3")
++    (version "4.1.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/uber/h3")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0x764xzna8ka6yhgv2y4hb158a61y3g9a6835qckqp7wfkpqvb7f"))))
++    (build-system cmake-build-system)
++    (arguments
++     (list #:configure-flags #~(list "-DBUILD_SHARED_LIBS=ON")))
++    (home-page "https://h3geo.org/")
++    (synopsis "Hexagonal hierarchical geospatial indexing system")
++    (description "H3 is a geospatial indexing system using a hexagonal grid
++that can be (approximately) subdivided into finer and finer hexagonal grids,
++combining the benefits of a hexagonal grid with S2's hierarchical
++subdivisions.")
++    (license license:asl2.0)))
++
+ (define-public memphis
+   (package
+     (name "memphis")
+-- 
+2.39.2
+
