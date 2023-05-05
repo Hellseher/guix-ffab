@@ -189,6 +189,7 @@
 - [X] <2023-04-21 Fri> https://issues.guix.gnu.org/63005 <2023-04-25 Tue>
 
 * Package updates [26/28][92%]
+- [ ] <2023-04-28 Fri> https://issues.guix.gnu.org/63136
 - [X] <2023-04-24 Mon> https://issues.guix.gnu.org/63059 <2023-04-25 Tue>
 - [X] <2023-04-18 Tue> https://issues.guix.gnu.org/62944 <2023-04-19 Wed>
 - [ ] <2023-04-18 Tue> https://issues.guix.gnu.org/62941
