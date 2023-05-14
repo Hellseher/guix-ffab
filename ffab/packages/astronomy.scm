@@ -951,7 +951,7 @@ data.")
     (propagated-inputs (list python-asdf
                              python-asdf-astropy
                              python-astropy
-                             python-jsonschema-next
+                             python-jsonschema
                              python-numpy
                              python-psutil
                              python-rad))
@@ -1269,7 +1269,7 @@ behaviour of the IRAF's")
       #:tests? #f))
     (propagated-inputs (list python-asdf
                              python-astropy
-                             python-jsonschema-next
+                             python-jsonschema
                              python-numpy
                              python-psutil))
     (native-inputs (list python-pytest

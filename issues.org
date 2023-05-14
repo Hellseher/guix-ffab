@@ -188,14 +188,15 @@
 - [X] <2023-04-08 Sat> https://issues.guix.gnu.org/62730 <2023-04-09 Sun>
 - [X] <2023-04-21 Fri> https://issues.guix.gnu.org/63005 <2023-04-25 Tue>
 
-* Package updates [26/28][92%]
-- [ ] <2023-04-28 Fri> https://issues.guix.gnu.org/63136
+* Package updates [28/30][93%]
+- [ ] <2023-05-10 Wed> https://issues.guix.gnu.org/63429
+- [X] <2023-04-28 Fri> https://issues.guix.gnu.org/63136 <2023-05-08 Mon>
 - [X] <2023-04-24 Mon> https://issues.guix.gnu.org/63059 <2023-04-25 Tue>
 - [X] <2023-04-18 Tue> https://issues.guix.gnu.org/62944 <2023-04-19 Wed>
 - [ ] <2023-04-18 Tue> https://issues.guix.gnu.org/62941
 - [X] <2023-04-16 Sun> https://issues.guix.gnu.org/62883 <2023-04-17 Mon>
 - [X] <2023-04-13 Thu> https://issues.guix.gnu.org/62801 <2023-04-15 Sat>
-- [ ] <2023-04-12 Wed> https://issues.guix.gnu.org/62801
+- [X] <2023-04-12 Wed> https://issues.guix.gnu.org/62801 <2023-05-07 Sun>
 - [X] <2023-04-06 Thu> https://issues.guix.gnu.org/62703 <2023-04-15 Sat>
 - [X] <2023-04-06 Thu> https://issues.guix.gnu.org/62702 <2023-04-13 Thu>
 - [X] <2023-04-02 Sun> https://issues.guix.gnu.org/62632 <2023-04-04 Tue>

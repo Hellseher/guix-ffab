@@ -1,0 +1,29 @@
+From b7214f038aca1a1cf33e10b96e18370622649ff6 Mon Sep 17 00:00:00 2001
+Message-Id: <b7214f038aca1a1cf33e10b96e18370622649ff6.1683756318.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1683756318.git.sharlatanus@gmail.com>
+References: <cover.1683756318.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 10 May 2023 22:59:44 +0100
+Subject: [PATCH 3/4] gnu: Delete duplicated use-module from (gnu package
+ python-xyz).
+
+* gnu/packages/python-xyz.scm: Delete duplicated (gnu packages serialization).
+---
+ gnu/packages/python-xyz.scm | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index c22a1aad77..394aeb8d7f 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -259,7 +259,6 @@ (define-module (gnu packages python-xyz)
+   #:use-module (gnu packages xdisorg)
+   #:use-module (gnu packages tcl)
+   #:use-module (gnu packages bdw-gc)
+-  #:use-module (gnu packages serialization)
+   #:use-module (guix packages)
+   #:use-module (guix download)
+   #:use-module (guix git-download)
+-- 
+2.39.2
+
