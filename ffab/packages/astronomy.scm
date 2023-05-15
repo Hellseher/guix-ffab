@@ -884,37 +884,32 @@ Webb Space Telescope}")
   (package
     (name "python-pysynphot")
     (version "2.0.0")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "pysynphot" version))
-              (sha256
-               (base32
-                "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pysynphot" version))
+       (sha256
+        (base32 "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20221105T071954+0000): Deprecation warnings in tests.
-      ;;
-      ;; 15 xfailed, 388 errors in 3.25s
-      ;;
-      #:tests? #f
-      #:phases #~(modify-phases %standard-phases
-                        (add-before 'check 'set-env-data-path
-                          (lambda _
-                            (setenv "PYSYN_CDBS"
-                                    (string-append #$output "/crds")))))))
-    (propagated-inputs (list python-astropy
-                             python-beautifulsoup4
-                             python-numpy
-                             python-pytest-astropy-header
-                             python-six))
-    (native-inputs (list python-pytest
-                         python-pytest-remotedata
-                         python-setuptools-scm))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-env-data-path
+            (lambda _
+              (setenv "PYSYN_CDBS"
+                      (string-append #$output "/crds")))))))
+    (native-inputs (list python-pytest python-pytest-remotedata python-setuptools-scm))
+    (propagated-inputs
+     (list python-astropy
+           python-beautifulsoup4
+           python-numpy
+           python-pytest-astropy-header
+           python-six))
     (home-page "https://github.com/spacetelescope/pysynphot")
     (synopsis "Python Synthetic Photometry Utilities")
     (description
-"Astrolib PySynphot (hereafter referred to only as pysynphot) is an
+     "Astrolib PySynphot (hereafter referred to only as pysynphot) is an
 object-oriented replacement for STSDAS SYNPHOT synthetic photometry package in
 IRAF.  @code{pysynphot} simulates photometric data and spectra as they are observed
 with the Hubble Space Telescope (HST). Passbands for standard photometric
