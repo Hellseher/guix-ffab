@@ -1343,30 +1343,18 @@ behaviour of the IRAF's")
 (define-public python-stpipe
   (package
     (name "python-stpipe")
-    (version "0.4.2")
+    (version "0.5.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "stpipe" version))
               (sha256
                (base32
-                "0zfa81hhn1gq7b7bzmkd52kimdms51mdwygjx2v5r1q59wkjbpdg"))))
+                "17gnwzhl10vbg059lfprdyci19dlh3whkmb9rl7z25wr593rnvcp"))))
     (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; FIXME: (Sharlatan-20221105T235457+0000): Failing test with test collection error
-      ;;
-      ;; ERROR collecting...
-      ;;
-      #:tests? #f))
-    (propagated-inputs (list python-asdf
-                             python-astropy
-                             python-crds
-                             python-semantic-version
-                             python-stdatamodels))
-    (native-inputs (list python-pytest
-                         python-pytest-doctestplus
-                         python-pytest-openfiles
-                         python-setuptools-scm))
+    (propagated-inputs (list python-asdf-ffab python-astropy python-crds
+                             python-semantic-version python-stdatamodels))
+    (native-inputs (list python-pytest python-pytest-doctestplus
+                         python-pytest-openfiles python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/stpipe")
     (synopsis "Framework for calibration pipeline software")
     (description "Framework for calibration pipeline software")
