@@ -1,0 +1,56 @@
+From aa705cda9188b139b95887f93a3b1df8b4846988 Mon Sep 17 00:00:00 2001
+Message-Id: <aa705cda9188b139b95887f93a3b1df8b4846988.1684276665.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 May 2023 23:30:37 +0100
+Subject: [PATCH 18/19] gnu: python-asdf: Update to 2.15.0.
+
+* gnu/packages/astronomy.scm (python-asdf): Update to 2.15.0.
+[arguments]: Use Gexps and enable the most of the tests.
+[native-inputs]: Add python-fsspec.
+---
+ gnu/packages/astronomy.scm | 18 ++++++++++--------
+ 1 file changed, 10 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ce8c313185..ed787665ea 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2747,23 +2747,25 @@ (define-public python-suntime
+ (define-public python-asdf
+   (package
+     (name "python-asdf")
+-    (version "2.13.0")
++    (version "2.15.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "1zixzv4n2fryaszsfchqh2nvp0gzvarhz03fc721yw6iafdadqij"))))
++        (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     ;; FIXME: Tests fail a lot with
+-     ;;
+-     ;; ERROR  - _pytest.pathlib.ImportPathMismatchError:
+-     ;; ('asdf.conftest', '/gnu/sto...
+-     ;;
+-     `(#:tests? #f))
++     (list
++      #:test-flags
++      #~(list "-k" (string-append
++                    "not test_overwrite"
++                    " and not test_tagging_scalars"
++                    " and not test_info_command"
++                    " and not test_array_inline_threshold_recursive"))))
+     (native-inputs
+      (list python-astropy
++           python-fsspec
+            python-packaging
+            python-psutil
+            python-pytest
+-- 
+2.39.2
+

@@ -1,0 +1,108 @@
+From b878905b7b246f66041a0b6900ec14ffe0b3b78e Mon Sep 17 00:00:00 2001
+Message-Id: <b878905b7b246f66041a0b6900ec14ffe0b3b78e.1684276665.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 May 2023 22:47:45 +0100
+Subject: [PATCH 14/19] gnu: python-astral: Update to 3.2.
+
+* gnu/packages/astronomy.scm (python-astral): Update to 3.2.
+[build-system]: Shift to pyproject-build-system.
+[arguments]: Use Gexps. Do not modify staged phases, use #:test-flags
+instead and partly enable tests (128 of 334).
+[native-inputs]: Add python-poetry-core.
+---
+ gnu/packages/astronomy.scm | 70 ++++++++++++++++++++++++++++++++------
+ 1 file changed, 59 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 058d3a6dcc..ab539efcfe 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1939,24 +1939,72 @@ (define-public python-sunpy
+ (define-public python-astral
+   (package
+     (name "python-astral")
+-    (version "2.2")
++    (version "3.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astral" version))
+        (sha256
+-        (base32 "1gkggdibccmdy9glymw3kbrkzm6svvsg0lk56hhy92y4smkrj7g4"))))
+-    (build-system python-build-system)
++        (base32 "121xag65rmv6pszbi3d206yz3jfwmpkf0jxjrxrd2scy5r0knz4v"))))
++    (build-system pyproject-build-system)
+     (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (replace 'check
+-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+-             (when tests?
+-               (add-installed-pythonpath inputs outputs)
+-               (invoke "python" "-m" "pytest")))))))
++     (list
++      #:test-flags
++      ;; XXX: Disable tests which require newer version of python-pytz.
++      ;; No time zone found with key Pacific/Auckland
++      #~(list "-k" (string-append
++                    "not test_TimezoneLookup"
++                    " and not test_Sun"
++                    " and not test_Dawn"
++                    " and not test_Sunrise"
++                    " and not test_SolarNoon"
++                    " and not test_Dusk"
++                    " and not test_Sunset"
++                    " and not test_SolarElevation"
++                    " and not test_SolarAzimuth"
++                    " and not test_TimeAtAltitude"
++                    " and not test_MoonNoDate"
++                    " and not test_lookup"
++                    " and not test_tzinfo"
++                    " and not test_australia"
++                    " and not test_adak"
++                    " and not test_australia"
++                    " and not test_Elevation_NonNaive"
++                    " and not test_Wellington"
++                    " and not test_Sun_Local_tzinfo[day0-dawn0]"
++                    " and not test_Sun_Local_tzinfo[day1-dawn1]"
++                    " and not test_Sun_Local_tzinfo[day2-dawn2]"
++                    " and not test_Sun_Local_tzinfo[day3-dawn3]"
++                    " and not test_Sun_Local_tzinfo[day4-dawn4]"
++                    " and not test_Sun_Local_str[day0-dawn0]"
++                    " and not test_Sun_Local_str[day1-dawn1]"
++                    " and not test_Sun_Local_str[day2-dawn2]"
++                    " and not test_Sun_Local_str[day3-dawn3]"
++                    " and not test_Sun_Local_str[day4-dawn4]"
++                    " and not test_SolarZenith_London[dt0-102.6]"
++                    " and not test_SolarZenith_London[dt1-93.3]"
++                    " and not test_SolarZenith_London[dt2-87.8]"
++                    " and not test_SolarZenith_London[dt3-46]"
++                    " and not test_SolarZenith_London[dt4-71]"
++                    " and not test_SolarZenith_Riyadh[dt0-32]"
++                    " and not test_SolarZenith_Riyadh[dt1-126]"
++                    " and not test_moonrise_utc[date_0-risetime0]"
++                    " and not test_moonrise_utc[date_1-risetime1]"
++                    " and not test_moonrise_utc[date_2-risetime2]"
++                    " and not test_moonrise_wellington[date_0-risetime0]"
++                    " and not test_moonrise_wellington[date_1-risetime1]"
++                    " and not test_moonset_wellington[date_0-settime0]"
++                    " and not test_moonset_wellington[date_1-settime1]"))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              (setenv "HOME" "/tmp"))))))
+     (native-inputs
+-     (list python-freezegun python-setuptools-scm))
++     (list python-freezegun
++           python-poetry-core
++           python-pytest
++           python-setuptools-scm))
+     (propagated-inputs
+      (list python-dataclasses python-pytest python-pytz))
+     (home-page "https://github.com/sffjunkie/astral")
+-- 
+2.39.2
+

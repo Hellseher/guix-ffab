@@ -1,0 +1,50 @@
+From 4968969990fa74d2686acda178e0d71ed4c41478 Mon Sep 17 00:00:00 2001
+Message-Id: <4968969990fa74d2686acda178e0d71ed4c41478.1684276664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 15 May 2023 22:46:09 +0100
+Subject: [PATCH 01/19] gnu: python-asdf-astropy: Update to 0.4.0.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.4.0.
+[arguments]: Add pre check phase.
+[native-inputs]: Remove python-matplotlib.
+---
+ gnu/packages/astronomy.scm | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9bc790ef4b..e180a2f81a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2974,18 +2974,23 @@ (define python-asdf-unit-schemas
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.3.0")
++    (version "0.4.0")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri "asdf_astropy" version))
++       (uri (pypi-uri "asdf-astropy" version))
+        (sha256
+-        (base32 "1gp5iav0a9g9q0zb22vhzi3v9vwk5wn2nxvr3mvi3bsdcdj3h23v"))))
++        (base32 "1difb2y1hlalbhrw8znwmmc0vzgg44zfsay98lpllb7y0536fas6"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'set-home-env
++            (lambda _ (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-coverage
+            python-h5py
+-           python-matplotlib
+            python-pandas
+            python-pytest-astropy
+            python-scipy
+-- 
+2.39.2
+

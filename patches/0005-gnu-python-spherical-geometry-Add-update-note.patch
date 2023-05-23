@@ -1,0 +1,31 @@
+From f33f3fa545c970961edf28d92b40bc3b5df12f9d Mon Sep 17 00:00:00 2001
+Message-Id: <f33f3fa545c970961edf28d92b40bc3b5df12f9d.1684276664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 15 May 2023 23:57:50 +0100
+Subject: [PATCH 05/19] gnu: python-spherical-geometry: Add update note.
+
+* gnu/packages/astronomy.scm (python-spherical-geometry): Package can't
+be updated to the latest version due to an open issue in upstream where
+system qb library is in use.
+---
+ gnu/packages/astronomy.scm | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 10c435b00e..6288de3d19 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1988,6 +1988,8 @@ (define-public python-astral
+ (define-public python-spherical-geometry
+   (package
+     (name "python-spherical-geometry")
++    ;; XXX: Can't be updated to the latest see:
++    ;; https://github.com/spacetelescope/spherical_geometry/issues/227
+     (version "1.2.22")
+     (source
+      (origin
+-- 
+2.39.2
+

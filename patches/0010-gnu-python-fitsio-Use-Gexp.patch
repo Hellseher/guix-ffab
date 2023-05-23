@@ -1,0 +1,69 @@
+From ced40e21dc0810e7f07ed249cda4b37c13259963 Mon Sep 17 00:00:00 2001
+Message-Id: <ced40e21dc0810e7f07ed249cda4b37c13259963.1684276665.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 May 2023 20:43:50 +0100
+Subject: [PATCH 10/19] gnu: python-fitsio: Use Gexp.
+
+* gnu/packages/astronomy.scm (python-fitsio): Adjust package style by
+using Gexp.
+---
+ gnu/packages/astronomy.scm | 39 +++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index afde394708..25b372b06d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -476,27 +476,28 @@ (define-public python-fitsio
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio
+-        `(begin
+-           (delete-file-recursively "cfitsio3490")
+-           (substitute* "MANIFEST.in"
+-             (("recursive-include cfitsio3490.*$\n") ""))))))
++        #~(begin
++            (delete-file-recursively "cfitsio3490")
++            (substitute* "MANIFEST.in"
++              (("recursive-include cfitsio3490.*$\n") ""))))))
+     (build-system python-build-system)
+     (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'unbundle-cfitsio
+-           (lambda* (#:key inputs #:allow-other-keys)
+-             (let* ((cfitsio (assoc-ref inputs "cfitsio"))
+-                    (includedir (string-append "\"" cfitsio "/include\""))
+-                    (libdir (string-append "\"" cfitsio "/lib\"")))
+-               ;; Use Guix' cfitsio instead of the bundled one
+-               (substitute* "setup.py"
+-                 (("self.use_system_fitsio = False") "pass")
+-                 (("self.system_fitsio_includedir = None") "pass")
+-                 (("self.system_fitsio_libdir = None") "pass")
+-                 (("self.use_system_fitsio") "True")
+-                 (("self.system_fitsio_includedir") includedir)
+-                 (("self.system_fitsio_libdir") libdir))))))))
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'unbundle-cfitsio
++            (lambda _
++              (let* ((cfitsio #$(this-package-input "cfitsio"))
++                     (includedir (string-append "\"" cfitsio "/include\""))
++                     (libdir (string-append "\"" cfitsio "/lib\"")))
++                ;; Use Guix' cfitsio instead of the bundled one
++                (substitute* "setup.py"
++                  (("self.use_system_fitsio = False") "pass")
++                  (("self.system_fitsio_includedir = None") "pass")
++                  (("self.system_fitsio_libdir = None") "pass")
++                  (("self.use_system_fitsio") "True")
++                  (("self.system_fitsio_includedir") includedir)
++                  (("self.system_fitsio_libdir") libdir))))))))
+     (inputs (list curl))
+     (propagated-inputs
+      (list python-numpy cfitsio))
+-- 
+2.39.2
+

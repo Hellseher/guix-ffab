@@ -1,0 +1,92 @@
+From a67c96261594703c5d6d673402418503906ecee5 Mon Sep 17 00:00:00 2001
+Message-Id: <a67c96261594703c5d6d673402418503906ecee5.1684276664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 15 May 2023 23:40:13 +0100
+Subject: [PATCH 04/19] gnu: python-sunpy: Update to 4.1.5.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 4.1.5, simplify
+package.
+[arguments]{test-flags}: Disable 2 failing tests.
+[arguments]{phases}: Simplify prepare-test-environment by remove
+redundant substitution.
+[inputs]: Add opencv for OpenCV-Pyton support.
+---
+ gnu/packages/astronomy.scm | 31 ++++++++++---------------------
+ 1 file changed, 10 insertions(+), 21 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5c07ff2c8d..10c435b00e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1885,16 +1885,21 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "4.1.1")
++    (version "4.1.5")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1h8dnsic96bxm5l278vk6jj5h4bh1b143fghsvv5rhigk137vysp"))))
++        (base32 "1j5g0ivsrc5ji9s7jc3kcbi2injfs3y31pm3priycljwcsxspkpm"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags
++      #~(list "-k" (string-append
++                    ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
++                    "not test_main_nonexisting_module"
++                    " and not test_main_stdlib_module"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'install 'writable-compiler
+@@ -1902,24 +1907,7 @@ (define-public python-sunpy
+               (make-file-writable "sunpy/_compiler.c")))
+           (add-before 'check 'prepare-test-environment
+             (lambda _
+-              (setenv "HOME" "/tmp")
+-              (make-file-writable "sunpy/_compiler.c")
+-              ;; TODO: (Sharlatan-20221106T115800+0000): Review failing tests
+-              (substitute* "sunpy/image/tests/test_transform.py"
+-                (("def test_clipping") "def __off_test_clipping")
+-                (("def test_nans") "def __off_test_nans")
+-                (("def test_endian") "def __off_test_endian"))
+-              (substitute* "sunpy/map/tests/test_mapbase.py"
+-                (("def test_derotating_nonpurerotation_pcij")
+-                 "def __off_test_derotating_nonpurerotation_pcij"))
+-              (substitute* "sunpy/map/sources/tests/test_mdi_source.py"
+-                (("def test_synoptic_source")
+-                 "def __off_test_synoptic_source"))
+-              (substitute* "sunpy/tests/tests/test_self_test.py"
+-                (("def test_main_nonexisting_module")
+-                 "def __off_test_main_nonexisting_module")
+-                (("def test_main_stdlib_module")
+-                 "def __off_test_main_stdlib_module")))))))
++              (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-aiohttp
+            python-extension-helpers
+@@ -1932,6 +1920,8 @@ (define-public python-sunpy
+            python-pytest-mpl
+            python-pytest-xdist
+            python-setuptools-scm))
++    (inputs
++     (list opencv)) ; Includes OpenCV-Python
+     (propagated-inputs
+      (list parfive
+            python-asdf
+@@ -1950,7 +1940,6 @@ (define-public python-sunpy
+            python-matplotlib
+            python-mpl-animators
+            python-numpy
+-           ;; python-opencv-python ; not packed yet
+            python-pandas
+            python-reproject
+            python-scikit-image
+-- 
+2.39.2
+

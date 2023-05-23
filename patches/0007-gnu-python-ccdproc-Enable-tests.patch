@@ -1,0 +1,32 @@
+From 851a6c2bac6f45e6776435d442ecc50425b7f286 Mon Sep 17 00:00:00 2001
+Message-Id: <851a6c2bac6f45e6776435d442ecc50425b7f286.1684276664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 May 2023 00:25:49 +0100
+Subject: [PATCH 07/19] gnu: python-ccdproc: Enable tests.
+
+* gnu/packages/astronomy.scm (python-ccdproc): Enable tests.
+---
+ gnu/packages/astronomy.scm | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6adf7c990e..b283cce222 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1370,11 +1370,6 @@ (define-public python-ccdproc
+        (sha256
+         (base32 "0fy1sni87cr05dkljd8wb7vgh7z9agh8wv5kiagxcpbcf8l06jv1"))))
+     (build-system pyproject-build-system)
+-    (arguments
+-     ;; FIXME: Test failed a lot with: DeprecationWarning: distutils Version
+-     ;; classes are deprecated. Use packaging.version instead (see:
+-     ;; https://github.com/astropy/ccdproc/issues/805).
+-     (list #:tests? #f))
+     (native-inputs (list python-memory-profiler python-pytest-astropy))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.39.2
+

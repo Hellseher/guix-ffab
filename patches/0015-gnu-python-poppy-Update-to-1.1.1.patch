@@ -1,0 +1,36 @@
+From e326f700441fc3b7a525a99b489ab40c079d06da Mon Sep 17 00:00:00 2001
+Message-Id: <e326f700441fc3b7a525a99b489ab40c079d06da.1684276665.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
+References: <cover.1684276664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 May 2023 23:00:54 +0100
+Subject: [PATCH 15/19] gnu: python-poppy: Update to 1.1.1.
+
+* gnu/packages/astronomy.scm (python-poppy): Update to 1.1.1.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ab539efcfe..f289ebdcab 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1676,13 +1676,13 @@ (define-public python-poliastro
+ (define-public python-poppy
+   (package
+     (name "python-poppy")
+-    (version "1.0.3")
++    (version "1.1.1")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "poppy" version))
+               (sha256
+                (base32
+-                "050cn6aabd1dxbi7zihbqnkl79hz6q6d5n6g25zmrpvc4sii171m"))))
++                "0s8rb61q8dz66s8d3qg44kb6bb5gi40zl41ik9wyccgb4kyf3brp"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      ;; XXX: With python-synphot (marked as optional) package added to the list
+-- 
+2.39.2
+
