@@ -672,6 +672,16 @@ planetarium.")
 ;; (define-public python-asdf
 ;; added-to-downstream-guix f498823e7843379499d35ae397c38dc879fb9844
 ;; CommitDate: Sun Feb 21 01:07:41 2021 +0100
+(define-public python-asdf-ffab
+  (package (inherit python-asdf)
+    (name "python-asdf")
+    (version "2.15.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf" version))
+       (sha256
+        (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))))
 
 ;; (define python-asdf-wcs-schemas
 ;; added-to-downstream-guix 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
@@ -701,6 +711,18 @@ planetarium.")
 ;; (define-public python-asdf-astropy
 ;; added-to-downstream-guix 7b2747c81d52dd4727cc642df2ebbce485c7e204
 ;; CommitDate: Sun Jan 30 11:46:18 2022 -0300
+(define-public python-asdf-astropy-ffab
+  (package (inherit python-asdf-astropy)
+    (name "python-asdf-astropy")
+    (version "0.4.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf-astropy" version))
+       (sha256
+        (base32 "1difb2y1hlalbhrw8znwmmc0vzgg44zfsay98lpllb7y0536fas6"))))
+    (arguments
+     (list #:tests? #f))))
 
 ;; 20221123T230513+0000
 ;; (define-public python-reproject
@@ -971,24 +993,32 @@ calibration pipelines.")
 (define-public python-rad
   (package
     (name "python-rad")
-    (version "0.14.0")
+    (version "0.15.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "rad" version))
               (sha256
                (base32
-                "1n0y8mk32dh5kaic634ps4rc6ijaniag2zm91isi0vs8g19pv1hx"))))
+                "0j51pkywxdaqrfz162rdsywlvx1mbb2h0gi5framvhf25i1im7mb"))))
     (build-system pyproject-build-system)
-    (propagated-inputs (list python-asdf))
-    (native-inputs (list python-pytest
+    (arguments
+     (list #:test-flags #~(list "-k" "not remote_data")))
+    (native-inputs (list python-astropy
+                         python-pytest
                          python-pytest-doctestplus
                          python-pytest-openfiles
                          python-semantic-version
                          python-setuptools-scm))
+    (propagated-inputs (list python-asdf-ffab python-asdf-astropy-ffab))
     (home-page "https://github.com/spacetelescope/rad")
     (synopsis "Roman Attribute Dictionary")
-    (description "Roman Attribute Dictionary")
-    (license #f)))
+    (description
+     "@acronym{RAD, The Roman Attribute Dictionary} is package which defines schemas
+for the Nancy Grace Roman Space Telescope shared attributes for processing and
+archive.  These schemas are schemas for the ASDF file file format, which are used
+by ASDF to serialize and deserialize data for the Nancy Grace Roman Space
+Telescope.")
+    (license license:bsd-3)))
 
 ;; 20220523T215048+0100
 (define-public python-tweakwcs
