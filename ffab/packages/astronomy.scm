@@ -1522,23 +1522,24 @@ provide related services.")
 (define-public python-bayesicfitting
   (package
     (name "python-bayesicfitting")
-    (version "3.0.1")
+    (version "3.1.1")
     (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "BayesicFitting" version))
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://github.com/dokester/BayesicFitting")
+                    (commit (string-append "v" version))))
+              (file-name (git-file-name name version))
               (sha256
                (base32
-                "08bj2vaicc9cn6mn2hkqri33r1v6iy6skiiddsikgz89lpaccl5g"))))
+                "07y9dr9wxhxrvhk0jjakhbyrgal60i92m7z7q14fp12k8x0gl69l"))))
     (build-system python-build-system)
     (arguments
-     (list
-           ;; NOTE: (Sharlatan-20220716T140847+0100): tests failed:
-           ;;
-           ;; TypeError: calling <class
-           ;; 'BayesicFitting.source.kernels.Uniform.Uniform'> returned Uniform: 1
-           ;; if |x| < 1 else 0, not a test
-           ;;
-           #:tests? #f))
+     (list #:phases #~(modify-phases %standard-phases
+                        (replace 'check
+                          (lambda* (#:key tests? #:allow-other-keys)
+                            (when tests?
+                              (invoke "python" "-m" "unittest" "discover"
+                                      "test")))))))
     (propagated-inputs (list python-astropy python-future python-matplotlib
                              python-numpy python-scipy))
     (home-page "https://www.bayesicfitting.nl")
