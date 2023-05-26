@@ -1290,11 +1290,9 @@ behaviour of the IRAF's")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20221105T235457+0000): Failing test with test collection error
-      ;;
-      ;; ERROR collecting...
-      ;;
-      #:tests? #f))
+      ;; Disable tests requiring access to CRDS servers to download ~500MiB
+      ;; of data.
+      #:test-flags #~(list "-k" "not test_crds_selectors_vs_datamodel")))
     (propagated-inputs (list python-asdf
                              python-asdf-astropy
                              python-astropy
@@ -1312,7 +1310,9 @@ behaviour of the IRAF's")
     (synopsis
      "Core support for DataModel classes used in calibration pipelines")
     (description
-     "Core support for DataModel classes used in calibration pipelines")
+     "Provides DataModel, which is the base class for data models implemented in the
+@acronym{JWST, James Webb Space Telescope} and @acronym{Roman, Nancy Grace Roman
+Space Telescope} calibration software.")
     (license license:bsd-3)))
 
 ;; 20220711T123113+0100
