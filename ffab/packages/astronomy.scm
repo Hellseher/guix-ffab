@@ -1208,13 +1208,13 @@ behaviour of the IRAF's")
 (define-public python-stsci-stimage
   (package
     (name "python-stsci-stimage")
-    (version "0.2.5")
+    (version "0.2.6")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "stsci.stimage" version))
               (sha256
                (base32
-                "14iiwr0mgrn5r0r41mk7fyqrr39f95agb4hpl2li4gl88knvy9ck"))))
+                "0i7xby1gaiplvbqqv8a4f4cw1is8fwj89mix1z3bqrykqi3n24g0"))))
     (build-system python-build-system)
     (arguments
      (list
@@ -1223,9 +1223,9 @@ behaviour of the IRAF's")
            ;; _____________ ERROR collecting stsci/stimage/tests/test_geomap.py ______________
            ;; import file mismatch:
            ;; imported module 'stsci.stimage.tests.test_geomap' has this __file__ attribute:
-           ;; /gnu/store/mh6sw4nqyjzbspwa8hxc3r6fn49ghnyj-python-stsci-stimage-0.2.5/lib/python3.9/site-packages/stsci/stimage/tests/test_geomap.py
+           ;; /gnu/store/mh6sw4nqyjzbspwa8hxc3r6fn49ghnyj-python-stsci-stimage-0.2.6/lib/python3.9/site-packages/stsci/stimage/tests/test_geomap.py
            ;; which is not the same as the test file we want to collect:
-           ;; /tmp/guix-build-python-stsci-stimage-0.2.5.drv-0/stsci.stimage-0.2.5/stsci/stimage/tests/test_geomap.py
+           ;; /tmp/guix-build-python-stsci-stimage-0.2.6.drv-0/stsci.stimage-0.2.6/stsci/stimage/tests/test_geomap.py
            ;; HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
            ;;
            #:tests? #f
