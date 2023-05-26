@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-04-11 Tue 21:52:01 BST>
+#+modified: <2023-05-26 Fri 20:54:45 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1644,13 +1644,25 @@ CLOSED: [2023-02-15 Wed 21:47]
 - author :: Matias Carrasco Kind
 *** TODO easyaccess [/][%] :p4:
 - https://github.com/mgckind/easyaccess
-** TODO NASA [0/6][0%] :author:
+
+** TODO NASA [0/7][0%] :author:
 *** TODO HEAsoft [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+
+*** TODO FITSVERIFY [0/4][0%] :p1:
+- https://heasarc.gsfc.nasa.gov/docs/software/ftools/fitsverify/
+- synopsis :: Fitsverify is a computer program that rigorously checks whether a FITS (Flexible Image
+  Transport System) data file conforms to the requirements defined in Version 3.0 of the FITS
+  Standard document.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
+
 *** TODO HEALPix [1/4][25%] :p3:
 - https://healpix.jpl.nasa.gov/
 - https://healpix.sourceforge.io/
@@ -1835,7 +1847,7 @@ CLOSED: [2023-03-16 Thu 21:54]
   - [X] python-pytest-mypy
   - [X] python-scipy
 
-** DONE pynbody [1/1][100%] :author:
+** DONE pynbody [1/2][50%] :author:
 *** DONE pynbody [4/4][100%]
 - https://github.com/pynbody/pynbody
 - synopsis :: N-body and hydro analysis tools
@@ -1852,6 +1864,13 @@ CLOSED: [2023-03-16 Thu 21:54]
   - [X] python-posix-ipc
   - [X] python-pytest
   - [X] python-scipy
+*** TODO tangos [0/4][0%]
+- https://github.com/pynbody/tangos
+- synopsis ::
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 
 ** TODO QuatroPe [1/2][50%] :author:
 - https://github.com/quatrope
@@ -2490,6 +2509,44 @@ The Solar UK Research Facility
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
+* Bulk updates
+** 20230516T203501+0100 [3/38][7%]
+- commit ::
+- [X] python-fitsio 1.1.8, use Gexp
+- [X] python-astropy-healpix, use Gexp
+- [X] python-astroquery, use Gexp.
+- [ ] python-czml3
+- [ ] python-drms
+- [ ] python-ephem
+- [ ] python-hvpy
+- [ ] python-mpl-animators
+- [ ] python-photutils
+- [ ] python-poliastro
+- [ ] python-poppy
+- [ ] python-pyvo
+- [ ] python-regions
+- [ ] python-reproject
+- [ ] python-sgp4
+- [ ] python-sunpy
+- [ ] python-astral
+- [ ] python-spherical-geometry
+- [ ] python-jplephem
+- [ ] python-pyerfa
+- [ ] python-pynbody
+- [ ] python-sep
+- [ ] python-suntime
+- [ ] python-asdf
+- [ ] python-asdf-standard
+- [ ] python-asdf-transform-schemas
+- [ ] python-asdf-coordinates-schemas
+- [ ] python-asdf-fits-schemas
+- [ ] python-asdf-time-schemas
+- [ ] python-asdf-unit-schemas
+- [ ] python-asdf-astropy
+- [ ] python-asdf-wcs-schemas
+- [ ] python-gwcs
+- [ ] python-astroalign
+- [ ] python-skyfield
 
 * Coverage
 | Project        | Debian Astro |   Guix |

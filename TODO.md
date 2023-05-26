@@ -80,7 +80,7 @@
     astronomy.org          OpenSpace               [0/2][0%]     :author:
     astronomy.org          OpenAstronomy           [/][%]        :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]     :author:
-    astronomy.org          NASA                    [0/6][0%]     :author:
+    astronomy.org          NASA                    [0/7][0%]     :author:
     astronomy.org          mgckind                 [0/1][0%]     :author:
     astronomy.org          MAVENSDC                [1/1][100%]   :author:
     astronomy.org          LMSAL_HUB               [0/1][0%]     :author:
@@ -354,6 +354,7 @@
     astronomy.org          julia-astroangles              [2/4][50%]   :p1:
     astronomy.org          galpy                          [1/4][25%]   :p1:
     astronomy.org          funtools                       [2/4][50%]   :p1:
+    astronomy.org          FITSVERIFY                     [0/4][0%]    :p1:
     astronomy.org          BayesicFitting                 [2/4][50%]   :p1:
     services.org           prometheus                     [/][%]       
     services.org           pacemaker                      [/][%]       
@@ -384,6 +385,7 @@
     golang.org             hashicorp/terraform            [0/4][0%]    
     golang.org             hashicorp/nomad                [0/4][0%]    
     golang.org             gin-gonic/gin                  [1/4][25%]   
+    astronomy.org          tangos                         [0/4][0%]    
     astronomy.org          skychart                       [0/4][0%]    
     astronomy.org          python-sep                     [4/4][100%]  
     astronomy.org          inistarter                     [0/4][0%]    
@@ -544,7 +546,7 @@
     astronomy.org          asdf-format                      [9/9][100%]  :author:
     astronomy.org          GreatAttractor                   [2/2][100%]  :author:
     astronomy.org          OpenPHDGuiding                   [1/1][100%]  :author:
-    astronomy.org          pynbody                          [1/1][100%]  :author:
+    astronomy.org          pynbody                          [1/2][50%]   :author:
     golang.org             valyala                          [1/1][100%]  :author:
     lisp.org               3b                               [4/4][100%]  :author:
     lisp.org               AlexCharlton                     [1/1][100%]  :author:
