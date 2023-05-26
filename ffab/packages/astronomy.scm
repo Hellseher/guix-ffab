@@ -1346,17 +1346,20 @@ behaviour of the IRAF's")
                 "1vnp4256nbdvapa69cmm80sjz11ygxa49abr9nbvssj6nyyp5icb"))))
     (build-system pyproject-build-system)
     (arguments
-     (list
-      ;; FIXME: (Sharlatan-20221106T001846+0000): Failing tests
-      ;;
-      ;;  ModuleNotFoundError: No module named 'stsci.image._combine'
-      ;;
-      #:tests? #f))
+     (list #:phases #~(modify-phases %standard-phases
+                        (add-before 'check 'build-extensions
+                          (lambda _
+                            ;; Cython extensions have to be built before running
+                            ;; the tests.
+                            (invoke "python" "setup.py" "build_ext"
+                                    "--inplace"))))))
     (propagated-inputs (list python-numpy python-scipy))
     (native-inputs (list python-pytest python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/stsci.image")
     (synopsis "Image array manipulation functions")
-    (description "Image array manipulation functions")
+    (description
+     "This package provides Python modules of @acronym{STScI, Space Telescope Science
+Institute} image array manipulation functions")
     (license license:bsd-3)))
 
 ;; 20221106T092616+0000
