@@ -1330,8 +1330,10 @@ behaviour of the IRAF's")
                          python-pytest-openfiles python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/stpipe")
     (synopsis "Framework for calibration pipeline software")
-    (description "Framework for calibration pipeline software")
-    (license #f)))
+    (description "This package provides base classes and command-line tools for
+implementing calibration pipeline software.")
+    ;; LICENSE Association of Universities for Research in Astronomy (AURA)
+    (license license:bsd-3)))
 
 ;; 20220711T123349+0100
 (define-public python-stsci-image
