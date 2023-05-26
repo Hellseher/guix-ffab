@@ -1435,12 +1435,10 @@ using (multivariate) polynomials.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20221106T001035+0000): Failing tests, missing config
-      #:tests? #f
-      #:phases
-      #~(modify-phases %standard-phases
-            ;; FIXME: (Sharlatan-20221106T001001+0000): Requirement.parse('jsonschema<4.10.0,>=4.0.1'), {'asdf'})
-            (delete 'sanity-check))))
+      ;; NOTE: (Sharlatan-20230526T214456+0100): Tests require Internet access
+      ;; to https://hst-crds.stsci.edu and additional test data. See:
+      ;; https://github.com/spacetelescope/crds/blob/master/setup_test_cache
+      #:tests? #f))
     (propagated-inputs (list python-asdf
                              python-astropy
                              python-boto3
