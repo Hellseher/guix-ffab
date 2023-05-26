@@ -1,10 +1,11 @@
-From 295e95158f62347910501a7ec632fe9ccb2265c5 Mon Sep 17 00:00:00 2001
-Message-Id: <295e95158f62347910501a7ec632fe9ccb2265c5.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From f1265fb7bb39521c0aa76d4ac372769f968afedb Mon Sep 17 00:00:00 2001
+Message-Id: <f1265fb7bb39521c0aa76d4ac372769f968afedb.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 23:35:27 +0100
-Subject: [PATCH 19/19] gnu: python-asdf-coordinates-schemas: Update to 0.2.0.
+Subject: [PATCH v2 19/20] gnu: python-asdf-coordinates-schemas: Update to
+ 0.2.0.
 
 * gnu/packages/astronomy.scm (python-asdf-coordinates-schemas): Update
 to 0.2.0.
@@ -15,10 +16,10 @@ to 0.2.0.
  1 file changed, 4 insertions(+), 14 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index ed787665ea..eaa947d360 100644
+index 8c5d0455bc..e3ebaee8b4 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -2861,26 +2861,16 @@ (define python-asdf-transform-schemas
+@@ -2842,26 +2842,16 @@ (define python-asdf-transform-schemas
  (define python-asdf-coordinates-schemas
    (package
      (name "python-asdf-coordinates-schemas")

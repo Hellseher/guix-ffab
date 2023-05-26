@@ -1,10 +1,10 @@
 From 5868ae85ed4005fcfba904eb70b1043fc0c097c9 Mon Sep 17 00:00:00 2001
-Message-Id: <5868ae85ed4005fcfba904eb70b1043fc0c097c9.1684276664.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+Message-Id: <5868ae85ed4005fcfba904eb70b1043fc0c097c9.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Mon, 15 May 2023 23:05:35 +0100
-Subject: [PATCH 03/19] gnu: python-gwcs: Update to 0.18.3.
+Subject: [PATCH v2 03/20] gnu: python-gwcs: Update to 0.18.3.
 
 * gnu/packages/astronomy.scm (python-gwcs): Update to 0.18.3.
 ---

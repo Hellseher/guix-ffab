@@ -1,10 +1,10 @@
-From b878905b7b246f66041a0b6900ec14ffe0b3b78e Mon Sep 17 00:00:00 2001
-Message-Id: <b878905b7b246f66041a0b6900ec14ffe0b3b78e.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From 185fa2ab4f22978c998bba45550981ed6677940c Mon Sep 17 00:00:00 2001
+Message-Id: <185fa2ab4f22978c998bba45550981ed6677940c.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 22:47:45 +0100
-Subject: [PATCH 14/19] gnu: python-astral: Update to 3.2.
+Subject: [PATCH v2 14/20] gnu: python-astral: Update to 3.2.
 
 * gnu/packages/astronomy.scm (python-astral): Update to 3.2.
 [build-system]: Shift to pyproject-build-system.
@@ -12,14 +12,14 @@ Subject: [PATCH 14/19] gnu: python-astral: Update to 3.2.
 instead and partly enable tests (128 of 334).
 [native-inputs]: Add python-poetry-core.
 ---
- gnu/packages/astronomy.scm | 70 ++++++++++++++++++++++++++++++++------
- 1 file changed, 59 insertions(+), 11 deletions(-)
+ gnu/packages/astronomy.scm | 53 ++++++++++++++++++++++++++++++--------
+ 1 file changed, 42 insertions(+), 11 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 058d3a6dcc..ab539efcfe 100644
+index 011e1374fc..7883919203 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -1939,24 +1939,72 @@ (define-public python-sunpy
+@@ -1938,24 +1938,55 @@ (define-public python-sunpy
  (define-public python-astral
    (package
      (name "python-astral")
@@ -65,30 +65,13 @@ index 058d3a6dcc..ab539efcfe 100644
 +                    " and not test_australia"
 +                    " and not test_Elevation_NonNaive"
 +                    " and not test_Wellington"
-+                    " and not test_Sun_Local_tzinfo[day0-dawn0]"
-+                    " and not test_Sun_Local_tzinfo[day1-dawn1]"
-+                    " and not test_Sun_Local_tzinfo[day2-dawn2]"
-+                    " and not test_Sun_Local_tzinfo[day3-dawn3]"
-+                    " and not test_Sun_Local_tzinfo[day4-dawn4]"
-+                    " and not test_Sun_Local_str[day0-dawn0]"
-+                    " and not test_Sun_Local_str[day1-dawn1]"
-+                    " and not test_Sun_Local_str[day2-dawn2]"
-+                    " and not test_Sun_Local_str[day3-dawn3]"
-+                    " and not test_Sun_Local_str[day4-dawn4]"
-+                    " and not test_SolarZenith_London[dt0-102.6]"
-+                    " and not test_SolarZenith_London[dt1-93.3]"
-+                    " and not test_SolarZenith_London[dt2-87.8]"
-+                    " and not test_SolarZenith_London[dt3-46]"
-+                    " and not test_SolarZenith_London[dt4-71]"
-+                    " and not test_SolarZenith_Riyadh[dt0-32]"
-+                    " and not test_SolarZenith_Riyadh[dt1-126]"
-+                    " and not test_moonrise_utc[date_0-risetime0]"
-+                    " and not test_moonrise_utc[date_1-risetime1]"
-+                    " and not test_moonrise_utc[date_2-risetime2]"
-+                    " and not test_moonrise_wellington[date_0-risetime0]"
-+                    " and not test_moonrise_wellington[date_1-risetime1]"
-+                    " and not test_moonset_wellington[date_0-settime0]"
-+                    " and not test_moonset_wellington[date_1-settime1]"))
++                    " and not test_Sun_Local_tzinfo"
++                    " and not test_Sun_Local_str"
++                    " and not test_SolarZenith_London"
++                    " and not test_SolarZenith_Riyadh"
++                    " and not test_moonrise_utc"
++                    " and not test_moonrise_wellington"
++                    " and not test_moonset_wellington"))
 +      #:phases
 +      #~(modify-phases %standard-phases
 +          (add-before 'check 'prepare-test-environment

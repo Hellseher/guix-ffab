@@ -1,10 +1,10 @@
 From a0a9c89e9a7f5b19ed3705d4aab099e68eaa247f Mon Sep 17 00:00:00 2001
-Message-Id: <a0a9c89e9a7f5b19ed3705d4aab099e68eaa247f.1684276664.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+Message-Id: <a0a9c89e9a7f5b19ed3705d4aab099e68eaa247f.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Mon, 15 May 2023 22:48:32 +0100
-Subject: [PATCH 02/19] gnu: python-asdf-wcs-schemas: Symplify.
+Subject: [PATCH v2 02/20] gnu: python-asdf-wcs-schemas: Symplify.
 
 * gnu/packages/astronomy.scm (python-asdf-wcs-schemas): Symplify package.
 [build-system]: Use pyproject-build-system.

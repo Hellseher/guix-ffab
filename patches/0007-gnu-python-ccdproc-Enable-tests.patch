@@ -1,10 +1,10 @@
-From 851a6c2bac6f45e6776435d442ecc50425b7f286 Mon Sep 17 00:00:00 2001
-Message-Id: <851a6c2bac6f45e6776435d442ecc50425b7f286.1684276664.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From 412f92b8f4d6229154dfe9542f9c9cd932519a77 Mon Sep 17 00:00:00 2001
+Message-Id: <412f92b8f4d6229154dfe9542f9c9cd932519a77.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 00:25:49 +0100
-Subject: [PATCH 07/19] gnu: python-ccdproc: Enable tests.
+Subject: [PATCH v2 07/20] gnu: python-ccdproc: Enable tests.
 
 * gnu/packages/astronomy.scm (python-ccdproc): Enable tests.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 07/19] gnu: python-ccdproc: Enable tests.
  1 file changed, 5 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 6adf7c990e..b283cce222 100644
+index a7fb5b3290..8f1078df02 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1370,11 +1370,6 @@ (define-public python-ccdproc

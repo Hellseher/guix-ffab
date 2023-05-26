@@ -1,10 +1,10 @@
-From bcc2defcc24298e8d7f82ca7c99f3667430245eb Mon Sep 17 00:00:00 2001
-Message-Id: <bcc2defcc24298e8d7f82ca7c99f3667430245eb.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From c56c467f08469138001cc80a8de77e3f6a2aab8a Mon Sep 17 00:00:00 2001
+Message-Id: <c56c467f08469138001cc80a8de77e3f6a2aab8a.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 20:28:30 +0100
-Subject: [PATCH 09/19] gnu: python-pyvo: Update to 1.4.1.
+Subject: [PATCH v2 09/20] gnu: python-pyvo: Update to 1.4.1.
 
 * gnu/packages/astronomy.scm (python-pyvo): Update to 1.4.1.
 [build-system]: Switch to use pyproject-build-system.
@@ -15,7 +15,7 @@ Subject: [PATCH 09/19] gnu: python-pyvo: Update to 1.4.1.
  1 file changed, 4 insertions(+), 15 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 4a53b29eab..afde394708 100644
+index 9e3a36e1d1..29bc60ae98 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1723,27 +1723,16 @@ (define-public python-poppy

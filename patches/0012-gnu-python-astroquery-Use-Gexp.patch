@@ -1,10 +1,10 @@
-From a0f6e692504ec5f3edd8dee52b39d963395084ab Mon Sep 17 00:00:00 2001
-Message-Id: <a0f6e692504ec5f3edd8dee52b39d963395084ab.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From 1241553e15bd7bdbb61d7bda6d67820da8e33972 Mon Sep 17 00:00:00 2001
+Message-Id: <1241553e15bd7bdbb61d7bda6d67820da8e33972.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 21:21:35 +0100
-Subject: [PATCH 12/19] gnu: python-astroquery: Use Gexp.
+Subject: [PATCH v2 12/20] gnu: python-astroquery: Use Gexp.
 
 * gnu/packages/astronomy.scm (python-astroquery): Use Gexp to simplify
 package style.
@@ -13,7 +13,7 @@ package style.
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index be4961b49e..5f5de193d0 100644
+index c8f3a8e965..c74867948f 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1280,15 +1280,15 @@ (define-public python-astroquery

@@ -1,10 +1,10 @@
-From 60d6982378d94467982a1ba02100ceb57ccedd2b Mon Sep 17 00:00:00 2001
-Message-Id: <60d6982378d94467982a1ba02100ceb57ccedd2b.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From 7666bf908c80b9669128a73eadbd87a59ae735b6 Mon Sep 17 00:00:00 2001
+Message-Id: <7666bf908c80b9669128a73eadbd87a59ae735b6.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 21:57:34 +0100
-Subject: [PATCH 13/19] gnu: python-pynbody: Update to 1.3.1, simplify.
+Subject: [PATCH v2 13/20] gnu: python-pynbody: Update to 1.3.1, simplify.
 
 * gnu/packages/astronomy.scm (python-pynbody): Update to 1.3.1, simplify
 package.
@@ -15,10 +15,10 @@ package.
  1 file changed, 34 insertions(+), 43 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 5f5de193d0..058d3a6dcc 100644
+index c74867948f..011e1374fc 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
-@@ -2603,55 +2603,46 @@ (define-public python-pyerfa
+@@ -2602,55 +2602,46 @@ (define-public python-pyerfa
  (define-public python-pynbody
    (package
      (name "python-pynbody")

@@ -1,10 +1,10 @@
-From f957ab9c0ebe76dcb459b828734ffd20644e96a7 Mon Sep 17 00:00:00 2001
-Message-Id: <f957ab9c0ebe76dcb459b828734ffd20644e96a7.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From ed2d88eaf43b29e7fd9dd999d04d407e2cf5163f Mon Sep 17 00:00:00 2001
+Message-Id: <ed2d88eaf43b29e7fd9dd999d04d407e2cf5163f.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 23:19:34 +0100
-Subject: [PATCH 16/19] gnu: python-photutils: Update to 1.7.0.
+Subject: [PATCH v2 16/20] gnu: python-photutils: Update to 1.7.0.
 
 * gnu/packages/astronomy.scm (python-photutils): Update to 1.7.0.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 16/19] gnu: python-photutils: Update to 1.7.0.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index f289ebdcab..5630b65185 100644
+index c606eabf5b..f7997fd358 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1567,13 +1567,13 @@ (define-public python-mpl-animators

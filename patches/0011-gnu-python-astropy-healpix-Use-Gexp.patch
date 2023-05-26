@@ -1,10 +1,10 @@
-From e4a7c21503c86b35fb9da3d906acfe34fe9ada18 Mon Sep 17 00:00:00 2001
-Message-Id: <e4a7c21503c86b35fb9da3d906acfe34fe9ada18.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From b9e41c78789fad8a826a6665391ff32a21c1c2fe Mon Sep 17 00:00:00 2001
+Message-Id: <b9e41c78789fad8a826a6665391ff32a21c1c2fe.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 21:04:23 +0100
-Subject: [PATCH 11/19] gnu: python-astropy-healpix: Use Gexp.
+Subject: [PATCH v2 11/20] gnu: python-astropy-healpix: Use Gexp.
 
 * gnu/packages/astronomy.scm (python-astropy-healpix): Simplify package
 by using Gexp.
@@ -15,7 +15,7 @@ by using Gexp.
  1 file changed, 12 insertions(+), 16 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 25b372b06d..be4961b49e 100644
+index c72be7b30b..c8f3a8e965 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1243,23 +1243,19 @@ (define-public python-astropy-healpix

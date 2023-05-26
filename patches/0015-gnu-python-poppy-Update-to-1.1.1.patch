@@ -1,10 +1,10 @@
-From e326f700441fc3b7a525a99b489ab40c079d06da Mon Sep 17 00:00:00 2001
-Message-Id: <e326f700441fc3b7a525a99b489ab40c079d06da.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From e7172d950c6f3bbcfef8998329e8523bdc9ee1c5 Mon Sep 17 00:00:00 2001
+Message-Id: <e7172d950c6f3bbcfef8998329e8523bdc9ee1c5.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 23:00:54 +0100
-Subject: [PATCH 15/19] gnu: python-poppy: Update to 1.1.1.
+Subject: [PATCH v2 15/20] gnu: python-poppy: Update to 1.1.1.
 
 * gnu/packages/astronomy.scm (python-poppy): Update to 1.1.1.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 15/19] gnu: python-poppy: Update to 1.1.1.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index ab539efcfe..f289ebdcab 100644
+index 7883919203..c606eabf5b 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1676,13 +1676,13 @@ (define-public python-poliastro

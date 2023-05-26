@@ -1,10 +1,10 @@
-From 43d72aa153d2fd8b06eb0071862eb4c8a62126e1 Mon Sep 17 00:00:00 2001
-Message-Id: <43d72aa153d2fd8b06eb0071862eb4c8a62126e1.1684276664.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From c632eaf2fae5dad2a9f36cc8a6ef84d48ca29974 Mon Sep 17 00:00:00 2001
+Message-Id: <c632eaf2fae5dad2a9f36cc8a6ef84d48ca29974.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 00:02:42 +0100
-Subject: [PATCH 06/19] gnu: python-sgp4: Update to 2.22.
+Subject: [PATCH v2 06/20] gnu: python-sgp4: Update to 2.22.
 
 * gnu/packages/astronomy.scm (python-sgp4): Update to 2.22.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 06/19] gnu: python-sgp4: Update to 2.22.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 6288de3d19..6adf7c990e 100644
+index 04a1895662..a7fb5b3290 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1856,13 +1856,13 @@ (define-public python-reproject

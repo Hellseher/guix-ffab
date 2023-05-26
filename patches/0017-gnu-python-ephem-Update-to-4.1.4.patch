@@ -1,10 +1,10 @@
-From 6ce1d7cddc8d0bff6b9ebc6c85be74c82cd95373 Mon Sep 17 00:00:00 2001
-Message-Id: <6ce1d7cddc8d0bff6b9ebc6c85be74c82cd95373.1684276665.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1684276664.git.sharlatanus@gmail.com>
-References: <cover.1684276664.git.sharlatanus@gmail.com>
+From 32d3e68b5bf30598948f4529324e6b19fe5a6e2f Mon Sep 17 00:00:00 2001
+Message-Id: <32d3e68b5bf30598948f4529324e6b19fe5a6e2f.1684964119.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1684964119.git.sharlatanus@gmail.com>
+References: <cover.1684964119.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Tue, 16 May 2023 23:21:45 +0100
-Subject: [PATCH 17/19] gnu: python-ephem: Update to 4.1.4.
+Subject: [PATCH v2 17/20] gnu: python-ephem: Update to 4.1.4.
 
 * gnu/packages/astronomy.scm (python-ephem): Update t 4.1.4.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 17/19] gnu: python-ephem: Update to 4.1.4.
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
-index 5630b65185..ce8c313185 100644
+index f7997fd358..b9fbb9d829 100644
 --- a/gnu/packages/astronomy.scm
 +++ b/gnu/packages/astronomy.scm
 @@ -1497,13 +1497,13 @@ (define-public python-drms
