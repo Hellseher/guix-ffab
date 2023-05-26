@@ -1280,13 +1280,13 @@ behaviour of the IRAF's")
 (define-public python-stdatamodels
   (package
     (name "python-stdatamodels")
-    (version "0.4.3")
+    (version "1.5.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "stdatamodels" version))
               (sha256
                (base32
-                "0lsda897cf186di1pshlh7rhn9klxf4p7ydp1zmbnsq9g4bqbi90"))))
+                "1lssz5mnkzgraqa9mdg1w39scsikymcp3zpmsjb146r0pqnwnpzw"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -1296,13 +1296,16 @@ behaviour of the IRAF's")
       ;;
       #:tests? #f))
     (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-astropy
                              python-jsonschema
                              python-numpy
                              python-psutil))
-    (native-inputs (list python-pytest
+    (native-inputs (list python-crds
+                         python-pytest
                          python-pytest-doctestplus
                          python-pytest-openfiles
+                         python-scipy
                          python-semantic-version
                          python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/stdatamodels")
