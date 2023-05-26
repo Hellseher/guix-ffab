@@ -966,41 +966,14 @@ data.")
      ;; more inner input chain needs to be upgraded, keep them disabled to make
      ;; the build green.
      (list #:test-flags #~(list "-k"
-                                (string-append "not test_will_validate[true]"
-                                 " and not test_will_validate[yes]"
-                                 " and not test_will_validate[1]"
-                                 " and not test_will_validate[True]"
-                                 " and not test_will_validate[Yes]"
-                                 " and not test_will_validate[TrUe]"
-                                 " and not test_will_validate[YeS]"
-                                 " and not test_will_validate[foo]"
-                                 " and not test_will_validate[Bar]"
-                                 " and not test_will_validate[BaZ]"
-                                 " and not test_nuke_validation[true]"
-                                 " and not test_nuke_validation[yes]"
-                                 " and not test_nuke_validation[1]"
-                                 " and not test_nuke_validation[True]"
-                                 " and not test_nuke_validation[Yes]"
-                                 " and not test_nuke_validation[TrUe]"
-                                 " and not test_nuke_validation[YeS]"
-                                 " and not test_nuke_validation[foo]"
-                                 " and not test_nuke_validation[Bar]"
-                                 " and not test_nuke_validation[BaZ]"
-                                 " and not test_will_strict_validate[true]"
-                                 " and not test_will_strict_validate[yes]"
-                                 " and not test_will_strict_validate[1]"
-                                 " and not test_will_strict_validate[True]"
-                                 " and not test_will_strict_validate[Yes]"
-                                 " and not test_will_strict_validate[TrUe]"
-                                 " and not test_will_strict_validate[YeS]"
-                                 " and not test_will_strict_validate[foo]"
-                                 " and not test_will_strict_validate[Bar]"
-                                 " and not test_will_strict_validate[BaZ]"))))
-    (propagated-inputs (list python-asdf-ffab
-                             python-asdf-astropy-ffab
+                                (string-append "not test_will_validate"
+                                 " and not test_will_strict_validate"
+                                 " and not test_nuke_validation"))))
+    (propagated-inputs (list python-asdf
+                             python-asdf-astropy
                              python-asdf-standard
                              python-astropy
-                             python-gwcs-ffab
+                             python-gwcs
                              python-numpy
                              python-psutil
                              python-rad))
