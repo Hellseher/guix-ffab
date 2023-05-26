@@ -1012,7 +1012,7 @@ calibration pipelines.")
                          python-pytest-openfiles
                          python-semantic-version
                          python-setuptools-scm))
-    (propagated-inputs (list python-asdf-ffab python-asdf-astropy-ffab))
+    (propagated-inputs (list python-asdf python-asdf-astropy))
     (home-page "https://github.com/spacetelescope/rad")
     (synopsis "Roman Attribute Dictionary")
     (description
