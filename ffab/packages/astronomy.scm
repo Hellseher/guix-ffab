@@ -1372,16 +1372,14 @@ behaviour of the IRAF's")
                 "0x6p5z6a2cqinckwlpinjxagvmswl149s1jn6ihmdxk4k0h8rrz0"))))
     (build-system pyproject-build-system)
     (propagated-inputs (list python-numpy python-scipy))
-    (native-inputs (list python-codecov
-                         python-pytest
-                         python-pytest-cov
-                         python-pytest-doctestplus
-                         python-setuptools-scm))
+    (native-inputs (list python-codecov python-pytest python-pytest-cov
+                         python-pytest-doctestplus python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/wiimatch")
-    (synopsis "Optimal \"matching\" of weighted N-dimensional image intensity data")
+    (synopsis
+     "Optimal matching of weighted N-dimensional image intensity data")
     (description
      "@code{wiimatch} is a package that provides core computational algorithms for
-optimal \"matching\" of weighted N-dimensional image intensity data
+optimal @code{matching} of weighted N-dimensional image intensity data
 using (multivariate) polynomials.")
     (license license:bsd-3)))
 
