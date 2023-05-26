@@ -1425,13 +1425,13 @@ using (multivariate) polynomials.")
 (define-public python-crds
   (package
     (name "python-crds")
-    (version "11.16.16")
+    (version "11.17.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "crds" version))
               (sha256
                (base32
-                "08xfxjlk7wgzdkbr4w07rpcdrkqahcib0xfg6agy7svir9mwypbp"))))
+                "0sdz1k4hrgrc2jwihp9ns7lx23kcz7f90c222q7aaqf9g3vvpqlr"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -1441,9 +1441,7 @@ using (multivariate) polynomials.")
       #~(modify-phases %standard-phases
             ;; FIXME: (Sharlatan-20221106T001001+0000): Requirement.parse('jsonschema<4.10.0,>=4.0.1'), {'asdf'})
             (delete 'sanity-check))))
-    (propagated-inputs (list ;awscli
-                             ;; python-jwst ;; circular dependency
-                             python-asdf
+    (propagated-inputs (list python-asdf
                              python-astropy
                              python-boto3
                              python-filelock
