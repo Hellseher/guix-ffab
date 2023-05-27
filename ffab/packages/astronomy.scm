@@ -1118,13 +1118,13 @@ greatly simplified.")
 (define-public python-synphot
   (package
     (name "python-synphot")
-    (version "1.1.1")
+    (version "1.2.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "synphot" version))
               (sha256
                (base32
-                "0xhfavsgwpxzqg1w6pm43c9mribxfj2c2p0wd8iq19b3ip4yhx84"))))
+                "02pjp1bnbyq7zi1bxqv56nif4ijd8fscmnn9ldrs8yvgsbmgdvlc"))))
     (build-system pyproject-build-system)
     (arguments
      (list
