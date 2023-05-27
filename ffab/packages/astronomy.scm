@@ -845,13 +845,13 @@ for variables with units.")
 (define-public python-jwst
   (package
     (name "python-jwst")
-    (version "1.8.2")
+    (version "1.10.2")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "jwst" version))
               (sha256
                (base32
-                "049ii2zjckls80qrqaplpjh33vvi43458z52fhnyx8rqq5cnc14h"))))
+                "1lmfyw2y7c84rs9xqavah9aidj478ijiiijlz6fag11xqn1vs98y"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -907,8 +907,10 @@ for variables with units.")
     (synopsis
      "Python library for science observations from the James Webb Space Telescope")
     (description
-     "Library for calibration of science observations from the @acronym{JWST, James
-Webb Space Telescope}")
+     "This packages provides an access to the JWST Science Calibration Pipeline
+processes data from all JWST instruments and observing modes by applying various
+science corrections sequentially, producing both fully-calibrated individual
+exposures and high-level data products (mosaics, extracted spectra, etc.). ")
     (license license:bsd-3)))
 
 ;; 20220513T211720+0100
