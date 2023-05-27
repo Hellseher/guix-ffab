@@ -916,28 +916,23 @@ Webb Space Telescope}")
   (package
     (name "python-pysynphot")
     (version "2.0.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "pysynphot" version))
-       (sha256
-        (base32 "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "pysynphot" version))
+              (sha256
+               (base32
+                "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
     (build-system pyproject-build-system)
     (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-env-data-path
-            (lambda _
-              (setenv "PYSYN_CDBS"
-                      (string-append #$output "/crds")))))))
-    (native-inputs (list python-pytest python-pytest-remotedata python-setuptools-scm))
-    (propagated-inputs
-     (list python-astropy
-           python-beautifulsoup4
-           python-numpy
-           python-pytest-astropy-header
-           python-six))
+     (list #:phases #~(modify-phases %standard-phases
+                        (add-before 'check 'set-env-data-path
+                          (lambda _
+                            (setenv "PYSYN_CDBS"
+                                    (string-append #$output "/crds")))))))
+    (native-inputs (list python-pytest python-pytest-remotedata
+                         python-setuptools-scm))
+    (propagated-inputs (list python-astropy python-beautifulsoup4 python-numpy
+                             python-pytest-astropy-header python-six))
     (home-page "https://github.com/spacetelescope/pysynphot")
     (synopsis "Python Synthetic Photometry Utilities")
     (description
