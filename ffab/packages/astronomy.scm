@@ -1073,27 +1073,39 @@ WCS} and @code{JWST gWCS} are supported.")
     (name "python-drizzle")
     (version "1.13.7")
     (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "drizzle" version))
+              (method git-fetch) ;PyPi has not test data sets
+              (uri (git-reference
+                    (url "https://github.com/spacetelescope/drizzle")
+                    (commit version)))
+              (file-name (git-file-name name version))
               (sha256
                (base32
-                "0yhma8m8sagd79f7is0nv2mpncbbm5sa23lmgr3pyzhpkg8fwmv0"))))
+                "0x591d9gjasds91fvwcf37bhxp5nra28g0vq5zkykczpc70ywiy8"))))
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20220705T212541+0100): Failing for now
-      ;;
-      ;; ImportError: cannot import name 'cdrizzle' from 'drizzle'
-      ;;
-      #:tests? #f))
+      ;; XXX: 2 of 26 tests failed with AssertionError, disable them for now.
+      ;; Consider mention it in upstream.
+      #:test-flags #~(list "-k" (string-append
+                                 "not test_square_with_point"
+                                 " and not test_square_with_grid"))
+      #:phases #~(modify-phases %standard-phases
+                        (add-before 'build 'set-env-version
+                          (lambda _
+                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                                    #$version)))
+                        (add-before 'check 'build-extensions
+                          (lambda _
+                            ;; Cython extensions have to be built before running
+                            ;; the tests.
+                            (invoke "python" "setup.py" "build_ext"
+                                    "--inplace"))))))
     (propagated-inputs (list python-astropy python-numpy))
-    (native-inputs (list python-coverage
-                         python-flake8
-                         python-pytest
-                         python-pytest-cov
-                         python-setuptools-scm))
+    (native-inputs (list python-coverage python-flake8 python-pytest
+                         python-pytest-cov python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/drizzle")
-    (synopsis "Astronomical tool for combining dithered images into a single image")
+    (synopsis
+     "Astronomical tool for combining dithered images into a single image")
     (description
      "The drizzle library is a Python package for combining dithered images into
 a single image.  This library is derived from code used in DrizzlePac.  Like
