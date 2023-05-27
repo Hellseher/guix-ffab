@@ -1149,24 +1149,21 @@ of the old packages.")
 (define-public python-stsynphot
   (package
     (name "python-stsynphot")
-    (version "1.1.0")
+    (version "1.2.0")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "stsynphot" version))
               (sha256
                (base32
-                "1dcgfhypq4sf174zv1cml85irqa8s27fzs527sknww4x2dqsqd51"))))
-    (build-system python-build-system)
+                "0qkdh47j84v7fzri7bmi1jcmggdqq0a8byamfm73d8mbz86v8sn4"))))
+    (build-system pyproject-build-system)
     (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (replace 'check
-                          (lambda* (#:key tests? inputs outputs
-                                    #:allow-other-keys)
-                            (when tests?
-                              (add-installed-pythonpath inputs outputs)
-                              (setenv "HOME"
-                                      (getcwd))
-                              (invoke "pytest" "-vv")))))))
+     (list
+      ;; FIXME: (Sharlatan-20230527T161248+0100): Tests fails on missing file,
+      ;; it might need to be downloaded, disable them for now.
+      ;; astropy.utils.exceptions.AstropyUserWarning: Failed to load Vega
+      ;; spectrum from /grp/redcat/trds/calspec/alpha_lyr_stis_010.fits;
+      #:tests? #f))
     (propagated-inputs (list python-astropy
                              python-beautifulsoup4
                              python-matplotlib
@@ -1174,10 +1171,13 @@ of the old packages.")
                              python-scipy
                              python-synphot))
     (native-inputs (list python-pytest python-pytest-astropy
-                         python-setuptools-scm))
+                         python-pytest-astropy-header python-setuptools-scm))
     (home-page "https://github.com/spacetelescope/stsynphot_refactor")
-    (synopsis "Synthetic photometry for HST")
-    (description "Synthetic photometry for HST")
+    (synopsis "Synthetic photometry using Astropy for HST and JWST")
+    (description
+     "This package provides a replacement for IRAF STSDAS SYNPHOT
+and ASTROLIB PYSYNPHOT, utilizing Astropy covering instrument specific portions
+of the old packages for HST.")
     (license license:bsd-3)))
 
 ;; 20220706T215537+0100
