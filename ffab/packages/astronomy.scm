@@ -1128,11 +1128,10 @@ greatly simplified.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20221105T232147+0000): Tests fail with deprecation warning
+      ;; NOTE: (Sharlatan-20230527T163858+0100): Test needs more love to pass,
+      ;; still keep them disabled.
       ;;
-      ;; astropy.utils.exceptions.AstropyDeprecationWarning: The
-      ;; enable_deprecations_as_exceptions function is deprecated and may be
-      ;; removed in a future version.
+      ;; ERROR collecting synphot/tests/test_utils.py
       ;;
       #:tests? #f))
     (propagated-inputs (list python-astropy python-numpy python-scipy))
