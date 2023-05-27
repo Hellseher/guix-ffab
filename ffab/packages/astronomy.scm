@@ -1071,13 +1071,13 @@ WCS} and @code{JWST gWCS} are supported.")
 (define-public python-drizzle
   (package
     (name "python-drizzle")
-    (version "1.13.6")
+    (version "1.13.7")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "drizzle" version))
               (sha256
                (base32
-                "1bmm52na3p9fyh8im9bn6ylfwzr1mbvhn1v71zssb814hwwgzxlw"))))
+                "0yhma8m8sagd79f7is0nv2mpncbbm5sa23lmgr3pyzhpkg8fwmv0"))))
     (build-system pyproject-build-system)
     (arguments
      (list
