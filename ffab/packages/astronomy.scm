@@ -1027,13 +1027,13 @@ Telescope.")
 (define-public python-tweakwcs
   (package
     (name "python-tweakwcs")
-    (version "0.8.0")
+    (version "0.8.2")
     (source (origin
               (method url-fetch)
               (uri (pypi-uri "tweakwcs" version))
               (sha256
                (base32
-                "08b2qgk81vximjjn88db7xc0lwg394rpbivk0jwd63sr3gsbsllb"))))
+                "1500w737n9vf5hv16xkybk4shl7g4wfzb2ji9mc4vgzj41gkrwl4"))))
     (build-system pyproject-build-system)
     (propagated-inputs (list python-astropy
                              python-gwcs
@@ -1045,9 +1045,9 @@ Telescope.")
     (native-inputs (list python-codecov
                          python-pytest
                          python-pytest-cov
+                         python-scipy
                          python-semantic-version
-                         python-setuptools-scm
-                         python-scipy))
+                         python-setuptools-scm))
     (home-page "https://tweakwcs.readthedocs.io/en/latest/")
     (synopsis
      "Algorithms for matching and aligning catalogs and for tweaking the WCS")
