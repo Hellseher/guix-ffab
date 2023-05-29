@@ -864,7 +864,8 @@ for variables with units.")
                    ;; Guix. Review failing sanity check with more efforts,
                    ;; disable for now to make package buildable.
                    (delete 'sanity-check))))
-    (propagated-inputs (list opencv ; Provides OpenCV-Python which is Listed as install require
+    ;; opencv provides OpenCV-Python which is Listed as install requirement.
+    (propagated-inputs (list opencv
                              python-asdf
                              python-asdf-astropy
                              python-astropy
@@ -902,10 +903,10 @@ for variables with units.")
     (synopsis
      "Python library for science observations from the James Webb Space Telescope")
     (description
-     "This packages provides an access to the JWST Science Calibration Pipeline
+     "This package provides an access to the JWST Science Calibration Pipeline
 processes data from all JWST instruments and observing modes by applying various
 science corrections sequentially, producing both fully-calibrated individual
-exposures and high-level data products (mosaics, extracted spectra, etc.). ")
+exposures and high-level data products (mosaics, extracted spectra, etc.).")
     (license license:bsd-3)))
 
 ;; 20220513T211720+0100
