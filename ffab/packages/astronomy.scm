@@ -855,22 +855,17 @@ for variables with units.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; NOTE: (Sharlatan-20221106T091916+0000): Failing tests
-      ;;
-      ;; FileNotFoundError: [Errno 2] No such file or directory: '/grp/crds/cache/config/jwst/server_config'
-      ;; CRDS - ERROR -  (FATAL) CRDS server connection and cache load FAILED.  Cannot continue.
-      ;;  See https://hst-crds.stsci.edu/docs/cmdline_bestrefs/ or https://jwst-crds.stsci.edu/docs/cmdline_bestrefs/
-      ;; for more information on configuring CRDS,  particularly CRDS_PATH and CRDS_SERVER_URL. : [Errno 2] No such file or directory: '/grp/crds/cache/config/jwst/server_config'
-      ;;
+      ;; XXX: Tests require access to https://jwst-crds-pub.stsci.edu server for
+      ;; getting data sets.
       #:tests? #f
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; FIXME: (Sharlatan-20221106T095131+0000): Blocked by OpenCV Python dependencie
-          ;;
-          ;; Requirement.parse('stcal<1.3,>=1.2.1'), {'jwst'})
-          ;;
-          (delete 'sanity-check))))
-    (propagated-inputs (list python-asdf
+      #:phases #~(modify-phases %standard-phases
+                   ;; NOTE: (Sharlatan-20230529T113448+0100): opencv-python's
+                   ;; version can't be detected, it could the way it's packed in
+                   ;; Guix. Review failing sanity check with more efforts,
+                   ;; disable for now to make package buildable.
+                   (delete 'sanity-check))))
+    (propagated-inputs (list opencv ; Provides OpenCV-Python which is Listed as install require
+                             python-asdf
                              python-asdf-astropy
                              python-astropy
                              python-bayesicfitting
