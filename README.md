@@ -1,13 +1,14 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#org72a4c25)
-2.  [Installation](#org1369488)
-    1.  [Use as channel](#orga160e2c)
-    2.  [Use as build/install source](#org02e0fe3)
-3.  [References](#orgcbdbeb8)
-    1.  [Guix channels](#orgddce811)
-    2.  [etc](#orgada4a36)
+1.  [Project structure and layout](#org3c3b74c)
+    1.  [Tags legend](#org641090b)
+2.  [Installation](#org843699a)
+    1.  [Use as channel](#org67d30fd)
+    2.  [Use as build/install source](#org84b835a)
+3.  [References](#org9259bb9)
+    1.  [Guix channels](#org31030ae)
+    2.  [etc](#org81bc0dd)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -23,7 +24,7 @@ such as **Common Lisp**, **Golan** and **Python**.
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="org72a4c25"></a>
+<a id="org3c3b74c"></a>
 
 # Project structure and layout
 
@@ -48,23 +49,39 @@ Layout follows Guix upstream.
 -   **./TODO.md:** Generated report from packaging process in `org/` directory.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
-    :guix-commit 3ab983d630a95a29b9418b1ba8a26e5ca2836ec0
-    :accepted 172
-    :pending 160
+    :guix-commit 44bbfc24e4bcc48d0e3343cd3d83452721af8c36
+    :accepted 174
+    :pending 159
     
     :astronomy 24
     :golang 70
-    :lisp 9
-    :python 13
+    :lisp 6
+    :python 12
     :misc 20
     
-    :date Tue 11 Apr 21:55:11 BST 2023
+    :date Fri 9 Jun 22:49:37 BST 2023
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
 
-<a id="org1369488"></a>
+<a id="org641090b"></a>
+
+## Tags legend
+
+There is an essential priority tag set is applied to manager the order of packaging for large
+project and ease the pace of patch preparation. They are not strict and just intended to visualize
+the current effort
+
+-   **p1:** In the head of the packaging queue, tried to packed, resolving issues with dependencies and
+    eventually packed.
+-   **p2:** The patch is prepared from `guix` checkout.
+-   **p3:** The patch set is sent for review.
+-   **p4:** Initial estimation is made for the future packaging steps and resolving dependencies issues.
+-   **p5:** Dormant or not so interested right now.
+
+
+<a id="org843699a"></a>
 
 # Installation
 
@@ -72,7 +89,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="orga160e2c"></a>
+<a id="org67d30fd"></a>
 
 ## Use as channel
 
@@ -85,7 +102,7 @@ manager.
            %default-channels)
 
 
-<a id="org02e0fe3"></a>
+<a id="org84b835a"></a>
 
 ## Use as build/install source
 
@@ -94,7 +111,7 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="orgcbdbeb8"></a>
+<a id="org9259bb9"></a>
 
 # References
 
@@ -109,7 +126,7 @@ Main official resources:
 -   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="orgddce811"></a>
+<a id="org31030ae"></a>
 
 ## Guix channels
 
@@ -127,7 +144,7 @@ Main official resources:
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="orgada4a36"></a>
+<a id="org81bc0dd"></a>
 
 ## etc
 

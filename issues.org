@@ -1,6 +1,6 @@
 #+TITLE: Issues
 
-* Accepted in upstream [169/175][96%]
+* Accepted in upstream [169/176][96%]
 - [X] https://issues.guix.gnu.org/44993
 - [X] https://issues.guix.gnu.org/45025
 - [X] https://issues.guix.gnu.org/45107
@@ -187,6 +187,7 @@
 - [X] <2023-04-02 Sun> https://issues.guix.gnu.org/62628 <2023-04-03 Mon>
 - [X] <2023-04-08 Sat> https://issues.guix.gnu.org/62730 <2023-04-09 Sun>
 - [X] <2023-04-21 Fri> https://issues.guix.gnu.org/63005 <2023-04-25 Tue>
+- [ ] <2023-05-30 Tue> https://issues.guix.gnu.org/63806
 
 * Package updates [30/32][93%]
 - [X] <2023-05-18 Thu> https://issues.guix.gnu.org/63542 <2023-05-26 Fri>

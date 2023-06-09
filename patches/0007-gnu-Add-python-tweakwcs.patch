@@ -1,0 +1,61 @@
+From 891dadd79c998391d4f26a25a1d7e8a5dfca5710 Mon Sep 17 00:00:00 2001
+Message-Id: <891dadd79c998391d4f26a25a1d7e8a5dfca5710.1685475210.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1685475210.git.sharlatanus@gmail.com>
+References: <cover.1685475210.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 May 2023 23:33:59 +0100
+Subject: [PATCH 07/18] gnu: Add python-tweakwcs.
+
+* gnu/packages/astronomy.scm (python-tweakwcs): New variable.
+---
+ gnu/packages/astronomy.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2b0cd113e5..c2df8eae69 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2830,6 +2830,40 @@ (define-public python-suntime
+ datetime object.")
+     (license license:lgpl3+)))
+ 
++(define-public python-tweakwcs
++  (package
++    (name "python-tweakwcs")
++    (version "0.8.2")
++    (source (origin
++              (method url-fetch)
++              (uri (pypi-uri "tweakwcs" version))
++              (sha256
++               (base32
++                "1500w737n9vf5hv16xkybk4shl7g4wfzb2ji9mc4vgzj41gkrwl4"))))
++    (build-system pyproject-build-system)
++    (propagated-inputs (list python-astropy
++                             python-gwcs
++                             python-numpy
++                             python-packaging
++                             python-spherical-geometry
++                             python-stsci-imagestats
++                             python-stsci-stimage))
++    (native-inputs (list python-codecov
++                         python-pytest
++                         python-pytest-cov
++                         python-scipy
++                         python-semantic-version
++                         python-setuptools-scm))
++    (home-page "https://tweakwcs.readthedocs.io/en/latest/")
++    (synopsis
++     "Algorithms for matching and aligning catalogs and for tweaking the WCS")
++    (description
++     "@code{tweakwcs} is a package that provides core algorithms for computing and
++applying corrections to @code{WCS} objects such as to minimize mismatch between
++image and reference catalogs. Currently only aligning images with @code{FITS
++WCS} and @code{JWST gWCS} are supported.")
++    (license license:bsd-3)))
++
+ (define-public python-asdf
+   (package
+     (name "python-asdf")
+-- 
+2.40.1
+

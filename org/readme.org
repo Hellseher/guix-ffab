@@ -67,6 +67,17 @@ make list
 Any packages with suffix *-ffab* are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
+** Tags legend
+There is an essential priority tag set is applied to manager the order of packaging for large
+project and ease the pace of patch preparation. They are not strict and just intended to visualize
+the current effort
+
+- p1 :: In the head of the packaging queue, tried to packed, resolving issues with dependencies and
+  eventually packed.
+- p2 :: The patch is prepared from ~guix~ checkout.
+- p3 :: The patch set is sent for review.
+- p4 :: Initial estimation is made for the future packaging steps and resolving dependencies issues.
+- p5 :: Dormant or not so interested right now.
 * Installation
 All examples are based on assumptions that ~guix~ is the main system or available as package
 manager.

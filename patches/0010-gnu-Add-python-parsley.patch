@@ -1,0 +1,57 @@
+From 64c71532912225594039185964bbc7a564a6cf2d Mon Sep 17 00:00:00 2001
+Message-Id: <64c71532912225594039185964bbc7a564a6cf2d.1685475211.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1685475210.git.sharlatanus@gmail.com>
+References: <cover.1685475210.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 May 2023 23:55:07 +0100
+Subject: [PATCH 10/18] gnu: Add python-parsley.
+
+* gnu/packages/python-xyz.scm (python-parsley): New variable.
+---
+ gnu/packages/python-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index f7e3f6f538..b8ee05df05 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -3811,6 +3811,36 @@ (define-public python-parse
+ syntax.")
+     (license license:x11)))
+ 
++(define-public python-parsley
++  (package
++    (name "python-parsley")
++    (version "1.3")
++    (source (origin
++              ;; The source distributed on PyPI is outdated.
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/pyga/parsley")
++                    (commit version)))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "0550rw65ygqzbjc8a66hs355pzbx727kbn20dssdb6ls846gw2qs"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; XXX: Check why these 3 tests fail.
++      #:test-flags #~(list "-k"
++                           (string-append "not test_sending_empty_netstring"
++                            " and not test_sending_one_netstring"
++                            " and not test_sending_two_netstrings"))))
++    (native-inputs (list python-pytest python-twisted))
++    (home-page "https://launchpad.net/parsley")
++    (synopsis "Parsing and pattern matching Python library")
++    (description
++     "Parsley is an implementation of OMeta, an object-oriented pattern-matching
++language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
++    (license license:expat)))
++
+ (define-public python-polib
+   (package
+     (name "python-polib")
+-- 
+2.40.1
+

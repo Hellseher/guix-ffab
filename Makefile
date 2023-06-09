@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2023-05-26 Fri 20:50:23 BST>
+# Modified : <2023-06-09 Fri 22:52:17 BST>
 
 GET_MODULES := grep "^.define-public"
 FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
@@ -66,8 +66,7 @@ PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
 
 # Add each group of packages to this macros when all pending changes are
 # completed in corresponded WIP branch.
-#PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP) $(PKGS_GOLANG)
-PKGS :=  $(PKGS_ASTRONOMY)
+PKGS := $(PKGS_PYTHON) $(PKGS_ASTRONOMY) $(PKGS_LISP) $(PKGS_GOLANG)
 
 GUIX_FLAGS ?= --load-path=./
 GUIX_BUILD_FLAGS ?= $(GUIX_FLAGS)
@@ -75,7 +74,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= b96b82bcd4bc24529941ff74a91432481f1a71b5
+GUIX_COMMIT ?= 44bbfc24e4bcc48d0e3343cd3d83452721af8c36
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
