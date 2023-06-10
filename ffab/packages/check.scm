@@ -25,6 +25,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages web)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system pyproject)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix utils)
@@ -77,6 +78,41 @@ coroutines, which makes it slightly more difficult to test using normal
 testing tools.  @code{pytest-asyncio} provides useful fixtures and markers
 to make testing async code easier.")
     (license license:asl2.0)))
+
+;; 20230610T212145+0100
+(define-public python-pytest-subprocess
+  (package
+    (name "python-pytest-subprocess")
+    (version "1.5.0")
+    (source (origin
+              (method git-fetch) ;no tests in PyPi archive
+              (uri (git-reference
+                    (url "https://github.com/aklajnert/pytest-subprocess")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "103nxv37sjvxlwmw87hxsrphkxkryv4dgb65kjjfr4722r37vmxv"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-anyio
+                         python-coverage
+                         python-docutils
+                         python-nox
+                         python-pygments
+                         python-pytest
+                         python-pytest-asyncio
+                         python-pytest-rerunfailures))
+    (home-page "https://github.com/aklajnert/pytest-subprocess")
+    (synopsis "Pytest plugin to fake subprocess")
+    (description
+     "This package provides a plugin to fake subprocess for pytest.  The plugin
+adds the @code{fake_process} fixture (and @code{fp} as an alias).  It can be used
+it to register subprocess results so you won't need to rely on the real
+processes.  The plugin hooks on the @code{subprocess.Popen()}, which is the base
+for other subprocess functions.  That makes the
+@code{subprocess.run()},@code{subprocess.call()}, @code{subprocess.check_call()}
+and @code{subprocess.check_output()} methods also functional.")
+    (license license:expat)))
 
 ;; 20221017T223740+0100
 ;; (define-public python-pytest-7.1
