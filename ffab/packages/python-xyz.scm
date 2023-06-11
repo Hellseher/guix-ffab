@@ -160,18 +160,28 @@ from a single ECU up to whole cars.")
                 "1l3f893ba3cmsvz0rkk2y4krzya0qwhsbllhs1f3gd6xp0dq6pf4"))))
     (build-system pyproject-build-system)
     (arguments
-     ;; XXX: Disable only one failing test.
-     ;;
-     ;; AssertionError: msgspec/structs.pyi:7: error: Positional-only parameters
-     ;; are only supported in Python 3.8 and greater
-     (list #:test-flags #~(list "-k" "not test_mypy")))
+     (list
+      ;; XXX: Disable only one failing test.
+      ;;
+      ;; AssertionError: msgspec/structs.pyi:7: error: Positional-only parameters
+      ;; are only supported in Python 3.8 and greater
+      #:test-flags #~(list "-k" "not test_mypy")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'versioneer
+            (lambda _
+              (invoke "versioneer" "install")
+              (substitute* "setup.py"
+                (("version=versioneer.get_version\\(),")
+                 (format #f "version=~s," #$version))))))))
     (native-inputs (list python-attrs
                          python-gcovr
                          python-msgpack
                          python-mypy
                          python-pytest
-                         python-pyyaml
-                         python-tomli))
+                         python-setuptools-scm
+                         python-versioneer))
+    (propagated-inputs (list python-pyyaml python-tomli python-tomli-w))
     (home-page "https://jcristharif.com/msgspec/")
     (synopsis
      "Fast serialization/validation library for JSON, MessagePack, YAML, and TOML")
