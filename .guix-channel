@@ -1,0 +1,7 @@
+;; This is a guix-ffab channel.
+
+(channel
+  (version 0)
+  (news-file "etc/news.scm")
+  (keyring-reference "keyring")
+  (url "https://git.sr.ht/~hellseher/ffab")) ;the primary URL
