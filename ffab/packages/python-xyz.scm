@@ -255,44 +255,9 @@ with support of Python v3+.")
     (license license:expat)))
 
 ;; 20220513T200612+0100
-(define-public python-parsley
-  (package
-    (name "python-parsley")
-    (version "1.3")
-    (source
-     (origin
-       ;; The source distributed on PyPI is outdated.
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/pyga/parsley")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0550rw65ygqzbjc8a66hs355pzbx727kbn20dssdb6ls846gw2qs"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; Examples directorie has outdated tests which break after main tests
-          ;; have been passed. Removing them before run tests.
-          (add-before 'check 'drop-examples-from-tests
-            (lambda _
-              (delete-file-recursively "examples")
-              #t))
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "pytest" "-vv")))))))
-    (native-inputs
-     (list python-pytest
-           python-twisted))
-    (home-page "https://launchpad.net/parsley")
-    (synopsis "Parsing and pattern matching Python library")
-    (description
-     "Parsley is an implementation of OMeta, an object-oriented pattern-matching
-language developed by Alessandro Warth at http://tinlizzie.org/ometa/")
-    (license license:expat)))
+;; (define-public python-parsley
+;; added-to-downstream-guix 0ce76141bfe52b7c65d6185d036b4eaad2a0f0a3
+;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
 
 ;; 20220621T191218+0100
 ;; (define-public python-posix-ipc

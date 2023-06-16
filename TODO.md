@@ -4,7 +4,7 @@
     python.org             webrecorder             [0/1][0%]     :author:
     python.org             SunPy                   [1/3][33%]    :author:
     python.org             StdCarrot               [0/1][0%]     :author:
-    python.org             pyga                    [0/1][0%]     :author:
+    python.org             pyga                    [1/1][100%]   :author:
     python.org             opencv                  [0/1][0%]     :author:
     python.org             OpenAstronomy           [0/1][0%]     :author:
     python.org             niltonvolpato           [0/1][0%]     :author:
@@ -68,7 +68,7 @@
     astronomy.org          SURF                    [/][%]        :author:
     astronomy.org          SunPy                   [4/6][66%]    :author:
     astronomy.org          Starlink                [0/1][0%]     :author:
-    astronomy.org          spacetelescope          [3/21][14%]   :author:
+    astronomy.org          spacetelescope          [19/20][95%]  :author:
     astronomy.org          schirmermischa          [0/1][0%]     :author:
     astronomy.org          SAOImageDS9             [0/1][0%]     :author:
     astronomy.org          rwesson                 [1/2][50%]    :author:
@@ -240,7 +240,6 @@
     astronomy.org          ASKAPSoft                      [/][%]       :p4:
     astronomy.org          ASAP                           [/][%]       :p4:
     python.org             Py3AMF                         [2/4][50%]   :p3:
-    python.org             parsley                        [4/5][80%]   :p3:
     pascal.org             voc                            [/][%]       :p3:
     node-xyz.org           jquery                         [/][%]       :p3:
     node-xyz.org           bootstrap-toggle               [/][%]       :p3:
@@ -257,25 +256,9 @@
     golang.org             bykof/go-plantuml              [/][%]       :p3:
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
-    astronomy.org          wiimatch                       [3/5][60%]   :p3:
     astronomy.org          SPICE                          [/][%]       :p3:
-    astronomy.org          python-tweakwcs                [3/5][60%]   :p3:
-    astronomy.org          python-synphot                 [3/5][60%]   :p3:
-    astronomy.org          python-stsynphot               [3/5][60%]   :p3:
-    astronomy.org          python-stsci-stimage           [3/5][60%]   :p3:
-    astronomy.org          python-stsci-imagestats        [3/5][60%]   :p3:
-    astronomy.org          python-stsci-image             [3/5][60%]   :p3:
-    astronomy.org          python-stpipe                  [3/5][60%]   :p3:
-    astronomy.org          python-stdatamodels            [3/5][60%]   :p3:
-    astronomy.org          python-stcal                   [2/4][50%]   :p3:
-    astronomy.org          python-roman-datamodels        [4/5][80%]   :p3:
     astronomy.org          python-radiospectra            [/][%]       :p3:
-    astronomy.org          python-rad                     [3/5][60%]   :p3:
-    astronomy.org          python-pysynphot               [4/5][4/5]   :p3:
     astronomy.org          python-ndcube                  [/][%]       :p3:
-    astronomy.org          python-jwst                    [2/4][50%]   :p3:
-    astronomy.org          python-drizzle                 [4/5][80%]   :p3:
-    astronomy.org          python-crds                    [3/5][60%]   :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
@@ -421,15 +404,30 @@
     astronomy.org          python-asdf-wcs-schemas          [2/2][100%]  
     astronomy.org          python-astroalign                [4/4][100%]  
     astronomy.org          python-astropy                   [4/4][100%]  
+    astronomy.org          python-crds                      [5/5][100%]  
     astronomy.org          python-czml3                     [4/4][100%]  
+    astronomy.org          python-drizzle                   [5/5][100%]  
     astronomy.org          python-drms                      [5/5][100%]  
     astronomy.org          python-hvpy                      [4/4][100%]  
+    astronomy.org          python-jwst                      [4/4][100%]  
     astronomy.org          python-mpl-animations            [4/4][100%]  
     astronomy.org          python-poliastro                 [4/4][100%]  
     astronomy.org          python-poppy                     [4/4][100%]  
+    astronomy.org          python-pysynphot                 [5/5][5/5]   
+    astronomy.org          python-rad                       [5/5][100%]  
     astronomy.org          python-reproject                 [4/4][100%]  
+    astronomy.org          python-roman-datamodels          [5/5][100%]  
     astronomy.org          python-spherical-geometry        [4/4][100%]  
+    astronomy.org          python-stcal                     [3/3][100%]  
+    astronomy.org          python-stdatamodels              [5/5][100%]  
+    astronomy.org          python-stpipe                    [5/5][100%]  
+    astronomy.org          python-stsci-image               [5/5][100%]  
+    astronomy.org          python-stsci-imagestats          [5/5][100%]  
+    astronomy.org          python-stsci-stimage             [5/5][100%]  
+    astronomy.org          python-stsynphot                 [5/5][100%]  
     astronomy.org          python-sunpy                     [3/4][75%]   
+    astronomy.org          python-synphot                   [5/5][100%]  
+    astronomy.org          python-tweakwcs                  [5/5][100%]  
     astronomy.org          pyton-asdf-fits-schemas          [4/4][100%]  
     astronomy.org          pyton-asdf-table-schemas         [1/1][100%]  
     astronomy.org          qfits                            [3/3][100%]  
@@ -442,6 +440,7 @@
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
     astronomy.org          weightwatcher                    [3/3][100%]  
+    astronomy.org          wiimatch                         [4/4][100%]  
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  
     databases.org          pgloader                                      
@@ -536,6 +535,7 @@
     maths.org              giza                             [4/4][100%]  
     python.org             aioftp                           [4/4][100%]  
     python.org             glymur                           [4/4][100%]  
+    python.org             parsley                          [5/5][100%]  
     python.org             posix-ipc                        [1/1][100%]  
     python.org             python-h5netcdf                  [4/4][100%]  
     python.org             python-mpl-animators             [4/4][100%]  

@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2023-06-09 Fri 22:34:39 BST>
+#+modified: <2023-06-14 Wed 19:24:33 BST>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -226,15 +226,16 @@ CLOSED: [2022-11-08 Tue 11:06]
   - [X] python-pytest-trio
   - [X] python-trio
 
-** TODO pyga [0/1][0%] :author:
+** TODO pyga [1/1][100%] :author:
 - https://github.com/pyga
-*** TODO parsley [4/5][80%] :p3:
+*** DONE parsley [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:24]
 - https://launchpad.net/parsley
 - https://github.com/pyga/parsley
 - [X] :packed <2022-05-13 Fri>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [2/2][100%]
   - [X] python-pytest

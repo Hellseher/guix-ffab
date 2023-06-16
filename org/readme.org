@@ -51,17 +51,17 @@ make list
 
 #+RESULTS:
 #+begin_src org
-:guix-commit 3ab983d630a95a29b9418b1ba8a26e5ca2836ec0
-:accepted 172
-:pending 160
+:guix-commit 6e1215fb9c03ccb4a2d4440990aee5a66a935268
+:accepted 192
+:pending 143
 
-:astronomy 24
+:astronomy 7
 :golang 70
-:lisp 9
-:python 13
-:misc 20
+:lisp 6
+:python 12
+:misc 21
 
-:date Tue 11 Apr 21:55:05 BST 2023
+:date Fri 16 Jun 23:31:40 BST 2023
 #+end_src
 
 Any packages with suffix *-ffab* are meant to be accepted in Guix upstream but have kind of
@@ -78,6 +78,7 @@ the current effort
 - p3 :: The patch set is sent for review.
 - p4 :: Initial estimation is made for the future packaging steps and resolving dependencies issues.
 - p5 :: Dormant or not so interested right now.
+
 * Installation
 All examples are based on assumptions that ~guix~ is the main system or available as package
 manager.

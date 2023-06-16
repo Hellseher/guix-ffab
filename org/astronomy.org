@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-06-09 Fri 22:47:18 BST>
+#+modified: <2023-06-14 Wed 19:30:00 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -2010,7 +2010,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] wcslib
   - [ ] plplot
     - [ ] :packed
-** TODO spacetelescope [3/21][14%] :author:
+** TODO spacetelescope [19/20][95%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** TODO ci-watson [1/4][25%] :p5:
@@ -2028,17 +2028,18 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-crds [3/5][60%] :p3:
+*** DONE python-crds [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:24]
 - https://github.com/spacetelescope/crds
 - https://hst-crds.stsci.edu
 - synopsis :: Calibration Reference Data System for HST and JWST
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
-- [-] :inputs [20/21][95%]
-  - [ ] python-asdf
+- [X] :inputs [21/21][100%]
+  - [X] python-asdf
   - [X] python-astropy
   - [X] python-bandit
   - [X] python-boto3
@@ -2061,12 +2062,13 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-setuptools-scm
   - [X] python-stsynphot
 
-*** TODO python-roman-datamodels [4/5][80%] :p3:
+*** DONE python-roman-datamodels [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:25]
 - https://github.com/spacetelescope/roman_datamodels
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [12/12][100%]
   - [X] python-asdf
@@ -2083,13 +2085,14 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-drizzle [4/5][80%] :p3:
+*** DONE python-drizzle [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:25]
 - https://github.com/spacetelescope/drizzle
 - synopsis :: package for combining dithered images into a single image
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-30 Tue>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [7/7][100%]
   - [X] python-astropy
@@ -2124,14 +2127,15 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] python-jmespath./..///
   - [X] python-jsonschema
 
-*** TODO python-jwst [2/4][50%] :p3:
+*** DONE python-jwst [4/4][100%]
+CLOSED: [2023-06-14 Wed 19:26]
 - https://github.com/spacetelescope/jwst
 - version :: 1.8.2
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
-- [X] :inputs [34/34][100%]
+- [X] :inputs [32/32][100%]
   - [X] python-asdf
   - [X] python-asdf-astropy
   - [X] python-wiimatch
@@ -2196,12 +2200,13 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-setuptools-scm
   - python-synphot ; failing with
 
-*** TODO python-pysynphot [4/5][4/5] :p3:
+*** DONE python-pysynphot [5/5][5/5]
+CLOSED: [2023-06-14 Wed 19:26]
 - https://github.com/spacetelescope/pysynphot
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [8/8][100%]
   - [X] python-astropy
@@ -2213,12 +2218,13 @@ CLOSED: [2023-01-16 Mon 18:38]
   - [X] python-setuptools-scm
   - [X] python-six
 
-*** TODO python-rad [3/5][60%] :p3:
+*** DONE python-rad [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:27]
 - https://github.com/spacetelescope/rad
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [6/6][100%]
   - [X] python-asdf-2.13
@@ -2242,21 +2248,22 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-setuptools-scm
   - [X] qd
 
-*** TODO python-stcal [2/4][50%] :p3:
+*** DONE python-stcal [3/3][100%]
+CLOSED: [2023-06-14 Wed 19:27]
 - https://github.com/spacetelescope/stcal
 - sinopsys :: STScI Calibration algorithms and tools.
 - [X] :packed <2022-07-10 Sun>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
-- [ ] :inputs [0/0][0%]
 
-*** TODO python-stdatamodels [3/5][60%] :p3:
+*** DONE python-stdatamodels [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:27]
 - https://github.com/spacetelescope/stdatamodels
 - [X] :packed <2022-07-10 Sun>
 - [X] :patch-prepared <2023-05-30 Tue>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [10/10][100%]
   - [X] python-asdf
@@ -2270,12 +2277,13 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-stpipe [3/5][60%] :p3:
+*** DONE python-stpipe [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:28]
 - https://github.com/spacetelescope/stpipe
 - [X] :packed <2022-07-10 Sun>
 - [X] :patch-prepared <2023-05-30 Tue>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [9/9][100%]
   - [X] python-asdf
@@ -2288,12 +2296,13 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-pytest-openfiles
   - [X] python-setuptools-scm
 
-*** TODO python-stsci-image [3/5][60%] :p3:
+*** DONE python-stsci-image [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:28]
 - https://github.com/spacetelescope/stsci.image
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [4/4][100%]
   - [X] python-numpy
@@ -2301,24 +2310,26 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-scipy
   - [X] python-setuptools-scm
 
-*** TODO python-stsci-imagestats [3/5][60%] :p3:
+*** DONE python-stsci-imagestats [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:28]
 - https://github.com/spacetelescope/stsci.imagestats
 - synopsis :: STScI clipped image statistics with core functionality of IRAF's imstatistics.
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [2/2][100%]
   - [X] python-numpy
   - [X] python-setuptools-scm
 
-*** TODO python-stsci-stimage [3/5][60%] :p3:
+*** DONE python-stsci-stimage [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:28]
 - https://stscistimage.readthedocs.io/en/latest/
 - [X] :packed <2022-07-10 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [10/10][100%]
   - [X] opencv
@@ -2332,13 +2343,14 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-scipy
   - [X] python-setuptools-scm
 
-*** TODO python-stsynphot [3/5][60%] :p3:
+*** DONE python-stsynphot [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:29]
 - https://github.com/spacetelescope/stsynphot_refactor
 - synopsis :: Synthetic photometry using Astropy for HST and JWST
 - [X] :packed <2022-07-06 Wed>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [9/9][100%]
   - [X] python-astropy
@@ -2351,12 +2363,13 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-setuptools-scm
   - [X] python-synphot
 
-*** TODO python-synphot [3/5][60%] :p3:
+*** DONE python-synphot [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:29]
 - https://github.com/spacetelescope/synphot_refactor
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [6/6][100%]
   - [X] python-astropy
@@ -2366,14 +2379,15 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-pytest-astropy
   - [X] python-setuptools-scm
 
-*** TODO python-tweakwcs [3/5][60%] :p3:
+*** DONE python-tweakwcs [5/5][100%]
+CLOSED: [2023-06-14 Wed 19:29]
 - https://github.com/spacetelescope/tweakwcs
 - synopsis :: Algorithms for matching and aligning catalogs and for tweaking the WCS so as to
   minimize catalog mismatch error
 - [X] :packed <2022-07-10 Sun>
 - [X] :patch-prepared <2023-05-29 Mon>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
 - [X] :inputs [13/13][100%]
   - [X] python-gwcs
@@ -2392,13 +2406,13 @@ CLOSED: [2023-02-24 Fri 23:23]
   - [X] python-stsci-stimage
     - [X] :packed <2022-11-06 Sun>
 
-*** TODO wiimatch [3/5][60%] :p3:
+*** DONE wiimatch [4/4][100%]
+CLOSED: [2023-06-14 Wed 19:29]
 - https://github.com/spacetelescope/wiimatch
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
-- [ ] :paptch-applied-upstream
 - [X] :inputs [7/7][100%]
   - [X] python-numpy
   - [X] python-scipy
