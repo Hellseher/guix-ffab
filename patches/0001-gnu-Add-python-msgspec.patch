@@ -1,8 +1,8 @@
-From ba39565d9cf44c4a98d701028b85dffa2cc0501c Mon Sep 17 00:00:00 2001
-Message-Id: <ba39565d9cf44c4a98d701028b85dffa2cc0501c.1686517777.git.sharlatanus@gmail.com>
+From 5f3b8f3c7b74f856587c73a43f2e25d9906410f5 Mon Sep 17 00:00:00 2001
+Message-Id: <5f3b8f3c7b74f856587c73a43f2e25d9906410f5.1687082264.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 11 Jun 2023 22:09:03 +0100
-Subject: [PATCH] gnu: Add python-msgspec.
+Subject: [PATCH v2] gnu: Add python-msgspec.
 
 * gnu/packages/serialization.scm (python-msgspec): New variable.
 ---
@@ -10,7 +10,7 @@ Subject: [PATCH] gnu: Add python-msgspec.
  1 file changed, 64 insertions(+)
 
 diff --git a/gnu/packages/serialization.scm b/gnu/packages/serialization.scm
-index 39954d6764..e2d45f28b1 100644
+index 39954d6764..43c9473e95 100644
 --- a/gnu/packages/serialization.scm
 +++ b/gnu/packages/serialization.scm
 @@ -13,6 +13,7 @@
@@ -45,7 +45,7 @@ index 39954d6764..e2d45f28b1 100644
 +(define-public python-msgspec
 +  (package
 +    (name "python-msgspec")
-+    (version "0.15.1")
++    (version "0.16.0")
 +    (source (origin
 +              ;; There are no tests in the PyPI tarball.
 +              (method git-fetch)
@@ -55,7 +55,7 @@ index 39954d6764..e2d45f28b1 100644
 +              (file-name (git-file-name name version))
 +              (sha256
 +               (base32
-+                "1l3f893ba3cmsvz0rkk2y4krzya0qwhsbllhs1f3gd6xp0dq6pf4"))))
++                "09q567klcv7ly60w9lqip2ffyhrij100ky9igh3p3vqwbml33zb3"))))
 +    (build-system pyproject-build-system)
 +    (arguments
 +     (list

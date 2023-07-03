@@ -1,0 +1,57 @@
+From 7e40590ad060bef311017b13740651748867e528 Mon Sep 17 00:00:00 2001
+Message-Id: <7e40590ad060bef311017b13740651748867e528.1687727967.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687727967.git.sharlatanus@gmail.com>
+References: <cover.1687727967.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Jun 2023 21:34:43 +0100
+Subject: [PATCH 2/9] gnu: swarp: Update to 2.41.2, fix build.
+
+* gnu/packages/astronomy.scm (swarp): Update to 2.41.2, fix build.
+[source]: Swap to 'git-fetch.
+[native-inputs]: Add automake, autoconf, libtool, pkg-config.
+[inputs]: Add cfitsio.
+---
+ gnu/packages/astronomy.scm | 23 ++++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a7faa2c425..17bc4ed7d7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1073,15 +1073,28 @@ (define-public stuff
+ (define-public swarp
+   (package
+     (name "swarp")
+-    (version "2.38.0")
++    (version "2.41.2")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (string-append "https://www.astromatic.net/download/swarp/"
+-                           "swarp-" version ".tar.gz"))
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/astromatic/swarp")
++             (commit (string-append "v" version))))
+        (sha256
+-        (base32 "1i670waqp54vin1cn08mqckcggm9zqd69nk7yya2vvqpdizn6jpm"))))
++        (base32 "1ycdk5h77mflw3hnmkczj1m2603aks9vq6555f3vc5vj1shx2d4m"))
++       (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
++    (arguments
++     (list
++      #:configure-flags
++      #~(list
++         ;; Address this link error:
++         ;; ld: ... multiple definition of ... first defined here
++         "CFLAGS=-O2 -g -fcommon")))
++    (native-inputs
++     (list automake autoconf libtool pkg-config))
++    (inputs
++     (list cfitsio))
+     (home-page "https://www.astromatic.net/software/swarp")
+     (synopsis "FITS image resampling and co-addition")
+     (description
+-- 
+2.40.1
+

@@ -1,0 +1,43 @@
+From 1c9679f4ec12e66141b075b35925ec16840cc9b0 Mon Sep 17 00:00:00 2001
+Message-Id: <1c9679f4ec12e66141b075b35925ec16840cc9b0.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 19 Jun 2023 00:39:43 +0100
+Subject: [PATCH 08/20] gnu: python-ccdproc: Update to 2.4.1.
+
+* gnu/packages/astronomy.scm (python-ccdproc): Update to 2.4.1.
+[native-inputs]: Add python-semantic-version.
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d21ff42690..153fbd3e1a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1398,15 +1398,18 @@ (define-public python-bayesicfitting
+ (define-public python-ccdproc
+   (package
+     (name "python-ccdproc")
+-    (version "2.4.0")
++    (version "2.4.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ccdproc" version))
+        (sha256
+-        (base32 "0fy1sni87cr05dkljd8wb7vgh7z9agh8wv5kiagxcpbcf8l06jv1"))))
++        (base32 "186plgfhrj7wivs053y65jlv1x33y8ii31jdr2rm4s6pl0j7x29z"))))
+     (build-system pyproject-build-system)
+-    (native-inputs (list python-memory-profiler python-pytest-astropy))
++    (native-inputs
++     (list python-memory-profiler
++           python-pytest-astropy
++           python-semantic-version))
+     (propagated-inputs
+      (list python-astropy
+            python-astroscrappy
+-- 
+2.40.1
+

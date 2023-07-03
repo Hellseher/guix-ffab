@@ -1,0 +1,36 @@
+From c19d45e81173337a221e3e7efbd55841339f4d6a Mon Sep 17 00:00:00 2001
+Message-Id: <c19d45e81173337a221e3e7efbd55841339f4d6a.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 23:37:31 +0100
+Subject: [PATCH 19/20] gnu: python-synphot: Update to 1.2.1.
+
+* gnu/packages/astronomy.scm (python-synphot): Update to 1.2.1.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4ddcb58f42..b9c8f44c72 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3207,13 +3207,13 @@ (define-public python-suntime
+ (define-public python-synphot
+   (package
+     (name "python-synphot")
+-    (version "1.2.0")
++    (version "1.2.1")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "synphot" version))
+               (sha256
+                (base32
+-                "02pjp1bnbyq7zi1bxqv56nif4ijd8fscmnn9ldrs8yvgsbmgdvlc"))))
++                "10kcdg2gqmi1w2hsjx9hfizwbff3kll10s68hys13nzh4i8b7cc4"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.40.1
+

@@ -1,0 +1,55 @@
+From e32396115e810d4564620627c3bbd0a1aad9dad1 Mon Sep 17 00:00:00 2001
+Message-Id: <e32396115e810d4564620627c3bbd0a1aad9dad1.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 20:57:14 +0100
+Subject: [PATCH 11/20] gnu: python-fitsio: Update to 1.1.9.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.1.9.
+[native-inputs]: Add python-pytest, otherwise it fails to build.
+[propagated-inputs]: Move cfitsio from here ...
+[inputs]: ... to here, do not propagate as it's required only on build
+and link time.
+---
+ gnu/packages/astronomy.scm | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 59a4c11e53..f841005fa0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -467,13 +467,13 @@ (define-public cfitsio
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.1.8")
++    (version "1.1.9")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "1y80hgvlkjz1bijfyb2j03853yc1kc63yrf9ab7as31ad2r6kxb1"))
++        (base32 "08mmk0ia0glg39z3gx0n3ynja5ix0lqx0166y8yyw44kkilsqkpv"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio
+@@ -499,9 +499,12 @@ (define-public python-fitsio
+                   (("self.use_system_fitsio") "True")
+                   (("self.system_fitsio_includedir") includedir)
+                   (("self.system_fitsio_libdir") libdir))))))))
+-    (inputs (list curl))
++    (native-inputs
++     (list python-pytest))
++    (inputs
++     (list curl cfitsio))
+     (propagated-inputs
+-     (list python-numpy cfitsio))
++     (list python-numpy))
+     (home-page "https://github.com/esheldon/fitsio")
+     (synopsis
+      "Python library to read from and write to FITS files")
+-- 
+2.40.1
+

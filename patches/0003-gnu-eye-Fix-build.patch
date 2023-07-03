@@ -1,0 +1,48 @@
+From f1529d8e867762b9782b12bd77efe8383d68676d Mon Sep 17 00:00:00 2001
+Message-Id: <f1529d8e867762b9782b12bd77efe8383d68676d.1687727967.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687727967.git.sharlatanus@gmail.com>
+References: <cover.1687727967.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Jun 2023 21:54:26 +0100
+Subject: [PATCH 3/9] gnu: eye: Fix build.
+
+* gnu/packages/astronomy.scm (eye): Fix build.
+[source]: Swap to 'git-fetch
+[arguments]: Add CPPFLAGS to pass build with GCC 10.
+---
+ gnu/packages/astronomy.scm | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 17bc4ed7d7..326a9a170e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -579,12 +579,21 @@ (define-public eye
+     (version "1.4.1")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (string-append "https://www.astromatic.net/download/eye/"
+-                           "eye-" version ".tar.gz"))
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/astromatic/eye")
++             (commit version)))
+        (sha256
+-        (base32 "092qhzcbrkcfidbx4bv9wz42w297n80jk7a6kwyi9a3fjfz81d7k"))))
++        (base32 "1j8rpgz3fjp6fw0qmxgfqycf3n01fzxds4w12vgyrhbnk658ia41"))
++       (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
++    (arguments
++     (list
++      #:configure-flags
++      #~(list
++         ;; Address this link error:
++         ;; ld: ... multiple definition of ... first defined here
++         "CPPFLAGS=-O2 -g -fcommon")))
+     (home-page "https://www.astromatic.net/software/eye")
+     (synopsis "Small image feature detector using machine learning")
+     (description
+-- 
+2.40.1
+

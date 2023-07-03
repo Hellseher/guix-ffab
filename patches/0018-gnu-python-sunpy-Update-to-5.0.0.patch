@@ -1,0 +1,49 @@
+From 10a4a899f0d4014c927d7d45018e4e55eac7e737 Mon Sep 17 00:00:00 2001
+Message-Id: <10a4a899f0d4014c927d7d45018e4e55eac7e737.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 23:29:35 +0100
+Subject: [PATCH 18/20] gnu: python-sunpy: Update to 5.0.0.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 5.0.0. Relax some
+failing tests.
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7c41853818..4ddcb58f42 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2035,13 +2035,13 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "4.1.5")
++    (version "5.0.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1j5g0ivsrc5ji9s7jc3kcbi2injfs3y31pm3priycljwcsxspkpm"))))
++        (base32 "1w75yc8az86pwbf79h083j4kc2ycfk76ky5kzlmcwgp0ih23mhym"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2049,7 +2049,10 @@ (define-public python-sunpy
+       #~(list "-k" (string-append
+                     ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
+                     "not test_main_nonexisting_module"
+-                    " and not test_main_stdlib_module"))
++                    " and not test_main_stdlib_module"
++                    ;; XXX: packaging.version.InvalidVersion: Invalid version: 'unknown'
++                    " and not test_read_cdf"
++                    " and not test_read_empty_cdf"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'install 'writable-compiler
+-- 
+2.40.1
+

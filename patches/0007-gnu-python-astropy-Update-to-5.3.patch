@@ -1,0 +1,62 @@
+From 60af0b36cf41d6ac52836b919d21262bb0c79118 Mon Sep 17 00:00:00 2001
+Message-Id: <60af0b36cf41d6ac52836b919d21262bb0c79118.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 19 Jun 2023 00:12:45 +0100
+Subject: [PATCH 07/20] gnu: python-astropy: Update to 5.3.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 5.3.
+[snippet]: Remove trailing #t. Prevent cfitsion from deletion.
+[inputs]: Remove cfitsio
+---
+ gnu/packages/astronomy.scm | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d6dde400c9..d21ff42690 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1138,13 +1138,13 @@ (define-public celestia-gtk
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "5.2.2")
++    (version "5.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "170ddflli35mvhf6pla7aizfw8a7ckq66g1mi1br99dx2r3y7ag6"))
++        (base32 "1rg4i5w7mggfvi63j2aj2d2fjikml55bbxswl6n0j8xkqbhlns8z"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -1153,9 +1153,12 @@ (define-public python-astropy
+              (for-each delete-file-recursively '("ply" "configobj")))
+            ;; Remove cextern bundles. Check bundled versions against available
+            ;; in Guix in the future update of astropy.
++           ;;
++           ;; cfitsio build is only available from non-publicly exposed
++           ;; bundled short version. See:
++           ;; https://github.com/astropy/astropy/pull/14311
+            (with-directory-excursion "cextern"
+-             (for-each delete-file-recursively '("cfitsio" "expat" "wcslib")))
+-           #t))))
++             (for-each delete-file-recursively '("expat" "wcslib")))))))
+     (build-system python-build-system)
+     (arguments
+      `(#:phases
+@@ -1222,7 +1225,7 @@ (define-public python-astropy
+            python-skyfield
+            python-timezonefinder))
+     (inputs
+-     (list cfitsio expat wcslib))
++     (list expat wcslib))
+     (propagated-inputs
+      (list python-configobj
+            python-numpy
+-- 
+2.40.1
+

@@ -1,0 +1,43 @@
+From 7d556d4c0c947db22be23a14ad98a3d6740ca1ad Mon Sep 17 00:00:00 2001
+Message-Id: <7d556d4c0c947db22be23a14ad98a3d6740ca1ad.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 21:00:26 +0100
+Subject: [PATCH 12/20] gnu: python-fitsio: Enable tests.
+
+* gnu/packages/astronomy.scm (python-fitsio): Enable tests.
+[build-system]: Swap to pyproject-build-system.
+[arguments]: Add new phase 'tests-preparation
+---
+ gnu/packages/astronomy.scm | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f841005fa0..a26eacef75 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -481,7 +481,7 @@ (define-public python-fitsio
+             (delete-file-recursively "cfitsio3490")
+             (substitute* "MANIFEST.in"
+               (("recursive-include cfitsio3490.*$\n") ""))))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:phases
+@@ -498,7 +498,10 @@ (define-public python-fitsio
+                   (("self.system_fitsio_libdir = None") "pass")
+                   (("self.use_system_fitsio") "True")
+                   (("self.system_fitsio_includedir") includedir)
+-                  (("self.system_fitsio_libdir") libdir))))))))
++                  (("self.system_fitsio_libdir") libdir)))))
++          (add-before 'check 'tests-preparation
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list python-pytest))
+     (inputs
+-- 
+2.40.1
+

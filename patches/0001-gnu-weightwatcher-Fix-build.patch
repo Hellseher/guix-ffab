@@ -1,0 +1,49 @@
+From 03d1a3b2e920b08aceff49350d4719a3d88e4fc9 Mon Sep 17 00:00:00 2001
+Message-Id: <03d1a3b2e920b08aceff49350d4719a3d88e4fc9.1687727967.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687727967.git.sharlatanus@gmail.com>
+References: <cover.1687727967.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Jun 2023 20:32:25 +0100
+Subject: [PATCH 1/9] gnu: weightwatcher: Fix build.
+
+* gnu/packages/astronomy.scm (weightwatcher): Fix build.
+[source]: Swap to 'git-fetch, as source was removed from home page.
+[arguments]: Add #:configure-flags to fix the build phase.
+---
+ gnu/packages/astronomy.scm | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6c43003618..a7faa2c425 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -641,12 +641,22 @@ (define-public weightwatcher
+     (version "1.12")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (string-append "https://www.astromatic.net/download/weightwatcher/"
+-                           "weightwatcher-" version ".tar.gz"))
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/astromatic/weightwatcher")
++             (commit version)))
+        (sha256
+-        (base32 "1zaqd8d9rpgcwjsp92q3lkfaa22i20gppb91dz34ym54swisjc2p"))))
++        (base32
++         "0701z6bdqq32jv7ga3n6jh27q684ni0hbfjm1mak7rh0qqx089gi"))
++       (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
++    (arguments
++     (list
++      #:configure-flags
++      #~(list
++         ;; Address this link error:
++         ;; ld: ... multiple definition of ... first defined here
++         "CFLAGS=-O2 -g -fcommon")))
+     (home-page "https://www.astromatic.net/software/weightwatcher")
+     (synopsis "Weight-map/flag-map multiplexer and rasteriser")
+     (description
+-- 
+2.40.1
+

@@ -1,0 +1,56 @@
+From 76b42eb0eea478c61da9215fc5b2e1b7fa1c078d Mon Sep 17 00:00:00 2001
+Message-Id: <76b42eb0eea478c61da9215fc5b2e1b7fa1c078d.1687727967.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687727967.git.sharlatanus@gmail.com>
+References: <cover.1687727967.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 25 Jun 2023 21:36:40 +0100
+Subject: [PATCH 9/9] gnu: celestia-gtk: Fix build.
+
+* gnu/packages/astronomy.scm (celestia-gtk): Fix build.
+Use (package/inherit ...) over (inherit ...), see
+https://issues.guix.gnu.org/issue/61674/raw/11.
+[arguments]: Use G-expressions.
+[inputs]: Swap to (modify-inputs ...) procedure. Add cairo, libxmu,
+libtheora, pango-1.42.
+---
+ gnu/packages/astronomy.scm | 21 ++++++++++++---------
+ 1 file changed, 12 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index af75d493f6..ca32ad8950 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1182,18 +1182,21 @@ (define-public celestia
+ accurately in real time at any rate desired.")
+     (license license:gpl2+)))
+ 
+-
+ (define-public celestia-gtk
+-  (package
+-    (inherit celestia)
++  (package/inherit celestia
+     (name "celestia-gtk")
+-    (inputs
+-     (append (alist-delete "freeglut" (package-inputs celestia))
+-             `(("gtk2" ,gtk+-2)
+-               ("gtkglext" ,gtkglext))))
+     (arguments
+-     `(#:configure-flags '("-DENABLE_GTK=ON" "-DENABLE_QT=OFF")
+-       #:tests? #f))))
++     (list
++      #:configure-flags
++      #~(list "--enable-cairo"
++              "--enable-theora"
++              "--with-gtk"
++              (string-append "--with-lua=" #$(this-package-input "lua")))))
++    (inputs
++     (modify-inputs (package-inputs celestia)
++       (replace "freeglut" gtk+-2)
++       (prepend cairo gtkglext libxmu libtheora pango-1.42)))
++    (synopsis "GTK+ build for the Celestia package.")))
+ 
+ (define-public python-astropy
+   (package
+-- 
+2.40.1
+

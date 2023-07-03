@@ -1,0 +1,130 @@
+From f7913c1c7391acfa38cdd72c882f90497f28c8d7 Mon Sep 17 00:00:00 2001
+Message-Id: <f7913c1c7391acfa38cdd72c882f90497f28c8d7.1687727967.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687727967.git.sharlatanus@gmail.com>
+References: <cover.1687727967.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 25 Jun 2023 21:08:43 +0100
+Subject: [PATCH 8/9] gnu: celestia: Update to 1.6.3.
+
+* gnu/packages/astronomy.scm (celestia): Update to 1.6.3, improve
+package style.
+[build-system]: Swap to 'gnu-build-system as versioned tag does not
+contain Cmake build files.
+[arguments]: Use G-expressions, update configure-flags to be compatible
+with autoconf.
+[native-inputs]: Remove labels. Add autoconf, automake.
+[inputs]: Remove labels. Remove eigen, fmt-7, glew.
+---
+ gnu/packages/astronomy.scm | 91 ++++++++++++++++++++------------------
+ 1 file changed, 48 insertions(+), 43 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b212f4614f..af75d493f6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1129,54 +1129,59 @@ (define-public swarp
+     (license license:gpl3+)))
+ 
+ (define-public celestia
+-  (let ((commit "9dbdf29c4ac3d20afb2d9a80d3dff241ecf81dce"))
+-    (package
+-      (name "celestia")
+-      (version (git-version "1.6.1" "815" commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/celestiaproject/celestia")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "00xibg87l1arzifakgj7s828x9pszcgx7x7ij88a561ig49ryh78"))))
+-      (build-system cmake-build-system)
+-      (native-inputs
+-       `(("perl" ,perl)
+-         ("libgit2" ,libgit2)
+-         ("pkg-config" ,pkg-config)
+-         ("libtool" ,libtool)
+-         ("gettext" ,gettext-minimal)))
+-      (inputs
+-       `(("glu" ,glu)
+-         ("glew" ,glew)
+-         ("libtheora" ,libtheora)
+-         ("libjpeg" ,libjpeg-turbo)
+-         ("libpng" ,libpng)
+-         ;; maybe required?
+-         ("mesa" ,mesa)
+-         ;; optional: fmtlib, Eigen3;
+-         ("fmt" ,fmt-7)
+-         ("eigen" ,eigen)
+-         ;; glut: for glut interface
+-         ("freeglut" ,freeglut)))
+-      (propagated-inputs
+-       (list lua))
+-      (arguments
+-       `(#:configure-flags '("-DENABLE_GLUT=ON" "-DENABLE_QT=OFF")
+-         #:tests? #f))                            ;no tests
+-      (home-page "https://celestia.space/")
+-      (synopsis "Real-time 3D visualization of space")
+-      (description
+-       "This simulation program lets you explore our universe in three
++  (package
++    (name "celestia")
++    (version "1.6.3")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/celestiaproject/celestia")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0dzci5n7gcnm1vq916gsn9zddkhbzhbsakqxrpnmvzibsqznn6c8"))
++       (modules '((guix build utils)))
++       (snippet
++        #~(begin
++            ;; Make sure it detects the Lua's version packed in Guix.
++            ;; Review this part to support current default version of Lua in Guix.
++            (substitute* "configure.ac"
++                    (("lua5.3") "lua-5.3"))))))
++    (build-system gnu-build-system)
++    (arguments
++     (list
++      #:configure-flags
++      #~(list "--with-glut"
++              (string-append "--with-lua=" #$(this-package-input "lua")))))
++    (native-inputs
++     (list autoconf
++           automake
++           gettext-minimal
++           libgit2
++           libtool
++           perl
++           pkg-config))
++    (inputs
++     (list freeglut
++           glu
++           libjpeg-turbo
++           libpng
++           libtheora
++           mesa))
++    (propagated-inputs
++     (list lua))
++    (home-page "https://celestia.space/")
++    (synopsis "Real-time 3D visualization of space")
++    (description
++     "This simulation program lets you explore our universe in three
+ dimensions.  Celestia simulates many different types of celestial objects.
+ From planets and moons to star clusters and galaxies, you can visit every
+ object in the expandable database and view it from any point in space and
+ time.  The position and movement of solar system objects is calculated
+ accurately in real time at any rate desired.")
+-      (license license:gpl2+))))
++    (license license:gpl2+)))
++
+ 
+ (define-public celestia-gtk
+   (package
+-- 
+2.40.1
+

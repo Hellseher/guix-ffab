@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-06-14 Wed 19:30:00 BST>
+#+modified: <2023-07-03 Mon 21:25:50 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -281,7 +281,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO ap-i [1/5][20%] :author:
+** TODO ap-i [1/7][14%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
 *** DONE libpasastro [3/3][100%]
@@ -327,6 +327,8 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
+*** TODO virtualplanet [/][%]
+*** TODO virtualmoon [/][%]
 
 ** DONE aroffringa [2/2][100%] :author:
 CLOSED: [2022-11-30 Wed 23:44]
@@ -2556,8 +2558,9 @@ The Solar UK Research Facility
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-* Bulk updates
-** 20230516T203501+0100 [3/38][7%]
+* Monthly Update
+** 2023-05 [3/38][7%]
+- date-time :: 20230516T203501+0100
 - commit ::
 - [X] python-fitsio 1.1.8, use Gexp
 - [X] python-astropy-healpix, use Gexp
@@ -2594,6 +2597,49 @@ The Solar UK Research Facility
 - [ ] python-gwcs
 - [ ] python-astroalign
 - [ ] python-skyfield
+** 2023-06
+- date-time :: 20230618T115854+0100
+- commit :: e4087930f3ad60918689be5f4bca4ce3e22429f5
+- complex [9/9][100%]
+  - [X] celestia :: from 1.6.1-815.9dbdf29 to 1.6.3
+  - [X] eye :: fix build
+  - [X] missfits :: fix build
+  - [X] sgp4 :: https://github.com/dnwrnr/sgp4/issues/34
+  - [X] skymaker :: from 3.10.5 to 3.10.5-0.1a69c47, fix build
+  - [X] stuff :: from 1.26.0 to 1.26.0-0.9008dc0, fix build
+  - [X] swarp :: from 2.38.0 to 2.41.2, fix build
+  - [X] weightwatcher :: Fix build
+  - [X] xplanet :: improve style
+- quick [17/17][100%]
+  - [X] calceph :: from 3.5.1 to 3.5.2
+  - [X] calcmysky :: from 0.3.0 to 0.3.1
+  - [X] libxisf :: from 0.2.1 to 0.2.8
+  - [X] python-astropy :: from 5.2.2 to 5.3
+  - [X] python-ccdproc :: from 2.4.0 to 2.4.1
+  - [X] python-cdflib :: from 0.4.9 to 1.0.5
+  - [X] python-drms :: from 0.6.3 to 0.6.4
+  - [X] python-fitsio :: from 1.1.8 to 1.1.9
+  - [X] python-pyerfa :: from 2.0.0.1 to 2.0.0.3
+  - [X] python-reproject :: from 0.10.0 to 0.11.0
+  - [X] python-stcal :: from 1.3.7 to 1.3.8
+  - [X] python-stdatamodels :: from 1.5.0 to 1.6.0
+  - [X] python-sunpy :: from 4.1.5 to 5.0.0
+  - [X] python-synphot :: from 1.2.0 to 1.2.1
+  - [X] splash :: from 3.7.2 to 3.8.2
+  - [X] python-photutils :: from 1.7.0 to 1.8.0
+  - [X] sextractor :: from 2.25.0 to 2.28.0, fix build
+** 2023-07
+- date-time ::
+- commit ::
+- complex [0/7][0%]
+  - [ ] aocommon ::
+  - [ ] aoflagger :: from 3.2.0 to 3.3.0
+  - [ ] casacore :: from 3.4.0 to 3.5.0 (more work)
+  - [ ] gpredict :: from 2.2.1 to 2.3
+  - [ ] indi :: from 1.9.9 to 2.0.2 (stellarium failing)
+  - [ ] libpasastro :: from 1.4.0-1.e3c218d to 1.4.1 (more work)
+  - [ ] python-spherical-geometry :: from 1.2.22 to 1.2.23
+    - https://github.com/spacetelescope/spherical_geometry/issues/227
 
 * Coverage
 | Project        | Debian Astro |   Guix |

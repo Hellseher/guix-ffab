@@ -1,0 +1,36 @@
+From 7aa64cfdb5dd4018c816c2edf798597d7af55109 Mon Sep 17 00:00:00 2001
+Message-Id: <7aa64cfdb5dd4018c816c2edf798597d7af55109.1687302523.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1687302523.git.sharlatanus@gmail.com>
+References: <cover.1687302523.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 22:53:49 +0100
+Subject: [PATCH 17/20] gnu: python-stdatamodels: Update to 1.6.0.
+
+* gnu/packages/astronomy.scm (python-stdatamodels): Update to 1.6.0.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index da2c56cc5b..7c41853818 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2324,13 +2324,13 @@ (define-public python-stcal
+ (define-public python-stdatamodels
+   (package
+     (name "python-stdatamodels")
+-    (version "1.5.0")
++    (version "1.6.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stdatamodels" version))
+               (sha256
+                (base32
+-                "1lssz5mnkzgraqa9mdg1w39scsikymcp3zpmsjb146r0pqnwnpzw"))))
++                "09cms07kchwjass5qvbcdskvhv1xg8dz62s77rh63j58f2apak59"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.40.1
+
