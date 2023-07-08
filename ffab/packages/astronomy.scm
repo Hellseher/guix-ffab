@@ -74,6 +74,7 @@
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages readline)
+  #:use-module (gnu packages sqlite)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages tcl)
@@ -1275,5 +1276,41 @@ Equal Area isoLatitude Pixelization}.")
 ;; (define-public libxisf
 ;; added-to-downstream-guix a4e9842a70775a54bbe1369881b739e7ea9a6432
 ;; CommitDate: Sun Apr 9 21:00:06 2023 +0200
+
+(define-public unsio
+  ;; There is no versioned tag, use the latest commit.
+  (let ((commit "25e52468298e1194c9726ef5dba9d5fbb46870f5")
+        (revision "0"))
+    (package
+      (name "unsio")
+      (version (git-version "1.3.3" revision commit))
+      (source (origin
+                (method git-fetch)
+                (uri (git-reference
+                      (url "https://gitlab.lam.fr/infrastructure/unsio")
+                      (commit commit)))
+                (file-name (git-file-name name version))
+                (sha256
+                 (base32
+                  "110i2p5608zhh5w3pf3b5r2651hykw2ayspgq6vpqsffhya1p170"))))
+      (build-system cmake-build-system)
+      (arguments
+       (list #:tests? #f ;No tests
+             #:build-type "Release"
+             #:configure-flags #~(list "-DCMAKE_CXX_STANDARD=14")))
+      (inputs (list gfortran hdf5 perl sqlite zlib))
+      (home-page "https://projets.lam.fr/projects/unsio/wiki")
+      (synopsis "Universal Nbody snapshot I/O")
+      (description
+       "@acronym{UNSIO, Universal Nbody Snapshot Input Output} is an API which
+perform input/output operations in a generic way, and on different kind of nbody
+files format (nemo, Gadget binaries 1 and 2, Gadget hdf5, Ramses).  By using this
+API, a user could write only one analysis program which will work on all known
+files format supported by UNSIO. It's not necessary anymore to know how is
+implemented a file format, UNSIO will do transparently and automatically all the
+hard work for you!  With UNSIO, you will spend less time to develop your
+analysis program.  UNSIO comes with an integrated sqlite3 database which can be
+used to retrieve automatically all your data among terabytes of hard disks.")
+      (license license:cecill))))
 
 ;; End of astronomy.scm
