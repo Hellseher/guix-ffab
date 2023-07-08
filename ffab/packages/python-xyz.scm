@@ -143,62 +143,6 @@ from a single ECU up to whole cars.")
        (sha256
         (base32 "0n8yj2d4srlkrhk72fcnkfb3jkv74a5aghxjhcp3p2i46lrg4d43"))))))
 
-;; 20230610T205532+0100
-(define-public python-msgspec
-  (package
-    (name "python-msgspec")
-    (version "0.15.1")
-    (source (origin
-              ;; There are no tests in the PyPI tarball.
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/jcrist/msgspec")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1l3f893ba3cmsvz0rkk2y4krzya0qwhsbllhs1f3gd6xp0dq6pf4"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; XXX: Disable only one failing test.
-      ;;
-      ;; AssertionError: msgspec/structs.pyi:7: error: Positional-only parameters
-      ;; are only supported in Python 3.8 and greater
-      #:test-flags #~(list "-k" "not test_mypy")
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-after 'unpack 'versioneer
-            (lambda _
-              (invoke "versioneer" "install")
-              (substitute* "setup.py"
-                (("version=versioneer.get_version\\(),")
-                 (format #f "version=~s," #$version))))))))
-    (native-inputs (list python-attrs
-                         python-gcovr
-                         python-msgpack
-                         python-mypy
-                         python-pytest
-                         python-setuptools-scm
-                         python-versioneer))
-    (propagated-inputs (list python-pyyaml python-tomli python-tomli-w))
-    (home-page "https://jcristharif.com/msgspec/")
-    (synopsis
-     "Fast serialization/validation library for JSON, MessagePack, YAML, and TOML")
-    (description
-     "This package provides a fast serialization and validation library, with builtin
-support for JSON, MessagePack, YAML, and TOML.  It includes the following features:
-@itemize
-@item high performance encoders/decoders for common protocols.
-@tiem support for a wide variety of Python types.  Additional types may be
-supported through extensions.
-@item zero-cost schema validation using familiar Python type annotations.  In
-benchmarks msgspec decodes and validates JSON about 2x faster than @code{orjson}
-can decode it alone.
-@item a speedy Struct type for representing structured data.
-@end itemize")
-    (license license:bsd-3)))
-
 ;; 20221104T210916+0000
 (define-public python-portalocker
   (package
