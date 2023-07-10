@@ -58,6 +58,7 @@
   #:use-module (gnu packages ncurses)
   #:use-module (gnu packages netpbm)
   #:use-module (gnu packages ninja)
+  #:use-module (gnu packages onc-rpc)
   #:use-module (gnu packages openstack)
   #:use-module (gnu packages pascal)
   #:use-module (gnu packages perl)
@@ -191,6 +192,71 @@ C++.  It is written in ANSI C++ and implemented using the C++ Standard Library
 with namespaces, exception handling, and member template functions.")
     (license (license:non-copyleft "file://License.txt"
                                    "See License.txt in the distribution."))))
+
+;; 20230710T213134+0100
+(define-public glnemo2
+  (package
+    (name "glnemo2")
+    (version "1.21.0")
+    (source (origin
+              (method git-fetch)
+              (uri (git-reference
+                    (url "https://gitlab.lam.fr/jclamber/glnemo2")
+                    (commit version)))
+              (file-name (git-file-name name version))
+              (sha256
+               (base32
+                "1jmmxszh8d2jmfghig36nhykff345mqnpssfa64d0r7l9cnfp3cn"))))
+    (build-system cmake-build-system)
+    (arguments
+     (list
+      #:tests? #f ;No test target
+      #:configure-flags #~(list "CPPFLAGS=-fcommon")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'patch-libraries-paths
+            (lambda _
+              (substitute* "CMakeLists.txt"
+                ;; There is some not straightforward logic on how to set
+                ;; installation prefix for the project, inherit it from the
+                ;; build-system default flags.
+                (("CMAKE_INSTALL_PREFIX  \"/usr\"")
+                 (string-append "CMAKE_INSTALL_PREFIX"))
+                (("/usr/include/CCfits")
+                 (string-append
+                  #$(this-package-input "ccfits") "/include/CCfits"))
+                (("/usr/include/tirpc")
+                 (string-append
+                  #$(this-package-input "libtirpc") "/include/tirpc"))
+                ;; It tries to detect library in 2 "predictable" paths, required
+                ;; during link phase.
+                (("/usr/lib64/libtirpc.so")
+                 (string-append
+                  #$(this-package-input "libtirpc") "/lib/libtirpc.so"))))))))
+    (inputs
+     (list ccfits
+           cfitsio
+           glm
+           glu
+           hdf5
+           libtirpc
+           qtbase-5
+           zlib))
+    (home-page "https://projets.lam.fr/projects/unsio/wiki")
+    (synopsis "3D interactive visualization program for nbody like particles")
+    (description
+     "GLNEMO2 is an interactive 3D visualization program which displays particles
+positions of the different components (gas, stars, disk, dark mater halo, bulge)
+of an N-body snapshot.  It's a very useful tool for everybody running N-body
+simulations from isolated galaxies to cosmological simulations.  It can show
+quickly a lot of information about data by revealing shapes, dense areas,
+formation of structures such as spirals arms, bars, peanuts or clumps of
+galaxies.  Glnemo2 has been designed to meet the requirements of the user, with
+simplicity in mind, easy to install, easy to use with an interactive and
+responsive graphical user interface (based on QT 5.X API) , powerful with a fast
+3D engine (OPenGL and GLSL), and generic with the possibility to load different
+kinds of input files.")
+    (license license:cecill)))
 
 
 ;; http://starlink.eao.hawaii.edu/starlink
