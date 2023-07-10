@@ -167,6 +167,31 @@ shapes, support world coordinates, etc. Funtools also supports
 advanced capabilities such as optimized data searching using index files.")
     (license license:lgpl2.0+)))
 
+;; 20230710T225718+0100
+(define-public ccfits
+  (package
+    (name "ccfits")
+    (version "2.6")
+    (source (origin
+              (method url-fetch)
+              (uri (string-append
+                    "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/"
+                    "CCfits-" version ".tar.gz"))
+              (sha256
+               (base32
+                "04l6na8vr5xadz3rbx62as79x1ch4994vbb625kx0dz5czdkkd1b"))))
+    (build-system cmake-build-system)
+    (inputs (list cfitsio))
+    (home-page "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/")
+    (synopsis "C++ interface to the CFITSIO")
+    (description
+     "CCfits is an object oriented interface to the cfitsio library.  It is
+designed to make the capabilities of cfitsio available to programmers working in
+C++.  It is written in ANSI C++ and implemented using the C++ Standard Library
+with namespaces, exception handling, and member template functions.")
+    (license (license:non-copyleft "file://License.txt"
+                                   "See License.txt in the distribution."))))
+
 
 ;; http://starlink.eao.hawaii.edu/starlink
 ;;+begin-Starlink
