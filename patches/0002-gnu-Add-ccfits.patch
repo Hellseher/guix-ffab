@@ -1,0 +1,51 @@
+From d81cee57cd845512e3b2ad003fcef519eaaa1d8b Mon Sep 17 00:00:00 2001
+Message-Id: <d81cee57cd845512e3b2ad003fcef519eaaa1d8b.1689032023.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1689032023.git.sharlatanus@gmail.com>
+References: <cover.1689032023.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 11 Jul 2023 00:16:38 +0100
+Subject: [PATCH 2/3] gnu: Add ccfits.
+
+* gnu/packages/astronomy.scm (ccfits): New variable.
+---
+ gnu/packages/astronomy.scm | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f402b13537..5d261370b8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -420,6 +420,30 @@ (define-public casacore
+ @url{https://casa.nrao.edu/, CASA} is now built on top of Casacore.")
+     (license license:gpl2+)))
+ 
++(define-public ccfits
++  (package
++    (name "ccfits")
++    (version "2.6")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (string-append
++             "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/"
++             "CCfits-" version ".tar.gz"))
++       (sha256
++        (base32 "04l6na8vr5xadz3rbx62as79x1ch4994vbb625kx0dz5czdkkd1b"))))
++    (build-system cmake-build-system)
++    (inputs (list cfitsio))
++    (home-page "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/")
++    (synopsis "C++ interface to the CFITSIO")
++    (description
++     "CCfits is an object oriented interface to the cfitsio library.  It is
++designed to make the capabilities of cfitsio available to programmers working in
++C++.  It is written in ANSI C++ and implemented using the C++ Standard Library
++with namespaces, exception handling, and member template functions.")
++    (license (license:non-copyleft "file://License.txt"
++                                   "See License.txt in the distribution."))))
++
+ (define-public cfitsio
+   (package
+     (name "cfitsio")
+-- 
+2.40.1
+
