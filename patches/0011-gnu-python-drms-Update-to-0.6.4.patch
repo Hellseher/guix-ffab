@@ -1,0 +1,36 @@
+From 723dae627246aba924138b42b1b9390fc0acc3dd Mon Sep 17 00:00:00 2001
+Message-Id: <723dae627246aba924138b42b1b9390fc0acc3dd.1690410490.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 19 Jun 2023 19:25:47 +0100
+Subject: [PATCH v2 11/22] gnu: python-drms: Update to 0.6.4.
+
+* gnu/packages/astronomy.scm (python-drms): Update to 0.6.4.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 798879b6a3..884343ae57 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1678,13 +1678,13 @@ (define-public python-czml3
+ (define-public python-drms
+   (package
+     (name "python-drms")
+-    (version "0.6.3")
++    (version "0.6.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "drms" version))
+        (sha256
+-        (base32 "1b0w350y4wbgyy19zcf28xbb85mqq6gnhb6ppibbc4hbn2ixbcvj"))))
++        (base32 "0mkrmr55fgca441z7hvsyri6x9cjsh0sfas3hrj0k1k10k8vszbw"))))
+     (build-system python-build-system)
+     (arguments
+      (list
+-- 
+2.40.1
+

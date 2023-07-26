@@ -1,0 +1,45 @@
+From a4a51963dba64e251855b3c2a65c2068f598d93d Mon Sep 17 00:00:00 2001
+Message-Id: <a4a51963dba64e251855b3c2a65c2068f598d93d.1690410491.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 21:09:24 +0100
+Subject: [PATCH v2 15/22] gnu: python-pyerfa: Fix tests.
+
+* gnu/packages/astronomy.scm (python-pyerfa): Fix tests.
+[build-system]: Swap to pyproject-build-system.
+[arguments]: Disable a failing test. Add 'build-extensions phase.
+---
+ gnu/packages/astronomy.scm | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ac6108eb6c..97fce57cd3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3164,13 +3164,19 @@ (define-public python-pyerfa
+            ;; Remove bundled submodule library.
+            (delete-file-recursively "liberfa")
+            #t))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     `(#:phases
++     `(;; Disable only one failing test:
++       ;; AttributeError: __warningregistry__
++       #:test-flags '("-k" "not test_errwarn_reporting")
++       #:phases
+        (modify-phases %standard-phases
+          (add-before 'build 'use-system-liberfa
+            (lambda _
+-             (setenv "PYERFA_USE_SYSTEM_LIBERFA" "1"))))))
++             (setenv "PYERFA_USE_SYSTEM_LIBERFA" "1")))
++         (add-before 'check 'build-extensions
++           (lambda _
++             (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list python-pytest-doctestplus python-pytest python-setuptools-scm))
+     (inputs
+-- 
+2.40.1
+

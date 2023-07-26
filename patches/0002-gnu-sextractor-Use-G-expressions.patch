@@ -1,0 +1,66 @@
+From 07e98fd519e9a37f785625b2cc99738426b11ff6 Mon Sep 17 00:00:00 2001
+Message-Id: <07e98fd519e9a37f785625b2cc99738426b11ff6.1690410490.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 25 Jul 2023 23:15:12 +0100
+Subject: [PATCH v2 02/22] gnu: sextractor: Use G-expressions.
+
+* gnu/packages/astronomy.scm (sextractor): Use G-expressions.
+[inputs]: Remove labels.
+---
+ gnu/packages/astronomy.scm | 35 +++++++++++++++++------------------
+ 1 file changed, 17 insertions(+), 18 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4e03e2fcd6..26d4e9621d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -848,27 +848,26 @@ (define-public sextractor
+     ;; build to use `openblas' instead. It requires FFTW with single precision
+     ;; `fftwf'.
+     (arguments
+-     `(#:configure-flags
+-       (list
+-        "--enable-openblas"
+-        (string-append
+-         "--with-cfitsio-libdir=" (assoc-ref %build-inputs "cfitsio") "/lib")
+-        (string-append
+-         "--with-cfitsio-incdir=" (assoc-ref %build-inputs "cfitsio") "/include")
+-        (string-append
+-         "--with-openblas-libdir=" (assoc-ref %build-inputs "openblas") "/lib")
+-        (string-append
+-         "--with-openblas-incdir=" (assoc-ref %build-inputs "openblas") "/include")
+-        (string-append
+-         "--with-fftw-libdir=" (assoc-ref %build-inputs "fftw") "/lib")
+-        (string-append
+-         "--with-fftw-incdir=" (assoc-ref %build-inputs "fftw") "/include"))))
++     (list
++      #:configure-flags
++      #~(list
++         "--enable-openblas"
++         (string-append "--with-cfitsio-incdir="
++                        #$(this-package-input "cfitsio") "/include")
++         (string-append "--with-cfitsio-libdir="
++                        #$(this-package-input "cfitsio") "/lib")
++         (string-append "--with-fftw-incdir="
++                        #$(this-package-input "fftwf") "/include")
++         (string-append "--with-fftw-libdir="
++                        #$(this-package-input "fftwf") "/lib")
++         (string-append "--with-openblas-incdir="
++                        #$(this-package-input "openblas") "/include")
++         (string-append "--with-openblas-libdir="
++                        #$(this-package-input "openblas") "/lib"))))
+     (native-inputs
+      (list autoconf automake libtool))
+     (inputs
+-     `(("cfitsio" ,cfitsio)
+-       ("openblas" ,openblas)
+-       ("fftw" ,fftwf)))
++     (list cfitsio fftwf openblas))
+     (home-page "https://www.astromatic.net/software/sextractor")
+     (synopsis "Extract catalogs of sources from astronomical images")
+     (description
+-- 
+2.40.1
+

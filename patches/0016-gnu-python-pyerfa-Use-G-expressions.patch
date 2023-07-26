@@ -1,0 +1,60 @@
+From 87937c97a935e189ee494c0949786e010c563707 Mon Sep 17 00:00:00 2001
+Message-Id: <87937c97a935e189ee494c0949786e010c563707.1690410491.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 26 Jul 2023 20:51:55 +0100
+Subject: [PATCH v2 16/22] gnu: python-pyerfa: Use G-expressions.
+
+* gnu/packages/astronomy.scm (python-pyerfa): Use G-expressions.
+[snippet]: Remove trailing #t.
+---
+ gnu/packages/astronomy.scm | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 97fce57cd3..6f1910232b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3160,23 +3160,23 @@ (define-public python-pyerfa
+         (base32 "0f8zykzxjsiwv5ibdn5asla2ng2xl0xdkrcrrd61j31mb3xbnzyp"))
+        (modules '((guix build utils)))
+        (snippet
+-        '(begin
+-           ;; Remove bundled submodule library.
+-           (delete-file-recursively "liberfa")
+-           #t))))
++        #~(begin
++            ;; Remove bundled submodule library.
++            (delete-file-recursively "liberfa")))))
+     (build-system pyproject-build-system)
+     (arguments
+-     `(;; Disable only one failing test:
+-       ;; AttributeError: __warningregistry__
+-       #:test-flags '("-k" "not test_errwarn_reporting")
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-before 'build 'use-system-liberfa
+-           (lambda _
+-             (setenv "PYERFA_USE_SYSTEM_LIBERFA" "1")))
+-         (add-before 'check 'build-extensions
+-           (lambda _
+-             (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++     (list
++      ;; Disable only one failing test:
++      ;; AttributeError: __warningregistry__
++      #:test-flags #~(list "-k" "not test_errwarn_reporting")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'build 'use-system-liberfa
++            (lambda _
++              (setenv "PYERFA_USE_SYSTEM_LIBERFA" "1")))
++          (add-before 'check 'build-extensions
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list python-pytest-doctestplus python-pytest python-setuptools-scm))
+     (inputs
+-- 
+2.40.1
+

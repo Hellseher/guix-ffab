@@ -1,0 +1,35 @@
+From 91cc61ff3084f97692633f8c80f43c2153a15b76 Mon Sep 17 00:00:00 2001
+Message-Id: <91cc61ff3084f97692633f8c80f43c2153a15b76.1690410491.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 21 Jun 2023 00:07:33 +0100
+Subject: [PATCH v2 22/22] gnu: python-astroalign: Fix build.
+
+* gnu/packages/astronomy.scm (python-astroalign): Fix build.
+[native-inputs]: Add python-pytest, python-semantic-version.
+---
+ gnu/packages/astronomy.scm | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c5c17dfb06..54affefa84 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3803,7 +3803,12 @@ (define-public python-astroalign
+        (sha256
+         (base32 "0hly20a65540hr3l1lsd1i4d90a0vdrbwnn6zx3z8s89ha9lq3pb"))))
+     (build-system pyproject-build-system)
+-    (native-inputs (list python-astropy python-ccdproc python-pillow))
++    (native-inputs
++     (list python-astropy
++           python-ccdproc
++           python-pillow
++           python-pytest
++           python-semantic-version))
+     (propagated-inputs
+      (list python-bottleneck
+            python-numpy
+-- 
+2.40.1
+

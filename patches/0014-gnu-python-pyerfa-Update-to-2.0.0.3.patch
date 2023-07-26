@@ -1,0 +1,36 @@
+From 404ff5b14ecb21bd8354f548f59e2e0fe0eddfb7 Mon Sep 17 00:00:00 2001
+Message-Id: <404ff5b14ecb21bd8354f548f59e2e0fe0eddfb7.1690410490.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1690410490.git.sharlatanus@gmail.com>
+References: <cover.1690410490.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Jun 2023 21:04:41 +0100
+Subject: [PATCH v2 14/22] gnu: python-pyerfa: Update to 2.0.0.3.
+
+* gnu/packages/astronomy.scm (python-pyerfa): Update to 2.0.0.3.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6815ba7db0..ac6108eb6c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3151,13 +3151,13 @@ (define-public python-jwst
+ (define-public python-pyerfa
+   (package
+     (name "python-pyerfa")
+-    (version "2.0.0.1")
++    (version "2.0.0.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyerfa" version))
+        (sha256
+-        (base32 "0c6y1rm51kj8ahbr1vwbswck3ix77dc3zhc2fkg6w7iczrzn7m1g"))
++        (base32 "0f8zykzxjsiwv5ibdn5asla2ng2xl0xdkrcrrd61j31mb3xbnzyp"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+-- 
+2.40.1
+
