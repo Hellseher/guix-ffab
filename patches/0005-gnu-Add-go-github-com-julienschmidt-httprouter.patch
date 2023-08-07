@@ -1,0 +1,49 @@
+From bf8f93602785aa0f28de3bedabd8bd90c51541db Mon Sep 17 00:00:00 2001
+Message-Id: <bf8f93602785aa0f28de3bedabd8bd90c51541db.1691350701.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
+References: <cover.1691350701.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 6 Aug 2023 15:01:35 +0100
+Subject: [PATCH 5/9] gnu: Add go-github-com-julienschmidt-httprouter.
+
+* gnu/packages/golang.scm (go-github-com-julienschmidt-httprouter): New variable.
+---
+ gnu/packages/golang.scm | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 7890e4d583..cdfad943c7 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9922,6 +9922,28 @@ (define-public go-github-com-juju-ansiterm
+ for color and styles.")
+     (license license:lgpl3)))
+ 
++(define-public go-github-com-julienschmidt-httprouter
++  (package
++    (name "go-github-com-julienschmidt-httprouter")
++    (version "1.3.0")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/julienschmidt/httprouter")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "1a6sy0ysqknsjssjh7qg1dqn21xmj9a36c57nrk7srfmab4ffmk1"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/julienschmidt/httprouter"))
++    (home-page "https://github.com/julienschmidt/httprouter")
++    (synopsis "High performance HTTP request router")
++    (description
++     "Package httprouter is a trie based high performance HTTP request router.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-kevinburke-ssh-config
+   (package
+     (name "go-github-com-kevinburke-ssh-config")
+-- 
+2.40.1
+

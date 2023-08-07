@@ -1,0 +1,50 @@
+From 8e3228708dc30a784f2c217144ed01208b9d9cf3 Mon Sep 17 00:00:00 2001
+Message-Id: <8e3228708dc30a784f2c217144ed01208b9d9cf3.1691350701.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
+References: <cover.1691350701.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 6 Aug 2023 19:43:05 +0100
+Subject: [PATCH 6/9] gnu: Add go-github-com-mreiferson-go-options.
+
+* gnu/packages/golang.scm (go-github-com-mreiferson-go-options): New variable.
+---
+ gnu/packages/golang.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index cdfad943c7..fd3807bb7e 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -6256,6 +6256,29 @@ (define-public go-github-com-mr-tron-base58
+ encoding and 8 times faster decoding.")
+       (license license:expat))))
+ 
++(define-public go-github-com-mreiferson-go-options
++  (package
++    (name "go-github-com-mreiferson-go-options")
++    (version "1.0.0")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/mreiferson/go-options")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "1pxs9ybrh196qy14ijn4zn51h2z28lj31y6vxrz2xxhgvpmfmxyl"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/mreiferson/go-options"))
++    (home-page "https://github.com/mreiferson/go-options")
++    (synopsis "Go package to structure and resolve options")
++    (description
++     "OPTIONS resolves configuration values set via command line flags, config
++files, and default struct values")
++    (license license:expat)))
++
+ (define-public go-github-com-mreiferson-go-svc
+   ;; NSQ specific fork of github.com/judwhite/go-svc, as Guix go build system
+   ;; does not support go.mod with `replace' statement.
+-- 
+2.40.1
+

@@ -1,0 +1,51 @@
+From f588b20e9989ec063eea5a81f31c6ad5f82580ae Mon Sep 17 00:00:00 2001
+Message-Id: <f588b20e9989ec063eea5a81f31c6ad5f82580ae.1691350701.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
+References: <cover.1691350701.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 6 Aug 2023 19:47:17 +0100
+Subject: [PATCH 8/9] gnu: Add go-github-com-nsqio-go-nsq.
+
+* gnu/packages/golang.scm (go-github-com-nsqio-go-nsq): New variable.
+---
+ gnu/packages/golang.scm | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 637e6ebe73..91b1880476 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3205,6 +3205,30 @@ (define-public go-github-com-nsqio-go-diskqueue
+      "This package provides a Go package providing a filesystem-backed FIFO queue")
+     (license license:expat)))
+ 
++(define-public go-github-com-nsqio-go-nsq
++  (package
++    (name "go-github-com-nsqio-go-nsq")
++    (version "1.1.0")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/nsqio/go-nsq")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "1h9z3z225sdgg7fl3l7x11xn5ch6lm5flgmcj046cdp453qj2qhf"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:tests? #f ;It requires local network setup.
++           #:import-path "github.com/nsqio/go-nsq"))
++    (propagated-inputs (list go-github-com-golang-snappy))
++    (home-page "https://github.com/nsqio/go-nsq")
++    (synopsis "Golang package of high-level Consumer and Produce for NSQ")
++    (description "Package nsq is the official Go package for NSQ
++(@url{http://nsq.io/,http://nsq.io/}).")
++    (license license:expat)))
++
+ (define-public go-github-com-hebcal-gematriya
+   (let ((commit "fe3043f73e415eb82727701d10f2fb40f87675e9")
+         (revision "0"))
+-- 
+2.40.1
+
