@@ -169,94 +169,14 @@ advanced capabilities such as optimized data searching using index files.")
     (license license:lgpl2.0+)))
 
 ;; 20230710T225718+0100
-(define-public ccfits
-  (package
-    (name "ccfits")
-    (version "2.6")
-    (source (origin
-              (method url-fetch)
-              (uri (string-append
-                    "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/"
-                    "CCfits-" version ".tar.gz"))
-              (sha256
-               (base32
-                "04l6na8vr5xadz3rbx62as79x1ch4994vbb625kx0dz5czdkkd1b"))))
-    (build-system cmake-build-system)
-    (inputs (list cfitsio))
-    (home-page "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/ccfits/")
-    (synopsis "C++ interface to the CFITSIO")
-    (description
-     "CCfits is an object oriented interface to the cfitsio library.  It is
-designed to make the capabilities of cfitsio available to programmers working in
-C++.  It is written in ANSI C++ and implemented using the C++ Standard Library
-with namespaces, exception handling, and member template functions.")
-    (license (license:non-copyleft "file://License.txt"
-                                   "See License.txt in the distribution."))))
+;; (define-public ccfits
+;; added-to-guix-downstream 6397f1326df8beb68383147cef55728ca876ee7a
+;; CommitDate: Wed Jul 26 15:33:27 2023 +0200
 
 ;; 20230710T213134+0100
-(define-public glnemo2
-  (package
-    (name "glnemo2")
-    (version "1.21.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://gitlab.lam.fr/jclamber/glnemo2")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1jmmxszh8d2jmfghig36nhykff345mqnpssfa64d0r7l9cnfp3cn"))))
-    (build-system cmake-build-system)
-    (arguments
-     (list
-      #:tests? #f ;No test target
-      #:configure-flags #~(list "CPPFLAGS=-fcommon")
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-after 'unpack 'patch-libraries-paths
-            (lambda _
-              (substitute* "CMakeLists.txt"
-                ;; There is some not straightforward logic on how to set
-                ;; installation prefix for the project, inherit it from the
-                ;; build-system default flags.
-                (("CMAKE_INSTALL_PREFIX  \"/usr\"")
-                 (string-append "CMAKE_INSTALL_PREFIX"))
-                (("/usr/include/CCfits")
-                 (string-append
-                  #$(this-package-input "ccfits") "/include/CCfits"))
-                (("/usr/include/tirpc")
-                 (string-append
-                  #$(this-package-input "libtirpc") "/include/tirpc"))
-                ;; It tries to detect library in 2 "predictable" paths, required
-                ;; during link phase.
-                (("/usr/lib64/libtirpc.so")
-                 (string-append
-                  #$(this-package-input "libtirpc") "/lib/libtirpc.so"))))))))
-    (inputs
-     (list ccfits
-           cfitsio
-           glm
-           glu
-           hdf5
-           libtirpc
-           qtbase-5
-           zlib))
-    (home-page "https://projets.lam.fr/projects/unsio/wiki")
-    (synopsis "3D interactive visualization program for nbody like particles")
-    (description
-     "GLNEMO2 is an interactive 3D visualization program which displays particles
-positions of the different components (gas, stars, disk, dark mater halo, bulge)
-of an N-body snapshot.  It's a very useful tool for everybody running N-body
-simulations from isolated galaxies to cosmological simulations.  It can show
-quickly a lot of information about data by revealing shapes, dense areas,
-formation of structures such as spirals arms, bars, peanuts or clumps of
-galaxies.  Glnemo2 has been designed to meet the requirements of the user, with
-simplicity in mind, easy to install, easy to use with an interactive and
-responsive graphical user interface (based on QT 5.X API) , powerful with a fast
-3D engine (OPenGL and GLSL), and generic with the possibility to load different
-kinds of input files.")
-    (license license:cecill)))
+;; (define-public glnemo2
+;; added-to-guix-downstream f22c20e7ca14f79f0be5ce228f55d934cda27e04
+;; CommitDate: Wed Jul 26 15:49:49 2023 +0200
 
 
 ;; http://starlink.eao.hawaii.edu/starlink
