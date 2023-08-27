@@ -426,6 +426,38 @@ was made to get a better separation of core libraries and applications.
 radio astronomy.")
     (license license:gpl3)))
 
+;; 20230827T205905+0100
+(define-public python-casa-formats-io
+  (package
+    (name "python-casa-formats-io")
+    (version "0.2.1")
+    (source (origin
+              (method url-fetch)
+              (uri (pypi-uri "casa-formats-io" version))
+              (sha256
+               (base32
+                "07cchih2ws6jf6q1a4xhkv0jk96s3w08kzxx9l1911wzqk0pw9pj"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'build-extensions
+            (lambda _
+              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+    (native-inputs
+     (list python-pytest python-pytest-cov python-pytest-openfiles))
+    (propagated-inputs
+     (list python-astropy python-dask python-click python-numpy))
+    (home-page "https://casa-formats-io.readthedocs.io/")
+    (synopsis "Dask-based reader for CASA data")
+    (description
+     "The casa-formats-io package is a small package which implements functionality
+to read data stored in @acronym{CASA, Common Astronomy Software Applications}
+formats (such as .image datasets).  This implementation is independent of and
+does not use casacore.")
+    (license license:lgpl2.0)))
+
 ;;+end-casacore
 
 ;; 20220608T191316+0100
