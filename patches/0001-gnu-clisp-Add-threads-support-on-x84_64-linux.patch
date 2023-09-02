@@ -1,5 +1,5 @@
-From a5ff6e10bc72ccb8b046f5c55f7fd6d550605462 Mon Sep 17 00:00:00 2001
-Message-Id: <a5ff6e10bc72ccb8b046f5c55f7fd6d550605462.1691078405.git.sharlatanus@gmail.com>
+From a1501772832bf453bfdd241d6ff76ef4e1800c62 Mon Sep 17 00:00:00 2001
+Message-Id: <a1501772832bf453bfdd241d6ff76ef4e1800c62.1693487783.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Thu, 3 Aug 2023 16:44:16 +0100
 Subject: [PATCH] gnu: clisp: Add threads support on x84_64-linux.
@@ -17,11 +17,11 @@ support threads on x86_64-linux system.
 
 Reported and Co-Authored by Andrew Kravchuk <awkravchuk@gmail.com>
 ---
- gnu/packages/lisp.scm | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ gnu/packages/lisp.scm | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/gnu/packages/lisp.scm b/gnu/packages/lisp.scm
-index 2f4fe6476d..47caa8e389 100644
+index 2f4fe6476d..867a5df496 100644
 --- a/gnu/packages/lisp.scm
 +++ b/gnu/packages/lisp.scm
 @@ -17,7 +17,7 @@
@@ -41,13 +41,11 @@ index 2f4fe6476d..47caa8e389 100644
  ;;;
  ;;; This file is part of GNU Guix.
  ;;;
-@@ -380,6 +381,12 @@ (define-public clisp
+@@ -380,6 +381,10 @@ (define-public clisp
                                                       (%current-target-system)))
                                   '("CFLAGS=-falign-functions=4")
                                   '())
-+                           ,@(if (string-prefix? "x86_64-linux"
-+                                                 (or (%current-system)
-+                                                     (%current-target-system)))
++                           ,@(if (target-x86?)
 +                                 '("--enable-portability"
 +                                   "--with-threads=POSIX_THREADS")
 +                                 '())

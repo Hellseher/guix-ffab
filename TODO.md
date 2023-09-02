@@ -53,6 +53,7 @@
     julia-xyz.org          JuliaArrays             [0/1][0%]     :author:
     julia-xyz.org          helgee                  [3/3][100%]   :author:
     julia-xyz.org          GunnarFarneback         [1/1][100%]   :author:
+    high-availability.org  nsq.io                  [/][%]        :author:
     high-availability.org  Kronosnet               [1/1][100%]   :author:
     high-availability.org  corosync                [1/2][50%]    :author:
     high-availability.org  ClusterLabs             [1/1][100%]   :author:
@@ -86,7 +87,7 @@
     astronomy.org          LMSAL_HUB               [0/1][0%]     :author:
     astronomy.org          linguider               [0/4][0%]     :author:
     astronomy.org          Libsharp                [0/1][0%]     :author:
-    astronomy.org          kbarbary                [/][%]        :author:
+    astronomy.org          kbarbary                [0/2][0%]     :author:
     astronomy.org          JuliaSpace              [0/8][0%]     :author:
     astronomy.org          JuliaAstroSim           [0/9][0%]     :author:
     astronomy.org          JuliaAstro              [6/35][17%]   :author:
@@ -111,7 +112,7 @@
     astronomy.org          ATNF                    [0/37][0%]    :author:
     astronomy.org          Astropy                 [3/5][60%]    :author:
     astronomy.org          AstrOmatic-software     [8/10][80%]   :author:
-    astronomy.org          ap-i                    [1/5][20%]    :author:
+    astronomy.org          ap-i                    [1/7][14%]    :author:
     astronomy.org          amusecode               [0/45][0%]    :author:
     
     Projects in progress with priorities:
@@ -253,6 +254,7 @@
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
     julia-xyz.org          julia-dierckx                  [0/4][0%]    :p3:
     julia-xyz.org          julia-datadeps                 [/][%]       :p3:
+    high-availability.org  nsq                            [2/4][50%]   :p3:
     golang.org             bykof/go-plantuml              [/][%]       :p3:
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
@@ -339,6 +341,7 @@
     astronomy.org          funtools                       [2/4][50%]   :p1:
     astronomy.org          FITSVERIFY                     [0/4][0%]    :p1:
     astronomy.org          astroplan                      [2/4][50%]   :p1:
+    astronomy.org          radio-astro-tools              [0/1]        :authos:
     services.org           prometheus                     [/][%]       
     services.org           pacemaker                      [/][%]       
     services.org           nsqd                           [/][%]       
@@ -367,9 +370,13 @@
     golang.org             hashicorp/terraform            [0/4][0%]    
     golang.org             hashicorp/nomad                [0/4][0%]    
     golang.org             gin-gonic/gin                  [1/4][25%]   
+    astronomy.org          virtualplanet                  [/][%]       
+    astronomy.org          virtualmoon                    [/][%]       
     astronomy.org          tangos                         [0/4][0%]    
     astronomy.org          skychart                       [0/4][0%]    
     astronomy.org          python-sep                     [4/4][100%]  
+    astronomy.org          python-extinction              [2/4][50%]   
+    astronomy.org          python-casa-formats-io         [3/4][75%]   
     astronomy.org          inistarter                     [0/4][0%]    
     astronomy.org          eqmodgui                       [0/4][0%]    
     astronomy.org          ccdciel                        [0/4][0%]    

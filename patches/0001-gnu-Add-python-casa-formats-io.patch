@@ -1,0 +1,60 @@
+From 189f2e7bd9694ea14bbb4f6e3eaaa440462503c1 Mon Sep 17 00:00:00 2001
+Message-Id: <189f2e7bd9694ea14bbb4f6e3eaaa440462503c1.1693168122.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 27 Aug 2023 21:25:42 +0100
+Subject: [PATCH] gnu: Add python-casa-formats-io.
+
+* gnu/packages/astronomy.scm (python-casa-formats-io): New variable.
+
+Co-Authored-By: Iliya Tikhonenko <tikhonenko@mpe.mpg.de>
+---
+ gnu/packages/astronomy.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e8499bb4b4..bcc3d8494a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1611,6 +1611,37 @@ (define-public python-bayesicfitting
+ Herschel.")
+     (license license:gpl3+)))
+ 
++(define-public python-casa-formats-io
++  (package
++    (name "python-casa-formats-io")
++    (version "0.2.1")
++    (source (origin
++              (method url-fetch)
++              (uri (pypi-uri "casa-formats-io" version))
++              (sha256
++               (base32
++                "07cchih2ws6jf6q1a4xhkv0jk96s3w08kzxx9l1911wzqk0pw9pj"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'build-extensions
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++    (native-inputs
++     (list python-pytest python-pytest-cov python-pytest-openfiles))
++    (propagated-inputs
++     (list python-astropy python-click python-dask python-numpy))
++    (home-page "https://casa-formats-io.readthedocs.io/")
++    (synopsis "Dask-based reader for CASA data")
++    (description
++     "The casa-formats-io package is a small package which implements functionality
++to read data stored in @acronym{CASA, Common Astronomy Software Applications}
++formats (such as .image datasets).  This implementation is independent of and
++does not use casacore.")
++    (license license:lgpl2.0)))
++
+ (define-public python-ccdproc
+   (package
+     (name "python-ccdproc")
+
+base-commit: 37cca1d87e18c257a9697110557a2bfaf9bc684b
+-- 
+2.40.1
+
