@@ -1,18 +1,18 @@
-From 8520b8137aea74779901aa314e26e2b635eeadb9 Mon Sep 17 00:00:00 2001
-Message-Id: <8520b8137aea74779901aa314e26e2b635eeadb9.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From d373ef4a7c32e9d33be00d7a0ff57f6f87baba4d Mon Sep 17 00:00:00 2001
+Message-Id: <d373ef4a7c32e9d33be00d7a0ff57f6f87baba4d.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 20:36:58 +0100
-Subject: [PATCH 9/9] gnu: Add nsq.
+Subject: [PATCH v2 9/9] gnu: Add nsq.
 
 * gnu/packages/high-availability.scm (nsq): New variable.
 ---
- gnu/packages/high-availability.scm | 87 ++++++++++++++++++++++++++++++
- 1 file changed, 87 insertions(+)
+ gnu/packages/high-availability.scm | 86 ++++++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
 diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
-index 11ff8014cf..9763a04b21 100644
+index 11ff8014cf..553095cb75 100644
 --- a/gnu/packages/high-availability.scm
 +++ b/gnu/packages/high-availability.scm
 @@ -34,6 +34,7 @@ (define-module (gnu packages high-availability)
@@ -38,7 +38,7 @@ index 11ff8014cf..9763a04b21 100644
    #:use-module (guix download)
    #:use-module (guix gexp)
    #:use-module (guix git-download)
-@@ -190,6 +193,90 @@ (define-public kronosnet
+@@ -190,6 +193,89 @@ (define-public kronosnet
   in general better performances compared to the old network protocol.")
      (license (list license:gpl2+ license:lgpl2.1+))))
  
@@ -71,9 +71,7 @@ index 11ff8014cf..9763a04b21 100644
 +              (when tests?
 +                (setenv "HOME" "/tmp")
 +                (with-directory-excursion (string-append "src/" import-path)
-+                  (invoke #$@(if (string-prefix? "x86_64-linux"
-+                                                 (or (%current-system)
-+                                                     (%current-target-system)))
++                  (invoke #$@(if (target-x86?)
 +                                 (list "go" "test" "-v" "-race" "./...")
 +                                 (list "go" "test" "-v" "./...")))))))
 +          (replace 'install
@@ -89,7 +87,6 @@ index 11ff8014cf..9763a04b21 100644
 +           go-github-com-burntsushi-toml
 +           go-github-com-davecgh-go-spew
 +           go-github-com-golang-snappy ; Move to (gnu packages golang)
-+           go-github-com-mreiferson-go-svc
 +           go-github-com-julienschmidt-httprouter
 +           go-github-com-mreiferson-go-options
 +           go-github-com-mreiferson-go-svc
@@ -104,11 +101,12 @@ index 11ff8014cf..9763a04b21 100644
 +
 +Key features:
 +@itemize
-+@item support distributed topologies with no SPOF
-+@item horizontally scalable (no brokers, seamlessly add more nodes to the
++@item support distributed topologies without @acronym{SPOF, Single Point of
++Failure}
++@item scale horizontally (no brokers, seamlessly add more nodes to the
 +cluster)
 +@item low-latency push based message delivery (performance)
-+@item combination load-balanced and multicast style message routing
++@item combine load-balanced and multicast style message routing
 +@item excel at both streaming (high-throughput) and job oriented
 +(low-throughput) workloads
 +@item primarily in-memory (beyond a high-water mark messages are transparently
@@ -121,7 +119,8 @@ index 11ff8014cf..9763a04b21 100644
 +@item simple TCP protocol supporting client libraries in any language
 +@item HTTP interface for stats, admin actions, and producers (no client
 +library needed to publish)
-+@item integrates with statsd for realtime instrumentation
++@item integrate with @acronym{StatsD, Stats aggregation Daemon} for realtime
++instrumentation
 +@item robust cluster administration interface (nsqadmin)
 +@end itemize")
 +    (license license:expat)))

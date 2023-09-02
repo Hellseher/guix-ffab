@@ -1,10 +1,10 @@
-From dd35850030451700572b8a72655397383867975a Mon Sep 17 00:00:00 2001
-Message-Id: <dd35850030451700572b8a72655397383867975a.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From adf3c9ec039dcc45913c2e0272651ac796bf4884 Mon Sep 17 00:00:00 2001
+Message-Id: <adf3c9ec039dcc45913c2e0272651ac796bf4884.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 14:36:44 +0100
-Subject: [PATCH 3/9] gnu: Add go-github-com-bmizerany-perks-quantile.
+Subject: [PATCH v2 3/9] gnu: Add go-github-com-bmizerany-perks-quantile.
 
 * gnu/packages/golang.scm (go-github-com-bmizerany-perks-quantile): New variable.
 ---
@@ -12,10 +12,10 @@ Subject: [PATCH 3/9] gnu: Add go-github-com-bmizerany-perks-quantile.
  1 file changed, 24 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 4721519a9b..ce46e02158 100644
+index b569c9edaa..ab5ed46b9f 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -9033,6 +9033,30 @@ (define-public go-github-com-bmatcuk-doublestar
+@@ -9050,6 +9050,30 @@ (define-public go-github-com-bmatcuk-doublestar
  matching and globbing with support for \"doublestar\" patterns.")
      (license license:expat)))
  
@@ -37,10 +37,10 @@ index 4721519a9b..ce46e02158 100644
 +     (list #:unpack-path "github.com/bmizerany/perks"
 +           #:import-path "github.com/bmizerany/perks/quantile"))
 +    (home-page "https://github.com/bmizerany/perks")
-+    (synopsis "Perks for Golang")
++    (synopsis "Library for computing quantiles")
 +    (description
-+     "Perks contains the Go package quantile that computes approximate quantiles
-+over an unbounded data stream within low memory and CPU bounds.")
++     "Perks contains the Go package @code{quantile} that computes approximate
++quantiles over an unbounded data stream within low memory and CPU bounds.")
 +    (license license:bsd-2)))
 +
  (define-public go-github-com-dlclark-regexp2

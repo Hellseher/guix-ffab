@@ -1,10 +1,10 @@
-From 8e3228708dc30a784f2c217144ed01208b9d9cf3 Mon Sep 17 00:00:00 2001
-Message-Id: <8e3228708dc30a784f2c217144ed01208b9d9cf3.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From af0ab8ca6553f80a0dcf0a3cca1086d80b0be0c8 Mon Sep 17 00:00:00 2001
+Message-Id: <af0ab8ca6553f80a0dcf0a3cca1086d80b0be0c8.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 19:43:05 +0100
-Subject: [PATCH 6/9] gnu: Add go-github-com-mreiferson-go-options.
+Subject: [PATCH v2 6/9] gnu: Add go-github-com-mreiferson-go-options.
 
 * gnu/packages/golang.scm (go-github-com-mreiferson-go-options): New variable.
 ---
@@ -12,10 +12,10 @@ Subject: [PATCH 6/9] gnu: Add go-github-com-mreiferson-go-options.
  1 file changed, 23 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index cdfad943c7..fd3807bb7e 100644
+index a7c005d43e..62505ff732 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -6256,6 +6256,29 @@ (define-public go-github-com-mr-tron-base58
+@@ -6273,6 +6273,29 @@ (define-public go-github-com-mr-tron-base58
  encoding and 8 times faster decoding.")
        (license license:expat))))
  
@@ -38,8 +38,8 @@ index cdfad943c7..fd3807bb7e 100644
 +    (home-page "https://github.com/mreiferson/go-options")
 +    (synopsis "Go package to structure and resolve options")
 +    (description
-+     "OPTIONS resolves configuration values set via command line flags, config
-+files, and default struct values")
++     "The @code{options} Go package resolves configuration values set via
++command line flags, config files, and default struct values")
 +    (license license:expat)))
 +
  (define-public go-github-com-mreiferson-go-svc

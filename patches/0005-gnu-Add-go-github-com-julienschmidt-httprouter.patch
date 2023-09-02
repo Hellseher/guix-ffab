@@ -1,21 +1,21 @@
-From bf8f93602785aa0f28de3bedabd8bd90c51541db Mon Sep 17 00:00:00 2001
-Message-Id: <bf8f93602785aa0f28de3bedabd8bd90c51541db.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From 595ebd3237886cf7ef1ad842e2d56389fd203f0f Mon Sep 17 00:00:00 2001
+Message-Id: <595ebd3237886cf7ef1ad842e2d56389fd203f0f.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 15:01:35 +0100
-Subject: [PATCH 5/9] gnu: Add go-github-com-julienschmidt-httprouter.
+Subject: [PATCH v2 5/9] gnu: Add go-github-com-julienschmidt-httprouter.
 
 * gnu/packages/golang.scm (go-github-com-julienschmidt-httprouter): New variable.
 ---
- gnu/packages/golang.scm | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ gnu/packages/golang.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 7890e4d583..cdfad943c7 100644
+index 897d84f444..a7c005d43e 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -9922,6 +9922,28 @@ (define-public go-github-com-juju-ansiterm
+@@ -9961,6 +9961,29 @@ (define-public go-github-com-juju-ansiterm
  for color and styles.")
      (license license:lgpl3)))
  
@@ -38,7 +38,8 @@ index 7890e4d583..cdfad943c7 100644
 +    (home-page "https://github.com/julienschmidt/httprouter")
 +    (synopsis "High performance HTTP request router")
 +    (description
-+     "Package httprouter is a trie based high performance HTTP request router.")
++     "Package @code{httprouter} is a trie based high performance HTTP request
++router.")
 +    (license license:bsd-3)))
 +
  (define-public go-github-com-kevinburke-ssh-config

@@ -1,10 +1,10 @@
-From 3baf6e14e056d3b59288af505fc1eafd3d4c74d1 Mon Sep 17 00:00:00 2001
-Message-Id: <3baf6e14e056d3b59288af505fc1eafd3d4c74d1.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From 295fd3aeea88e95d5342a371c486ac8d06b9d022 Mon Sep 17 00:00:00 2001
+Message-Id: <295fd3aeea88e95d5342a371c486ac8d06b9d022.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 14:55:39 +0100
-Subject: [PATCH 4/9] gnu: Add go-github-com-mreiferson-go-svc.
+Subject: [PATCH v2 4/9] gnu: Add go-github-com-mreiferson-go-svc.
 
 * gnu/packages/golang.scm (go-github-com-mreiferson-go-svc): New variable.
 ---
@@ -12,10 +12,10 @@ Subject: [PATCH 4/9] gnu: Add go-github-com-mreiferson-go-svc.
  1 file changed, 28 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index ce46e02158..7890e4d583 100644
+index ab5ed46b9f..897d84f444 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -6256,6 +6256,34 @@ (define-public go-github-com-mr-tron-base58
+@@ -6273,6 +6273,34 @@ (define-public go-github-com-mr-tron-base58
  encoding and 8 times faster decoding.")
        (license license:expat))))
  

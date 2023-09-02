@@ -1,22 +1,22 @@
-From f588b20e9989ec063eea5a81f31c6ad5f82580ae Mon Sep 17 00:00:00 2001
-Message-Id: <f588b20e9989ec063eea5a81f31c6ad5f82580ae.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From 5ff30e3de2f45e1678d6283a3712193a975e5f4b Mon Sep 17 00:00:00 2001
+Message-Id: <5ff30e3de2f45e1678d6283a3712193a975e5f4b.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 19:47:17 +0100
-Subject: [PATCH 8/9] gnu: Add go-github-com-nsqio-go-nsq.
+Subject: [PATCH v2 8/9] gnu: Add go-github-com-nsqio-go-nsq.
 
 * gnu/packages/golang.scm (go-github-com-nsqio-go-nsq): New variable.
 ---
- gnu/packages/golang.scm | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ gnu/packages/golang.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 637e6ebe73..91b1880476 100644
+index 756700ef97..1f70741f5b 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -3205,6 +3205,30 @@ (define-public go-github-com-nsqio-go-diskqueue
-      "This package provides a Go package providing a filesystem-backed FIFO queue")
+@@ -3206,6 +3206,32 @@ (define-public go-github-com-nsqio-go-diskqueue
+ queue.")
      (license license:expat)))
  
 +(define-public go-github-com-nsqio-go-nsq
@@ -39,8 +39,10 @@ index 637e6ebe73..91b1880476 100644
 +    (propagated-inputs (list go-github-com-golang-snappy))
 +    (home-page "https://github.com/nsqio/go-nsq")
 +    (synopsis "Golang package of high-level Consumer and Produce for NSQ")
-+    (description "Package nsq is the official Go package for NSQ
-+(@url{http://nsq.io/,http://nsq.io/}).")
++    (description
++     "The @code{nsq} Go module provides a high-level consumer and producer
++types as well as low-level functions to communicate over the NSQ protocol
++@url{https://nsq.io/}.")
 +    (license license:expat)))
 +
  (define-public go-github-com-hebcal-gematriya

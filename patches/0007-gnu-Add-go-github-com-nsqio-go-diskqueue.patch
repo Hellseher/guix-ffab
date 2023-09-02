@@ -1,21 +1,21 @@
-From e724e1d8a4998b64a99a288f9cbfba368eeea38e Mon Sep 17 00:00:00 2001
-Message-Id: <e724e1d8a4998b64a99a288f9cbfba368eeea38e.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From 7b27ab3342013b58de3dcc9e77959b397078d04d Mon Sep 17 00:00:00 2001
+Message-Id: <7b27ab3342013b58de3dcc9e77959b397078d04d.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 19:45:24 +0100
-Subject: [PATCH 7/9] gnu: Add go-github-com-nsqio-go-diskqueue.
+Subject: [PATCH v2 7/9] gnu: Add go-github-com-nsqio-go-diskqueue.
 
 * gnu/packages/golang.scm (go-github-com-nsqio-go-diskqueue): New variable.
 ---
- gnu/packages/golang.scm | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ gnu/packages/golang.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index fd3807bb7e..637e6ebe73 100644
+index 62505ff732..756700ef97 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -3183,6 +3183,28 @@ (define-public go-github-com-nathan-osman-go-sunrise
+@@ -3183,6 +3183,29 @@ (define-public go-github-com-nathan-osman-go-sunrise
  sunset times from geographical coordinates and a date.")
        (license license:expat))))
  
@@ -38,7 +38,8 @@ index fd3807bb7e..637e6ebe73 100644
 +    (home-page "https://github.com/nsqio/go-diskqueue")
 +    (synopsis "Go package providing a filesystem-backed FIFO queue")
 +    (description
-+     "This package provides a Go package providing a filesystem-backed FIFO queue")
++     "The @code{diskqueue} Go package provides a filesystem-backed FIFO
++queue.")
 +    (license license:expat)))
 +
  (define-public go-github-com-hebcal-gematriya

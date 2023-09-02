@@ -1,6 +1,6 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2022-11-18 Fri 22:54:46 GMT>
+#+modified: <2023-09-02 Sat 15:07:57 BST>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
@@ -113,3 +113,32 @@ CLOSED: [2022-11-18 Fri 22:41]
   - [X] xz
   - [X] zlib
   - [X] zstd
+** TODO nsq.io [/][%] :author:
+*** TODO nsq [2/4][50%] :p3:
+- https://github.com/nsqio/nsq/
+- [X] :packed <2023-08-06 Sun>
+- [X] :patch-sent <2023-08-06 Sun>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/65118
+- [-] :inputs [5/13][38%]
+  - [ ] go-github-com-bitly-go-hostpool
+    - [ ] :packed
+  - [ ] go-github-com-bitly-timer-metrics
+    - [ ] :packed
+  - [X] go-github-com-blang-semver
+  - [ ] go-github-com-bmizerany-perks-quantile
+    - [ ] :packed
+  - [X] go-github-com-burntsushi-toml
+  - [X] go-github-com-davecgh-go-spew
+  - [X] go-github-com-golang-snappy
+  - [ ] go-github-com-julienschmidt-httprouter
+    - [ ] :packed
+  - [ ] go-github-com-mreiferson-go-options
+    - [ ] :packed
+  - [ ] go-github-com-mreiferson-go-svc
+    - [ ] :packed
+  - [ ] go-github-com-nsqio-go-diskqueue
+    - [ ] :packed
+  - [ ] go-github-com-nsqio-go-nsq
+    - [ ] :packed
+  - [X] python-wrapper

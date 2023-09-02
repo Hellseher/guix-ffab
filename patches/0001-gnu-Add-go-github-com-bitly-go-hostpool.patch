@@ -1,10 +1,10 @@
-From 571542b44f072e97b1f336f30b6dc02e52f865bd Mon Sep 17 00:00:00 2001
-Message-Id: <571542b44f072e97b1f336f30b6dc02e52f865bd.1691350701.git.sharlatanus@gmail.com>
-In-Reply-To: <cover.1691350701.git.sharlatanus@gmail.com>
-References: <cover.1691350701.git.sharlatanus@gmail.com>
+From 662e6c24d3a71db1db52165702acd13128241aaa Mon Sep 17 00:00:00 2001
+Message-Id: <662e6c24d3a71db1db52165702acd13128241aaa.1693597912.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693597912.git.sharlatanus@gmail.com>
+References: <cover.1693597912.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 6 Aug 2023 14:30:23 +0100
-Subject: [PATCH 1/9] gnu: Add go-github-com-bitly-go-hostpool.
+Subject: [PATCH v2 1/9] gnu: Add go-github-com-bitly-go-hostpool.
 
 * gnu/packages/golang.scm (go-github-com-bitly-go-hostpool): New variable.
 ---
@@ -12,7 +12,7 @@ Subject: [PATCH 1/9] gnu: Add go-github-com-bitly-go-hostpool.
  1 file changed, 26 insertions(+), 1 deletion(-)
 
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index ea6aadbe80..0a747f2eee 100644
+index 5a53838435..70d5af6107 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
 @@ -25,7 +25,7 @@
