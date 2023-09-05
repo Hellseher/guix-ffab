@@ -1,0 +1,49 @@
+From bba774d581b9485bb6e071a81452fdadc0dab444 Mon Sep 17 00:00:00 2001
+Message-ID: <bba774d581b9485bb6e071a81452fdadc0dab444.1693952609.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1693952609.git.sharlatanus@gmail.com>
+References: <cover.1693952609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 4 Sep 2023 18:37:35 +0100
+Subject: [PATCH v2 2/2] gnu: python-qtsass: Update to 0.4.0, fix build.
+
+* gnu/packages/python-xyz.scm (python-qtsass): Update to 0.4.0, fix
+build.
+[native-inputs]: Add python-flaky.
+---
+ gnu/packages/python-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index cdf5ee6293..1d273bbb4d 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -30009,7 +30009,7 @@ (define-public python-helper
+ (define-public python-qtsass
+   (package
+     (name "python-qtsass")
+-    (version "0.3.0")
++    (version "0.4.0")
+     (source
+      (origin
+        ;; There are no tests in the PyPI tarball.
+@@ -30019,7 +30019,7 @@ (define-public python-qtsass
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "09s04aa14d8jqbh71clrb5y7vcmkxlp94mwmvzrkxahry3bk03cb"))))
++        (base32 "1skdihfby2f41zxgwa5zv44vdxjrw301rh88rjmzj4xbdlix6cig"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:test-target "pytest"
+@@ -30031,7 +30031,7 @@ (define-public python-qtsass
+              (for-each make-file-writable (find-files "."))
+              #t)))))
+     (native-inputs
+-     (list python-pytest python-pytest-cov python-pytest-runner))
++     (list python-flaky python-pytest python-pytest-cov python-pytest-runner))
+     (propagated-inputs
+      (list python-libsass))
+     (home-page "https://github.com/spyder-ide/qtsass")
+-- 
+2.41.0
+
