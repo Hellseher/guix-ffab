@@ -1,0 +1,42 @@
+From e14d0aa72c2b2d9d7c1e57271f3e9f596f337460 Mon Sep 17 00:00:00 2001
+Message-ID: <e14d0aa72c2b2d9d7c1e57271f3e9f596f337460.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 6 Sep 2023 21:30:58 +0100
+Subject: [PATCH 06/19] gnu: python-cdflib: Fix version detection.
+
+* gnu/packages/astronomy.scm (python-cdflib): Fix version detection
+during build Wheel package.
+[arguments]: Add new phase 'set-env-version.
+[native-inputs]: Add python-setuptools-scm.
+---
+ gnu/packages/astronomy.scm | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 95b29ec2ea..335c075a68 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1657,6 +1657,10 @@ (define-public python-cdflib
+     (arguments
+      (list #:phases
+            #~(modify-phases %standard-phases
++               (add-before 'build 'set-env-version
++                 (lambda _
++                   (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
++                           #$version)))
+                (add-before 'check 'set-home-env
+                  (lambda _
+                    (setenv "HOME" (getcwd)))))))
+@@ -1668,6 +1672,7 @@ (define-public python-cdflib
+            python-pytest
+            python-pytest-cov
+            python-pytest-remotedata
++           python-setuptools-scm
+            python-xarray))
+     (home-page "https://github.com/MAVENSDC/cdflib")
+     (synopsis "Python library to deal with NASA's CDF astronmical data format")
+-- 
+2.41.0
+

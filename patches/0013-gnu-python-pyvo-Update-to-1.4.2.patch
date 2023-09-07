@@ -1,0 +1,36 @@
+From 5a29b9474ec99b9fb5e74c366237fd0a41ffbef2 Mon Sep 17 00:00:00 2001
+Message-ID: <5a29b9474ec99b9fb5e74c366237fd0a41ffbef2.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 7 Sep 2023 21:12:44 +0100
+Subject: [PATCH 13/19] gnu: python-pyvo: Update to 1.4.2.
+
+* gnu/packages/astronomy.scm (python-pyvo): Update to 1.4.2.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 14424fae70..95c585079c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2084,13 +2084,13 @@ (define-public python-poppy
+ (define-public python-pyvo
+   (package
+     (name "python-pyvo")
+-    (version "1.4.1")
++    (version "1.4.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyvo" version))
+        (sha256
+-        (base32 "17acv1yhz1jrsx9f35nr1vg276ibaivh4i243qkmp6abzvfyg907"))))
++        (base32 "1jwmgpavw80mf9sigfz5p2cqh6vz5mvm11ziqmdp5zdccn42kzk6"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest-astropy python-requests-mock python-setuptools-scm))
+-- 
+2.41.0
+

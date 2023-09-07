@@ -1,0 +1,36 @@
+From f0b7442ea8fde3b2204c6f7fcf056c7614bb17a2 Mon Sep 17 00:00:00 2001
+Message-ID: <f0b7442ea8fde3b2204c6f7fcf056c7614bb17a2.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 6 Sep 2023 22:31:45 +0100
+Subject: [PATCH 07/19] gnu: python-sunpy: Enable more tests.
+
+* gnu/packages/astronomy.scm (python-sunpy): Enable tests detecting
+python-cdflib metadata. Update annotation for still disabled tests.
+---
+ gnu/packages/astronomy.scm | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 335c075a68..c69b38dae5 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2252,11 +2252,10 @@ (define-public python-sunpy
+       #:test-flags
+       #~(list "-k" (string-append
+                     ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
++                    ;; It struggles to find python-opencsv package info with
++                    ;; 'importlib.metadata'
+                     "not test_main_nonexisting_module"
+-                    " and not test_main_stdlib_module"
+-                    ;; XXX: packaging.version.InvalidVersion: Invalid version: 'unknown'
+-                    " and not test_read_cdf"
+-                    " and not test_read_empty_cdf"))
++                    " and not test_main_stdlib_module"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'install 'writable-compiler
+-- 
+2.41.0
+

@@ -1,0 +1,37 @@
+From 84f25292fd2febf17bc61a91eb873d7fd9725430 Mon Sep 17 00:00:00 2001
+Message-ID: <84f25292fd2febf17bc61a91eb873d7fd9725430.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 7 Sep 2023 21:44:37 +0100
+Subject: [PATCH 16/19] gnu: python-roman-datamodels: Remove all test
+ constrains.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels): Remove all test
+constrains. All of 1115 passed.
+---
+ gnu/packages/astronomy.scm | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d1b34def8f..fb501e421c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3844,13 +3844,7 @@ (define-public python-roman-datamodels
+                 "1y12cp8172i4a314gmhpi86jw6pfylz1adh0rzr5zqmvd3mrjqlj"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     ;; XXX: Check how to make all tests enabled, probably some more inner
+-     ;; input chain needs to be upgraded, keep them disabled to make the build
+-     ;; green.
+-     (list #:test-flags #~(list "-k"
+-                                (string-append "not test_will_validate"
+-                                 " and not test_will_strict_validate"
+-                                 " and not test_nuke_validation"))
++     (list
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'set-env
+-- 
+2.41.0
+

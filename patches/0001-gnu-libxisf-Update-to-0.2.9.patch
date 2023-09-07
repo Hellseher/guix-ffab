@@ -1,0 +1,38 @@
+From 87dd14e07ae53346a3c8d566d79703568f724ea8 Mon Sep 17 00:00:00 2001
+Message-ID: <87dd14e07ae53346a3c8d566d79703568f724ea8.1694125609.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Sep 2023 23:36:25 +0100
+Subject: [PATCH 01/19] gnu: libxisf: Update to 0.2.9.
+
+* gnu/packages/astronomy.scm (libxisf): Update to 0.2.9.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e8499bb4b4..624c17eade 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2790,7 +2790,7 @@ (define-public libpasastro
+ (define-public libxisf
+   (package
+     (name "libxisf")
+-    (version "0.2.8")
++    (version "0.2.9")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2799,7 +2799,7 @@ (define-public libxisf
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1j2bg53hrr2yc55qa6549vcpj7qjnwmxjcdgc98w3ygnrjy7n7v0"))))
++        (base32 "02cxv86h0ng4kmvyjkf7cr2ak2i3vpf0q0ik7jg4nmqjsidcs796"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list #:configure-flags #~(list "-DUSE_BUNDLED_LIBS=OFF")))
+-- 
+2.41.0
+

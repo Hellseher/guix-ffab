@@ -1,0 +1,38 @@
+From 9a227a6432052a7e00647477b257cfdfc615cd0f Mon Sep 17 00:00:00 2001
+Message-ID: <9a227a6432052a7e00647477b257cfdfc615cd0f.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 6 Sep 2023 22:37:43 +0100
+Subject: [PATCH 08/19] gnu: python-bayesicfitting: Update to 3.2.0.
+
+* gnu/packages/astronomy.scm (python-bayesicfitting): Update to 3.2.0.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c69b38dae5..453571325f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1582,7 +1582,7 @@ (define-public python-astroscrappy
+ (define-public python-bayesicfitting
+   (package
+     (name "python-bayesicfitting")
+-    (version "3.1.1")
++    (version "3.2.0")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -1591,7 +1591,7 @@ (define-public python-bayesicfitting
+               (file-name (git-file-name name version))
+               (sha256
+                (base32
+-                "07y9dr9wxhxrvhk0jjakhbyrgal60i92m7z7q14fp12k8x0gl69l"))))
++                "0q6v7w9b1xzam0qn5vsl5wrdp1fkfpsn411pzd8wyy9giznpajxi"))))
+     (build-system python-build-system)
+     (arguments
+      (list #:phases #~(modify-phases %standard-phases
+-- 
+2.41.0
+

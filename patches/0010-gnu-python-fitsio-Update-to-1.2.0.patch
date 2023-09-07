@@ -1,0 +1,84 @@
+From 5b625501ebb664ccc33af696e823e92188f09cc3 Mon Sep 17 00:00:00 2001
+Message-ID: <5b625501ebb664ccc33af696e823e92188f09cc3.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 7 Sep 2023 20:42:36 +0100
+Subject: [PATCH 10/19] gnu: python-fitsio: Update to 1.2.0.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.2.0.
+[arguments]{phases}: Swap 'unbundle-cfitsio to 'set-env as there is
+support for system CFitsio library provided.
+[inputs]: Add zlib.
+---
+ gnu/packages/astronomy.scm | 33 +++++++++++++++------------------
+ 1 file changed, 15 insertions(+), 18 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index cf524a2f6c..2064a05c64 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -534,45 +534,42 @@ (define-public python-astroml
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.1.10")
++    (version "1.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "0dv2vjj8qn3rq5sr99x5yjjch5h867c8q7zh73i67dzdsk7ix0jf"))
++        (base32 "04fbg1ffj7qrlzw50xzzkfnlk6qjjqq96j0im7phprmwb1rbvzzh"))
+        (modules '((guix build utils)))
+        (snippet
+-        ;; Remove the bundled cfitsio
++        ;; Remove the bundled cfitsio. When update the package check the
++        ;; current bundled version.
+         #~(begin
+-            (delete-file-recursively "cfitsio3490")
++            (delete-file-recursively "cfitsio-4.2.0")
+             (substitute* "MANIFEST.in"
+-              (("recursive-include cfitsio3490.*$\n") ""))))))
++              (("recursive-include cfitsio-4.2.0.*$\n") ""))))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+-          (add-after 'unpack 'unbundle-cfitsio
++          (add-before 'build 'set-env
+             (lambda _
+-              (let* ((cfitsio #$(this-package-input "cfitsio"))
+-                     (includedir (string-append "\"" cfitsio "/include\""))
+-                     (libdir (string-append "\"" cfitsio "/lib\"")))
+-                ;; Use Guix' cfitsio instead of the bundled one
+-                (substitute* "setup.py"
+-                  (("self.use_system_fitsio = False") "pass")
+-                  (("self.system_fitsio_includedir = None") "pass")
+-                  (("self.system_fitsio_libdir = None") "pass")
+-                  (("self.use_system_fitsio") "True")
+-                  (("self.system_fitsio_includedir") includedir)
+-                  (("self.system_fitsio_libdir") libdir)))))
++              (setenv "FITSIO_USE_SYSTEM_FITSIO" "True")
++              (setenv "FITSIO_SYSTEM_FITSIO_INCLUDEDIR"
++                      (string-append
++                       #$(this-package-input "cfitsio") "/include"))
++              (setenv "FITSIO_SYSTEM_FITSIO_LIBDIR"
++                      (string-append
++                       #$(this-package-input "cfitsio") "/lib"))))
+           (add-before 'check 'build-extensions
+             (lambda _
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list python-pytest))
+     (inputs
+-     (list curl cfitsio))
++     (list curl cfitsio zlib))
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/esheldon/fitsio")
+-- 
+2.41.0
+

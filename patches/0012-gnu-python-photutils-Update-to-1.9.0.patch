@@ -1,0 +1,36 @@
+From 867f53791f87cb876be87d204eef7bdc3caa1b06 Mon Sep 17 00:00:00 2001
+Message-ID: <867f53791f87cb876be87d204eef7bdc3caa1b06.1694125610.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1694125609.git.sharlatanus@gmail.com>
+References: <cover.1694125609.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 7 Sep 2023 21:10:48 +0100
+Subject: [PATCH 12/19] gnu: python-photutils: Update to 1.9.0.
+
+* gnu/packages/astronomy.scm (python-photutils): Update to 1.9.0.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2c8e16f550..14424fae70 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1925,13 +1925,13 @@ (define-public python-mpl-animators
+ (define-public python-photutils
+   (package
+     (name "python-photutils")
+-    (version "1.7.0")
++    (version "1.9.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "photutils" version))
+        (sha256
+-        (base32 "1bq4ma402lpa5d6l85awlc23kasxf40nq8hgi3iyrilnfikan0jz"))))
++        (base32 "0gjvrmcb10lyqx3h9521zqskqngd5xcp3l9h2b02mk1p7q54mzdy"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+
