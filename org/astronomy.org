@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-09-07 Thu 23:26:20 BST>
+#+modified: <2023-09-11 Mon 23:55:16 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -2662,7 +2662,7 @@ The Solar UK Research Facility
 ** 2023-08
 - date-time :: 20230905T163102+0100
 - commit :: 8d19ff23052bffb1c43f0d39f543eb0b1e363074
-- issues ::
+- issues :: https://issues.guix.gnu.org/65814
 - quick [16/16][100%]
   - [X] libxisf :: would be upgraded from 0.2.8 to 0.2.9.
   - [X] python-astropy-healpix :: would be upgraded from 0.7 to 1.0.0.
@@ -2696,10 +2696,10 @@ The Solar UK Research Facility
     package.
   - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
     the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
-  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0
-  - [ ] casacore would be upgraded from 3.4.0 to 3.5.0
-  - [ ] indi would be upgraded from 1.9.9 to 2.0.3
-  - [ ] libpasastro would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failerur, more work requried.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Build failerur, more work requried.
+  - [ ] indi :: would be upgraded from 1.9.9 to 2.0.3. stellarium failing.
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
     requried.
 
 * Coverage
