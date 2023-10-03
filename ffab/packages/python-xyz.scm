@@ -283,7 +283,7 @@ with support of Python v3+.")
            python-incremental
            python-jinja2
            python-tomli))
-    (native-inputs (list python-packaging python-twisted python-pytest-7.1 git))
+    (native-inputs (list python-packaging python-twisted python-pytest git))
     (home-page "https://github.com/twisted/towncrier")
     (synopsis "Manage the release notes for your project")
     (description

@@ -35,7 +35,7 @@
 ;;+begin_github.com/cli
 
 ;; 20220730T151450+0100
-(define-public github-cli
+(define github-cli
   (package
     (name "github-cli")
     (version "2.3.0")
@@ -100,7 +100,7 @@ with @code{git} and your code.")
 ;; - github.com/cli/cli: https://issues.guix.gnu.org/47539
 
 ;; 20211220T202352+0000
-(define-public lazygit
+(define lazygit
   (package
     (name "lazygit")
     (version "0.34") ;0.35+ require Golang 1.18+

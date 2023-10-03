@@ -124,7 +124,7 @@ as @code{Distances.jl} with support image types and image-specific distances.")
 
 
 ;; 20221213T213240+0000
-(define-public julia-dierckx
+(define julia-dierckx
   (package
     (name "julia-dierckx")
     (version "0.5.2")
