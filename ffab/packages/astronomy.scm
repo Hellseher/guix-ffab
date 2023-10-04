@@ -1055,6 +1055,61 @@ channels
 ;; added-to-downstream-guix b12ee1ee5b8b53bf27b79ce81b1b2158cc7de484
 ;; CommitDate: Sat Feb 25 00:00:34 2023 +0100
 
+;; 20231004T020337+0100
+(define-public python-spectral-cube
+  (package
+    (name "python-spectral-cube")
+    (version "0.6.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "spectral-cube" version))
+       (sha256
+        (base32 "1xyqdflnz084hdx1pbrqd1jrfyyc7f8v3564rww2v1hjylzgsnnh"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-astropy
+           python-aplpy
+           python-casa-formats-io
+           python-dask
+           python-distributed
+           python-fsspec
+           ;; python-glue-core ; Not packed http://glueviz.org/, optional.
+           python-joblib
+           python-matplotlib
+           python-numpy
+           python-radio-beam
+           python-reproject
+           python-scipy
+           python-six
+           ;; python-yt ; Not packed https://yt-project.org/, optional.
+           python-zarr))
+    (native-inputs
+     (list ;; XXX: Introduce cycle with pvextractor, listed as extra requiremnts
+           ;; in [noviz] option.
+           ;; python-pvextractor
+           python-pytest-astropy
+           python-regions
+           python-semantic-version))
+    (home-page "https://spectral-cube.readthedocs.io/en/latest/")
+    (synopsis "Library for reading and analyzing astrophysical spectral data cubes")
+    (description
+     "The spectral-cube package provides an easy way to read, manipulate,
+analyze, and write data cubes with two positional dimensions and one spectral
+dimension, optionally with Stokes parameters.
+
+It provides the following main features:
+@itemize
+@item A uniform interface to spectral cubes, robust to the wide range of conventions
+of axis order, spatial projections, and spectral units that exist in the wild.
+@item Easy extraction of cube sub-regions using physical coordinates.
+@item Ability to easily create, combine, and apply masks to datasets.
+@item Basic summary statistic methods like moments and array aggregates.
+@item Designed to work with datasets too large to load into memory.
+@end itemize")
+
+    (license license:bsd-3)))
+
 ;; 20220705T162506+0100
 ;; (define-public python-drizzle
 ;; added-to-down-stream-guix f9616163d0666142d09f2a5b69a58732d18ca62e
