@@ -910,6 +910,40 @@ for variables with units.")
 ;; added-to-downstream-guix 2ff90902c07ad377f94d94bd2b047e7170171a41
 ;; CommitDate: Wed Jun 14 14:52:21 2023 +0300
 
+;; 20231004T014955+0100
+(define-public python-radio-beam
+  (package
+    (name "python-radio-beam")
+    (version "0.3.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "radio-beam" version))
+       (sha256
+        (base32 "0293hlbxb61h8js7yrvrbiw8108qn5s0rh2iy9rkhc012mzjacp0"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-astropy
+           python-matplotlib
+           python-numpy
+           python-scipy
+           python-six))
+    (native-inputs (list python-pytest-astropy))
+    (home-page "https://radio-beam.readthedocs.io/en/latest/")
+    (synopsis "Operations for radio astronomy beams with Astropy")
+    (description
+     "Radio Beam is a simple toolkit for reading beam information from FITS
+headers and manipulating beams.  Some example applications include:
+@itemize
+@item Convolution and deconvolution
+@item Unit conversion (Jy to/from K)
+@item Handle sets of beams for spectral cubes with varying resolution between
+channels
+@item Find the smallest common beam from a set of beams
+@item Add the beam shape to a matplotlib plot
+@end itemize")
+    (license license:bsd-3)))
+
 ;; 20220523T215048+0100
 ;; (define-public python-tweakwcs
 ;; added-to-downstream-guix 308bee5f000703f063f5fbccd1c439e8c905a09c
