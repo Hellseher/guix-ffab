@@ -895,6 +895,48 @@ for variables with units.")
 ;; added-to-downstream-guix 339be9dad527bb0805e35dc1816cf373d445ed91
 ;; CommitDate: Wed Jun 14 14:52:23 2023 +0300
 
+;; 20231005T025906+0100
+(define-public python-pyregion
+  (package
+    (name "python-pyregion")
+    (version "2.2.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyregion" version))
+       (sha256
+        (base32 "0l7qb7r8fnv46mdih4m5b8jaxixgpw6m7v37dpikjkblgh0vigaw"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'build-extensions
+            (lambda _
+              ;; Cython extensions have to be built before running the tests.
+              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+    (propagated-inputs
+     (list python-astropy python-numpy python-pyparsing))
+    (native-inputs
+     (list python-cython
+           python-pytest
+           python-pytest-astropy-header
+           python-setuptools-scm))
+    (home-page "https://github.com/astropy/pyregion")
+    (synopsis "Python parser for ds9 region files")
+    (description
+     "@code{pyregion} is a python module to parse ds9 region files.  It also
+supports ciao region files.
+Features:
+@itemize
+@item ds9 and ciao region files.
+@item (physical, wcs) coordinate conversion to the image coordinate.
+@item convert regions to matplotlib patches.
+@item convert regions to spatial filter (i.e., generate mask images)
+@end itemize")
+
+    (license license:expat)))
+
 ;; 20220513T211720+0100
 ;; (define-public python-pysynphot
 ;; added-to-downstream-guix b08be61a026fae900d37c158fd1b251bf21f5450
