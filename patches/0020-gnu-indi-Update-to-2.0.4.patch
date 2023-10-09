@@ -1,0 +1,71 @@
+From 0cd2a5b3f1782d75b76963b6dc702bac22822117 Mon Sep 17 00:00:00 2001
+Message-ID: <0cd2a5b3f1782d75b76963b6dc702bac22822117.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 8 Oct 2023 17:18:58 +0100
+Subject: [PATCH 20/20] gnu: indi: Update to 2.0.4.
+
+* gnu/packages/astronomy.scm (indi-2.0): New variable.
+(indi-1.9): New variable. Inherited from indi-2.0.
+(indi): Set it to use indi-1.9 as default, as Stellarium and PHD2 are
+still depended on 1.9 and fail with Indi 2.0+.
+See: https://github.com/Stellarium/stellarium/issues/3038
+---
+ gnu/packages/astronomy.scm | 24 +++++++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7ee204d75c..1e85ad1e84 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3091,10 +3091,10 @@ (define-public imppg
+ 32-bit floating-point.")
+     (license license:gpl3+)))
+ 
+-(define-public indi
++(define-public indi-2.0
+   (package
+     (name "indi")
+-    (version "1.9.9")
++    (version "2.0.4")
+     (source
+      (origin
+        (method git-fetch)
+@@ -3103,7 +3103,7 @@ (define-public indi
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1vfcas59nlw8v7n6qhxhcm4isf5wk0crip5rmsallq3bsv3zznfr"))))
++        (base32 "1pp72bqxrvdij47fqfrnyxwqw1w8prxvs1igjsazcw8ncbrdbbjc"))))
+     (build-system cmake-build-system)
+     (arguments
+      ;; TODO: fix failing tests on aarch64-system.
+@@ -3152,6 +3152,24 @@ (define-public indi
+                    license:lgpl2.0+
+                    license:lgpl2.1+))))
+ 
++(define-public indi-1.9
++  (package
++    (inherit indi-2.0)
++    (version "1.9.9")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/indilib/indi")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "indi" version))
++       (sha256
++        (base32 "1vfcas59nlw8v7n6qhxhcm4isf5wk0crip5rmsallq3bsv3zznfr"))))))
++
++(define-public indi
++  ;; Default version of INDI..
++  indi-1.9)
++
+ (define-public sunclock
+   (let ((commit "f4106eb0a81f7594726d6b2859efd8fc64cc1225")
+         (revision "1"))
+-- 
+2.41.0
+

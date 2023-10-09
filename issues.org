@@ -193,7 +193,8 @@
 - [ ] <2023-09-11 Mon> https://issues.guix.gnu.org/65880
 - [ ] <2023-09-17 Sun> https://issues.guix.gnu.org/66047
 
-* Package updates [37/38][97%]
+* Package updates [37/39][94%]
+- [ ] <2023-10-09 Mon> https://issues.guix.gnu.org/66412
 - [X] <2023-09-07 Thu> https://issues.guix.gnu.org/65814 <2023-09-27 Wed>
 - [X] <2023-09-04 Mon> https://issues.guix.gnu.org/65743 <2023-09-13 Wed>
 - [X] <2023-08-03 Thu> https://issues.guix.gnu.org/65041 <2023-09-04 Mon>

@@ -1,0 +1,36 @@
+From 402871773ec4076522b5cb8e346ff5e19cd30a48 Mon Sep 17 00:00:00 2001
+Message-ID: <402871773ec4076522b5cb8e346ff5e19cd30a48.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Oct 2023 23:41:15 +0100
+Subject: [PATCH 18/20] gnu: python-sunpy: Update to 5.0.1.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 5.0.1.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9a04d45e6d..54c3c3d411 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2282,13 +2282,13 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "5.0.0")
++    (version "5.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1w75yc8az86pwbf79h083j4kc2ycfk76ky5kzlmcwgp0ih23mhym"))))
++        (base32 "1r4phc91k527kvpa2jd1d417x97wqyrm3ydayr9hshwz1k5v5ngf"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

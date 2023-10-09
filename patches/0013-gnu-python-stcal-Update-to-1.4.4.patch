@@ -1,0 +1,55 @@
+From 3ee635cd2c7b5f8c137221b246a9e66c2a90a2e1 Mon Sep 17 00:00:00 2001
+Message-ID: <3ee635cd2c7b5f8c137221b246a9e66c2a90a2e1.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Oct 2023 17:47:59 +0100
+Subject: [PATCH 13/20] gnu: python-stcal: Update to 1.4.4.
+
+* gnu/packages/astronomy.scm (python-stcal): Update to 1.4.4.
+[arguments]{phases}: Add 'build-extensions phase.
+[native-inputs]: Add python-cython.
+---
+ gnu/packages/astronomy.scm | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ddaec8b463..2a32b4e182 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2544,22 +2544,28 @@ (define-public python-stsci-stimage
+ (define-public python-stcal
+   (package
+     (name "python-stcal")
+-    (version "1.4.2")
++    (version "1.4.4")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stcal" version))
+               (sha256
+                (base32
+-                "163vyqcd9qv2knf8jik8y449z7ljl2lvbd7im82bq61prgi3z2hj"))))
++                "031ldihdmsdrwz4wl49bfk2bxmzbp1i3kidrw46xz936765zmnc0"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:phases #~(modify-phases %standard-phases
+                         ;; XXX: Can't detect opencv-python version. The input
+                         ;; opencv might not set the version correctly.
+-                        (delete 'sanity-check))))
++                        (delete 'sanity-check)
++                        (add-before 'check 'build-extensions
++                          (lambda _
++                            ;; Cython extensions have to be built before
++                            ;; running the tests.
++                            (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (propagated-inputs (list opencv ;Provides OpenCV-Python
+                              python-astropy python-numpy python-scipy))
+-    (native-inputs (list python-psutil
++    (native-inputs (list python-cython
++                         python-psutil
+                          python-pytest
+                          python-pytest-cov
+                          python-pytest-doctestplus
+-- 
+2.41.0
+

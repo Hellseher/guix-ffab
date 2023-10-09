@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-10 Tue 00:37:29 BST>
+#+modified: <2023-10-10 Tue 00:44:21 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -2816,11 +2816,12 @@ The Solar UK Research Facility
   - [ ] indi :: would be upgraded from 1.9.9 to 2.0.3. stellarium failing.
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
     requried.
-** 2023-09
+** DONE 2023-09
+CLOSED: [2023-10-10 Tue 00:44]
 - date-time :: 20230905T163102+0100
 - commit :: 8e6022732ab6c4ba256f99d925f5fd413a87372c
-- issues ::
-- quick [16/19][84%]
+- issues :: https://issues.guix.gnu.org/66412
+- quick [16/16][100%]
   - [X] calceph :: would be upgraded from 3.5.2 to 3.5.3
   - [X] indi :: would be upgraded from 1.9.9 to 2.0.4
   - [X] python-cdflib :: would be upgraded from 1.1.0 to 1.2.1
@@ -2837,7 +2838,7 @@ The Solar UK Research Facility
   - [X] python-tweakwcs :: would be upgraded from 0.8.2 to 0.8.3
   - [X] siril :: would be upgraded from 1.0.6 to 1.2.0
   - [X] stellarium :: would be upgraded from 23.2 to 23.3
-- complex [0/4][0%]
+- complex [0/7][0%]
   - [ ] cfitsio :: would be upgraded from 4.2.0 to 3100: Require rebuild-the-world.
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failed, more work required.
   - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.2. Custom JsonSchema implementation.

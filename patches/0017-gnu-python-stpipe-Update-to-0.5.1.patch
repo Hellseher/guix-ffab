@@ -1,0 +1,41 @@
+From 6aba469c2a95047f5315bfb5ef698fd1b77a8b9e Mon Sep 17 00:00:00 2001
+Message-ID: <6aba469c2a95047f5315bfb5ef698fd1b77a8b9e.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Oct 2023 23:31:14 +0100
+Subject: [PATCH 17/20] gnu: python-stpipe: Update to 0.5.1.
+
+* gnu/packages/astronomy.scm (python-stpipe): Update to 0.5.1.
+[arguments]{test-flags}: Disable on failing test.
+---
+ gnu/packages/astronomy.scm | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2587d17e99..9a04d45e6d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2627,13 +2627,17 @@ (define-public python-stdatamodels
+ (define-public python-stpipe
+   (package
+     (name "python-stpipe")
+-    (version "0.5.0")
++    (version "0.5.1")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stpipe" version))
+               (sha256
+                (base32
+-                "17gnwzhl10vbg059lfprdyci19dlh3whkmb9rl7z25wr593rnvcp"))))
++                "11ccb3v2s20lf851061s4nanljwm9s9xzkcfgb3qhv0hjwziq0vr"))))
++    (arguments
++     (list
++      ;; See https://github.com/spacetelescope/stpipe/issues/114
++      #:test-flags #~(list "-k" "not test_roman_datamodel")))
+     (build-system pyproject-build-system)
+     (propagated-inputs (list python-asdf python-astropy python-crds
+                              python-semantic-version python-stdatamodels))
+-- 
+2.41.0
+

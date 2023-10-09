@@ -1,0 +1,38 @@
+From cd424b6ee6ab1f80b64ac2311bec117edbe50bcd Mon Sep 17 00:00:00 2001
+Message-ID: <cd424b6ee6ab1f80b64ac2311bec117edbe50bcd.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 4 Oct 2023 03:09:05 +0100
+Subject: [PATCH 03/20] gnu: calceph: Update to 3.5.3.
+
+* gnu/packages/astronomy.scm (calceph): Update to 3.5.3.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2ca00592aa..ff97dfa3e0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -186,7 +186,7 @@ (define-public aocommon
+ (define-public calceph
+   (package
+     (name "calceph")
+-    (version  "3.5.2")
++    (version  "3.5.3")
+     (source
+      (origin
+        (method url-fetch)
+@@ -194,7 +194,7 @@ (define-public calceph
+              "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-"
+              version ".tar.gz"))
+        (sha256
+-        (base32 "1rnjlaiii4j0agbj4k242p212bqqmqdqa0lni6c3bnhgfnrbjfp4"))))
++        (base32 "12apl806h8qx1kq74malq3828jqapwfi27cn05pvvxfiq7gfpllx"))))
+     (build-system gnu-build-system)
+     (native-inputs
+      (list gfortran))
+-- 
+2.41.0
+

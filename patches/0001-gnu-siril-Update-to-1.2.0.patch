@@ -1,0 +1,50 @@
+From 234d0f25c3e7efdbb35654ec4958b11c8c6ab254 Mon Sep 17 00:00:00 2001
+Message-ID: <234d0f25c3e7efdbb35654ec4958b11c8c6ab254.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 4 Oct 2023 02:29:48 +0100
+Subject: [PATCH 01/20] gnu: siril: Update to 1.2.0.
+
+* gnu/packages/astronomy.scm (siril): Update to 1.2.0.
+[inputs]: Add ffms2, libheif.
+---
+ gnu/packages/astronomy.scm | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f6b3e5202d..d8157d2b7f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -987,7 +987,7 @@ (define-public sextractor
+ (define-public siril
+   (package
+     (name "siril")
+-    (version "1.0.6")
++    (version "1.2.0")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -995,16 +995,18 @@ (define-public siril
+                     (commit version)))
+               (sha256
+                (base32
+-                "0iqxb5zmjyygg4b6lwlq8z82mngxg7kjjpahhzk52m0cypfq0l18"))
++                "0ss1m9w4cz1752vp5738057nzmqc6k7fc9pi6kr9cwgspi1haall"))
+               (file-name (git-file-name name version))))
+     (build-system meson-build-system)
+     (native-inputs (list cmake git glib libconfig pkg-config))
+     (inputs (list cfitsio
+                   exiv2
++                  ffms2
+                   fftwf
+                   gsl
+                   gtk+
+                   json-glib
++                  libheif
+                   libraw
+                   librtprocess
+                   opencv))
+-- 
+2.41.0
+

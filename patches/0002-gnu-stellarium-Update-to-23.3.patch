@@ -1,0 +1,38 @@
+From ab1345571af335b42e343da7aa2cbedb0587662c Mon Sep 17 00:00:00 2001
+Message-ID: <ab1345571af335b42e343da7aa2cbedb0587662c.1696804840.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696804840.git.sharlatanus@gmail.com>
+References: <cover.1696804840.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 4 Oct 2023 03:02:40 +0100
+Subject: [PATCH 02/20] gnu: stellarium: Update to 23.3.
+
+* gnu/packages/astronomy.scm (stellarium): Update to 23.3.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d8157d2b7f..2ca00592aa 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1171,7 +1171,7 @@ (define-public stackistry
+ (define-public stellarium
+   (package
+     (name "stellarium")
+-    (version "23.2")
++    (version "23.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1180,7 +1180,7 @@ (define-public stellarium
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0fkiibc6m8kfmyf5my7ynfrpdlrcri14cl26swpgv3bhzxpmx27h"))))
++        (base32 "15kl8kn5fmmppbm93w5ki7lpjn09lhyhn245v3jc335xifcwd2vd"))))
+     (build-system cmake-build-system)
+     ;; TODO: Complete documentation build and split into dedicated outputs.
+     (arguments
+-- 
+2.41.0
+
