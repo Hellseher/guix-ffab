@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-03-04 Sat 21:14:31 GMT>
+#+modified: <2023-10-10 Tue 00:33:12 BST>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -88,7 +88,7 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO JuliaBinaryWrappers [1/1] :author:
+** TODO JuliaBinaryWrappers [1/1][100%] :author:
 *** DONE julia-cfitrsio-jll [4/4][100%]
 CLOSED: [2023-02-10 Fri 23:45]
 - https://github.com/JuliaBinaryWrappers/CFITSIO_jll.jl

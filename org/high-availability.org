@@ -1,6 +1,6 @@
 #+title: High availability
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-09-02 Sat 15:07:57 BST>
+#+modified: <2023-10-10 Tue 00:31:13 BST>
 
 * Synopsis
 This workflow file contains packaging process for the projects such Prxmox VE
@@ -113,32 +113,34 @@ CLOSED: [2022-11-18 Fri 22:41]
   - [X] xz
   - [X] zlib
   - [X] zstd
-** TODO nsq.io [/][%] :author:
-*** TODO nsq [2/4][50%] :p3:
+
+** TODO nsq.io [1/1][100%] :author:
+*** DONE nsq [4/4][100%]
+CLOSED: [2023-10-10 Tue 00:31]
 - https://github.com/nsqio/nsq/
 - [X] :packed <2023-08-06 Sun>
 - [X] :patch-sent <2023-08-06 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-09-04 Mon>
   - https://issues.guix.gnu.org/65118
-- [-] :inputs [5/13][38%]
-  - [ ] go-github-com-bitly-go-hostpool
-    - [ ] :packed
-  - [ ] go-github-com-bitly-timer-metrics
-    - [ ] :packed
+- [X] :inputs [13/13][100%]
+  - [X] go-github-com-bitly-go-hostpool
+    - [X] :packed <2023-10-10 Tue>
+  - [X] go-github-com-bitly-timer-metrics
+    - [X] :packed <2023-10-10 Tue>
   - [X] go-github-com-blang-semver
-  - [ ] go-github-com-bmizerany-perks-quantile
-    - [ ] :packed
+  - [X] go-github-com-bmizerany-perks-quantile
+    - [X] :packed <2023-10-10 Tue>
   - [X] go-github-com-burntsushi-toml
   - [X] go-github-com-davecgh-go-spew
   - [X] go-github-com-golang-snappy
-  - [ ] go-github-com-julienschmidt-httprouter
-    - [ ] :packed
-  - [ ] go-github-com-mreiferson-go-options
-    - [ ] :packed
-  - [ ] go-github-com-mreiferson-go-svc
-    - [ ] :packed
-  - [ ] go-github-com-nsqio-go-diskqueue
-    - [ ] :packed
-  - [ ] go-github-com-nsqio-go-nsq
-    - [ ] :packed
+  - [X] go-github-com-julienschmidt-httprouter
+    - [X] :packed <2023-10-10 Tue>
+  - [X] go-github-com-mreiferson-go-options
+    - [X] :packed <2023-10-10 Tue>
+  - [X] go-github-com-mreiferson-go-svc
+    - [X] :packed <2023-10-10 Tue>
+  - [X] go-github-com-nsqio-go-diskqueue
+    - [X] :packed <2023-10-10 Tue>
+  - [X] go-github-com-nsqio-go-nsq
+    - [X] :packed <2023-10-10 Tue>
   - [X] python-wrapper

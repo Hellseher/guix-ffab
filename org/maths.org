@@ -1,8 +1,8 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2023-06-09 Fri 22:22:02 BST>
+#+modified: <2023-10-10 Tue 00:38:44 BST>
 
-* Flow [0/4][0%]
+* Flow [1/4][25%]
 ** TODO netlib [0/1][0%] :p5:
 - http://www.netlib.org/
 *** TODO DIERCKX [0/4][0%]
@@ -68,7 +68,8 @@
 - <2022-10-30 Sun> Configure phase still can't find many inputs, need more time to resolve all of
   the issues.
 
-** TODO danieljprice [1/1][100%] :author:
+** DONE danieljprice [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:38]
 *** DONE giza [4/4][100%]
 - https://github.com/danieljprice/giza
 - synopsis :: scientific plotting library for C/Fortran

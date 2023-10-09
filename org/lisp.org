@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-03-31 Fri 21:23:36 BST>
+#+modified: <2023-10-10 Tue 00:41:00 BST>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/lisp-xyz.scm
   - ffab/packages/lisp-check.scm
 
-* Flow [17/43][39%]
+* Flow [24/42][57%]
 ** DONE 3b [4/4][100%] :author:
 CLOSED: [2023-01-17 Tue 20:29]
 *** DONE 3b-bmfont [4/4][100%]
@@ -227,9 +227,15 @@ CLOSED: [2021-06-15 Tue 10:09]
   - [ ] local-time
   - [ ] named-readtables
   - [ ] trivial-features))
-** TODO zombie-raptor [/][%] :author:
-*** TODO zombie-raptor [/][%] :p4:
+
+** TODO zombie-raptor [0/1][0%] :author:
+*** TODO zombie-raptor [0/4][0%] :p4:
 - https://gitlab.com/zombie-raptor/zombie-raptor
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0]
+
 ** DONE bufferswap [1/1][100%] :author:
 CLOSED: [2022-11-20 Sun 20:46]
 - https://github.com/bufferswap
@@ -487,7 +493,8 @@ CLOSED: [2022-11-22 Tue 20:28]
 - [ ] :patch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO foretspaisibles [1/1][100%] :author:
+** DONE foretspaisibles [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:40]
 *** DONE cl-kaputt [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:49]
 - https://github.com/foretspaisibles/cl-kaputt
@@ -579,7 +586,8 @@ CLOSED: [2021-05-02 Sun 20:39]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO hu.dwim [1/1][100%] :author:
+** DONE hu.dwim [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:40]
 - https://github.com/hu-dwim
 - http://dwim.hu/
 *** DONE cl-hu.dwim.graphviz [4/4][100%]
@@ -688,7 +696,8 @@ CLOSED: [2021-06-24 Thu 14:40]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO kaveh808 [1/1][100%] :author:
+** DONE kaveh808 [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:40]
 *** DONE cl-kons-9 [4/4][100%]
 CLOSED: [2023-03-22 Wed 19:48]
 - https://github.com/kaveh808/kons-9
@@ -730,7 +739,8 @@ CLOSED: [2021-03-09 Tue 08:44]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0]
 
-** TODO lispgames [3/3][100%] :author:
+** DONE lispgames [3/3][100%] :author:
+CLOSED: [2023-10-10 Tue 00:40]
 *** DONE cl-glop [4/4][100%]
 - https://github.com/lispgames/glop
 - sinopsis :: Direct FFI bindings for OpenGL window and context management
@@ -859,7 +869,8 @@ CLOSED: [2021-04-25 Sun 17:24]
     - [X] :paptch-applied-upstream <2021-03-08 Mon>
       + https://issues.guix.gnu.org/46977
 
-** TODO melusina-org [1/1][100%] :author:
+** DONE melusina-org [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:40]
 - https://github.com/melusina-org
 *** DONE cl-confidence [4/4][100%]
 CLOSED: [2023-03-22 Wed 19:49]
@@ -870,7 +881,9 @@ CLOSED: [2023-03-22 Wed 19:49]
   - https://issues.guix.gnu.org/62273
 - [X] :inputs [1/1][100%]
   - [X] cl-alexandria
-** TODO mfiano [4/4][100%] :author:
+
+** DONE mfiano [4/4][100%] :author:
+CLOSED: [2023-10-10 Tue 00:39]
 - https://git.mfiano.net/mfiano/
 - https://github.com/mfiano
 *** DONE cl-golden-utils [3/3][100%]
@@ -1104,7 +1117,8 @@ CLOSED: [2021-12-02 Thu 22:38]
   + [X] float-features
   + [X] allegro
 
-** TODO robert-strandh [1/1][100%] :author:
+** DONE robert-strandh [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:39]
 - https://github.com/robert-strandh/
 - http://metamodular.com/
 *** DONE cl-clobber [4/4][100%]

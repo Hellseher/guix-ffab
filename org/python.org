@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2023-06-14 Wed 19:24:33 BST>
+#+modified: <2023-10-10 Tue 00:38:21 BST>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [7/20][35%]
+* Flow [8/20][40%]
 ** DONE aio-libs [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
@@ -226,7 +226,8 @@ CLOSED: [2022-11-08 Tue 11:06]
   - [X] python-pytest-trio
   - [X] python-trio
 
-** TODO pyga [1/1][100%] :author:
+** DONE pyga [1/1][100%] :author:
+CLOSED: [2023-10-10 Tue 00:38]
 - https://github.com/pyga
 *** DONE parsley [5/5][100%]
 CLOSED: [2023-06-14 Wed 19:24]

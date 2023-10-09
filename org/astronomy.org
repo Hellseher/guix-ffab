@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-09-11 Mon 23:55:16 BST>
+#+modified: <2023-10-10 Tue 00:37:29 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [5/57][8%]
+* Flow [5/61][8%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -281,6 +281,40 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
+** TODO aplpy [/][%] :author:
+*** TODO python-aplpy [2/4][50%] :p4:
+- https://github.com/aplpy/aplpy
+- [X] :packed <2023-10-05 Thu>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [11/11][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pillow
+  - [X] python-pyavm
+    - [X] :packed <2023-10-05 Thu>
+  - [X] python-pyregion
+    - [X] :packed <2023-10-05 Thu>
+  - [X] python-pytest-astropy
+  - [X] python-pytest-mpl
+  - [X] python-reproject
+  - [X] python-scikit-image
+  - [X] python-shapely
+** TODO astrofog [/][%] :author:
+- https://github.com/astrofrog
+- author :: Thomas Robitaille
+*** TODO pyavm [2/4][50%] :p1:
+- https://github.com/astrofrog/pyavm
+- [X] :packed <2023-10-05 Thu>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [4/4][100%]
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-pillow
+  - [X] python-pytest
+
 ** TODO ap-i [1/7][14%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -536,12 +570,44 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO Astropy [3/5][60%] :author:
+** TODO Astropy [3/6][50%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
 - synopsis :: The Astropy Project is a community effort to develop a common core package for
   Astronomy in Python and foster an ecosystem of interoperable astronomy packages.
+
+*** DONE python-asdf-astropy [3/3][100%]
+CLOSED: [2022-11-22 Tue 20:33]
+- [X] python-asdf-astropy
+- [X] :packed <2021-11-11 Thu>
+- [X] :inputs [12/12][100%]
+  - [X] python-asdf-coordinates-schemas
+    - [X] :packed <2021-11-11 Thu>
+  - [X] python-asdf-transform-schemas
+    - [X] :packed <2021-11-11 Thu>
+  - [X] python-astropy
+  - [X] python-h5py
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-packaging
+  - [X] python-pandas
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-semantic-version
+  - [X] python-setuptools-scm
+
+*** TODO python-astroplan [2/4][50%] :p1:
+- https://github.com/astropy/astroplan
+- [X] :packed <2022-11-07 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-pytz
+  - [X] python-six
+  - [X] python-pytest-astropy
 
 *** DONE python-astropy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:41]
@@ -663,45 +729,15 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-*** TODO specutils [0/4][0%] :p1:
-- https://github.com/astropy/specutils
-- synopsis :: Astronomical one-dimensional spectral operations.
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
-*** TODO astroplan [2/4][50%] :p1:
-- https://github.com/astropy/astroplan
-- [X] :packed <2022-11-07 Mon>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-astropy
+*** TODO python-pyregion [2/4][50%] :p1:
+- https://github.com/astropy/pyregion
+- [-] :packed <2023-10-05 Thu>
+- [-] :patch-sent
+- [X] :paptch-applied-upstream
+- [X] :inputs [3/3][100%]
+  - [X] python-pyparsing
   - [X] python-numpy
-  - [X] python-pytz
-  - [X] python-six
-  - [X] python-pytest-astropy
-
-*** DONE python-asdf-astropy [3/3][100%]
-CLOSED: [2022-11-22 Tue 20:33]
-- [X] python-asdf-astropy
-- [X] :packed <2021-11-11 Thu>
-- [X] :inputs [12/12][100%]
-  - [X] python-asdf-coordinates-schemas
-    - [X] :packed <2021-11-11 Thu>
-  - [X] python-asdf-transform-schemas
-    - [X] :packed <2021-11-11 Thu>
   - [X] python-astropy
-  - [X] python-h5py
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-packaging
-  - [X] python-pandas
-  - [X] python-pytest-astropy
-  - [X] python-scipy
-  - [X] python-semantic-version
-  - [X] python-setuptools-scm
 
 *** DONE python-reproject [4/4][100%]
 CLOSED: [2022-11-25 Fri 21:08]
@@ -725,6 +761,14 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
   - [X] python-shapely
+*** TODO python-specutils [0/4][0%] :p1:
+- https://github.com/astropy/specutils
+- synopsis :: Astronomical one-dimensional spectral operations.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
 ** TODO ATNF [0/37][0%] :author:
 /Australia Telescope National Facility/
 - https://www.atnf.csiro.au/computing/software/index.html
@@ -1908,14 +1952,15 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] sep [4/4][100%]
     - [X] :packed <2021-02-02 Tue>
 
-** TODO radio-astro-tools [0/1] :authos:
+** TODO radio-astro-tools [1/4] :author:
 - https://github.com/radio-astro-tools
-- sourced-from: https://codeberg.org/vleugelcomplement/guix-astro
-*** TODO python-casa-formats-io [3/4][75%]
+- sourced-from :: https://codeberg.org/vleugelcomplement/guix-astro
+*** DONE python-casa-formats-io [4/4][100%]
+CLOSED: [2023-10-03 Tue 00:47]
 - https://github.com/radio-astro-tools/casa-formats-io
 - [X] :packed <2023-08-27 Sun>
 - [X] :patch-sent <2023-08-27 Sun>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-03 Tue>
   - https://issues.guix.gnu.org/65571
 - [X] :inputs [7/7][100%]
   - [X] python-astropy
@@ -1925,6 +1970,54 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] python-pytest
   - [X] python-pytest-cov
   - [X] python-pytest-openfiles
+
+*** TODO python-pvextractor [0/4][0%] :p1:
+- https://github.com/radio-astro-tools/pvextractor
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+*** TODO python-spectral-cube [1/4][25%] :p1:
+- https://github.com/radio-astro-tools/spectral-cube
+- [X] :packed <2023-10-10 Tue>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [14/15][93%]
+  - [X] python-aplpy
+    - [X] :packed <2023-10-05 Thu>
+  - [X] python-astropy
+  - [X] python-casa-formats-io
+    - [X] :packed <2023-08-27 Sun>
+  - [X] python-dask
+  - [X] python-distributed
+  - [X] python-fsspec
+  - [X] python-glue-core
+    - [X] :packed <2023-10-10 Tue>
+  - [X] python-joblib
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-radio-beam
+    - [X] :packed <2023-10-04 Wed>
+  - [X] python-reproject
+  - [X] python-scipy
+  - [X] python-six
+  - [ ] python-yt (optional)
+    - [ ] :packed
+
+*** TODO python-radio-beam [2/4][50%] :p1:
+https://github.com/radio-astro-tools/radio-beam
+- [X] :packed <2023-10-04 Wed>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [7/7][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-scipy
+  - [X] python-six
 
 ** TODO revoltek [0/1][0%] :author:
 *** TODO losoto [1/4][25%] :p5:
@@ -2031,7 +2124,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] wcslib
   - [ ] plplot
     - [ ] :packed
-** TODO spacetelescope [19/20][95%] :author:
+** TODO spacetelescope [19/22][86%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** TODO ci-watson [1/4][25%] :p5:
@@ -2443,6 +2536,27 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [X] python-pytest-doctestplus
   - [X] python-setuptools-scm
 
+** TODO NANOGrav [0/1][0%] :author:
+- https://github.com/nanograv
+*** TODO tempo [/][%] :p1:
+- https://github.com/nanograv/tempo
+- synopsis :: Tempo is a program for pulsar timing data analysis.
+- [ ] :packed
+- [ ] :patch-prepared
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+** TODO demorest [/][%] :author:
+- https://github.com/demorest
+- author :: Paul Demorest
+*** TODO python-sdmpy [/][%] :p1:
+- https://github.com/demorest/sdmpy
+- synopsis :: Python classes for reading VLA/ALMA Science Data Model (SDM)
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs
+
 ** TODO Starlink [0/1][0%] :author:
 - http://starlink.eao.hawaii.edu/starlink
 *** TODO pal [0/4][0%] :p1:
@@ -2557,6 +2671,7 @@ CLOSED: [2022-11-25 Fri 21:10]
   - [X] python-sqlalchemy
   - [X] python-tqdm
   - [X] python-zeep
+
 ** TODO SURF [/][%] :author:
 - https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
 The Solar UK Research Facility
@@ -2578,7 +2693,7 @@ The Solar UK Research Facility
 - [ ] :inputs [0/0][0%]
 
 * Monthly Update
-** 2023-05 [3/38][7%]
+** 2023-05
 - date-time :: 20230516T203501+0100
 - commit ::
 - [X] python-fitsio 1.1.8, use Gexp
@@ -2701,6 +2816,38 @@ The Solar UK Research Facility
   - [ ] indi :: would be upgraded from 1.9.9 to 2.0.3. stellarium failing.
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
     requried.
+** 2023-09
+- date-time :: 20230905T163102+0100
+- commit :: 8e6022732ab6c4ba256f99d925f5fd413a87372c
+- issues ::
+- quick [16/19][84%]
+  - [X] calceph :: would be upgraded from 3.5.2 to 3.5.3
+  - [X] indi :: would be upgraded from 1.9.9 to 2.0.4
+  - [X] python-cdflib :: would be upgraded from 1.1.0 to 1.2.1
+  - [X] python-crds :: would be upgraded from 11.17.4 to 11.17.6
+  - [X] python-drizzle :: would be upgraded from 1.13.7 to 1.14.3
+  - [X] python-gwcs :: would be upgraded from 0.18.3 to 0.19.0
+  - [X] python-jplephem :: would be upgraded from 2.18 to 2.19
+  - [X] python-jwst :: would be upgraded from 1.11.4 to 1.12.3
+  - [X] python-reproject :: would be upgraded from 0.11.0 to 0.12.0
+  - [X] python-stcal :: would be upgraded from 1.4.2 to 1.4.4
+  - [X] python-stdatamodels :: would be upgraded from 1.8.0 to 1.8.3
+  - [X] python-stpipe :: would be upgraded from 0.5.0 to 0.5.1
+  - [X] python-sunpy :: would be upgraded from 5.0.0 to 5.0.1
+  - [X] python-tweakwcs :: would be upgraded from 0.8.2 to 0.8.3
+  - [X] siril :: would be upgraded from 1.0.6 to 1.2.0
+  - [X] stellarium :: would be upgraded from 23.2 to 23.3
+- complex [0/4][0%]
+  - [ ] cfitsio :: would be upgraded from 4.2.0 to 3100: Require rebuild-the-world.
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failed, more work required.
+  - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.2. Custom JsonSchema implementation.
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Requires more fresh version of
+    python-pydantic, which depends on python-pydantic-core which require brand new Rust based
+    package.
+  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
+    the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0.  Failed to build with adc7333f961259aa627ae930b06cc9f1b522401f commit (newer then 3.5.0 tag). Fortrant and Boost issue.
 
 * Coverage
 | Project        | Debian Astro |   Guix |
