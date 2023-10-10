@@ -23,7 +23,7 @@
 
 ;;; Code:
 
-(define-module (ffab guix import quicklisp)
+(define-module (guix import quicklisp)
   #:use-module (ice-9 popen)
   #:use-module ((ice-9 rdelim) #:select (read-string read-line))
   #:use-module (web uri)
