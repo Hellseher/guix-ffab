@@ -441,8 +441,8 @@
 
 ;; 20221111T211104+0000
 (define-public sbcl-veq
-  (let ((commit "54d7f31cd6d7bcd0b25f5445fa888269078a848b")
-        (revision "0"))
+  (let ((commit "6f8041a20724d65076c06aa11178d94a3266d16c")
+        (revision "1"))
     (package
       (name "sbcl-veq")
       (version (git-version "3.0.0" revision commit))
@@ -454,7 +454,7 @@
                (commit commit)))
          (file-name (git-file-name "cl-veq" version))
          (sha256
-          (base32 "00jf675z1bwkzlngxsfy5ja4bgrdd9p9kvvpr7vzp3gjxizj78km"))))
+          (base32 "1hby08h7qj88nkksg7niaa049rzb5h4s1azqd85q2fb4l49w3z3s"))))
       (build-system asdf-build-system/sbcl)
       (native-inputs (list sbcl-prove))
       (home-page "https://github.com/inconvergent/weir")
