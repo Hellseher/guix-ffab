@@ -322,7 +322,7 @@ appropriate.")
 (define-public casacore-data
   (package
     (name "casacore-data")
-    (version "20221102-160001")
+    (version "20231008-160001")
     (source (origin
               (method url-fetch)
               ;; NOTE: (Sharlatan-20220614T002807+0100): Meeasures data is updated
@@ -333,7 +333,7 @@ appropriate.")
                     version ".ztar"))
               (sha256
                (base32
-                "1lgg9jx1mkn8lv26jm7cp70lr7j4l3nk57wis3dsjvyv7s26mvfm"))))
+                "162zlzkhkfrqlnfwkf9ymb29hffl9inpcgnc4r821lhf9v8blgwx"))))
     (build-system copy-build-system)
     (arguments
      (list #:patch-shebangs? #f
