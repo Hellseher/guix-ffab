@@ -433,44 +433,11 @@
 ;;https://github.com/inconvergent
 ;;+begin-inconvergent
 
-;; 20221111T210641+0000
-(define-public sbcl-weird
-  (let ((commit "6ec0b640efab270374d308feb608d118e9104b0d")
-        (revision "1"))
-    (package
-      (name "sbcl-weird")
-      (version (git-version "7.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/inconvergent/weird")
-               (commit commit)))
-         (file-name (git-file-name "weird" version))
-         (sha256
-          (base32 "05cy492nk9g1kfmhnk5b9g511yj0hvsvigcaankzrf6nbfn2fvb0"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-alexandria
-             sbcl-cl-json
-             sbcl-cl-svg
-             sbcl-lparallel
-             sbcl-veq
-             sbcl-zpng))
-      (home-page "https://github.com/inconvergent/weird")
-      (synopsis "Generative art in Common Lisp")
-      (description
-       "This package provides Common Lisp system for generating 2d and 3d vector
-artworks with SVG and PNG export format.  WEIRD is the next iteration of WEIR,
-which was the next iteration of SNEK.")
-      (license license:expat))))
-
-;; NOTE: (Sharlatan-20221111T211844+0000): ECL is not supported yet.
+;; NOTE: (Sharlatan-20231010T015304+0100): Arcvhied project. See auxin. For a
+;; stripped version of this repo
 ;;
-;; ecl-weird
-
-(define-public cl-weird
-  (sbcl-package->cl-source-package sbcl-weird))
+;; 20221111T210641+0000
+;;-(define-public sbcl-weird
 
 ;; 20221111T211104+0000
 (define-public sbcl-veq
