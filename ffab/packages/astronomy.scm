@@ -1540,37 +1540,8 @@ Equal Area isoLatitude Pixelization}.")
 ;; CommitDate: Thu Aug 17 20:06:41 2023 +0200
 
 ;; 20230909T223933+0100
-(define-public wcstools
-  (package
-    (name "wcstools")
-    (version "3.9.7")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (string-append
-             "http://tdc-www.harvard.edu/software/wcstools/wcstools-"
-             version ".tar.gz"))
-       (sha256
-        (base32 "125hqzspvqrx6372smzsmxwg06ib2arjc5awnwnq53w1xdq6jpsj"))
-       (patches (search-patches "wcstools-extend-makefiles.patch"))))
-    (build-system gnu-build-system)
-    (arguments
-     (list
-      #:tests? #f ;No tests provided.
-      #:make-flags
-      #~(list (string-append "CC=" #$(cc-for-target))
-              (string-append "PREFIX=" #$output))
-      #:phases
-      #~(modify-phases %standard-phases
-          (delete 'configure))))
-    (home-page "http://tdc-www.harvard.edu/software/wcstools/")
-    (synopsis "Handle the WCS of a FITS image")
-    (description
-     "WCSTools is a set of software utilities, written in C, which create,
-display and manipulate the world coordinate system of a FITS or IRAF image,
-using specific keywords in the image header which relate pixel position within
-the image to position on the sky. Auxillary programs search star catalogs and
-manipulate images.")
-    (license license:gpl2+)))
+;; (define-public wcstools
+;; added-to-downstream-guix 9917079bd708deed1e797a60eb549b1586d60962
+;; CommitDate: Thu Oct 5 17:07:16 2023 +0200
 
 ;; End of astronomy.scm
