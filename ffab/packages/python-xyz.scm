@@ -53,7 +53,7 @@
   #:use-module (guix packages))
 
 ;; 20230212T194438+0000
-(define-public python-gallia
+(define python-gallia
   (package
     (name "python-gallia")
     ;; TODO: This is the latest version supporting current Guix's Python 3.9.
