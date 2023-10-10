@@ -1,68 +1,57 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2023-06-16 Fri 23:31:24 BST>
+# Modified : <2023-10-10 Tue 01:07:51 BST>
 
-GET_MODULES := grep "^.define-public"
-FILTER_MODULES := | cut -d' ' -f2 | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
+GET_PUBLIC := grep "define-public"
+FILTER_FLAVORS := | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
+FILTER_ACCEPTED := | grep ";;" | cut -d' ' -f3 $(FILTER_FLAVORS)
+FILTER_PENDING := | grep -v ";;" | cut -d' ' -f2 $(FILTER_FLAVORS)
 
-MODULES_ASTRO :=	\
+fp := ;;% %-next %-ffab
+
+ASTRONOMY :=	\
 ffab/packages/astronomy.scm
 
-MODULES_JULIA :=			\
+JULIA :=			\
 ffab/packages/julia-xyz.scm	\
 ffab/packages/julia-jll.scm	\
 
-MODULES_PYTHON :=				\
-ffab/packages/python-xyz.scm	\
-ffab/packages/python-web.scm	\
-ffab/packages/python-check.scm	\
-ffab/packages/sphinx.scm
-
-MODULES_GOLANG :=					\
+GOLANG :=					\
 ffab/packages/docker.scm			\
 ffab/packages/golang.scm			\
+ffab/packages/golang-web.scm		\
 ffab/packages/terraform.scm
 
-MODULES_LISP :=						\
+LISP :=						\
 ffab/packages/game-development.scm	\
 ffab/packages/lisp-check.scm		\
 ffab/packages/lisp-xyz.scm			\
 ffab/packages/lisp.scm
 
-MODULES_MISC :=						\
-ffab/packages/check.scm				\
-ffab/packages/cinnamon.scm			\
-ffab/packages/cran.scm				\
-ffab/packages/cxx.scm				\
-ffab/packages/databases.scm			\
-ffab/packages/engineering.scm		\
-ffab/packages/geo.scm				\
-ffab/packages/gradle.scm			\
-ffab/packages/high-availability.scm \
-ffab/packages/image.scm				\
-ffab/packages/java-xyz.scm			\
-ffab/packages/maths.scm				\
-ffab/packages/maven.scm				\
-ffab/packages/ocaml-xyz.scm			\
-ffab/packages/pascal.scm			\
-ffab/packages/photo.scm				\
-ffab/packages/rabbitmq.scm			\
-ffab/packages/rust-app.scm			\
-ffab/packages/tls.scm				\
-ffab/packages/web.scm
+PYTHON :=				\
+ffab/packages/python-xyz.scm	\
+ffab/packages/python-web.scm	\
+ffab/packages/python-check.scm	\
+ffab/packages/sphinx.scm
+
+CATEGORIES := $(ASTRONOMY) $(JULIA) $(GOLANG) $(LISP) $(PYTHON)
+
+MISC :=	$(filter-out $(CATEGORIES), $(wildcard ffab/packages/*.scm))
+
+MODULES := $(CATEGORIES) $(MISC)
 
 # TODO: (Sharlatan-20221026T202843+0100): Find the way how to re-build versioned
 # package e.g. python-pytest-7.1, exclude them for now.
-PKGS_ACCEPTED ?= $(shell grep -r ";;..define-public" ffab | cut -d' ' -f3 | sed -e '/.*\..*/d')
-PKGS_PENDING ?= $(shell grep -r "^.define-public" ffab | cut -d' ' -f2)
+PKGS_ACCEPTED ?= $(shell $(GET_PUBLIC) $(MODULES) $(FILTER_ACCEPTED))
+PKGS_PENDING ?= $(shell $(GET_PUBLIC) $(MODULES) $(FILTER_PENDING)))
 
-PKGS_ASTRONOMY ?= $(shell $(GET_MODULES) $(MODULES_ASTRO) $(FILTER_MODULES))
-PKGS_GOLANG ?= $(shell $(GET_MODULES) $(MODULES_GOLANG) $(FILTER_MODULES))
-PKGS_JULIA ?= $(shell $(GET_MODULES) $(MODULES_JULIA) $(FILTER_MODULES))
-PKGS_LISP ?= $(shell $(GET_MODULES) $(MODULES_LISP) $(FILTER_MODULES))
-PKGS_PYTHON ?= $(shell $(GET_MODULES) $(MODULES_PYTHON) $(FILTER_MODULES))
+PKGS_ASTRONOMY ?= $(shell $(GET_PUBLIC) $(ASTRONOMY) $(FILTER_PENDING))
+PKGS_GOLANG ?= $(shell $(GET_PUBLIC) $(GOLANG) $(FILTER_PENDING))
+PKGS_JULIA ?= $(shell $(GET_PUBLIC) $(JULIA) $(FILTER_PENDING))
+PKGS_LISP ?= $(shell $(GET_PUBLIC) $(LISP) $(FILTER_PENDING))
+PKGS_PYTHON ?= $(shell $(GET_PUBLIC) $(PYTHON) $(FILTER_PENDING))
 
-PKGS_MISC ?= $(shell $(GET_MODULES) $(MODULES_MISC) $(FILTER_MODULES))
+PKGS_MISC ?= $(shell $(GET_PUBLIC) $(MISC) $(FILTER_PENDING))
 
 # Add each group of packages to this macros when all pending changes are
 # completed in corresponded WIP branch.
@@ -74,7 +63,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= 6e1215fb9c03ccb4a2d4440990aee5a66a935268
+GUIX_COMMIT ?= 53fd3989d3b99f6eba4a5a007a578f1d9b8e0b61
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
@@ -107,8 +96,8 @@ list:
 	$(info :lisp $(words $(PKGS_LISP)))
 	$(info :python $(words $(PKGS_PYTHON)))
 	$(info :misc $(words $(PKGS_MISC)))
-	@echo
-	@echo :date $$(date)
+	$(info )
+	$(info $(shell date))
 
 .PHONY: lint
 lint:
