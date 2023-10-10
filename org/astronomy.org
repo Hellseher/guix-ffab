@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-10 Tue 00:44:21 BST>
+#+modified: <2023-10-10 Tue 01:14:08 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1020,13 +1020,16 @@ CLOSED: [2021-02-19 Fri 11:14]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO skycat [0/4][0%] :p5:
+*** TODO skycat [1/4][25%] :p4:
+- https://www.eso.org/sci/observing/tools/skycat.html
+- synopsis :: SkyCat is a tool that combines visualization of images and access to catalogs and
+  archive data for astronomy.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/1][0%]
-  + [ ] wcstools
-    - http://tdc-www.harvard.edu/wcstools/
+- [X] :inputs [1/1][100%]
+  + [X] wcstools
+    - [X] :packed<2023-10-10 Tue>
 
 ** TODO free-astro [1/2][50%] :author:
 - https://gitlab.com/free-astro/
