@@ -1,6 +1,6 @@
 #+title: gnu/packages/databases
 #+created: <2021-04-15 Thu 21:34:07 BST>
-#+modified: <2022-11-04 Fri 22:10:34 GMT>
+#+modified: <2023-10-10 Tue 02:46:31 BST>
 
 * DONE pgloader
 CLOSED: [2021-01-19 Tue 22:25]
@@ -188,6 +188,9 @@ CLOSED: [2021-01-19 Tue 22:25]
         + [X] puri
         + [X] cl-base64
 
+* TODO Restream [0/1][0%] :author:
+** TODO reindexer [/][%] :p4:
+- https://github.com/Restream/reindexer
 
 * pgloader Debian suggestions dependencies
 - https://github.com/dimitri/ql-to-deb/tree/master/packages
