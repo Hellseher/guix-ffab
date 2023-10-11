@@ -1159,6 +1159,30 @@ of axis order, spatial projections, and spectral units that exist in the wild.
 ;; (define-public python-stpipe
 ;; added-to-downstream-guix e5b8a87b40710590421915bec0d0c161b684b9fc
 ;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
+(define-public python-stpipe-ffab
+  (let ((commit "37f5c3b823e34cf93fe61a2f36bb62ece075302a")
+        (revision "0"))
+    (package
+      (inherit python-stpipe)
+      (name "python-stpipe")
+      (version (git-version "0.5.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/zacharyburnett/stpipe")
+               (commit commit)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0v8nahwqdp43zjjkfp7wixkmmrdgdjzhzsxr0bw641xrf9wb3kap"))))
+      (arguments
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'set-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.5.1")))))))))
+;; - https://github.com/spacetelescope/stpipe/issues/114
 
 ;; 20220711T123349+0100
 ;; (define-public python-stsci-image
