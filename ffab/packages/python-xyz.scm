@@ -199,6 +199,77 @@ distibute locks across multiple computers.")
 with support of Python v3+.")
     (license license:expat)))
 
+;; 20231011T015829+0100
+(define-public python-can
+  (package
+    (name "python-can")
+    (version "4.2.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "python-can" version))
+       (sha256
+        (base32 "0psrij2rx9jm7zlwr54rjb5nsxqxj342lvbb4x6kr7r82d30zmba"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      ;; XXX: Tests requiring root access to configure interfaces.
+      ;; See project's CI and test/open_vcan.sch
+      #~(list "-k"
+              (string-append "not test_dlc_less_than_eight"
+                             " and not test_extended_message"
+                             " and not test_fd_message"
+                             " and not test_fd_message_with_brs"
+                             " and not test_fileno"
+                             " and not test_multiple_shutdown"
+                             " and not test_no_message"
+                             " and not test_remote_message"
+                             " and not test_standard_message"
+                             " and not test_sub_second_timestamp_resolution"
+                             " and not test_timestamp"
+                             " and not test_timestamp_is_absolute"
+                             " and not test_unique_message_instances"
+                             " and not test_dlc_less_than_eight"
+                             " and not test_extended_message"
+                             " and not test_fd_message"
+                             " and not test_fd_message_with_brs"
+                             " and not test_fileno"
+                             " and not test_multiple_shutdown"
+                             " and not test_no_message"
+                             " and not test_remote_message"
+                             " and not test_standard_message"
+                             " and not test_sub_second_timestamp_resolution"
+                             " and not test_timestamp"
+                             " and not test_timestamp_is_absolute"
+                             " and not test_unique_message_instances"))))
+    (native-inputs
+     (list python-canalystii
+           python-coveralls
+           python-hypothesis
+           python-msgpack
+           python-parameterized
+           python-pyserial
+           python-pytest
+           python-pytest-timeout))
+    (propagated-inputs
+     (list python-packaging
+           python-setuptools
+           python-typing-extensions
+           python-wrapt))
+    (home-page "https://github.com/hardbyte/python-can")
+    (synopsis "Controller Area Network interface module for Python")
+    (description
+     "The @code{can} package provides controller area network support for Python
+developers; providing common abstractions to different hardware devices, and a
+suite of utilities for sending and receiving messages on a can bus.
+
+The Controller Area Network is a bus standard designed to allow microcontrollers
+and devices to communicate with each other.  It has priority based bus
+arbitration and reliable deterministic communication. It is used in cars,
+trucks, boats, wheelchairs and more.")
+    (license license:gpl3+)))
+
 ;; 20220513T200612+0100
 ;; (define-public python-parsley
 ;; added-to-downstream-guix 0ce76141bfe52b7c65d6185d036b4eaad2a0f0a3
