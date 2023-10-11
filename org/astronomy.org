@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-10 Tue 01:14:08 BST>
+#+modified: <2023-10-11 Wed 02:38:38 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -282,11 +282,12 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [X] :inputs [0/0][0%]
 
 ** TODO aplpy [/][%] :author:
-*** TODO python-aplpy [2/4][50%] :p4:
+*** TODO python-aplpy [2/4][50%] :p3:
 - https://github.com/aplpy/aplpy
 - [X] :packed <2023-10-05 Thu>
-- [ ] :patch-sent
+- [X] :patch-sent <2023-10-11 Wed>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/66454
 - [X] :inputs [11/11][100%]
   - [X] python-astropy
   - [X] python-matplotlib
@@ -304,11 +305,12 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 ** TODO astrofog [/][%] :author:
 - https://github.com/astrofrog
 - author :: Thomas Robitaille
-*** TODO pyavm [2/4][50%] :p1:
+*** TODO pyavm [3/4][75%] :p3:
 - https://github.com/astrofrog/pyavm
 - [X] :packed <2023-10-05 Thu>
-- [ ] :patch-sent
+- [X] :patch-sent <2023-10-11 Wed>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/66454
 - [X] :inputs [4/4][100%]
   - [X] python-astropy
   - [X] python-numpy
@@ -729,11 +731,12 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-*** TODO python-pyregion [2/4][50%] :p1:
+*** TODO python-pyregion [3/4][75%] :p3:
 - https://github.com/astropy/pyregion
-- [-] :packed <2023-10-05 Thu>
-- [-] :patch-sent
-- [X] :paptch-applied-upstream
+- [X] :packed <2023-10-05 Thu>
+- [X] :patch-sent <2023-10-11 Wed>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/66454
 - [X] :inputs [3/3][100%]
   - [X] python-pyparsing
   - [X] python-numpy
@@ -1981,11 +1984,12 @@ CLOSED: [2023-10-03 Tue 00:47]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO python-spectral-cube [1/4][25%] :p1:
+*** TODO python-spectral-cube [2/4][50%] :p3:
 - https://github.com/radio-astro-tools/spectral-cube
 - [X] :packed <2023-10-10 Tue>
-- [ ] :patch-sent
+- [X] :patch-sent <2023-10-11 Wed>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/66454
 - [-] :inputs [14/15][93%]
   - [X] python-aplpy
     - [X] :packed <2023-10-05 Thu>
@@ -2008,11 +2012,12 @@ CLOSED: [2023-10-03 Tue 00:47]
   - [ ] python-yt (optional)
     - [ ] :packed
 
-*** TODO python-radio-beam [2/4][50%] :p1:
+*** TODO python-radio-beam [3/4][75%] :p3:
 https://github.com/radio-astro-tools/radio-beam
 - [X] :packed <2023-10-04 Wed>
-- [ ] :patch-sent
+- [X] :patch-sent <2023-10-11 Wed>
 - [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/66454
 - [X] :inputs [7/7][100%]
   - [X] python-astropy
   - [X] python-matplotlib

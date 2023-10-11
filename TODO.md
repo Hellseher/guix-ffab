@@ -54,6 +54,7 @@
     golang.org             github.com/caddyserver  [0/1][0%]     :author:
     golang.org             FiloSottile             [0/1][0%]     :author:
     docker.org             wagoodman               [0/1][0%]     :author:
+    databases.org          Restream                [0/1][0%]     :author:
     audio.org              Shinmera/Shirakumo      [1/1][100%]   :author:
     astronomy.org          XEphem                  [0/4][0%]     :author:
     astronomy.org          wtbarnes                [0/1][0%]     :author:
@@ -124,7 +125,6 @@
     astronomy.org          Xspec                          [0/4][0%]    :p5:
     astronomy.org          THELI                          [0/4][0%]    :p5:
     astronomy.org          sofa-c                         [0/4][0%]    :p5:
-    astronomy.org          skycat                         [0/4][0%]    :p5:
     astronomy.org          scamp                          [0/4][0%]    :p5:
     astronomy.org          SAOImageDS9                    [0/4][0%]    :p5:
     astronomy.org          psfex                          [1/4][25%]   :p5:
@@ -151,6 +151,7 @@
     lisp.org               cl-pkr                         [0/4][0%]    :p4:
     lisp.org               cl-cairo2                      [3/4][75%]   :p4:
     lisp.org               cl-basic-binary-ipc            [0/4][0%]    :p4:
+    databases.org          reindexer                      [/][%]       :p4:
     astronomy.org          WCSLIB                         [/][%]       :p4:
     astronomy.org          VRI                            [/][%]       :p4:
     astronomy.org          UniPOPS                        [/][%]       :p4:
@@ -160,9 +161,9 @@
     astronomy.org          SuperMongo                     [/][%]       :p4:
     astronomy.org          SPC                            [/][%]       :p4:
     astronomy.org          smatch                         [/][%]       :p4:
+    astronomy.org          skycat                         [1/4][25%]   :p4:
     astronomy.org          RPFITS                         [/][%]       :p4:
     astronomy.org          RadialVelocities.              [/][%]       :p4:
-    astronomy.org          python-aplpy                   [2/4][50%]   :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -255,8 +256,13 @@
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
     astronomy.org          SPICE                          [/][%]       :p3:
+    astronomy.org          python-spectral-cube           [2/4][50%]   :p3:
     astronomy.org          python-radiospectra            [/][%]       :p3:
+    astronomy.org          python-radio-beam              [3/4][75%]   :p3:
+    astronomy.org          python-pyregion                [3/4][75%]   :p3:
     astronomy.org          python-ndcube                  [/][%]       :p3:
+    astronomy.org          python-aplpy                   [2/4][50%]   :p3:
+    astronomy.org          pyavm                          [3/4][75%]   :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
@@ -323,17 +329,13 @@
     astronomy.org          tempo                          [/][%]       :p1:
     astronomy.org          SiriLic                        [0/4][0%]    :p1:
     astronomy.org          python-specutils               [0/4][0%]    :p1:
-    astronomy.org          python-spectral-cube           [1/4][25%]   :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
-    astronomy.org          python-radio-beam              [2/4][50%]   :p1:
-    astronomy.org          python-pyregion                [2/4][50%]   :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
     astronomy.org          python-hissw                   [1/4][25%]   :p1:
     astronomy.org          python-chiantipy               [0/4][0%]    :p1:
     astronomy.org          python-casacore                [1/4][25%]   :p1:
     astronomy.org          python-astroplan               [2/4][50%]   :p1:
     astronomy.org          python-aiapy                   [0/4][0%]    :p1:
-    astronomy.org          pyavm                          [2/4][50%]   :p1:
     astronomy.org          phantom                        [0/4][0%]    :p1:
     astronomy.org          pal                            [0/4][0%]    :p1:
     astronomy.org          OpenSpace                      [0/4][0%]    :p1:
@@ -383,6 +385,7 @@
     astronomy.org          ccdciel                        [0/4][0%]    
     
     Completed authors and projects:
+    astronomy.org          2023-09                                       
     astronomy.org          ALFA                             [4/4][100%]  
     astronomy.org          AOCommon                         [3/3][100%]  
     astronomy.org          AOFlagger                        [4/4][100%]  

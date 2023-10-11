@@ -1,0 +1,61 @@
+From 101265d6eaec7ced3c208b58ad528d6efc7c1198 Mon Sep 17 00:00:00 2001
+Message-ID: <101265d6eaec7ced3c208b58ad528d6efc7c1198.1696987806.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1696987806.git.sharlatanus@gmail.com>
+References: <cover.1696987806.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 11 Oct 2023 02:12:47 +0100
+Subject: [PATCH 1/5] gnu: Add python-radio-beam.
+
+* gnu/packages/astronomy.scm (python-radio-beam): New variable.
+---
+ gnu/packages/astronomy.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7c665cba4a..726d4b8a5b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3910,6 +3910,40 @@ (define-public python-rad
+ Grace Roman Space Telescope.")
+     (license license:bsd-3)))
+ 
++(define-public python-radio-beam
++  (package
++    (name "python-radio-beam")
++    (version "0.3.4")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "radio-beam" version))
++       (sha256
++        (base32 "0293hlbxb61h8js7yrvrbiw8108qn5s0rh2iy9rkhc012mzjacp0"))))
++    (build-system pyproject-build-system)
++    (propagated-inputs
++     (list python-astropy
++           python-matplotlib
++           python-numpy
++           python-scipy
++           python-six))
++    (native-inputs (list python-pytest-astropy))
++    (home-page "https://radio-beam.readthedocs.io/en/latest/")
++    (synopsis "Operations for radio astronomy beams with Astropy")
++    (description
++     "Radio Beam is a simple toolkit for reading beam information from FITS
++headers and manipulating beams.
++Some example applications include:
++@itemize
++@item Convolution and deconvolution
++@item Unit conversion (Jy to/from K)
++@item Handle sets of beams for spectral cubes with varying resolution between
++channels
++@item Find the smallest common beam from a set of beams
++@item Add the beam shape to a matplotlib plot
++@end itemize")
++    (license license:bsd-3)))
++
+ (define-public python-roman-datamodels
+   (package
+     (name "python-roman-datamodels")
+-- 
+2.41.0
+
