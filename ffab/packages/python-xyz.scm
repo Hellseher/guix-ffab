@@ -29,6 +29,7 @@
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages geo)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages libusb)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
@@ -294,6 +295,32 @@ Rather than reading the Git history, or having one single file which developers
 all write to and produce merge conflicts, @code{towncrier} reads \"news
 fragments\" which contain information useful to end users.")
     (license license:expat)))
+
+;; 20231012T020416+0100
+(define-public python-canalystii
+  (package
+    (name "python-canalystii")
+    (version "0.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "canalystii" version))
+       (sha256
+        (base32 "110grwfq0azhpzplnhspragyn577dm7gvq3y9byhgi45vyff0wbl"))))
+    (arguments
+     (list
+      ;; Tests require Canalyst-II USB device.
+      #:tests? #f))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-pyusb))
+    (home-page "https://github.com/projectgus/python-canalystii")
+    (synopsis "Python userspace driver for Canalyst-II USB CAN analyzer")
+    (description
+     "This driver is based on black box reverse engineering of the USB behaviour
+of the proprietary software, and reading the basic data structure layouts in the
+original python-can canalystii source.")
+    (license license:bsd-3)))
 
 ;; 20230301T210252+0000
 ;; (define-public python-czml3
