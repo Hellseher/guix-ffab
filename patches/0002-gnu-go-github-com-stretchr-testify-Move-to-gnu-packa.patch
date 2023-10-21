@@ -1,0 +1,229 @@
+From ca0690a045874892ccb762067eea530133a101c7 Mon Sep 17 00:00:00 2001
+Message-ID: <ca0690a045874892ccb762067eea530133a101c7.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 17 Oct 2023 23:59:11 +0100
+Subject: [PATCH 02/19] gnu: go-github-com-stretchr-testify: Move to (gnu
+ packages golang-check).
+
+* gnu/packages/golang.scm (go-github-com-stretchr-testify): Move from
+here...
+* gnu/packages/golang-check.scm: ...to here.
+
+* gnu/packages/databases.scm: Add (gnu packages golang-check) module.
+* gnu/packages/education.scm: As above...
+* gnu/packages/ipfs.scm: As above...
+* gnu/packages/irc.scm: As above...
+* gnu/packages/mail.scm: As above...
+* gnu/packages/textutils.scm: As above...
+* gnu/packages/version-control.scm: As above...
+---
+ gnu/packages/databases.scm       |  1 +
+ gnu/packages/education.scm       |  1 +
+ gnu/packages/golang-check.scm    | 39 ++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm          | 37 +-----------------------------
+ gnu/packages/ipfs.scm            |  1 +
+ gnu/packages/irc.scm             |  1 +
+ gnu/packages/mail.scm            |  1 +
+ gnu/packages/textutils.scm       |  1 +
+ gnu/packages/version-control.scm |  1 +
+ 9 files changed, 47 insertions(+), 36 deletions(-)
+
+diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
+index b5077583c3..e25b88941a 100644
+--- a/gnu/packages/databases.scm
++++ b/gnu/packages/databases.scm
+@@ -106,6 +106,7 @@ (define-module (gnu packages databases)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/education.scm b/gnu/packages/education.scm
+index 61fc9945fa..2fd1d4a632 100644
+--- a/gnu/packages/education.scm
++++ b/gnu/packages/education.scm
+@@ -47,6 +47,7 @@ (define-module (gnu packages education)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages gstreamer)
+   #:use-module (gnu packages image)
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 160fdff6a6..c6b2f3f99e 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -1,4 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
++;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
++;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -31,6 +34,42 @@ (define-module (gnu packages golang-check)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-stretchr-testify
++  (package
++    (name "go-github-com-stretchr-testify")
++    (version "1.7.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/stretchr/testify")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32
++         "0ixgjsvafr3513pz3r6pmgk074s2dxkll0dadvl25gkf30rkmh10"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/stretchr/testify"))
++    (propagated-inputs
++     `(("github.com/davecgh/go-spew" ,go-github-com-davecgh-go-spew)
++       ("github.com/pmezard/go-difflib" ,go-github-com-pmezard-go-difflib)
++       ("github.com/stretchr/objx" ,go-github-com-stretchr-objx)
++       ("gopkg.in/yaml.v3" ,go-gopkg-in-yaml-v3)))
++    (home-page "https://github.com/stretchr/testify")
++    (synopsis "Go helper library for tests and invariant checking")
++    (description "This package provide many tools for testifying that your
++code will behave as you intend.
++
++Features include:
++@itemize
++@item Easy assertions
++@item Mocking
++@item HTTP response trapping
++@item Testing suite interfaces and functions.
++@end itemize")
++    (license license:expat)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 0277265375..9a7f60fc0a 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -78,6 +78,7 @@ (define-module (gnu packages golang)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages lua)
+   #:use-module (gnu packages mail)
+   #:use-module (gnu packages mp3)
+@@ -4588,42 +4589,6 @@ (define-public go-github-com-stretchr-objx
+ slices, JSON and other data.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-stretchr-testify
+-  (package
+-    (name "go-github-com-stretchr-testify")
+-    (version "1.7.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/stretchr/testify")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "0ixgjsvafr3513pz3r6pmgk074s2dxkll0dadvl25gkf30rkmh10"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/stretchr/testify"))
+-    (propagated-inputs
+-     `(("github.com/davecgh/go-spew" ,go-github-com-davecgh-go-spew)
+-       ("github.com/pmezard/go-difflib" ,go-github-com-pmezard-go-difflib)
+-       ("github.com/stretchr/objx" ,go-github-com-stretchr-objx)
+-       ("gopkg.in/yaml.v3" ,go-gopkg-in-yaml-v3)))
+-    (home-page "https://github.com/stretchr/testify")
+-    (synopsis "Go helper library for tests and invariant checking")
+-    (description "This package provide many tools for testifying that your
+-code will behave as you intend.
+-
+-Features include:
+-@itemize
+-@item Easy assertions
+-@item Mocking
+-@item HTTP response trapping
+-@item Testing suite interfaces and functions.
+-@end itemize")
+-    (license license:expat)))
+-
+ (define go-github-com-stretchr-testify-bootstrap
+   (package
+     (inherit go-github-com-stretchr-testify)
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index 1bad48de4c..ac12aea002 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -29,6 +29,7 @@ (define-module (gnu packages ipfs)
+   #:use-module (guix download)
+   #:use-module (guix build-system go)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages shells)
+   #:use-module (gnu packages syncthing))
+diff --git a/gnu/packages/irc.scm b/gnu/packages/irc.scm
+index 9d9e01a280..46961ccb7e 100644
+--- a/gnu/packages/irc.scm
++++ b/gnu/packages/irc.scm
+@@ -67,6 +67,7 @@ (define-module (gnu packages irc)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages guile-xyz)
+diff --git a/gnu/packages/mail.scm b/gnu/packages/mail.scm
+index be458a2d92..709674bf59 100644
+--- a/gnu/packages/mail.scm
++++ b/gnu/packages/mail.scm
+@@ -108,6 +108,7 @@ (define-module (gnu packages mail)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages gsasl)
+   #:use-module (gnu packages gtk)
+diff --git a/gnu/packages/textutils.scm b/gnu/packages/textutils.scm
+index ddeb979334..41a34b6c4e 100644
+--- a/gnu/packages/textutils.scm
++++ b/gnu/packages/textutils.scm
+@@ -63,6 +63,7 @@ (define-module (gnu packages textutils)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages java)
+   #:use-module (gnu packages ncurses)
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index 04b52f2a85..76fa8ef5d0 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -104,6 +104,7 @@ (define-module (gnu packages version-control)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages guile-xyz)
+-- 
+2.41.0
+

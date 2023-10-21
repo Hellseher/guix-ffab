@@ -1,0 +1,123 @@
+From f6fceeac36695dcefa272189823aa5a453244031 Mon Sep 17 00:00:00 2001
+Message-ID: <f6fceeac36695dcefa272189823aa5a453244031.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Oct 2023 23:46:40 +0100
+Subject: [PATCH 03/19] gnu: go-github-com-jacobsa-oglemock: Move to (gnu
+ packages golang-check)
+
+* gnu/packages/golang.scm (go-github-com-jacobsa-oglemock): Move from here...
+* gnu/packages/golang-check.scm: ... to here.
+
+* gnu/packages/file-systems.scm: Add use-module (gnu-packages golang-check).
+---
+ gnu/packages/file-systems.scm |  1 +
+ gnu/packages/golang-check.scm | 31 +++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 29 -----------------------------
+ 3 files changed, 32 insertions(+), 29 deletions(-)
+
+diff --git a/gnu/packages/file-systems.scm b/gnu/packages/file-systems.scm
+index 63de393851..bc061a5958 100644
+--- a/gnu/packages/file-systems.scm
++++ b/gnu/packages/file-systems.scm
+@@ -68,6 +68,7 @@ (define-module (gnu packages file-systems)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages jemalloc)
+   #:use-module (gnu packages kerberos)
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index c6b2f3f99e..7ca3cf5d64 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -2,6 +2,7 @@
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
+ ;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
++;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -34,6 +35,36 @@ (define-module (gnu packages golang-check)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-jacobsa-oglemock
++  (let ((commit "e94d794d06ffc6de42cb19d0dab3c219efdd6dcf")
++        (revision "0"))
++    (package
++      (name "go-github-com-jacobsa-oglemock")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/jacobsa/oglemock")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32
++           "14yxf8ykwdwkcccksl6741xgzcf8qykyi58kp4maxpgscqhdl8rq"))))
++      (build-system go-build-system)
++      (arguments
++       (list
++        #:import-path "github.com/jacobsa/oglemock"
++        ;; break loop with with go-github-com-jacobsa-ogletest
++        #:tests? #f))
++      (native-inputs
++       (list go-github-com-jacobsa-oglematchers))
++      (home-page "https://github.com/jacobsa/oglemock")
++      (synopsis "Mocking framework for unit tests")
++      (description
++       "Package oglemock provides a mocking framework for unit tests.")
++      (license license:asl2.0))))
++
+ (define-public go-github-com-stretchr-testify
+   (package
+     (name "go-github-com-stretchr-testify")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 9a7f60fc0a..05a68cdcc9 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1339,35 +1339,6 @@ (define-public go-github-com-jacobsa-oglematchers
+ Test for C++ and Google JS Test.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-jacobsa-oglemock
+-  (let ((commit "e94d794d06ffc6de42cb19d0dab3c219efdd6dcf")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-jacobsa-oglemock")
+-      (version (git-version "0.0.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/jacobsa/oglemock")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "14yxf8ykwdwkcccksl6741xgzcf8qykyi58kp4maxpgscqhdl8rq"))))
+-      (build-system go-build-system)
+-      (arguments
+-       (list
+-        #:import-path "github.com/jacobsa/oglemock"
+-        ;; break loop with with go-github-com-jacobsa-ogletest
+-        #:tests? #f))
+-      (native-inputs (list
+-                      go-github-com-jacobsa-oglematchers))
+-      (home-page "https://github.com/jacobsa/oglemock")
+-      (synopsis "Mocking framework for unit tests")
+-      (description
+-       "Package oglemock provides a mocking framework for unit tests.")
+-      (license license:asl2.0))))
+-
+ (define-public go-github-com-jacobsa-ogletest
+   (let ((commit "80d50a735a1108a2aeb7abc4a988d183f20c5292")
+         (revision "0"))
+-- 
+2.41.0
+

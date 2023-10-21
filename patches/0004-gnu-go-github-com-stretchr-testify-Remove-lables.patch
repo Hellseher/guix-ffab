@@ -1,0 +1,36 @@
+From ef322497f6dfadcf52e65a15c288fc5436978cd9 Mon Sep 17 00:00:00 2001
+Message-ID: <ef322497f6dfadcf52e65a15c288fc5436978cd9.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Oct 2023 23:49:23 +0100
+Subject: [PATCH 04/19] gnu: go-github-com-stretchr-testify: Remove lables.
+
+* gnu/packages/golang-check.scm (go-github-com-stretchr-testify): Remove
+input lables.
+---
+ gnu/packages/golang-check.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 7ca3cf5d64..46a72e4768 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -83,10 +83,10 @@ (define-public go-github-com-stretchr-testify
+     (arguments
+      '(#:import-path "github.com/stretchr/testify"))
+     (propagated-inputs
+-     `(("github.com/davecgh/go-spew" ,go-github-com-davecgh-go-spew)
+-       ("github.com/pmezard/go-difflib" ,go-github-com-pmezard-go-difflib)
+-       ("github.com/stretchr/objx" ,go-github-com-stretchr-objx)
+-       ("gopkg.in/yaml.v3" ,go-gopkg-in-yaml-v3)))
++     (list go-github-com-davecgh-go-spew
++           go-github-com-pmezard-go-difflib
++           go-github-com-stretchr-objx
++           go-gopkg-in-yaml-v3))
+     (home-page "https://github.com/stretchr/testify")
+     (synopsis "Go helper library for tests and invariant checking")
+     (description "This package provide many tools for testifying that your
+-- 
+2.41.0
+

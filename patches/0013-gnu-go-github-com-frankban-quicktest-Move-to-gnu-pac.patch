@@ -1,0 +1,102 @@
+From 27ff2067679cee97867719e8f72dad3eb4569cdc Mon Sep 17 00:00:00 2001
+Message-ID: <27ff2067679cee97867719e8f72dad3eb4569cdc.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Oct 2023 00:50:30 +0100
+Subject: [PATCH 13/19] gnu: go-github-com-frankban-quicktest: Move to (gnu
+ packages golang-check).
+
+* gnu/packages/golang-check.scm (go-github-com-frankban-quicktest): Move
+from here...
+* gnu/packages/golang.scm: ... to here.
+---
+ gnu/packages/golang-check.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 26 --------------------------
+ 2 files changed, 27 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index d10eced626..82bcfcd28c 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -4,6 +4,7 @@
+ ;;; Copyright © 2019 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
+ ;;; Copyright © 2020 Joseph LaFreniere <joseph@lafreniere.xyz>
++;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2021 Tobias Geerinckx-Rice <me@tobias.gr>
+ ;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+@@ -74,6 +75,32 @@ (define-public go-github-com-cheekybits-is
+ @end itemize\n")
+       (license license:expat))))
+ 
++(define-public go-github-com-frankban-quicktest
++  (package
++    (name "go-github-com-frankban-quicktest")
++    (version "1.11.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/frankban/quicktest")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32
++         "0b1b44b2hli2p969gqz30z8v9z6ahlklpqzi17nwk1lsjz9yv938"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/frankban/quicktest"))
++    (propagated-inputs
++     (list go-github-com-google-go-cmp-cmp go-github-com-kr-pretty))
++    (home-page "https://github.com/frankban/quicktest")
++    (synopsis "Quick helpers for testing Go applications")
++    (description
++     "Package quicktest provides a collection of Go helpers for writing
++tests.")
++    (license license:expat)))
++
+ (define-public go-github-com-google-gofuzz
+   (let ((commit "fd52762d25a41827db7ef64c43756fd4b9f7e382")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index d43b43f905..8860ec50fe 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -10799,32 +10799,6 @@ (define-public go-github-com-gologme-log
+ additions.")
+       (license license:bsd-3))))
+ 
+-(define-public go-github-com-frankban-quicktest
+-  (package
+-    (name "go-github-com-frankban-quicktest")
+-    (version "1.11.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/frankban/quicktest")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "0b1b44b2hli2p969gqz30z8v9z6ahlklpqzi17nwk1lsjz9yv938"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/frankban/quicktest"))
+-    (propagated-inputs
+-     (list go-github-com-google-go-cmp-cmp go-github-com-kr-pretty))
+-    (home-page "https://github.com/frankban/quicktest")
+-    (synopsis "Quick helpers for testing Go applications")
+-    (description
+-     "Package quicktest provides a collection of Go helpers for writing
+-tests.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-bep-golibsass
+   (package
+     (name "go-github-com-bep-golibsass")
+-- 
+2.41.0
+

@@ -1,0 +1,96 @@
+From 92c77923ee6650a70e9582e8da7329590a0b4c42 Mon Sep 17 00:00:00 2001
+Message-ID: <92c77923ee6650a70e9582e8da7329590a0b4c42.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Oct 2023 00:27:08 +0100
+Subject: [PATCH 08/19] gnu: go-gopkg-in-go-playground-assert-v1: Move to (gnu
+ packages golang-check).
+
+* gnu/packages/golang-check.scm (go-gopkg-in-go-playground-assert-v1):
+Move from here...
+* gnu/packages/golang.scm: ... to here.
+---
+ gnu/packages/golang-check.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 23 -----------------------
+ 2 files changed, 24 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 414423a5ef..4b7ca74cc2 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -4,6 +4,7 @@
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
+ ;;; Copyright © 2020 Joseph LaFreniere <joseph@lafreniere.xyz>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
++;;; Copyright © 2021 Tobias Geerinckx-Rice <me@tobias.gr>
+ ;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
+ ;;;
+@@ -189,6 +190,29 @@ (define-public go-gopkg-in-check-v1
+     (description "This package provides a test library for the Go language.")
+     (license license:bsd-2)))
+ 
++(define-public go-gopkg-in-go-playground-assert-v1
++  (package
++    (name "go-gopkg-in-go-playground-assert-v1")
++    (version "1.2.1")
++    (home-page "https://github.com/go-playground/assert")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url home-page)
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1h4amgykpa0djwi619llr3g55p75ia0mi184h9s5zdl8l4rhn9pm"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "gopkg.in/go-playground/assert.v1"))
++    (synopsis "Basic assertion library used alongside native Go testing")
++    (description
++     "This package provides basic assertions along with building blocks for
++custom assertions to be used alongside native Go testing.")
++    (license license:expat)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index cfd7fb73ad..c3cb30c344 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3064,29 +3064,6 @@ (define-public go-github.com-jessevdk-go-flags
+     (home-page "https://github.com/jessevdk/go-flags")
+     (license license:bsd-3)))
+ 
+-(define-public go-gopkg-in-go-playground-assert-v1
+-  (package
+-    (name "go-gopkg-in-go-playground-assert-v1")
+-    (version "1.2.1")
+-    (home-page "https://github.com/go-playground/assert")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url home-page)
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32 "1h4amgykpa0djwi619llr3g55p75ia0mi184h9s5zdl8l4rhn9pm"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "gopkg.in/go-playground/assert.v1"))
+-    (synopsis "Basic assertion library used alongside native Go testing")
+-    (description
+-     "This package provides basic assertions along with building blocks for
+-custom assertions to be used alongside native Go testing.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-go-playground-locales
+   (package
+     (name "go-github-com-go-playground-locales")
+-- 
+2.41.0
+

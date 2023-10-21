@@ -1,0 +1,75 @@
+From 1d1d15118cabce4efe4e06602daf39b5ed7a046e Mon Sep 17 00:00:00 2001
+Message-ID: <1d1d15118cabce4efe4e06602daf39b5ed7a046e.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 17 Oct 2023 23:53:16 +0100
+Subject: [PATCH 01/19] gnu: Add (gnu packages golang-check) module.
+
+* gnu/packages/golang-check.scm: New file.
+* gnu/local.mk: Add to gnu/packages/golang-check.scm scope.
+---
+ gnu/local.mk                  |  1 +
+ gnu/packages/golang-check.scm | 38 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 gnu/packages/golang-check.scm
+
+diff --git a/gnu/local.mk b/gnu/local.mk
+index daacd786a7..5f50801073 100644
+--- a/gnu/local.mk
++++ b/gnu/local.mk
+@@ -302,6 +302,7 @@ GNU_SYSTEM_MODULES =				\
+   %D%/packages/gnu-pw-mgr.scm			\
+   %D%/packages/gobby.scm			\
+   %D%/packages/golang.scm			\
++  %D%/packages/golang-check.scm		\
+   %D%/packages/gperf.scm			\
+   %D%/packages/gpodder.scm			\
+   %D%/packages/gps.scm				\
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+new file mode 100644
+index 0000000000..160fdff6a6
+--- /dev/null
++++ b/gnu/packages/golang-check.scm
+@@ -0,0 +1,38 @@
++;;; GNU Guix --- Functional package management for GNU
++;;;
++;;; This file is part of GNU Guix.
++;;;
++;;; GNU Guix is free software; you can redistribute it and/or modify it
++;;; under the terms of the GNU General Public License as published by
++;;; the Free Software Foundation; either version 3 of the License, or (at
++;;; your option) any later version.
++;;;
++;;; GNU Guix is distributed in the hope that it will be useful, but
++;;; WITHOUT ANY WARRANTY; without even the implied warranty of
++;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;;; GNU General Public License for more details.
++;;;
++;;; You should have received a copy of the GNU General Public License
++;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
++
++(define-module (gnu packages golang-check)
++  #:use-module ((guix licenses) #:prefix license:)
++  #:use-module (guix packages)
++  #:use-module (guix build-system go)
++  #:use-module (guix git-download)
++  #:use-module (gnu packages)
++  #:use-module (gnu packages golang))
++
++;;; Commentary:
++;;;
++;;; Golang packages to unit-test, mock, assert, lint processes for Golang itself.
++;;;
++;;; Please: Try to add new module packages in alphabetic order.
++;;;
++;;; Code:
++
++;;;
++;;; Avoid adding new packages to the end of this file. To reduce the chances
++;;; of a merge conflict, place them above by existing packages with similar
++;;; functionality or similar names.
++;;;
+-- 
+2.41.0
+

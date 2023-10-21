@@ -1,0 +1,116 @@
+From 2c59da6a5b7158ba1ca65e7fa74ceafdc33bc41e Mon Sep 17 00:00:00 2001
+Message-ID: <2c59da6a5b7158ba1ca65e7fa74ceafdc33bc41e.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Oct 2023 01:14:26 +0100
+Subject: [PATCH 16/19] gnu: go-honnef-co-go-tools: Move to (gnu packages
+ golang-check).
+
+* gnu/packages/golang-check.scm (go-honnef-co-go-tools): Move from
+here...
+* gnu/packages/golang.scm: ... to here.
+---
+ gnu/packages/golang-check.scm | 36 +++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 31 ------------------------------
+ 2 files changed, 36 insertions(+), 31 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index ce4afe64ac..011198231d 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -5,6 +5,7 @@
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
+ ;;; Copyright © 2020 Joseph LaFreniere <joseph@lafreniere.xyz>
+ ;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
++;;; Copyright © 2021 Guillaume Le Vaillant <glv@posteo.net>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2021 Tobias Geerinckx-Rice <me@tobias.gr>
+ ;;; Copyright © 2022 ( <paren@disroot.org>
+@@ -45,6 +46,41 @@ (define-module (gnu packages golang-check)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-honnef-co-go-tools
++  (package
++    (name "go-honnef-co-go-tools")
++    (version "0.3.3")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/dominikh/go-tools")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32
++         "099z04v7vvwwglnps315s9fmal68xvzlc1g8m26iqi980grbwn32"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "honnef.co/go/tools"
++       #:tests? #f
++       ;; Source-only package
++       #:phases (modify-phases %standard-phases
++                  (delete 'build))))
++    (propagated-inputs
++     (list go-github-com-burntsushi-toml
++           go-github-com-kisielk-gotool
++           go-golang-org-x-exp
++           go-golang-org-x-mod
++           go-golang-org-x-tools))
++    (home-page "https://honnef.co/go/tools")
++    (synopsis "Staticcheck advanced Go linter")
++    (description
++     "Staticcheck is a state of the art linter for the Go programming language.
++Using static analysis, it finds bugs and performance issues, offers
++simplifications, and enforces style rules.")
++    (license license:expat)))
++
+ (define-public go-github-com-cheekybits-is
+   (let ((commit "68e9c0620927fb5427fda3708222d0edee89eae9")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3ff544a67b..2503fca0b6 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -11529,37 +11529,6 @@ (define-public go-github-com-kisielk-gotool
+ tools with similar semantics.")
+     (license license:expat)))
+ 
+-(define-public go-honnef-co-go-tools
+-  (package
+-    (name "go-honnef-co-go-tools")
+-    (version "0.3.3")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/dominikh/go-tools")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "099z04v7vvwwglnps315s9fmal68xvzlc1g8m26iqi980grbwn32"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "honnef.co/go/tools"
+-       #:tests? #f
+-       ;; Source-only package
+-       #:phases (modify-phases %standard-phases
+-                  (delete 'build))))
+-    (propagated-inputs (list go-golang-org-x-exp go-golang-org-x-tools
+-                             go-golang-org-x-mod go-github-com-kisielk-gotool
+-                             go-github-com-burntsushi-toml))
+-    (home-page "https://honnef.co/go/tools")
+-    (synopsis "Staticcheck advanced Go linter")
+-    (description
+-     "Staticcheck is a state of the art linter for the Go programming language.
+-Using static analysis, it finds bugs and performance issues, offers
+-simplifications, and enforces style rules.")
+-    (license license:expat)))
+-
+ (define-public go-go-uber-org-zap
+   (package
+     (name "go-go-uber-org-zap")
+-- 
+2.41.0
+

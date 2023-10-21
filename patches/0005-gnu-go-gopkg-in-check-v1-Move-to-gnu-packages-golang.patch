@@ -1,0 +1,140 @@
+From 2d0f36c510d18893cf00d824b2104bbf4cbcaafe Mon Sep 17 00:00:00 2001
+Message-ID: <2d0f36c510d18893cf00d824b2104bbf4cbcaafe.1697678664.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1697678664.git.sharlatanus@gmail.com>
+References: <cover.1697678664.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Oct 2023 00:08:45 +0100
+Subject: [PATCH 05/19] gnu: go-gopkg-in-check-v1: Move to (gnu packages
+ golang-check).
+
+* gnu/packages/golang.scm (go-gopkg-in-check-v1): Move from here...
+* gnu/packages/golang-check.scm (go-gopkg-in-check-v1): ... to here.
+
+* gnu/packages/bioinformatics.scm: Add (gnu-packages golang-check) to
+use-module.
+---
+ gnu/packages/bioinformatics.scm |  1 +
+ gnu/packages/golang-check.scm   | 36 +++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm         | 33 ------------------------------
+ 3 files changed, 37 insertions(+), 33 deletions(-)
+
+diff --git a/gnu/packages/bioinformatics.scm b/gnu/packages/bioinformatics.scm
+index 45afde699d..96b59268d0 100644
+--- a/gnu/packages/bioinformatics.scm
++++ b/gnu/packages/bioinformatics.scm
+@@ -93,6 +93,7 @@ (define-module (gnu packages bioinformatics)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gd)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages graph)
+   #:use-module (gnu packages graphics)
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 46a72e4768..81583a5ac7 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -1,6 +1,8 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
++;;; Copyright © 2019 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
++;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
+ ;;;
+@@ -23,6 +25,7 @@ (define-module (gnu packages golang-check)
+   #:use-module ((guix licenses) #:prefix license:)
+   #:use-module (guix packages)
+   #:use-module (guix build-system go)
++  #:use-module (guix gexp)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang))
+@@ -101,6 +104,39 @@ (define-public go-github-com-stretchr-testify
+ @end itemize")
+     (license license:expat)))
+ 
++(define-public go-gopkg-in-check-v1
++  (package
++    (name "go-gopkg-in-check-v1")
++    (version "1.0.0-20201130134442-10cb98267c6c")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/go-check/check")
++             (commit (go-version->git-ref version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32
++         "1jwxndf8rsyx0fgrp47d99rp55yzssmryb92jfj3yf7zd8rjjljn"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "gopkg.in/check.v1"
++      #:phases
++      #~(modify-phases %standard-phases
++          (replace 'check
++            (lambda* (#:key inputs #:allow-other-keys #:rest args)
++              (unless
++                  ;; The tests fail when run with gccgo.
++                  (false-if-exception (search-input-file inputs "/bin/gccgo"))
++                (apply (assoc-ref %standard-phases 'check) args)))))))
++    (propagated-inputs
++     (list go-github-com-kr-pretty))
++    (home-page "https://gopkg.in/check.v1")
++    (synopsis "Test framework for the Go language")
++    (description "This package provides a test library for the Go language.")
++    (license license:bsd-2)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 05a68cdcc9..794e5f0f49 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5660,39 +5660,6 @@ (define-public go-github-com-gorhill-cronexpr
+       (license (list license:gpl3+
+                      license:asl2.0)))))
+ 
+-(define-public go-gopkg-in-check-v1
+-  (package
+-    (name "go-gopkg-in-check-v1")
+-    (version "1.0.0-20201130134442-10cb98267c6c")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/go-check/check")
+-             (commit (go-version->git-ref version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "1jwxndf8rsyx0fgrp47d99rp55yzssmryb92jfj3yf7zd8rjjljn"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list
+-       #:import-path "gopkg.in/check.v1"
+-       #:phases
+-       #~(modify-phases %standard-phases
+-           (replace 'check
+-             (lambda* (#:key inputs #:allow-other-keys #:rest args)
+-               (unless
+-                 ;; The tests fail when run with gccgo.
+-                 (false-if-exception (search-input-file inputs "/bin/gccgo"))
+-                 (apply (assoc-ref %standard-phases 'check) args)))))))
+-    (propagated-inputs
+-     (list go-github-com-kr-pretty))
+-    (home-page "https://gopkg.in/check.v1")
+-    (synopsis "Test framework for the Go language")
+-    (description "This package provides a test library for the Go language.")
+-    (license license:bsd-2)))
+-
+ (define-public go-gopkg-in-ini-v1
+   (package
+     (name "go-gopkg-in-ini-v1")
+-- 
+2.41.0
+
