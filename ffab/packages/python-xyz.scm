@@ -32,6 +32,7 @@
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages geo)
   #:use-module (gnu packages image)
+  #:use-module (gnu packages image-processing)
   #:use-module (gnu packages libusb)
   #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python-build)
@@ -287,6 +288,47 @@ for you. If you can accomplish your tasks with the ffmpeg command, PyAV may not
 be necessary. Nonetheless, PyAV is an essential tool when working with media
 that requires its specific capabilities.")
     (license license:bsd-3)))
+
+;; 20231022T014831+0100
+(define-public python-djitellopy
+  (package
+    (name "python-djitellopy")
+    (version "2.5.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "djitellopy" version))
+       (sha256
+        (base32 "1kc0syb4hpn7fay0rxpazmczag6jw3pncrrc6v762jj0afiwkrps"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:tests? #f ; No tests provided.
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; XXX: Can't detect opencv-python version. The input opencv might not
+          ;; set the version correctly.
+          (delete 'sanity-check))))
+    ;; opencv provides OpenCV-Python which is Listed as install requirement.
+    (propagated-inputs
+     (list opencv
+           python-av
+           python-numpy
+           python-pillow))
+    (home-page "https://github.com/damiafuentes/DJITelloPy")
+    (synopsis "DJI Tello drone lib with video streaming, swarms and state packets")
+    (description
+     "DJI Tello drone python interface using the official Tello SDK and Tello
+EDU SDK.
+
+ This library has the following features:
+@itemize
+@item Implementation of all tello commands
+@item Retrieve a video stream easely
+@item Receive and parse state packets
+@item Control a swarm of drones
+@end itemize")
+    (license license:expat)))
 
 ;; 20221104T210922+0000
 (define-public python-py3amf
