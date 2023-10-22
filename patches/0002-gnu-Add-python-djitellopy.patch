@@ -1,0 +1,67 @@
+From 4b264b1249ff7c4b67c301df8a83f1ab134433b0 Mon Sep 17 00:00:00 2001
+Message-ID: <4b264b1249ff7c4b67c301df8a83f1ab134433b0.1698015372.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698015372.git.sharlatanus@gmail.com>
+References: <cover.1698015372.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 22 Oct 2023 23:55:23 +0100
+Subject: [PATCH 2/2] gnu: Add python-djitellopy.
+
+* gnu/packages/python-xyz.scm (python-djitellopy): New variable.
+---
+ gnu/packages/python-xyz.scm | 40 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 1558c74492..ef3ec0ee97 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -29932,6 +29932,46 @@ (define-public python-parallel
+ applications with variable CPU loads).")
+     (license license:bsd-3)))
+ 
++(define-public python-djitellopy
++  (package
++    (name "python-djitellopy")
++    (version "2.5.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "djitellopy" version))
++       (sha256
++        (base32 "1kc0syb4hpn7fay0rxpazmczag6jw3pncrrc6v762jj0afiwkrps"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:tests? #f ; No tests provided.
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; XXX: Can't detect opencv-python version. The input opencv might not
++          ;; set the version correctly.
++          (delete 'sanity-check))))
++    ;; opencv provides OpenCV-Python which is Listed as install requirement.
++    (propagated-inputs
++     (list opencv
++           python-av
++           python-numpy
++           python-pillow))
++    (home-page "https://github.com/damiafuentes/DJITelloPy")
++    (synopsis "DJI Tello drone lib with video streaming, swarms and state packets")
++    (description
++     "DJI Tello drone python interface using the official Tello SDK and Tello
++EDU SDK.
++
++This library has the following features:
++@itemize
++@item Implementation of all tello commands
++@item Retrieve a video stream easely
++@item Receive and parse state packets
++@item Control a swarm of drones
++@end itemize")
++    (license license:expat)))
++
+ (define-public python-djvulibre
+   (package
+     (name "python-djvulibre")
+-- 
+2.41.0
+
