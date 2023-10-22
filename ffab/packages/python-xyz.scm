@@ -23,13 +23,17 @@
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
+  #:use-module (gnu packages fontutils)
   #:use-module (gnu packages commencement)
+  #:use-module (gnu packages xiph)
+  #:use-module (gnu packages compression)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages geo)
   #:use-module (gnu packages image)
   #:use-module (gnu packages libusb)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages python-build)
   #:use-module (gnu packages python-check)
   #:use-module (gnu packages python-compression)
@@ -42,6 +46,7 @@
   #:use-module (gnu packages statistics)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
+  #:use-module (gnu packages video)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages)
   #:use-module (guix build-system python)
@@ -178,6 +183,110 @@ from a single ECU up to whole cars.")
      "This package provides POSIX file locking with support of Redis to
 distibute locks across multiple computers.")
     (license license:psfl)))
+
+;; 20231022T002437+0100
+(define-public python-av
+  (package
+    (name "python-av")
+    (version "10.0.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "av" version))
+       (sha256
+        (base32 "01byqsjclkg65mhr6b4i2r2n4y7af9kdd2c35lxny27121b3vzca"))))
+    (build-system pyproject-build-system)
+    ;; Build process is not strait forward like for common Python package and
+    ;; require good amount of system libraries to complete the build. There are
+    ;; some helper build tools in scripts/ directory.
+    ;; See
+    ;; https://github.com/PyAV-Org/PyAV/blob/main/.github/workflows/tests.yml
+    (arguments
+     (list
+      #:test-flags
+      #~(list
+         ;; Tests require outbound access to download test data
+         ;; from http://fate.ffmpeg.org/fate-suite:
+         ;;
+         ;; E urllib.error.URLError: <urlopen error [Errno -3]
+         ;; Temporary failure in name resolution>
+         ;;
+         "--ignore=tests/test_doctests.py"
+         "--ignore=tests/test_timeout.py"
+         "-k"
+         (string-append
+          "not test_data"
+          " and not test_container_probing"
+          " and not test_stream_probing"
+          " and not test_transcode"
+          " and not test_codec_tag"
+          " and not test_parse"
+          " and not test_decode_audio_sample_count"
+          " and not test_decoded_motion_vectors"
+          " and not test_decoded_motion_vectors_no_flag"
+          " and not test_decoded_time_base"
+          " and not test_decoded_video_frame_count"
+          " and not test_encoding_aac"
+          " and not test_encoding_dnxhd"
+          " and not test_encoding_dvvideo"
+          " and not test_encoding_h264"
+          " and not test_encoding_mjpeg"
+          " and not test_encoding_mp2"
+          " and not test_encoding_mpeg1video"
+          " and not test_encoding_mpeg4"
+          " and not test_encoding_pcm_s24le"
+          " and not test_encoding_png"
+          " and not test_encoding_tiff"
+          " and not test_encoding_xvid"
+          " and not test_reading_from_buffer"
+          " and not test_reading_from_buffer_no_seek"
+          " and not test_reading_from_file"
+          " and not test_reading_from_pipe_readonly"
+          " and not test_reading_from_write_readonly"
+          " and not test_writing_to_custom_io_dash"
+          " and not test_writing_to_custom_io_image2"
+          " and not test_decode_half"
+          " and not test_seek_end"
+          " and not test_seek_float"
+          " and not test_seek_int64"
+          " and not test_seek_middle"
+          " and not test_seek_start"
+          " and not test_stream_seek"
+          " and not test_selection"
+          " and not test_stream_tuples"
+          " and not test_movtext"
+          " and not test_vobsub"
+          " and not test_roundtrip"
+          " and not test_stream_probing"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'build-extensions
+            (lambda _
+              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+    (native-inputs
+     (list pkg-config
+           python-cython
+           python-editorconfig
+           python-numpy
+           python-pillow
+           python-pytest))
+    (inputs
+     ;; XXX: Build is failing with FFmpeg 6.0, unresolved upstream.
+     ;; See https://github.com/PyAV-Org/PyAV/issues/1106
+     (list ffmpeg-5))
+    (home-page "https://github.com/PyAV-Org/PyAV")
+    (synopsis "Pythonic bindings for FFmpeg's libraries.")
+    (description
+     "PyAV is a Python library that allows for direct and precise manipulation
+of media through containers, streams, packets, codecs, and frames. It provides
+access to the powerful FFmpeg libraries while managing the complex details as
+much as possible. PyAV also facilitates data transformation and integration with
+other packages such as Numpy and Pillow. However, working with media is a
+challenging task and PyAV cannot abstract it away or make all the best decisions
+for you. If you can accomplish your tasks with the ffmpeg command, PyAV may not
+be necessary. Nonetheless, PyAV is an essential tool when working with media
+that requires its specific capabilities.")
+    (license license:bsd-3)))
 
 ;; 20221104T210922+0000
 (define-public python-py3amf
