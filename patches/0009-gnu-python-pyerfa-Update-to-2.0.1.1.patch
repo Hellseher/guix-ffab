@@ -1,0 +1,44 @@
+From 869a191f3e4571352074db31556c91f21daccbd9 Mon Sep 17 00:00:00 2001
+Message-ID: <869a191f3e4571352074db31556c91f21daccbd9.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 23 Oct 2023 21:34:53 +0100
+Subject: [PATCH 09/19] gnu: python-pyerfa: Update to 2.0.1.1.
+
+* gnu/packages/astronomy.scm (python-pyerfa): Update to 2.0.1.1.
+---
+ gnu/packages/astronomy.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index bc44f3cbab..bd146afd3c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3358,13 +3358,13 @@ (define-public python-jwst
+ (define-public python-pyerfa
+   (package
+     (name "python-pyerfa")
+-    (version "2.0.0.3")
++    (version "2.0.1.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyerfa" version))
+        (sha256
+-        (base32 "0f8zykzxjsiwv5ibdn5asla2ng2xl0xdkrcrrd61j31mb3xbnzyp"))
++        (base32 "0swsdkipnk73iflsa7qbaw89wahbnfyvplqaxwi0yfrxippp9b6v"))
+        (modules '((guix build utils)))
+        (snippet
+         #~(begin
+@@ -3375,6 +3375,7 @@ (define-public python-pyerfa
+      (list
+       ;; Disable only one failing test:
+       ;; AttributeError: __warningregistry__
++      ;; See https://github.com/liberfa/pyerfa/issues/126
+       #:test-flags #~(list "-k" "not test_errwarn_reporting")
+       #:phases
+       #~(modify-phases %standard-phases
+-- 
+2.41.0
+

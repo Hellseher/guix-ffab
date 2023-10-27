@@ -1,0 +1,30 @@
+From d9ecdddd7232548ce53d0293e23de581547bcd25 Mon Sep 17 00:00:00 2001
+Message-ID: <d9ecdddd7232548ce53d0293e23de581547bcd25.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 23 Oct 2023 00:38:35 +0100
+Subject: [PATCH 01/19] gnu: glnemo2: Fix home-page.
+
+* gnu/packages/astronomy.scm (glnemo2): Fix home-page to point to actual
+project's one.
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 764a674a6d..0eaa734e84 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -869,7 +869,7 @@ (define-public glnemo2
+            libtirpc
+            qtbase-5
+            zlib))
+-    (home-page "https://projets.lam.fr/projects/unsio/wiki")
++    (home-page "https://projets.lam.fr/projects/glnemo2/wiki/Wiki")
+     (synopsis "3D interactive visualization program for n-body like particles")
+     (description
+      "GLNEMO2 is an interactive 3D visualization program which displays
+-- 
+2.41.0
+

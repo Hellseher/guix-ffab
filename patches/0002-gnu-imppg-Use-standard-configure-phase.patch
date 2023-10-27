@@ -1,0 +1,44 @@
+From bac82dec7042643adbfc293c852fe7fbbbd4f549 Mon Sep 17 00:00:00 2001
+Message-ID: <bac82dec7042643adbfc293c852fe7fbbbd4f549.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 23 Oct 2023 00:52:41 +0100
+Subject: [PATCH 02/19] gnu: imppg: Use standard configure phase.
+
+* gnu/packages/astronomy.scm (imppg): Use G-expressions.
+[arguments]{phases}: Use 'configure standard phase instead of
+replacement.
+---
+ gnu/packages/astronomy.scm | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0eaa734e84..63b502be81 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3100,19 +3100,8 @@ (define-public imppg
+         (base32 "0a6wb1a9adwd01dmy0r03xxp8iz9y7mvh30088ajilhj4lf90vxa"))))
+     (build-system cmake-build-system)
+     (arguments
+-     `(#:tests? #f                      ;no test provided
+-       #:phases
+-       (modify-phases %standard-phases
+-         (replace 'configure
+-           (lambda* (#:key outputs #:allow-other-keys)
+-             (mkdir-p "build")
+-             (chdir "build")
+-             (invoke
+-              "cmake"
+-              "-G" "Unix Makefiles"
+-              "-DCMAKE_BUILD_TYPE=Release"
+-              (string-append "-DCMAKE_INSTALL_PREFIX=" (assoc-ref outputs "out"))
+-              ".."))))))
++     (list ;; No test provided
++      #:tests? #f))
+     (native-inputs
+      (list boost pkg-config))
+     (inputs
+-- 
+2.41.0
+

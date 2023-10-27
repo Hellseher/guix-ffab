@@ -1,0 +1,47 @@
+From 5ea09d04e9cecec945e7ce0b581e0d38b1ad6bad Mon Sep 17 00:00:00 2001
+Message-ID: <5ea09d04e9cecec945e7ce0b581e0d38b1ad6bad.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 23 Oct 2023 03:34:41 +0100
+Subject: [PATCH 05/19] gnu: python-pynbody: Update to 1.4.1.
+
+* gnu/packages/astronomy.scm (python-pynbody): Update to 1.4.1.
+[source]: Switch to git-fetch.
+---
+ gnu/packages/astronomy.scm | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3b85d4ec9e..9cdf264389 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3403,13 +3403,21 @@ (define-public python-pyerfa
+ (define-public python-pynbody
+   (package
+     (name "python-pynbody")
+-    (version "1.3.1")
++    (version "1.4.1")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "pynbody" version))
++       (method git-fetch) ;PyPi doesn't have not prebuit version.
++       (uri (git-reference
++             (url "https://github.com/pynbody/pynbody")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1yp7ja66zqmbnh7bbwbyimxq1nkrmjrcif2rzfm1hswm0fp2fbga"))))
++        (base32 "1vl1yif3bsazcil6saghrpa4qsg47fnr7xnkjpqnp44b7ipww27r"))
++       (modules '((guix build utils)))
++       (snippet
++        ;; Symlink goes to not existing directory.
++        #~(for-each delete-file '("docs/testdata"
++                                  "docs/tutorials/example_code/testdata")))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:test-flags #~(list
+-- 
+2.41.0
+

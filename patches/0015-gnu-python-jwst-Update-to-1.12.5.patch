@@ -1,0 +1,36 @@
+From ad8591a4a971a7593fdb08c93433ef008b1097ff Mon Sep 17 00:00:00 2001
+Message-ID: <ad8591a4a971a7593fdb08c93433ef008b1097ff.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 27 Oct 2023 14:30:55 +0100
+Subject: [PATCH 15/19] gnu: python-jwst: Update to 1.12.5.
+
+* gnu/packages/astronomy.scm (python-jwst): Update to 1.12.5.
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e18d86f191..c5a6f59e87 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3293,13 +3293,13 @@ (define-public python-jplephem
+ (define-public python-jwst
+   (package
+     (name "python-jwst")
+-    (version "1.12.3")
++    (version "1.12.5")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "jwst" version))
+               (sha256
+                (base32
+-                "0bw7i0pmpdgk2zf47d57g45hm3yb4wbrf1p19z9vg555qv4f4kr5"))))
++                "0blrl00lz1snhcnr7j59nh05rnpqxdnfp8hhgagkr50h85q4smrn"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

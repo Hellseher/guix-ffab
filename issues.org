@@ -177,7 +177,6 @@
 - [X] <2023-02-24 Fri> https://issues.guix.gnu.org/61772 <2023-02-27 Mon>
 - [X] <2023-03-06 Mon> https://issues.guix.gnu.org/62017 <2023-03-06 Mon>
 - [X] <2023-03-08 Wed> https://issues.guix.gnu.org/62061 <2023-03-16 Thu>
-- [X] <2023-03-14 Tue> https://issues.guix.gnu.org/62195 <2023-03-16 Thu>
 - [X] <2023-03-19 Sun> https://issues.guix.gnu.org/62273 <2023-03-22 Wed>
 - [X] <2023-03-20 Mon> https://issues.guix.gnu.org/62306 <2023-04-11 Tue>
 - [X] <2023-03-27 Mon> https://issues.guix.gnu.org/62477 <2023-03-30 Thu>
@@ -195,8 +194,11 @@
 - [ ] <2023-10-11 Wed> https://issues.guix.gnu.org/66454
 - [ ] <2023-10-23 Mon> https://issues.guix.gnu.org/66688
 
-* Package updates [38/39][97%]
+* Package updates [40/43][93%]
+- [ ] <2023-10-27 Fri> https://issues.guix.gnu.org/66778
 - [ ] <2023-10-19 Thu> https://issues.guix.gnu.org/66627
+- [X] <2023-10-19 Thu> https://issues.guix.gnu.org/66619 <2023-10-23 Mon>
+  - [X] https://issues.guix.gnu.org/66627
 - [X] <2023-10-09 Mon> https://issues.guix.gnu.org/66412 <2023-10-11 Wed>
 - [X] <2023-09-07 Thu> https://issues.guix.gnu.org/65814 <2023-09-27 Wed>
 - [X] <2023-09-04 Mon> https://issues.guix.gnu.org/65743 <2023-09-13 Wed>
@@ -219,6 +221,7 @@
 - [X] <2023-04-02 Sun> https://issues.guix.gnu.org/62631 <2023-04-04 Tue>
 - [X] <2023-03-17 Fri> https://issues.guix.gnu.org/62247 <2023-03-27 Mon>
 - [X] <2023-03-15 Wed> https://issues.guix.gnu.org/62212 <2023-03-15 Wed>
+- [X] <2023-03-14 Tue> https://issues.guix.gnu.org/62195 <2023-03-16 Thu>
 - [X] <2023-02-28 Tue> https://issues.guix.gnu.org/61878 <2023-03-14 Tue>
 - [X] <2023-02-12 Sun> https://issues.guix.gnu.org/61464 <2023-02-20 Mon>
 - [X] <2023-02-08 Wed> https://issues.guix.gnu.org/61357 <2023-02-20 Mon>

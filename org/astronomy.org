@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-11 Wed 02:38:38 BST>
+#+modified: <2023-10-27 Fri 23:16:27 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [5/61][8%]
+* Flow [5/63][7%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -1938,7 +1938,35 @@ CLOSED: [2023-03-16 Thu 21:54]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [-] :inputs [4/28][14%]
+  - [ ] python-hupper
+  - [X] python-matplotlib
+  - [ ] python-more_itertools
+  - [X] python-numpy
+  - [ ] python-pastedeploy
+  - [ ] python-plaster
+  - [ ] python-plaster_pastedeploy
+  - [ ] python-pymysq
+  - [X] python-pynbody
+  - [ ] python-pyparsing
+  - [ ] python-pyquery
+  - [ ] python-pyramid
+  - [ ] python-pyramid_debugtoolbar
+  - [ ] python-pyramid_jinja2
+  - [ ] python-pyramid_tm','pyramid_retry
+  - [ ] python-pytest
+  - [ ] python-repoze.lru
+  - [X] python-scipy
+  - [ ] python-sqlalchemy
+  - [ ] python-translationstring
+  - [ ] python-venusian
+  - [ ] python-waitress
+  - [ ] python-webob
+  - [ ] python-webtest
+  - [ ] python-yt
+  - [ ] python-zope.deprecation
+  - [ ] python-zope.interface
+  - [ ] python-zope.sqlalchemy
 
 ** TODO QuatroPe [1/2][50%] :author:
 - https://github.com/quatrope
@@ -2047,7 +2075,7 @@ https://github.com/radio-astro-tools/radio-beam
   - [X] python-tables
 ** TODO ruven [0/1][0%] :author:
 - author :: https://github.com/ruven
-*** TODO IIPImage [1/4][25%] :p3:
+*** TODO IIPImage [1/4][25%] :p4:
 - https://iipimage.sourceforge.io/
 - https://github.com/ruven/iipsrv
 - synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
@@ -2060,6 +2088,36 @@ https://github.com/radio-astro-tools/radio-beam
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
+** TODO yt-project [/][%] :author:
+*** TODO python-yt [0/4][0%] :p1:
+- https://github.com/yt-project/yt
+- synopsis :: Python library for analyzing and visualizing volumetric data.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/18][0%]
+  - [ ] python-cmyt
+    - [ ] :packed
+  - [ ] python-ewah-bool-utils
+    - [ ] :packed
+  - [ ] python-ipywidgets
+  - [ ] python-matplotlib
+  - [ ] python-more-itertools
+  - [ ] python-nose
+  - [ ] python-nose-exclude
+    - [ ] :packed
+  - [ ] python-nose-timer
+  - [ ] python-numpy
+  - [ ] python-packaging
+  - [ ] python-pillow
+  - [ ] python-pyaml
+  - [ ] python-pytest
+  - [ ] python-pytest-mpl
+  - [ ] python-sympy
+  - [ ] python-tomli-w
+  - [ ] python-tqdm
+  - [ ] python-unyt
+    - [ ] :packed
 
 ** TODO rwesson [1/2][50%] :author:
 - https://github.com/rwesson
@@ -2132,10 +2190,10 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] wcslib
   - [ ] plplot
     - [ ] :packed
-** TODO spacetelescope [19/22][86%] :author:
+** TODO spacetelescope [19/21][90%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
-*** TODO ci-watson [1/4][25%] :p5:
+*** TODO python-ci-watson [1/4][25%] :p5:
 - https://github.com/spacetelescope/ci_watson
 - https://ci-watson.readthedocs.io/
 - [X] :packed <2022-11-06 Sun>
@@ -2225,7 +2283,7 @@ CLOSED: [2023-06-14 Wed 19:25]
   - [X] python-pytest-cov
   - [X] python-setuptools-scm
 
-*** DONE gwcs [4/4][100%]
+*** DONE python-gwcs [4/4][100%]
 - https://github.com/spacetelescope/gwcs
 - [X] :packed <2021-11-11 Thu>
 - [X] :patch-sent <2021-11-11 Thu>
@@ -2528,7 +2586,7 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [X] python-stsci-stimage
     - [X] :packed <2022-11-06 Sun>
 
-*** DONE wiimatch [4/4][100%]
+*** DONE python-wiimatch [4/4][100%]
 CLOSED: [2023-06-14 Wed 19:29]
 - https://github.com/spacetelescope/wiimatch
 - [X] :packed <2022-11-06 Sun>
@@ -2543,6 +2601,55 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [X] python-pytest-cov
   - [X] python-pytest-doctestplus
   - [X] python-setuptools-scm
+*** TODO python-jdaviz [0/4][0%] :p4:
+- https://github.com/spacetelescope/jdaviz
+- synopsis :: JWST astronomical data analysis tools in the Jupyter platform
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [13/38][34%]
+  - [ ] python-asdf
+  - [ ] python-asteval
+  - [X] python-astropy
+  - [X] python-astroquery
+  - [ ] python-bqplot
+  - [ ] python-bqplot-image-gl
+  - [ ] python-echo
+  - [ ] python-glue-astronomy
+  - [ ] python-glue-core
+  - [ ] python-glue-jupyter
+  - [X] python-gwcs
+  - [ ] python-idna
+  - [ ] python-ipygoldenlayout
+  - [ ] python-ipykernel
+  - [ ] python-ipypopout
+  - [ ] python-ipysplitpanes
+  - [ ] python-ipyvue
+  - [ ] python-ipyvuetify
+  - [ ] python-ipywidgets
+  - [X] python-matplotlib
+  - [X] python-opencv
+  - [X] python-packaging
+  - [X] python-photutils
+  - [ ] python-pysiaf
+    - [ ] :packed
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [ ] python-pytest-tornasync
+  - [X] python-pyyaml
+  - [X] python-regions
+  - [X] python-scikit-image
+  - [ ] python-sidecar
+    - [ ] :packed
+  - [ ] python-specreduce
+  - [ ] python-specutils
+    - [ ] :packed
+  - [ ] python-stdatamodels
+  - [ ] python-traitlets
+  - [ ] python-vispy
+    - [ ] :packed
+  - [X] python-voila
+  - [ ] python-y-py
 
 ** TODO NANOGrav [0/1][0%] :author:
 - https://github.com/nanograv
@@ -2699,6 +2806,7 @@ The Solar UK Research Facility
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
+** TODO ESA [/][%] :author:
 
 * Monthly Update
 ** 2023-05
@@ -2847,7 +2955,6 @@ CLOSED: [2023-10-10 Tue 00:44]
   - [X] siril :: would be upgraded from 1.0.6 to 1.2.0
   - [X] stellarium :: would be upgraded from 23.2 to 23.3
 - complex [0/7][0%]
-  - [ ] cfitsio :: would be upgraded from 4.2.0 to 3100: Require rebuild-the-world.
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failed, more work required.
   - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.2. Custom JsonSchema implementation.
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
@@ -2857,6 +2964,40 @@ CLOSED: [2023-10-10 Tue 00:44]
   - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
     the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0.  Failed to build with adc7333f961259aa627ae930b06cc9f1b522401f commit (newer then 3.5.0 tag). Fortrant and Boost issue.
+** TODO 2023-10
+- date-time :: 20231023T002143+0100
+- commit :: 554956439ba5837a8ea3af78829ed595381273be
+- issues :: https://issues.guix.gnu.org/66778
+- quick [17/17][100%]
+  - [X] erfa :: would be upgraded from 2.0.0 to 2.0.1
+  - [X] glnemo2 :: Fix home-page.
+  - [X] imppg :: would be upgraded from 0.6.5 to 1.9.1-beta, use standard configure phase.
+  - [X] libxisf :: would be upgraded from 0.2.9 to 0.2.10
+  - [X] python-asdf :: would be upgraded from 2.15.0 to 3.0.0
+  - [X] python-astroalign :: would be upgraded from 2.4.2 to 2.5.0
+  - [X] python-astropy :: would be upgraded from 5.3.3 to 5.3.4
+    - https://github.com/astropy/astropy/issues/15537
+  - [X] python-cdflib :: would be upgraded from 1.2.1 to 1.2.3
+  - [X] python-crds :: would be upgraded from 11.17.6 to 11.17.7
+  - [X] python-ephem :: would be upgraded from 4.1.4 to 4.1.5
+  - [X] python-jwst :: would be upgraded from 1.12.3 to 1.12.5
+  - [X] python-pyerfa :: would be upgraded from 2.0.0.3 to 2.0.1.1
+  - [X] python-pynbody :: Update to 1.4.1
+  - [X] python-pytest-astropy :: would be upgraded from 0.10.0 to 0.11.0
+  - [X] python-pytest-doctestplus :: would be upgraded from 0.12.1 to 1.0.0
+  - [X] python-pytest-remotedata :: would be upgraded from 0.4.0 to 0.4.1
+  - [X] python-spherical-geometry :: Enable tests
+- complxe [0/6][0%]
+  - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
+  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+- archived [0/1]
+  - [ ] python-poliastro :: https://github.com/poliastro/poliastro/issues/1640
+
 
 * Coverage
 | Project        | Debian Astro |   Guix |
@@ -2893,3 +3034,4 @@ CLOSED: [2023-10-10 Tue 00:44]
 - https://github.com/dnwrnr/sgp4
 - https://www.danrw.com/sgp4/
 - https://github.com/mbiesiad/awesome-astronomy
+- https://joss.theoj.org/papers

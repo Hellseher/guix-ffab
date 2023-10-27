@@ -1,0 +1,36 @@
+From cbc16664157ede84068814bc3361eb4e7c89c643 Mon Sep 17 00:00:00 2001
+Message-ID: <cbc16664157ede84068814bc3361eb4e7c89c643.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 23 Oct 2023 01:20:15 +0100
+Subject: [PATCH 03/19] gnu: python-spherical-geometry: Simplify package.
+
+* gnu/packages/astronomy.scm (python-spherical-geometry):
+[arguments]{phases}<preparations>: Switch to
+SETUPTOOLS_SCM_PRETEND_VERSION evnar instead modifying setup.py.
+---
+ gnu/packages/astronomy.scm | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 63b502be81..18cf562e12 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2480,12 +2480,7 @@ (define-public python-spherical-geometry
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'preparations
+             (lambda _
+-              ;; Fixing: setuptools-scm was unable to detect version for ...
+-              (substitute* "setup.py"
+-                (("use_scm_version=True")
+-                 (format #f "version=~s" #$version))
+-                (("setup_requires=\\['setuptools_scm'\\],.*")
+-                 ""))
++              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
+               ;; Use our own libraries in place of bundles.
+               (setenv "USE_SYSTEM_QD" "1"))))))
+     (native-inputs
+-- 
+2.41.0
+

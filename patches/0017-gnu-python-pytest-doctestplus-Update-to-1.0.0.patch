@@ -1,0 +1,36 @@
+From 8435ba0096992917c3e934253da654b241d37d33 Mon Sep 17 00:00:00 2001
+Message-ID: <8435ba0096992917c3e934253da654b241d37d33.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 27 Oct 2023 14:48:21 +0100
+Subject: [PATCH 17/19] gnu: python-pytest-doctestplus: Update to 1.0.0.
+
+* gnu/packages/python-check (python-pytest-doctestplus): Update to 1.0.0.
+---
+ gnu/packages/python-check.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index ef1db87102..9dafae0d67 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -568,13 +568,13 @@ (define-public python-pytest-arraydiff
+ (define-public python-pytest-doctestplus
+   (package
+     (name "python-pytest-doctestplus")
+-    (version "0.12.1")
++    (version "1.0.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pytest-doctestplus" version))
+        (sha256
+-        (base32 "10ciqylgziihxwxryxvxgmkqgws51pqcarn0gbh1d4cxx55rx5vs"))))
++        (base32 "17ylfnrcvvp6sd13bfj40jl40paqmjsbywysszb3xqgdr86l8l7n"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:test-flags
+-- 
+2.41.0
+

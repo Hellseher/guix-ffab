@@ -1,0 +1,115 @@
+From 930123eed7ff4f683ed302de20c42a343f83a1ba Mon Sep 17 00:00:00 2001
+Message-ID: <930123eed7ff4f683ed302de20c42a343f83a1ba.1698444193.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698444193.git.sharlatanus@gmail.com>
+References: <cover.1698444193.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 27 Oct 2023 15:29:11 +0100
+Subject: [PATCH 19/19] gnu: python-asdf: Update to 3.0.0.
+
+* gnu/packages/astronomy.scm (python-asdf-3.0): New variable, migrated
+from python-asdf.
+[arguments]: Move it from here ...
+[native-inputs]: Remove python-astronomy, python-pytest-openfiles.
+[propagated-inputs]: Add python-attrs. Remove
+python-importlib-resources, python-jsonschema.
+
+(python-asdf-2.15): New variable. Inherited from python-asdf-3.0.
+[arguments]: ... to here.
+
+(python-asdf): Set it to use python-asdf-2.15 as 3.0.0 includes some
+breaking changes which may not testes in dependent projects.
+---
+ gnu/packages/astronomy.scm | 48 ++++++++++++++++++++++++++------------
+ 1 file changed, 33 insertions(+), 15 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c5a6f59e87..ea69ad6542 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3598,32 +3598,23 @@ (define-public python-tweakwcs
+ @code{FITS WCS} and @code{JWST gWCS} are supported.")
+     (license license:bsd-3)))
+ 
+-(define-public python-asdf
++(define-public python-asdf-3.0
+   (package
+     (name "python-asdf")
+-    (version "2.15.0")
++    (version "3.0.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))
++        (base32 "1a6lf75q9w8fsyq3hn6a7fyldkkyqxddlq21fwdfjwij40dzh3s8"))))
+     (build-system pyproject-build-system)
+-    (arguments
+-     (list #:test-flags
+-           #~(list "-k" (string-append
+-                         "not test_overwrite"
+-                         " and not test_tagging_scalars"
+-                         " and not test_info_command"
+-                         " and not test_array_inline_threshold_recursive"))))
+     (native-inputs
+-     (list python-astropy
+-           python-fsspec
++     (list python-fsspec
+            python-packaging
+            python-psutil
+            python-pytest
+            python-pytest-doctestplus
+-           python-pytest-openfiles
+            python-pytest-remotedata
+            python-semantic-version
+            python-setuptools-scm))
+@@ -3631,10 +3622,9 @@ (define-public python-asdf
+      (list python-asdf-standard
+            python-asdf-transform-schemas
+            python-asdf-unit-schemas
++           python-attrs ;; for vendorized jsonschema
+            python-importlib-metadata
+-           python-importlib-resources
+            python-jmespath
+-           python-jsonschema
+            python-lz4
+            python-numpy
+            python-pyyaml))
+@@ -3646,6 +3636,34 @@ (define-public python-asdf
+ implementation of the ASDF Standard.")
+     (license license:bsd-3)))
+ 
++(define-public python-asdf-2.15
++  (package
++    (inherit python-asdf-3.0)
++    (version "2.15.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "asdf" version))
++       (sha256
++        (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))
++    (arguments
++     (list #:test-flags
++           #~(list "-k" (string-append
++                         "not test_overwrite"
++                         " and not test_tagging_scalars"
++                         " and not test_info_command"
++                         " and not test_array_inline_threshold_recursive"))))
++    (native-inputs
++     (modify-inputs (package-native-inputs python-asdf-3.0)
++       (prepend python-astropy python-pytest-openfiles)))
++    (propagated-inputs
++     (modify-inputs (package-propagated-inputs python-asdf-3.0)
++       (prepend python-jsonschema python-importlib-resources)))))
++
++(define-public python-asdf
++  ;; Default version of ASDF..
++  python-asdf-2.15)
++
+ (define-public python-asdf-standard
+   (package
+     (name "python-asdf-standard")
+-- 
+2.41.0
+
