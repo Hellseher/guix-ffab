@@ -197,17 +197,25 @@ distibute locks across multiple computers.")
        (sha256
         (base32 "01byqsjclkg65mhr6b4i2r2n4y7af9kdd2c35lxny27121b3vzca"))))
     (build-system pyproject-build-system)
+<<<<<<< HEAD
     ;; Build process is not strait forward like for common Python package and
     ;; require good amount of system libraries to complete the build. There are
     ;; some helper build tools in scripts/ directory.
     ;; See
     ;; https://github.com/PyAV-Org/PyAV/blob/main/.github/workflows/tests.yml
+=======
+>>>>>>> 24c6fff (ffab: Add python-av.)
     (arguments
      (list
       #:test-flags
       #~(list
+<<<<<<< HEAD
          ;; Tests require outbound access to download test data
          ;; from http://fate.ffmpeg.org/fate-suite:
+=======
+         ;; Tests require outbound access to download data samples from
+         ;; http://fate.ffmpeg.org/fate-suite:
+>>>>>>> 24c6fff (ffab: Add python-av.)
          ;;
          ;; E urllib.error.URLError: <urlopen error [Errno -3]
          ;; Temporary failure in name resolution>
@@ -276,6 +284,7 @@ distibute locks across multiple computers.")
      ;; See https://github.com/PyAV-Org/PyAV/issues/1106
      (list ffmpeg-5))
     (home-page "https://github.com/PyAV-Org/PyAV")
+<<<<<<< HEAD
     (synopsis "Pythonic bindings for FFmpeg's libraries.")
     (description
      "PyAV is a Python library that allows for direct and precise manipulation
@@ -330,6 +339,22 @@ EDU SDK.
 @end itemize")
     (license license:expat)))
 
+=======
+    (synopsis "Pythonic bindings for FFmpeg's libraries")
+    (description
+     "PyAV is a Python library that allows for direct and precise manipulation
+of media through containers, streams, packets, codecs, and frames.  It provides
+access to the powerful FFmpeg libraries while managing the complex details as
+much as possible.
+PyAV also facilitates data transformation and integration with
+other packages such as Numpy and Pillow.  However, working with media is a
+challenging task and PyAV cannot abstract it away or make all the best decisions
+for you.  If you can accomplish your tasks with the ffmpeg command, PyAV may not
+be necessary.  Nonetheless, PyAV is an essential tool when working with media
+that requires its specific capabilities.")
+    (license license:bsd-3)))
+
+>>>>>>> 24c6fff (ffab: Add python-av.)
 ;; 20221104T210922+0000
 (define-public python-py3amf
   (package
