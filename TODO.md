@@ -56,12 +56,13 @@
     docker.org             wagoodman               [0/1][0%]     :author:
     databases.org          Restream                [0/1][0%]     :author:
     audio.org              Shinmera/Shirakumo      [1/1][100%]   :author:
+    astronomy.org          yt-project              [/][%]        :author:
     astronomy.org          XEphem                  [0/4][0%]     :author:
     astronomy.org          wtbarnes                [0/1][0%]     :author:
     astronomy.org          SURF                    [/][%]        :author:
     astronomy.org          SunPy                   [4/6][66%]    :author:
     astronomy.org          Starlink                [0/1][0%]     :author:
-    astronomy.org          spacetelescope          [19/22][86%]  :author:
+    astronomy.org          spacetelescope          [19/21][90%]  :author:
     astronomy.org          schirmermischa          [0/1][0%]     :author:
     astronomy.org          SAOImageDS9             [0/1][0%]     :author:
     astronomy.org          rwesson                 [1/2][50%]    :author:
@@ -74,7 +75,7 @@
     astronomy.org          OpenSpace               [0/2][0%]     :author:
     astronomy.org          OpenAstronomy           [/][%]        :author:
     astronomy.org          neuromorphicsystems     [0/1][0%]     :author:
-    astronomy.org          NASA                    [0/7][0%]     :author:
+    astronomy.org          NASA                    [0/8][0%]     :author:
     astronomy.org          NANOGrav                [0/1][0%]     :author:
     astronomy.org          mgckind                 [0/1][0%]     :author:
     astronomy.org          MAVENSDC                [1/1][100%]   :author:
@@ -95,6 +96,7 @@
     astronomy.org          free-astro              [1/2][50%]    :author:
     astronomy.org          ESO                     [1/3][33%]    :author:
     astronomy.org          esheldon                [0/3][0%]     :author:
+    astronomy.org          ESA                     [/][%]        :author:
     astronomy.org          ericmandel              [0/1][0%]     :author:
     astronomy.org          dstndstn                [0/1][0%]     :author:
     astronomy.org          dokester                [0/1][0%]     :author:
@@ -127,6 +129,7 @@
     astronomy.org          sofa-c                         [0/4][0%]    :p5:
     astronomy.org          scamp                          [0/4][0%]    :p5:
     astronomy.org          SAOImageDS9                    [0/4][0%]    :p5:
+    astronomy.org          python-ci-watson               [1/4][25%]   :p5:
     astronomy.org          psfex                          [1/4][25%]   :p5:
     astronomy.org          losoto                         [1/4][25%]   :p5:
     astronomy.org          julia-backgroundmeshes         [0/4][0%]    :p5:
@@ -140,7 +143,6 @@
     astronomy.org          HEAsoft                        [0/4][0%]    :p5:
     astronomy.org          Ghoul                          [0/4]        :p5:
     astronomy.org          eclipse                        [0/4][0%]    :p5:
-    astronomy.org          ci-watson                      [1/4][25%]   :p5:
     astronomy.org          CDF                            [0/4][0%]    :p5:
     astronomy.org          astrometry                     [0/4][0%]    :p5:
     astronomy.org          AIPS                           [/][%]       :p5:
@@ -164,6 +166,7 @@
     astronomy.org          skycat                         [1/4][25%]   :p4:
     astronomy.org          RPFITS                         [/][%]       :p4:
     astronomy.org          RadialVelocities.              [/][%]       :p4:
+    astronomy.org          python-jdaviz                  [0/4][0%]    :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -220,11 +223,13 @@
     astronomy.org          IRAF                           [/][%]       :p4:
     astronomy.org          InterSat                       [/][%]       :p4:
     astronomy.org          INTER                          [/][%]       :p4:
+    astronomy.org          IIPImage                       [1/4][25%]   :p4:
     astronomy.org          IDL                            [/][%]       :p4:
     astronomy.org          HEASARC                        [/][%]       :p4:
     astronomy.org          GIPSY                          [/][%]       :p4:
     astronomy.org          Gildas                         [/][%]       :p4:
     astronomy.org          FTOOLS                         [/][%]       :p4:
+    astronomy.org          ftools-fv                      [1/4][25%]   :p4:
     astronomy.org          FITS                           [/][%]       :p4:
     astronomy.org          esutil                         [/][%]       :p4:
     astronomy.org          easyaccess                     [/][%]       :p4:
@@ -305,7 +310,6 @@
     astronomy.org          julia-astrodynpropagators      [/][%]       :p3:
     astronomy.org          julia-astrodynplots            [/][%]       :p3:
     astronomy.org          julia-astrodynamics            [/][%]       :p3:
-    astronomy.org          IIPImage                       [1/4][25%]   :p3:
     astronomy.org          HEALPix                        [1/4][25%]   :p3:
     astronomy.org          gammapy                        [0/4][0%]    :p3:
     astronomy.org          BayesicFitting                 [2/4][50%]   :p3:
@@ -328,6 +332,7 @@
     astronomy.org          Torus                          [1/4][25%]   :p1:
     astronomy.org          tempo                          [/][%]       :p1:
     astronomy.org          SiriLic                        [0/4][0%]    :p1:
+    astronomy.org          python-yt                      [0/4][0%]    :p1:
     astronomy.org          python-specutils               [0/4][0%]    :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
@@ -383,6 +388,7 @@
     astronomy.org          inistarter                     [0/4][0%]    
     astronomy.org          eqmodgui                       [0/4][0%]    
     astronomy.org          ccdciel                        [0/4][0%]    
+    astronomy.org          2023-10                                     
     
     Completed authors and projects:
     astronomy.org          2023-09                                       
@@ -392,7 +398,6 @@
     astronomy.org          casacore                         [4/4][100%]  
     astronomy.org          cdflib                           [4/4][100%]  
     astronomy.org          eye                              [3/3][100%]  
-    astronomy.org          gwcs                             [4/4][100%]  
     astronomy.org          imppg                            [4/4][100%]  
     astronomy.org          indi                             [4/4][100%]  
     astronomy.org          julia-astrotime                  [4/4][100%]  
@@ -420,6 +425,7 @@
     astronomy.org          python-czml3                     [4/4][100%]  
     astronomy.org          python-drizzle                   [5/5][100%]  
     astronomy.org          python-drms                      [5/5][100%]  
+    astronomy.org          python-gwcs                      [4/4][100%]  
     astronomy.org          python-hvpy                      [4/4][100%]  
     astronomy.org          python-jwst                      [4/4][100%]  
     astronomy.org          python-mpl-animations            [4/4][100%]  
@@ -440,6 +446,7 @@
     astronomy.org          python-sunpy                     [3/4][75%]   
     astronomy.org          python-synphot                   [5/5][100%]  
     astronomy.org          python-tweakwcs                  [5/5][100%]  
+    astronomy.org          python-wiimatch                  [4/4][100%]  
     astronomy.org          pyton-asdf-fits-schemas          [4/4][100%]  
     astronomy.org          pyton-asdf-table-schemas         [1/1][100%]  
     astronomy.org          qfits                            [3/3][100%]  
@@ -452,7 +459,6 @@
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
     astronomy.org          weightwatcher                    [3/3][100%]  
-    astronomy.org          wiimatch                         [4/4][100%]  
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  
     databases.org          pgloader                                      

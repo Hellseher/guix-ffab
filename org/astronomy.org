@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-27 Fri 23:16:27 BST>
+#+modified: <2023-10-28 Sat 00:24:27 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1714,13 +1714,21 @@ CLOSED: [2023-02-15 Wed 21:47]
 *** TODO easyaccess [/][%] :p4:
 - https://github.com/mgckind/easyaccess
 
-** TODO NASA [0/7][0%] :author:
+** TODO NASA [0/8][0%] :author:
 *** TODO HEAsoft [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+
+*** TODO ftools-fv [1/4][25%] :p4:
+- https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/ftools/fv/
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] cfitsio
 
 *** TODO FITSVERIFY [0/4][0%] :p1:
 - https://heasarc.gsfc.nasa.gov/docs/software/ftools/fitsverify/
