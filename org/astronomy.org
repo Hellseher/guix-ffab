@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-28 Sat 00:24:27 BST>
+#+modified: <2023-11-02 Thu 00:13:11 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [5/63][7%]
+* Flow [6/62][9%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -281,12 +281,14 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO aplpy [/][%] :author:
-*** TODO python-aplpy [2/4][50%] :p3:
+** DONE aplpy [1/1][100%] :author:
+CLOSED: [2023-11-01 Wed 23:54]
+*** DONE python-aplpy [4/4][100%]
+CLOSED: [2023-11-01 Wed 23:53]
 - https://github.com/aplpy/aplpy
 - [X] :packed <2023-10-05 Thu>
 - [X] :patch-sent <2023-10-11 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
 - [X] :inputs [11/11][100%]
   - [X] python-astropy
@@ -302,14 +304,16 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
   - [X] python-reproject
   - [X] python-scikit-image
   - [X] python-shapely
-** TODO astrofog [/][%] :author:
+
+** TODO astrofog [1/1][100%] :author:
 - https://github.com/astrofrog
 - author :: Thomas Robitaille
-*** TODO pyavm [3/4][75%] :p3:
+*** DONE pyavm [4/4][100%]
+CLOSED: [2023-11-01 Wed 23:55]
 - https://github.com/astrofrog/pyavm
 - [X] :packed <2023-10-05 Thu>
 - [X] :patch-sent <2023-10-11 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
 - [X] :inputs [4/4][100%]
   - [X] python-astropy
@@ -572,7 +576,7 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO Astropy [3/6][50%] :author:
+** TODO Astropy [4/6][66%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -731,11 +735,12 @@ CLOSED: [2021-11-08 Mon 20:41]
   + [X] sortedcontainers
   + [X] wcslib
 
-*** TODO python-pyregion [3/4][75%] :p3:
+*** DONE python-pyregion [4/4][100%]
+CLOSED: [2023-11-02 Thu 00:11]
 - https://github.com/astropy/pyregion
 - [X] :packed <2023-10-05 Thu>
 - [X] :patch-sent <2023-10-11 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
 - [X] :inputs [3/3][100%]
   - [X] python-pyparsing
@@ -764,6 +769,7 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
   - [X] python-shapely
+
 *** TODO python-specutils [0/4][0%] :p1:
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
@@ -1994,7 +2000,7 @@ CLOSED: [2021-02-19 Fri 11:13]
   - [X] sep [4/4][100%]
     - [X] :packed <2021-02-02 Tue>
 
-** TODO radio-astro-tools [1/4] :author:
+** TODO radio-astro-tools [3/4] :author:
 - https://github.com/radio-astro-tools
 - sourced-from :: https://codeberg.org/vleugelcomplement/guix-astro
 *** DONE python-casa-formats-io [4/4][100%]
@@ -2020,11 +2026,12 @@ CLOSED: [2023-10-03 Tue 00:47]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO python-spectral-cube [2/4][50%] :p3:
+*** DONE python-spectral-cube [3/4][75%]
+CLOSED: [2023-11-02 Thu 00:11]
 - https://github.com/radio-astro-tools/spectral-cube
 - [X] :packed <2023-10-10 Tue>
 - [X] :patch-sent <2023-10-11 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
 - [-] :inputs [14/15][93%]
   - [X] python-aplpy
@@ -2048,11 +2055,12 @@ CLOSED: [2023-10-03 Tue 00:47]
   - [ ] python-yt (optional)
     - [ ] :packed
 
-*** TODO python-radio-beam [3/4][75%] :p3:
+*** DONE python-radio-beam [4/4][100%]
+CLOSED: [2023-11-02 Thu 00:13]
 https://github.com/radio-astro-tools/radio-beam
 - [X] :packed <2023-10-04 Wed>
 - [X] :patch-sent <2023-10-11 Wed>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
 - [X] :inputs [7/7][100%]
   - [X] python-astropy

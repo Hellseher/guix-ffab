@@ -51,17 +51,17 @@ make list
 
 #+RESULTS:
 #+begin_src org
-:guix-commit 6e1215fb9c03ccb4a2d4440990aee5a66a935268
-:accepted 192
-:pending 143
+:guix-commit 0647f308b46b7ba7aa136068712f8d82d69d1a35
+:accepted 207
+:pending 123
 
-:astronomy 7
-:golang 70
-:lisp 6
-:python 12
-:misc 21
+:astronomy 8
+:golang 72
+:lisp 4
+:python 14
+:misc 20
 
-:date Fri 16 Jun 23:31:40 BST 2023
+Thu  2 Nov 00:19:45 GMT 2023
 #+end_src
 
 Any packages with suffix *-ffab* are meant to be accepted in Guix upstream but have kind of

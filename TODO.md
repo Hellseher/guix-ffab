@@ -68,7 +68,7 @@
     astronomy.org          rwesson                 [1/2][50%]    :author:
     astronomy.org          ruven                   [0/1][0%]     :author:
     astronomy.org          revoltek                [0/1][0%]     :author:
-    astronomy.org          radio-astro-tools       [1/4]         :author:
+    astronomy.org          radio-astro-tools       [3/4]         :author:
     astronomy.org          QuatroPe                [1/2][50%]    :author:
     astronomy.org          poliastro               [2/2][100%]   :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]     :author:
@@ -107,10 +107,9 @@
     astronomy.org          CHIANTI                 [0/1][0%]     :author:
     astronomy.org          casacore                [1/2][50%]    :author:
     astronomy.org          ATNF                    [0/37][0%]    :author:
-    astronomy.org          Astropy                 [3/6][50%]    :author:
+    astronomy.org          Astropy                 [4/6][66%]    :author:
     astronomy.org          AstrOmatic-software     [8/10][80%]   :author:
-    astronomy.org          astrofog                [/][%]        :author:
-    astronomy.org          aplpy                   [/][%]        :author:
+    astronomy.org          astrofog                [1/1][100%]   :author:
     astronomy.org          ap-i                    [1/7][14%]    :author:
     astronomy.org          amusecode               [0/45][0%]    :author:
     
@@ -261,13 +260,8 @@
     emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
     docker.org             dive                           [0/4][0%]    :p3:
     astronomy.org          SPICE                          [/][%]       :p3:
-    astronomy.org          python-spectral-cube           [2/4][50%]   :p3:
     astronomy.org          python-radiospectra            [/][%]       :p3:
-    astronomy.org          python-radio-beam              [3/4][75%]   :p3:
-    astronomy.org          python-pyregion                [3/4][75%]   :p3:
     astronomy.org          python-ndcube                  [/][%]       :p3:
-    astronomy.org          python-aplpy                   [2/4][50%]   :p3:
-    astronomy.org          pyavm                          [3/4][75%]   :p3:
     astronomy.org          NEAT                           [0/5][0%]    :p3:
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
@@ -409,7 +403,9 @@
     astronomy.org          libpasastro                      [3/3][100%]  
     astronomy.org          missfits                         [3/3][100%]  
     astronomy.org          phd2                             [4/4][100%]  
+    astronomy.org          pyavm                            [4/4][100%]  
     astronomy.org          pynbody                          [4/4][100%]  
+    astronomy.org          python-aplpy                     [4/4][100%]  
     astronomy.org          python-asdf                      [1/1][100%]  
     astronomy.org          python-asdf-astropy              [3/3][100%]  
     astronomy.org          python-asdf-coordinates-schemas  [1/1][100%]  
@@ -431,10 +427,13 @@
     astronomy.org          python-mpl-animations            [4/4][100%]  
     astronomy.org          python-poliastro                 [4/4][100%]  
     astronomy.org          python-poppy                     [4/4][100%]  
+    astronomy.org          python-pyregion                  [4/4][100%]  
     astronomy.org          python-pysynphot                 [5/5][5/5]   
     astronomy.org          python-rad                       [5/5][100%]  
+    astronomy.org          python-radio-beam                [4/4][100%]  
     astronomy.org          python-reproject                 [4/4][100%]  
     astronomy.org          python-roman-datamodels          [5/5][100%]  
+    astronomy.org          python-spectral-cube             [3/4][75%]   
     astronomy.org          python-spherical-geometry        [4/4][100%]  
     astronomy.org          python-stcal                     [3/3][100%]  
     astronomy.org          python-stdatamodels              [5/5][100%]  
@@ -561,6 +560,7 @@
     python.org             python-parfive                   [4/4][100%]  
     python.org             python-pytest-socket             [4/4][100%]  
     python.org             siosocks                         [4/4][100%]  
+    astronomy.org          aplpy                            [1/1][100%]  :author:
     astronomy.org          aroffringa                       [2/2][100%]  :author:
     astronomy.org          asdf-format                      [9/9][100%]  :author:
     astronomy.org          GreatAttractor                   [2/2][100%]  :author:
