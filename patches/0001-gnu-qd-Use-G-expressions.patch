@@ -1,0 +1,62 @@
+From 1c3e20f81479ed702270fc6640939db165bd33bc Mon Sep 17 00:00:00 2001
+Message-ID: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 2 Nov 2023 01:36:30 +0000
+Subject: [PATCH v2 1/5] gnu: qd: Use G-expressions.
+
+* gnu/packages/multiprecision.scm (qd): Adjust package style by using
+G-expressions.
+
+Change-Id: I9265979343e67d1d9e9e69b7b071ea1e429d3ee4
+---
+ gnu/packages/multiprecision.scm | 25 +++++++++++++------------
+ 1 file changed, 13 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/multiprecision.scm b/gnu/packages/multiprecision.scm
+index 3aa5dccfab..11afcfe4a0 100644
+--- a/gnu/packages/multiprecision.scm
++++ b/gnu/packages/multiprecision.scm
+@@ -10,6 +10,7 @@
+ ;;; Copyright © 2021 Vinicius Monego <monego@posteo.net>
+ ;;; Copyright © 2022 Maxim Cournoyer <maxim.cournoyer@gmail.com>
+ ;;; Copyright © 2023 Janneke Nieuwenhuizen <janneke@gnu.org>
++;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -263,18 +264,18 @@ (define-public qd
+     (native-inputs
+      (list gfortran))
+     (arguments
+-     `(#:configure-flags `("--disable-enable_fma" ;weird :/
+-                           "--disable-static"
+-                           "--enable-shared"
+-                           ,,@(if (string-prefix? "aarch64"
+-                                                  (or (%current-target-system)
+-                                                      (%current-system)))
+-                                  ;; XXX: The qd_test test fails numerical
+-                                  ;; accuracy checks for 'dd_real::exp()' on
+-                                  ;; aarch64 with GCC 5.4 at -O2.  Disabling
+-                                  ;; expensive optimizations lets it pass.
+-                                  '("CXXFLAGS=-O3 -fno-expensive-optimizations")
+-                                  '("CXXFLAGS=-O3")))))
++     (list
++      #:configure-flags
++      #~(list "--disable-enable_fma" ;weird :/
++              "--disable-static"
++              "--enable-shared"
++              #$@(if (target-aarch64?)
++                     ;; XXX: The qd_test test fails numerical
++                     ;; accuracy checks for 'dd_real::exp()' on
++                     ;; aarch64 with GCC 5.4 at -O2.  Disabling
++                     ;; expensive optimizations lets it pass.
++                     '("CXXFLAGS=-O3 -fno-expensive-optimizations")
++                     '("CXXFLAGS=-O3")))))
+     (home-page "https://www.davidhbailey.com/dhbsoftware/")
+     (synopsis "Double-double and quad-double library")
+     (description "This package supports both a double-double
+
+base-commit: 0647f308b46b7ba7aa136068712f8d82d69d1a35
+-- 
+2.41.0
+

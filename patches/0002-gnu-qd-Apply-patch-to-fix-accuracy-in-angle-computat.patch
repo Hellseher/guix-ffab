@@ -1,0 +1,319 @@
+From 8467e1ff586aa25e5659801006dcb7a0784dc576 Mon Sep 17 00:00:00 2001
+Message-ID: <8467e1ff586aa25e5659801006dcb7a0784dc576.1698938938.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1698938938.git.sharlatanus@gmail.com>
+References: <cover.1698938938.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 2 Nov 2023 15:16:35 +0000
+Subject: [PATCH 2/5] gnu: qd: Apply patch to fix accuracy in angle
+ computation.
+
+During attempt to upgrade python-spherical-geometry there was upstream
+discussion to adjust qd. Patch is sourced and adjusted based on the
+proposed one during discussion:
+https://github.com/spacetelescope/spherical_geometry/issues/227
+
+* gnu/packages/multiprecision.scm (qd): [source]: Apply patch.
+* gnu/packages/patches/qd-fix-accuracy-in-angle-computation.patch: New file.
+* gnu/local.mk (dist_patch_DATA): Register it.
+
+Change-Id: Ic1dfdbe19b3347367b2ffb846be6bb975a0b89ae
+---
+ gnu/local.mk                                  |   1 +
+ gnu/packages/multiprecision.scm               |   3 +-
+ ...qd-fix-accuracy-in-angle-computation.patch | 258 ++++++++++++++++++
+ 3 files changed, 261 insertions(+), 1 deletion(-)
+ create mode 100644 gnu/packages/patches/qd-fix-accuracy-in-angle-computation.patch
+
+diff --git a/gnu/local.mk b/gnu/local.mk
+index 8d817379a7..b6a5113063 100644
+--- a/gnu/local.mk
++++ b/gnu/local.mk
+@@ -1896,6 +1896,7 @@ dist_patch_DATA =						\
+   %D%/packages/patches/python-waitress-fix-tests.patch		\
+   %D%/packages/patches/python-werkzeug-tests.patch		\
+   %D%/packages/patches/python-zeep-Fix-pytest_httpx-test-cases.patch	\
++  %D%/packages/patches/qd-fix-accuracy-in-angle-computation.patch	\
+   %D%/packages/patches/qemu-build-info-manual.patch		\
+   %D%/packages/patches/qemu-disable-some-qtests-tests.patch	\
+   %D%/packages/patches/qemu-glibc-2.27.patch 			\
+diff --git a/gnu/packages/multiprecision.scm b/gnu/packages/multiprecision.scm
+index 11afcfe4a0..453b351a65 100644
+--- a/gnu/packages/multiprecision.scm
++++ b/gnu/packages/multiprecision.scm
+@@ -259,7 +259,8 @@ (define-public qd
+        (uri (string-append "https://crd-legacy.lbl.gov/~dhbailey/mpdist/qd-"
+                            version ".tar.gz"))
+        (sha256
+-        (base32 "09pfd77rmy370hy7qdqw84z21y9zpl3fcwzf93rhiv0kwhfg9smk"))))
++        (base32 "09pfd77rmy370hy7qdqw84z21y9zpl3fcwzf93rhiv0kwhfg9smk"))
++       (patches (search-patches "qd-fix-accuracy-in-angle-computation.patch"))))
+     (build-system gnu-build-system)
+     (native-inputs
+      (list gfortran))
+diff --git a/gnu/packages/patches/qd-fix-accuracy-in-angle-computation.patch b/gnu/packages/patches/qd-fix-accuracy-in-angle-computation.patch
+new file mode 100644
+index 0000000000..288d56919e
+--- /dev/null
++++ b/gnu/packages/patches/qd-fix-accuracy-in-angle-computation.patch
+@@ -0,0 +1,258 @@
++From e5ccba8fc889c38f49a247ff3060e8462388f6f9 Mon Sep 17 00:00:00 2001
++From: Sharlatan Hellseher <sharlatanus@gmail.com>
++Date: Thu, 2 Nov 2023 02:49:54 +0000
++Subject: [PATCH] Fix accuracy in angle computation (#224)
++
++Author: Mihai Cara <mcara@users.noreply.github.com>
++Source: https://github.com/spacetelescope/spherical_geometry/pull/224
++
++* Fix accuracy in angle computation
++
++* Enhance comparisons and expose QD 2*pi
++---
++ include/qd/c_dd.h    |  2 ++
++ include/qd/c_qd.h    |  4 ++-
++ include/qd/qd_real.h | 11 ++++----
++ src/c_dd.cpp         |  8 ++++++
++ src/c_qd.cpp         | 15 +++++++++--
++ src/qd_real.cpp      | 63 +++++++++++++++++++++++++++-----------------
++ 6 files changed, 71 insertions(+), 32 deletions(-)
++
++diff --git a/include/qd/c_dd.h b/include/qd/c_dd.h
++index 203a8fa..7ffcb01 100644
++--- a/include/qd/c_dd.h
+++++ b/include/qd/c_dd.h
++@@ -90,6 +90,8 @@ void c_dd_comp(const double *a, const double *b, int *result);
++ void c_dd_comp_dd_d(const double *a, double b, int *result);
++ void c_dd_comp_d_dd(double a, const double *b, int *result);
++ void c_dd_pi(double *a);
+++void c_dd_2pi(double *a);
+++double c_dd_epsilon(void);
++ 
++ #ifdef __cplusplus
++ }
++diff --git a/include/qd/c_qd.h b/include/qd/c_qd.h
++index 9062d1d..b118f26 100644
++--- a/include/qd/c_qd.h
+++++ b/include/qd/c_qd.h
++@@ -65,7 +65,7 @@ void c_qd_copy(const double *a, double *b);
++ void c_qd_copy_dd(const double *a, double *b);
++ void c_qd_copy_d(double a, double *b);
++ 
++-void c_qd_sqrt(const double *a, double *b);
+++int c_qd_sqrt(const double *a, double *b);
++ void c_qd_sqr(const double *a, double *b);
++ 
++ void c_qd_abs(const double *a, double *b);
++@@ -111,6 +111,8 @@ void c_qd_comp(const double *a, const double *b, int *result);
++ void c_qd_comp_qd_d(const double *a, double b, int *result);
++ void c_qd_comp_d_qd(double a, const double *b, int *result);
++ void c_qd_pi(double *a);
+++void c_qd_2pi(double *a);
+++double c_qd_epsilon(void);
++ 
++ #ifdef __cplusplus
++ }
++diff --git a/include/qd/qd_real.h b/include/qd/qd_real.h
++index 32079d0..9435678 100644
++--- a/include/qd/qd_real.h
+++++ b/include/qd/qd_real.h
++@@ -120,16 +120,16 @@ struct QD_API qd_real {
++   static qd_real rand(void);
++ 
++   void to_digits(char *s, int &expn, int precision = _ndigits) const;
++-  void write(char *s, int len, int precision = _ndigits, 
+++  void write(char *s, int len, int precision = _ndigits,
++       bool showpos = false, bool uppercase = false) const;
++-  std::string to_string(int precision = _ndigits, int width = 0, 
++-      std::ios_base::fmtflags fmt = static_cast<std::ios_base::fmtflags>(0), 
+++  std::string to_string(int precision = _ndigits, int width = 0,
+++      std::ios_base::fmtflags fmt = static_cast<std::ios_base::fmtflags>(0),
++       bool showpos = false, bool uppercase = false, char fill = ' ') const;
++   static int read(const char *s, qd_real &a);
++ 
++   /* Debugging methods */
++   void dump(const std::string &name = "", std::ostream &os = std::cerr) const;
++-  void dump_bits(const std::string &name = "", 
+++  void dump_bits(const std::string &name = "",
++                  std::ostream &os = std::cerr) const;
++ 
++   static qd_real debug_rand();
++@@ -150,7 +150,7 @@ namespace std {
++ }
++ 
++ QD_API qd_real polyeval(const qd_real *c, int n, const qd_real &x);
++-QD_API qd_real polyroot(const qd_real *c, int n, 
+++QD_API qd_real polyroot(const qd_real *c, int n,
++     const qd_real &x0, int max_iter = 64, double thresh = 0.0);
++ 
++ QD_API qd_real qdrand(void);
++@@ -190,6 +190,7 @@ QD_API qd_real operator/(double a, const qd_real &b);
++ 
++ QD_API qd_real sqr(const qd_real &a);
++ QD_API qd_real sqrt(const qd_real &a);
+++QD_API qd_real fsqrt(const qd_real &a, int &flag);
++ QD_API qd_real pow(const qd_real &a, int n);
++ QD_API qd_real pow(const qd_real &a, const qd_real &b);
++ QD_API qd_real npwr(const qd_real &a, int n);
++diff --git a/src/c_dd.cpp b/src/c_dd.cpp
++index 1cb2989..1df03e2 100644
++--- a/src/c_dd.cpp
+++++ b/src/c_dd.cpp
++@@ -311,4 +311,12 @@ void c_dd_pi(double *a) {
++   TO_DOUBLE_PTR(dd_real::_pi, a);
++ }
++ 
+++void c_dd_2pi(double *a) {
+++  TO_DOUBLE_PTR(dd_real::_2pi, a);
+++}
+++
+++double c_dd_epsilon(void) {
+++    return (double) std::numeric_limits<dd_real>::epsilon();
+++}
+++
++ }
++diff --git a/src/c_qd.cpp b/src/c_qd.cpp
++index 010cf85..95cffb3 100644
++--- a/src/c_qd.cpp
+++++ b/src/c_qd.cpp
++@@ -237,11 +237,14 @@ void c_qd_copy_d(double a, double *b) {
++ }
++ 
++ 
++-void c_qd_sqrt(const double *a, double *b) {
+++int c_qd_sqrt(const double *a, double *b) {
+++  int flag;
++   qd_real bb;
++-  bb = sqrt(qd_real(a));
+++  bb = fsqrt(qd_real(a), flag);
++   TO_DOUBLE_PTR(bb, b);
+++  return flag;
++ }
+++
++ void c_qd_sqr(const double *a, double *b) {
++   qd_real bb;
++   bb = sqr(qd_real(a));
++@@ -447,4 +450,12 @@ void c_qd_pi(double *a) {
++   TO_DOUBLE_PTR(qd_real::_pi, a);
++ }
++ 
+++void c_qd_2pi(double *a) {
+++  TO_DOUBLE_PTR(qd_real::_2pi, a);
+++}
+++
+++double c_qd_epsilon(void) {
+++    return (double) std::numeric_limits<qd_real>::epsilon();
+++}
+++
++ }
++diff --git a/src/qd_real.cpp b/src/qd_real.cpp
++index 70988ff..2da15c2 100644
++--- a/src/qd_real.cpp
+++++ b/src/qd_real.cpp
++@@ -191,7 +191,7 @@ istream &operator>>(istream &s, qd_real &qd) {
++ ostream &operator<<(ostream &os, const qd_real &qd) {
++   bool showpos = (os.flags() & ios_base::showpos) != 0;
++   bool uppercase = (os.flags() & ios_base::uppercase) != 0;
++-  return os << qd.to_string(os.precision(), os.width(), os.flags(), 
+++  return os << qd.to_string(os.precision(), os.width(), os.flags(),
++       showpos, uppercase, os.fill());
++ }
++ 
++@@ -346,9 +346,9 @@ void qd_real::to_digits(char *s, int &expn, int precision) const {
++   }
++ 
++   /* If first digit is 10, shift everything. */
++-  if (s[0] > '9') { 
++-    e++; 
++-    for (i = precision; i >= 2; i--) s[i] = s[i-1]; 
+++  if (s[0] > '9') {
+++    e++;
+++    for (i = precision; i >= 2; i--) s[i] = s[i-1];
++     s[0] = '1';
++     s[1] = '0';
++   }
++@@ -519,7 +519,6 @@ string qd_real::to_string(int precision, int width, ios_base::fmtflags fmt,
++     	if( fabs( from_string / this->x[0] ) > 3.0 ){
++ 
++     		int point_position;
++-    		char temp;
++ 
++     		// loop on the string, find the point, move it up one
++     		// don't act on the first character
++@@ -736,37 +735,53 @@ qd_real qd_real::accurate_div(const qd_real &a, const qd_real &b) {
++   return qd_real(q0, q1, q2, q3);
++ }
++ 
++-QD_API qd_real sqrt(const qd_real &a) {
++-  /* Strategy:  
++-
++-     Perform the following Newton iteration:
+++QD_API qd_real fsqrt(const qd_real &a, int &flag) {
+++  /* Uses Heron's method, see:
+++     https://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Babylonian_method
++ 
++-       x' = x + (1 - a * x^2) * x / 2;
++-       
++-     which converges to 1/sqrt(a), starting with the
++-     double precision approximation to 1/sqrt(a).
++-     Since Newton's iteration more or less doubles the
++-     number of correct digits, we only need to perform it 
++-     twice.
+++     1. x0 = approximate sqrt(a);
+++     2. x_{n+1} = (1/2) * (x_n + a / x_n);
+++     3. repeat 2 until corrections are small
++   */
++ 
+++  int i;
+++  double e, eps;
+++
+++  qd_real r, diff;
+++  qd_real half = "0.5000000000000000000000000000000000"
+++                 "000000000000000000000000000000000000";
+++
++   if (a.is_zero())
++-    return 0.0;
+++    return (qd_real) 0.0;
++ 
++   if (a.is_negative()) {
++     qd_real::error("(qd_real::sqrt): Negative argument.");
++     return qd_real::_nan;
++   }
++ 
++-  qd_real r = (1.0 / std::sqrt(a[0]));
++-  qd_real h = mul_pwr2(a, 0.5);
+++  eps = std::numeric_limits<qd_real>::epsilon();
++ 
++-  r += ((0.5 - h * sqr(r)) * r);
++-  r += ((0.5 - h * sqr(r)) * r);
++-  r += ((0.5 - h * sqr(r)) * r);
+++  qd_real x = std::sqrt(a[0]);
+++  qd_real y;
++ 
++-  r *= a;
++-  return r;
+++  for (i=0; i < 10; i++) {
+++      y = half * (x + a / x);
+++      diff = x - y;
+++      x = y;
+++      e = fabs(((diff[3] + diff[2]) + diff[1]) + diff[0]);
+++      if (e < fabs(x.x[0]) * eps) {
+++          flag = 0; // convergence achieved
+++          return x;
+++      }
+++  }
+++
+++  flag = 1; // failed to converge
+++  return x;
+++}
+++
+++QD_API qd_real sqrt(const qd_real &a) {
+++  int flag;
+++  return fsqrt(a, flag);
++ }
++ 
++ 
++-- 
++2.41.0
++
+-- 
+2.41.0
+

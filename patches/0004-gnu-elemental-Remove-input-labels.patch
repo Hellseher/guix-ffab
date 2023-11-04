@@ -1,0 +1,47 @@
+From 113f0b861b2d4aea8cfab2050ab8123a04f7f18e Mon Sep 17 00:00:00 2001
+Message-ID: <113f0b861b2d4aea8cfab2050ab8123a04f7f18e.1699062920.git.sharlatanus@gmail.com>
+In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 2 Nov 2023 14:41:03 +0000
+Subject: [PATCH v2 4/5] gnu: elemental: Remove input labels.
+
+* gnu/packages/maths.scm (elemental)[inputs]: Remove labels.
+
+Change-Id: I239b56cb5871d5cb2dbd587502c647a37beb30b7
+---
+ gnu/packages/maths.scm | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/maths.scm b/gnu/packages/maths.scm
+index 6b9725bdcc..0ed25834f6 100644
+--- a/gnu/packages/maths.scm
++++ b/gnu/packages/maths.scm
+@@ -7615,15 +7615,15 @@ (define-public elemental
+       (native-inputs
+        (list gfortran))
+       (inputs
+-       `(("blas" ,openblas)
+-         ("gfortran:lib" ,gfortran "lib")
+-         ("gmp" ,gmp)
+-         ("lapack" ,lapack)
+-         ("metis" ,metis)
+-         ("mpc" ,mpc)
+-         ("mpfr" ,mpfr)
+-         ("mpi" ,openmpi)
+-         ("qd" ,qd)))
++       (list `(,gfortran "lib")
++             gmp
++             lapack
++             metis
++             mpc
++             mpfr
++             openmpi
++             qd
++             openblas))
+       (arguments
+        `(#:build-type "Release"           ;default RelWithDebInfo not supported
+          #:configure-flags `("-DEL_DISABLE_PARMETIS:BOOL=YES"
+-- 
+2.41.0
+
