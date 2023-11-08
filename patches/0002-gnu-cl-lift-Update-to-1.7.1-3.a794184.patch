@@ -1,0 +1,47 @@
+From 7c16bde8014856139026a6b144e85a2a25498f8b Mon Sep 17 00:00:00 2001
+Message-ID: <7c16bde8014856139026a6b144e85a2a25498f8b.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 18:43:26 +0000
+Subject: [PATCH 02/16] gnu: cl-lift: Update to 1.7.1-3.a794184.
+
+* gnu/packages/lisp-check.scm (sbcl-lift): Update to 1.7.1-3.a794184.
+[source]: Update URL as maintainer and owner of repository was changed.
+
+Change-Id: I068bbea25422c89810919499e96655cd9e5223ad
+---
+ gnu/packages/lisp-check.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-check.scm b/gnu/packages/lisp-check.scm
+index ee045d1387..cbbc8c3979 100644
+--- a/gnu/packages/lisp-check.scm
++++ b/gnu/packages/lisp-check.scm
+@@ -625,8 +625,8 @@ (define-public cl-kaputt
+   (sbcl-package->cl-source-package sbcl-kaputt))
+ 
+ (define-public sbcl-lift
+-  (let ((commit "2594160d6ca3a77d8750110dfa63214256aab852")
+-        (revision "2"))
++  (let ((commit "a7941845a9de72be60e66ea941aa34cbee35bf23")
++        (revision "3"))
+     (package
+       (name "sbcl-lift")
+       (version (git-version "1.7.1" revision commit))
+@@ -634,10 +634,10 @@ (define-public sbcl-lift
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+-               (url "https://github.com/gwkkwg/lift")
++               (url "https://github.com/hraban/lift")
+                (commit commit)))
+          (sha256
+-          (base32 "01xvz9sl5l5lai4h9dabmcjnm659wf5zllaxqbs55lffskp6jwq3"))
++          (base32 "1513n46fkqw8rnvz69s7xnwj476qm8ibdlwsr63qj9yh0mib0q6x"))
+          (file-name (git-file-name "lift" version))
+          (modules '((guix build utils)))
+          (snippet
+-- 
+2.41.0
+

@@ -1,0 +1,105 @@
+From 2b47d8d8ef92ee30d9bab5d629a8c362cede28ea Mon Sep 17 00:00:00 2001
+Message-ID: <2b47d8d8ef92ee30d9bab5d629a8c362cede28ea.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 15:15:32 +0000
+Subject: [PATCH 39/67] gnu: go-github-com-francoispqt-gojay: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-francoispqt-gojay): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I2ff041a91e2d37d79495a3ebda1b602784161c4a
+---
+ gnu/packages/golang-web.scm | 27 ++++++++++++++++++++++++++-
+ gnu/packages/golang.scm     | 25 -------------------------
+ 2 files changed, 26 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index d021be005f..2790e2b5aa 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -5,9 +5,9 @@
+ ;;; Copyright © 2020 Nicolas Goaziou <mail@nicolasgoaziou.fr>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
++;;; Copyright © 2020-2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+-;;; Copyright © 2021, 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022 Giacomo Leidi <goodoldpaul@autistici.org>
+ ;;; Copyright © 2022 jgart via Guix-patches via <guix-patches@gnu.org>
+ ;;; Copyright © 2022 muradm <mail@muradm.net>
+@@ -310,6 +310,31 @@ (define-public go-github-com-felixge-httpsnoop
+ application's http.Handlers.")
+     (license license:expat)))
+ 
++(define-public go-github-com-francoispqt-gojay
++  (package
++    (name "go-github-com-francoispqt-gojay")
++    (version "1.2.13")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/francoispqt/gojay")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1ix95qdyajfmxhf9y52vjrih63f181pjs4v5as8905s4d5vmkd06"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/francoispqt/gojay"))
++    (propagated-inputs
++     (list go-github-com-stretchr-testify))
++    (synopsis "JSON encoder/decoder with powerful stream API for Golang")
++    (description "GoJay is a performant JSON encoder/decoder for Golang.  It has
++a simple API and doesn't use reflection.  It relies on small interfaces to
++decode/encode structures and slices.")
++    (home-page "https://github.com/francoispqt/gojay")
++    (license license:expat)))
++
+ (define-public go-github-com-go-chi-chi-v5
+   (package
+     (name "go-github-com-go-chi-chi-v5")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index f0c9dcf5e6..4d504e30a2 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7241,31 +7241,6 @@ (define-public go-github-com-lunixbochs-vtclean
+ optionally preserving color.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-francoispqt-gojay
+-  (package
+-    (name "go-github-com-francoispqt-gojay")
+-    (version "1.2.13")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                     (url "https://github.com/francoispqt/gojay")
+-                     (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1ix95qdyajfmxhf9y52vjrih63f181pjs4v5as8905s4d5vmkd06"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/francoispqt/gojay"))
+-    (propagated-inputs
+-     (list go-github-com-stretchr-testify))
+-    (synopsis "JSON encoder/decoder with powerful stream API for Golang")
+-    (description "GoJay is a performant JSON encoder/decoder for Golang.  It has
+-a simple API and doesn't use reflection.  It relies on small interfaces to
+-decode/encode structures and slices.")
+-    (home-page "https://github.com/francoispqt/gojay")
+-    (license license:expat)))
+-
+ (define-public go-github-com-pkg-errors
+   (package
+     (name "go-github-com-pkg-errors")
+-- 
+2.41.0
+

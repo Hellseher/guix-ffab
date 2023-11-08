@@ -1,0 +1,100 @@
+From c81ca177f0d03354a9a689bc6cde82bf6eb5ca8b Mon Sep 17 00:00:00 2001
+Message-ID: <c81ca177f0d03354a9a689bc6cde82bf6eb5ca8b.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 01:23:16 +0100
+Subject: [PATCH 05/67] gnu: go-github-com-andybalholm-cascadia: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-andybalholm-cascadia): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I185cb923d21685eb5a3952b9990833d3a0709312
+---
+ gnu/packages/golang-web.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ 2 files changed, 25 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 39a83990ce..3c1abfff2c 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -2,6 +2,7 @@
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
++;;; Copyright © 2022 Giacomo Leidi <goodoldpaul@autistici.org>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -35,6 +36,30 @@ (define-module (gnu packages golang-web)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-andybalholm-cascadia
++  (package
++    (name "go-github-com-andybalholm-cascadia")
++    (version "1.3.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/andybalholm/cascadia")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0zgc9fjkn7d66cnmgnmalr9lrq4ii1spap95pf2x1hln4pflib5s"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/andybalholm/cascadia"))
++    (native-inputs
++     (list go-golang-org-x-net))
++    (home-page "https://github.com/andybalholm/cascadia/")
++    (synopsis "CSS selectors for HTML")
++    (description "The Cascadia package implements CSS selectors for use with
++the parse trees produced by the html package.")
++    (license license:bsd-2)))
++
+ (define-public go-github-com-aymerick-douceur
+   (package
+     (name "go-github-com-aymerick-douceur")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 1b8b455aa5..580fe36486 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9203,30 +9203,6 @@ (define-public go-github-com-alecthomas-chroma
+ converts it into syntax highlighted HTML, ANSI-coloured text, etc.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-andybalholm-cascadia
+-  (package
+-    (name "go-github-com-andybalholm-cascadia")
+-    (version "1.3.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/andybalholm/cascadia")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0zgc9fjkn7d66cnmgnmalr9lrq4ii1spap95pf2x1hln4pflib5s"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/andybalholm/cascadia"))
+-    (native-inputs
+-     (list go-golang-org-x-net))
+-    (home-page "https://github.com/andybalholm/cascadia/")
+-    (synopsis "CSS selectors for HTML")
+-    (description "The Cascadia package implements CSS selectors for use with
+-the parse trees produced by the html package.")
+-    (license license:bsd-2)))
+-
+ (define-public go-github-com-puerkitobio-goquery
+   (package
+     (name "go-github-com-puerkitobio-goquery")
+-- 
+2.41.0
+

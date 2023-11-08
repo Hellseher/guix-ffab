@@ -1,0 +1,91 @@
+From 146d0817c9568cee0bc5b15cb58e3fc094fd195a Mon Sep 17 00:00:00 2001
+Message-ID: <146d0817c9568cee0bc5b15cb58e3fc094fd195a.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 30 Oct 2023 00:07:22 +0000
+Subject: [PATCH 66/67] gnu: actionlint: Update to 1.6.26.
+
+* gnu/packages/check.scm (actionlint): Update to 1.6.26.
+[inputs]: Swap go-github-com-robfig-cron-1.2 to go-github-com-robfig-cron
+
+* gnu/packages/golang.scm (go-github-com-robfig-cron-1.2): Delete variable.
+
+Change-Id: Ie2c25254ffefb99f8808f74ae4a9d85bbbcb6437
+---
+ gnu/packages/check.scm  |  8 ++++----
+ gnu/packages/golang.scm | 18 ------------------
+ 2 files changed, 4 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/check.scm b/gnu/packages/check.scm
+index cf26196a24..fc338394bf 100644
+--- a/gnu/packages/check.scm
++++ b/gnu/packages/check.scm
+@@ -39,7 +39,7 @@
+ ;;; Copyright © 2021 Hugo Lecomte <hugo.lecomte@inria.fr>
+ ;;; Copyright © 2022 Maxime Devos <maximedevos@telenet.be>
+ ;;; Copyright © 2022, 2023 David Elsing <david.elsing@posteo.net>
+-;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
++;;; Copyright © 2022, 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2022 jgart <jgart@dismail.de>
+ ;;; Copyright © 2023 Luis Felipe López Acevedo <luis.felipe.la@protonmail.com>
+ ;;; Copyright © 2023 Timo Wilken <guix@twilken.net>
+@@ -1069,7 +1069,7 @@ (define-public cpputest
+ (define-public actionlint
+   (package
+     (name "actionlint")
+-    (version "1.6.23")
++    (version "1.6.26")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -1078,7 +1078,7 @@ (define-public actionlint
+               (file-name (git-file-name name version))
+               (sha256
+                (base32
+-                "07is4920a40zrl7mfldg0az2pisi7f6dv4vh3ijn3nzb4i7fqbni"))))
++                "0j4ni2cryvqn3qim1r6q6sargh0wig6l4vjjwc40cgqvvkrdla04"))))
+     (build-system go-build-system)
+     (arguments
+      '(#:import-path "github.com/rhysd/actionlint/cmd/actionlint"
+@@ -1087,7 +1087,7 @@ (define-public actionlint
+     (inputs (list go-github-com-fatih-color
+                   go-github-com-mattn-go-colorable
+                   go-github-com-mattn-go-runewidth
+-                  go-github-com-robfig-cron-1.2
++                  go-github-com-robfig-cron
+                   go-golang.org-x-sync-errgroup
+                   go-golang.org-x-sync-semaphore
+                   go-gopkg-in-yaml-v3))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 740ddbe440..cdf0f23a90 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7164,24 +7164,6 @@ (define-public go-github-com-robfig-cron
+ a cron spec parser and job runner.")
+     (license license:expat)))
+ 
+-;; Required by actionlint. The version of `go-github-com-robfig-cron'
+-;; packaged in Guix is newer and changed some error messages, causing
+-;; unit tests in actionlint to fail.
+-(define-public go-github-com-robfig-cron-1.2
+-  (package
+-    (inherit go-github-com-robfig-cron)
+-    (name "go-github-com-robfig-cron")
+-    (version "1.2.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/robfig/cron")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0nv31m3940d9kf38lw2zs4hpj435bdi9mmim098rb3n4l07qrvva"))))))
+-
+ (define-public go-github-com-shirou-gopsutil
+   (let ((commit "47ef3260b6bf6ead847e7c8fc4101b33c365e399")
+         (revision "0"))
+-- 
+2.41.0
+

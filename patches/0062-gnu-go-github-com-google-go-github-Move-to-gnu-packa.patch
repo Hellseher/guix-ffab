@@ -1,0 +1,96 @@
+From a4a5de9541387a017f4570ce16e56b09e58468e3 Mon Sep 17 00:00:00 2001
+Message-ID: <a4a5de9541387a017f4570ce16e56b09e58468e3.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 23:15:41 +0000
+Subject: [PATCH 62/67] gnu: go-github-com-google-go-github: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-google-go-github): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I17711a8f0bfd58a12cf805f1678688d2946c985b
+---
+ gnu/packages/golang-web.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 26 --------------------------
+ 2 files changed, 26 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index fbfa1049a4..20c3b0f3e1 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -538,6 +538,32 @@ (define-public go-github-com-goccy-go-json
+     (description "Fast JSON encoder/decoder compatible with encoding/json for Go.")
+     (license license:expat)))
+ 
++(define-public go-github-com-google-go-github
++  (package
++    (name "go-github-com-google-go-github")
++    (version "26.1.3")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/google/go-github")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0x0zz1vcmllp6r6l2qin9b2llm5cxbf6n84rf99h8wrmhvzs2ipi"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:tests? #f ;application/octet-stream instead of text/plain
++       #:import-path "github.com/google/go-github/v26/github"
++       #:unpack-path "github.com/google/go-github/v26"))
++    (native-inputs
++     (list go-github-com-google-go-querystring go-golang-org-x-crypto))
++    (home-page "https://github.com/google/go-github/")
++    (synopsis "Client library for accessing the GitHub API v3")
++    (description "@code{go-github} is a Go client library for accessing the
++GitHub API v3.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-google-safehtml
+   (package
+     (name "go-github-com-google-safehtml")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index feb1295e7b..3ffe569ed5 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7689,32 +7689,6 @@ (define-public go-github-com-google-go-querystring
+ into URL query parameters.")
+       (license license:bsd-3))))
+ 
+-(define-public go-github-com-google-go-github
+-  (package
+-    (name "go-github-com-google-go-github")
+-    (version "26.1.3")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/google/go-github")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0x0zz1vcmllp6r6l2qin9b2llm5cxbf6n84rf99h8wrmhvzs2ipi"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:tests? #f ;application/octet-stream instead of text/plain
+-       #:import-path "github.com/google/go-github/v26/github"
+-       #:unpack-path "github.com/google/go-github/v26"))
+-    (native-inputs
+-     (list go-github-com-google-go-querystring go-golang-org-x-crypto))
+-    (home-page "https://github.com/google/go-github/")
+-    (synopsis "Client library for accessing the GitHub API v3")
+-    (description "@code{go-github} is a Go client library for accessing the
+-GitHub API v3.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-google-renameio
+   (package
+     (name "go-github-com-google-renameio")
+-- 
+2.41.0
+

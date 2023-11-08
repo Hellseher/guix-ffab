@@ -1,0 +1,128 @@
+From 652f04c38c0d31b6be3727e97542a39df9f023ca Mon Sep 17 00:00:00 2001
+Message-ID: <652f04c38c0d31b6be3727e97542a39df9f023ca.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:46:38 +0000
+Subject: [PATCH 55/67] gnu: go-github-com-hjson-hjson-go: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-hjson-hjson-go): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/networking.scm: Add (gnu packages golang-web) module.
+* gnu/packages/uucp.scm: As above.
+
+Change-Id: If1ba5e4d866ce74fa35ae9126c6ba4cd0b149dab
+---
+ gnu/packages/golang-web.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ gnu/packages/networking.scm |  1 +
+ gnu/packages/uucp.scm       |  1 +
+ 4 files changed, 26 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 96873f020c..4771657add 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -6,6 +6,7 @@
+ ;;; Copyright © 2020 Nicolas Goaziou <mail@nicolasgoaziou.fr>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
++;;; Copyright © 2020 raingloom <raingloom@riseup.net>
+ ;;; Copyright © 2020-2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Collin J. Doering <collin@rekahsoft.ca>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+@@ -757,6 +758,29 @@ (define-public go-github-com-gorilla-websocket
+ protocol.")
+     (license license:bsd-2)))
+ 
++(define-public go-github-com-hjson-hjson-go
++  (package
++    (name "go-github-com-hjson-hjson-go")
++    (version "3.1.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/hjson/hjson-go")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1dfdiahimg6z9idg8jiqxwnlwjnmasbjccx8gnag49cz4yfqskaz"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/hjson/hjson-go"))
++    (home-page "https://hjson.org/")
++    (synopsis "Human JSON implementation for Go")
++    (description "Hjson is a syntax extension to JSON.  It is intended to be
++used like a user interface for humans, to read and edit before passing the
++JSON data to the machine.")
++    (license license:expat)))
++
+ (define-public go-github-com-jcmturner-dnsutils-v2
+   (package
+     (name "go-github-com-jcmturner-dnsutils-v2")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index bf71d0de49..0e608a8eab 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9965,30 +9965,6 @@ (define-public go-github-com-hashicorp-go-syslog
+     (description "This package is a very simple wrapper around log/syslog")
+     (license license:expat)))
+ 
+-(define-public go-github-com-hjson-hjson-go
+-  (package
+-    (name "go-github-com-hjson-hjson-go")
+-    (version "4.3.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/hjson/hjson-go")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "138vmbnrwzxf64cia27k407clrydvs2jx927dlv6ziydiqyvy7m3"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/hjson/hjson-go"))
+-    (home-page "https://hjson.org/")
+-    (synopsis "Human JSON implementation for Go")
+-    (description "Hjson is a syntax extension to JSON.  It is intended to be
+-used like a user interface for humans, to read and edit before passing the
+-JSON data to the machine.")
+-    (license license:expat)))
+-
+ (define-public go-golang-zx2c4-com-wireguard
+   (package
+     (name "go-golang-zx2c4-com-wireguard")
+diff --git a/gnu/packages/networking.scm b/gnu/packages/networking.scm
+index b0381515a5..36d33da42b 100644
+--- a/gnu/packages/networking.scm
++++ b/gnu/packages/networking.scm
+@@ -122,6 +122,7 @@ (define-module (gnu packages networking)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gstreamer)
+   #:use-module (gnu packages gtk)
+diff --git a/gnu/packages/uucp.scm b/gnu/packages/uucp.scm
+index e10de59aa2..1626c90c36 100644
+--- a/gnu/packages/uucp.scm
++++ b/gnu/packages/uucp.scm
+@@ -19,6 +19,7 @@
+ 
+ (define-module (gnu packages uucp)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages texinfo)
+   #:use-module (guix licenses)
+   #:use-module (guix packages)
+-- 
+2.41.0
+

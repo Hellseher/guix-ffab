@@ -1,0 +1,95 @@
+From dc03ad59f485052e1fdc1af6003b883feff31539 Mon Sep 17 00:00:00 2001
+Message-ID: <dc03ad59f485052e1fdc1af6003b883feff31539.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 01:14:25 +0100
+Subject: [PATCH 04/67] gnu: go-github-com-aymerick-douceur: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-aymerick-douceur): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I2e94858736f88333f56d4eb4301acd35e6bb1a33
+---
+ gnu/packages/golang-web.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 25 -------------------------
+ 2 files changed, 26 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 1d61a76268..39a83990ce 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -35,6 +35,32 @@ (define-module (gnu packages golang-web)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-aymerick-douceur
++  (package
++    (name "go-github-com-aymerick-douceur")
++    (version "0.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/aymerick/douceur/")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1hfysznib0fqbp8vqxpk0xiggpp0ayk2bsddi36vbg6f8zq5f81n"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/aymerick/douceur"))
++    (native-inputs
++     (list go-github-com-andybalholm-cascadia
++           go-github-com-gorilla-css
++           go-github-com-puerkitobio-goquery
++           go-golang-org-x-net))
++    (home-page "https://github.com/aymerick/douceur/")
++    (synopsis "CSS parser and inliner")
++    (description "This package provides a CSS parser and inliner.")
++    (license license:expat)))
++
+ (define-public go-github-com-gorilla-css
+   (package
+     (name "go-github-com-gorilla-css")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index db335858f6..1b8b455aa5 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9278,31 +9278,6 @@ (define-public go-github-com-jmespath-go-jmespath
+ transforms one JSON document into another through a JMESPath expression.")
+     (license license:asl2.0)))
+ 
+-(define-public go-github-com-aymerick-douceur
+-  (package
+-    (name "go-github-com-aymerick-douceur")
+-    (version "0.2.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/aymerick/douceur/")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1hfysznib0fqbp8vqxpk0xiggpp0ayk2bsddi36vbg6f8zq5f81n"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/aymerick/douceur"))
+-    (native-inputs
+-     (list go-github-com-puerkitobio-goquery
+-           go-github-com-andybalholm-cascadia go-golang-org-x-net
+-           go-github-com-gorilla-css))
+-    (home-page "https://github.com/aymerick/douceur/")
+-    (synopsis "CSS parser and inliner")
+-    (description "This package provides a CSS parser and inliner.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-chris-ramon-douceur
+   (package
+     (name "go-github-com-chris-ramon-douceur")
+-- 
+2.41.0
+

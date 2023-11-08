@@ -1,0 +1,49 @@
+From ab7e58664c677cb483f618d56fd73266cda70b04 Mon Sep 17 00:00:00 2001
+Message-ID: <ab7e58664c677cb483f618d56fd73266cda70b04.1699318203.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 7 Nov 2023 00:07:46 +0000
+Subject: [PATCH 13/16] gnu: cl-metatilities-base: Update to 0.6.6-2.ef04337.
+
+* gnu/packages/lisp-xyz.scm (sbcl-metatilities-base): Update to 0.6.6-2.ef04337.
+[source]: Update URL as maintainer and owner of repository was changed.
+
+Change-Id: I98274d5dc74244406e2e25de8d83379bdb110b8f
+---
+ gnu/packages/lisp-xyz.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index e001ccd703..456180554a 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -9216,8 +9216,8 @@ (define-public ecl-periods
+   (sbcl-package->ecl-package sbcl-periods))
+ 
+ (define-public sbcl-metatilities-base
+-  (let ((commit "6eaa9e3ff0939a93a92109dd0fcd218de85417d5")
+-        (revision "1"))
++  (let ((commit "ef04337759972fd622c9b27b53149f3d594a841f")
++        (revision "2"))
+     (package
+       (name "sbcl-metatilities-base")
+       (version (git-version "0.6.6" revision commit))
+@@ -9225,12 +9225,12 @@ (define-public sbcl-metatilities-base
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+-               (url "https://github.com/gwkkwg/metatilities-base")
++               (url "https://github.com/hraban/metatilities-base")
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+           (base32
+-           "0xpa86pdzlnf4v5g64j3ifaplx71sx2ha8b7vvakswi652679ma0"))))
++           "069rk5ncwvjnnzvvky6xiriynl72yzvjpnzl6jw9jf3b8na14zrk"))))
+       (build-system asdf-build-system/sbcl)
+       (native-inputs
+        (list sbcl-lift))
+-- 
+2.41.0
+

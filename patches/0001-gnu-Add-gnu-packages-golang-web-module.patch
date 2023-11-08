@@ -1,0 +1,76 @@
+From 0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5 Mon Sep 17 00:00:00 2001
+Message-ID: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 00:51:54 +0100
+Subject: [PATCH 01/67] gnu: Add (gnu packages golang-web) module.
+
+* gnu/packages/golang-web.scm: New file.
+* gnu/local.mk: Add to gnu/packages/golang-web.scm scope.
+---
+ gnu/local.mk                |  1 +
+ gnu/packages/golang-web.scm | 39 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+ create mode 100644 gnu/packages/golang-web.scm
+
+diff --git a/gnu/local.mk b/gnu/local.mk
+index a381d28b83..52b5a7ef3e 100644
+--- a/gnu/local.mk
++++ b/gnu/local.mk
+@@ -303,6 +303,7 @@ GNU_SYSTEM_MODULES =				\
+   %D%/packages/gobby.scm			\
+   %D%/packages/golang.scm			\
+   %D%/packages/golang-check.scm		\
++  %D%/packages/golang-web.scm	        	\
+   %D%/packages/gperf.scm			\
+   %D%/packages/gpodder.scm			\
+   %D%/packages/gps.scm				\
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+new file mode 100644
+index 0000000000..feb2854d9c
+--- /dev/null
++++ b/gnu/packages/golang-web.scm
+@@ -0,0 +1,39 @@
++;;; GNU Guix --- Functional package management for GNU
++;;;
++;;; This file is part of GNU Guix.
++;;;
++;;; GNU Guix is free software; you can redistribute it and/or modify it
++;;; under the terms of the GNU General Public License as published by
++;;; the Free Software Foundation; either version 3 of the License, or (at
++;;; your option) any later version.
++;;;
++;;; GNU Guix is distributed in the hope that it will be useful, but
++;;; WITHOUT ANY WARRANTY; without even the implied warranty of
++;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;;; GNU General Public License for more details.
++;;;
++;;; You should have received a copy of the GNU General Public License
++;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
++
++(define-module (gnu packages golang-web)
++  #:use-module ((guix licenses) #:prefix license:)
++  #:use-module (guix packages)
++  #:use-module (guix build-system go)
++  #:use-module (guix git-download)
++  #:use-module (gnu packages)
++  #:use-module (gnu packages golang))
++
++;;; Commentary:
++;;;
++;;; Golang modules (libraries) related to HTML, CSS, SCSS, JavaScript, JSON,
++;;; Web-framework, REST-API or similar functionality.
++;;;
++;;; Please: Try to add new module packages in alphabetic order.
++;;;
++;;; Code:
++
++;;;
++;;; Avoid adding new packages to the end of this file. To reduce the chances
++;;; of a merge conflict, place them above by existing packages with similar
++;;; functionality or similar names.
++;;;
+
+base-commit: 19fe24c5b978a16cbca3cddbfa3ab9d1ee2c68f2
+-- 
+2.41.0
+

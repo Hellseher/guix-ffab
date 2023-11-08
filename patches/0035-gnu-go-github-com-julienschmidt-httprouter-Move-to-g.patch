@@ -1,0 +1,116 @@
+From 3ca6f6a476216de9f843a1a19f931294d2e64a88 Mon Sep 17 00:00:00 2001
+Message-ID: <3ca6f6a476216de9f843a1a19f931294d2e64a88.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 13:53:09 +0000
+Subject: [PATCH 35/67] gnu: go-github-com-julienschmidt-httprouter: Move to
+ (gnu packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-julienschmidt-httprouter): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/high-availability.scm: Add (gnu packages golang-web) module.
+
+Change-Id: I277e4a7ed835b0dc00f08e102e982e0cd019b828
+---
+ gnu/packages/golang-web.scm        | 25 ++++++++++++++++++++++++-
+ gnu/packages/golang.scm            | 23 -----------------------
+ gnu/packages/high-availability.scm |  1 +
+ 3 files changed, 25 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 2570be62f7..c501f55685 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -6,9 +6,9 @@
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2021, 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022 Giacomo Leidi <goodoldpaul@autistici.org>
+-;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2022 jgart via Guix-patches via <guix-patches@gnu.org>
+ ;;; Copyright © 2022 muradm <mail@muradm.net>
++;;; Copyright © 2022, 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2023 Hilton Chain <hako@ultrarare.space>
+ ;;; Copyright © 2023 Katherine Cox-Buday <cox.katherine.e@gmail.com>
+ ;;; Copyright © 2023 Nicolas Graves <ngraves@ngraves.fr>
+@@ -631,6 +631,29 @@ (define-public go-github-com-jcmturner-gokrb5-v8
+ Microsoft AD PAC authorization data.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-julienschmidt-httprouter
++  (package
++    (name "go-github-com-julienschmidt-httprouter")
++    (version "1.3.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/julienschmidt/httprouter")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1a6sy0ysqknsjssjh7qg1dqn21xmj9a36c57nrk7srfmab4ffmk1"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/julienschmidt/httprouter"))
++    (home-page "https://github.com/julienschmidt/httprouter")
++    (synopsis "High performance HTTP request router")
++    (description
++     "Package @code{httprouter} is a trie based high performance HTTP request
++router.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-microcosm-cc-bluemonday
+   (package
+     (name "go-github-com-microcosm-cc-bluemonday")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3c1693b0c8..bd70a4271c 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9338,29 +9338,6 @@ (define-public go-github-com-juju-ansiterm
+ for color and styles.")
+     (license license:lgpl3)))
+ 
+-(define-public go-github-com-julienschmidt-httprouter
+-  (package
+-    (name "go-github-com-julienschmidt-httprouter")
+-    (version "1.3.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/julienschmidt/httprouter")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1a6sy0ysqknsjssjh7qg1dqn21xmj9a36c57nrk7srfmab4ffmk1"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/julienschmidt/httprouter"))
+-    (home-page "https://github.com/julienschmidt/httprouter")
+-    (synopsis "High performance HTTP request router")
+-    (description
+-     "Package @code{httprouter} is a trie based high performance HTTP request
+-router.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-kevinburke-ssh-config
+   (package
+     (name "go-github-com-kevinburke-ssh-config")
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index 553095cb75..6808bcd597 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -35,6 +35,7 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages hardware)
+   #:use-module (gnu packages linux)
+   #:use-module (gnu packages lua)
+-- 
+2.41.0
+

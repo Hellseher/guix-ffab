@@ -1,0 +1,93 @@
+From 12233cc449b22de925f12ea5f8d60ea8e59e59c6 Mon Sep 17 00:00:00 2001
+Message-ID: <12233cc449b22de925f12ea5f8d60ea8e59e59c6.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:29:17 +0100
+Subject: [PATCH 12/67] gnu: go-github-com-felixge-httpsnoop: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-felixge-httpsnoop): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Ic2494b3e45c934ecddaa621f00f474b9079dc5ed
+---
+ gnu/packages/golang-web.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 25 -------------------------
+ 2 files changed, 24 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 3a3c5f9621..c0ceb5b7ce 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -118,6 +118,30 @@ (define-public go-github-com-chris-ramon-douceur
+     (description "This package provides a CSS parser and inliner.")
+     (license license:expat)))
+ 
++(define-public go-github-com-felixge-httpsnoop
++  (package
++    (name "go-github-com-felixge-httpsnoop")
++    (version "1.0.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/felixge/httpsnoop")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0ncd8lar5zxiwjhsp315s4hsl4bhnm271h49jhyxc66r5yffgmac"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/felixge/httpsnoop"))
++    (home-page "https://github.com/felixge/httpsnoop/")
++    (synopsis "Capture http related metrics")
++    (description
++     "Httpsnoop provides an easy way to capture http related
++metrics (i.e. response time, bytes written, and http status code) from your
++application's http.Handlers.")
++    (license license:expat)))
++
+ (define-public go-github-com-gorilla-css
+   (package
+     (name "go-github-com-gorilla-css")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 243fd2f798..ade98626c8 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4984,31 +4984,6 @@ (define-public go-github-com-spf13-viper
+ all types of configuration needs and formats.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-felixge-httpsnoop
+-  (package
+-    (name "go-github-com-felixge-httpsnoop")
+-    (version "1.0.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/felixge/httpsnoop")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "0ncd8lar5zxiwjhsp315s4hsl4bhnm271h49jhyxc66r5yffgmac"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/felixge/httpsnoop"))
+-    (home-page "https://github.com/felixge/httpsnoop/")
+-    (synopsis "Capture http related metrics")
+-    (description
+-     "Httpsnoop provides an easy way to capture http related
+-metrics (i.e. response time, bytes written, and http status code) from your
+-application's http.Handlers.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-fsnotify-fsnotify
+   (package
+     (name "go-github-com-fsnotify-fsnotify")
+-- 
+2.41.0
+

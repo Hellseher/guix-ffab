@@ -1,0 +1,151 @@
+From 36dc0b088c82ff1882588b035c29aa49e0413174 Mon Sep 17 00:00:00 2001
+Message-ID: <36dc0b088c82ff1882588b035c29aa49e0413174.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:42:10 +0100
+Subject: [PATCH 15/67] gnu: go-github-com-jcmturner-gokrb5-v8: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-jcmturner-gokrb5-v8): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Ie7833a1f5712cc3899fd140741774e6b71f03967
+---
+ gnu/packages/golang-web.scm | 52 ++++++++++++++++++++++++++++++++++++-
+ gnu/packages/golang.scm     | 48 ----------------------------------
+ 2 files changed, 51 insertions(+), 49 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 971b370115..ae10a86551 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -30,7 +30,8 @@ (define-module (gnu packages golang-web)
+   #:use-module (guix build-system go)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages)
+-  #:use-module (gnu packages golang))
++  #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check))
+ 
+ ;;; Commentary:
+ ;;;
+@@ -285,6 +286,55 @@ (define-public go-github-com-gorilla-websocket
+ protocol.")
+     (license license:bsd-2)))
+ 
++(define-public go-github-com-jcmturner-gokrb5-v8
++  (package
++    (name "go-github-com-jcmturner-gokrb5-v8")
++    (version "8.4.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/jcmturner/gokrb5")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0w9d1pa3r6qmdblk25bghf78ncs03l15l1sxnh4n536c356rzq4b"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/jcmturner/gokrb5/v8"
++       #:unpack-path "github.com/jcmturner/gokrb5"))
++    (propagated-inputs
++     (list go-github-com-gorilla-sessions
++           go-github-com-hashicorp-go-uuid
++           go-github-com-jcmturner-aescts-v2
++           go-github-com-jcmturner-dnsutils-v2
++           go-github-com-jcmturner-gofork
++           go-github-com-jcmturner-goidentity-v6
++           go-github-com-jcmturner-rpc-v2-mstypes
++           go-github-com-jcmturner-rpc-v2-ndr
++           go-github-com-stretchr-testify
++           go-golang-org-x-crypto
++           go-golang-org-x-net))
++    (home-page "https://github.com/jcmturner/gokrb5")
++    (synopsis "Pure Go Kerberos library for clients and services")
++    (description "This package provides a pure Go Kerberos library.  It
++features:
++@itemize
++@item Kerberos libraries for custom integration
++@item Parsing Keytab files
++@item Parsing krb5.conf files
++@item Parsing client credentials cache files such as /tmp/krb5cc_$(id -u $(whoami))
++@end itemize
++
++On the client side, it provides a client that can authenticate to an SPNEGO
++Kerberos authenticated web service, and the ability to change client's
++password.
++
++On the server side, the library provides a HTTP handler wrapper implements
++SPNEGO Kerberos authentication, as well as a HTTP handler wrapper decodes
++Microsoft AD PAC authorization data.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-puerkitobio-goquery
+   (package
+     (name "go-github-com-puerkitobio-goquery")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index a8d35b866c..e65b8e2581 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1436,54 +1436,6 @@ (define-public go-github-com-jcmturner-gofork
+ arounds until issues are addressed in the official distribution.")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-jcmturner-gokrb5-v8
+-  (package
+-    (name "go-github-com-jcmturner-gokrb5-v8")
+-    (version "8.4.2")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/jcmturner/gokrb5")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0w9d1pa3r6qmdblk25bghf78ncs03l15l1sxnh4n536c356rzq4b"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/jcmturner/gokrb5/v8"
+-       #:unpack-path "github.com/jcmturner/gokrb5"))
+-    (propagated-inputs (list go-golang-org-x-net
+-                             go-golang-org-x-crypto
+-                             go-github-com-stretchr-testify
+-                             go-github-com-jcmturner-rpc-v2-ndr
+-                             go-github-com-jcmturner-rpc-v2-mstypes
+-                             go-github-com-jcmturner-goidentity-v6
+-                             go-github-com-jcmturner-gofork
+-                             go-github-com-jcmturner-dnsutils-v2
+-                             go-github-com-jcmturner-aescts-v2
+-                             go-github-com-hashicorp-go-uuid
+-                             go-github-com-gorilla-sessions))
+-    (home-page "https://github.com/jcmturner/gokrb5")
+-    (synopsis "Pure Go Kerberos library for clients and services")
+-    (description "This package provides a pure Go Kerberos library.  It
+-features:
+-@itemize
+-@item Kerberos libraries for custom integration
+-@item Parsing Keytab files
+-@item Parsing krb5.conf files
+-@item Parsing client credentials cache files such as /tmp/krb5cc_$(id -u $(whoami))
+-@end itemize
+-
+-On the client side, it provides a client that can authenticate to an SPNEGO
+-Kerberos authenticated web service, and the ability to change client's
+-password.
+-
+-On the server side, the library provides a HTTP handler wrapper implements
+-SPNEGO Kerberos authentication, as well as a HTTP handler wrapper decodes
+-Microsoft AD PAC authorization data.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-jcmturner-rpc
+   (package
+     (name "go-github-com-jcmturner-rpc")
+-- 
+2.41.0
+

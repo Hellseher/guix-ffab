@@ -1,8 +1,8 @@
 From 1c3e20f81479ed702270fc6640939db165bd33bc Mon Sep 17 00:00:00 2001
-Message-ID: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+Message-ID: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Thu, 2 Nov 2023 01:36:30 +0000
-Subject: [PATCH v2 1/5] gnu: qd: Use G-expressions.
+Subject: [PATCH v3 1/5] gnu: qd: Use G-expressions.
 
 * gnu/packages/multiprecision.scm (qd): Adjust package style by using
 G-expressions.

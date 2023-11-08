@@ -194,10 +194,11 @@
 - [X] <2023-10-11 Wed> https://issues.guix.gnu.org/66454 <2023-10-31 Tue>
 - [ ] <2023-10-23 Mon> https://issues.guix.gnu.org/66688
 
-* Package updates [40/44][90%]
+* Package updates [40/45][88%]
+- [ ] <2023-11-07 Tue> https://issues.guix.gnu.org/66977
 - [ ] <2023-11-02 Thu> https://issues.guix.gnu.org/66896
-- [ ] <2023-10-27 Fri> https://issues.guix.gnu.org/66778
-- [ ] <2023-10-19 Thu> https://issues.guix.gnu.org/66627
+- [ ] <2023-10-30 Mon> https://issues.guix.gnu.org/66827
+- [ ] <2023-10-27 Fri> https://issues.guix.gnu.org/66778 <2023-11-06 Mon>
 - [X] <2023-10-19 Thu> https://issues.guix.gnu.org/66619 <2023-10-23 Mon>
   - [X] https://issues.guix.gnu.org/66627
 - [X] <2023-10-09 Mon> https://issues.guix.gnu.org/66412 <2023-10-11 Wed>

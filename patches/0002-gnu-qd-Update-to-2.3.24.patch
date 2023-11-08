@@ -1,15 +1,15 @@
-From e5ab60414cba46a0e1970bbcc3dad67e0ea191d1 Mon Sep 17 00:00:00 2001
-Message-ID: <e5ab60414cba46a0e1970bbcc3dad67e0ea191d1.1699062920.git.sharlatanus@gmail.com>
-In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
-References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+From cd1579f0ed8f1c2fbfd7500fcd4f548cfe06e1f8 Mon Sep 17 00:00:00 2001
+Message-ID: <cd1579f0ed8f1c2fbfd7500fcd4f548cfe06e1f8.1699195588.git.sharlatanus@gmail.com>
+In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
+References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Thu, 2 Nov 2023 15:16:35 +0000
-Subject: [PATCH v2 2/5] gnu: qd: Update to 2.3.24.
+Subject: [PATCH v3 2/5] gnu: qd: Update to 2.3.24.
 
 During attempt to upgrade python-spherical-geometry there was upstream
-discussion to adjust qd. The patch was proposed and accepted by the
-author of qd it was sourced from the discussion and suggested by one
-one of spherical_geometry maintainer:
+discussion to adjust qd.  The patch was proposed and accepted by the
+author of qd it was suggested by one one of spherical_geometry
+maintainer:
 https://github.com/spacetelescope/spherical_geometry/issues/227
 
 * gnu/packages/multiprecision.scm (qd): Update to 2.3.24.
@@ -21,7 +21,7 @@ Change-Id: Ic1dfdbe19b3347367b2ffb846be6bb975a0b89ae
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/gnu/packages/multiprecision.scm b/gnu/packages/multiprecision.scm
-index 11afcfe4a0..8c63b3921c 100644
+index 11afcfe4a0..0c6255c129 100644
 --- a/gnu/packages/multiprecision.scm
 +++ b/gnu/packages/multiprecision.scm
 @@ -252,17 +252,16 @@ (define-public irram
@@ -37,7 +37,7 @@ index 11afcfe4a0..8c63b3921c 100644
                             version ".tar.gz"))
         (sha256
 -        (base32 "09pfd77rmy370hy7qdqw84z21y9zpl3fcwzf93rhiv0kwhfg9smk"))))
-+        (base32 "1j56a9fnzk846yibg3wg82377lby6pyzfvrl22730a096gl3hrxd"))))
++        (base32 "0f0fwsyh23p5zfyrj6n16q7b56g213fnhdc8dbl22r3fz1rnqyx4"))))
      (build-system gnu-build-system)
 -    (native-inputs
 -     (list gfortran))

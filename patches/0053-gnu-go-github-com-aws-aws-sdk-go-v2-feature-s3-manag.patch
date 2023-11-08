@@ -1,0 +1,65 @@
+From bc12947593a631d7155ec6df7afb167ceab996fe Mon Sep 17 00:00:00 2001
+Message-ID: <bc12947593a631d7155ec6df7afb167ceab996fe.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:28:37 +0000
+Subject: [PATCH 53/67] gnu:
+ go-github-com-aws-aws-sdk-go-v2-feature-s3-manager: Move to (gnu packages
+ golang-web).
+
+* gnu/packages/golang.scm (go-github-com-aws-aws-sdk-go-v2-feature-s3-manager): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Ia97de141c3c96e99b4824ea93925c5d2b5d9aa8d
+---
+ gnu/packages/golang-web.scm | 10 ++++++++++
+ gnu/packages/golang.scm     | 10 ----------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index e87634cdaa..616a14fdf1 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -170,6 +170,16 @@ (define-public go-github-com-aws-aws-sdk-go-v2-config
+      (list go-github-com-google-go-cmp-cmp
+            go-github-com-aws-smithy-go))))
+ 
++(define-public go-github-com-aws-aws-sdk-go-v2-feature-s3-manager
++  (package
++    (inherit go-github-com-aws-aws-sdk-go-v2)
++    (name "go-github-com-aws-aws-sdk-go-v2-feature-s3-manager")
++    (version "1.11.44")
++    (arguments
++     '(#:import-path "github.com/aws/aws-sdk-go-v2/feature/s3/manager"
++       #:unpack-path "github.com/aws/aws-sdk-go-v2"))
++    (propagated-inputs (list go-github-com-aws-smithy-go))))
++
+ (define-public go-github-com-aws-aws-sdk-go-v2-service-iam
+   (package
+     (inherit go-github-com-aws-aws-sdk-go-v2)
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 2c331802ff..efd46895ec 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -11173,16 +11173,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
+     (home-page "https://github.com/dvsekhvalnov/jose2go")
+     (license license:expat)))
+ 
+-(define-public go-github-com-aws-aws-sdk-go-v2-feature-s3-manager
+-  (package
+-    (inherit go-github-com-aws-aws-sdk-go-v2)
+-    (name "go-github-com-aws-aws-sdk-go-v2-feature-s3-manager")
+-    (version "1.11.44")
+-    (arguments
+-     '(#:import-path "github.com/aws/aws-sdk-go-v2/feature/s3/manager"
+-       #:unpack-path "github.com/aws/aws-sdk-go-v2"))
+-    (propagated-inputs (list go-github-com-aws-smithy-go))))
+-
+ (define-public aws-vault
+   (package
+     (name "aws-vault")
+-- 
+2.41.0
+

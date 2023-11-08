@@ -1,0 +1,65 @@
+From 3805bce7ab5ca7735bb092cf5de291ac9d8f5115 Mon Sep 17 00:00:00 2001
+Message-ID: <3805bce7ab5ca7735bb092cf5de291ac9d8f5115.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:22:21 +0000
+Subject: [PATCH 48/67] gnu: go-github-com-aws-aws-sdk-go-v2-service-iam: Move
+ to (gnu packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-aws-aws-sdk-go-v2-service-iam): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Id479cc90005de14f0916cb06fa140127812787b1
+---
+ gnu/packages/golang-web.scm | 11 +++++++++++
+ gnu/packages/golang.scm     | 10 ----------
+ 2 files changed, 11 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index fde9a89ea3..bfda5ffa31 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -170,6 +170,17 @@ (define-public go-github-com-aws-aws-sdk-go-v2-config
+      (list go-github-com-google-go-cmp-cmp
+            go-github-com-aws-smithy-go))))
+ 
++(define-public go-github-com-aws-aws-sdk-go-v2-service-iam
++  (package
++    (inherit go-github-com-aws-aws-sdk-go-v2)
++    (name "go-github-com-aws-aws-sdk-go-v2-service-iam")
++    (version "1.44.161")
++    (arguments
++     '(#:import-path "github.com/aws/aws-sdk-go-v2/service/iam"
++       #:unpack-path "github.com/aws/aws-sdk-go-v2"))
++    (propagated-inputs
++     (list go-github-com-aws-smithy-go))))
++
+ (define-public go-github-com-aws-smithy-go
+   (package
+     (name "go-github-com-aws-smithy-go")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 645e51b57a..bfdf45d1b3 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -11173,16 +11173,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
+     (home-page "https://github.com/dvsekhvalnov/jose2go")
+     (license license:expat)))
+ 
+-(define-public go-github-com-aws-aws-sdk-go-v2-service-iam
+-  (package
+-    (inherit go-github-com-aws-aws-sdk-go-v2)
+-    (name "go-github-com-aws-aws-sdk-go-v2-service-iam")
+-    (version "1.44.161")
+-    (arguments
+-     '(#:import-path "github.com/aws/aws-sdk-go-v2/service/iam"
+-       #:unpack-path "github.com/aws/aws-sdk-go-v2"))
+-    (propagated-inputs (list go-github-com-aws-smithy-go))))
+-
+ (define-public go-github-com-aws-aws-sdk-go-v2-service-sso
+   (package
+     (inherit go-github-com-aws-aws-sdk-go-v2)
+-- 
+2.41.0
+

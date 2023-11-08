@@ -1,0 +1,88 @@
+From 33f02a5b8af45940b9ba32719e0e918cf4744354 Mon Sep 17 00:00:00 2001
+Message-ID: <33f02a5b8af45940b9ba32719e0e918cf4744354.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 13:29:56 +0000
+Subject: [PATCH 31/67] gnu: go-github-com-coreos-go-oidc-v3: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-coreos-go-oidc-v3): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: If049d6172219bf144d3f30877f3c9f5138bcc78c
+---
+ gnu/packages/golang-web.scm | 22 ++++++++++++++++++++++
+ gnu/packages/golang.scm     | 22 ----------------------
+ 2 files changed, 22 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 792406ab97..0219ffb5e5 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -209,6 +209,28 @@ (define-public go-github-com-coreos-go-oidc
+ @code{go-golang-org-x-oauth2} package.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-coreos-go-oidc-v3
++  (package
++    (inherit go-github-com-coreos-go-oidc)
++    (name "go-github-com-coreos-go-oidc-v3")
++    (version "3.6.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/coreos/go-oidc")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1sbm6n3lp48lymn0g921afhq2j6inb38w3wy5rhyx9h8gpzhnxx9"))))
++    (arguments
++     (list ;; no Go files in [...]/src/github.com/coreos/go-oidc/v3.
++      #:import-path "github.com/coreos/go-oidc/v3/oidc"
++      #:unpack-path "github.com/coreos/go-oidc/v3"))
++    (propagated-inputs
++     (list go-github-com-go-jose-go-jose-v3
++           go-golang-org-x-oauth2))))
++
+ (define-public go-github-com-felixge-httpsnoop
+   (package
+     (name "go-github-com-felixge-httpsnoop")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index a58b558f5f..20a1d7ae18 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9116,28 +9116,6 @@ (define-public go-github-com-charmbracelet-glamour
+ use one of our glamorous default themes.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-coreos-go-oidc-v3
+-  (package
+-    (inherit go-github-com-coreos-go-oidc)
+-    (name "go-github-com-coreos-go-oidc-v3")
+-    (version "3.6.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/coreos/go-oidc")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1sbm6n3lp48lymn0g921afhq2j6inb38w3wy5rhyx9h8gpzhnxx9"))))
+-    (arguments
+-     (list ;; no Go files in [...]/src/github.com/coreos/go-oidc/v3.
+-           #:import-path "github.com/coreos/go-oidc/v3/oidc"
+-           #:unpack-path "github.com/coreos/go-oidc/v3"))
+-    (propagated-inputs
+-     (list go-github-com-go-jose-go-jose-v3
+-           go-golang-org-x-oauth2))))
+-
+ (define-public go-github-com-coreos-go-semver
+   (package
+     (name "go-github-com-coreos-go-semver")
+-- 
+2.41.0
+

@@ -1,0 +1,33 @@
+From a5a1308ef64ac22bd6e1b852c0bc05dc88e0fd48 Mon Sep 17 00:00:00 2001
+Message-ID: <a5a1308ef64ac22bd6e1b852c0bc05dc88e0fd48.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 20:00:35 +0000
+Subject: [PATCH 09/16] gnu: cl-trivial-timeout: Enable tests.
+
+* gnu/packages/lisp-xyz.scm (sbcl-trivial-timeout): Enable tests.
+
+Change-Id: I4428e06362a0569451a871faea2a92dd4c56ac3f
+---
+ gnu/packages/lisp-xyz.scm | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 6e3593b9bb..f13eea5c1d 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1264,10 +1264,6 @@ (define-public sbcl-trivial-timeout
+       (build-system asdf-build-system/sbcl)
+       (native-inputs
+        (list sbcl-lift))
+-      (arguments
+-       ;; NOTE: (Sharlatan-20210202T231437+0000): Due to the age of this library
+-       ;; tests use some deprecated functionality and keep failing.
+-       `(#:tests? #f))
+       (home-page "https://github.com/hraban/trivial-timeout")
+       (synopsis "Timeout library for Common Lisp")
+       (description
+-- 
+2.41.0
+

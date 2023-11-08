@@ -1,10 +1,10 @@
-From e8f32048f48f792d3f6e4e310b97b99fd0be8997 Mon Sep 17 00:00:00 2001
-Message-ID: <e8f32048f48f792d3f6e4e310b97b99fd0be8997.1699062920.git.sharlatanus@gmail.com>
-In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
-References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+From 3edfc9b9d9377180e8c7a1a9cab3e6407c5feb10 Mon Sep 17 00:00:00 2001
+Message-ID: <3edfc9b9d9377180e8c7a1a9cab3e6407c5feb10.1699195588.git.sharlatanus@gmail.com>
+In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
+References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Thu, 2 Nov 2023 15:13:04 +0000
-Subject: [PATCH v2 5/5] gnu: elemental: Update package style.
+Subject: [PATCH v3 5/5] gnu: elemental: Update package style.
 
 * gnu/packages/maths.scm (elemental): Update package style, shift order
 of package fields.

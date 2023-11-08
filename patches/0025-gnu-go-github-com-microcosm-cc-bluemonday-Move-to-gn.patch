@@ -1,0 +1,92 @@
+From c15d5c40f3872ef3306f3f6ab3d6acb1933969ff Mon Sep 17 00:00:00 2001
+Message-ID: <c15d5c40f3872ef3306f3f6ab3d6acb1933969ff.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 04:22:21 +0100
+Subject: [PATCH 25/67] gnu: go-github-com-microcosm-cc-bluemonday: Move to
+ (gnu packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-microcosm-cc-bluemonday): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Ie5122f8afb2a29574c0e0bb5eb96665ecb77176b
+---
+ gnu/packages/golang-web.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 012ed0429c..117742dc07 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -444,6 +444,30 @@ (define-public go-github-com-jcmturner-gokrb5-v8
+ Microsoft AD PAC authorization data.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-microcosm-cc-bluemonday
++  (package
++    (name "go-github-com-microcosm-cc-bluemonday")
++    (version "1.0.3")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/microcosm-cc/bluemonday")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "071ph097c1iwbcc33x6kblj9rxb1r4mp3qfkrj4qw5mg7qcqxydk"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/microcosm-cc/bluemonday"))
++    (propagated-inputs
++     (list go-github-com-chris-ramon-douceur
++           go-golang-org-x-net))
++    (home-page "https://github.com/microcosm-cc/bluemonday/")
++    (synopsis "HTML sanitizer")
++    (description "@code{bluemonday} is a HTML sanitizer implemented in Go.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-puerkitobio-goquery
+   (package
+     (name "go-github-com-puerkitobio-goquery")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index a3d5fb0f6b..936e9203b3 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8902,30 +8902,6 @@ (define-public go-github-com-jmespath-go-jmespath
+ transforms one JSON document into another through a JMESPath expression.")
+     (license license:asl2.0)))
+ 
+-(define-public go-github-com-microcosm-cc-bluemonday
+-  (package
+-    (name "go-github-com-microcosm-cc-bluemonday")
+-    (version "1.0.3")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/microcosm-cc/bluemonday")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "071ph097c1iwbcc33x6kblj9rxb1r4mp3qfkrj4qw5mg7qcqxydk"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/microcosm-cc/bluemonday"))
+-    (propagated-inputs
+-     (list go-github-com-chris-ramon-douceur
+-           go-golang-org-x-net))
+-    (home-page "https://github.com/microcosm-cc/bluemonday/")
+-    (synopsis "HTML sanitizer")
+-    (description "@code{bluemonday} is a HTML sanitizer implemented in Go.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-muesli-reflow-wordwrap
+   (package
+     (name "go-github-com-muesli-reflow-wordwrap")
+-- 
+2.41.0
+

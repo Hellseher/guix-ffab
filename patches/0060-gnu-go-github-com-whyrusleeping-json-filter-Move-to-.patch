@@ -1,0 +1,95 @@
+From cd77877510c5df4e52e1e7b684061239b7cac181 Mon Sep 17 00:00:00 2001
+Message-ID: <cd77877510c5df4e52e1e7b684061239b7cac181.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 23:01:13 +0000
+Subject: [PATCH 60/67] gnu: go-github-com-whyrusleeping-json-filter: Move to
+ (gnu packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-whyrusleeping-json-filter): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I41d725c82adc3f5571c50bdf6a092e9a310e0f6c
+---
+ gnu/packages/golang-web.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 26 --------------------------
+ 2 files changed, 25 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 7f6ced049c..fbfa1049a4 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1202,6 +1202,31 @@ (define-public go-github-com-valyala-fasthttp
+ replacement for native @code{net/http} module.")
+     (license license:expat)))
+ 
++(define-public go-github-com-whyrusleeping-json-filter
++  (let ((commit "ff25329a9528f01c5175414f16cc0a6a162a5b8b")
++        (revision "0"))
++    (package
++      (name "go-github-com-whyrusleeping-json-filter")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/whyrusleeping/json-filter")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "0cai0drvx4c8j686l908vpcsz3mw3vxi3ziz94b0f3c5ylpj07j7"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path
++         "github.com/whyrusleeping/json-filter"))
++      (home-page "https://github.com/whyrusleeping/json-filter")
++      (synopsis "Library to query JSON objects marshalled into map[string]interface")
++      (description "A library to query JSON objects marshalled into
++@command{map[string]interface{}}.")
++      (license license:expat))))
++
+ (define-public go-github-com-xeipuuv-gojsonpointer
+   (let ((commit "4e3ac2762d5f479393488629ee9370b50873b3a6")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index cf2c0dcfc0..3f93f6eaee 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -6508,32 +6508,6 @@ (define-public go-github-com-pmezard-go-difflib
+     (description "This package provides unified and context-aware diffs in Go.")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-whyrusleeping-json-filter
+-  (let ((commit "ff25329a9528f01c5175414f16cc0a6a162a5b8b")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-whyrusleeping-json-filter")
+-      (version (git-version "0.0.0" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/whyrusleeping/json-filter")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32
+-           "0cai0drvx4c8j686l908vpcsz3mw3vxi3ziz94b0f3c5ylpj07j7"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path
+-         "github.com/whyrusleeping/json-filter"))
+-      (home-page "https://github.com/whyrusleeping/json-filter")
+-      (synopsis "Library to query JSON objects marshalled into map[string]interface")
+-      (description "A library to query JSON objects marshalled into
+-@command{map[string]interface{}}.")
+-      (license license:expat))))
+-
+ (define-public go-github-com-whyrusleeping-progmeter
+   (let ((commit "f3e57218a75b913eff88d49a52c1debf9684ea04")
+         (revision "0"))
+-- 
+2.41.0
+

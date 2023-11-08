@@ -1,0 +1,33 @@
+From 25564d0cdaaeb40a6d29c5be70c8e365b89df07e Mon Sep 17 00:00:00 2001
+Message-ID: <25564d0cdaaeb40a6d29c5be70c8e365b89df07e.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 30 Oct 2023 00:30:41 +0000
+Subject: [PATCH 67/67] teams: go-team: Extend scope.
+
+* etc/teams.scm: Add regex for all gnu/packages/golang.* files. Add
+gnu/packages/syncthing.scm.
+
+Change-Id: I47f43ea2c42b5c86f6a07a38fbaa4170743c4203
+---
+ etc/teams.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/etc/teams.scm b/etc/teams.scm
+index 2f920a5876..90cfe42811 100755
+--- a/etc/teams.scm
++++ b/etc/teams.scm
+@@ -299,7 +299,8 @@ (define-team ruby
+ (define-team go
+   (team 'go
+         #:name "Go team"
+-        #:scope (list "gnu/packages/golang.scm"
++        #:scope (list "gnu/packages/golang(-.+|)\\.scm$"
++                      "gnu/packages/syncthing.scm"
+                       "guix/build/go-build-system.scm"
+                       "guix/build-system/go.scm"
+                       "guix/import/go.scm"
+-- 
+2.41.0
+

@@ -1,0 +1,103 @@
+From 568810374dcf31bc946382d435817b6e589b24e8 Mon Sep 17 00:00:00 2001
+Message-ID: <568810374dcf31bc946382d435817b6e589b24e8.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:36:45 +0100
+Subject: [PATCH 14/67] gnu: go-github-com-gorilla-sessions: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-sessions): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Ic4cc128724583a7c50102e476c6b96ea4e322bdd
+---
+ gnu/packages/golang-web.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 25 -------------------------
+ 2 files changed, 27 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 1a77e0f6f2..971b370115 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -7,6 +7,7 @@
+ ;;; Copyright © 2021, 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022 Giacomo Leidi <goodoldpaul@autistici.org>
+ ;;; Copyright © 2022 muradm <mail@muradm.net>
++;;; Copyright © 2023 Nicolas Graves <ngraves@ngraves.fr>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -236,6 +237,32 @@ (define-public go-github-com-gorilla-securecookie
+ encrypted cookie values for Go web applications.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-gorilla-sessions
++  (package
++    (name "go-github-com-gorilla-sessions")
++    (version "1.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gorilla/sessions")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1zjw2s37yggk9231db0vmgs67z8m3am8i8l4gpgz6fvlbv52baxp"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/gorilla/sessions"))
++    (propagated-inputs
++     (list go-github-com-gorilla-securecookie))
++    (home-page "https://github.com/gorilla/sessions")
++    (synopsis "Manage user sessions in web applications")
++    (description
++     "This package that provides infrastructure for creating and managing user
++sessions in web applications.  It supports cookie and filesystem-based
++sessions, flash messages, custom backends, and more.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-gorilla-websocket
+   (package
+     (name "go-github-com-gorilla-websocket")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3fd20ec3c0..a8d35b866c 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4706,31 +4706,6 @@ (define-public go-github-com-andybalholm-brotli
+ @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-gorilla-sessions
+-  (package
+-    (name "go-github-com-gorilla-sessions")
+-    (version "1.2.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/gorilla/sessions")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1zjw2s37yggk9231db0vmgs67z8m3am8i8l4gpgz6fvlbv52baxp"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/gorilla/sessions"))
+-    (propagated-inputs (list go-github-com-gorilla-securecookie))
+-    (home-page "https://github.com/gorilla/sessions")
+-    (synopsis "Manage user sessions in web applications")
+-    (description
+-     "This package that provides infrastructure for creating and
+-managing user sessions in web applications.  It supports cookie and
+-filesystem-based sessions, flash messages, custom backends, and more.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-gorilla-csrf
+   (package
+     (name "go-github-com-gorilla-csrf")
+-- 
+2.41.0
+

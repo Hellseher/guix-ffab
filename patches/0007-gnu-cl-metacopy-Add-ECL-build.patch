@@ -1,0 +1,35 @@
+From a95649b576986ff2a8d07512e28258caac38c773 Mon Sep 17 00:00:00 2001
+Message-ID: <a95649b576986ff2a8d07512e28258caac38c773.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 19:50:09 +0000
+Subject: [PATCH 07/16] gnu: cl-metacopy: Add ECL build.
+
+* gnu/packages/lisp-xyz.scm (ecl-metacopy): New variable.
+
+Change-Id: I44dab70d3f37b2266aac511eade9282c43df8e00
+---
+ gnu/packages/lisp-xyz.scm | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 24d84c5aff..b02c3d0789 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -21262,10 +21262,8 @@ (define-public sbcl-metacopy
+ Common Lisp.")
+       (license license:expat))))
+ 
+-;; NOTE: (Sharlatan-20221112T214131+0000): There is no ecl-moptilities variable
+-;; required for tests.
+-;;
+-;; ecl-metacopy
++(define-public ecl-metacopy
++  (sbcl-package->ecl-package sbcl-metacopy))
+ 
+ (define-public cl-metacopy
+   (sbcl-package->cl-source-package sbcl-metacopy))
+-- 
+2.41.0
+

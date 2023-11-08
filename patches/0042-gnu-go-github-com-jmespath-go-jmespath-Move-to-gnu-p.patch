@@ -1,0 +1,98 @@
+From b909488aac16b3683de722fa0978d1e344ec14c5 Mon Sep 17 00:00:00 2001
+Message-ID: <b909488aac16b3683de722fa0978d1e344ec14c5.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 15:31:24 +0000
+Subject: [PATCH 42/67] gnu: go-github-com-jmespath-go-jmespath: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-jmespath-go-jmespath): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I7f16dd3153ca6fd626061f7da5792192a48041bd
+---
+ gnu/packages/golang-web.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index e92e04979e..9f7b0e39dc 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -704,6 +704,33 @@ (define-public go-github-com-jcmturner-gokrb5-v8
+ Microsoft AD PAC authorization data.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-jmespath-go-jmespath
++  (package
++    (name "go-github-com-jmespath-go-jmespath")
++    (version "0.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/jmespath/go-jmespath")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "18zyr9nlywmwp3wpzcjxrgq9s9d2mmc6zg6xhsna00m663nkyc3n"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/jmespath/go-jmespath"))
++    (native-inputs
++     (list go-github-com-davecgh-go-spew
++           go-github-com-pmezard-go-difflib
++           go-gopkg-in-yaml-v2))
++    (home-page "https://github.com/jmespath/go-jmespath")
++    (synopsis "Golang implementation of JMESPath")
++    (description
++     "This package implements JMESPath, a query language for JSON.  It
++transforms one JSON document into another through a JMESPath expression.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-julienschmidt-httprouter
+   (package
+     (name "go-github-com-julienschmidt-httprouter")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 5b37222c93..ce7047aa0f 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8699,33 +8699,6 @@ (define-public go-github-com-alecthomas-chroma
+ converts it into syntax highlighted HTML, ANSI-coloured text, etc.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-jmespath-go-jmespath
+-  (package
+-    (name "go-github-com-jmespath-go-jmespath")
+-    (version "0.4.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/jmespath/go-jmespath")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "18zyr9nlywmwp3wpzcjxrgq9s9d2mmc6zg6xhsna00m663nkyc3n"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/jmespath/go-jmespath"))
+-    (native-inputs
+-     (list go-github-com-davecgh-go-spew go-github-com-pmezard-go-difflib
+-           go-gopkg-in-yaml-v2))
+-    (home-page "https://github.com/jmespath/go-jmespath")
+-    (synopsis "Golang implementation of JMESPath")
+-    (description
+-     "This package implements JMESPath, a query language for JSON.  It
+-transforms one JSON document into another through a JMESPath expression.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-muesli-reflow-wordwrap
+   (package
+     (name "go-github-com-muesli-reflow-wordwrap")
+-- 
+2.41.0
+

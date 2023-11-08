@@ -1,0 +1,119 @@
+From b9ba06ea1bf6c0420e95b263d34fa99aa9616388 Mon Sep 17 00:00:00 2001
+Message-ID: <b9ba06ea1bf6c0420e95b263d34fa99aa9616388.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 04:15:04 +0100
+Subject: [PATCH 23/67] gnu: go-github-com-tdewolff-parse-v2: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-tdewolff-parse-v2): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Id58c54359f1bf55c6fc8178ce142bf985858bb87
+---
+ gnu/packages/golang-web.scm | 38 +++++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 37 ------------------------------------
+ 2 files changed, 38 insertions(+), 37 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index d82cac46b9..9e68e96baf 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -509,6 +509,44 @@ (define-public go-github-com-tdewolff-minify-v2
+ an interface to implement any other minifier.")
+     (license license:expat)))
+ 
++(define-public go-github-com-tdewolff-parse-v2
++  (package
++    (name "go-github-com-tdewolff-parse-v2")
++    (version "2.6.6")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/tdewolff/parse")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1dqki9ima079k9a3l72igmx5dml8qsl9z8rzw8a433f4gjhlv320"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/tdewolff/parse/v2"
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'regenerate-hash
++            (lambda* (#:key import-path #:allow-other-keys)
++              (for-each
++               (lambda (dir)
++                 (with-directory-excursion
++                     (format #f "src/~a/~a" import-path dir)
++                   (make-file-writable "hash.go")
++                   (format #t "Generating `hash.go' for ~a...~%" dir)
++                   (invoke "go" "generate")))
++               '("css" "html")))))))
++    (native-inputs
++     (list go-github-com-tdewolff-hasher
++           go-github-com-tdewolff-test))
++    (home-page "https://github.com/tdewolff/parse")
++    (synopsis "Go parsers for web formats")
++    (description
++     "This package contains several lexers and parsers written in Go.")
++    (license license:expat)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 70208b87b6..c4ae0091d2 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3436,43 +3436,6 @@ (define-public go-github-com-tdewolff-hasher
+ @code{string} to @code{uint32} mapper.")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-tdewolff-parse-v2
+-  (package
+-    (name "go-github-com-tdewolff-parse-v2")
+-    (version "2.6.6")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/tdewolff/parse")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1dqki9ima079k9a3l72igmx5dml8qsl9z8rzw8a433f4gjhlv320"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:import-path "github.com/tdewolff/parse/v2"
+-           #:phases
+-           #~(modify-phases %standard-phases
+-               (add-after 'unpack 'regenerate-hash
+-                 (lambda* (#:key import-path #:allow-other-keys)
+-                   (for-each
+-                    (lambda (dir)
+-                      (with-directory-excursion
+-                          (format #f "src/~a/~a" import-path dir)
+-                        (make-file-writable "hash.go")
+-                        (format #t "Generating `hash.go' for ~a...~%" dir)
+-                        (invoke "go" "generate")))
+-                    '("css" "html")))))))
+-    (native-inputs
+-     (list go-github-com-tdewolff-hasher
+-           go-github-com-tdewolff-test))
+-    (home-page "https://github.com/tdewolff/parse")
+-    (synopsis "Go parsers for web formats")
+-    (description
+-     "This package contains several lexers and parsers written in Go.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-tj-docopt
+   (package
+     (name "go-github-com-tj-docopt")
+-- 
+2.41.0
+

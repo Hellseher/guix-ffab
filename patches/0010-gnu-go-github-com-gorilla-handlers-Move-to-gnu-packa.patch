@@ -1,0 +1,122 @@
+From 3525fa5dcc7a8eb369fb3996002ef1d85167d4f7 Mon Sep 17 00:00:00 2001
+Message-ID: <3525fa5dcc7a8eb369fb3996002ef1d85167d4f7.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:24:54 +0100
+Subject: [PATCH 10/67] gnu: go-github-com-gorilla-handlers: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-handlers): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/backup.scm: Add (gnu packages golang-web) module.
+
+Change-Id: I7535bdecc681e230f4aee70115a3dea847d40e6f
+---
+ gnu/packages/backup.scm     |  1 +
+ gnu/packages/golang-web.scm | 28 +++++++++++++++++++++++++++-
+ gnu/packages/golang.scm     | 26 --------------------------
+ 3 files changed, 28 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/backup.scm b/gnu/packages/backup.scm
+index 12c4a45b9d..8e0a782f91 100644
+--- a/gnu/packages/backup.scm
++++ b/gnu/packages/backup.scm
+@@ -71,6 +71,7 @@ (define-module (gnu packages backup)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index f9e7039707..0480f648eb 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1,9 +1,10 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
++;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+-;;; Copyright © 2021, 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
++;;; Copyright © 2021, 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022 Giacomo Leidi <goodoldpaul@autistici.org>
+ ;;; Copyright © 2022 muradm <mail@muradm.net>
+ ;;;
+@@ -139,6 +140,31 @@ (define-public go-github-com-gorilla-css
+     (description "This package provides a CSS3 tokenizer.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-gorilla-handlers
++  (package
++    (name "go-github-com-gorilla-handlers")
++    (version "1.5.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gorilla/handlers")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "15gycdz9lkjnsvvichsbdf25vf6pi1sfn41khhz53iqf300l0w0s"))))
++    (build-system go-build-system)
++    (propagated-inputs
++     `(("github.com/felixge/httpsnoop" ,go-github-com-felixge-httpsnoop)))
++    (arguments
++     '(#:tests? #f                      ; Tries to download from the internet
++       #:import-path "github.com/gorilla/handlers"))
++    (home-page "https://github.com/gorilla/handlers")
++    (synopsis "Middleware for Go HTTP services and web applications")
++    (description "A collection of useful middleware for Go HTTP services and
++web applications.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-gorilla-mux
+   (package
+     (name "go-github-com-gorilla-mux")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 5e7d321a2b..243fd2f798 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4706,32 +4706,6 @@ (define-public go-github-com-andybalholm-brotli
+ @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-gorilla-handlers
+-  (package
+-    (name "go-github-com-gorilla-handlers")
+-    (version "1.5.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/gorilla/handlers")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "15gycdz9lkjnsvvichsbdf25vf6pi1sfn41khhz53iqf300l0w0s"))))
+-    (build-system go-build-system)
+-    (propagated-inputs
+-     `(("github.com/felixge/httpsnoop" ,go-github-com-felixge-httpsnoop)))
+-    (arguments
+-     '(#:tests? #f                      ; Tries to download from the internet
+-       #:import-path "github.com/gorilla/handlers"))
+-    (home-page "https://github.com/gorilla/handlers")
+-    (synopsis "Middleware for Go HTTP services and web applications")
+-    (description "A collection of useful middleware for Go HTTP services
+-and web applications.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-gorilla-securecookie
+   (package
+     (name "go-github-com-gorilla-securecookie")
+-- 
+2.41.0
+

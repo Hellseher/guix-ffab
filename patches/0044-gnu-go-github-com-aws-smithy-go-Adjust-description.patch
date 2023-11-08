@@ -1,0 +1,33 @@
+From f97517e81dd1e4d1200cf29a16dd4f67f1559074 Mon Sep 17 00:00:00 2001
+Message-ID: <f97517e81dd1e4d1200cf29a16dd4f67f1559074.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 15:37:10 +0000
+Subject: [PATCH 44/67] gnu: go-github-com-aws-smithy-go: Adjust description.
+
+* gnu/packages/golang-web.scm (go-github-com-aws-smithy-go):[description]
+Add link to Smithy.
+
+Change-Id: I3c913db5940dc97fb3fa8874fd8b1bf9baaf4a59
+---
+ gnu/packages/golang-web.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index c23e6df581..ae9ffd3fd2 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -123,7 +123,8 @@ (define-public go-github-com-aws-smithy-go
+     (propagated-inputs
+      (list go-github-com-jmespath-go-jmespath go-github-com-google-go-cmp-cmp))
+     (home-page "https://github.com/aws/smithy-go")
+-    (synopsis "Smithy code generators for Go")
++    (synopsis "@url{https://smithy.io/2.0/index.html,Smithy} code generators
++for Go")
+     (description
+      "Package smithy provides the core components for a Smithy SDK.")
+     (license license:asl2.0)))
+-- 
+2.41.0
+

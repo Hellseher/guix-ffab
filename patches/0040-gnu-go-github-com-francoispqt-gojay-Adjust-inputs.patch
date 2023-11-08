@@ -1,0 +1,32 @@
+From 7770025f43bf1504c80e4c6e13721224ca2aee6b Mon Sep 17 00:00:00 2001
+Message-ID: <7770025f43bf1504c80e4c6e13721224ca2aee6b.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 15:15:59 +0000
+Subject: [PATCH 40/67] gnu: go-github-com-francoispqt-gojay: Adjust inputs.
+
+* gnu/packages/golang-web.scm (go-github-com-francoispqt-gojay):
+[propagated-inputs]: Swap to [native-inputs].
+
+Change-Id: Ie83ea13685036b2688f668cde8bbb831ba5cd602
+---
+ gnu/packages/golang-web.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 2790e2b5aa..59312f791a 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -326,7 +326,7 @@ (define-public go-github-com-francoispqt-gojay
+     (build-system go-build-system)
+     (arguments
+      '(#:import-path "github.com/francoispqt/gojay"))
+-    (propagated-inputs
++    (native-inputs
+      (list go-github-com-stretchr-testify))
+     (synopsis "JSON encoder/decoder with powerful stream API for Golang")
+     (description "GoJay is a performant JSON encoder/decoder for Golang.  It has
+-- 
+2.41.0
+

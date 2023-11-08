@@ -1,0 +1,111 @@
+From 72080382764b6f970f2e9106d16e90df7d1c330e Mon Sep 17 00:00:00 2001
+Message-ID: <72080382764b6f970f2e9106d16e90df7d1c330e.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:19:52 +0100
+Subject: [PATCH 09/67] gnu: go-github-com-sourcegraph-jsonrpc2: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-sourcegraph-jsonrpc2): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/databases.scm: Add (gnu packages golang-web) module.
+
+Change-Id: Idda2e18ae5d3e19f72265bdd017eadddc25bcad9
+---
+ gnu/packages/databases.scm  |  1 +
+ gnu/packages/golang-web.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 26 --------------------------
+ 3 files changed, 27 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
+index 3eeee9fadf..5df8ea2bb8 100644
+--- a/gnu/packages/databases.scm
++++ b/gnu/packages/databases.scm
+@@ -108,6 +108,7 @@ (define-module (gnu packages databases)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 0ca70cec38..f9e7039707 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -208,6 +208,32 @@ (define-public go-github-com-puerkitobio-goquery
+ to jQuery to the Go language.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-sourcegraph-jsonrpc2
++  (package
++    (name "go-github-com-sourcegraph-jsonrpc2")
++    (version "0.1.0")
++    (home-page "https://github.com/sourcegraph/jsonrpc2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url home-page)
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1dk0w32k96vxrwnmm24wqx337dn8ylch65qwrbc3wh7whw2xx71q"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/sourcegraph/jsonrpc2"))
++    (propagated-inputs
++     (list go-github-com-daviddengcn-go-colortext
++           go-github-com-gorilla-websocket
++           go-github-com-motemen-go-colorine))
++    (synopsis "Provides a client and server implementation of JSON-RPC 2.0")
++    (description
++     "Package jsonrpc2 provides a Go implementation of JSON-RPC 2.0.")
++    (license license:expat)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index ed65b5d978..5e7d321a2b 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -12646,32 +12646,6 @@ (define-public go-github-com-google-shlex
+ using shell-style rules for quoting and commenting.")
+     (license license:asl2.0)))
+ 
+-(define-public go-github-com-sourcegraph-jsonrpc2
+-  (package
+-    (name "go-github-com-sourcegraph-jsonrpc2")
+-    (version "0.1.0")
+-    (home-page "https://github.com/sourcegraph/jsonrpc2")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url home-page)
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32 "1dk0w32k96vxrwnmm24wqx337dn8ylch65qwrbc3wh7whw2xx71q"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/sourcegraph/jsonrpc2"))
+-    (propagated-inputs
+-     (list
+-      go-github-com-daviddengcn-go-colortext
+-      go-github-com-motemen-go-colorine
+-      go-github-com-gorilla-websocket))
+-    (synopsis "Provides a client and server implementation of JSON-RPC 2.0")
+-    (description
+-     "Package jsonrpc2 provides a Go implementation of JSON-RPC 2.0.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-disintegration-imaging
+   (package
+     (name "go-github-com-disintegration-imaging")
+-- 
+2.41.0
+

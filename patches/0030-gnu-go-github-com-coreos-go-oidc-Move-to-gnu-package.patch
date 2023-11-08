@@ -1,0 +1,98 @@
+From 32da37ae6cd070b03e64374123e86691e9cd8716 Mon Sep 17 00:00:00 2001
+Message-ID: <32da37ae6cd070b03e64374123e86691e9cd8716.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 13:27:21 +0000
+Subject: [PATCH 30/67] gnu: go-github-com-coreos-go-oidc: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-coreos-go-oidc): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Iadefbc9c3df2aa291a3eb4c8cc31a5fdf562e138
+---
+ gnu/packages/golang-web.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 976179f44e..792406ab97 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -182,6 +182,33 @@ (define-public go-github-com-chris-ramon-douceur
+     (description "This package provides a CSS parser and inliner.")
+     (license license:expat)))
+ 
++(define-public go-github-com-coreos-go-oidc
++  (package
++    (name "go-github-com-coreos-go-oidc")
++    (version "2.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/coreos/go-oidc")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "11m6slbpi33ynffml7812piq4anhjlf1qszjlsf26f5y7x3qh8n5"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:import-path "github.com/coreos/go-oidc"))
++    (propagated-inputs
++     (list go-github-com-pquerna-cachecontrol
++           go-golang-org-x-oauth2
++           go-gopkg-in-square-go-jose-v2))
++    (home-page "https://github.com/coreos/go-oidc")
++    (synopsis "OpenID Connect support for Go")
++    (description
++     "This package enables OpenID Connect support for the
++@code{go-golang-org-x-oauth2} package.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-felixge-httpsnoop
+   (package
+     (name "go-github-com-felixge-httpsnoop")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 8b8e80c0f8..a58b558f5f 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9116,33 +9116,6 @@ (define-public go-github-com-charmbracelet-glamour
+ use one of our glamorous default themes.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-coreos-go-oidc
+-  (package
+-    (name "go-github-com-coreos-go-oidc")
+-    (version "2.2.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/coreos/go-oidc")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "11m6slbpi33ynffml7812piq4anhjlf1qszjlsf26f5y7x3qh8n5"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:import-path "github.com/coreos/go-oidc"))
+-    (propagated-inputs
+-     (list go-github-com-pquerna-cachecontrol
+-           go-golang-org-x-oauth2
+-           go-gopkg-in-square-go-jose-v2))
+-    (home-page "https://github.com/coreos/go-oidc")
+-    (synopsis "OpenID Connect support for Go")
+-    (description
+-     "This package enables OpenID Connect support for the
+-@code{go-golang-org-x-oauth2} package.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-coreos-go-oidc-v3
+   (package
+     (inherit go-github-com-coreos-go-oidc)
+-- 
+2.41.0
+

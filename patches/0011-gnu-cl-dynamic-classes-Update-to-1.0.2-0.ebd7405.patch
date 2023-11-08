@@ -1,0 +1,82 @@
+From 299c24dff89d7f71eb823dbc5fdd41312ec901f7 Mon Sep 17 00:00:00 2001
+Message-ID: <299c24dff89d7f71eb823dbc5fdd41312ec901f7.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 5 Nov 2023 20:06:02 +0000
+Subject: [PATCH 11/16] gnu: cl-dynamic-classes: Update to 1.0.2-0.ebd7405.
+
+* gnu/packages/lisp-xyz.scm (sbcl-dynamic-classes): 1.0.2-0.ebd7405.
+[source]: Update URL as maintainer and owner of repository was changed.
+
+Change-Id: I29600432399b2440cfe81cbb04a029e09b5b98b0
+---
+ gnu/packages/lisp-xyz.scm | 51 +++++++++++++++++++++------------------
+ 1 file changed, 27 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 9209ed2426..1cec0661a5 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -17692,31 +17692,34 @@ (define-public ecl-agnostic-lizard
+   (sbcl-package->ecl-package sbcl-agnostic-lizard))
+ 
+ (define-public sbcl-dynamic-classes
+-  (package
+-    (name "sbcl-dynamic-classes")
+-    (version "1.0.2")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/gwkkwg/dynamic-classes")
+-             (commit (string-append "version-" version))))
+-       (file-name (git-file-name "dynamic-classes" version))
+-       (sha256
+-        (base32 "1z3ag6w4ff0v6715xa9zhvwjqnp4i6zrjfmxdz8m115sklbwgm6c"))))
+-    (build-system asdf-build-system/sbcl)
+-    (inputs
+-     `(("metatilities-base" ,sbcl-metatilities-base)))
+-    (arguments
+-     ;; NOTE: (Sharlatan-20210106222900+0000) Circular dependencies and failing
+-     ;; test suites. lift-standard.config contains referances to deprecated
+-     ;; functionality.
+-     `(#:tests? #f))
+-    (home-page "https://common-lisp.net/project/dynamic-classes/")
+-    (synopsis "Dynamic class definition for Common Lisp")
+-    (description "Dynamic-Classes helps to ease the prototyping process by
++  (let ((commit "ebd7405603f67b16e8f2bc08ce8e2bcfcf439501")
++        (revision "0"))
++    (package
++      (name "sbcl-dynamic-classes")
++      (version (git-version "1.0.2" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/hraban/dynamic-classes")
++               (commit commit)))
++         (file-name (git-file-name "dynamic-classes" version))
++         (sha256
++          (base32 "1k9lkchwyi2xhygp2v8ifq3kg1l3wcnihhzgr06jrivjxgdqpc1a"))))
++      (build-system asdf-build-system/sbcl)
++      (inputs
++       `(("metatilities-base" ,sbcl-metatilities-base)))
++      (arguments
++       ;; NOTE: (Sharlatan-20210106222900+0000) Circular dependencies and failing
++       ;; test suites. lift-standard.config contains referances to deprecated
++       ;; functionality.
++       ;; See https://github.com/hraban/dynamic-classes/issues/2
++       `(#:tests? #f))
++      (home-page "https://common-lisp.net/project/dynamic-classes/")
++      (synopsis "Dynamic class definition for Common Lisp")
++      (description "Dynamic-Classes helps to ease the prototyping process by
+ bringing dynamism to class definition.")
+-    (license license:expat)))
++      (license license:expat))))
+ 
+ (define-public ecl-dynamic-classes
+   (sbcl-package->ecl-package sbcl-dynamic-classes))
+-- 
+2.41.0
+

@@ -1,0 +1,37 @@
+From e98697a41c67b235ebd31c0bfd84994f76f0ffd0 Mon Sep 17 00:00:00 2001
+Message-ID: <e98697a41c67b235ebd31c0bfd84994f76f0ffd0.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:56:34 +0100
+Subject: [PATCH 20/67] gnu: go-github-com-jcmturner-goidentity-v6: Adjust
+ inputs.
+
+* gnu/packages/golang-web.scm (go-github-com-jcmturner-goidentity-v6):
+[propagated-inputs]: Move go-github-com-stretchr-testify from here ...
+[native-inputs]: ... to here.
+
+Change-Id: I1e7bd72b3bf1c0879426a6a4c5b3b1de1d316069
+---
+ gnu/packages/golang-web.scm | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 751eb41b58..8ced6a4c6f 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -330,8 +330,10 @@ (define-public go-github-com-jcmturner-goidentity-v6
+     (build-system go-build-system)
+     (arguments
+      '(#:import-path "github.com/jcmturner/goidentity/v6"))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
+     (propagated-inputs
+-     (list go-github-com-stretchr-testify go-github-com-hashicorp-go-uuid))
++     (list go-github-com-hashicorp-go-uuid))
+     (home-page "https://github.com/jcmturner/goidentity")
+     (synopsis "Hold authenticated identities and their attributes")
+     (description "This package provides a standard interface for holding
+-- 
+2.41.0
+

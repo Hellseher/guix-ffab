@@ -1,10 +1,10 @@
-From 113f0b861b2d4aea8cfab2050ab8123a04f7f18e Mon Sep 17 00:00:00 2001
-Message-ID: <113f0b861b2d4aea8cfab2050ab8123a04f7f18e.1699062920.git.sharlatanus@gmail.com>
-In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
-References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699062920.git.sharlatanus@gmail.com>
+From cc8bcf2b6ff898ef73eca6f93afa16dd87d1bf06 Mon Sep 17 00:00:00 2001
+Message-ID: <cc8bcf2b6ff898ef73eca6f93afa16dd87d1bf06.1699195588.git.sharlatanus@gmail.com>
+In-Reply-To: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
+References: <1c3e20f81479ed702270fc6640939db165bd33bc.1699195588.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Thu, 2 Nov 2023 14:41:03 +0000
-Subject: [PATCH v2 4/5] gnu: elemental: Remove input labels.
+Subject: [PATCH v3 4/5] gnu: elemental: Remove input labels.
 
 * gnu/packages/maths.scm (elemental)[inputs]: Remove labels.
 

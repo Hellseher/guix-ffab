@@ -1,0 +1,38 @@
+From 16580a2abe2bbf313053530c8e61f00ea712b9d9 Mon Sep 17 00:00:00 2001
+Message-ID: <16580a2abe2bbf313053530c8e61f00ea712b9d9.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:52:59 +0000
+Subject: [PATCH 57/67] gnu: go-github-com-xeipuuv-gojsonschema: Adjust inputs.
+
+* gnu/packages/golang-web.scm (go-github-com-xeipuuv-gojsonschema):
+[propagated-inputs]: Move go-github-com-stretchr-testify from here ...
+[native-inputs]: ... to here.
+
+Change-Id: Id865d5821060cd847aeb9ccfc7b7a477e12f7b7b
+---
+ gnu/packages/golang-web.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index c97dfa7757..346ca87cc7 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1232,10 +1232,11 @@ (define-public go-github-com-xeipuuv-gojsonschema
+                     (string-append "// " all))
+                    (("\\{\"phase\": \"invalid definition" all)
+                     (string-append "// " all)))))))))
++      (native-inputs
++       (list go-github-com-stretchr-testify))
+       (propagated-inputs
+        (list go-github-com-xeipuuv-gojsonreference
+-             go-github-com-xeipuuv-gojsonpointer
+-             go-github-com-stretchr-testify))
++             go-github-com-xeipuuv-gojsonpointer))
+       (home-page "https://github.com/xeipuuv/gojsonschema")
+       (synopsis "Implementation of JSON Schema for Go")
+       (description
+-- 
+2.41.0
+

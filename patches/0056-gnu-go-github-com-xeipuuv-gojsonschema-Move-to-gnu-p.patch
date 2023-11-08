@@ -1,0 +1,125 @@
+From 4a5d041e2c254ba76e1b3fae234bc929f5144bd0 Mon Sep 17 00:00:00 2001
+Message-ID: <4a5d041e2c254ba76e1b3fae234bc929f5144bd0.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:51:05 +0000
+Subject: [PATCH 56/67] gnu: go-github-com-xeipuuv-gojsonschema: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-xeipuuv-gojsonschema): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: Iaf68b653f279c98f62ce9e07f2ce010c8e1741e2
+---
+ gnu/packages/golang-web.scm | 41 +++++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 40 ------------------------------------
+ 2 files changed, 41 insertions(+), 40 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 4771657add..c97dfa7757 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1202,6 +1202,47 @@ (define-public go-github-com-valyala-fasthttp
+ replacement for native @code{net/http} module.")
+     (license license:expat)))
+ 
++(define-public go-github-com-xeipuuv-gojsonschema
++  (let ((commit "6b67b3fab74d992bd07f72550006ab2c6907c416")
++        (revision "0"))
++    (package
++      (name "go-github-com-xeipuuv-gojsonschema")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/xeipuuv/gojsonschema")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1q937a6q7canlr3dllqdw0qwa6z2fpwn1w9kycavx8jmwh6q3f69"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path "github.com/xeipuuv/gojsonschema"
++         #:phases
++         (modify-phases %standard-phases
++           (add-after 'unpack 'disable-failing-tests
++             (lambda* (#:key import-path #:allow-other-keys)
++               (with-directory-excursion (string-append "src/" import-path)
++                 (substitute* "schema_test.go"
++                   (("\\{\"phase\": \"remote ref, " all)
++                    (string-append "// " all))
++                   (("\\{\"phase\": \"valid definition" all)
++                    (string-append "// " all))
++                   (("\\{\"phase\": \"invalid definition" all)
++                    (string-append "// " all)))))))))
++      (propagated-inputs
++       (list go-github-com-xeipuuv-gojsonreference
++             go-github-com-xeipuuv-gojsonpointer
++             go-github-com-stretchr-testify))
++      (home-page "https://github.com/xeipuuv/gojsonschema")
++      (synopsis "Implementation of JSON Schema for Go")
++      (description
++       "This package provides an implementation of JSON Schema for the Go
++programming language, which supports draft-04, draft-06 and draft-07.")
++      (license license:asl2.0))))
++
+ (define-public go-gopkg-in-square-go-jose-v2
+   (package
+     (name "go-gopkg-in-square-go-jose-v2")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 0e608a8eab..16b13cd59e 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -12176,46 +12176,6 @@ (define-public go-github-com-xeipuuv-gojsonreference
+ programming language.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-xeipuuv-gojsonschema
+-  (let ((commit "6b67b3fab74d992bd07f72550006ab2c6907c416")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-xeipuuv-gojsonschema")
+-      (version (git-version "0.0.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/xeipuuv/gojsonschema")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1q937a6q7canlr3dllqdw0qwa6z2fpwn1w9kycavx8jmwh6q3f69"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/xeipuuv/gojsonschema"
+-         #:phases
+-         (modify-phases %standard-phases
+-           (add-after 'unpack 'disable-failing-tests
+-             (lambda* (#:key import-path #:allow-other-keys)
+-               (with-directory-excursion (string-append "src/" import-path)
+-                 (substitute* "schema_test.go"
+-                   (("\\{\"phase\": \"remote ref, " all)
+-                    (string-append "// " all))
+-                   (("\\{\"phase\": \"valid definition" all)
+-                    (string-append "// " all))
+-                   (("\\{\"phase\": \"invalid definition" all)
+-                    (string-append "// " all)))))))))
+-      (propagated-inputs (list go-github-com-xeipuuv-gojsonreference
+-                               go-github-com-xeipuuv-gojsonpointer
+-                               go-github-com-stretchr-testify))
+-      (home-page "https://github.com/xeipuuv/gojsonschema")
+-      (synopsis "Implementation of JSON Schema for Go")
+-      (description
+-       "This package provides an implementation of JSON Schema for the Go
+-programming language, which supports draft-04, draft-06 and draft-07.")
+-      (license license:asl2.0))))
+-
+ (define-public go-github-com-niemeyer-pretty
+   (package
+     (name "go-github-com-niemeyer-pretty")
+-- 
+2.41.0
+

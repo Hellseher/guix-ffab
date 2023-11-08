@@ -1,0 +1,94 @@
+From 29b518e2564a84565c74c4d85bc1efaee757f491 Mon Sep 17 00:00:00 2001
+Message-ID: <29b518e2564a84565c74c4d85bc1efaee757f491.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 04:18:28 +0100
+Subject: [PATCH 24/67] gnu: go-github-com-gorilla-context: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-context): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I22ba5493a48fe619ef2aca185c559da3a81f8d81
+---
+ gnu/packages/golang-web.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ 2 files changed, 26 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 9e68e96baf..012ed0429c 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -146,6 +146,32 @@ (define-public go-github-com-felixge-httpsnoop
+ application's http.Handlers.")
+     (license license:expat)))
+ 
++(define-public go-github-com-gorilla-context
++  (let ((commit "08b5f424b9271eedf6f9f0ce86cb9396ed337a42")
++        (revision "0"))
++    (package
++      (name "go-github-com-gorilla-context")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/gorilla/context")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "03p4hn87vcmfih0p9w663qbx9lpsf7i7j3lc7yl7n84la3yz63m4"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path "github.com/gorilla/context"))
++      (home-page "https://github.com/gorilla/context")
++      (synopsis "Go registry for request variables")
++      (description
++       "This package provides @code{gorilla/context}, which is a general
++purpose registry for global request variables in the Go programming
++language.")
++      (license license:bsd-3))))
++
+ (define-public go-github-com-gorilla-csrf
+   (package
+     (name "go-github-com-gorilla-csrf")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index c4ae0091d2..a3d5fb0f6b 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4480,30 +4480,6 @@ (define-public go-github-com-google-cadvisor
+ containers.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-gorilla-context
+-  (let ((commit "08b5f424b9271eedf6f9f0ce86cb9396ed337a42")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-gorilla-context")
+-      (version (git-version "0.0.0" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/gorilla/context")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32
+-           "03p4hn87vcmfih0p9w663qbx9lpsf7i7j3lc7yl7n84la3yz63m4"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/gorilla/context"))
+-      (home-page "https://github.com/gorilla/context")
+-      (synopsis "Go registry for request variables")
+-      (description "This package provides @code{gorilla/context}, which is a general purpose registry for global request variables in the Go programming language.")
+-      (license license:bsd-3))))
+-
+ (define-public go-github-com-andybalholm-brotli
+   (package
+     (name "go-github-com-andybalholm-brotli")
+-- 
+2.41.0
+

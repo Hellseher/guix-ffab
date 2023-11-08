@@ -1,0 +1,41 @@
+From fd324b28b98273318a219fba6043834bb4c10724 Mon Sep 17 00:00:00 2001
+Message-ID: <fd324b28b98273318a219fba6043834bb4c10724.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 03:44:41 +0100
+Subject: [PATCH 16/67] gnu: go-github-com-jcmturner-gokrb5-v8: Adjust inputs.
+
+* gnu/packages/golang-web.scm (go-github-com-jcmturner-gokrb5-v8)
+[propagated-inputs]: go-github-com-stretchr-testify move from here ...
+[native-inputs]: ... to here.
+
+Change-Id: I93be99c60c15ba7861dd909e8856c800f8cf8314
+---
+ gnu/packages/golang-web.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index ae10a86551..580877f8fe 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -303,6 +303,8 @@ (define-public go-github-com-jcmturner-gokrb5-v8
+     (arguments
+      '(#:import-path "github.com/jcmturner/gokrb5/v8"
+        #:unpack-path "github.com/jcmturner/gokrb5"))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
+     (propagated-inputs
+      (list go-github-com-gorilla-sessions
+            go-github-com-hashicorp-go-uuid
+@@ -312,7 +314,6 @@ (define-public go-github-com-jcmturner-gokrb5-v8
+            go-github-com-jcmturner-goidentity-v6
+            go-github-com-jcmturner-rpc-v2-mstypes
+            go-github-com-jcmturner-rpc-v2-ndr
+-           go-github-com-stretchr-testify
+            go-golang-org-x-crypto
+            go-golang-org-x-net))
+     (home-page "https://github.com/jcmturner/gokrb5")
+-- 
+2.41.0
+

@@ -1,0 +1,105 @@
+From 39ac5469713a00b2b351246c4055c92a3be697f5 Mon Sep 17 00:00:00 2001
+Message-ID: <39ac5469713a00b2b351246c4055c92a3be697f5.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 22:38:37 +0000
+Subject: [PATCH 54/67] gnu: go-github-com-nwidger-jsoncolor: Move to (gnu
+ packages golang-web).
+
+* gnu/packages/golang.scm (go-github-com-nwidger-jsoncolor): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I924581a553c7b59b1be3e274a1845af68b438bcb
+---
+ gnu/packages/golang-web.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 616a14fdf1..96873f020c 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1,6 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2020 Jack Hill <jackhill@jackhill.us>
++;;; Copyright © 2020 Joseph LaFreniere <joseph@lafreniere.xyz>
+ ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
+ ;;; Copyright © 2020 Nicolas Goaziou <mail@nicolasgoaziou.fr>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+@@ -934,6 +935,32 @@ (define-public go-github-com-microcosm-cc-bluemonday
+     (description "@code{bluemonday} is a HTML sanitizer implemented in Go.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-nwidger-jsoncolor
++  (package
++    (name "go-github-com-nwidger-jsoncolor")
++    (version "0.3.0")
++    (home-page "https://github.com/nwidger/jsoncolor")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url home-page)
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "13rd146pnj7qm70r1333gyd1f61x40nafxlpvdxlci9h7mx8c5p8"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/nwidger/jsoncolor"))
++    (native-inputs
++     (list go-github-com-fatih-color))
++    (synopsis "Colorized JSON marshalling and encoding")
++    (description
++     "@code{jsoncolor} is a drop-in replacement for @code{encoding/json}'s
++@code{Marshal} and @code{MarshalIndent} functions and @code{Encoder} type
++which produce colorized output using github.com/fatih/color.")
++    (license license:expat)))
++
+ (define-public go-github-com-opentracing-opentracing-go
+   (package
+     (name "go-github-com-opentracing-opentracing-go")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index efd46895ec..bf71d0de49 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8786,33 +8786,6 @@ (define-public go-github-com-muesli-termenv
+ escape sequences and color conversions.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-nwidger-jsoncolor
+-  (package
+-    (name "go-github-com-nwidger-jsoncolor")
+-    (version "0.3.0")
+-    (home-page "https://github.com/nwidger/jsoncolor")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url home-page)
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "13rd146pnj7qm70r1333gyd1f61x40nafxlpvdxlci9h7mx8c5p8"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/nwidger/jsoncolor"))
+-    (native-inputs
+-     (list go-github-com-fatih-color))
+-    (synopsis "Colorized JSON marshalling and encoding")
+-    (description
+-     "@code{jsoncolor} is a drop-in replacement for @code{encoding/json}'s
+-@code{Marshal} and @code{MarshalIndent} functions and @code{Encoder} type
+-which produce colorized output using github.com/fatih/color.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-olekukonko-tablewriter
+   (package
+     (name "go-github-com-olekukonko-tablewriter")
+-- 
+2.41.0
+

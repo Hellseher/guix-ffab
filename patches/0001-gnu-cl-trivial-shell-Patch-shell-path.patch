@@ -1,0 +1,47 @@
+From e5d3bd54128d8fa4a551c64c6acf3e29e41f5ede Mon Sep 17 00:00:00 2001
+Message-ID: <e5d3bd54128d8fa4a551c64c6acf3e29e41f5ede.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 18:19:51 +0000
+Subject: [PATCH 01/16] gnu: cl-trivial-shell: Patch shell path.
+
+* gnu/packages/lisp-xyz.scm (sbcl-trivial-shell):
+[source]: Update URL as maintainer and owner of repository was changed.
+[arguments]: Add 'fix-paths phase to patch location of the shell.
+
+Change-Id: Ib3ac95013d3cb5240eb0261ad53f484b14d8f76f
+---
+ gnu/packages/lisp-xyz.scm | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 4743e39d93..4e9b9894b2 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -17097,12 +17097,21 @@ (define-public sbcl-trivial-shell
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+-               (url "https://github.com/gwkkwg/trivial-shell")
++               (url "https://github.com/hraban/trivial-shell")
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+           (base32 "08mpkl5ij5sjfsyn8pq2kvsvpvyvr7ha1r8g1224fa667b8k2q85"))))
+       (build-system asdf-build-system/sbcl)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-after 'unpack 'fix-paths
++              (lambda _
++                (substitute* "dev/definitions.lisp"
++                  (("/bin/sh")
++                   (which "sh"))))))))
+       (native-inputs
+        (list sbcl-lift))
+       (home-page "https://common-lisp.net/project/trivial-shell/")
+-- 
+2.41.0
+

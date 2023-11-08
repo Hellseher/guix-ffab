@@ -1,0 +1,92 @@
+From 042691a38862aaa7f3a3817c3db6330bfcf776db Mon Sep 17 00:00:00 2001
+Message-ID: <042691a38862aaa7f3a3817c3db6330bfcf776db.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 15:35:40 +0000
+Subject: [PATCH 43/67] gnu: go-github-com-aws-smithy-go: Move to (gnu packages
+ golang-web).
+
+* gnu/packages/golang.scm (go-github-com-aws-smithy-go): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I3a4731ae27cc7365c1704cf5a9eab56ca79974a4
+---
+ gnu/packages/golang-web.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 9f7b0e39dc..c23e6df581 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -104,6 +104,30 @@ (define-public go-github-com-aws-sdk
+      "This is the official AWS SDK for the Go programming language.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-aws-smithy-go
++  (package
++    (name "go-github-com-aws-smithy-go")
++    (version "1.13.5")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/aws/smithy-go")
++             (commit "v1.13.5")))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1rgyk0m2d3agknnlzjqvac1a61wwdq1pbck7vyl587m38n5zi2cz"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/aws/smithy-go"))
++    (propagated-inputs
++     (list go-github-com-jmespath-go-jmespath go-github-com-google-go-cmp-cmp))
++    (home-page "https://github.com/aws/smithy-go")
++    (synopsis "Smithy code generators for Go")
++    (description
++     "Package smithy provides the core components for a Smithy SDK.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-aymerick-douceur
+   (package
+     (name "go-github-com-aymerick-douceur")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index ce7047aa0f..f0b2007d25 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -11173,30 +11173,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
+     (home-page "https://github.com/dvsekhvalnov/jose2go")
+     (license license:expat)))
+ 
+-(define-public go-github-com-aws-smithy-go
+-  (package
+-    (name "go-github-com-aws-smithy-go")
+-    (version "1.13.5")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/aws/smithy-go")
+-                    (commit "v1.13.5")))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1rgyk0m2d3agknnlzjqvac1a61wwdq1pbck7vyl587m38n5zi2cz"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/aws/smithy-go"))
+-    (propagated-inputs
+-     (list go-github-com-jmespath-go-jmespath go-github-com-google-go-cmp-cmp))
+-    (home-page "https://github.com/aws/smithy-go")
+-    (synopsis "Smithy code generators for Go")
+-    (description
+-     "Package smithy provides the core components for a Smithy SDK.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-aws-aws-sdk-go-v2
+   (package
+     (name "go-github-com-aws-aws-sdk-go-v2")
+-- 
+2.41.0
+

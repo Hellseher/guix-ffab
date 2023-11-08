@@ -1,0 +1,58 @@
+From 170a8357705bd9cc20cfe4b0fa968761bb6a8bcf Mon Sep 17 00:00:00 2001
+Message-ID: <170a8357705bd9cc20cfe4b0fa968761bb6a8bcf.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 19:58:37 +0000
+Subject: [PATCH 08/16] gnu: cl-trivial-timeout: Update to 0.1.5-2.e70d9b4.
+
+* gnu/packages/lisp-xyz.scm (sbcl-trivial-timeout): Update to 0.1.5-2.e70d9b4.
+[source]: Update URL as maintainer and owner of repository was changed.
+[home-page]: As above.
+
+Change-Id: Ia7251a2caed1347d4293975c2aefa8bea7c0dc7e
+---
+ gnu/packages/lisp-xyz.scm | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index b02c3d0789..6e3593b9bb 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1247,8 +1247,8 @@ (define-public ecl-tripod
+               (delete 'build-program))))))))
+ 
+ (define-public sbcl-trivial-timeout
+-  (let ((commit "feb869357f40f5e109570fb40abad215fb370c6c")
+-        (revision "1"))
++  (let ((commit "e70d9b4f7caeab83ea6ac50d724470fe49561e66")
++        (revision "2"))
+     (package
+       (name "sbcl-trivial-timeout")
+       (version (git-version "0.1.5" revision commit))
+@@ -1256,11 +1256,11 @@ (define-public sbcl-trivial-timeout
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+-               (url "https://github.com/gwkkwg/trivial-timeout/")
++               (url "https://github.com/hraban/trivial-timeout")
+                (commit commit)))
+          (file-name (git-file-name "trivial-timeout" version))
+          (sha256
+-          (base32 "1kninxwvvih9nhh7a9y8lfgi7pdr76675y1clw4ss17vz8fbim5p"))))
++          (base32 "0s8z9aj6b3kv21yiyk13cjylzf5zlnw9v86vcff477m1gk9yddjs"))))
+       (build-system asdf-build-system/sbcl)
+       (native-inputs
+        (list sbcl-lift))
+@@ -1268,7 +1268,7 @@ (define-public sbcl-trivial-timeout
+        ;; NOTE: (Sharlatan-20210202T231437+0000): Due to the age of this library
+        ;; tests use some deprecated functionality and keep failing.
+        `(#:tests? #f))
+-      (home-page "https://github.com/gwkkwg/trivial-timeout/")
++      (home-page "https://github.com/hraban/trivial-timeout")
+       (synopsis "Timeout library for Common Lisp")
+       (description
+        "This library provides an OS and implementation independent access to
+-- 
+2.41.0
+

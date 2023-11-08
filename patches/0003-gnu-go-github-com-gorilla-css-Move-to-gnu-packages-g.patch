@@ -1,0 +1,120 @@
+From 28b2fdbc101d69f8e539ef92b459ee666d355d13 Mon Sep 17 00:00:00 2001
+Message-ID: <28b2fdbc101d69f8e539ef92b459ee666d355d13.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 01:08:17 +0100
+Subject: [PATCH 03/67] gnu: go-github-com-gorilla-css: Move to (gnu packages
+ golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-css): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/configuration-management.sc: Add (gnu packages golang-web) module.
+* gnu/packages/golang.scm: As above...
+
+Change-Id: I6e387966d05c40321b9116b93d76fce68aad8c7f
+---
+ gnu/packages/configuration-management.scm |  1 +
+ gnu/packages/golang-web.scm               | 23 +++++++++++++++++++++++
+ gnu/packages/golang.scm                   | 23 +----------------------
+ 3 files changed, 25 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/configuration-management.scm b/gnu/packages/configuration-management.scm
+index 95a7e8615f..296f48dcd5 100644
+--- a/gnu/packages/configuration-management.scm
++++ b/gnu/packages/configuration-management.scm
+@@ -21,6 +21,7 @@ (define-module (gnu packages configuration-management)
+   #:use-module (guix build-system go)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages version-control)
+   #:use-module (gnu packages textutils)
+   #:use-module ((guix licenses) #:prefix license:)
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index c779600411..1d61a76268 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1,6 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
++;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -34,6 +35,28 @@ (define-module (gnu packages golang-web)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-gorilla-css
++  (package
++    (name "go-github-com-gorilla-css")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gorilla/css")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "116fhy3n7bsq3psyn4pa0i4x9zy916kh1zxslmbbp0p9l4i7ysrj"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/gorilla/css/scanner"
++       #:unpack-path "github.com/gorilla/css"))
++    (home-page "https://github.com/gorilla/css/")
++    (synopsis "CSS3 tokenizer")
++    (description "This package provides a CSS3 tokenizer.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-gorilla-mux
+   (package
+     (name "go-github-com-gorilla-mux")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index f583bd53c5..db335858f6 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -79,6 +79,7 @@ (define-module (gnu packages golang)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages lua)
+   #:use-module (gnu packages mail)
+   #:use-module (gnu packages mp3)
+@@ -4655,28 +4656,6 @@ (define-public go-github-com-google-cadvisor
+ containers.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-gorilla-css
+-  (package
+-    (name "go-github-com-gorilla-css")
+-    (version "1.0.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/gorilla/css")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "116fhy3n7bsq3psyn4pa0i4x9zy916kh1zxslmbbp0p9l4i7ysrj"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/gorilla/css/scanner"
+-       #:unpack-path "github.com/gorilla/css"))
+-    (home-page "https://github.com/gorilla/css/")
+-    (synopsis "CSS3 tokenizer")
+-    (description "This package provides a CSS3 tokenizer.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-gorilla-context
+   (let ((commit "08b5f424b9271eedf6f9f0ce86cb9396ed337a42")
+         (revision "0"))
+-- 
+2.41.0
+

@@ -1,0 +1,127 @@
+From 3b6200738d7a91daa1d1c716ec04b3793fe0e2d2 Mon Sep 17 00:00:00 2001
+Message-ID: <3b6200738d7a91daa1d1c716ec04b3793fe0e2d2.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 01:00:59 +0100
+Subject: [PATCH 02/67] gnu: go-github-com-gorilla-mux: Move to (gnu packages
+ golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-mux): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+* gnu/packages/finance.scm: Add (gnu packages golang-web) module.
+* gnu/packages/web.scm: As above...
+
+Change-Id: I1cb94377d581af93593dbb29cb60ddf5fb287ada
+---
+ gnu/packages/finance.scm    |  1 +
+ gnu/packages/golang-web.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ gnu/packages/web.scm        |  1 +
+ 4 files changed, 27 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/finance.scm b/gnu/packages/finance.scm
+index 4f3415232c..71dff964d5 100644
+--- a/gnu/packages/finance.scm
++++ b/gnu/packages/finance.scm
+@@ -93,6 +93,7 @@ (define-module (gnu packages finance)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages gsasl)
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index feb2854d9c..c779600411 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1,4 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
++;;; Copyright © 2020 Martin Becze <mjbecze@riseup.net>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -32,6 +34,29 @@ (define-module (gnu packages golang-web)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-gorilla-mux
++  (package
++    (name "go-github-com-gorilla-mux")
++    (version "1.8.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gorilla/mux")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "18f0q9qxgq1yh4ji07mqhiydfcwvi56z9d775v7dc7yckj33kpdk"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/gorilla/mux"))
++    (home-page "https://github.com/gorilla/mux")
++    (synopsis "URL router and dispatcher for Go")
++    (description
++     "Gorilla/Mux implements a request router and dispatcher for matching
++incoming requests with their respective handler.")
++    (license license:bsd-3)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 9c707e5414..f583bd53c5 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4701,30 +4701,6 @@ (define-public go-github-com-gorilla-context
+       (description "This package provides @code{gorilla/context}, which is a general purpose registry for global request variables in the Go programming language.")
+       (license license:bsd-3))))
+ 
+-(define-public go-github-com-gorilla-mux
+-  (package
+-    (name "go-github-com-gorilla-mux")
+-    (version "1.8.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/gorilla/mux")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "18f0q9qxgq1yh4ji07mqhiydfcwvi56z9d775v7dc7yckj33kpdk"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/gorilla/mux"))
+-    (home-page "https://github.com/gorilla/mux")
+-    (synopsis "URL router and dispatcher for Go")
+-    (description
+-     "Gorilla/Mux implements a request router and dispatcher for matching
+-incoming requests with their respective handler.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-andybalholm-brotli
+   (package
+     (name "go-github-com-andybalholm-brotli")
+diff --git a/gnu/packages/web.scm b/gnu/packages/web.scm
+index 66d09700db..4055923fb1 100644
+--- a/gnu/packages/web.scm
++++ b/gnu/packages/web.scm
+@@ -141,6 +141,7 @@ (define-module (gnu packages web)
+   #:use-module (gnu packages gnunet)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gtk)
+-- 
+2.41.0
+

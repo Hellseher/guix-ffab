@@ -1,0 +1,97 @@
+From 8692e38aa82c4f70084492351814db6c328cb202 Mon Sep 17 00:00:00 2001
+Message-ID: <8692e38aa82c4f70084492351814db6c328cb202.1699403992.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 28 Oct 2023 04:03:07 +0100
+Subject: [PATCH 21/67] gnu: go-github-com-gorilla-csrf: Move to (gnu packages
+ golang-web).
+
+* gnu/packages/golang.scm (go-github-com-gorilla-csrf): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+Change-Id: I77bcbdaf515152b95418f9e2632d810202a1e23a
+---
+ gnu/packages/golang-web.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ 2 files changed, 26 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 8ced6a4c6f..5be08caf2e 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -144,6 +144,32 @@ (define-public go-github-com-felixge-httpsnoop
+ application's http.Handlers.")
+     (license license:expat)))
+ 
++(define-public go-github-com-gorilla-csrf
++  (package
++    (name "go-github-com-gorilla-csrf")
++    (version "1.7.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gorilla/csrf")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0iryq0z48yi7crfbd8jxyn7lh1gsglpiglvjgnf23bz6xfisssav"))))
++    (build-system go-build-system)
++    (propagated-inputs
++     `(("github.com/gorilla/securecookie" ,go-github-com-gorilla-securecookie)
++       ("github.com/pkg/errors" ,go-github-com-pkg-errors)))
++    (arguments
++     '(#:import-path "github.com/gorilla/csrf"))
++    (home-page "https://github.com/gorilla/csrf")
++    (synopsis "Cross Site Request Forgery (CSRF) prevention middleware")
++    (description
++     "Gorilla/csrf provides Cross Site Request Forgery (CSRF) prevention
++middleware for Go web applications and services.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-gorilla-css
+   (package
+     (name "go-github-com-gorilla-css")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 7ad906ef54..4a7060f065 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4607,33 +4607,6 @@ (define-public go-github-com-andybalholm-brotli
+ @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-gorilla-csrf
+-  (package
+-    (name "go-github-com-gorilla-csrf")
+-    (version "1.7.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/gorilla/csrf")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "0iryq0z48yi7crfbd8jxyn7lh1gsglpiglvjgnf23bz6xfisssav"))))
+-    (build-system go-build-system)
+-    (propagated-inputs
+-     `(("github.com/gorilla/securecookie" ,go-github-com-gorilla-securecookie)
+-       ("github.com/pkg/errors" ,go-github-com-pkg-errors)))
+-    (arguments
+-     '(#:import-path "github.com/gorilla/csrf"))
+-    (home-page "https://github.com/gorilla/csrf")
+-    (synopsis "Cross Site Request Forgery (CSRF) prevention middleware")
+-    (description
+-     "Gorilla/csrf provides Cross Site Request Forgery (CSRF) prevention
+-middleware for Go web applications and services.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-jonboulle-clockwork
+   (let ((commit "e3653ace2d63753697e0e5b07b9393971c0bba9d")
+         (revision "0"))
+-- 
+2.41.0
+

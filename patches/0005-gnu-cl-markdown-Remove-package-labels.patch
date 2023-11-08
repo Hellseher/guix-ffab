@@ -1,0 +1,41 @@
+From d1f71b449f3187aec4b9db992d4c2a6cb68c006f Mon Sep 17 00:00:00 2001
+Message-ID: <d1f71b449f3187aec4b9db992d4c2a6cb68c006f.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 4 Nov 2023 19:44:49 +0000
+Subject: [PATCH 05/16] gnu: cl-markdown: Remove package labels.
+
+* gnu/packages/lisp-xyz.scm (sbcl-cl-markdown): Remove package labels.
+
+Change-Id: I0ff5b8dab480d00904fa6345ab99e44d8e47de2b
+---
+ gnu/packages/lisp-xyz.scm | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 78f9240f4d..9fd4d509a4 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -17749,12 +17749,12 @@ (define-public sbcl-cl-markdown
+       (native-inputs
+        (list sbcl-lift sbcl-trivial-shell))
+       (inputs
+-       `(("anaphora" ,sbcl-anaphora)
+-         ("cl-containers" ,sbcl-cl-containers)
+-         ("cl-ppcre" ,sbcl-cl-ppcre)
+-         ("dynamic-classes" ,sbcl-dynamic-classes)
+-         ("metabang-bind" ,sbcl-metabang-bind)
+-         ("metatilities-base" ,sbcl-metatilities-base)))
++       (list sbcl-anaphora
++             sbcl-cl-containers
++             sbcl-cl-ppcre
++             sbcl-dynamic-classes
++             sbcl-metabang-bind
++             sbcl-metatilities-base))
+       (home-page "https://common-lisp.net/project/cl-markdown/")
+       (synopsis "Common Lisp rewrite of Markdown")
+       (description
+-- 
+2.41.0
+

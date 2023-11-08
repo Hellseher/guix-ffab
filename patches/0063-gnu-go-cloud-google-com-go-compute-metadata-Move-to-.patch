@@ -1,0 +1,120 @@
+From 0823b15b8e1b5c37d60b32400fc5dc56e1ac5caa Mon Sep 17 00:00:00 2001
+Message-ID: <0823b15b8e1b5c37d60b32400fc5dc56e1ac5caa.1699403993.git.sharlatanus@gmail.com>
+In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 29 Oct 2023 23:38:54 +0000
+Subject: [PATCH 63/67] gnu: go-cloud-google-com-go-compute-metadata: Move to
+ (gnu packages golang-web).
+
+* gnu/packages/golang.scm (go-cloud-google-com-go-compute-metadata): Move from
+here...
+* gnu/packages/golang-web.scm: ...to here.
+
+*  gnu/packages/mail.scm: Add (gnu packages golang-web) module.
+
+Change-Id: Ic97e5f4afd26376d37860fbb4758e8037e758f58
+---
+ gnu/packages/golang-web.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ gnu/packages/mail.scm       |  1 +
+ 3 files changed, 28 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 20c3b0f3e1..c046e0d46a 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -9,6 +9,7 @@
+ ;;; Copyright © 2020 raingloom <raingloom@riseup.net>
+ ;;; Copyright © 2020-2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Collin J. Doering <collin@rekahsoft.ca>
++;;; Copyright © 2021 Philip McGrath <philip@philipmcgrath.com>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2022 Adam Kandur <kefironpremise@gmail.com>
+@@ -55,6 +56,32 @@ (define-module (gnu packages golang-web)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-cloud-google-com-go-compute-metadata
++  (package
++    (name "go-cloud-google-com-go-compute-metadata")
++    (version "0.81.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/googleapis/google-cloud-go")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "15jgynqb5pbxqbj3a7ii970yn4srsw1dbxzxnhpkfkmplalpgyh3"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:unpack-path "cloud.google.com/go"
++       #:import-path "cloud.google.com/go/compute/metadata"))
++    (home-page
++     "https://pkg.go.dev/cloud.google.com/go/compute/metadata")
++    (synopsis
++     "Go wrapper for Google Compute Engine metadata service")
++    (description
++     "This package provides access to Google Compute Engine (GCE) metadata and
++API service accounts for Go.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-andybalholm-cascadia
+   (package
+     (name "go-github-com-andybalholm-cascadia")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3ffe569ed5..d53fa5864a 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4224,33 +4224,6 @@ (define-public go-github-com-blang-semver
+       (description "Semver is a library for Semantic versioning written in Go.")
+       (license license:expat))))
+ 
+-(define-public go-cloud-google-com-go-compute-metadata
+-  (package
+-    (name "go-cloud-google-com-go-compute-metadata")
+-    (version "0.81.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/googleapis/google-cloud-go")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "15jgynqb5pbxqbj3a7ii970yn4srsw1dbxzxnhpkfkmplalpgyh3"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:unpack-path "cloud.google.com/go"
+-       #:import-path "cloud.google.com/go/compute/metadata"))
+-    (home-page
+-     "https://pkg.go.dev/cloud.google.com/go/compute/metadata")
+-    (synopsis
+-     "Go wrapper for Google Compute Engine metadata service")
+-    (description
+-     "This package provides access to Google Compute Engine (GCE) metadata and
+-API service accounts for Go.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-google-cadvisor
+   (let ((commit "2ed7198f77395ee9a172878a0a7ab92ab59a2cfd")
+         (revision "0"))
+diff --git a/gnu/packages/mail.scm b/gnu/packages/mail.scm
+index 5b5b29a468..d57d1f9980 100644
+--- a/gnu/packages/mail.scm
++++ b/gnu/packages/mail.scm
+@@ -109,6 +109,7 @@ (define-module (gnu packages mail)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages gsasl)
+   #:use-module (gnu packages gtk)
+-- 
+2.41.0
+

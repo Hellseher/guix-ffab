@@ -1,0 +1,42 @@
+From 58024ef9630110f721e4df2fb4400ff3a403b55d Mon Sep 17 00:00:00 2001
+Message-ID: <58024ef9630110f721e4df2fb4400ff3a403b55d.1699318202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1699318202.git.sharlatanus@gmail.com>
+References: <cover.1699318202.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 5 Nov 2023 20:00:38 +0000
+Subject: [PATCH 10/16] gnu: cl-mathstats: Update source URL.
+
+* gnu/packages/lisp-xyz.scm (sbcl-cl-mathstats):
+[source]: Update URL as maintainer and owner of repository was changed.
+[home-page]: As above.
+
+Change-Id: Ib53afc5fac19e79837ff84e1f3b328c31027abbe
+---
+ gnu/packages/lisp-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index f13eea5c1d..9209ed2426 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -19492,7 +19492,7 @@ (define-public sbcl-cl-mathstats
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+-               (url "https://github.com/gwkkwg/cl-mathstats")
++               (url "https://github.com/hraban/cl-mathstats")
+                (commit commit)))
+          (file-name (git-file-name "cl-mathstats" version))
+          (sha256
+@@ -19502,7 +19502,7 @@ (define-public sbcl-cl-mathstats
+        (list sbcl-lift))
+       (inputs
+        (list sbcl-cl-containers sbcl-metatilities-base))
+-      (home-page "https://github.com/gwkkwg/cl-mathstats")
++      (home-page "https://github.com/hraban/cl-mathstats")
+       (synopsis "Common Lisp collection of mathematical routines")
+       (description
+        "This package provides Common Lisp math and statistics routines.")
+-- 
+2.41.0
+
