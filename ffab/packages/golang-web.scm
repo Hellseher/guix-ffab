@@ -23,6 +23,7 @@
                 #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages golang)
+  #:use-module (gnu packages golang-check)
   #:use-module ((gnu packages syncthing)
                 #:select (go-github-com-kballard-go-shellquote))
   #:use-module (gnu packages check)
