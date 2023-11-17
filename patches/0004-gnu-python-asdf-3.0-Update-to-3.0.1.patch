@@ -1,0 +1,38 @@
+From fb1859be4411a90460fd2b19fb2da87c08fc1362 Mon Sep 17 00:00:00 2001
+Message-ID: <fb1859be4411a90460fd2b19fb2da87c08fc1362.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 00:36:01 +0000
+Subject: [PATCH 04/32] gnu: python-asdf-3.0: Update to 3.0.1.
+
+* gnu/packages/astronomy.scm (python-asdf-3.0): Update to 3.0.1.
+
+Change-Id: Icd6e1c048cad82d5cad25c5638b8300f438116b0
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ed68bd483a..522d62a05e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3765,13 +3765,13 @@ (define-public python-tweakwcs
+ (define-public python-asdf-3.0
+   (package
+     (name "python-asdf")
+-    (version "3.0.0")
++    (version "3.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "1a6lf75q9w8fsyq3hn6a7fyldkkyqxddlq21fwdfjwij40dzh3s8"))))
++        (base32 "1jsk7b4mx04l0a08j832vnl309dba3gjnha9mbd61dzs9ridrfna"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-fsspec
+-- 
+2.41.0
+

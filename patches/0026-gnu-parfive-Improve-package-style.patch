@@ -1,0 +1,53 @@
+From 63f1240d08da23fccd765d07eb775fb38abcaf7e Mon Sep 17 00:00:00 2001
+Message-ID: <63f1240d08da23fccd765d07eb775fb38abcaf7e.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 20:04:53 +0000
+Subject: [PATCH 26/32] gnu: parfive: Improve package style.
+
+* gnu/packages/python-web.scm (parfive): Update package style.
+[build-system]: Swap to python-build-system.
+[arguments]{phases}: Remove 'disable-test-requiring-network phase.  Use
+standard 'check phase.  {test-flags}: Disable tests requiring network
+access.
+
+Change-Id: I5d233079f629398232f134c41fad6ea516c44c7f
+---
+ gnu/packages/python-web.scm | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index 4b6f20745c..cc95643f07 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -1204,18 +1204,15 @@ (define-public parfive
+               (sha256
+                (base32
+                 "0pf8rzfwxpkn84xzb4v8m1fy3k7kjlh8f9ln4y5xqlnbqpwi30lh"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (add-before 'check 'disable-test-requiring-network
+-                          (lambda _
+-                            (substitute* "parfive/tests/test_downloader.py"
+-                              (("def test_ftp")
+-                               "def __off_test_ftp"))))
+-                        (replace 'check
+-                          (lambda* (#:key tests? #:allow-other-keys)
+-                            (when tests?
+-                              (invoke "python" "-m" "pytest" "-vvv" "parfive")))))))
++     (list
++      #:test-flags
++      ;; Disable tests requiring network access.
++      #~(list "-k" (string-append "not test_ftp"
++                                  " and not test_download_unique"
++                                  " and not test_custom_user_agent"
++                                  " and not test_multipart"))))
+     (propagated-inputs (list python-aiofiles python-aioftp python-aiohttp
+                              python-tqdm))
+     (native-inputs (list python-pytest
+-- 
+2.41.0
+

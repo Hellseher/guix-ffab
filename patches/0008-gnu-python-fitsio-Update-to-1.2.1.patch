@@ -1,0 +1,38 @@
+From 59e79df0f7367efe788d48ddf40e299eb79f4777 Mon Sep 17 00:00:00 2001
+Message-ID: <59e79df0f7367efe788d48ddf40e299eb79f4777.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 00:42:03 +0000
+Subject: [PATCH 08/32] gnu: python-fitsio: Update to 1.2.1.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.2.1.
+
+Change-Id: Icc28cc340bcd23958f17bb437a76c5cdc8e58383
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8519cfb6ac..325eee6fc0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -589,13 +589,13 @@ (define-public python-astroml
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.2.0")
++    (version "1.2.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "04fbg1ffj7qrlzw50xzzkfnlk6qjjqq96j0im7phprmwb1rbvzzh"))
++        (base32 "19him5rcpjyz14ghkmifnd1xl3ivlyy84h45k6j2pyr5ixc60ky6"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio. When update the package check the
+-- 
+2.41.0
+

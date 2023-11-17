@@ -1,0 +1,38 @@
+From b005984cfa6ec6785a5d6e51350b0311ee073823 Mon Sep 17 00:00:00 2001
+Message-ID: <b005984cfa6ec6785a5d6e51350b0311ee073823.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 16 Nov 2023 16:17:08 +0000
+Subject: [PATCH 32/32] gnu: python-posix-ipc: Limit tests to target-x86.
+
+* gnu/packages/python-xyz.scm (python-posix-ipc): Fix build on not X86
+platform by disabling unit tests.
+[arguments]{tests?}: Only run unit tests on target-x86.
+
+Change-Id: I96a1fbd4e732135c9e2f26c547248f057c7778bf
+---
+ gnu/packages/python-xyz.scm | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 73a5f2d5ad..805bd2b54d 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -33014,7 +33014,12 @@ (define-public python-posix-ipc
+         (base32 "1wwp0ys8640nb31syabic1z524r1qx3q2v8h4d65am3a728l5bn4"))))
+     (build-system python-build-system)
+     (arguments
+-     (list #:phases
++     ;; XXX: Disable failing tests on not x86_64-linux systems:
++     ;; - OSError: [Errno 38] Function not implemented
++     ;; - Test simple threaded notification
++     ;; https://github.com/osvenskan/posix_ipc/issues/35
++     (list #:tests? (target-x86?)
++           #:phases
+            #~(modify-phases %standard-phases
+                (add-after 'unpack 'patch-cc-path
+                  (lambda _
+-- 
+2.41.0
+

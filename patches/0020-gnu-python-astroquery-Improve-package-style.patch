@@ -1,0 +1,86 @@
+From c2ca549fa26d83b3151716df00b208da9f25a702 Mon Sep 17 00:00:00 2001
+Message-ID: <c2ca549fa26d83b3151716df00b208da9f25a702.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 16:51:55 +0000
+Subject: [PATCH 20/32] gnu: python-astroquery: Improve package style.
+
+* gnu/packages/astronomy.scm (python-astroquery): Improve package style.
+[build-system]: Swap to pyproject-build-system.
+[arguments]{phases}: Rename 'writable-home phase to
+'prepare-test-environment to reflect the purpose, Add extra step
+configuring Pytest.
+[native-inputs]: Remove python-flask, python-jinja2. Add
+python-astropy-healpix, python-regions.
+
+Change-Id: Id3909a13e451a2f9d5f4f28511e9f04c6bceb738
+---
+ gnu/packages/astronomy.scm | 41 +++++++++++++++++++++++---------------
+ 1 file changed, 25 insertions(+), 16 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e9caced125..d12dccc208 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1614,19 +1614,27 @@ (define-public python-astroquery
+        (uri (pypi-uri "astroquery" version))
+        (sha256
+         (base32 "1vhkzsqlgn3ji5by2rdf2gwklhbyzvpzb1iglalhqjkkrdaaaz1h"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases
+-           #~(modify-phases %standard-phases
+-               (add-before 'check 'writable-home
+-                 (lambda _              ; some tests need a writable home
+-                   (setenv "HOME" (getcwd))))
+-               (replace 'check
+-                 (lambda* (#:key tests? #:allow-other-keys)
+-                   (when tests?
+-                     (invoke "python" "-m" "pytest" "--pyargs" "astroquery"
+-                             ;; Skip tests that require online data.
+-                             "-m" "not remote_data")))))))
++     (list
++      #:test-flags
++      #~(list "--pyargs" "astroquery"
++              "-m" "not remote_data")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              (setenv "HOME" (getcwd)) ; some tests need a writable home
++              ;; To solve pytest/conftest issue. Pytest tries to load all
++              ;; files with word 'test' in them.
++              ;;
++              ;; ImportError while loading conftest ...
++              ;; _pytest.pathlib.ImportPathMismatchError: ...
++              ;;
++              (call-with-output-file "pytest.ini"
++                (lambda (port)
++                  (format port "[pytest]
++python_files = test_*.py"))))))))
+     (propagated-inputs
+      (list python-astropy
+            python-beautifulsoup4
+@@ -1636,12 +1644,13 @@ (define-public python-astroquery
+            python-pyvo
+            python-requests))
+     (native-inputs
+-     (list python-flask
+-           python-jinja2
++     (list python-astropy-healpix
+            python-matplotlib
++           ;; python-mocpy : Not packed yet, optional
+            python-pytest-astropy
+-           python-pytest-dependency))
+-    (home-page "https://www.astropy.org/astroquery/")
++           python-pytest-dependency
++           python-regions))
++    (home-page "https://astroquery.readthedocs.io/en/latest/index.html")
+     (synopsis "Access online astronomical data resources")
+     (description "Astroquery is a package that contains a collection of tools
+ to access online Astronomical data.  Each web service has its own sub-package.")
+-- 
+2.41.0
+

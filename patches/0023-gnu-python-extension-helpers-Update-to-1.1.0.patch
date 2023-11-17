@@ -1,0 +1,38 @@
+From 0f8167f457bf3a5c5bcc40225d54d45e11082601 Mon Sep 17 00:00:00 2001
+Message-ID: <0f8167f457bf3a5c5bcc40225d54d45e11082601.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 17:08:41 +0000
+Subject: [PATCH 23/32] gnu: python-extension-helpers: Update to 1.1.0.
+
+* gnu/packages/python-xyz.scm (python-extension-helpers): Update to 1.1.0.
+
+Change-Id: Ic6f8f5b5b293697cf949a5944d9e2303bcb2733e
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 3f9019d248..73a5f2d5ad 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -4246,13 +4246,13 @@ (define-public python-exceptiongroup
+ (define-public python-extension-helpers
+   (package
+     (name "python-extension-helpers")
+-    (version "1.0.0")
++    (version "1.1.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "extension-helpers" version))
+        (sha256
+-        (base32 "1rjha07ds633fb81hn3i2yzk3v2flbi6qa091ix4mkvrgk3gl6ya"))))
++        (base32 "0a82qprdvrm3b8y065n4ri45ji5dhmg9yivlq77gilgqldw0qij9"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

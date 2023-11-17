@@ -1,0 +1,36 @@
+From 1148bd661a35520ad0faf111953d97bc88ac1bf8 Mon Sep 17 00:00:00 2001
+Message-ID: <1148bd661a35520ad0faf111953d97bc88ac1bf8.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 14:23:50 +0000
+Subject: [PATCH 19/32] gnu: python-stsci-imagestats: Swap to
+ pyproject-build-system.
+
+The next release of the package will include test suite based on
+python-pytest, prepare for that.
+
+* gnu/packages/astronomy.scm (python-stsci-imagestats)[build-system]:
+Swap to python-stsci-imagestats.
+
+Change-Id: I5a70ef744ac7ad46f9e4474d84661b6b15028c9b
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 523030a0f7..e9caced125 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2663,7 +2663,7 @@ (define-public python-stsci-imagestats
+               (sha256
+                (base32
+                 "14457izlbnks84dyza75ib3nvx2w8nhlqm9vc1zb7hbhknb5gjvw"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ;No tests
+     (propagated-inputs (list python-numpy))
+-- 
+2.41.0
+

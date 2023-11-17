@@ -1,0 +1,110 @@
+From fd83f394e66bcdb7b3057bcbd3786e4ac1f5e5a8 Mon Sep 17 00:00:00 2001
+Message-ID: <fd83f394e66bcdb7b3057bcbd3786e4ac1f5e5a8.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 00:32:49 +0000
+Subject: [PATCH 03/32] gnu: libpasastro: Update to 1.4.1.
+
+* gnu/packages/astronomy.scm (libpasastro): Update to 1.4.1.
+
+Change-Id: I8ad8e9c23c08897f84cbf0b35c1197320bbdeb86
+---
+ gnu/packages/astronomy.scm | 74 ++++++++++++++++++--------------------
+ 1 file changed, 35 insertions(+), 39 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e03660969b..ed68bd483a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2974,44 +2974,40 @@ (define-public libskry
+     (license license:gpl3+)))
+ 
+ (define-public libpasastro
+-  ;; NOTE: (Sharlatan-20210122T215921+0000): the version tag has a build
+-  ;; error on spice which is resolved with the latest commit.
+-  (let ((commit "e3c218d1502a18cae858c83a9a8812ab197fcb60")
+-        (revision "1"))
+-    (package
+-      (name "libpasastro")
+-      (version (git-version "1.4.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/pchev/libpasastro")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "0asp2sn34nds5va2ghppwc41vb6j3d1mf049j949rgrll817kx47"))))
+-      (build-system gnu-build-system)
+-      (arguments
+-       `(#:tests? #f
+-         #:make-flags
+-         (list
+-          ,(match (or (%current-target-system) (%current-system))
+-             ((or "aarch64-linux" "armhf-linux" "i686-linux" "x86_64-linux")
+-              "OS_TARGET=linux")
+-             (_ #f))
+-          ,(match (or (%current-target-system) (%current-system))
+-             ("i686-linux" "CPU_TARGET=i386")
+-             ("x86_64-linux" "CPU_TARGET=x86_64")
+-             ((or "armhf-linux" "aarch64-linux") "CPU_TARGET=armv7l")
+-             (_ #f))
+-          (string-append "PREFIX=" (assoc-ref %outputs "out")))
+-         #:phases
+-         (modify-phases %standard-phases
+-           (delete 'configure))))
+-      (home-page "https://github.com/pchev/libpasastro")
+-      (synopsis "Interface to astronomy library for use from Pascal program")
+-      (description
+-       "This package provides shared libraries to interface Pascal program with
++  (package
++    (name "libpasastro")
++    (version "1.4.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/pchev/libpasastro")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1h92p9ph3zi4w8krny1azd9wgwna2nf07ims983jcky1chkfm0is"))))
++    (build-system gnu-build-system)
++    (arguments
++     `(#:tests? #f
++       #:make-flags
++       (list
++        ,(match (or (%current-target-system) (%current-system))
++           ((or "aarch64-linux" "armhf-linux" "i686-linux" "x86_64-linux")
++            "OS_TARGET=linux")
++           (_ #f))
++        ,(match (or (%current-target-system) (%current-system))
++           ("i686-linux" "CPU_TARGET=i386")
++           ("x86_64-linux" "CPU_TARGET=x86_64")
++           ((or "armhf-linux" "aarch64-linux") "CPU_TARGET=armv7l")
++           (_ #f))
++        (string-append "PREFIX=" (assoc-ref %outputs "out")))
++       #:phases
++       (modify-phases %standard-phases
++         (delete 'configure))))
++    (home-page "https://github.com/pchev/libpasastro")
++    (synopsis "Interface to astronomy library for use from Pascal program")
++    (description
++     "This package provides shared libraries to interface Pascal program with
+ standard astronomy libraries:
+ 
+ @itemize
+@@ -3020,7 +3016,7 @@ (define-public libpasastro
+ @item @code{libpaswcs.so}: Interface with libwcs to work with FITS WCS.
+ @item @code{libpasspice.so}: To work with NAIF/SPICE kernel.
+ @end itemize\n")
+-      (license license:gpl2+))))
++      (license license:gpl2+)))
+ 
+ (define-public libxisf
+   (package
+-- 
+2.41.0
+

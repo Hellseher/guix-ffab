@@ -1,0 +1,37 @@
+From f51eb889e4634c70d3ffe464f2be7551a8fc3b20 Mon Sep 17 00:00:00 2001
+Message-ID: <f51eb889e4634c70d3ffe464f2be7551a8fc3b20.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 01:13:01 +0000
+Subject: [PATCH 12/32] gnu: python-pynbody: Prepare for cross compilation.
+
+* gnu/packages/astronomy.scm (python-pynbody)[arguments]{phases}: Add
+'set-compiler phase.
+
+Change-Id: I64feabbdd76679d5a86a85a9f50cd0be90f60c1c
+---
+ gnu/packages/astronomy.scm | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 85180e40ad..e42b87144c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3575,7 +3575,12 @@ (define-public python-pynbody
+                            "--ignore=tests/sph_smooth_test.py"
+                            "--ignore=tests/subfind_test.py"
+                            "--ignore=tests/subfindhdf_gadget4_test.py"
+-                           "--ignore=tests/tipsy_test.py")))
++                           "--ignore=tests/tipsy_test.py")
++           #:phases
++           #~(modify-phases %standard-phases
++               (add-before 'build 'set-compiler
++                 (lambda _
++                   (setenv "CC" #$(cc-for-target)))))))
+     (native-inputs
+      (list python-cython
+            python-pandas
+-- 
+2.41.0
+

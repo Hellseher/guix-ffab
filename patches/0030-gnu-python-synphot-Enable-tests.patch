@@ -1,0 +1,48 @@
+From 6fdfe45a921bd3fe8fcce7b80fbf5d12997a6be1 Mon Sep 17 00:00:00 2001
+Message-ID: <6fdfe45a921bd3fe8fcce7b80fbf5d12997a6be1.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 22:18:43 +0000
+Subject: [PATCH 30/32] gnu: python-synphot: Enable tests.
+
+* gnu/packages/astronomy.scm (python-synphot): Enable tests.
+[arguments]{phases}: Add 'prepare-test-environment phase.
+
+Change-Id: Ie577ef16794fbd99ec73e39bdc8d8e1645e35532
+---
+ gnu/packages/astronomy.scm | 18 +++++++++++++++---
+ 1 file changed, 15 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f19f40a69d..bf419ae526 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3712,9 +3712,21 @@ (define-public python-synphot
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; XXX: Test needs more love to pass.
+-      ;; ERROR collecting synphot/tests/test_utils.py
+-      #:tests? #f))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace")
++              ;; To solve pytest/conftest issue. Pytest tries to load all
++              ;; files with word 'test' in them.
++              ;;
++              ;; ImportError while loading conftest ...
++              ;; _pytest.pathlib.ImportPathMismatchError: ...
++              ;;
++              (call-with-output-file "pytest.ini"
++                (lambda (port)
++                  (format port "[pytest]
++python_files = test_*.py"))))))))
+     (propagated-inputs (list python-astropy python-numpy python-scipy))
+     (native-inputs (list python-pytest python-pytest-astropy
+                          python-setuptools-scm))
+-- 
+2.41.0
+

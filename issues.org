@@ -195,6 +195,7 @@
 - [ ] <2023-10-23 Mon> https://issues.guix.gnu.org/66688
 
 * Package updates [40/45][88%]
+- [ ] <2023-11-17 Fri> https://issues.guix.gnu.org/67237
 - [ ] <2023-11-07 Tue> https://issues.guix.gnu.org/66977
 - [ ] <2023-11-02 Thu> https://issues.guix.gnu.org/66896
 - [ ] <2023-10-30 Mon> https://issues.guix.gnu.org/66827

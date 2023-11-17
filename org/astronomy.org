@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-11-14 Tue 01:21:48 GMT>
+#+modified: <2023-11-17 Fri 12:18:39 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -3016,33 +3016,42 @@ CLOSED: [2023-11-14 Tue 00:33]
   - [ ] python-poliastro :: https://github.com/poliastro/poliastro/issues/1640
 
 ** TODO 2023-11
-- date-time ::
-- commit ::
-- issues ::
-- quick [0/24][0%]
-  - [ ] celestia :: would be upgraded from 1.6.3 to 1.6.4
-  - [ ] gpredict :: would be upgraded from 2.2.1 to 2.3
-  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
-  - [ ] python-asdf :: would be upgraded from 3.0.0 to 3.0.1
-  - [ ] python-astroalign :: would be upgraded from 2.5.0 to 2.5.1
-  - [ ] python-casa-formats-io :: would be upgraded from 0.2.1 to 0.2.2
-  - [ ] python-crds :: would be upgraded from 11.17.7 to 11.17.9
-  - [ ] python-fitsio :: would be upgraded from 1.2.0 to 1.2.1
-  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0
-  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0
-  - [ ] python-jplephem :: would be upgraded from 2.19 to 2.20
-  - [ ] python-jplephem :: would be upgraded from 2.19 to 2.20
-  - [ ] python-pynbody :: would be upgraded from 1.4.1 to 1.4.2
-  - [ ] python-rad :: would be upgraded from 0.17.1 to 0.18.0
-  - [ ] python-roman-datamodels :: would be upgraded from 0.17.1 to 0.18.0
-  - [ ] python-sgp4 :: would be upgraded from 2.22 to 2.23
-  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
-  - [ ] python-wiimatch :: would be upgraded from 0.3.1 to 0.3.2
-  - [ ] splash :: would be upgraded from 3.8.4 to 3.9.0
-- complex [0/0][0%]
+- date-time :: 20231114T223727+0000
+- commit :: a0d337e79c87d7c38c79d0291974f490cb137a52
+- issues :: https://issues.guix.gnu.org/67237
+- quick [22/22][100%]
+  - [X] celestia :: would be upgraded from 1.6.3 to 1.6.4
+  - [X] gpredict :: Upate package style.
+  - [X] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [X] python-asdf :: would be upgraded from 3.0.0 to 3.0.1
+  - [X] python-astroalign :: would be upgraded from 2.5.0 to 2.5.1
+  - [X] python-casa-formats-io :: would be upgraded from 0.2.1 to 0.2.2
+  - [X] python-crds :: would be upgraded from 11.17.7 to 11.17.9
+  - [X] python-fitsio :: would be upgraded from 1.2.0 to 1.2.1
+  - [X] python-jplephem :: would be upgraded from 2.19 to 2.20
+  - [X] python-posix-ipc :: would be upgraded from 1.0.5 to 1.1.1
+  - [X] python-pynbody :: would be upgraded from 1.4.1 to 1.4.2
+  - [X] python-rad :: would be upgraded from 0.17.1 to 0.18.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.17.1 to 0.18.0
+  - [X] python-sgp4 :: would be upgraded from 2.22 to 2.23
+  - [X] python-wiimatch :: would be upgraded from 0.3.1 to 0.3.2
+  - [X] splash :: would be upgraded from 3.8.4 to 3.9.0
+  - [X] python-extension-helpers :: would be upgraded from 1.0.0 to 1.1.0, enable test, improve style.
+  - [X] python-astroquery :: improve package style.
+  - [X] parfive :: would be upgraded from 2.0.1 to 2.0.2, improve style.
+  - [X] python-pytest-socket :: would be upgraded from 0.5.1 to 0.6.0
+  - [X] python-stsci-stimage :: enable tests
+  - [X] python-memory-profiler :: enable all tests
+- complex [0/4][0%]
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
   - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+- pending [0/1][0%]
+  - [-] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
+    - [ ] https://issues.guix.gnu.org/66896
+    - [X] https://github.com/spacetelescope/spherical_geometry/issues/227
 - archived [0/0]
 
 gnu/packages/astronomy.scm warning: no tags were found for aocommon
@@ -3086,3 +3095,4 @@ gnu/packages/astronomy.scm warning: no tags were found for unsio
 - https://www.danrw.com/sgp4/
 - https://github.com/mbiesiad/awesome-astronomy
 - https://joss.theoj.org/papers
+- https://celestrak.org/software/vallado-sw.php

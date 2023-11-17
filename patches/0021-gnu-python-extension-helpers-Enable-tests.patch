@@ -1,0 +1,49 @@
+From 9fca2e60618792c74917e2f0e40f1f61ffd8b7b4 Mon Sep 17 00:00:00 2001
+Message-ID: <9fca2e60618792c74917e2f0e40f1f61ffd8b7b4.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 17:01:11 +0000
+Subject: [PATCH 21/32] gnu: python-extension-helpers: Enable tests.
+
+* gnu/packages/python-xyz.scm (python-extension-helpers): Enable tests.
+[arguments]{phases}: Add 'prepare-test-environment phase.
+
+Change-Id: I6effa60f3ccd334d11b5f86162742f2272f737b1
+---
+ gnu/packages/python-xyz.scm | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 318ce539db..6d3e30a91e 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -4254,9 +4254,22 @@ (define-public python-extension-helpers
+       (sha256
+         (base32 "1rjha07ds633fb81hn3i2yzk3v2flbi6qa091ix4mkvrgk3gl6ya"))))
+   (build-system pyproject-build-system)
+-  ;; FIXME: pytest failed to load test suit, find out why.
+-  ;;  - _pytest.pathlib.ImportPathMismatchError: ('extension_helpers.conftes
+-  (arguments (list #:tests? #f))
++  (arguments
++   (list
++    #:phases
++    #~(modify-phases %standard-phases
++        (add-before 'check 'prepare-test-environment
++          (lambda _
++            ;; To solve pytest/conftest issue. Pytest tries to load all
++            ;; files with word 'test' in them.
++            ;;
++            ;; ImportError while loading conftest ...
++            ;; _pytest.pathlib.ImportPathMismatchError: ...
++            ;;
++            (call-with-output-file "pytest.ini"
++              (lambda (port)
++                (format port "[pytest]
++python_files = test_*.py"))))))))
+   (native-inputs
+     (list python-coverage
+           python-pytest
+-- 
+2.41.0
+

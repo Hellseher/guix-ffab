@@ -1,0 +1,52 @@
+From c5920586e46dbafca527683338375269336bd066 Mon Sep 17 00:00:00 2001
+Message-ID: <c5920586e46dbafca527683338375269336bd066.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 16 Nov 2023 15:00:20 +0000
+Subject: [PATCH 31/32] gnu: python-stsci-stimage: Enable tests.
+
+* gnu/packages/astronomy.scm (python-stsci-stimage): Enable tests.
+[arguments]{phases}: Add custom 'check phase.
+[native-inputs]: Add python-waf and indent list.
+
+Change-Id: Ifceace1d89aff97e938c4fb95f33525477499949
+---
+ gnu/packages/astronomy.scm | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index bf419ae526..c063285b52 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2695,11 +2695,23 @@ (define-public python-stsci-stimage
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; XXX: Fix failing tests. There are errors to load test files.
+-      #:tests? #f))
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; Test steps are taken from GitHub Actions.
++          ;; See https://github.com/spacetelescope/stsci.stimage/issues/27
++          (replace 'check
++            (lambda _
++              (copy-file (string-append
++                #$(this-package-native-input "python-waf") "/bin/waf")
++               "waf")
++              (invoke "python" "waf" "configure" "build" "do_tests"))))))
+     (propagated-inputs (list python-numpy))
+-    (native-inputs (list python-codecov python-pytest python-pytest-cov
+-                         python-setuptools-scm))
++    (native-inputs
++     (list python-codecov
++           python-pytest
++           python-pytest-cov
++           python-setuptools-scm
++           python-waf))
+     (home-page "https://stscistimage.readthedocs.io/en/latest/")
+     (synopsis "STScI image processing")
+     (description "This package provides an astronomical Python package with
+-- 
+2.41.0
+

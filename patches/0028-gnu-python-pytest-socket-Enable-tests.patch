@@ -1,0 +1,72 @@
+From e615e1c7b2d90bf39f0f85bd320b9b8ee0c941b0 Mon Sep 17 00:00:00 2001
+Message-ID: <e615e1c7b2d90bf39f0f85bd320b9b8ee0c941b0.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 20:37:16 +0000
+Subject: [PATCH 28/32] gnu: python-pytest-socket: Enable tests.
+
+* gnu/packages/python-check.scm (python-pytest-socket): Improve package
+style, enable tests.
+[build-system]: Swap to pyproject-build-system.
+[arguments]{tests-flags}: Disable test requiring network access.
+{phases}: Swap to use standard phases.
+
+Change-Id: I7cdd98bc501caddc982bb5ffa21354e3987242f9
+---
+ gnu/packages/python-check.scm | 38 +++++++++++++----------------------
+ 1 file changed, 14 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index e7de83539d..7412c04ce0 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -429,31 +429,21 @@ (define-public python-pytest-socket
+               (sha256
+                (base32
+                 "0f3irpd8lwmm3pb1fqnvwg82kpkhsnzsmw8jg7yd85c349kisg1n"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     ;; FIXME: Tests fail a lot, probably requiring Internet access.
+-     (list #:tests? #f
+-           #:phases #~(modify-phases %standard-phases
+-                        (replace 'build
+-                          (lambda _
+-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+-                                    #$version)
+-                            (setenv "SOURCE_DATE_EPOCH" "315532800")
+-                            (invoke "python"
+-                                    "-m"
+-                                    "build"
+-                                    "--wheel"
+-                                    "--no-isolation"
+-                                    ".")))
+-                        (add-before 'check 'disable-unsupported-test
+-                          (lambda _
+-                            (substitute* "tests/test_async.py"
+-                              (("def test_asynctest")
+-                               "def __off_test_asynctest"))))
+-                        (replace 'check
+-                          (lambda* (#:key tests? #:allow-other-keys)
+-                            (when tests?
+-                              (invoke "python" "-m" "pytest" "-vvv")))))))
++     (list
++      #:test-flags
++      #~(list "-k"
++              (string-append
++               ;; Disable tests requiring network access.
++               "not test_urlopen_disabled"
++               " and not test_parametrize_with_socket_enabled_and_allow_hosts"
++               " and not test_enabled_urllib_succeeds"
++               " and not test_urllib_succeeds_by_default"
++               " and not test_disabled_urllib_fails"
++               " and not test_httpx_fails"
++               " and not test_asynctest"
++               " and not test_global_disable_and_allow_host"))))
+     (native-inputs (list python-httpx
+                          python-poetry-core
+                          python-pypa-build
+-- 
+2.41.0
+

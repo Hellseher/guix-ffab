@@ -1,0 +1,40 @@
+From e53db973d3d770559bb2f7d9c6eb5e87e6973027 Mon Sep 17 00:00:00 2001
+Message-ID: <e53db973d3d770559bb2f7d9c6eb5e87e6973027.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 12:45:30 +0000
+Subject: [PATCH 17/32] gnu: splash: Update to 3.9.0.
+
+* gnu/packages/astronomy.scm (splash): Update to 3.9.0.
+
+Change-Id: Ic7fdf1cd8aacfec00777075440b4f53adfe37d22
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a5f1e99262..fa3ad52350 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1121,7 +1121,7 @@ (define-public siril
+ (define-public splash
+   (package
+     (name "splash")
+-    (version "3.8.4")
++    (version "3.9.0")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -1129,7 +1129,7 @@ (define-public splash
+                     (commit (string-append "v" version))))
+               (sha256
+                (base32
+-                "1l18sqz5mpab9wb5hlbfy18wfwq6fpijc3p9wa5bv6lrcymvpirp"))
++                "19r5j4jrxhp3gf865ns59vvfnn5a303dqgmb8y2kgcsx26fci1hs"))
+               (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
+     (arguments
+-- 
+2.41.0
+

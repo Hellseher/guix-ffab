@@ -1,0 +1,58 @@
+From 9a08cb31b85b4738ad2ef4ef524fe81799f220ca Mon Sep 17 00:00:00 2001
+Message-ID: <9a08cb31b85b4738ad2ef4ef524fe81799f220ca.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 22:09:28 +0000
+Subject: [PATCH 29/32] gnu: python-memory-profiler: Enable all tests.
+
+* gnu/packages/python-check.scm (python-memory-profiler): Enable all
+available tests.
+[arguments]{phases}: Remove 'disable-failing-tests phase. Use custom
+'check phase.
+
+Change-Id: Icce21131d9526c81a4cdfa7aa43be85c8f981065
+---
+ gnu/packages/python-check.scm | 26 ++++----------------------
+ 1 file changed, 4 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 7412c04ce0..c98a1f4dd9 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -1755,28 +1755,10 @@ (define-public python-memory-profiler
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+-          ;; XXX: @profile is not loaded in some test files and there are 3
+-          ;; tests fail, disable them for now.
+-          (add-after 'unpack 'disable-failing-tests
+-            (lambda _
+-              (with-directory-excursion "test"
+-                (for-each delete-file
+-                          '("test_as.py"
+-                            "test_func.py"
+-                            "test_gen.py"
+-                            "test_loop.py"
+-                            "test_loop_decorated.py"
+-                            "test_mprofile.py"
+-                            "test_nested.py"
+-                            "test_precision_command_line.py"
+-                            "test_unicode.py")))
+-              (substitute* "test/test_attributes.py"
+-                (("def test_with_profile") "def __off_test_with_profile"))
+-              (substitute* "test/test_stream_unicode.py"
+-                (("def test_unicode") "def __off_test_unicode"))
+-              (substitute* "test/test_tracemalloc.py"
+-                (("def test_memory_profiler")
+-                 "def __off_test_memory_profiler")))))))
++          (replace 'check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (invoke "make" "test")))))))
+     (native-inputs
+      (list python-pytest python-pytest-fixture-config python-safety))
+     (propagated-inputs (list python-psutil))
+-- 
+2.41.0
+

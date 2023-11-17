@@ -1,0 +1,38 @@
+From 31e9fe693eeb9022c204418e6273e99b16744c84 Mon Sep 17 00:00:00 2001
+Message-ID: <31e9fe693eeb9022c204418e6273e99b16744c84.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 02:01:33 +0000
+Subject: [PATCH 15/32] gnu: python-sgp4: Update to 2.23.
+
+* gnu/packages/astronomy.scm (python-sgp4): Update to 2.23.
+
+Change-Id: I135ef49c969e3bbc1635f9df966953fbc9bb0c67
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 136c9bb2f6..28fdf66855 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2373,13 +2373,13 @@ (define-public python-reproject
+ (define-public python-sgp4
+   (package
+     (name "python-sgp4")
+-    (version "2.22")
++    (version "2.23")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sgp4" version))
+        (sha256
+-        (base32 "1yc6gcbhz80i875j0wf6ikx7rzs0m7m1qp72dmdhdjidmpma5w0p"))))
++        (base32 "0aalbmldks6ykgkcxwkvnp04q0avhv903m5zwvg8i7zvl99xrbfq"))))
+     (build-system python-build-system)
+     (propagated-inputs
+      (list python-numpy))
+-- 
+2.41.0
+

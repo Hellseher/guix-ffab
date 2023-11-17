@@ -1,0 +1,40 @@
+From 1992ecb5ebb21f297e325a3408d43c2ccc50add9 Mon Sep 17 00:00:00 2001
+Message-ID: <1992ecb5ebb21f297e325a3408d43c2ccc50add9.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 Nov 2023 01:05:53 +0000
+Subject: [PATCH 10/32] gnu: python-posix-ipc: Update to 1.1.1.
+
+* gnu/packages/python-xyz.scm (python-posix-ipc): Update to 1.1.1.
+
+Change-Id: I3519bc025425ce6d5b15a830d6915d7322e54a1c
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index e521c1580d..318ce539db 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -32988,7 +32988,7 @@ (define-public python-queuelib
+ (define-public python-posix-ipc
+   (package
+     (name "python-posix-ipc")
+-    (version "1.0.5")
++    (version "1.1.1")
+     (source
+      (origin
+        ;; The source distributed on PyPI is prebuild.
+@@ -32998,7 +32998,7 @@ (define-public python-posix-ipc
+              (commit (string-append "rel" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "17y4d0pmvp199c5hbs602ailhlh9f9zv89kmpbd8jhyl6rgaxsvs"))))
++        (base32 "1wwp0ys8640nb31syabic1z524r1qx3q2v8h4d65am3a728l5bn4"))))
+     (build-system python-build-system)
+     (arguments
+      (list #:phases
+-- 
+2.41.0
+

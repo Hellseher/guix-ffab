@@ -1,0 +1,69 @@
+From 1bbfc260ff2278cb6ee4fa88818098c419bf7073 Mon Sep 17 00:00:00 2001
+Message-ID: <1bbfc260ff2278cb6ee4fa88818098c419bf7073.1700222319.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1700222319.git.sharlatanus@gmail.com>
+References: <cover.1700222319.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 14 Nov 2023 23:12:36 +0000
+Subject: [PATCH 02/32] gnu: gpredict: Improve package style.
+
+* gnu/packages/astronomy.scm (gpredict): Improve package style. Reorder
+fields to be similar with others to ease review.
+[native-inputs]: Remove labels.
+[arguments]: Use G-expressions. Drop trailing #t in phases.
+
+Change-Id: I0e0216825ce2c9e77632a43dd604ab4abbdf3e83
+---
+ gnu/packages/astronomy.scm | 27 ++++++++++++---------------
+ 1 file changed, 12 insertions(+), 15 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 386a5302d6..e03660969b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3153,23 +3153,21 @@ (define-public gpredict
+        (sha256
+         (base32 "0hwf97kng1zy8rxyglw04x89p0bg07zq30hgghm20yxiw2xc8ng7"))))
+     (build-system gnu-build-system)
++    (arguments
++     (list
++      #:configure-flags #~(list "CFLAGS=-O2 -g -fcommon")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'fix-tests
++            (lambda _
++              ;; Remove reference to non-existent file.
++              (substitute* "po/POTFILES.in"
++                (("src/gtk-sat-tree\\.c") "")))))))
+     (native-inputs
+-     `(("intltool" ,intltool)
+-       ("gettext" ,gettext-minimal)
+-       ("pkg-config" ,pkg-config)))
++     (list gettext-minimal intltool pkg-config))
+     (inputs
+      (list curl glib goocanvas gtk+))
+-    (arguments
+-     `(#:configure-flags '("CFLAGS=-O2 -g -fcommon")
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'fix-tests
+-           (lambda _
+-             ;; Remove reference to non-existent file.
+-             (substitute* "po/POTFILES.in"
+-               (("src/gtk-sat-tree\\.c")
+-                ""))
+-             #t)))))
++    (home-page "http://gpredict.oz9aec.net/index.php")
+     (synopsis "Satellite tracking and orbit prediction application")
+     (description
+      "Gpredict is a real-time satellite tracking and orbit prediction
+@@ -3177,7 +3175,6 @@ (define-public gpredict
+ position and other data in lists, tables, maps, and polar plots (radar view).
+ Gpredict can also predict the time of future passes for a satellite, and
+ provide you with detailed information about each pass.")
+-    (home-page "http://gpredict.oz9aec.net/index.php")
+     (license license:gpl2+)))
+ 
+ (define-public sgp4
+-- 
+2.41.0
+
