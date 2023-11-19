@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-11-17 Fri 12:18:39 GMT>
+#+modified: <2023-11-19 Sun 17:02:20 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -3015,7 +3015,8 @@ CLOSED: [2023-11-14 Tue 00:33]
 - archived [0/1]
   - [ ] python-poliastro :: https://github.com/poliastro/poliastro/issues/1640
 
-** TODO 2023-11
+** DONE 2023-11
+CLOSED: [2023-11-19 Sun 17:02]
 - date-time :: 20231114T223727+0000
 - commit :: a0d337e79c87d7c38c79d0291974f490cb137a52
 - issues :: https://issues.guix.gnu.org/67237
@@ -3042,17 +3043,16 @@ CLOSED: [2023-11-14 Tue 00:33]
   - [X] python-pytest-socket :: would be upgraded from 0.5.1 to 0.6.0
   - [X] python-stsci-stimage :: enable tests
   - [X] python-memory-profiler :: enable all tests
+- pending [1/1][100%]
+  - [X] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
+    - [X] https://issues.guix.gnu.org/66896
+    - [X] https://github.com/spacetelescope/spherical_geometry/issues/227
 - complex [0/4][0%]
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
   - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
-- pending [0/1][0%]
-  - [-] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
-    - [ ] https://issues.guix.gnu.org/66896
-    - [X] https://github.com/spacetelescope/spherical_geometry/issues/227
-- archived [0/0]
 
 gnu/packages/astronomy.scm warning: no tags were found for aocommon
 gnu/packages/astronomy.scm warning: no tags were found for skymaker
