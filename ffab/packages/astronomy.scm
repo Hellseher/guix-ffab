@@ -50,6 +50,7 @@
   #:use-module (gnu packages gtk)
   #:use-module (gnu packages image)
   #:use-module (gnu packages image-processing)
+  #:use-module (gnu packages less)
   #:use-module (gnu packages libusb)
   #:use-module (gnu packages lua)
   #:use-module (gnu packages machine-learning)
@@ -386,6 +387,61 @@ appropriate.")
 was made to get a better separation of core libraries and applications.
 (CASA @url{https://casa.nrao.edu/}) is now built on top of Casacore.")
     (license license:gpl2)))
+
+(define-public cdf
+  (package
+    (name "cdf")
+    (version "3.9.1")
+    (source
+     (origin
+       (method url-fetch)
+       ;; The archive version is esoteric here, meanwhile it's mentioned as
+       ;; normal semantic version in documentation (eg. 39_1)
+       (uri (let ((pkg-version
+                   (string-append
+                    (string-replace-substring (version-major+minor version) "." "")
+                    "_" (car (reverse (string-split version #\.))))))
+              (string-append
+               "https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf"
+               pkg-version "/linux/cdf" pkg-version "-dist-cdf.tar.gz")))
+       (sha256
+        (base32 "16hvfkfxajhglbbfql58fq6w1cs9x1zllgw5i7ip9d4szz53fccb"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:test-target "test"
+      #:make-flags
+      #~(list "CURSES=no"
+              "ENV=gnu"
+              "FORTRAN=no"
+              "OS=linux"
+              "SHARED=yes"
+              (string-append "INSTALLDIR=" #$output)
+              "all")
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; no configure
+          (delete 'configure))))
+    (native-inputs
+     (list less))
+    (home-page "https://cdf.gsfc.nasa.gov/")
+    (synopsis "NASA's Common Data Format library and tools")
+    (description
+     "CDF or CDF Library is a scientific data management package which allows
+programmers and application developers to manage and manipulate scalar, vector,
+and multi-dimensional data arrays.
+
+The @acronym{CDF, Common Data Format} is a self-describing data abstraction for
+the storage and manipulation of multidimensional data in a platform- and
+discipline-independent fashion.
+
+This package provides library and binary utilities to manipulate CDF files.")
+    ;; https://cdf.gsfc.nasa.gov/html/cdf_copyright.html
+    ;; This software may be copied or redistributed as long as it is not sold
+    ;; for profit.
+    (license (license:non-copyleft
+              "file://CDF_copyright.txt"
+              "See CDF_copyright.txt in the distribution."))))
 
 ;; TODO: (Sharlatan-20221031T194744+0000): Failed to build, failed to upgrade to
 ;; the latest version due to casacore build failure, need more time to
