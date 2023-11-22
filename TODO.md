@@ -62,7 +62,9 @@
     astronomy.org          SURF                    [/][%]        :author:
     astronomy.org          SunPy                   [4/6][66%]    :author:
     astronomy.org          Starlink                [0/1][0%]     :author:
+    astronomy.org          spedas                  [/][%]        :author:
     astronomy.org          spacetelescope          [19/21][90%]  :author:
+    astronomy.org          spacepy                 [/][%]        :author:
     astronomy.org          schirmermischa          [0/1][0%]     :author:
     astronomy.org          SAOImageDS9             [0/1][0%]     :author:
     astronomy.org          rwesson                 [1/2][50%]    :author:
@@ -329,6 +331,8 @@
     astronomy.org          python-yt                      [0/4][0%]    :p1:
     astronomy.org          python-specutils               [0/4][0%]    :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
+    astronomy.org          python-sdasws                  [0/4][0%]    :p1:
+    astronomy.org          python-pyspedas                [0/4][0%]    :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
     astronomy.org          python-hissw                   [1/4][25%]   :p1:
     astronomy.org          python-chiantipy               [0/4][0%]    :p1:
@@ -376,16 +380,15 @@
     astronomy.org          virtualplanet                  [/][%]       
     astronomy.org          virtualmoon                    [/][%]       
     astronomy.org          tangos                         [0/4][0%]    
-    astronomy.org          skychart                       [1/4][25%]   
+    astronomy.org          skychart                       [0/4][0%]    
+    astronomy.org          python-spacepy                              
     astronomy.org          python-sep                     [4/4][100%]  
     astronomy.org          python-extinction              [2/4][50%]   
     astronomy.org          inistarter                     [0/4][0%]    
     astronomy.org          eqmodgui                       [0/4][0%]    
     astronomy.org          ccdciel                        [0/4][0%]    
-    astronomy.org          2023-10                                     
     
     Completed authors and projects:
-    astronomy.org          2023-09                                       
     astronomy.org          ALFA                             [4/4][100%]  
     astronomy.org          AOCommon                         [3/3][100%]  
     astronomy.org          AOFlagger                        [4/4][100%]  
@@ -457,6 +460,13 @@
     astronomy.org          stiff                            [3/3][100%]  
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
+    astronomy.org          updates-2023-05                  [3/35][8%]   
+    astronomy.org          updates-2023-06                  [2/2][100%]  
+    astronomy.org          updates-2023-07                  [0/1][0%]    
+    astronomy.org          updates-2023-08                  [1/2][50%]   
+    astronomy.org          updates-2023-09                  [1/2][50%]   
+    astronomy.org          updates-2023-10                  [/[$]        
+    astronomy.org          updates-2023-11                  [2/2][100%]  
     astronomy.org          weightwatcher                    [3/3][100%]  
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  

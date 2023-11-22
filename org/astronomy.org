@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-11-19 Sun 17:02:20 GMT>
+#+modified: <2023-11-22 Wed 00:31:25 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [6/62][9%]
+* Flow [6/65][9%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -281,6 +281,33 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
+** TODO spedas [/][%] :author:
+- http://spedas.org/blog/
+*** TODO python-pyspedas [0/4][0%] :p1:
+- https://github.com/spedas/pyspedas
+- synopsis :: Python-based Space Physics Environment Data Analysis Software
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [7/12][58%]
+  - [X] python-astropy
+  - [ ] python-cdasws
+    - [ ] :packed
+  - [X] python-cdflib
+  - [ ] python-geopack
+    - [ ] :packed
+  - [ ] python-hapiclient
+    - [ ] :packed
+  - [X] python-netcdf4
+  - [X] python-numpy
+  - [ ] python-pytplot-mpl-temp
+    - [ ] :packed
+  - [X] python-pywavelets
+  - [X] python-requests
+  - [X] python-scipy
+  - [ ] python-viresclient
+    - [ ] :packed
+
 ** DONE aplpy [1/1][100%] :author:
 CLOSED: [2023-11-01 Wed 23:54]
 *** DONE python-aplpy [4/4][100%]
@@ -332,15 +359,26 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [X] :paptch-applied-upstream <2021-01-25 Mon>
   + https://issues.guix.gnu.org/46045
 
-*** TODO skychart [1/4][25%]
+*** TODO skychart [0/4][0%]
 - https://github.com/pchev/skychart
 - synopsis :: SkyChart / Cartes du Ciel Free software to draw sky charts
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [2/2][100%]
+- [-] :inputs [5/12][41%]
   + [X] fpc
   + [X] lazarus
+  + [ ] indistarter
+  + [X] xplanet
+  + [ ] indi
+  + [ ] sqlite
+  + [ ] skychart-data-stars
+ - [ ], skychart-data-dso, skychart-data-pictures
+  + [X] espeak
+  + [ ] chealpix
+  + [X] libpasastro
+  + [ ] libqt5pas1
+  + [ ] libglib2
 
 *** TODO ccdciel [0/4][0%]
 - https://github.com/pchev/ccdciel
@@ -1773,7 +1811,6 @@ CLOSED: [2023-02-15 Wed 21:47]
 
 *** TODO Xspec [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/xanadu/xspec/index.html
--
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1782,6 +1819,19 @@ CLOSED: [2023-02-15 Wed 21:47]
 *** TODO IDAstroL [/][%] :p5:
 - https://idlastro.gsfc.nasa.gov/homepage.html
 - https://github.com/wlandsman/IDLAstro
+
+*** TODO python-sdasws [0/4][0%] :p1:
+- https://cdaweb.gsfc.nasa.gov/WebServices/REST/
+- synopsis :: NASA's Coordinated Data Analysis System Web Service Client Library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [3/4][75%]
+  - [X] python-dateutil
+  - [X] python-requests
+  - [X] python-cdflib
+  - [ ] python-spacepy
+
 ** TODO neuromorphicsystems [0/1][0%] :author:
 *** TODO astrometry [0/4][0%] :p5:
 - https://github.com/neuromorphicsystems/astrometry
@@ -1789,6 +1839,20 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+
+** TODO spacepy [/][%] :author:
+- https://spacepy.github.io/
+*** TODO python-spacepy
+- https://github.com/spacepy/spacepy
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-numpy
+  - [X] python-python-dateutil
+  - [X] python-scipy
+  - [X] python-matplotlib
+  - [X] python-h5py
 
 ** TODO OpenAstronomy [/][%] :author:
 - https://github.com/OpenAstronomy
@@ -2825,7 +2889,8 @@ The Solar UK Research Facility
 ** TODO ESA [/][%] :author:
 
 * Monthly Update
-** 2023-05
+** DONE updates-2023-05 [3/35][8%]
+CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
 - commit ::
 - [X] python-fitsio 1.1.8, use Gexp
@@ -2863,20 +2928,11 @@ The Solar UK Research Facility
 - [ ] python-gwcs
 - [ ] python-astroalign
 - [ ] python-skyfield
-** 2023-06
+** DONE updates-2023-06 [2/2][100%]
+CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230618T115854+0100
 - commit :: e4087930f3ad60918689be5f4bca4ce3e22429f5
-- complex [9/9][100%]
-  - [X] celestia :: from 1.6.1-815.9dbdf29 to 1.6.3
-  - [X] eye :: fix build
-  - [X] missfits :: fix build
-  - [X] sgp4 :: https://github.com/dnwrnr/sgp4/issues/34
-  - [X] skymaker :: from 3.10.5 to 3.10.5-0.1a69c47, fix build
-  - [X] stuff :: from 1.26.0 to 1.26.0-0.9008dc0, fix build
-  - [X] swarp :: from 2.38.0 to 2.41.2, fix build
-  - [X] weightwatcher :: Fix build
-  - [X] xplanet :: improve style
-- quick [17/17][100%]
+- [X] quick [17/17][100%]
   - [X] calceph :: from 3.5.1 to 3.5.2
   - [X] calcmysky :: from 0.3.0 to 0.3.1
   - [X] libxisf :: from 0.2.1 to 0.2.8
@@ -2894,10 +2950,21 @@ The Solar UK Research Facility
   - [X] splash :: from 3.7.2 to 3.8.2
   - [X] python-photutils :: from 1.7.0 to 1.8.0
   - [X] sextractor :: from 2.25.0 to 2.28.0, fix build
-** 2023-07
+- [X] complex [9/9][100%]
+  - [X] celestia :: from 1.6.1-815.9dbdf29 to 1.6.3
+  - [X] eye :: fix build
+  - [X] missfits :: fix build
+  - [X] sgp4 :: https://github.com/dnwrnr/sgp4/issues/34
+  - [X] skymaker :: from 3.10.5 to 3.10.5-0.1a69c47, fix build
+  - [X] stuff :: from 1.26.0 to 1.26.0-0.9008dc0, fix build
+  - [X] swarp :: from 2.38.0 to 2.41.2, fix build
+  - [X] weightwatcher :: Fix build
+  - [X] xplanet :: improve style
+** DONE updates-2023-07 [0/1][0%]
+CLOSED: [2023-11-22 Wed 00:26]
 - date-time ::
 - commit ::
-- complex [0/7][0%]
+- [ ] complex [0/7][0%]
   - [ ] aocommon ::
   - [ ] aoflagger :: from 3.2.0 to 3.3.0
   - [ ] casacore :: from 3.4.0 to 3.5.0 (more work)
@@ -2906,11 +2973,12 @@ The Solar UK Research Facility
   - [ ] libpasastro :: from 1.4.0-1.e3c218d to 1.4.1 (more work)
   - [ ] python-spherical-geometry :: from 1.2.22 to 1.2.23
     - https://github.com/spacetelescope/spherical_geometry/issues/227
-** 2023-08
+** DONE updates-2023-08 [1/2][50%]
+CLOSED: [2023-11-22 Wed 00:26]
 - date-time :: 20230905T163102+0100
 - commit :: 8d19ff23052bffb1c43f0d39f543eb0b1e363074
 - issues :: https://issues.guix.gnu.org/65814
-- quick [16/16][100%]
+- [X] quick [16/16][100%]
   - [X] libxisf :: would be upgraded from 0.2.8 to 0.2.9.
   - [X] python-astropy-healpix :: would be upgraded from 0.7 to 1.0.0.
   - [X] python-astropy :: would be upgraded from 5.3.1 to 5.3.2
@@ -2927,7 +2995,7 @@ The Solar UK Research Facility
   - [X] python-sunpy :: Enable more tests.
   - [X] python-tslearn :: would be upgraded from 0.6.1 to 0.6.2
   - [X] splash :: would be upgraded from 3.8.2 to 3.8.4.
-- complex [0/8][0%]
+- [ ] complex [0/8][0%]
   - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.1. Requires lower version of
     python-jsonschema which and also contain vendorized version which breaks all tests now,
     https://github.com/asdf-format/asdf-standard/releases/tag/1.0.3
@@ -2948,12 +3016,12 @@ The Solar UK Research Facility
   - [ ] indi :: would be upgraded from 1.9.9 to 2.0.3. stellarium failing.
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
     requried.
-** DONE 2023-09
+** DONE updates-2023-09 [1/2][50%]
 CLOSED: [2023-10-10 Tue 00:44]
 - date-time :: 20230905T163102+0100
 - commit :: 8e6022732ab6c4ba256f99d925f5fd413a87372c
 - issues :: https://issues.guix.gnu.org/66412
-- quick [16/16][100%]
+- [X] quick [16/16][100%]
   - [X] calceph :: would be upgraded from 3.5.2 to 3.5.3
   - [X] indi :: would be upgraded from 1.9.9 to 2.0.4
   - [X] python-cdflib :: would be upgraded from 1.1.0 to 1.2.1
@@ -2970,7 +3038,7 @@ CLOSED: [2023-10-10 Tue 00:44]
   - [X] python-tweakwcs :: would be upgraded from 0.8.2 to 0.8.3
   - [X] siril :: would be upgraded from 1.0.6 to 1.2.0
   - [X] stellarium :: would be upgraded from 23.2 to 23.3
-- complex [0/7][0%]
+- [ ] complex [0/6][0%]
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failed, more work required.
   - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.2. Custom JsonSchema implementation.
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
@@ -2980,12 +3048,12 @@ CLOSED: [2023-10-10 Tue 00:44]
   - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
     the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0.  Failed to build with adc7333f961259aa627ae930b06cc9f1b522401f commit (newer then 3.5.0 tag). Fortrant and Boost issue.
-** DONE 2023-10
+** DONE updates-2023-10 [/[$]
 CLOSED: [2023-11-14 Tue 00:33]
 - date-time :: 20231023T002143+0100
 - commit :: 554956439ba5837a8ea3af78829ed595381273be
 - issues :: https://issues.guix.gnu.org/66778
-- quick [17/17][100%]
+- [X] quick [17/17][100%]
   - [X] erfa :: would be upgraded from 2.0.0 to 2.0.1
   - [X] glnemo2 :: Fix home-page.
   - [X] imppg :: would be upgraded from 0.6.5 to 1.9.1-beta, use standard configure phase.
@@ -3004,7 +3072,7 @@ CLOSED: [2023-11-14 Tue 00:33]
   - [X] python-pytest-doctestplus :: would be upgraded from 0.12.1 to 1.0.0
   - [X] python-pytest-remotedata :: would be upgraded from 0.4.0 to 0.4.1
   - [X] python-spherical-geometry :: Enable tests
-- complex [0/6][0%]
+- [ ] complex [0/6][0%]
   - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
   - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23
   - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
@@ -3012,15 +3080,14 @@ CLOSED: [2023-11-14 Tue 00:33]
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
-- archived [0/1]
+- [ ] archived [0/1]
   - [ ] python-poliastro :: https://github.com/poliastro/poliastro/issues/1640
-
-** DONE 2023-11
+** DONE updates-2023-11 [2/2][100%]
 CLOSED: [2023-11-19 Sun 17:02]
 - date-time :: 20231114T223727+0000
 - commit :: a0d337e79c87d7c38c79d0291974f490cb137a52
 - issues :: https://issues.guix.gnu.org/67237
-- quick [22/22][100%]
+- [X] quick [22/22][100%]
   - [X] celestia :: would be upgraded from 1.6.3 to 1.6.4
   - [X] gpredict :: Upate package style.
   - [X] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
@@ -3043,11 +3110,11 @@ CLOSED: [2023-11-19 Sun 17:02]
   - [X] python-pytest-socket :: would be upgraded from 0.5.1 to 0.6.0
   - [X] python-stsci-stimage :: enable tests
   - [X] python-memory-profiler :: enable all tests
-- pending [1/1][100%]
+- [X] pending [1/1][100%]
   - [X] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
     - [X] https://issues.guix.gnu.org/66896
     - [X] https://github.com/spacetelescope/spherical_geometry/issues/227
-- complex [0/4][0%]
+- [ ] complex [0/4][0%]
   - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
   - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
