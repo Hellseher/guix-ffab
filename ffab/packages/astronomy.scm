@@ -1256,6 +1256,37 @@ based on the HDF5 standard")
 ;; added-to-downstream-guix 0458cbd84c03068241dfaf293b0594ec07dc2019
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
+;;20231127T020129+0000
+(define-public python-hapiclient
+  (package
+    (name "python-hapiclient")
+    (version "0.2.5")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "hapiclient" version))
+       (sha256
+        (base32 "0lak8x5cwrc0wdkbiyvqkwwi0n5qz77pq4vxc2vailbfg30lgp7w"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; Tests require access to:
+      ;; http://hapi-server.org/servers/TestData/xhapi
+      ;; http://hapi-server.org/servers/TestData2.0/hapi
+      #:tests? #f))
+    (propagated-inputs
+     (list python-isodate
+           python-joblib
+           python-numpy
+           python-pandas
+           python-urllib3))
+    (home-page "https://github.com/hapi-server/client-python")
+    (synopsis "Interface to Heliophysics data server API")
+    (description
+     "This package provides an interface to @acronym{Heliophysics Application
+Programmer’s Interface, HAPI} data server API.")
+    (license license:bsd-3)))
+
 ;; 20221123T225008+0000
 ;; (define-public python-hvpy
 ;; added-to-downstream-guix 0575012803683ebacd43029530683af7bdf791f9
