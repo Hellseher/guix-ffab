@@ -1079,6 +1079,36 @@ for variables with units.")
 ;; added-to-downstream-guix 04cf30e15323fa56c1f0ce7e4e8f3981dab9f99a
 ;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
 
+;; 20231127T013936+0000
+(define-public python-viresclient
+  (package
+    (name "python-viresclient")
+    (version "0.11.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "viresclient" version))
+       (sha256
+        (base32 "0v84jd3zfnfdhjidgy3synqjnwdlzm81lmabjz3gh2z7ifgbgfp1"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-flit-core python-pytest))
+    (propagated-inputs
+     (list python-cdflib
+           python-jinja2
+           python-netcdf4
+           python-pandas
+           python-requests
+           python-tables
+           python-tqdm
+           python-xarray))
+    (home-page "https://viresclient.readthedocs.io/en/latest/")
+    (synopsis "Python client for interacting with a VirES server")
+    (description
+     "This package provides a Python client for interacting with a @code{VirES}
+server, of which there are two: VirES for @url{https://vires.services, Swarm}
+and VirES for @url{https://aeolus.services, Aeolus}")
+    (license license:expat)))
+
 ;; 20221106T092616+0000
 ;; (define-public python-wiimatch
 ;; added-to-downstream-guix 2b085c4b41cd0aa888d9f4c027a23c483a7c73e5
