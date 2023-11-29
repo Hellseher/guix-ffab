@@ -1,10 +1,10 @@
-From d663be1a54d52be58cdc2241e032890aa6ad137c Mon Sep 17 00:00:00 2001
-Message-ID: <d663be1a54d52be58cdc2241e032890aa6ad137c.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 6a026431734831c3ee13457422791114f54f703d Mon Sep 17 00:00:00 2001
+Message-ID: <6a026431734831c3ee13457422791114f54f703d.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:55:25 +0100
-Subject: [PATCH 19/67] gnu: go-github-com-jcmturner-goidentity-v6: Move to
+Subject: [PATCH v3 19/66] gnu: go-github-com-jcmturner-goidentity-v6: Move to
  (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-jcmturner-goidentity-v6): Move from
@@ -53,10 +53,10 @@ index 6a832291ab..751eb41b58 100644
    (package
      (name "go-github-com-jcmturner-gokrb5-v8")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 20d3c378c4..7ad906ef54 100644
+index d0cde62f61..ba9d3a80a9 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -1362,30 +1362,6 @@ (define-public go-github-com-jcmturner-aescts-v2
+@@ -1363,30 +1363,6 @@ (define-public go-github-com-jcmturner-aescts-v2
  encryption and decryption methods.")
      (license license:asl2.0)))
  

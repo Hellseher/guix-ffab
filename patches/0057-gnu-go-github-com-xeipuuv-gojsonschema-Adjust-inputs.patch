@@ -1,10 +1,11 @@
-From 16580a2abe2bbf313053530c8e61f00ea712b9d9 Mon Sep 17 00:00:00 2001
-Message-ID: <16580a2abe2bbf313053530c8e61f00ea712b9d9.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From b3a7c1384cd3f43266b32a1174f1f8e624fd2719 Mon Sep 17 00:00:00 2001
+Message-ID: <b3a7c1384cd3f43266b32a1174f1f8e624fd2719.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:52:59 +0000
-Subject: [PATCH 57/67] gnu: go-github-com-xeipuuv-gojsonschema: Adjust inputs.
+Subject: [PATCH v3 57/66] gnu: go-github-com-xeipuuv-gojsonschema: Adjust
+ inputs.
 
 * gnu/packages/golang-web.scm (go-github-com-xeipuuv-gojsonschema):
 [propagated-inputs]: Move go-github-com-stretchr-testify from here ...

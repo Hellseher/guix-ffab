@@ -1,10 +1,10 @@
-From 36dc0b088c82ff1882588b035c29aa49e0413174 Mon Sep 17 00:00:00 2001
-Message-ID: <36dc0b088c82ff1882588b035c29aa49e0413174.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From d794601282b1d0bd46fd92fe07f79473f35ee7cf Mon Sep 17 00:00:00 2001
+Message-ID: <d794601282b1d0bd46fd92fe07f79473f35ee7cf.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:42:10 +0100
-Subject: [PATCH 15/67] gnu: go-github-com-jcmturner-gokrb5-v8: Move to (gnu
+Subject: [PATCH v3 15/66] gnu: go-github-com-jcmturner-gokrb5-v8: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-jcmturner-gokrb5-v8): Move from
@@ -88,10 +88,10 @@ index 971b370115..ae10a86551 100644
    (package
      (name "go-github-com-puerkitobio-goquery")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index a8d35b866c..e65b8e2581 100644
+index 1d169ce227..b0ae0da3e3 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -1436,54 +1436,6 @@ (define-public go-github-com-jcmturner-gofork
+@@ -1437,54 +1437,6 @@ (define-public go-github-com-jcmturner-gofork
  arounds until issues are addressed in the official distribution.")
      (license license:bsd-3)))
  

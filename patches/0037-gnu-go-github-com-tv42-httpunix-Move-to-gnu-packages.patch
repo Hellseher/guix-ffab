@@ -1,11 +1,11 @@
-From f2bf0dcc68b587bff0de748ccd6e0c4162984761 Mon Sep 17 00:00:00 2001
-Message-ID: <f2bf0dcc68b587bff0de748ccd6e0c4162984761.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 1cee6bf69e7388e75ccfac6e988a2b8353af64a7 Mon Sep 17 00:00:00 2001
+Message-ID: <1cee6bf69e7388e75ccfac6e988a2b8353af64a7.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 14:49:54 +0000
-Subject: [PATCH 37/67] gnu: go-github-com-tv42-httpunix: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 37/66] gnu: go-github-com-tv42-httpunix: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-tv42-httpunix): Move from
 here...
@@ -61,10 +61,10 @@ index 4cef7b6641..caccb126bc 100644
    (package
      (name "go-github-com-valyala-fasthttp")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 30d32dcba9..7a85b1ebcd 100644
+index d3c6252c88..310c2ba8f4 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4298,30 +4298,6 @@ (define-public go-github-com-tomnomnom-gron
+@@ -4334,30 +4334,6 @@ (define-public go-github-com-tomnomnom-gron
  absolute \"path\" to it.")
      (license license:expat)))
  

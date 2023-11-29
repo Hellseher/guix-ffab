@@ -1,10 +1,10 @@
-From 29b518e2564a84565c74c4d85bc1efaee757f491 Mon Sep 17 00:00:00 2001
-Message-ID: <29b518e2564a84565c74c4d85bc1efaee757f491.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 954b909c7d3be1ce56dbacc2cd6ca1b2106e52e6 Mon Sep 17 00:00:00 2001
+Message-ID: <954b909c7d3be1ce56dbacc2cd6ca1b2106e52e6.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:18:28 +0100
-Subject: [PATCH 24/67] gnu: go-github-com-gorilla-context: Move to (gnu
+Subject: [PATCH v3 24/66] gnu: go-github-com-gorilla-context: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-gorilla-context): Move from
@@ -55,10 +55,10 @@ index 9e68e96baf..012ed0429c 100644
    (package
      (name "go-github-com-gorilla-csrf")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index c4ae0091d2..a3d5fb0f6b 100644
+index 786752a0ad..c48484da11 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4480,30 +4480,6 @@ (define-public go-github-com-google-cadvisor
+@@ -4516,30 +4516,6 @@ (define-public go-github-com-google-cadvisor
  containers.")
        (license license:asl2.0))))
  

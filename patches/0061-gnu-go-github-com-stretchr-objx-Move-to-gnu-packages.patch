@@ -1,11 +1,11 @@
-From f407d9ffd55888295367c0bd6172b9259e32ec94 Mon Sep 17 00:00:00 2001
-Message-ID: <f407d9ffd55888295367c0bd6172b9259e32ec94.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From e225c3e78a6312d41cc4810190ecb7804ec718b6 Mon Sep 17 00:00:00 2001
+Message-ID: <e225c3e78a6312d41cc4810190ecb7804ec718b6.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 23:11:05 +0000
-Subject: [PATCH 61/67] gnu: go-github-com-stretchr-objx: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 61/66] gnu: go-github-com-stretchr-objx: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-stretchr-objx,
 go-github-com-stretchr-testify-bootstrap): Move from here...
@@ -87,10 +87,10 @@ index 42e501a6e3..b74864d808 100644
    (package
      (name "go-github-com-tdewolff-test")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 3f93f6eaee..feb1295e7b 100644
+index 1fb656c547..1870eadb9c 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4110,58 +4110,6 @@ (define-public go-github-com-jpillora-backoff
+@@ -4146,58 +4146,6 @@ (define-public go-github-com-jpillora-backoff
  Go.")
        (license license:expat))))
  

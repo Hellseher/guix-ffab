@@ -1,11 +1,11 @@
-From fc18bce487ed0fcf2d46047bed1eebad0ee869b9 Mon Sep 17 00:00:00 2001
-Message-ID: <fc18bce487ed0fcf2d46047bed1eebad0ee869b9.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 7131fac2dd5e2d08ead824ad80ef80b80bbc441e Mon Sep 17 00:00:00 2001
+Message-ID: <7131fac2dd5e2d08ead824ad80ef80b80bbc441e.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:56:31 +0000
-Subject: [PATCH 58/67] gnu: go-github-com-xeipuuv-gojsonpointer: Move to (gnu
- packages golang-web).
+Subject: [PATCH v3 58/66] gnu: go-github-com-xeipuuv-gojsonpointer: Move to
+ (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-xeipuuv-gojsonpointer): Move from
 here...
@@ -54,10 +54,10 @@ index 346ca87cc7..1f9fe0ffca 100644
    (let ((commit "6b67b3fab74d992bd07f72550006ab2c6907c416")
          (revision "0"))
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 16b13cd59e..fb01dd4679 100644
+index ee4cef4887..feb1161e3f 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -12125,31 +12125,6 @@ (define-public go-github-com-go-test-deep
+@@ -12252,31 +12252,6 @@ (define-public go-github-com-go-test-deep
  when comparing complex types like structures and maps.")
      (license license:expat)))
  

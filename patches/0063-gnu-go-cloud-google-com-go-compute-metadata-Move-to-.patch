@@ -1,11 +1,11 @@
-From 0823b15b8e1b5c37d60b32400fc5dc56e1ac5caa Mon Sep 17 00:00:00 2001
-Message-ID: <0823b15b8e1b5c37d60b32400fc5dc56e1ac5caa.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From bc5ea1d279996dfd2209d58f4e27b8f072fc5dae Mon Sep 17 00:00:00 2001
+Message-ID: <bc5ea1d279996dfd2209d58f4e27b8f072fc5dae.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 23:38:54 +0000
-Subject: [PATCH 63/67] gnu: go-cloud-google-com-go-compute-metadata: Move to
- (gnu packages golang-web).
+Subject: [PATCH v3 63/66] gnu: go-cloud-google-com-go-compute-metadata: Move
+ to (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-cloud-google-com-go-compute-metadata): Move from
 here...
@@ -66,10 +66,10 @@ index 20c3b0f3e1..c046e0d46a 100644
    (package
      (name "go-github-com-andybalholm-cascadia")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 3ffe569ed5..d53fa5864a 100644
+index b4bfe4986a..7dcd2a00ac 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4224,33 +4224,6 @@ (define-public go-github-com-blang-semver
+@@ -4260,33 +4260,6 @@ (define-public go-github-com-blang-semver
        (description "Semver is a library for Semantic versioning written in Go.")
        (license license:expat))))
  
@@ -104,7 +104,7 @@ index 3ffe569ed5..d53fa5864a 100644
    (let ((commit "2ed7198f77395ee9a172878a0a7ab92ab59a2cfd")
          (revision "0"))
 diff --git a/gnu/packages/mail.scm b/gnu/packages/mail.scm
-index 5b5b29a468..d57d1f9980 100644
+index 1676acf2f9..bb3fe1b3be 100644
 --- a/gnu/packages/mail.scm
 +++ b/gnu/packages/mail.scm
 @@ -109,6 +109,7 @@ (define-module (gnu packages mail)

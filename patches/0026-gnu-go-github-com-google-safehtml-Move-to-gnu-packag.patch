@@ -1,10 +1,10 @@
-From 64fd90fa470ad536a226ed73b1a7f4173887c75b Mon Sep 17 00:00:00 2001
-Message-ID: <64fd90fa470ad536a226ed73b1a7f4173887c75b.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 31e0cfc511eea1eac478223ad4c36e85b4172dbb Mon Sep 17 00:00:00 2001
+Message-ID: <31e0cfc511eea1eac478223ad4c36e85b4172dbb.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:28:44 +0100
-Subject: [PATCH 26/67] gnu: go-github-com-google-safehtml: Move to (gnu
+Subject: [PATCH v3 26/66] gnu: go-github-com-google-safehtml: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-google-safehtml): Move from
@@ -62,10 +62,10 @@ index 117742dc07..ce95d1b467 100644
    (let ((commit "08b5f424b9271eedf6f9f0ce86cb9396ed337a42")
          (revision "0"))
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 936e9203b3..92f3f90d36 100644
+index f110da8d99..89aeead50a 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -12247,31 +12247,6 @@ (define-public go-github-com-google-go-jsonnet
+@@ -12374,31 +12374,6 @@ (define-public go-github-com-google-go-jsonnet
  implementation.")
      (license license:asl2.0)))
  

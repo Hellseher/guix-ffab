@@ -1,10 +1,10 @@
-From 12233cc449b22de925f12ea5f8d60ea8e59e59c6 Mon Sep 17 00:00:00 2001
-Message-ID: <12233cc449b22de925f12ea5f8d60ea8e59e59c6.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 4363e805c919652f327bee551059ca13041e5b77 Mon Sep 17 00:00:00 2001
+Message-ID: <4363e805c919652f327bee551059ca13041e5b77.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:29:17 +0100
-Subject: [PATCH 12/67] gnu: go-github-com-felixge-httpsnoop: Move to (gnu
+Subject: [PATCH v3 12/66] gnu: go-github-com-felixge-httpsnoop: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-felixge-httpsnoop): Move from
@@ -53,10 +53,10 @@ index 3a3c5f9621..c0ceb5b7ce 100644
    (package
      (name "go-github-com-gorilla-css")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 243fd2f798..ade98626c8 100644
+index 57330a8d7a..a3706ebb2e 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4984,31 +4984,6 @@ (define-public go-github-com-spf13-viper
+@@ -5020,31 +5020,6 @@ (define-public go-github-com-spf13-viper
  all types of configuration needs and formats.")
      (license license:expat)))
  

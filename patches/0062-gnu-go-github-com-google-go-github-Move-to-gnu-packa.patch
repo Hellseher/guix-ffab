@@ -1,10 +1,10 @@
-From a4a5de9541387a017f4570ce16e56b09e58468e3 Mon Sep 17 00:00:00 2001
-Message-ID: <a4a5de9541387a017f4570ce16e56b09e58468e3.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 7c282db3ec9cc208ca6e2674f03b6804a4a742dd Mon Sep 17 00:00:00 2001
+Message-ID: <7c282db3ec9cc208ca6e2674f03b6804a4a742dd.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 23:15:41 +0000
-Subject: [PATCH 62/67] gnu: go-github-com-google-go-github: Move to (gnu
+Subject: [PATCH v3 62/66] gnu: go-github-com-google-go-github: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-google-go-github): Move from
@@ -55,10 +55,10 @@ index fbfa1049a4..20c3b0f3e1 100644
    (package
      (name "go-github-com-google-safehtml")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index feb1295e7b..3ffe569ed5 100644
+index 1870eadb9c..b4bfe4986a 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -7689,32 +7689,6 @@ (define-public go-github-com-google-go-querystring
+@@ -7810,32 +7810,6 @@ (define-public go-github-com-google-go-querystring
  into URL query parameters.")
        (license license:bsd-3))))
  

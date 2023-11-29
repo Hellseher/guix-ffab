@@ -1,8 +1,8 @@
-From 0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5 Mon Sep 17 00:00:00 2001
-Message-ID: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 123a0b9b76c24c29184c527dabb652384f7be762 Mon Sep 17 00:00:00 2001
+Message-ID: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 00:51:54 +0100
-Subject: [PATCH 01/67] gnu: Add (gnu packages golang-web) module.
+Subject: [PATCH v3 01/66] gnu: Add (gnu packages golang-web) module.
 
 * gnu/packages/golang-web.scm: New file.
 * gnu/local.mk: Add to gnu/packages/golang-web.scm scope.
@@ -13,10 +13,10 @@ Subject: [PATCH 01/67] gnu: Add (gnu packages golang-web) module.
  create mode 100644 gnu/packages/golang-web.scm
 
 diff --git a/gnu/local.mk b/gnu/local.mk
-index a381d28b83..52b5a7ef3e 100644
+index a8142bb0f2..aa9403a8eb 100644
 --- a/gnu/local.mk
 +++ b/gnu/local.mk
-@@ -303,6 +303,7 @@ GNU_SYSTEM_MODULES =				\
+@@ -304,6 +304,7 @@ GNU_SYSTEM_MODULES =				\
    %D%/packages/gobby.scm			\
    %D%/packages/golang.scm			\
    %D%/packages/golang-check.scm		\
@@ -70,7 +70,7 @@ index 0000000000..feb2854d9c
 +;;; functionality or similar names.
 +;;;
 
-base-commit: 19fe24c5b978a16cbca3cddbfa3ab9d1ee2c68f2
+base-commit: 62376e3eb67644454bc655bed56be4be965bd13e
 -- 
 2.41.0
 

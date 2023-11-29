@@ -1,10 +1,10 @@
-From dc03ad59f485052e1fdc1af6003b883feff31539 Mon Sep 17 00:00:00 2001
-Message-ID: <dc03ad59f485052e1fdc1af6003b883feff31539.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From a3f4311aab19fbffaa4b8ae48867e033ca3d66bd Mon Sep 17 00:00:00 2001
+Message-ID: <a3f4311aab19fbffaa4b8ae48867e033ca3d66bd.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 01:14:25 +0100
-Subject: [PATCH 04/67] gnu: go-github-com-aymerick-douceur: Move to (gnu
+Subject: [PATCH v3 04/66] gnu: go-github-com-aymerick-douceur: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-aymerick-douceur): Move from
@@ -55,10 +55,10 @@ index 1d61a76268..39a83990ce 100644
    (package
      (name "go-github-com-gorilla-css")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index db335858f6..1b8b455aa5 100644
+index 0c7d22281a..3aad98c9ef 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -9278,31 +9278,6 @@ (define-public go-github-com-jmespath-go-jmespath
+@@ -9405,31 +9405,6 @@ (define-public go-github-com-jmespath-go-jmespath
  transforms one JSON document into another through a JMESPath expression.")
      (license license:asl2.0)))
  

@@ -1,11 +1,11 @@
-From 72080382764b6f970f2e9106d16e90df7d1c330e Mon Sep 17 00:00:00 2001
-Message-ID: <72080382764b6f970f2e9106d16e90df7d1c330e.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From deff77a7959b8b383a9303ca50c9a6b29ae2f3ec Mon Sep 17 00:00:00 2001
+Message-ID: <deff77a7959b8b383a9303ca50c9a6b29ae2f3ec.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:19:52 +0100
-Subject: [PATCH 09/67] gnu: go-github-com-sourcegraph-jsonrpc2: Move to (gnu
- packages golang-web).
+Subject: [PATCH v3 09/66] gnu: go-github-com-sourcegraph-jsonrpc2: Move to
+ (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-sourcegraph-jsonrpc2): Move from
 here...
@@ -21,7 +21,7 @@ Change-Id: Idda2e18ae5d3e19f72265bdd017eadddc25bcad9
  3 files changed, 27 insertions(+), 26 deletions(-)
 
 diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
-index 3eeee9fadf..5df8ea2bb8 100644
+index f0ea100c3b..eb135b05fd 100644
 --- a/gnu/packages/databases.scm
 +++ b/gnu/packages/databases.scm
 @@ -108,6 +108,7 @@ (define-module (gnu packages databases)
@@ -70,10 +70,10 @@ index 0ca70cec38..f9e7039707 100644
  ;;; Avoid adding new packages to the end of this file. To reduce the chances
  ;;; of a merge conflict, place them above by existing packages with similar
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index ed65b5d978..5e7d321a2b 100644
+index a3c6df391b..723550e76e 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -12646,32 +12646,6 @@ (define-public go-github-com-google-shlex
+@@ -12773,32 +12773,6 @@ (define-public go-github-com-google-shlex
  using shell-style rules for quoting and commenting.")
      (license license:asl2.0)))
  

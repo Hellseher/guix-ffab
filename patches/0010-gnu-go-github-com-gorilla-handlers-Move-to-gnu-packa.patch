@@ -1,10 +1,10 @@
-From 3525fa5dcc7a8eb369fb3996002ef1d85167d4f7 Mon Sep 17 00:00:00 2001
-Message-ID: <3525fa5dcc7a8eb369fb3996002ef1d85167d4f7.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 99cbc8995e47ef339d584eb0cbf49fa153900ec1 Mon Sep 17 00:00:00 2001
+Message-ID: <99cbc8995e47ef339d584eb0cbf49fa153900ec1.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:24:54 +0100
-Subject: [PATCH 10/67] gnu: go-github-com-gorilla-handlers: Move to (gnu
+Subject: [PATCH v3 10/66] gnu: go-github-com-gorilla-handlers: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-gorilla-handlers): Move from
@@ -21,7 +21,7 @@ Change-Id: I7535bdecc681e230f4aee70115a3dea847d40e6f
  3 files changed, 28 insertions(+), 27 deletions(-)
 
 diff --git a/gnu/packages/backup.scm b/gnu/packages/backup.scm
-index 12c4a45b9d..8e0a782f91 100644
+index 49b0fe2620..bd0373c931 100644
 --- a/gnu/packages/backup.scm
 +++ b/gnu/packages/backup.scm
 @@ -71,6 +71,7 @@ (define-module (gnu packages backup)
@@ -81,10 +81,10 @@ index f9e7039707..0480f648eb 100644
    (package
      (name "go-github-com-gorilla-mux")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 5e7d321a2b..243fd2f798 100644
+index 723550e76e..57330a8d7a 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4706,32 +4706,6 @@ (define-public go-github-com-andybalholm-brotli
+@@ -4742,32 +4742,6 @@ (define-public go-github-com-andybalholm-brotli
  @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
      (license license:expat)))
  

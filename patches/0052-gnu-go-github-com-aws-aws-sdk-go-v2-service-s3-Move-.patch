@@ -1,11 +1,11 @@
-From 5898f4615f84df3f64a4ee7ac6a8f9ac60b1ce79 Mon Sep 17 00:00:00 2001
-Message-ID: <5898f4615f84df3f64a4ee7ac6a8f9ac60b1ce79.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 5f837fd28e82a422449cfcddcdebbd719f1380ae Mon Sep 17 00:00:00 2001
+Message-ID: <5f837fd28e82a422449cfcddcdebbd719f1380ae.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:27:07 +0000
-Subject: [PATCH 52/67] gnu: go-github-com-aws-aws-sdk-go-v2-service-s3: Move
- to (gnu packages golang-web).
+Subject: [PATCH v3 52/66] gnu: go-github-com-aws-aws-sdk-go-v2-service-s3:
+ Move to (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-aws-aws-sdk-go-v2-service-s3): Move from
 here...
@@ -40,10 +40,10 @@ index aadf8ac73e..e87634cdaa 100644
    (package
      (inherit go-github-com-aws-aws-sdk-go-v2)
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 7b254db540..2c331802ff 100644
+index 5aedd1d51e..05d072f1e5 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -11173,16 +11173,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
+@@ -11300,16 +11300,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
      (home-page "https://github.com/dvsekhvalnov/jose2go")
      (license license:expat)))
  

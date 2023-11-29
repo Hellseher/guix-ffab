@@ -1,10 +1,10 @@
-From 652f04c38c0d31b6be3727e97542a39df9f023ca Mon Sep 17 00:00:00 2001
-Message-ID: <652f04c38c0d31b6be3727e97542a39df9f023ca.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 3836cb7c4953e003c740f78835dda99400a0a7e2 Mon Sep 17 00:00:00 2001
+Message-ID: <3836cb7c4953e003c740f78835dda99400a0a7e2.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:46:38 +0000
-Subject: [PATCH 55/67] gnu: go-github-com-hjson-hjson-go: Move to (gnu
+Subject: [PATCH v3 55/66] gnu: go-github-com-hjson-hjson-go: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-hjson-hjson-go): Move from
@@ -65,10 +65,10 @@ index 96873f020c..4771657add 100644
    (package
      (name "go-github-com-jcmturner-dnsutils-v2")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index bf71d0de49..0e608a8eab 100644
+index 3236abdec6..38398b111b 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -9965,30 +9965,6 @@ (define-public go-github-com-hashicorp-go-syslog
+@@ -10092,30 +10092,6 @@ (define-public go-github-com-hashicorp-go-syslog
      (description "This package is a very simple wrapper around log/syslog")
      (license license:expat)))
  
@@ -100,10 +100,10 @@ index bf71d0de49..0e608a8eab 100644
    (package
      (name "go-golang-zx2c4-com-wireguard")
 diff --git a/gnu/packages/networking.scm b/gnu/packages/networking.scm
-index b0381515a5..36d33da42b 100644
+index 6b415076e8..2366dd5fc5 100644
 --- a/gnu/packages/networking.scm
 +++ b/gnu/packages/networking.scm
-@@ -122,6 +122,7 @@ (define-module (gnu packages networking)
+@@ -123,6 +123,7 @@ (define-module (gnu packages networking)
    #:use-module (gnu packages gnome)
    #:use-module (gnu packages gnupg)
    #:use-module (gnu packages golang)

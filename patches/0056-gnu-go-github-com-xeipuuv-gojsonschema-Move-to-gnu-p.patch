@@ -1,11 +1,11 @@
-From 4a5d041e2c254ba76e1b3fae234bc929f5144bd0 Mon Sep 17 00:00:00 2001
-Message-ID: <4a5d041e2c254ba76e1b3fae234bc929f5144bd0.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From d1953c6285687af88e9f63bec76c2330160380a7 Mon Sep 17 00:00:00 2001
+Message-ID: <d1953c6285687af88e9f63bec76c2330160380a7.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:51:05 +0000
-Subject: [PATCH 56/67] gnu: go-github-com-xeipuuv-gojsonschema: Move to (gnu
- packages golang-web).
+Subject: [PATCH v3 56/66] gnu: go-github-com-xeipuuv-gojsonschema: Move to
+ (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-xeipuuv-gojsonschema): Move from
 here...
@@ -70,10 +70,10 @@ index 4771657add..c97dfa7757 100644
    (package
      (name "go-gopkg-in-square-go-jose-v2")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 0e608a8eab..16b13cd59e 100644
+index 38398b111b..ee4cef4887 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -12176,46 +12176,6 @@ (define-public go-github-com-xeipuuv-gojsonreference
+@@ -12303,46 +12303,6 @@ (define-public go-github-com-xeipuuv-gojsonreference
  programming language.")
        (license license:asl2.0))))
  

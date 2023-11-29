@@ -1,10 +1,10 @@
-From b9ba06ea1bf6c0420e95b263d34fa99aa9616388 Mon Sep 17 00:00:00 2001
-Message-ID: <b9ba06ea1bf6c0420e95b263d34fa99aa9616388.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 52840c10e13aeb1f7183d150f9a01ba22d4257d2 Mon Sep 17 00:00:00 2001
+Message-ID: <52840c10e13aeb1f7183d150f9a01ba22d4257d2.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:15:04 +0100
-Subject: [PATCH 23/67] gnu: go-github-com-tdewolff-parse-v2: Move to (gnu
+Subject: [PATCH v3 23/66] gnu: go-github-com-tdewolff-parse-v2: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-tdewolff-parse-v2): Move from
@@ -67,10 +67,10 @@ index d82cac46b9..9e68e96baf 100644
  ;;; Avoid adding new packages to the end of this file. To reduce the chances
  ;;; of a merge conflict, place them above by existing packages with similar
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 70208b87b6..c4ae0091d2 100644
+index 202abb196b..786752a0ad 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -3436,43 +3436,6 @@ (define-public go-github-com-tdewolff-hasher
+@@ -3437,43 +3437,6 @@ (define-public go-github-com-tdewolff-hasher
  @code{string} to @code{uint32} mapper.")
      (license license:bsd-3)))
  

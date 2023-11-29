@@ -1,11 +1,11 @@
-From 60079baea01b842771d61ef1f5f055bd31e2f9b8 Mon Sep 17 00:00:00 2001
-Message-ID: <60079baea01b842771d61ef1f5f055bd31e2f9b8.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 4d20b22dad0e67876e94360706d22ff25af28497 Mon Sep 17 00:00:00 2001
+Message-ID: <4d20b22dad0e67876e94360706d22ff25af28497.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:36:07 +0100
-Subject: [PATCH 28/67] gnu: go-github-com-bep-golibsass: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 28/66] gnu: go-github-com-bep-golibsass: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-bep-golibsass): Move from
 here...
@@ -104,10 +104,10 @@ index 9aa3fe8233..72f2a7d84c 100644
    (package
      (name "go-github-com-chris-ramon-douceur")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 92f3f90d36..e7316f9923 100644
+index 89aeead50a..11032a6e7d 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -10245,64 +10245,6 @@ (define-public go-github-com-gologme-log
+@@ -10372,64 +10372,6 @@ (define-public go-github-com-gologme-log
  additions.")
        (license license:bsd-3))))
  

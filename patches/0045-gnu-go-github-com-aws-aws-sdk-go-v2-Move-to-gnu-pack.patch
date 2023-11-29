@@ -1,10 +1,10 @@
-From 7151a5e898f7d3fd3fa3b7917729045db7db9d3b Mon Sep 17 00:00:00 2001
-Message-ID: <7151a5e898f7d3fd3fa3b7917729045db7db9d3b.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 84ff2437892a27dc2f99c71983dfe35f96ec7559 Mon Sep 17 00:00:00 2001
+Message-ID: <84ff2437892a27dc2f99c71983dfe35f96ec7559.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 22:04:16 +0000
-Subject: [PATCH 45/67] gnu: go-github-com-aws-aws-sdk-go-v2: Move to (gnu
+Subject: [PATCH v3 45/66] gnu: go-github-com-aws-aws-sdk-go-v2: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-aws-aws-sdk-go-v2): Move from
@@ -58,10 +58,10 @@ index ae9ffd3fd2..1542c409fe 100644
    (package
      (name "go-github-com-aws-smithy-go")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index f0b2007d25..d983b1bda3 100644
+index 0e821306f2..a02da0fb49 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -11173,31 +11173,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
+@@ -11300,31 +11300,6 @@ (define-public go-github-com-dvsekhvalnov-jose2go
      (home-page "https://github.com/dvsekhvalnov/jose2go")
      (license license:expat)))
  
@@ -94,7 +94,7 @@ index f0b2007d25..d983b1bda3 100644
    (package
      (inherit go-github-com-aws-aws-sdk-go-v2)
 diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
-index 76fa8ef5d0..5f60c4400c 100644
+index cf9a2f7a4c..ffd4feb73d 100644
 --- a/gnu/packages/version-control.scm
 +++ b/gnu/packages/version-control.scm
 @@ -105,6 +105,7 @@ (define-module (gnu packages version-control)

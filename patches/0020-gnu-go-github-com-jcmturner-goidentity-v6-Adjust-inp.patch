@@ -1,10 +1,10 @@
-From e98697a41c67b235ebd31c0bfd84994f76f0ffd0 Mon Sep 17 00:00:00 2001
-Message-ID: <e98697a41c67b235ebd31c0bfd84994f76f0ffd0.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 39417c1106240282eedaa7872233d593590df3ca Mon Sep 17 00:00:00 2001
+Message-ID: <39417c1106240282eedaa7872233d593590df3ca.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:56:34 +0100
-Subject: [PATCH 20/67] gnu: go-github-com-jcmturner-goidentity-v6: Adjust
+Subject: [PATCH v3 20/66] gnu: go-github-com-jcmturner-goidentity-v6: Adjust
  inputs.
 
 * gnu/packages/golang-web.scm (go-github-com-jcmturner-goidentity-v6):

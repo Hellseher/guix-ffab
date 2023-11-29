@@ -1,10 +1,10 @@
-From 728fc07d2a4ec331eb2c6fbc7bae19767c7ade3c Mon Sep 17 00:00:00 2001
-Message-ID: <728fc07d2a4ec331eb2c6fbc7bae19767c7ade3c.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 38c0800e01aa230f25208332a7d03c117f6d356a Mon Sep 17 00:00:00 2001
+Message-ID: <38c0800e01aa230f25208332a7d03c117f6d356a.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 14:45:03 +0000
-Subject: [PATCH 36/67] gnu: go-github-com-emicklei-go-restful: Move to (gnu
+Subject: [PATCH v3 36/66] gnu: go-github-com-emicklei-go-restful: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-emicklei-go-restful): Move from
@@ -59,10 +59,10 @@ index c501f55685..4cef7b6641 100644
    (package
      (name "go-github-com-felixge-httpsnoop")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index bd70a4271c..30d32dcba9 100644
+index b39548d478..d3c6252c88 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4346,30 +4346,6 @@ (define-public go-github-com-blang-semver
+@@ -4382,30 +4382,6 @@ (define-public go-github-com-blang-semver
        (description "Semver is a library for Semantic versioning written in Go.")
        (license license:expat))))
  

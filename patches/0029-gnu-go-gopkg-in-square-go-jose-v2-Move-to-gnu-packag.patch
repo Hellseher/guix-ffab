@@ -1,10 +1,10 @@
-From f127bb56224c6ecdb2585efadcc7bbf1a6593559 Mon Sep 17 00:00:00 2001
-Message-ID: <f127bb56224c6ecdb2585efadcc7bbf1a6593559.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From af90e746231a7a204ff04b7489c15720f6d52fb2 Mon Sep 17 00:00:00 2001
+Message-ID: <af90e746231a7a204ff04b7489c15720f6d52fb2.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:39:58 +0100
-Subject: [PATCH 29/67] gnu: go-gopkg-in-square-go-jose-v2: Move to (gnu
+Subject: [PATCH v3 29/66] gnu: go-gopkg-in-square-go-jose-v2: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-gopkg-in-square-go-jose-v2): Move from
@@ -58,10 +58,10 @@ index 72f2a7d84c..976179f44e 100644
  ;;; Avoid adding new packages to the end of this file. To reduce the chances
  ;;; of a merge conflict, place them above by existing packages with similar
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index e7316f9923..8b8e80c0f8 100644
+index 11032a6e7d..d85612c800 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -3222,35 +3222,6 @@ (define-public go-github-com-aws-sdk
+@@ -3223,35 +3223,6 @@ (define-public go-github-com-aws-sdk
       "This is the official AWS SDK for the Go programming language.")
      (license license:asl2.0)))
  

@@ -1,11 +1,11 @@
-From 014df16c3a367550ed7e7100d5331670489d0e9d Mon Sep 17 00:00:00 2001
-Message-ID: <014df16c3a367550ed7e7100d5331670489d0e9d.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 3543ee1f9bacb566d0d9e7c57916a203ee4f277f Mon Sep 17 00:00:00 2001
+Message-ID: <3543ee1f9bacb566d0d9e7c57916a203ee4f277f.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 15:20:32 +0000
-Subject: [PATCH 41/67] gnu: go-github-com-goccy-go-json: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 41/66] gnu: go-github-com-goccy-go-json: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-goccy-go-json): Move from
 here...
@@ -58,10 +58,10 @@ index 59312f791a..e92e04979e 100644
    (package
      (name "go-github-com-google-safehtml")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 4d504e30a2..5b37222c93 100644
+index 1b5f7be13b..aa1a82f92d 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4002,28 +4002,6 @@ (define-public go-github-com-burntsushi-toml
+@@ -4038,28 +4038,6 @@ (define-public go-github-com-burntsushi-toml
  is similar to Go's standard library @code{json} and @code{xml} package.")
      (license license:expat)))
  

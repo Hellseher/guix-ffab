@@ -1,11 +1,11 @@
-From 28b2fdbc101d69f8e539ef92b459ee666d355d13 Mon Sep 17 00:00:00 2001
-Message-ID: <28b2fdbc101d69f8e539ef92b459ee666d355d13.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 519d514afc934c84d30e0e9eaadb2e14cc11c388 Mon Sep 17 00:00:00 2001
+Message-ID: <519d514afc934c84d30e0e9eaadb2e14cc11c388.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 01:08:17 +0100
-Subject: [PATCH 03/67] gnu: go-github-com-gorilla-css: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 03/66] gnu: go-github-com-gorilla-css: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-gorilla-css): Move from
 here...
@@ -75,10 +75,10 @@ index c779600411..1d61a76268 100644
    (package
      (name "go-github-com-gorilla-mux")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index f583bd53c5..db335858f6 100644
+index 7e796db5a9..0c7d22281a 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -79,6 +79,7 @@ (define-module (gnu packages golang)
+@@ -80,6 +80,7 @@ (define-module (gnu packages golang)
    #:use-module (gnu packages glib)
    #:use-module (gnu packages gnupg)
    #:use-module (gnu packages golang-check)
@@ -86,7 +86,7 @@ index f583bd53c5..db335858f6 100644
    #:use-module (gnu packages lua)
    #:use-module (gnu packages mail)
    #:use-module (gnu packages mp3)
-@@ -4655,28 +4656,6 @@ (define-public go-github-com-google-cadvisor
+@@ -4691,28 +4692,6 @@ (define-public go-github-com-google-cadvisor
  containers.")
        (license license:asl2.0))))
  

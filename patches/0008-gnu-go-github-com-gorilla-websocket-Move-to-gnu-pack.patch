@@ -1,10 +1,10 @@
-From 66964b82695764b2acdf6ac6db948d6dba2f39fb Mon Sep 17 00:00:00 2001
-Message-ID: <66964b82695764b2acdf6ac6db948d6dba2f39fb.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From e6875e1eb393b662a29ac94fdc601d02a920677b Mon Sep 17 00:00:00 2001
+Message-ID: <e6875e1eb393b662a29ac94fdc601d02a920677b.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 03:16:25 +0100
-Subject: [PATCH 08/67] gnu: go-github-com-gorilla-websocket: Move to (gnu
+Subject: [PATCH v3 08/66] gnu: go-github-com-gorilla-websocket: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-gorilla-websocket): Move from
@@ -62,10 +62,10 @@ index 79a69bc842..0ca70cec38 100644
    (package
      (name "go-github-com-puerkitobio-goquery")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index c34c075806..ed65b5d978 100644
+index a4f13b8c9d..a3c6df391b 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -12646,27 +12646,6 @@ (define-public go-github-com-google-shlex
+@@ -12773,27 +12773,6 @@ (define-public go-github-com-google-shlex
  using shell-style rules for quoting and commenting.")
      (license license:asl2.0)))
  

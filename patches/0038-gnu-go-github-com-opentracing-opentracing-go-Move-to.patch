@@ -1,11 +1,11 @@
-From 64e0072810f5e4f6cd8990a81d1ce794a91ffba0 Mon Sep 17 00:00:00 2001
-Message-ID: <64e0072810f5e4f6cd8990a81d1ce794a91ffba0.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From be370454b3e58428c10eed594430a65abc71d643 Mon Sep 17 00:00:00 2001
+Message-ID: <be370454b3e58428c10eed594430a65abc71d643.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 15:11:55 +0000
-Subject: [PATCH 38/67] gnu: go-github-com-opentracing-opentracing-go: Move to
- (gnu packages golang-web).
+Subject: [PATCH v3 38/66] gnu: go-github-com-opentracing-opentracing-go: Move
+ to (gnu packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-opentracing-opentracing-go): Move from
 here...
@@ -61,10 +61,10 @@ index caccb126bc..d021be005f 100644
    (package
      (name "go-github-com-puerkitobio-goquery")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 7a85b1ebcd..f0c9dcf5e6 100644
+index 310c2ba8f4..69efe7c6bf 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -1797,30 +1797,6 @@ (define-public go-github-com-mufti1-interconv
+@@ -1798,30 +1798,6 @@ (define-public go-github-com-mufti1-interconv
        (description "InterConv converts interfaces into any data type.")
        (license license:expat))))
  

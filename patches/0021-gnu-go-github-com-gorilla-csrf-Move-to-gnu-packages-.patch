@@ -1,11 +1,11 @@
-From 8692e38aa82c4f70084492351814db6c328cb202 Mon Sep 17 00:00:00 2001
-Message-ID: <8692e38aa82c4f70084492351814db6c328cb202.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 0a93ff5572f23c604e77ac3abcba2ac80af26664 Mon Sep 17 00:00:00 2001
+Message-ID: <0a93ff5572f23c604e77ac3abcba2ac80af26664.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sat, 28 Oct 2023 04:03:07 +0100
-Subject: [PATCH 21/67] gnu: go-github-com-gorilla-csrf: Move to (gnu packages
- golang-web).
+Subject: [PATCH v3 21/66] gnu: go-github-com-gorilla-csrf: Move to (gnu
+ packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-gorilla-csrf): Move from
 here...
@@ -55,10 +55,10 @@ index 8ced6a4c6f..5be08caf2e 100644
    (package
      (name "go-github-com-gorilla-css")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 7ad906ef54..4a7060f065 100644
+index ba9d3a80a9..15c32b9b6a 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4607,33 +4607,6 @@ (define-public go-github-com-andybalholm-brotli
+@@ -4643,33 +4643,6 @@ (define-public go-github-com-andybalholm-brotli
  @url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
      (license license:expat)))
  

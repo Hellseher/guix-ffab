@@ -1,10 +1,10 @@
-From f79841de79055dde811a02cae6f7fdc957721b38 Mon Sep 17 00:00:00 2001
-Message-ID: <f79841de79055dde811a02cae6f7fdc957721b38.1699403992.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 551bcbc82b8492d80fd531efd7db00bb69587b6d Mon Sep 17 00:00:00 2001
+Message-ID: <551bcbc82b8492d80fd531efd7db00bb69587b6d.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 13:34:07 +0000
-Subject: [PATCH 32/67] gnu: go-github-com-aws-sdk: Move to (gnu packages
+Subject: [PATCH v3 32/66] gnu: go-github-com-aws-sdk: Move to (gnu packages
  golang-web).
 
 * gnu/packages/golang.scm (go-github-com-aws-sdk): Move from
@@ -57,10 +57,10 @@ index 0219ffb5e5..352c831e41 100644
    (package
      (name "go-github-com-aymerick-douceur")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 20a1d7ae18..10297c324d 100644
+index ad2bdf099d..1f1ca8694c 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -3194,34 +3194,6 @@ (define-public go-github-com-hebcal-hebcal-go
+@@ -3195,34 +3195,6 @@ (define-public go-github-com-hebcal-hebcal-go
  and anniversaries.")
        (license license:gpl2+))))
  

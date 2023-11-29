@@ -1,10 +1,10 @@
-From 146d0817c9568cee0bc5b15cb58e3fc094fd195a Mon Sep 17 00:00:00 2001
-Message-ID: <146d0817c9568cee0bc5b15cb58e3fc094fd195a.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 58e69550a27bc7a2ad67ca5d5b2df611172ceb4f Mon Sep 17 00:00:00 2001
+Message-ID: <58e69550a27bc7a2ad67ca5d5b2df611172ceb4f.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Mon, 30 Oct 2023 00:07:22 +0000
-Subject: [PATCH 66/67] gnu: actionlint: Update to 1.6.26.
+Subject: [PATCH v3 66/66] gnu: actionlint: Update to 1.6.26.
 
 * gnu/packages/check.scm (actionlint): Update to 1.6.26.
 [inputs]: Swap go-github-com-robfig-cron-1.2 to go-github-com-robfig-cron
@@ -18,7 +18,7 @@ Change-Id: Ie2c25254ffefb99f8808f74ae4a9d85bbbcb6437
  2 files changed, 4 insertions(+), 22 deletions(-)
 
 diff --git a/gnu/packages/check.scm b/gnu/packages/check.scm
-index cf26196a24..fc338394bf 100644
+index 1f5b886977..a2fdde903e 100644
 --- a/gnu/packages/check.scm
 +++ b/gnu/packages/check.scm
 @@ -39,7 +39,7 @@
@@ -58,10 +58,10 @@ index cf26196a24..fc338394bf 100644
                    go-golang.org-x-sync-semaphore
                    go-gopkg-in-yaml-v3))
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index 740ddbe440..cdf0f23a90 100644
+index 77a0d98c6e..2262f6011d 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -7164,24 +7164,6 @@ (define-public go-github-com-robfig-cron
+@@ -7277,24 +7277,6 @@ (define-public go-github-com-robfig-cron
  a cron spec parser and job runner.")
      (license license:expat)))
  

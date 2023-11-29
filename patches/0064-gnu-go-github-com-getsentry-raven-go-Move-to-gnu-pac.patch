@@ -1,10 +1,10 @@
-From e2f95e23fde16bf99079f3f3257edd1e9fa04b75 Mon Sep 17 00:00:00 2001
-Message-ID: <e2f95e23fde16bf99079f3f3257edd1e9fa04b75.1699403993.git.sharlatanus@gmail.com>
-In-Reply-To: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
-References: <0117df90b1ef43a67d4fa86e5b58e60f7c0a52e5.1699403992.git.sharlatanus@gmail.com>
+From 2dd75f0a000e6841edc61d4389d46f37a4c4636c Mon Sep 17 00:00:00 2001
+Message-ID: <2dd75f0a000e6841edc61d4389d46f37a4c4636c.1701297273.git.sharlatanus@gmail.com>
+In-Reply-To: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
+References: <123a0b9b76c24c29184c527dabb652384f7be762.1701297273.git.sharlatanus@gmail.com>
 From: Sharlatan Hellseher <sharlatanus@gmail.com>
 Date: Sun, 29 Oct 2023 23:50:23 +0000
-Subject: [PATCH 64/67] gnu: go-github-com-getsentry-raven-go: Move to (gnu
+Subject: [PATCH v3 64/66] gnu: go-github-com-getsentry-raven-go: Move to (gnu
  packages golang-web).
 
 * gnu/packages/golang.scm (go-github-com-getsentry-raven-go): Move from
@@ -74,10 +74,10 @@ index c046e0d46a..41c8c37a0b 100644
    (package
      (name "go-github-com-go-chi-chi-v5")
 diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
-index d53fa5864a..d4d8d352a5 100644
+index 7dcd2a00ac..2f3bdf5993 100644
 --- a/gnu/packages/golang.scm
 +++ b/gnu/packages/golang.scm
-@@ -4002,33 +4002,6 @@ (define-public go-github-com-burntsushi-toml
+@@ -4038,33 +4038,6 @@ (define-public go-github-com-burntsushi-toml
  is similar to Go's standard library @code{json} and @code{xml} package.")
      (license license:expat)))
  
