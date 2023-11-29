@@ -1,0 +1,34 @@
+From 8e249b09086bcb6507d59decfd564699c642f231 Mon Sep 17 00:00:00 2001
+Message-ID: <8e249b09086bcb6507d59decfd564699c642f231.1700670026.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 22 Nov 2023 16:19:13 +0000
+Subject: [PATCH] gnu: python-executing: Enable tests.
+
+* gnu/packages/python-xyz.scm (python-executing): Enable tests.
+[arguments]: Remove it.
+
+Change-Id: I95112dbf80c208661e437d42c7ac738001393a14
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 6a6f69e6bb..478e0060da 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -8977,8 +8977,8 @@ (define-public python-executing
+        (sha256
+         (base32 "08q0xh9fd8k41sqpp23q6fb9bf7yj4y2q6sv30pj36vvk8pg8fy2"))))
+     (build-system python-build-system)
+-    (arguments
+-     `(#:tests? #f))                    ; TODO: tests require python-asttokens
++    (native-inputs
++     (list python-asttokens python-setuptools-scm python-toml))
+     (native-inputs
+      (list python-setuptools-scm python-toml))
+     (home-page "https://github.com/alexmojaki/executing")
+
+base-commit: 9a89b4f2eccb673975c9e70437ec61ac1ccbdf62
+-- 
+2.41.0
+

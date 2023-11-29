@@ -1,0 +1,36 @@
+From 2f55a5ac236952ea24d81998da488cff4553c272 Mon Sep 17 00:00:00 2001
+Message-ID: <2f55a5ac236952ea24d81998da488cff4553c272.1700520904.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 20 Nov 2023 22:52:52 +0000
+Subject: [PATCH] gnu: python-cdflib: Disable shaky test.
+
+* gnu/packages/astronomy.scm (python-cdflib): Disable one test which
+causing random build failure.
+[arguments]{test-flags}: Add it.
+
+Change-Id: I05ee2feca3bc0f0139fa1a5f00b4fe260b42ec80
+---
+ gnu/packages/astronomy.scm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c063285b52..da15283ef3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1807,7 +1807,10 @@ (define-public python-cdflib
+         (base32 "0vpgcbc9pmx0qqfia1frnwq3jkgfp8y3ikqdnzs5bs1sr13p9p3w"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases
++     ;; Disable shaky test.
++     ;; See https://github.com/MAVENSDC/cdflib/issues/234
++     (list #:test-flags #~(list "-k" "not test_compute_cdfepoch16")
++           #:phases
+            #~(modify-phases %standard-phases
+                (add-before 'build 'set-env-version
+                  (lambda _
+
+base-commit: d20ece07dbb09382f361c8bbf0bcab9e83d8b73e
+-- 
+2.41.0
+

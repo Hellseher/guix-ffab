@@ -1,0 +1,130 @@
+From: Ole Streicher <debian@liska.ath.cx>
+Date: Tue, 25 Oct 2016 21:52:53 +0200
+Subject: Use the shared libwcstools package instead of the convienence copy.
+
+---
+ Makefile.in     | 6 +++---
+ filter/filter.h | 2 +-
+ funcen.c        | 2 +-
+ funmerge.c      | 2 +-
+ funtools.h      | 2 +-
+ funtoolsP.h     | 2 +-
+ funwcs.c        | 2 +-
+ ofuntools.h     | 2 +-
+ 8 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index a68f6ad..d270383 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -60,8 +60,8 @@ FITSY_INC =		-I./fitsy
+ # FITSY_LIBS =		-L./fitsy -lfitsy
+ 
+ # wcs files are in the wcs subdirectory
+-WCS_INC =		-I./wcs
+-# WCS_LIBS =		-L./wcs -lwcs
++WCS_INC =
++WCS_LIBS =		-lwcstools
+ 
+ # filter files are in the filter subdirectory
+ FILTER_INC =        	-I./filter
+@@ -188,7 +188,7 @@ DEVEL =
+ 
+ # Subdirectories to run make in for the primary targets.
+ 
+-SUBLIBS =	util fitsy wcs filter
++SUBLIBS =	util fitsy filter
+ 
+ SUBDIRS =	$(SUBLIBS) gnu funtest faq
+ 
+diff --git a/filter/filter.h b/filter/filter.h
+index 7a49bdc..71a7da5 100644
+--- a/filter/filter.h
++++ b/filter/filter.h
+@@ -46,7 +46,7 @@
+ #include "fitsy.h"
+ #undef USE_XFILEIO
+ #include "idx.h"
+-#include "wcs.h"
++#include <wcstools/wcs.h>
+ #include "column.h"
+ #include "tl.h"
+ #include "dl.h"
+diff --git a/funcen.c b/funcen.c
+index a2efae0..d571a6b 100644
+--- a/funcen.c
++++ b/funcen.c
+@@ -21,7 +21,7 @@
+ #include <filter.h>
+ #include <swap.h>
+ #include <word.h>
+-#include <wcs.h>
++#include <wcstools/wcs.h>
+ #include <xalloc.h>
+ 
+ #define MAXROW 8192
+diff --git a/funmerge.c b/funmerge.c
+index f141716..e3cfc36 100644
+--- a/funmerge.c
++++ b/funmerge.c
+@@ -4,7 +4,7 @@
+ 
+ #include <funtools.h>
+ #include <fitsy.h>
+-#include <wcs.h>
++#include <wcstools/wcs.h>
+ #include <gio.h>
+ #include <tl.h>
+ #include <word.h>
+diff --git a/funtools.h b/funtools.h
+index 2d2ff08..befeda2 100644
+--- a/funtools.h
++++ b/funtools.h
+@@ -31,7 +31,7 @@
+ #define USE_XFILEIO 1
+ #include "fitsy.h"
+ #undef USE_XFILEIO
+-#include "wcs.h"
++#include <wcstools/wcs.h>
+ typedef void *Fun;
+ #endif
+ 
+diff --git a/funtoolsP.h b/funtoolsP.h
+index 14953ea..9a9b685 100644
+--- a/funtoolsP.h
++++ b/funtoolsP.h
+@@ -36,7 +36,7 @@
+ #define USE_XFILEIO 1
+ #include "fitsy.h"
+ #undef USE_XFILEIO
+-#include "wcs.h"
++#include <wcstools/wcs.h>
+ #include "filter.h"
+ #include "file.h"
+ #include "swap.h"
+diff --git a/funwcs.c b/funwcs.c
+index 02ae97b..6af08fd 100644
+--- a/funwcs.c
++++ b/funwcs.c
+@@ -3,7 +3,7 @@
+  */
+ 
+ #include <funtoolsP.h>
+-#include <wcs.h>
++#include <wcstools/wcs.h>
+ 
+ /*
+  *
+diff --git a/ofuntools.h b/ofuntools.h
+index 7488821..e237850 100644
+--- a/ofuntools.h
++++ b/ofuntools.h
+@@ -31,7 +31,7 @@
+ #define USE_XFILEIO 1
+ #include "fitsy.h"
+ #undef USE_XFILEIO
+-#include "wcs.h"
++#include <wcstools/wcs.h>
+ typedef void *Fun;
+ #endif
+ 

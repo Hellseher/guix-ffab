@@ -80,7 +80,7 @@
     astronomy.org          NASA                    [0/8][0%]     :author:
     astronomy.org          NANOGrav                [0/1][0%]     :author:
     astronomy.org          mgckind                 [0/1][0%]     :author:
-    astronomy.org          MAVENSDC                [1/1][100%]   :author:
+    astronomy.org          MAVENSDC                [1/3][33%]    :author:
     astronomy.org          LMSAL_HUB               [0/1][0%]     :author:
     astronomy.org          linguider               [0/4][0%]     :author:
     astronomy.org          Libsharp                [0/1][0%]     :author:
@@ -93,6 +93,7 @@
     astronomy.org          indigo-astronomy        [0/1][0%]     :author:
     astronomy.org          icyphy                  [0/1][0%]     :author:
     astronomy.org          IAUSOFA                 [0/1][0%]     :author:
+    astronomy.org          HAPI                    [/][%]        :author:
     astronomy.org          gnudatalanguage         [/][%]        :author:
     astronomy.org          Gammapy                 [0/1][0%]     :author:
     astronomy.org          free-astro              [1/2][50%]    :author:
@@ -167,7 +168,11 @@
     astronomy.org          skycat                         [1/4][25%]   :p4:
     astronomy.org          RPFITS                         [/][%]       :p4:
     astronomy.org          RadialVelocities.              [/][%]       :p4:
+    astronomy.org          python-viresclient             [/][%]       :p4:
+    astronomy.org          python-pytplot                 [1/4][25%]   :p4:
+    astronomy.org          python-pyspedas                [0/4][0%]    :p4:
     astronomy.org          python-jdaviz                  [0/4][0%]    :p4:
+    astronomy.org          python-hapiclient              [/][%]       :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -332,7 +337,6 @@
     astronomy.org          python-specutils               [0/4][0%]    :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
     astronomy.org          python-sdasws                  [0/4][0%]    :p1:
-    astronomy.org          python-pyspedas                [0/4][0%]    :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
     astronomy.org          python-hissw                   [1/4][25%]   :p1:
     astronomy.org          python-chiantipy               [0/4][0%]    :p1:
@@ -465,8 +469,8 @@
     astronomy.org          updates-2023-07                  [0/1][0%]    
     astronomy.org          updates-2023-08                  [1/2][50%]   
     astronomy.org          updates-2023-09                  [1/2][50%]   
-    astronomy.org          updates-2023-10                  [/[$]        
-    astronomy.org          updates-2023-11                  [2/2][100%]  
+    astronomy.org          updates-2023-10                  [1/3][33%]   
+    astronomy.org          updates-2023-11                  [2/3][66%]   
     astronomy.org          weightwatcher                    [3/3][100%]  
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  

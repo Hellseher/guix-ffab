@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-11-27 Mon 02:35:25 GMT>
+#+modified: <2023-11-29 Wed 23:52:58 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -283,7 +283,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 
 ** TODO spedas [/][%] :author:
 - http://spedas.org/blog/
-*** TODO python-pyspedas [0/4][0%] :p1:
+*** TODO python-pyspedas [0/4][0%] :p4:
 - https://github.com/spedas/pyspedas
 - synopsis :: Python-based Space Physics Environment Data Analysis Software
 - [ ] :packed
@@ -307,9 +307,10 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
   - [X] python-scipy
   - [X] python-viresclient
     - [X] :packed <2023-11-27 Mon>
-** TODO HAPI :author:
+
+** TODO HAPI [/][%] :author:
 - https://github.com/hapi-server
-*** TODO python-hapiclient :p1:
+*** TODO python-hapiclient [/][%] :p4:
 - https://github.com/hapi-server/client-python
 - [X] :packed <2023-11-27 Mon>
 - [ ] :patch-sent
@@ -1767,25 +1768,24 @@ CLOSED: [2023-02-15 Wed 21:47]
   - [X] python-pytest-remotedata
   - [X] python-xarray
 
-*** TODO python-pytplot-mpl-temp [0/4][0%] :p1:
+*** TODO python-pytplot [1/4][25%] :p4:
 - https://github.com/MAVENSDC/pytplot
 - synopsis :: python version of the IDL tplot libraries
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/12][0%]
-  - [ ] python-astropy
-  - [ ] python-astropy
-  - [ ] python-cdflib
-  - [ ] python-dateutil
-  - [ ] python-matplotlib
-  - [ ] python-mypy
-  - [ ] python-netcdf4
-  - [ ] python-numpy
-  - [ ] python-pandas
-  - [ ] python-pytest
-  - [ ] python-scipy
-  - [ ] python-xarray
+- [X] :inputs [11/11][100%]
+  - [X] python-astropy
+  - [X] python-cdflib
+  - [X] python-dateutil
+  - [X] python-matplotlib
+  - [X] python-mypy
+  - [X] python-netcdf4
+  - [X] python-numpy
+  - [X] python-pandas
+  - [X] python-pytest
+  - [X] python-scipy
+  - [X] python-xarray
 
 ** TODO mgckind [0/1][0%] :author:
 - https://github.com/mgckind
@@ -2924,9 +2924,10 @@ The Solar UK Research Facility
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
+
 ** TODO ESA [/][%] :author:
 - https://github.com/ESA-VirES
-*** TODO python-viresclient
+*** TODO python-viresclient [/][%] :p4:
 - https://github.com/ESA-VirES/VirES-Python-Client
 - [X] :packed <2023-11-27 Mon>
 - [ ] :patch-sent
@@ -3102,7 +3103,7 @@ CLOSED: [2023-10-10 Tue 00:44]
   - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
     the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0.  Failed to build with adc7333f961259aa627ae930b06cc9f1b522401f commit (newer then 3.5.0 tag). Fortrant and Boost issue.
-** DONE updates-2023-10 [/[$]
+** DONE updates-2023-10 [1/3][33%]
 CLOSED: [2023-11-14 Tue 00:33]
 - date-time :: 20231023T002143+0100
 - commit :: 554956439ba5837a8ea3af78829ed595381273be
