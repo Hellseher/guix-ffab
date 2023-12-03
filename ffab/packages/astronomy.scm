@@ -834,6 +834,45 @@ exitinction laws found in the literature.")
     (arguments
      (list #:tests? #f))))
 
+;; 20231202T232644+0000
+(define-public python-astropy-iers-data
+  (package
+    (name "python-astropy-iers-data")
+    ;; In case of changing the source method git-fetch, consider to check the
+    ;; tag as it's not following the PyPI version.
+    ;; See https://github.com/astropy/astropy-iers-data/issues/17
+    (version "0.2023.11.27.0.30.38")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "astropy-iers-data" version))
+       (sha256
+        (base32 "1r6ha39m6fwmj9iibrvlc224df2q66cdhdfkdhhcq8lj71j7xl93"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; Dependencies cycle wit python-astropy
+      ;; See https://github.com/astropy/astropy-iers-data/issues/21
+      #:tests? #f))
+    (native-inputs
+     (list python-hypothesis
+           python-pytest
+           python-pytest-remotedata))
+    (home-page "https://docs.astropy.org/en/latest/utils/iers.html")
+    (synopsis "IERS Earth Rotation and Leap Second tables for the astropy core package")
+    (description
+     "The @code{iers} package provides access to the tables provided by the
+@acronym{International Earth Rotation and Reference Systems, IERS} service, in
+particular the
+@url{https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop.html,
+Earth Orientation data} allowing interpolation of published UT1-UTC and polar
+motion values for given times.  The UT1-UTC values are used in
+@url{https://docs.astropy.org/en/latest/time/index.html#astropy-time, Time and
+Dates (astropy.time)} to provide UT1 values, and the polar motions are used in
+@code{astropy.coordinates} to determine Earth orientation for
+celestial-to-terrestrial coordinate transformations.")
+    (license license:bsd-3)))
+
 ;; 20221123T230513+0000
 ;; (define-public python-reproject
 ;; added-to-downstream-guix a3d85918f90e31118bc9b7e483520d0ae6192e3d
