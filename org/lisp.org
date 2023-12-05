@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-10-10 Tue 00:41:00 BST>
+#+modified: <2023-12-04 Mon 00:35:49 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -688,7 +688,7 @@ CLOSED: [2021-06-24 Thu 14:40]
 
 ** TODO jscl-project [0/1][0%] :author:
 
-*** TODO cl-jscl [/][%] :p1:
+*** TODO cl-jscl [/][%] :p4:
 - https://github.com/jscl-project/jscl
 - synopsis :: A Lisp-to-JavaScript compiler bootstrapped from Common Lisp
 - [ ] :packed

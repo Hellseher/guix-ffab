@@ -1,0 +1,51 @@
+From 8e2601c633e0575efa861ef547945d64d2d547f5 Mon Sep 17 00:00:00 2001
+Message-ID: <8e2601c633e0575efa861ef547945d64d2d547f5.1701563154.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 3 Dec 2023 00:24:12 +0000
+Subject: [PATCH] gnu: Add julia-astrolib.
+
+* gnu/packages/julia-xyz.scm (julia-astrolib): New variable.
+
+Change-Id: I41fc21728b3bc2d20c2e6c83a6ea1185086a015e
+---
+ gnu/packages/julia-xyz.scm | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 82df28d9b5..196108bcea 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -265,6 +265,28 @@ (define-public julia-arraylayouts
+ much wider class of matrix types than Julia's in-built @code{StridedArray}.")
+     (license license:expat)))
+ 
++(define-public julia-astrolib
++  (package
++    (name "julia-astrolib")
++    (version "0.4.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaAstro/AstroLib.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1zbivs79cw7qazrl9c8rz2n2kifxw3adwjf22nn24dp5i34fkw5d"))))
++    (build-system julia-build-system)
++    (native-inputs (list julia-staticarrays))
++    (home-page "https://github.com/JuliaAstro/AstroLib.jl")
++    (synopsis "Bundle of small astronomical and astrophysical routines")
++    (description "The aim of this package is to provide users with a set of small generic
++routines useful above all in astronomical and astrophysical context, written in
++Julia.")
++    (license license:expat)))
++
+ (define-public julia-astrotime
+   (package
+     (name "julia-astrotime")
+
+base-commit: 06ebc45e15f2a1bd4526a5a716eed657c902a0c1
+-- 
+2.41.0
+

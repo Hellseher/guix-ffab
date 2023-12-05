@@ -87,7 +87,7 @@
     astronomy.org          kbarbary                [0/2][0%]     :author:
     astronomy.org          JuliaSpace              [0/8][0%]     :author:
     astronomy.org          JuliaAstroSim           [0/9][0%]     :author:
-    astronomy.org          JuliaAstro              [6/35][17%]   :author:
+    astronomy.org          JuliaAstro              [7/35][20%]   :author:
     astronomy.org          jobovy                  [0/1][0%]     :author:
     astronomy.org          INDI-Library            [1/3][33%]    :author:
     astronomy.org          indigo-astronomy        [0/1][0%]     :author:
@@ -153,6 +153,7 @@
     lisp.org               zombie-raptor                  [0/4][0%]    :p4:
     lisp.org               Vacietis                       [/][%]       :p4:
     lisp.org               cl-pkr                         [0/4][0%]    :p4:
+    lisp.org               cl-jscl                        [/][%]       :p4:
     lisp.org               cl-cairo2                      [3/4][75%]   :p4:
     lisp.org               cl-basic-binary-ipc            [0/4][0%]    :p4:
     databases.org          reindexer                      [/][%]       :p4:
@@ -320,7 +321,6 @@
     python.org             python-sphinx-automodapi       [1/4][25%]   :p1:
     python.org             python-opencv                  [0/4][0%]    :p1:
     lisp.org               cl-qtools                      [0/4][0%]    :p1:
-    lisp.org               cl-jscl                        [/][%]       :p1:
     lisp.org               cl-feedback                    [0/4][0%]    :p1:
     julia-xyz.org          julia-vectorizationbase        [0/4][0%]    :p1:
     julia-xyz.org          julia-staticarrayinterface     [0/4][0%]    :p1:
@@ -348,7 +348,6 @@
     astronomy.org          OpenSpace                      [0/4][0%]    :p1:
     astronomy.org          mcfost                         [/][%]       :p1:
     astronomy.org          libsharp                       [1/3][33%]   :p1:
-    astronomy.org          julia-astrolib                 [2/4][50%]   :p1:
     astronomy.org          julia-astroangles              [2/4][50%]   :p1:
     astronomy.org          galpy                          [1/4][25%]   :p1:
     astronomy.org          funtools                       [2/4][50%]   :p1:
@@ -401,6 +400,7 @@
     astronomy.org          eye                              [3/3][100%]  
     astronomy.org          imppg                            [4/4][100%]  
     astronomy.org          indi                             [4/4][100%]  
+    astronomy.org          julia-astrolib                   [4/4][100%]  
     astronomy.org          julia-astrotime                  [4/4][100%]  
     astronomy.org          julia-cfitsio                    [4/4][100%]  
     astronomy.org          julia-earthorientation           [4/4][100%]  

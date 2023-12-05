@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-11-29 Wed 23:52:58 GMT>
+#+modified: <2023-12-05 Tue 15:41:49 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1311,7 +1311,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [X] python-setuptools
   - [X] python-six
 
-** TODO JuliaAstro [6/35][17%] :author:
+** TODO JuliaAstro [7/35][20%] :author:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
 *** TODO julia-astroangles [2/4][50%] :p1:
@@ -1356,11 +1356,13 @@ CLOSED: [2021-01-31 Sun 13:07]
 - [ ] :inputs [0/1][0%]
   - [ ] julia-astroimages
 
-*** TODO julia-astrolib [2/4][50%] :p1:
+*** DONE julia-astrolib [4/4][100%]
+CLOSED: [2023-12-05 Tue 15:41]
 - https://github.com/JuliaAstro/AstroLib.jl
 - [X] :packed <2022-11-26 Sat>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2023-12-03 Sun>
+- [X] :paptch-applied-upstream <2023-12-04 Mon>
+  - https://issues.guix.gnu.org/67591
 - [X] :inputs [1/1][100%]
   - [X] julia-staticarrays
 
