@@ -31,6 +31,7 @@
     lisp.org               cbaggers                [4/6][66%]    :author:
     lisp.org               cage                    [1/2][50%]    :author:
     lisp.org               borodust                [0/2][0%]     :author:
+    julia-xyz.org          yakir12                 [0/0][0%]     :author:
     julia-xyz.org          timholy                 [0/1][0%]     :author:
     julia-xyz.org          SciML                   [1/1][100%]   :author:
     julia-xyz.org          sbromberger             [1/1][100%]   :author:
@@ -259,6 +260,7 @@
     lisp.org               cl-rib                         [0/4][0%]    :p3:
     lisp.org               cl-rabbit                      [0/4][0%]    :p3:
     lisp.org               cl-maxima-client               [0/4][0%]    :p3:
+    julia-xyz.org          julia-unitfulangles            [2/4][50%]   :p3:
     julia-xyz.org          julia-images                   [0/4][0%]    :p3:
     julia-xyz.org          julia-imagedistances           [/][%]       :p3:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
@@ -274,7 +276,7 @@
     astronomy.org          kepler-project                 [0/4][0%]    :p3:
     astronomy.org          julia-xpa                      [0/4][0%]    :p3:
     astronomy.org          julia-votables                 [0/4][0%]    :p3:
-    astronomy.org          julia-unitfulastro             [0/4][0%]    :p3:
+    astronomy.org          julia-unitfulastro             [2/4][50%]   :p3:
     astronomy.org          julia-transits                 [0/4][0%]    :p3:
     astronomy.org          julia-spice                    [0/4][0%]    :p3:
     astronomy.org          julia-spectra                  [0/4][0%]    :p3:

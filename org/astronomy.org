@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-05 Tue 15:41:49 GMT>
+#+modified: <2023-12-11 Mon 23:54:11 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -1449,7 +1449,7 @@ CLOSED: [2023-02-10 Fri 23:48]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [2/6][33%]
+- [-] :inputs [3/6][50%]
   - [ ] julia-datadeps
     - [ ] :packed
   - [ ] julia-dierckx
@@ -1457,8 +1457,8 @@ CLOSED: [2023-02-10 Fri 23:48]
   - [X] julia-fitsio
   - [ ] julia-parameters
   - [X] julia-unitful
-  - [ ] julia-unitfulastro
-    - [ ] :packed
+  - [X] julia-unitfulastro
+    - [X] :packed <2023-12-11 Mon>
 
 *** DONE julia-earthorientation [4/4][100%]
 CLOSED: [2023-03-03 Fri 21:24]
@@ -1571,10 +1571,19 @@ CLOSED: [2023-02-10 Fri 23:47]
 - [ ] :inputs [/][%]
 
 *** TODO julia-skycoords [0/4][0%] :p3:
+- https://github.com/JuliaAstro/SkyCoords.jl
+- synopsis :: Astronomical coordinate systems in Julia
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [-] :inputs [4/5][80%]
+  - [X] julia-astroangles
+    - [X] :packed <2023-12-11 Mon>
+  - [X] julia-constructionbase
+  - [X] julia-rotations
+  - [X] julia-staticarrays
+  - [ ] julia-accessors
+    - [ ] :packed
 
 *** TODO julia-spectra [0/4][0%] :p3:
 - [ ] :packed
@@ -1594,11 +1603,16 @@ CLOSED: [2023-02-10 Fri 23:47]
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-unitfulastro [0/4][0%] :p3:
-- [ ] :packed
+*** TODO julia-unitfulastro [2/4][50%] :p3:
+- https://github.com/JuliaAstro/UnitfulAstro.jl
+- sinopsys :: An extension of Unitful.jl for astronomers
+- [X] :packed <2023-12-11 Mon>
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [ ] :inputs [/][%]
+- [X] :inputs [2/2][100%]
+  - [X] julia-unitful
+  - [X] julia-unitfulangles
+    - [X] :packed <2023-12-11 Mon>
 
 *** TODO julia-votables [0/4][0%] :p3:
 - [ ] :packed

@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-10-10 Tue 00:33:12 BST>
+#+modified: <2023-12-11 Mon 00:08:08 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -66,6 +66,18 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [X] :inputs [1/1][100%]
+
+** TODO yakir12 [0/0][0%] :author:
+- author :: Yakir Luc Gagnon
+- https://github.com/yakir12
+- https://datasturgeon.com/
+*** TODO julia-unitfulangles [2/4][50%] :p3:
+- https://github.com/yakir12/UnitfulAngles.jl
+- [X] :packed <2023-12-11 Mon>
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] julia-unitful
 
 ** TODO kbarbary [0/1][0%] :author:
 *** TODO julia-dierckx [0/4][0%] :p3:
