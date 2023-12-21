@@ -1,0 +1,38 @@
+From 5f51f954fb71dbfa21d102701e2ea32edee6ddba Mon Sep 17 00:00:00 2001
+Message-ID: <5f51f954fb71dbfa21d102701e2ea32edee6ddba.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 04:31:38 +0000
+Subject: [PATCH 18/32] gnu: python-radio-beam: Update to 0.3.7.
+
+* gnu/packages/astronomy.scm (python-radio-beam): Update to 0.3.7.
+
+Change-Id: If767386ad3010bda9a25b4c575bc130e22d56f3b
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6df6416e7d..0f206d1ed3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4174,13 +4174,13 @@ (define-public python-rad
+ (define-public python-radio-beam
+   (package
+     (name "python-radio-beam")
+-    (version "0.3.6")
++    (version "0.3.7")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "radio-beam" version))
+        (sha256
+-        (base32 "19c6gmm1wvyp5nn1yfbzl428rkysdq273j2yaarxpivv7cwj7qjk"))))
++        (base32 "0dg6vqdhmzh47awdkkcbf455gw6if2qwxyhcqbq2dkhbwsx680gc"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.41.0
+

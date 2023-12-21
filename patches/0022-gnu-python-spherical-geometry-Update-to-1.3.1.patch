@@ -1,0 +1,74 @@
+From d65e500ea120f74788ee520bcc9af03ff210592e Mon Sep 17 00:00:00 2001
+Message-ID: <d65e500ea120f74788ee520bcc9af03ff210592e.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 22:49:36 +0000
+Subject: [PATCH 22/32] gnu: python-spherical-geometry: Update to 1.3.1.
+
+* gnu/packages/astronomy.scm (python-spherical-geometry): Update to 1.3.1.
+[arguments]<#:phases>: Replace 'build-extension with
+'prepare-test-environment phase which includes Pytest config set up to
+prevent tests from failure.
+[native-inputs]: Add python-pytest-astropy-header.
+[home-page]: Correct it.
+
+Change-Id: Ib49201f62c32555355df5821383ef416245d4d50
+---
+ gnu/packages/astronomy.scm | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9012f758d6..cc1a78b90e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2602,9 +2602,7 @@ (define-public python-spectral-cube
+ (define-public python-spherical-geometry
+   (package
+     (name "python-spherical-geometry")
+-    ;; XXX: Can't be updated to the latest see:
+-    ;; https://github.com/spacetelescope/spherical_geometry/issues/227
+-    (version "1.2.22")
++    (version "1.3.1")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2613,7 +2611,7 @@ (define-public python-spherical-geometry
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0kzcncqir4v7nhk9lxj9gxr32p3krkaqa58y2i4kksgxxy24qw4z"))))
++        (base32 "172f81h42jq6mv3gpx497z2nkhkx11w4pzmcqljcicri2zqj1m6g"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2627,18 +2625,23 @@ (define-public python-spherical-geometry
+               (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)
+               ;; Use our own libraries in place of bundles.
+               (setenv "USE_SYSTEM_QD" "1")))
+-          (add-before 'check 'build-extensions
++          (add-before 'check 'prepare-test-environment
+             (lambda _
+-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++              (invoke "python" "setup.py" "build_ext" "--inplace")
++              (call-with-output-file "pytest.ini"
++                (lambda (port)
++                  (format port "[pytest]
++python_files = test_*.py"))))))))
+     (native-inputs
+      (list python-pytest
++           python-pytest-astropy-header
+            python-setuptools-scm))
+     (inputs
+      (list qd))
+     (propagated-inputs
+      (list python-astropy
+            python-numpy))
+-    (home-page "https://github.com/spacetelescope/tweakwcs")
++    (home-page "https://github.com/spacetelescope/spherical_geometry")
+     (synopsis "Python astronimical package for handling spherical polygons")
+     (description
+      "The @code{spherical_geometry} library is a Python package for handling
+-- 
+2.41.0
+

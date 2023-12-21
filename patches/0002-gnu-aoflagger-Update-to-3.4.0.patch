@@ -1,0 +1,50 @@
+From a6f7c5eec59062a47c71f61615257f221d602bb7 Mon Sep 17 00:00:00 2001
+Message-ID: <a6f7c5eec59062a47c71f61615257f221d602bb7.1703031693.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 15 Dec 2023 00:08:56 +0000
+Subject: [PATCH 02/32] gnu: aoflagger: Update to 3.4.0.
+
+* gnu/packages/astronomy.scm (aoflagger): Update to 3.4.0.
+
+Change-Id: Iac1581d81f4f0527cf843631ed3335b53dadbf52
+---
+ gnu/packages/astronomy.scm | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b89f9c8667..d4af0eadbb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -278,7 +278,7 @@ (define-public calcmysky-qt5
+ (define-public aoflagger
+   (package
+     (name "aoflagger")
+-    (version "3.2.0")
++    (version "3.4.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -286,16 +286,15 @@ (define-public aoflagger
+              (url "https://gitlab.com/aroffringa/aoflagger")
+              (commit (string-append "v" version))))
+        (sha256
+-        (base32 "1dcbfrbiybhpbypna2xhddx1wk7yifh38ha2r6p5rzsikzwlsin1"))
++        (base32 "0dxmcy04cayhs4s2z41wls1dnmg9hkffvlqcmc660idqziffvv1g"))
+        (patches
+         (search-patches "aoflagger-use-system-provided-pybind11.patch"))
+        (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+     (arguments
+      (list
+-      ;; XXX: Tests require external files download from
++      ;; Tests require external files download from
+       ;; https://www.astron.nl/citt/ci_data/aoflagger/
+-      ;; FIXME: runtest is not found
+       #:tests? #f
+       #:configure-flags
+       #~(list (string-append "-DCASACORE_ROOT_DIR="
+-- 
+2.41.0
+

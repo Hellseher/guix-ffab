@@ -1,0 +1,38 @@
+From d153d1c96af1ea3f8eb2f4af64cf55981a5fdfaf Mon Sep 17 00:00:00 2001
+Message-ID: <d153d1c96af1ea3f8eb2f4af64cf55981a5fdfaf.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 19:56:10 +0000
+Subject: [PATCH 21/32] gnu: python-spectral-cube: Update to 0.6.5.
+
+* gnu/packages/astronomy.scm (python-spectral-cube): Update to 0.6.5.
+
+Change-Id: I089f55238299533f35d1fd7623c1a8ff446de08c
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 49e7e64353..9012f758d6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2548,13 +2548,13 @@ (define-public python-astral
+ (define-public python-spectral-cube
+   (package
+     (name "python-spectral-cube")
+-    (version "0.6.3")
++    (version "0.6.5")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "spectral-cube" version))
+        (sha256
+-        (base32 "10q76rsgf9w4j7y68mfa870bpxf06m6kqvivj4340jmgnsrfy1zg"))))
++        (base32 "0cqxgmk46gv2qa2kls8fph105lgwbwf13hvizh6w85mzgypyp740"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.41.0
+

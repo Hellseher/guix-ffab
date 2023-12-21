@@ -1,0 +1,38 @@
+From 9b0e95d6d9607440dcfa2c59e776e1c2d1a39ffd Mon Sep 17 00:00:00 2001
+Message-ID: <9b0e95d6d9607440dcfa2c59e776e1c2d1a39ffd.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 19:18:24 +0000
+Subject: [PATCH 20/32] gnu: python-reproject: Update to 0.13.0.
+
+* gnu/packages/astronomy.scm (python-reproject): Update to 0.13.0.
+
+Change-Id: Id7dea0bc9c5bd7c3e65baad26b72a94d77c31165
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d2b6d43b78..49e7e64353 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2320,13 +2320,13 @@ (define-public python-regions
+ (define-public python-reproject
+   (package
+     (name "python-reproject")
+-    (version "0.12.0")
++    (version "0.13.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "reproject" version))
+        (sha256
+-        (base32 "1cjdfv7wd4c0ia63vqakxf9w8hd5dfz6jzi520scd37rliy1xgld"))))
++        (base32 "1qkjbx8xsawhi1gjzqimais3crvkwgbzy1pr51x6anjjln88rgll"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

@@ -1,0 +1,49 @@
+From 1c40a32d53a4b0730ab5089e1d36d1ed76041a65 Mon Sep 17 00:00:00 2001
+Message-ID: <1c40a32d53a4b0730ab5089e1d36d1ed76041a65.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 04:26:41 +0000
+Subject: [PATCH 17/32] gnu: python-pynbody: Update to 1.5.2.
+
+* gnu/packages/astronomy.scm (python-pynbody): Update to 1.5.2.
+[arguments]<#:test-flags>: Add to ignore list 'tests/copy_on_access_test.py'.
+
+Change-Id: Ib3c566602e036b0396a79fd41b18be0ebbe5235c
+---
+ gnu/packages/astronomy.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1b707ffc56..6df6416e7d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3548,7 +3548,7 @@ (define-public python-pyerfa
+ (define-public python-pynbody
+   (package
+     (name "python-pynbody")
+-    (version "1.4.2")
++    (version "1.5.2")
+     (source
+      (origin
+        (method git-fetch) ;PyPi doesn't have not prebuit version.
+@@ -3557,7 +3557,7 @@ (define-public python-pynbody
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1lwjs8vf3pc4a64c93fa5k6r276g1c60722swns2r10ig1s4wk0a"))
++        (base32 "175i99zwnnwglndr71paiadrx3xq3icxjgdqfv3xxpyn7fx4dzab"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Symlink goes to not existing directory.
+@@ -3572,6 +3572,7 @@ (define-public python-pynbody
+                            ;;    https://github.com/pynbody/pynbody/blob/ \
+                            ;;    f4bd482dc47532831b3ec115c7cb07149d61bfc5/ \
+                            ;;    .github/workflows/build-test.yaml#L41
++                           "--ignore=tests/copy_on_access_test.py"
+                            "--ignore=tests/gravity_test.py"
+                            "--ignore=tests/adaptahop_test.py"
+                            "--ignore=tests/ahf_halos_test.py"
+-- 
+2.41.0
+

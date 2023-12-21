@@ -1,0 +1,38 @@
+From 5809fdfb6a152add4b100d96cdf236eec95cd1fa Mon Sep 17 00:00:00 2001
+Message-ID: <5809fdfb6a152add4b100d96cdf236eec95cd1fa.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 15 Dec 2023 12:52:06 +0000
+Subject: [PATCH 12/32] gnu: python-gwcs: Update to 0.20.0.
+
+* gnu/packages/astronomy.scm (python-gwcs): Update to 0.20.0.
+
+Change-Id: I1b463fd34d487e91895127c42ca484652c87fd0a
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a95f6c1dba..d8270e47b8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4096,13 +4096,13 @@ (define python-asdf-wcs-schemas
+ (define-public python-gwcs
+   (package
+     (name "python-gwcs")
+-    (version "0.19.0")
++    (version "0.20.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "gwcs" version))
+        (sha256
+-        (base32 "1f3h41aq4nwcl6k80jb9s8shn2mhvz32mx9qhcm1xmcqrflqyf52"))))
++        (base32 "1vhvs0mcwrw0128q9pd9v21wl173lspj5rvygqr19ljncralbx73"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-jsonschema
+-- 
+2.41.0
+

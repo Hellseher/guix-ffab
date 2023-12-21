@@ -196,6 +196,7 @@
 - [X] <2023-12-03 Sun> https://issues.guix.gnu.org/67591 <2023-12-04 Mon>
 
 * Package updates [45/47][95%]
+- [ ] <2023-12-19 Tue> https://issues.guix.gnu.org/67915
 - [X] <2023-12-04 Mon> https://issues.guix.gnu.org/67614 <2023-12-05 Tue>
 - [X] <2023-11-17 Fri> https://issues.guix.gnu.org/67237 <2023-11-19 Sun>
 - [X] <2023-11-07 Tue> https://issues.guix.gnu.org/66977 <2023-11-09 Thu>

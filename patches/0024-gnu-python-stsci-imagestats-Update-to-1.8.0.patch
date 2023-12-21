@@ -1,0 +1,38 @@
+From d7496d5c22280b908d8b0d2368751e130a2b55ce Mon Sep 17 00:00:00 2001
+Message-ID: <d7496d5c22280b908d8b0d2368751e130a2b55ce.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 18 Dec 2023 13:33:29 +0000
+Subject: [PATCH 24/32] gnu: python-stsci-imagestats: Update to 1.8.0.
+
+* gnu/packages/astronomy.scm (python-stsci-imagestats): Update to 1.8.0.
+
+Change-Id: I7d1c869b3e52e862d0556abb18ba3b96ca49408a
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 20f72af0f2..00653efd70 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2681,13 +2681,13 @@ (define-public python-stsci-image
+ (define-public python-stsci-imagestats
+   (package
+     (name "python-stsci-imagestats")
+-    (version "1.6.3")
++    (version "1.8.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stsci.imagestats" version))
+               (sha256
+                (base32
+-                "14457izlbnks84dyza75ib3nvx2w8nhlqm9vc1zb7hbhknb5gjvw"))))
++                "01jqqrhcna0ghin48bbcza57d12371ny4l4pqws89irwdhd8xr0r"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ;No tests
+-- 
+2.41.0
+

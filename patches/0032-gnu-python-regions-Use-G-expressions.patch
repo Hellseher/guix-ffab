@@ -1,0 +1,60 @@
+From 9f24041343b305db612d08ba6b7e64b7cc737edf Mon Sep 17 00:00:00 2001
+Message-ID: <9f24041343b305db612d08ba6b7e64b7cc737edf.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 19 Dec 2023 19:23:03 +0000
+Subject: [PATCH 32/32] gnu: python-regions: Use G-expressions.
+
+* gnu/packages/astronomy.scm (python-regions): Use G-expressions.
+[build-system]: Swap to pyproject-build-system.
+[arguments]<#:phases>: Remove 'delete-doctest phase. Merge all
+(add-before 'check ...) phases into 'prepare-test-environment.
+
+Change-Id: I31dc6a195a6f6f818303d5c0e32799770cd448c8
+---
+ gnu/packages/astronomy.scm | 27 +++++++++++++--------------
+ 1 file changed, 13 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 76c60ca0a7..9b842621ee 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2283,21 +2283,20 @@ (define-public python-regions
+        (uri (pypi-uri "regions" version))
+        (sha256
+         (base32 "09401pz7926zlci7cznd78hmv9947f6jxyy2afqdqc1xaccpzcq2"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     `(#:test-target "pytest"
+-       #:phases
+-       (modify-phases %standard-phases
+-         ;; This doctest requires online data.
+-         (add-after 'unpack 'delete-doctest
+-           (lambda _ (delete-file "docs/masks.rst")))
+-         ;; This file is opened in both install and check phases.
+-         (add-before 'install 'writable-compiler
+-           (lambda _ (make-file-writable "regions/_compiler.c")))
+-         (add-before 'check 'writable-compiler
+-           (lambda _ (make-file-writable "regions/_compiler.c")))
+-         (add-before 'check 'writable-home
+-           (lambda _  (setenv "HOME" (getcwd)))))))
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; This file is opened in both install and check phases.
++          ;; XXX: Check if it is still required.
++          (add-before 'install 'writable-compiler
++            (lambda _ (make-file-writable "regions/_compiler.c")))
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              (setenv "HOME" "/tmp")
++              (make-file-writable "regions/_compiler.c")
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (propagated-inputs
+      (list python-astropy
+            python-h5py
+-- 
+2.41.0
+

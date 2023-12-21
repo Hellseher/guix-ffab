@@ -1,0 +1,40 @@
+From 4e23aefb6992f29b7c94b6ae013d8344a3226547 Mon Sep 17 00:00:00 2001
+Message-ID: <4e23aefb6992f29b7c94b6ae013d8344a3226547.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 15 Dec 2023 12:16:03 +0000
+Subject: [PATCH 05/32] gnu: libpasastro: Update to 1.4.2.
+
+* gnu/packages/astronomy.scm (libpasastro): Update to 1.4.2.
+
+Change-Id: I387f63fe1ebfcc95c33177b13325611e16cd89df
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c987a5e1c6..f8712d0d22 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2983,7 +2983,7 @@ (define-public libskry
+ (define-public libpasastro
+   (package
+     (name "libpasastro")
+-    (version "1.4.1")
++    (version "1.4.2")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2992,7 +2992,7 @@ (define-public libpasastro
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1h92p9ph3zi4w8krny1azd9wgwna2nf07ims983jcky1chkfm0is"))))
++        (base32 "1na3gyb3nzb5gdgccs1653j2gnz6w3v1mqzhyhkx3yqw8bs3q5x0"))))
+     (build-system gnu-build-system)
+     (arguments
+      `(#:tests? #f
+-- 
+2.41.0
+

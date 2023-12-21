@@ -41,3 +41,5 @@ doc/gh-pages
 /sly-pkg.el
 /sly-autoloads.el
 /tmp
+/git-fix.bash
+/TODO

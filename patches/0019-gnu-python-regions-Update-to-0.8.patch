@@ -1,0 +1,53 @@
+From 8fb710ed8d0d4808d3114a8b155caf52dbaf2888 Mon Sep 17 00:00:00 2001
+Message-ID: <8fb710ed8d0d4808d3114a8b155caf52dbaf2888.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 04:40:14 +0000
+Subject: [PATCH 19/32] gnu: python-regions: Update to 0.8.
+
+* gnu/packages/astronomy.scm (python-regions): Update to 0.8.
+[propagated-inputs]: Add python-h5py, python-matplotlib, python-scipy, and python-shapely.
+
+Change-Id: Icdbbad92a0829d285962f50338e970d3a0d7eaa0
+---
+ gnu/packages/astronomy.scm | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0f206d1ed3..d2b6d43b78 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2276,13 +2276,13 @@ (define-public python-pyvo
+ (define-public python-regions
+   (package
+     (name "python-regions")
+-    (version "0.7")
++    (version "0.8")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "regions" version))
+        (sha256
+-        (base32 "08wsg9kxnki5pz8gdp81bq06jdmsip382fl02rvnr96cvzr7wf3m"))))
++        (base32 "09401pz7926zlci7cznd78hmv9947f6jxyy2afqdqc1xaccpzcq2"))))
+     (build-system python-build-system)
+     (arguments
+      `(#:test-target "pytest"
+@@ -2299,7 +2299,12 @@ (define-public python-regions
+          (add-before 'check 'writable-home
+            (lambda _  (setenv "HOME" (getcwd)))))))
+     (propagated-inputs
+-     (list python-astropy python-numpy))
++     (list python-astropy
++           python-h5py
++           python-matplotlib
++           python-numpy
++           python-scipy
++           python-shapely))
+     (native-inputs
+      (list python-cython
+            python-extension-helpers
+-- 
+2.41.0
+

@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-11 Mon 23:54:11 GMT>
+#+modified: <2023-12-21 Thu 16:00:13 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [6/66][9%]
+* Flow [5/74][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -281,7 +281,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO spedas [/][%] :author:
+** TODO spedas [0/1][0%] :author:
 - http://spedas.org/blog/
 *** TODO python-pyspedas [0/4][0%] :p4:
 - https://github.com/spedas/pyspedas
@@ -310,6 +310,8 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 
 ** TODO HAPI [/][%] :author:
 - https://github.com/hapi-server
+- synosis :: Heliophysics Application Programmer’s Interface (HAPI) specification for a set of
+  services to enable access to data and metadata.
 *** TODO python-hapiclient [/][%] :p4:
 - https://github.com/hapi-server/client-python
 - [X] :packed <2023-11-27 Mon>
@@ -365,6 +367,26 @@ CLOSED: [2023-11-01 Wed 23:55]
 ** TODO ap-i [1/7][14%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
+*** TODO ccdciel [0/4][0%]
+- https://github.com/pchev/ccdciel
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
+*** TODO eqmodgui [0/4][0%]
+- https://github.com/pchev/eqmodgui
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO inistarter [0/4][0%]
+- https://github.com/pchev/indistarter
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+
 *** DONE libpasastro [3/3][100%]
 CLOSED: [2021-01-25 Mon 17:25]
 - https://github.com/pchev/libpasastro
@@ -394,31 +416,10 @@ CLOSED: [2021-01-25 Mon 17:25]
   + [ ] libqt5pas1
   + [ ] libglib2
 
-*** TODO ccdciel [0/4][0%]
-- https://github.com/pchev/ccdciel
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
-*** TODO inistarter [0/4][0%]
-- https://github.com/pchev/indistarter
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-
-*** TODO eqmodgui [0/4][0%]
-- https://github.com/pchev/eqmodgui
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO virtualplanet [/][%]
 *** TODO virtualmoon [/][%]
 
-** DONE aroffringa [2/2][100%] :author:
-CLOSED: [2022-11-30 Wed 23:44]
+*** TODO virtualplanet [/][%]
+** TODO aroffringa [2/3][66%] :author:
 - https://gitlab.com/aroffringa
 - author :: André Offringa
 *** DONE AOFlagger [4/4][100%]
@@ -451,6 +452,26 @@ CLOSED: [2022-11-30 Wed 23:44]
 - [X] :patch-sent <2022-06-26 Sun>
 - [X] :paptch-applied-upstream <2022-08-04 Thu>
   - https://issues.guix.gnu.org/56238
+*** TODO WSClean [0/4][0%] :p4:
+- https://gitlab.com/aroffringa/wsclean
+- synopsis :: fast generic widefield imager.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs
+  - [X] casacore
+  - [X] boost
+  - [X] cfitsio
+  - [X] fftw
+  - [ ] libgsl0
+    - [ ] :packed
+  - [X] hdf5
+  - [X] openmpi
+  - [ ] lofarbeam
+    - [ ] :packed
+  - [X] openblas
+  - [X] python
+  - [X] atool
 ** DONE asdf-format [9/9][100%] :author:
 CLOSED: [2022-11-21 Mon 20:43]
 - https://github.com/asdf-format
@@ -529,7 +550,7 @@ CLOSED: [2022-11-21 Mon 20:43]
   - [X] python-pytest
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-** TODO AstrOmatic-software [8/10][80%] :author:
+** TODO AstrOmatic-software [8/11][72%] :author:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
 
@@ -628,7 +649,43 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-** TODO Astropy [4/6][66%] :author:
+*** TODO VisiOmatic [0/4][0%] :p5:
+  - [ ] :packed
+  - [ ] :patch-sent
+  - [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0]
+** TODO asdf-format [1/1][100%] :author:
+- https://github.com/asdf-format
+*** DONE python-asdf [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:42]
+ - https://github.com/asdf-format/asdf
+ - [X] :packed <2021-02-07 Sun>
+ - [X] :patch-sent <2021-02-20 Sat>
+ - [X] :paptch-applied-upstream <2021-02-21 Sun>
+   - https://issues.guix.gnu.org/46648
+ - [X] :inputs [7/7][100%]
+   + [X] python-setuptools-scm
+   + [X] python-semantic-version
+   + [X] python-packaging
+   + [X] python-importlib-resources
+   + [X] python-jsonschema
+   + [X] python-numpy
+
+** TODO brandon-rhodes [1/1][100%] :author:
+- https://github.com/brandon-rhodes
+- https://rhodesmill.org/brandon/
+- author :: Brandon Rhodes
+*** DONE python-jplephem [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:43]
+- https://github.com/brandon-rhodes/python-jplephem
+- [X] :packed <2021-02-01 Mon>
+- [X] :patch-sent <2021-02-01 Mon>
+- [X] :paptch-applied-upstream <2021-02-07 Sun>
+  - https://issues.guix.gnu.org/46237
+- [X] :inputs [1/1][100%]
+  - [X] python-numpy
+
+** TODO Astropy [7/9][77%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -666,6 +723,16 @@ CLOSED: [2022-11-22 Tue 20:33]
   - [X] python-pytz
   - [X] python-six
   - [X] python-pytest-astropy
+*** DONE python-extension-helpers [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:41]
+- https://github.com/astropy/extension-helpers
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-07 Sun>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46375
+- [X] :inputs [2/2][100%]
+  - [X] python-coverage
+  - [X] python-pytest-cov
 
 *** DONE python-astropy [4/4][100%]
 CLOSED: [2021-11-08 Mon 20:41]
@@ -675,117 +742,71 @@ CLOSED: [2021-11-08 Mon 20:41]
 - [X] :patch-sent
 - [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/48046
-- [X] :inputs [27/27][100%]
-  + [X] asdf [4/4][100%]
-    - https://github.com/asdf-format/asdf
+- [X] :inputs [28/28][100%]
+  - [X] pytest-astropy
     - [X] :packed <2021-02-07 Sun>
-    - [X] :patch-sent <2021-02-20 Sat>
-    - [X] :paptch-applied-upstream <2021-02-21 Sun>
-      - https://issues.guix.gnu.org/46648
-    - [X] :inputs [7/7][100%]
-      + [X] setuptools-scm
-      + [X] semantic-version >2
-      + [X] packaging
-      + [X] importlib-resources
-      + [X] jsonschema
-      + [X] numpy
-      + [X] pyyaml
-  + [X] beautifulsoup4 (gnu/packages/python-xyz.scm:7694:2)
-  + [X] bleach (gnu/packages/python-xyz.scm:9959:2)
-  + [X] bottleneck (gnu/packages/python-science.scm:413:2)
-  + [X] cfitsio
-  + [X] dask (gnu/packages/python-xyz.scm:19866:2)
-  + [X] expat (gnu/packages/xml.scm)
-  + [X] extension-helpers [4/4][100%]
-    - https://github.com/astropy/extension-helpers
+  - [X] python-asdf [1/1][100%]
     - [X] :packed <2021-02-07 Sun>
-    - [X] :patch-sent <2021-02-07 Sun>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46375
-    - [X] :inputs [2/2][100%]
-      - [X] coverage
-      - [X] pytest-cov
-  + [X] h2py (gnu/packages/python-xyz.scm:868:2)
-  + [X] html5lib (gnu/packages/python-web.scm:1061:2)
-  + [X] ipython
-  + [X] jplephem [4/4][100%]
-    + https://github.com/brandon-rhodes/python-jplephem
+  - [X] python-beautifulsoup4
+  - [X] python-bleach
+  - [X] python-bottleneck
+  - [X] python-cfitsio
+  - [X] python-dask
+  - [X] python-expat
+  - [X] python-extension-helpers [4/4][100%]
+    - [X] :packed <2021-02-07 Sun>
+  - [X] python-h2py
+  - [X] python-html5lib
+  - [X] python-ipython
+  - [X] python-matplotlib
+  - [X] python-mpmath
+  - [X] python-numpy
+  - [X] python-pyerfa
+    - [X] :packed <2021-02-07 Sun>
+  - [X] python-pytest-xdis
+  - [X] python-pytz
+  - [X] python-pyyaml
+  - [X] python-pyyaml
+  - [X] python-scipy
+  - [X] python-scipy
+  - [X] python-skyfield
+    - [X] :packed <2021-02-07 Sun>
+  - [X] python-sortedcontainers
+  - [X] pytnon-objgraph
+  - [X] pytnon-pandas
+  - [X] pyton-jplephem [4/4][100%]
     + [X] :packed <2021-02-01 Mon>
-    + [X] :patch-sent <2021-02-01 Mon>
-    + [X] :paptch-applied-upstream <2021-02-07 Sun>
-      - https://issues.guix.gnu.org/46237
-    + [X] :inputs [1/1][100%]
-      - [X] numpy
-  + [X] matplotlib
-  + [X] mpmath
-  + [X] numpy
-  + [X] objgraph
-  + [X] pandas
-  + [X] pyerfa [4/4][100%]
-    + https://github.com/liberfa/pyerfa
-    + [X] :packed <2021-02-07 Sun>
-    + [X] :patch-sent <2021-02-13 Sat>
-    + [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46492
-    + [X] :inputs [4/4][100%]
-      - [X] pytest
-      - [X] setuptools-scm
-      - [X] numpy
-      - [X] erfa [4/4][100%]
-        - https://github.com/liberfa/erfa
-        - [X] :packed <2021-02-07 Sun>
-        - [X] :patch-sent <2021-02-13 Sat>
-        - [X] :paptch-applied-upstream <2021-02-19 Fri>
-          - https://issues.guix.gnu.org/46492
-        - [X] :inputs [4/4][100%]
-          + [X] pkg-config
-          + [X] libtool
-          + [X] automake
-          + [X] autoreconf
-  + [X] pytest-astropy [4/4][100%]
-    + https://github.com/astropy/pytest-astropy
-    + [X] :packed <2021-02-07 Sun>
-    + [X] :patch-sent <2021-02-07 Sun>
-    + [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46375
-    + [X] :inputs [11/11][100%]
-      + [X] attrs (gnu/packages/python-xyz.scm:15365:2)
-      + [X] hypothesis (gnu/packages/check.scm:1930:2)
-      + [X] pytest
-      + [X] pytest-arraydiff
-      + [X] pytest-astropy-header [4/4][100%]
-        - https://github.com/astropy/pytest-astropy-header
-        - [X] :packed <2021-02-07 Sun>
-        - [X] :patch-sent <2021-02-07 Sun>
-        - [X] :paptch-applied-upstream <2021-02-19 Fri>
-          - https://issues.guix.gnu.org/46375
-        - [X] :inputs [2/2][100%]
-          + [X] pytest
-          + [X] setuptools-scm
-      + [X] pytest-cov
-      + [X] pytest-doctestplus (gnu/packages/python-check.scm:226:2)
-      + [X] pytest-filter-subpackage
-      + [X] pytest-mock
-      + [X] pytest-openfiles
-      + [X] pytest-remotedata
-  + [X] pytest-xdis
-  + [X] pytz ( gnu/packages/time.scm:119:2)
-  + [X] pyyaml
-  + [X] scipy
-  + [X] scipy (gnu/packages/python-science.scm:51:2)
-  + [X] skyfield [4/4][100%]
-    - https://github.com/skyfielders/python-skyfield
+  - [X] wcslib
+*** DONE python-pytest-astropy [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:35]
+- https://github.com/astropy/pytest-astropy
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-07 Sun>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46375
+- [X] :inputs [11/11][100%]
+  + [X] python-attrs
+  + [X] python-hypothesis
+  + [X] python-pytest
+  + [X] pytest-arraydiff
+  + [X] python-pytest-astropy-header
     - [X] :packed <2021-02-07 Sun>
-    - [X] :patch-sent <2021-02-07 Sun>
-    - [X] :paptch-applied-upstream <2021-02-19 Fri>
-      - https://issues.guix.gnu.org/46375
-    - [X] :inputs [4/4][100%]
-      - [X] certifi
-      - [X] jplephem
-      - [X] numpy
-      - [X] sgp4
-  + [X] sortedcontainers
-  + [X] wcslib
+  + [X] pytest-cov
+  + [X] pytest-doctestplus
+  + [X] pytest-filter-subpackage
+  + [X] pytest-mock
+  + [X] pytest-openfiles
+  + [X] pytest-remotedata
+*** DONE python-pytest-astropy-header [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:35]
+- https://github.com/astropy/pytest-astropy-header
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-07 Sun>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46375
+- [X] :inputs [2/2][100%]
+  + [X] python-pytest
+  + [X] python-setuptools-scm
 
 *** DONE python-pyregion [4/4][100%]
 CLOSED: [2023-11-02 Thu 00:11]
@@ -828,7 +849,19 @@ CLOSED: [2022-11-25 Fri 21:08]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [-] :inputs [10/11][90%]
+  - [X] python-asdf
+  - [X] python-asdf-astropy
+  - [X] python-astropy
+  - [X] python-gwcs
+  - [X] python-matplotlib
+  - [ ] python-ndcube
+    - [ ] :packed
+  - [X] python-pytest-astropy
+  - [X] python-spectral-cube
+  - [X] python-stdatamodels
+  - [X] python-numpy
+  - [X] python-scipy
 
 ** TODO ATNF [0/37][0%] :author:
 /Australia Telescope National Facility/
@@ -913,6 +946,75 @@ CLOSED: [2022-11-25 Fri 21:08]
 *** TODO INTER [/][%] :p4:
 - synopsis :: Interactive interference characterization program. A description and user manual are
   available here.
+** TODO liberfa [2/2][100%] :author:
+- https://github.com/liberfa/pyerfa
+*** DONE python-pyerfa [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:39]
+- https://github.com/liberfa/pyerfa
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  - [X] python-pytest
+  - [X] python-setuptools-scm
+  - [X] python-numpy
+  - [X] erfa [4/4][100%]
+    - [X] :packed <2021-02-07 Sun>
+*** DONE erfa [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:39]
+- https://github.com/liberfa/erfa
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  + [X] pkg-config
+  + [X] libtool
+  + [X] automake
+  + [X] autoreconf
+
+** TODO skyfielders [1/1][100%] :author:
+- https://github.com/skyfielders
+*** DONE python-skyfield [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:47]
+  - https://github.com/skyfielders/python-skyfield
+  - [X] :packed <2021-02-07 Sun>
+  - [X] :patch-sent <2021-02-07 Sun>
+  - [X] :paptch-applied-upstream <2021-02-19 Fri>
+    - https://issues.guix.gnu.org/46375
+  - [X] :inputs [4/4][100%]
+    - [X] python-certifi
+    - [X] python-jplephem
+    - [X] python-numpy
+    - [X] python-sgp4
+
+** TODO karllark [0/2][0%] :author:
+*** TODO python-dust-extinction [0/4][0%] :p4:
+- https://github.com/karllark/dust_extinctionhttps://github.com/karllark/dust_extinction
+- synopsis :: Astronomical Dust Extinction
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [4/5][80%]
+  - [X] python-astropy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [ ] python-setuptools-scm
+  - [X] python-scipy
+*** TODO python-dust-attenuation [1/4][25%] :p4:
+- https://github.com/karllark/dust_attenuation
+- synopsis :: Astronomical Dust Attenuation
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-setuptools-scm
 
 ** TODO casacore [1/2][50%] :author:
 - https://github.com/casacore
@@ -1907,8 +2009,7 @@ CLOSED: [2023-02-15 Wed 21:47]
   - [ ] cdf
     - :packed
 
-
-** TODO OpenAstronomy [/][%] :author:
+** TODO OpenAstronomy [0/0][100%] :author:
 - https://github.com/OpenAstronomy
 - https://openastronomy.org/
 
@@ -2862,8 +2963,26 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pytest-mpl
   - [X] python-setuptools-scm
 
-*** TODO python-ndcube [/][%] :p3:
+*** TODO python-ndcube [1/4][25%] :p3:
 - https://github.com/sunpy/ndcube
+- synopsis :: Base package for multi-dimensional contiguous and non-contiguous coordinate-aware
+  arrays.
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [12/12][100%]
+  - [X] python-astropy
+  - [X] python-dask
+  - [X] python-gwcs
+  - [X] python-matplotlib
+  - [X] python-mpl-animators
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-pytest-mpl
+  - [X] python-reproject
+  - [X] python-scipy
+  - [X] python-sunpy
 
 *** TODO python-radiospectra [/][%] :p3:
 - https://github.com/sunpy/radiospectra
@@ -2924,6 +3043,85 @@ CLOSED: [2022-11-25 Fri 21:10]
 ** TODO SURF [/][%] :author:
 - https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
 The Solar UK Research Facility
+
+** TODO OxfordSKA [0/1][0%] :author:
+- https://github.com/OxfordSKA
+*** TODO OSKAR [0/4][0%] :p5:
+- https://github.com/OxfordSKA/OSKAR
+- synopsis :: SKA Radio Telescope Simulator
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
+
+** TODO LOFAR-telescope [0/2][0%] :author:
+- https://github.com/lofar-astron
+*** TODO DP3 [0/4][0%] :p4:
+- https://github.com/lofar-astron/DP3
+- https://git.astron.nl/RD/DP3
+- synopsis :: DP3: streaming processing pipeline for radio interferometric data
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [16/18][88%]
+  - [X] python
+  - [X] libhdf5
+  - [X] casacore
+  - [X] openblas
+  - [X] lapack-dev,
+  - [X] boost
+  - [X] libxml2
+  - [X] libpng
+  - [X] cfitsio
+  - [X] armadillo
+  - [X] aoflagger
+  - [ ] everybeam
+    - [ ] :packed
+  - [X] libgtkmm
+  - [ ] idg
+    - [ ] :packed
+  - [X] pkg-config
+  - [X] pybind11
+  - [X] wcslib
+  - [X] wget
+*** TODO LOFARBeam [1/4][25%] :p4:
+- https://github.com/lofar-astron/LOFARBeam
+- synopsis :: LOFAR station response library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [3/3][100%]
+  - [X] casacore
+  - [X] boost
+  - [X] python
+
+** TODO ASTRON [/][%] :authro:
+- https://git.astron.nl/RD
+*** TODO EveryBeam
+- https://git.astron.nl/RD/EveryBeam
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [18/18][100%]
+  - [X] boost
+  - [X] casacore
+  - [X] cfitsio
+  - [X] doxygen
+  - [X] eigen3
+  - [X] fftw
+  - [X] graphviz
+  - [X] gsl
+  - [X] gtkmm-3
+  - [X] hdf5
+  - [X] lapack
+  - [X] libpng
+  - [X] libxml2
+  - [X] openblas
+  - [X] pybind11
+  - [X] python-distutils
+  - [X] wcslib
+  - [X] wget
+
 ** TODO wtbarnes [0/1][0%] :author:
 - author :: Will Barnes
 *** TODO python-hissw [1/4][25%] :p1:
@@ -3192,22 +3390,380 @@ CLOSED: [2023-11-19 Sun 17:02]
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
 
-gnu/packages/astronomy.scm warning: no tags were found for aocommon
-gnu/packages/astronomy.scm warning: no tags were found for skymaker
-gnu/packages/astronomy.scm warning: no tags were found for stuff
-gnu/packages/astronomy.scm warning: no tags were found for unsio
+** TODO updates-2023-12 [1/3][33%]
+- date-time :: 20231215T015641+0000
+- commit ::
+- issues ::
+- [X] quick [30/30][100%]
+  - [X] aocommon :: Update to 0.0.0-2.9272ea3.
+  - [X] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
+  - [X] calceph :: would be upgraded from 3.5.3 to 3.5.4
+  - [X] cfitsio :: would be upgraded from 4.2.0 to 4.3.1
+  - [X] julia-fitsio :: updating from version 0.17.0 to version 0.17.1
+  - [X] libpasastro :: would be upgraded from 1.4.1 to 1.4.2
+  - [X] phd2 :: would be upgraded from 2.6.11 to 2.6.12
+  - [X] python-asdf-astropy :: would be upgraded from 0.4.0 to 0.5.0
+  - [X] python-astropy-healpix :: would be upgraded from 1.0.0 to 1.0.2
+  - [X] python-crds :: would be upgraded from 11.17.9 to 11.17.13
+  - [X] python-drizzle :: would be upgraded from 1.14.3 to 1.14.4
+  - [X] python-drms :: would be upgraded from 0.6.4 to 0.7.0
+  - [X] python-gwcs :: would be upgraded from 0.19.0 to 0.20.0
+  - [X] python-jplephem :: would be upgraded from 2.20 to 2.21
+  - [X] python-mpl-animators :: would be upgraded from 1.1.0 to 1.1.1
+  - [X] python-photutils :: would be upgraded from 1.9.0 to 1.10.0
+  - [X] python-pynbody :: would be upgraded from 1.4.2 to 1.5.2
+  - [X] python-radio-beam :: would be upgraded from 0.3.6 to 0.3.7
+  - [X] python-regions :: Use G-expressions, swap to pyproject-build-system
+  - [X] python-regions :: would be upgraded from 0.7 to 0.8
+  - [X] python-reproject :: would be upgraded from 0.12.0 to 0.13.0
+  - [X] python-spectral-cube :: would be upgraded from 0.6.3 to 0.6.5
+  - [X] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
+  - [X] python-stdatamodels :: would be upgraded from 1.8.3 to 1.9.0
+  - [X] python-stsci-imagestats :: would be upgraded from 1.6.3 to 1.8.0, enable tests
+  - [X] python-stsynphot :: would be upgraded from 1.2.0 to 1.3.0
+  - [X] python-synphot :: would be upgraded from 1.2.1 to 1.3.0
+  - [X] python-tweakwcs :: would be upgraded from 0.8.3 to 0.8.5
+  - [X] splash :: would be upgraded from 3.9.0 to 3.10.1
+  - [X] wcslib :: would be upgraded from 8.1 to 8.2.2
+- [ ] pending [0/2][0%]
+  - [ ] python-stsynphot :: Add minial data sources to enable tests.
+  - [ ] python-synphot :: Pack optional packages
+    - [ ] python-dust-extinction
+    - [ ] python-specutils
+- [ ] complex [0/6][0%]
+  - [ ] python-sunpy :: would be upgraded from 5.0.1 to 5.1.0. Require more packages to be avaialle:
+    - [ ] https://github.com/AndrewAnnex/SpiceyPy
+  - [ ] python-stcal :: would be upgraded from 1.4.4 to 1.5.2. Requires more time to fix broken
+    tests as it was introduced a lot of changes.
+  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Margor update, require more work
+    with Pyproject.toml build.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
+    release which has a lot of fixes.
+  - [ ] indi :: would be upgraded from 2.0.4 to 2.0.5. Stelarium is failing.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
 
 * Coverage
-| Project        | Debian Astro |   Guix |
-| missfits       | t            |  2.8.0 |
-| psfex          | t            |        |
-| python-astropy |              |    5.1 |
-| python-gwcs    |              | 0.18.2 |
-| scamp          | t            |        |
-| sextractor     | t            | 2.25.0 |
-| stiff          | t            |  2.4.0 |
-| swarp          | t            |        |
-| weightwatcher  | t            |        |
+| project                            |            guix | debian-astro | kernel | stsci-astroconda |
+|------------------------------------+-----------------+--------------+--------+------------------|
+| 21cmfast                           |                 |              | X      |                  |
+| alfa                               |             2.2 |          2.2 |        |                  |
+| aocommon                           | 0.0.0-1.7329a07 |              |        |                  |
+| aoflagger                          | 3.2.0           |              | X      |                  |
+| apsynsim                           |                 |              | X      |                  |
+| attrdict                           |                 |              | X      |                  |
+| blitz                              |                 |              | X      |                  |
+| brats                              |                 |              | X      |                  |
+| calceph                            |                 |              |        |                  |
+| calcmysky                          |                 |              |        |                  |
+| calcmysky-qt5                      |                 |              |        |                  |
+| casacore                           |                 |              |        |                  |
+| casacore                           |                 |              | X      |                  |
+| casacore-data                      |                 |              | X      |                  |
+| casalite                           |                 |              | X      |                  |
+| casarest                           |                 |              | X      |                  |
+| ccfits                             |                 |              |        |                  |
+| celestia                           |                 |              |        |                  |
+| celestia-gtk                       |                 |              |        |                  |
+| cfitsio                            |                 |              |        |                  |
+| cubical                            |                 |              | X      |                  |
+| dysco                              |                 |              | X      |                  |
+| eht-imaging                        |                 |              | X      |                  |
+| erfa                               |                 |              |        |                  |
+| everybeam                          |                 |              | X      |                  |
+| eye                                |                 |              |        |                  |
+| future-fstrings                    |                 |              | X      |                  |
+| glnemo2                            |                 |              |        |                  |
+| gnuastro                           |                 |              |        |                  |
+| gpredict                           |                 |              |        |                  |
+| idg                                |                 |              | X      |                  |
+| imppg                              |                 |              |        |                  |
+| indi                               |                 |              |        |                  |
+| indi                               |                 |              |        |                  |
+| katdal                             |                 |              | X      |                  |
+| katpoint                           |                 |              | X      |                  |
+| katversion                         |                 |              | X      |                  |
+| kittens                            |                 |              | X      |                  |
+| libnova                            |                 |              |        |                  |
+| libpasastro                        |                 |              |        |                  |
+| libsep                             |                 |              |        |                  |
+| libskry                            |                 |              |        |                  |
+| libxisf                            |                 |              |        |                  |
+| lofarbeam                          |                 |              | X      |                  |
+| lsmtool                            |                 |              | X      |                  |
+| makems                             |                 |              | X      |                  |
+| meqtrees-cattery                   |                 |              | X      |                  |
+| meqtrees-timba                     |                 |              | X      |                  |
+| missfits                           |           2.8.0 |              |        |                  |
+| obit                               |                 |              | X      |                  |
+| owlcat                             |                 |              | X      |                  |
+| parseltongue                       |                 |              | X      |                  |
+| phd2                               |                 |              |        |                  |
+| polygon3                           |                 |              | X      |                  |
+| psfex                              |                 |              |        |                  |
+| purr                               |                 |              | X      |                  |
+| pyfftw                             |                 |              | X      |                  |
+| pymonetdb                          |                 |              | X      |                  |
+| pyslalib                           |                 |              | X      |                  |
+| python-acstools                    |                 |              |        |            3.3.1 |
+| python-aplpy                       |                 |              |        |                  |
+| python-appdirs                     |                 |              |        |            1.4.0 |
+| python-aprio                       |                 |              |        |            1.0.1 |
+| python-asdf                        |                 |              |        |                  |
+| python-asdf                        |                 |              |        |                  |
+| python-asdf                        |                 |              |        |            2.8.1 |
+| python-asdf-astropy                |                 |              |        |                  |
+| python-asdf-standard               |                 |              |        |                  |
+| python-asdf-standard               |                 |              |        |            1.0.0 |
+| python-asteval                     |                 |              |        |           0.9.13 |
+| python-astral                      |                 |              |        |                  |
+| python-astroalign                  |                 |              |        |                  |
+| python-astroconda-iraf-helpers     |                 |              |        |            0.2.0 |
+| python-astroimtools                |                 |              |        |              0.3 |
+| python-astrolib.coords             |                 |              |        |           0.39.6 |
+| python-astroml                     |                 |              |        |                  |
+| python-astropy                     |             5.1 |              |        |                  |
+| python-astropy-healpix             |                 |              |        |                  |
+| python-astropy-healpix             |                 |              |        |            0.3.1 |
+| python-astroquery                  |                 |              |        |                  |
+| python-astroquery                  |                 |              |        |              0.4 |
+| python-astroscrappy                |                 |              |        |                  |
+| python-astroscrappy                |                 |              |        |            1.0.5 |
+| python-asv                         |                 |              |        |            0.1.1 |
+| python-atlas-generic               |                 |              |        |           3.10.2 |
+| python-bayesicfitting              |                 |              |        |                  |
+| python-calcos                      |                 |              |        |           3.3.10 |
+| python-casa-formats-io             |                 |              |        |                  |
+| python-casacore                    |                 |              | X      |                  |
+| python-ccdproc                     |                 |              |        |                  |
+| python-ccdproc                     |                 |              |        |      1.3.0.post1 |
+| python-cdflib                      |                 |              |        |                  |
+| python-cfitsio                     |                 |              |        |            3.470 |
+| python-ci-watson                   |                 |              |        |            0.6.1 |
+| python-costools                    |                 |              |        |            1.2.3 |
+| python-crds                        |                 |              |        |                  |
+| python-crds                        |                 |              |        |          10.3.11 |
+| python-cube-tools                  |                 |              |        |            0.0.1 |
+| python-cubeviz                     |                 |              |        |            0.3.0 |
+| python-czml3                       |                 |              |        |                  |
+| python-d2to1                       |                 |              |        |           0.2.12 |
+| python-da5-notebooks               |                 |              |        |              1.0 |
+| python-dbus-glib                   |                 |              |        |            0.108 |
+| python-dbus-python                 |                 |              |        |            1.2.4 |
+| python-decorator                   |                 |              |        |            4.0.9 |
+| python-disco-stu                   |                 |              |        |            1.3.6 |
+| python-dragons                     |                 |              |        |            2.1.0 |
+| python-drizzle                     |                 |              |        |             1.13 |
+| python-drizzlepac                  |                 |              |        |            3.3.0 |
+| python-drms                        |                 |              |        |                  |
+| python-ds9                         |                 |              |        |              8.1 |
+| python-dust-extinction             |                 |              |        |              0.7 |
+| python-ephem                       |                 |              |        |                  |
+| python-extension-helpers           |                 |              |        |              0.1 |
+| python-fftw                        |                 |              |        |            3.3.4 |
+| python-fitsblender                 |                 |              |        |            0.3.6 |
+| python-fitsio                      |                 |              |        |                  |
+| python-fitsverify                  |                 |              |        |             4.18 |
+| python-gatspy                      |                 |              |        |                  |
+| python-gemini                      |                 |              |        |              2.0 |
+| python-gemini-calmgr               |                 |              |        |           0.9.12 |
+| python-ginga                       |                 |              |        |            3.2.0 |
+| python-glue-core                   |                 |              |        |           0.12.0 |
+| python-glue-ginga                  |                 |              |        |              0.2 |
+| python-glue-vispy-viewers          |                 |              |        |              0.9 |
+| python-glueviz                     |                 |              |        |           0.12.0 |
+| python-gwcs                        |          0.19.0 |              |        |           0.16.1 |
+| python-hdf5                        |                 |              |        |           1.12.0 |
+| python-hstaxe                      |                 |              |        |            1.0.0 |
+| python-hstcal                      |                 |              |        |            2.7.1 |
+| python-htc-utils                   |                 |              |        |            0.1.0 |
+| python-hvpy                        |                 |              |        |                  |
+| python-imexam                      |                 |              |        |            0.9.1 |
+| python-iraf                        |                 |              |        |        2.16.UR.1 |
+| python-iraf-all                    |                 |              |        |              1.0 |
+| python-iraf-axe                    |                 |              |        |            2.6.2 |
+| python-iraf-cfh12k                 |                 |              |        |       2013-01-02 |
+| python-iraf-cirred                 |                 |              |        |       2007-12-13 |
+| python-iraf-ctio                   |                 |              |        |       2010-11-18 |
+| python-iraf-cutoutpkg              |                 |              |        |       2001-04-05 |
+| python-iraf-deitab                 |                 |              |        |       2013-01-02 |
+| python-iraf-esowfi                 |                 |              |        |       2013-01-02 |
+| python-iraf-finder                 |                 |              |        |              2.2 |
+| python-iraf-fitsutil               |                 |              |        |       2011-02-22 |
+| python-iraf-gemini                 |                 |              |        |             1.14 |
+| python-iraf-gmisc                  |                 |              |        |       2010-11-18 |
+| python-iraf-guiapps                |                 |              |        |       2010-11-18 |
+| python-iraf-mem0                   |                 |              |        |       2013-01-02 |
+| python-iraf-mscdb                  |                 |              |        |       2011-02-28 |
+| python-iraf-mscred                 |                 |              |        |             5.04 |
+| python-iraf-mtools                 |                 |              |        |       2013-01-02 |
+| python-iraf-nfextern               |                 |              |        |       2013-01-02 |
+| python-iraf-os-libs                |                 |              |        |              1.0 |
+| python-iraf-rvsao                  |                 |              |        |            2.7.8 |
+| python-iraf-sqiid                  |                 |              |        |       2013-01-02 |
+| python-iraf-stecf                  |                 |              |        |             3.17 |
+| python-iraf-stsdas                 |                 |              |        |           3.18.3 |
+| python-iraf-tables                 |                 |              |        |           3.18.3 |
+| python-iraf-ucsclris               |                 |              |        |       2013-01-02 |
+| python-iraf-upsqiid                |                 |              |        |       2013-01-02 |
+| python-iraf-x11                    |                 |              |        |              2.0 |
+| python-iraf-xdimsum                |                 |              |        |       2010-11-18 |
+| python-iraf-xray                   |                 |              |        |          2.5.y2k |
+| python-iraf.adccdrom               |                 |              |        |       2013-01-02 |
+| python-jdat-notebooks              |                 |              |        |            0.4.0 |
+| python-jplephem                    |            2.20 |              |        |              2.9 |
+| python-jwst                        |                 |              |        |                  |
+| python-jwst-coronagraph-visibility |                 |              |        |            0.4.4 |
+| python-jwst-footprints             |                 |              |        |            2.2.0 |
+| python-jwst-gtvt                   |                 |              |        |            0.1.0 |
+| python-jwst-visit-parser           |                 |              |        |            0.1.2 |
+| python-jwxml                       |                 |              |        |            0.3.0 |
+| python-mosviz                      |                 |              |        |            0.3.0 |
+| python-mpl-animators               |                 |              |        |                  |
+| python-nictools                    |                 |              |        |            1.1.5 |
+| python-opuscoords                  |                 |              |        |            1.0.2 |
+| python-pandokia                    |                 |              |        |            2.4.1 |
+| python-parsley                     |                 |              |        |              1.3 |
+| python-photutils                   |                 |              |        |                  |
+| python-photutils                   |                 |              |        |            1.1.0 |
+| python-poliastro                   |                 |              |        |                  |
+| python-poppy                       |                 |              |        |                  |
+| python-poppy                       |                 |              |        |            1.0.2 |
+| python-purge-path                  |                 |              |        |            1.2.0 |
+| python-py-expression-eval          |                 |              |        |            0.3.4 |
+| python-pyavm                       |                 |              |        |                  |
+| python-pydrizzle                   |                 |              |        |            6.4.4 |
+| python-pyds9                       |                 |              |        |   1.9.0.dev185+g |
+| python-pyerfa                      |                 |              |        |                  |
+| python-pyfftw                      |                 |              |        |            0.9.2 |
+| python-pyfu                        |                 |              |        |             0.10 |
+| python-pynbody                     |                 |              |        |                  |
+| python-pyobjc-core                 |                 |              |        |            3.1.1 |
+| python-pyobjc-framework-cocoa      |                 |              |        |            3.1.1 |
+| python-pyobjc-framework-quartz     |                 |              |        |            3.1.1 |
+| python-pyopengl                    |                 |              |        |          3.1.3b1 |
+| python-pyopengl-accelerate         |                 |              |        |          3.1.3b1 |
+| python-pypdf2                      |                 |              |        |           1.26.0 |
+| python-pyqtgraph                   |                 |              |        |           0.10.0 |
+| python-pyraf                       |                 |              |        |           2.1.15 |
+| python-pyraf-all                   |                 |              |        |              1.0 |
+| python-pyraf.kepler                |                 |              |        |            2.6.3 |
+| python-pyregion                    |                 |              |        |                  |
+| python-pyregion                    |                 |              |        |              2.0 |
+| python-pysiaf                      |                 |              |        |           0.15.0 |
+| python-pysynphot                   |                 |              |        |                  |
+| python-pysynphot                   |                 |              |        |            2.0.0 |
+| python-python-daemon               |                 |              |        |            2.0.5 |
+| python-pytools                     |                 |              |        |           2016.1 |
+| python-pyvo                        |                 |              |        |                  |
+| python-pywcs                       |                 |              |        |           1.12.1 |
+| python-rad                         |                 |              |        |                  |
+| python-radio-beam                  |                 |              |        |                  |
+| python-radio-beam                  |                 |              |        |              0.2 |
+| python-recon                       |                 |              |        |            1.0.2 |
+| python-reftools                    |                 |              |        |            2.1.0 |
+| python-regions                     |                 |              |        |                  |
+| python-relic                       |                 |              |        |            1.1.2 |
+| python-reproject                   |                 |              |        |                  |
+| python-reproject                   |                 |              |        |              0.4 |
+| python-roman-datamodels            |                 |              |        |                  |
+| python-selenium                    |                 |              |        |           2.49.2 |
+| python-semantic-version            |                 |              |        |            2.8.4 |
+| python-sep                         |                 |              |        |                  |
+| python-sextractor                  |                 |              |        |           2.19.5 |
+| python-sgp4                        |                 |              |        |                  |
+| python-shunit2                     |                 |              |        |            2.0.3 |
+| python-skyfield                    |                 |              |        |                  |
+| python-spectral-cube               |                 |              |        |                  |
+| python-spectral-cube               |                 |              |        |            0.4.4 |
+| python-specutils                   |                 |              |        |              1.3 |
+| python-specview                    |                 |              |        |              0.1 |
+| python-specviz                     |                 |              |        |            0.7.0 |
+| python-sphere                      |                 |              |        |           1.0.10 |
+| python-spherical-geometry          |                 |              |        |                  |
+| python-spherical-geometry          |                 |              |        |           1.2.22 |
+| python-sphinx-automodapi           |                 |              |        |             0.11 |
+| python-sphinx-rtd-theme            |                 |              |        |            0.1.9 |
+| python-sphinxcontrib-programoutput |                 |              |        |             0.11 |
+| python-stcal                       |                 |              |        |                  |
+| python-stdatamodels                |                 |              |        |                  |
+| python-stginga                     |                 |              |        |            1.3.0 |
+| python-stistools                   |                 |              |        |            1.3.0 |
+| python-stpipe                      |                 |              |        |                  |
+| python-stregion                    |                 |              |        |            1.1.6 |
+| python-stsci                       |                 |              |        |            3.2.0 |
+| python-stsci-convolve              |                 |              |        |            2.2.2 |
+| python-stsci-data-analysis         |                 |              |        |            4.0.0 |
+| python-stsci-distutils             |                 |              |        |            0.3.8 |
+| python-stsci-hst                   |                 |              |        |            3.1.1 |
+| python-stsci-image                 |                 |              |        |                  |
+| python-stsci-image                 |                 |              |        |            2.3.4 |
+| python-stsci-imagemanip            |                 |              |        |            1.1.4 |
+| python-stsci-imagestats            |                 |              |        |                  |
+| python-stsci-imagestats            |                 |              |        |            1.6.2 |
+| python-stsci-ndimage               |                 |              |        |           0.10.1 |
+| python-stsci-numdisplay            |                 |              |        |            1.6.1 |
+| python-stsci-rtd-theme             |                 |              |        |            0.0.1 |
+| python-stsci-skypac                |                 |              |        |            1.0.8 |
+| python-stsci-sphere                |                 |              |        |              0.2 |
+| python-stsci-sphinx-theme          |                 |              |        |            0.1.0 |
+| python-stsci-sphinxext             |                 |              |        |            1.2.2 |
+| python-stsci-stimage               |                 |              |        |                  |
+| python-stsci-stimage               |                 |              |        |            0.2.4 |
+| python-stsci-tools                 |                 |              |        |            4.0.1 |
+| python-stsynphot                   |                 |              |        |                  |
+| python-stsynphot                   |                 |              |        |            1.1.0 |
+| python-stwcs                       |                 |              |        |            1.6.1 |
+| python-sunpy                       |                 |              |        |                  |
+| python-suntime                     |                 |              |        |                  |
+| python-synphot                     |                 |              |        |                  |
+| python-synphot                     |                 |              |        |            1.1.1 |
+| python-tweakwcs                    |                 |              |        |                  |
+| python-tweakwcs                    |                 |              |        |            0.7.3 |
+| python-verhawk                     |                 |              |        |            0.0.2 |
+| python-wcstools                    |                 |              |        |            3.9.5 |
+| python-webbpsf                     |                 |              |        |            1.0.0 |
+| python-webbpsf-data                |                 |              |        |            1.0.0 |
+| python-wfc3tools                   |                 |              |        |            1.3.5 |
+| python-wfpc2tools                  |                 |              |        |            1.0.4 |
+| python-wiimatch                    |                 |              |        |                  |
+| python-xpa                         |                 |              |        |           2.1.18 |
+| pyxis                              |                 |              | X      |                  |
+| qfits                              |                 |              |        |                  |
+| scabha                             |                 |              | X      |                  |
+| scamp                              |                 |              |        |                  |
+| sextractor                         |          2.25.0 |              |        |                  |
+| sgp4                               |                 |              |        |                  |
+| sharedarray                        |                 |              | X      |                  |
+| siril                              |                 |              |        |                  |
+| skymaker                           |                 |              |        |                  |
+| splash                             |                 |              |        |                  |
+| stackistry                         |                 |              |        |                  |
+| stellarium                         |                 |              |        |                  |
+| stuff                              |                 |              |        |                  |
+| sunclock                           |                 |              |        |                  |
+| swarp                              |                 |              |        |                  |
+| swarp                              |                 |              |        |                  |
+| tigger-lsm                         |                 |              | X      |                  |
+| tirific                            |                 |              | X      |                  |
+| tokenize-rt                        |                 |              | X      |                  |
+| unittest-xml-reporting             |                 |              | X      |                  |
+| unsio                              |                 |              |        |                  |
+| wcslib                             |                 |              |        |                  |
+| wcstools                           |                 |              |        |                  |
+| weightwatcher                      |                 |              |        |                  |
+| weightwatcher                      |                 |              |        |                  |
+| wsclean                            |                 |              | X      |                  |
+| xplanet                            |           1.3.1 |              |        |                  |
+
+- debian-astro ::  Astronomical packages collection maintained by Debian Astro Team
+  https://salsa.debian.org/debian-astro-team
+  - maintainers ::
+- kern :: Radio Astronomy Software Suite. Collection of the DEB packages
+  - https://kernsuite.info/packages/
+  - https://github.com/kernsuite
+  - https://github.com/kernsuite-debian
+- stsci-astroconda ::  https://ssb.stsci.edu/astroconda/
 
 * Glosary
 - RFI :: radio-frequency interference
@@ -3219,15 +3775,11 @@ gnu/packages/astronomy.scm warning: no tags were found for unsio
 - LOS :: Loss of Signal
 
 * References
-- Debian Astro Team package collection https://salsa.debian.org/debian-astro-team
 - https://naif.jpl.nasa.gov/naif/toolkit_C_PC_Linux_GCC_64bit.html
 - https://rhodesmill.org/skyfield/
 - https://www.ossblog.org/open-source-astronomy-software/
 - http://www.iausofa.org/current_C.html#Downloads
-- Kern - Radio Astronomy Software Suite. Collection of the DEB packages
-  https://kernsuite.info/packages/ https://github.com/kernsuite
 - The Astrophysics Source Code Library http://www.ascl.net/
-- https://ssb.stsci.edu/astroconda/
 - https://celestrak.org/
 - https://github.com/dnwrnr/sgp4
 - https://www.danrw.com/sgp4/

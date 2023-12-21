@@ -1,0 +1,38 @@
+From d3db4e9dc279b89c9e085284cb407d1c72a6bfaf Mon Sep 17 00:00:00 2001
+Message-ID: <d3db4e9dc279b89c9e085284cb407d1c72a6bfaf.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 15 Dec 2023 12:57:15 +0000
+Subject: [PATCH 13/32] gnu: python-jplephem: Update to 2.21.
+
+* gnu/packages/astronomy.scm (python-jplephem): Update to 2.21.
+
+Change-Id: I26724a009b776a0f6541d6265a7ae8dfc94d2572
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d8270e47b8..b2948bd903 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3393,13 +3393,13 @@ (define-public sunclock
+ (define-public python-jplephem
+   (package
+     (name "python-jplephem")
+-    (version "2.20")
++    (version "2.21")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "jplephem" version))
+        (sha256
+-        (base32 "1yp1l3n07849411099f976ps0pyv8jk8k5l9da9nhv54ir86v65v"))))
++        (base32 "0mcdhb22vwbyavcnkcwchj0cxnxsvaw5563v464ipwlm0rhln69l"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

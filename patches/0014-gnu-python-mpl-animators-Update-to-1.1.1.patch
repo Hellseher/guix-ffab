@@ -1,0 +1,38 @@
+From 66ad696c77078c7a4e42d75fe8caf0d70aa5a995 Mon Sep 17 00:00:00 2001
+Message-ID: <66ad696c77078c7a4e42d75fe8caf0d70aa5a995.1703031694.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1703031693.git.sharlatanus@gmail.com>
+References: <cover.1703031693.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 16 Dec 2023 03:52:18 +0000
+Subject: [PATCH 14/32] gnu: python-mpl-animators: Update to 1.1.1.
+
+* gnu/packages/astronomy.scm (python-mpl-animators): Update to 1.1.1.
+
+Change-Id: I7cd7f70724286480c469820659e922699461b7e0
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b2948bd903..2017b791c7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2040,13 +2040,13 @@ (define-public python-hvpy
+ (define-public python-mpl-animators
+   (package
+     (name "python-mpl-animators")
+-    (version "1.1.0")
++    (version "1.1.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "mpl_animators" version))
+        (sha256
+-        (base32 "12kjmj7rn3pk9ly82h5s5hn0kl3kxkr7bgkz9zr9k59pir8z1r8b"))))
++        (base32 "078dshs383ny182dac0spg7z0iilcwa0fnwv1vizsr6p1d3ar98b"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest
+-- 
+2.41.0
+
