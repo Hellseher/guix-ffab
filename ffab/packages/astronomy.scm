@@ -1314,6 +1314,56 @@ based on the HDF5 standard")
 ;; added-to-downstream-guix 0458cbd84c03068241dfaf293b0594ec07dc2019
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
+;; 20221108T115048+0000
+(define-public python-ndcube
+  (package
+    (name "python-ndcube")
+    (version "2.2.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "ndcube" version))
+       (sha256
+        (base32 "1b3vbnm438j5jb48vilp145lq137fbrg1l4845rc55mz2p025x34"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-home-env
+            (lambda _
+              ;; Tests require HOME to be set.
+              ;;  Permission denied: '/homeless-shelter'
+              (setenv "HOME" "/tmp"))))))
+    (propagated-inputs
+     (list python-astropy
+           python-gwcs
+           python-matplotlib
+           python-mpl-animators
+           python-numpy
+           python-reproject))
+    (native-inputs
+     (list python-dask
+           python-pytest
+           python-pytest-astropy
+           python-pytest-mpl
+           python-scipy
+           python-setuptools-scm
+           python-sunpy))
+    (home-page "https://docs.sunpy.org/projects/ndcube/")
+    (synopsis "Multi-dimensional contiguous and non-contiguous coordinate aware arrays")
+    (description
+     "@code{ndcube} is a package for manipulating, inspecting and visualizing
+multi-dimensional contiguous and non-contiguous coordinate-aware data arrays.
+
+It combines data, uncertainties, units, metadata, masking, and coordinate
+transformations into classes with unified slicing and generic coordinate
+transformations and plotting/animation capabilities.  It is designed to handle
+data of any number of dimensions and axis types (e.g. spatial, temporal,
+spectral, etc.) whose relationship between the array elements and the real world
+can be described by @acronym{WCS, World Coordinate System} translations.")
+    (license license:bsd-2)))
+
 ;;20231127T020129+0000
 (define-public python-hapiclient
   (package
