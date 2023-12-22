@@ -665,31 +665,50 @@ photometry or morphological analyses.")
 ;; added-to-downstream-guix 33648567dd229b1302d2258e76d8b30593fedce6
 ;; CommitDate: Thu Jan 28 13:43:49 2021 +0100
 
-;; TODO: (Sharlatan-20221102T230446+0000): Configure failing
+;; TODO: (Sharlatan-20231222T010212+0000): Build feileru:
 
-;; fpc compiler not found!
-;; Please specify the location of the fpc compiler with :
-;; ./configure fpcbin=path_to_fpc
-;; error: in phase 'configure': uncaught exception:
+;; bgraqtbitmap.pas(41,3) Fatal: Can't find unit qtobjects used by BGRAQtBitmap
+;; Fatal: Compilation aborted
+;; make[3]: *** [Makefile:1274: bgrabitmappack.ppu] Error 1
+;; make[3]: Leaving directory '/tmp/guix-build-skychart-4.2.0-0.8fa66db.drv-0/source/skychart/component/bgrabitmap'
+;; make[2]: *** [Makefile:2192: bgrabitmap_all] Error 2
+;; make[2]: Leaving directory '/tmp/guix-build-skychart-4.2.0-0.8fa66db.drv-0/source/skychart/component'
+;; make[1]: *** [Makefile:1735: component_all] Error 2
+;; make[1]: Leaving directory '/tmp/guix-build-skychart-4.2.0-0.8fa66db.drv-0/source/skychart'
+;; make: *** [Makefile:1593: skychart_all] Error 2
 ;;
 ;; 20221102T230438+0000
 (define skychart
-  (let ((version-major "4")
-        (version-minor "2"))
+  (let ((commit "8fa66dbd420f04bd045624c8e77793b8eb43a140")
+        (revision "0"))
     (package
       (name "skychart")
-      (version (string-append version-major "." version-minor))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/pchev/skychart")
-                      (commit (string-append "V" version-major version-minor))))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "1nb3ilw8swz9q9qjd8s1na3g7k7apb2yrpyl89cq2dfcly9c75mi"))))
+      (version (git-version "4.2.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/pchev/skychart")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0a04i358zax0ajn6iqbq6nikwbdmy048a9wrq0q6fams2gcf5fn2"))))
       (build-system gnu-build-system)
-      (native-inputs (list fpc pkg-config autoconf automake))
+      (arguments
+       (list
+        #:configure-flags
+        #~(list (string-append
+                 "fpc=" #$(this-package-input "fpc") "/lib/fpc/3.2.2/units/x86_64-linux/")
+                (string-append
+                 "fpcbin=" #$(this-package-input "fpc") "/bin/")
+                (string-append
+                 "lazarus=" #$(this-package-input "lazarus") "/share/lazarus/")
+                (string-append
+                 "prefix=" #$output))))
+      (native-inputs
+       (list pkg-config autoconf automake))
+      (inputs
+       (list fpc lazarus libpasastro qtbase-5))
       (home-page "https://www.ap-i.net/skychart//en/start")
       (synopsis "Free software to draw sky charts")
       (description
