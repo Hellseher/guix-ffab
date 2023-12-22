@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-12-04 Mon 00:35:49 GMT>
+#+modified: <2023-12-22 Fri 03:28:47 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -298,7 +298,7 @@ https://notabug.org/cage/cl-mount-info
   - [X] cffi
   - [X] cl-ppcre
 
-*** TODO cl-rib [0/4][0%] :p3:
+*** TODO cl-rib [0/4][0%] :p4:
 - https://notabug.org/cage/rib
 - synopsis :: tool to run periodic task, in its current form is used as test tool for network
   services but could be used as a general scheduler as well
@@ -804,7 +804,7 @@ CLOSED: [2022-11-15 Tue 12:15]
   - [X] sbcl-trivial-garbage
   - [X] sbcl-trivial-utf-8
 
-*** TODO cl-maxima-client [0/4][0%] :p3:
+*** TODO cl-maxima-client [0/4][0%] :p4:
 - https://github.com/lokedhs/maxima-client
 - [ ] :packed
 - [ ] :patch-sent
@@ -821,7 +821,7 @@ CLOSED: [2022-11-15 Tue 12:15]
   - [ ] cl-trivial-arguments
   - [ ] cl-trivial-gray-streams
 
-*** TODO cl-rabbit [0/4][0%] :p3:
+*** TODO cl-rabbit [0/4][0%] :p4:
 - https://github.com/lokedhs/cl-rabbit
 - [ ] :packed
 - [ ] :patch-sent

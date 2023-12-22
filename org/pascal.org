@@ -1,9 +1,9 @@
 #+title: gnu/packages/pascal
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2021-11-07 Sun 19:07:04 GMT>
+#+modified: <2023-12-22 Fri 03:29:51 GMT>
 
 * Flow
-** TODO voc [/][%] :p3:
+** TODO voc [/][%] :p5:
 - https://github.com/vishaps/voc
 - [ ] :packed
 - [ ] :patch-sent

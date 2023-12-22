@@ -1,6 +1,6 @@
 #+title: gnu/packages/math
 #+created: <2021-04-15 Thu 21:35:22 BST>
-#+modified: <2023-10-10 Tue 00:38:44 BST>
+#+modified: <2023-12-22 Fri 03:28:59 GMT>
 
 * Flow [1/4][25%]
 ** TODO netlib [0/1][0%] :p5:
@@ -13,7 +13,7 @@
 - [ ] :paptch-applied-upstream
 - [ ] :inputs
 
-** TODO plplot [0/0][0%] :p3:
+** TODO plplot [0/0][0%] :p4:
 + http://plplot.sourceforge.net/
 + synopsis :: PLplot is a cross-platform software package for creating scientific plots whose
   (UTF-8) plot symbols and text are limited in practice only by what Unicode-aware system fonts

@@ -61,7 +61,7 @@
     astronomy.org          XEphem                  [0/4][0%]     :author:
     astronomy.org          wtbarnes                [0/1][0%]     :author:
     astronomy.org          SURF                    [/][%]        :author:
-    astronomy.org          SunPy                   [4/6][66%]    :author:
+    astronomy.org          SunPy                   [4/7][57%]    :author:
     astronomy.org          Starlink                [0/1][0%]     :author:
     astronomy.org          spedas                  [0/1][0%]     :author:
     astronomy.org          spacetelescope          [19/21][90%]  :author:
@@ -127,6 +127,7 @@
     
     Projects in progress with priorities:
     version-control.org    lazygit                        [0/4][0%]    :p5:
+    pascal.org             voc                            [/][%]       :p5:
     maths.org              netlib                         [0/1][0%]    :p5:
     lisp.org               cl-zorm                        [0/4][0%]    :p5:
     lisp.org               cl-soil                        [0/4][0%]    :p5:
@@ -134,38 +135,64 @@
     lisp.org               cl-khazern                     [0/4][0%]    :p5:
     lisp.org               cl-dirt                        [0/4][0%]    :p5:
     lisp.org               cl-adams                       [1/4][25%]   :p5:
+    golang.org             bykof/go-plantuml              [/][%]       :p5:
     golang.org             age                            [/][%]       :p5:
+    emacs-xyz.org          org-roam-ui                    [0/4][0%]    :p5:
+    docker.org             dive                           [0/4][0%]    :p5:
     astronomy.org          Xspec                          [0/4][0%]    :p5:
+    astronomy.org          VisiOmatic                     [0/4][0%]    :p5:
+    astronomy.org          virtualplanet                  [0/4][0%]    :p5:
+    astronomy.org          virtualmoon                    [0/4][0%]    :p5:
     astronomy.org          THELI                          [0/4][0%]    :p5:
+    astronomy.org          tempo                          [/][%]       :p5:
     astronomy.org          sofa-c                         [0/4][0%]    :p5:
     astronomy.org          scamp                          [0/4][0%]    :p5:
     astronomy.org          SAOImageDS9                    [0/4][0%]    :p5:
     astronomy.org          python-ci-watson               [1/4][25%]   :p5:
+    astronomy.org          python-casacore                [1/4][25%]   :p5:
     astronomy.org          psfex                          [1/4][25%]   :p5:
     astronomy.org          OSKAR                          [0/4][0%]    :p5:
     astronomy.org          losoto                         [1/4][25%]   :p5:
+    astronomy.org          kepler-project                 [0/4][0%]    :p5:
     astronomy.org          julia-backgroundmeshes         [0/4][0%]    :p5:
     astronomy.org          julia-astroimageview           [0/4][0%]    :p5:
     astronomy.org          julia-astroimages              [0/4][0%]    :p5:
     astronomy.org          julia-astrobase                [1/4][25%]   :p5:
+    astronomy.org          inistarter                     [0/4][0%]    :p5:
     astronomy.org          indi-service-type              [/][%]       :p5:
     astronomy.org          INDIGO                         [0/4]        :p5:
     astronomy.org          indi-3rdparty                  [0/4][0%]    :p5:
     astronomy.org          IDAstroL                       [/][%]       :p5:
     astronomy.org          HEAsoft                        [0/4][0%]    :p5:
     astronomy.org          Ghoul                          [0/4]        :p5:
+    astronomy.org          eqmodgui                       [0/4][0%]    :p5:
     astronomy.org          eclipse                        [0/4][0%]    :p5:
     astronomy.org          CDF                            [0/4][0%]    :p5:
+    astronomy.org          ccdciel                        [0/4][0%]    :p5:
     astronomy.org          astrometry                     [0/4][0%]    :p5:
     astronomy.org          AIPS                           [/][%]       :p5:
     python.org             python-sunpy-sphinx-theme      [0/4][0%]    :p4:
+    python.org             Py3AMF                         [2/4][50%]   :p4:
+    node-xyz.org           jquery                         [/][%]       :p4:
+    node-xyz.org           bootstrap-toggle               [/][%]       :p4:
+    node-xyz.org           bootstrap                      [/][%]       :p4:
+    maths.org              plplot                         [0/0][0%]    :p4:
     maths.org              ducc                           [/][%]       :p4:
     lisp.org               zombie-raptor                  [0/4][0%]    :p4:
     lisp.org               Vacietis                       [/][%]       :p4:
+    lisp.org               cl-rib                         [0/4][0%]    :p4:
+    lisp.org               cl-rabbit                      [0/4][0%]    :p4:
     lisp.org               cl-pkr                         [0/4][0%]    :p4:
+    lisp.org               cl-maxima-client               [0/4][0%]    :p4:
     lisp.org               cl-jscl                        [/][%]       :p4:
     lisp.org               cl-cairo2                      [3/4][75%]   :p4:
     lisp.org               cl-basic-binary-ipc            [0/4][0%]    :p4:
+    julia-xyz.org          julia-unitfulangles            [2/4][50%]   :p4:
+    julia-xyz.org          julia-images                   [0/4][0%]    :p4:
+    julia-xyz.org          julia-imagedistances           [/][%]       :p4:
+    julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p4:
+    julia-xyz.org          julia-dierckx                  [0/4][0%]    :p4:
+    julia-xyz.org          julia-datadeps                 [/][%]       :p4:
     databases.org          reindexer                      [/][%]       :p4:
     astronomy.org          WSClean                        [0/4][0%]    :p4:
     astronomy.org          WCSLIB                         [/][%]       :p4:
@@ -175,8 +202,10 @@
     astronomy.org          Tempo2                         [/][%]       :p4:
     astronomy.org          TCS                            [/][%]       :p4:
     astronomy.org          SuperMongo                     [/][%]       :p4:
+    astronomy.org          SPICE                          [/][%]       :p4:
     astronomy.org          SPC                            [/][%]       :p4:
     astronomy.org          smatch                         [/][%]       :p4:
+    astronomy.org          skychart                       [0/4][0%]    :p4:
     astronomy.org          skycat                         [1/4][25%]   :p4:
     astronomy.org          RPFITS                         [/][%]       :p4:
     astronomy.org          RadialVelocities.              [/][%]       :p4:
@@ -236,19 +265,62 @@
     astronomy.org          Planets.                       [/][%]       :p4:
     astronomy.org          PGPLOT                         [/][%]       :p4:
     astronomy.org          ngmix                          [/][%]       :p4:
+    astronomy.org          NEAT                           [0/5][0%]    :p4:
     astronomy.org          MIRIAD                         [/][%]       :p4:
     astronomy.org          Mathematica                    [/][%]       :p4:
     astronomy.org          LOFARBeam                      [1/4][25%]   :p4:
     astronomy.org          livedata/gridzilla             [/][%]       :p4:
     astronomy.org          Karma                          [/][%]       :p4:
+    astronomy.org          julia-xpa                      [0/4][0%]    :p4:
+    astronomy.org          julia-votables                 [0/4][0%]    :p4:
+    astronomy.org          julia-unitfulastro             [2/4][50%]   :p4:
+    astronomy.org          julia-transits                 [0/4][0%]    :p4:
+    astronomy.org          julia-spice                    [0/4][0%]    :p4:
+    astronomy.org          julia-spectra                  [0/4][0%]    :p4:
+    astronomy.org          julia-skycoords                [0/4][0%]    :p4:
+    astronomy.org          julia-satellitetoolbox         [0/4][0%]    :p4:
+    astronomy.org          julia-satelliteanalysis        [0/4][0%]    :p4:
+    astronomy.org          julia-saoimageds9              [0/4][0%]    :p4:
+    astronomy.org          julia-reproject                [0/4][0%]    :p4:
+    astronomy.org          julia-referenceframerotations  [2/4][50%]   :p4:
+    astronomy.org          julia-pulsarsearch             [0/4][0%]    :p4:
+    astronomy.org          julia-psfmodels                [0/4][0%]    :p4:
+    astronomy.org          julia-progressmeter            [/][%]       :p4:
+    astronomy.org          julia-planck                   [0/4][0%]    :p4:
+    astronomy.org          julia-physicaltrees            [/][%]       :p4:
+    astronomy.org          julia-physicalparticles        [/][%]       :p4:
+    astronomy.org          julia-physicalmeshes           [/][%]       :p4:
+    astronomy.org          julia-photometry               [0/4][0%]    :p4:
+    astronomy.org          julia-photometricfilters       [0/4][0%]    :p4:
+    astronomy.org          julia-paralleloperations       [/][%]       :p4:
+    astronomy.org          julia-orekit                   [/][%]       :p4:
+    astronomy.org          julia-orbits                   [0/4][0%]    :p4:
+    astronomy.org          julia-lombscargle              [0/4][0%]    :p4:
+    astronomy.org          julia-lacosmic                 [0/4][0%]    :p4:
+    astronomy.org          julia-jplephemeris             [0/4][0%]    :p4:
+    astronomy.org          julia-gmat                     [/][%]       :p4:
+    astronomy.org          julia-dustextinction           [0/4][0%]    :p4:
+    astronomy.org          julia-cosmology                [0/4][0%]    :p4:
+    astronomy.org          julia-ccdreduction             [0/4][0%]    :p4:
+    astronomy.org          julia-calceph                  [0/4][0%]    :p4:
+    astronomy.org          julia-boxleastsquares          [0/4][0%]    :p4:
+    astronomy.org          julia-benchmarkplots           [/][%]       :p4:
+    astronomy.org          julia-astroplot                [/][%]       :p4:
+    astronomy.org          julia-astronbodysim            [/][%]       :p4:
+    astronomy.org          julia-astroio                  [/][%]       :p4:
+    astronomy.org          julia-astrodynpropagators      [/][%]       :p4:
+    astronomy.org          julia-astrodynplots            [/][%]       :p4:
+    astronomy.org          julia-astrodynamics            [/][%]       :p4:
     astronomy.org          IRAF                           [/][%]       :p4:
     astronomy.org          InterSat                       [/][%]       :p4:
     astronomy.org          INTER                          [/][%]       :p4:
     astronomy.org          IIPImage                       [1/4][25%]   :p4:
     astronomy.org          IDL                            [/][%]       :p4:
     astronomy.org          HEASARC                        [/][%]       :p4:
+    astronomy.org          HEALPix                        [1/4][25%]   :p4:
     astronomy.org          GIPSY                          [/][%]       :p4:
     astronomy.org          Gildas                         [/][%]       :p4:
+    astronomy.org          gammapy                        [0/4][0%]    :p4:
     astronomy.org          FTOOLS                         [/][%]       :p4:
     astronomy.org          ftools-fv                      [1/4][25%]   :p4:
     astronomy.org          FITS                           [/][%]       :p4:
@@ -263,75 +335,9 @@
     astronomy.org          CASAcore                       [/][%]       :p4:
     astronomy.org          ATOMS                          [/][%]       :p4:
     astronomy.org          ATELIB                         [/][%]       :p4:
+    astronomy.org          astrometry.net                 [0/4][0%]    :p4:
     astronomy.org          ASKAPSoft                      [/][%]       :p4:
     astronomy.org          ASAP                           [/][%]       :p4:
-    python.org             Py3AMF                         [2/4][50%]   :p3:
-    pascal.org             voc                            [/][%]       :p3:
-    node-xyz.org           jquery                         [/][%]       :p3:
-    node-xyz.org           bootstrap-toggle               [/][%]       :p3:
-    node-xyz.org           bootstrap                      [/][%]       :p3:
-    maths.org              plplot                         [0/0][0%]    :p3:
-    lisp.org               cl-rib                         [0/4][0%]    :p3:
-    lisp.org               cl-rabbit                      [0/4][0%]    :p3:
-    lisp.org               cl-maxima-client               [0/4][0%]    :p3:
-    julia-xyz.org          julia-unitfulangles            [2/4][50%]   :p3:
-    julia-xyz.org          julia-images                   [0/4][0%]    :p3:
-    julia-xyz.org          julia-imagedistances           [/][%]       :p3:
-    julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]   :p3:
-    julia-xyz.org          julia-dierckx                  [0/4][0%]    :p3:
-    julia-xyz.org          julia-datadeps                 [/][%]       :p3:
-    golang.org             bykof/go-plantuml              [/][%]       :p3:
-    emacs-xyz.org          org-roam-ui                    [/][%]       :p3:
-    docker.org             dive                           [0/4][0%]    :p3:
-    astronomy.org          SPICE                          [/][%]       :p3:
-    astronomy.org          python-radiospectra            [/][%]       :p3:
-    astronomy.org          python-ndcube                  [1/4][25%]   :p3:
-    astronomy.org          NEAT                           [0/5][0%]    :p3:
-    astronomy.org          kepler-project                 [0/4][0%]    :p3:
-    astronomy.org          julia-xpa                      [0/4][0%]    :p3:
-    astronomy.org          julia-votables                 [0/4][0%]    :p3:
-    astronomy.org          julia-unitfulastro             [2/4][50%]   :p3:
-    astronomy.org          julia-transits                 [0/4][0%]    :p3:
-    astronomy.org          julia-spice                    [0/4][0%]    :p3:
-    astronomy.org          julia-spectra                  [0/4][0%]    :p3:
-    astronomy.org          julia-skycoords                [0/4][0%]    :p3:
-    astronomy.org          julia-satellitetoolbox         [0/4][0%]    :p3:
-    astronomy.org          julia-satelliteanalysis        [0/4][0%]    :p3:
-    astronomy.org          julia-saoimageds9              [0/4][0%]    :p3:
-    astronomy.org          julia-reproject                [0/4][0%]    :p3:
-    astronomy.org          julia-referenceframerotations  [2/4][50%]   :p3:
-    astronomy.org          julia-pulsarsearch             [0/4][0%]    :p3:
-    astronomy.org          julia-psfmodels                [0/4][0%]    :p3:
-    astronomy.org          julia-progressmeter            [/][%]       :p3:
-    astronomy.org          julia-planck                   [0/4][0%]    :p3:
-    astronomy.org          julia-physicaltrees            [/][%]       :p3:
-    astronomy.org          julia-physicalparticles        [/][%]       :p3:
-    astronomy.org          julia-physicalmeshes           [/][%]       :p3:
-    astronomy.org          julia-photometry               [0/4][0%]    :p3:
-    astronomy.org          julia-photometricfilters       [0/4][0%]    :p3:
-    astronomy.org          julia-paralleloperations       [/][%]       :p3:
-    astronomy.org          julia-orekit                   [/][%]       :p3:
-    astronomy.org          julia-orbits                   [0/4][0%]    :p3:
-    astronomy.org          julia-lombscargle              [0/4][0%]    :p3:
-    astronomy.org          julia-lacosmic                 [0/4][0%]    :p3:
-    astronomy.org          julia-jplephemeris             [0/4][0%]    :p3:
-    astronomy.org          julia-gmat                     [/][%]       :p3:
-    astronomy.org          julia-dustextinction           [0/4][0%]    :p3:
-    astronomy.org          julia-cosmology                [0/4][0%]    :p3:
-    astronomy.org          julia-ccdreduction             [0/4][0%]    :p3:
-    astronomy.org          julia-calceph                  [0/4][0%]    :p3:
-    astronomy.org          julia-boxleastsquares          [0/4][0%]    :p3:
-    astronomy.org          julia-benchmarkplots           [/][%]       :p3:
-    astronomy.org          julia-astroplot                [/][%]       :p3:
-    astronomy.org          julia-astronbodysim            [/][%]       :p3:
-    astronomy.org          julia-astroio                  [/][%]       :p3:
-    astronomy.org          julia-astrodynpropagators      [/][%]       :p3:
-    astronomy.org          julia-astrodynplots            [/][%]       :p3:
-    astronomy.org          julia-astrodynamics            [/][%]       :p3:
-    astronomy.org          HEALPix                        [1/4][25%]   :p3:
-    astronomy.org          gammapy                        [0/4][0%]    :p3:
-    astronomy.org          BayesicFitting                 [2/4][50%]   :p3:
-    astronomy.org          astrometry.net                 [0/4][0%]    :p3:
     python.org             python-towncrier               [1/4][25%]   :p1:
     python.org             python-sphinx-changelog        [0/4][0%]    :p1:
     python.org             python-sphinx-automodapi       [1/4][25%]   :p1:
@@ -343,20 +349,20 @@
     julia-xyz.org          julia-snoopprecompile          [0/4][0%]    :p1:
     julia-xyz.org          julia-loopvectorization        [0/4][0%]    :p1:
     golang.org             miller                         [1/5][20%]   :p1:
-    golang.org             go/tools/gopls                 [/][%]       :p1:
     golang.org             caddy                          [0/4][0%]    :p1:
     astronomy.org          uvsph                          [/][%]       :p1:
     astronomy.org          Torus                          [1/4][25%]   :p1:
-    astronomy.org          tempo                          [/][%]       :p1:
     astronomy.org          SiriLic                        [0/4][0%]    :p1:
     astronomy.org          python-yt                      [0/4][0%]    :p1:
-    astronomy.org          python-specutils               [0/4][0%]    :p1:
+    astronomy.org          python-sunpy-soar              [1/4][25%]   :p1:
+    astronomy.org          python-specutils               [1/4][25%]   :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
     astronomy.org          python-sdasws                  [0/4][0%]    :p1:
+    astronomy.org          python-radiospectra            [0/4][0%]    :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
+    astronomy.org          python-ndcube                  [2/4][50%]   :p1:
     astronomy.org          python-hissw                   [1/4][25%]   :p1:
     astronomy.org          python-chiantipy               [0/4][0%]    :p1:
-    astronomy.org          python-casacore                [1/4][25%]   :p1:
     astronomy.org          python-astroplan               [2/4][50%]   :p1:
     astronomy.org          python-aiapy                   [0/4][0%]    :p1:
     astronomy.org          phantom                        [0/4][0%]    :p1:
@@ -397,19 +403,13 @@
     golang.org             hashicorp/terraform            [0/4][0%]    
     golang.org             hashicorp/nomad                [0/4][0%]    
     golang.org             gin-gonic/gin                  [1/4][25%]   
-    astronomy.org          VisiOmatic                     [0/4][0%]    
-    astronomy.org          virtualplanet                  [/][%]       
-    astronomy.org          virtualmoon                    [/][%]       
     astronomy.org          updates-2023-12                [1/3][33%]   
     astronomy.org          tangos                         [0/4][0%]    
-    astronomy.org          skychart                       [0/4][0%]    
     astronomy.org          python-spacepy                              
     astronomy.org          python-sep                     [4/4][100%]  
     astronomy.org          python-extinction              [2/4][50%]   
-    astronomy.org          inistarter                     [0/4][0%]    
     astronomy.org          EveryBeam                                   
-    astronomy.org          eqmodgui                       [0/4][0%]    
-    astronomy.org          ccdciel                        [0/4][0%]    
+    astronomy.org          BayesicFitting                 [2/4][50%]   
     
     Completed authors and projects:
     astronomy.org          ALFA                             [4/4][100%]  
@@ -438,7 +438,9 @@
     astronomy.org          python-asdf                      [4/4][100%]  
     astronomy.org          python-asdf-astropy              [3/3][100%]  
     astronomy.org          python-asdf-coordinates-schemas  [1/1][100%]  
+    astronomy.org          python-asdf-fits-schemas         [4/4][100%]  
     astronomy.org          python-asdf-standard             [4/4][100%]  
+    astronomy.org          python-asdf-table-schemas        [1/1][100%]  
     astronomy.org          python-asdf-time-schemas         [4/4][100%]  
     astronomy.org          python-asdf-transform-schemas    [1/1][100%]  
     astronomy.org          python-asdf-unit-schemas         [4/4][100%]  
@@ -481,8 +483,6 @@
     astronomy.org          python-synphot                   [5/5][100%]  
     astronomy.org          python-tweakwcs                  [5/5][100%]  
     astronomy.org          python-wiimatch                  [4/4][100%]  
-    astronomy.org          pyton-asdf-fits-schemas          [4/4][100%]  
-    astronomy.org          pyton-asdf-table-schemas         [1/1][100%]  
     astronomy.org          qfits                            [3/3][100%]  
     astronomy.org          sextractor                       [4/4][100%]  
     astronomy.org          siril                            [4/4][100%]  

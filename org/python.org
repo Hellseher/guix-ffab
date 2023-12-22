@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2023-10-10 Tue 00:38:21 BST>
+#+modified: <2023-12-22 Fri 03:29:24 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -264,7 +264,7 @@ CLOSED: [2023-06-14 Wed 19:24]
 ** TODO StdCarrot [0/1][0%] :author:
 - https://github.com/StdCarrot
 
-*** TODO Py3AMF [2/4][50%] :p3:
+*** TODO Py3AMF [2/4][50%] :p4:
 - https://github.com/StdCarrot/Py3AMF
 - [X] :packed <2022-04-24 Sun>
 - [ ] :patch-sent

@@ -1,39 +1,9 @@
 #+title: gnu/packages/golang
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2022-11-22 Tue 21:37:36 GMT>
+#+modified: <2023-12-22 Fri 03:30:40 GMT>
 
 * Flow [1/8][12%]
-** TODO go/tools/gopls [/][%] :p1:
-- https://go.googlesource.com/tools
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [-] :inputs [3/7][42%]
-  + [X] github.com/sergi/go-diff/diffmatchpatch
-  + [ ] golang.org/x/mod
-    - [ ] modfile
-    - [ ] module
-    - [ ] server
-  + [X] golang.org/x/sync/errgroup
-  + [ ] golang.org/x/sys/execabs
-  + [X] golang.org/x/xerrors
-  + [-] mvdan.cc/gofumpt/format [2/4][50%]
-    - [X] :packed <2021-07-10 Sat>
-    - [ ] :patch-sent
-    - [ ] :patch-applied-upstream
-    - [X] :inputs [4/4][100%]
-      + [X] go-github-com-google-go-cmp-cmp
-      + [X] go-github-com-rogpeppe-go-internal
-      + [X] gopkg-in-errgo-fmt-errors
-      + [X] golang.org/x/mod
-        - [X] modfile
-        - [X] module
-        - [X] server
-  + [-] mvdan.cc/xurls/v2 [1/3][33%]
-    + [X] :packed <2021-07-10 Sat>
-    + [ ] :patch-sent
-    + [ ] :patch-applied-upstream
-** TODO bykof/go-plantuml [/][%] :p3:
+** TODO bykof/go-plantuml [/][%] :p5:
 - https://github.com/bykof/go-plantuml
 ** TODO FiloSottile [0/1][0%] :author:
 *** TODO age [/][%] :p5:

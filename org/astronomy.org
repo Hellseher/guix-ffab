@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-21 Thu 16:00:13 GMT>
+#+modified: <2023-12-22 Fri 03:27:53 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -367,20 +367,20 @@ CLOSED: [2023-11-01 Wed 23:55]
 ** TODO ap-i [1/7][14%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
-*** TODO ccdciel [0/4][0%]
+*** TODO ccdciel [0/4][0%] :p5:
 - https://github.com/pchev/ccdciel
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO eqmodgui [0/4][0%]
+*** TODO eqmodgui [0/4][0%] :p5:
 - https://github.com/pchev/eqmodgui
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** TODO inistarter [0/4][0%]
+*** TODO inistarter [0/4][0%] :p5:
 - https://github.com/pchev/indistarter
 - [ ] :packed
 - [ ] :patch-sent
@@ -395,30 +395,38 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [X] :paptch-applied-upstream <2021-01-25 Mon>
   + https://issues.guix.gnu.org/46045
 
-*** TODO skychart [0/4][0%]
+*** TODO skychart [0/4][0%] :p4:
 - https://github.com/pchev/skychart
 - synopsis :: SkyChart / Cartes du Ciel Free software to draw sky charts
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [5/12][41%]
+- [-] :inputs [3/13][23%]
   + [X] fpc
   + [X] lazarus
   + [ ] indistarter
-  + [X] xplanet
+  + [ ] xplanet
   + [ ] indi
   + [ ] sqlite
-  + [ ] skychart-data-stars
- - [ ], skychart-data-dso, skychart-data-pictures
-  + [X] espeak
+  + [X] skychart-data-stars
+  + [ ] skychart-data-dso, skychart-data-pictures
+  + [ ] espeak
   + [ ] chealpix
-  + [X] libpasastro
+  + [ ] libpasastro
   + [ ] libqt5pas1
   + [ ] libglib2
 
-*** TODO virtualmoon [/][%]
+*** TODO virtualmoon [0/4][0%] :p5:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
 
-*** TODO virtualplanet [/][%]
+*** TODO virtualplanet [0/4][0%] :p5:
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
 ** TODO aroffringa [2/3][66%] :author:
 - https://gitlab.com/aroffringa
 - author :: André Offringa
@@ -484,7 +492,7 @@ CLOSED: [2022-11-21 Mon 20:43]
 - [X] :inputs [2/2][100%]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** DONE pyton-asdf-fits-schemas [4/4][100%]
+*** DONE python-asdf-fits-schemas [4/4][100%]
 CLOSED: [2022-11-21 Mon 20:42]
 - https://github.com/asdf-format/asdf-fits-schemas
 - [X] :packed <2022-10-23 Sun>
@@ -510,7 +518,7 @@ CLOSED: [2022-11-21 Mon 20:41]
   - [X] python-pypa-build
   - [X] python-setuptools
   - [X] python-setuptools-scm
-*** DONE pyton-asdf-table-schemas [1/1][100%]
+*** DONE python-asdf-table-schemas [1/1][100%]
 - https://github.com/asdf-format/asdf-table-schemas
 - [X] :packed
 *** DONE python-asdf-time-schemas [4/4][100%]
@@ -843,20 +851,20 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-setuptools-scm
   - [X] python-shapely
 
-*** TODO python-specutils [0/4][0%] :p1:
+*** TODO python-specutils [1/4][25%] :p1:
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [10/11][90%]
+- [X] :inputs [11/11][100%]
   - [X] python-asdf
   - [X] python-asdf-astropy
   - [X] python-astropy
   - [X] python-gwcs
   - [X] python-matplotlib
-  - [ ] python-ndcube
-    - [ ] :packed
+  - [X] python-ndcube
+    - [X] :packed <2023-12-22 Fri>
   - [X] python-pytest-astropy
   - [X] python-spectral-cube
   - [X] python-stdatamodels
@@ -1043,7 +1051,7 @@ CLOSED: [2023-12-19 Tue 00:47]
   - [X] readline
   - [X] wcslib (4.20 or later)
 
-*** TODO python-casacore [1/4][25%] :p1:
+*** TODO python-casacore [1/4][25%] :p5:
 - https://github.com/casacore/python-casacore
 - synopsis :: Python bindings for casacore, a library used in radio astronomy
 - [ ] :packed <2022-06-24 Fri>
@@ -1120,13 +1128,12 @@ CLOSED: [2023-12-19 Tue 00:47]
   plane
 
 ** TODO dokester [0/1][0%] :author:
-*** TODO BayesicFitting [2/4][50%] :p3:
+*** TODO BayesicFitting [2/4][50%]
 - https://github.com/dokester/BayesicFitting
 - [X] :packed <2022-11-06 Sun>
 - [X] :patch-sent <2023-05-30 Tue>
-- [ ] :paptch-applied-upstream
+- [ ] :paptch-applied-upstream <2023-06-14 Wed>
   - https://issues.guix.gnu.org/63806
-- [ ] :patch-applied-upstream
 - [X] :inputs [5/5][100%]
   - [X] python-astropy
   - [X] python-future
@@ -1135,7 +1142,7 @@ CLOSED: [2023-12-19 Tue 00:47]
   - [X] python-scipy
 
 ** TODO dstndstn [0/1][0%] :author:
-*** TODO astrometry.net [0/4][0%] :p3:
+*** TODO astrometry.net [0/4][0%] :p4:
 - https://github.com/dstndstn/astrometry.net
 - [ ] :packed
 - [ ] :patch-sent
@@ -1228,7 +1235,7 @@ CLOSED: [2022-11-14 Mon 20:33]
 ** TODO Gammapy [0/1][0%] :author:
 - https://gammapy.org/
 - https://github.com/gammapy/gammapy
-*** TODO gammapy [0/4][0%] :p3:
+*** TODO gammapy [0/4][0%] :p4:
 - https://github.com/gammapy/gammapy
 - [ ] :packed
 - [ ] :patch-sent
@@ -1306,7 +1313,7 @@ CLOSED: [2021-12-18 Sat 16:12]
 ** TODO icyphy [0/1][0%] :author:
 - https://github.com/icyphy
 - author :: Industrial Cyberphysical Systems (iCyPhy)
-*** TODO kepler-project [0/4][0%] :p3:
+*** TODO kepler-project [0/4][0%] :p5:
 - https://kepler-project.org/users/downloads.html
 - https://github.com/icyphy/kepler-build/releases/
 - [ ] :packed
@@ -1503,7 +1510,7 @@ CLOSED: [2023-03-03 Fri 21:17]
   - [ ] julia-nearestneighbors
   - [ ] julia-statsbase
 
-*** TODO julia-boxleastsquares [0/4][0%] :p3:
+*** TODO julia-boxleastsquares [0/4][0%] :p4:
 - https://github.com/JuliaAstro/BoxLeastSquares.jl
 - synopsis :: Tophats at ludicrous speeds.
 - [ ] :packed
@@ -1514,13 +1521,13 @@ CLOSED: [2023-03-03 Fri 21:17]
     - [ ] :packed
   - [ ] julia-recipesbase
 
-*** TODO julia-calceph [0/4][0%] :p3:
+*** TODO julia-calceph [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-ccdreduction [0/4][0%] :p3:
+*** TODO julia-ccdreduction [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1539,13 +1546,13 @@ CLOSED: [2023-02-10 Fri 23:48]
     - [X] :packed <2023-01-13 Fri>
   - [X] julia-aqua
 
-*** TODO julia-cosmology [0/4][0%] :p3:
+*** TODO julia-cosmology [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-dustextinction [0/4][0%] :p3:
+*** TODO julia-dustextinction [0/4][0%] :p4:
 - https://github.com/JuliaAstro/DustExtinction.jl
 - synopsis :: Models for interstellar dust extinction
 - [ ] :packed
@@ -1606,73 +1613,73 @@ CLOSED: [2023-02-10 Fri 23:47]
   - [X] julia-cfitsio
     - [X] :packed<2022-12-04 Sun>
 
-*** TODO julia-jplephemeris [0/4][0%] :p3:
+*** TODO julia-jplephemeris [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-lacosmic [0/4][0%] :p3:
+*** TODO julia-lacosmic [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-lombscargle [0/4][0%] :p3:
+*** TODO julia-lombscargle [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-orbits [0/4][0%] :p3:
+*** TODO julia-orbits [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-photometricfilters [0/4][0%] :p3:
+*** TODO julia-photometricfilters [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-photometry [0/4][0%] :p3:
+*** TODO julia-photometry [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-planck [0/4][0%] :p3:
+*** TODO julia-planck [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-psfmodels [0/4][0%] :p3:
+*** TODO julia-psfmodels [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-pulsarsearch [0/4][0%] :p3:
+*** TODO julia-pulsarsearch [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-reproject [0/4][0%] :p3:
+*** TODO julia-reproject [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-saoimageds9 [0/4][0%] :p3:
+*** TODO julia-saoimageds9 [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-skycoords [0/4][0%] :p3:
+*** TODO julia-skycoords [0/4][0%] :p4:
 - https://github.com/JuliaAstro/SkyCoords.jl
 - synopsis :: Astronomical coordinate systems in Julia
 - [ ] :packed
@@ -1687,25 +1694,25 @@ CLOSED: [2023-02-10 Fri 23:47]
   - [ ] julia-accessors
     - [ ] :packed
 
-*** TODO julia-spectra [0/4][0%] :p3:
+*** TODO julia-spectra [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-spice [0/4][0%] :p3:
+*** TODO julia-spice [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-transits [0/4][0%] :p3:
+*** TODO julia-transits [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [ ] :inputs [/][%]
 
-*** TODO julia-unitfulastro [2/4][50%] :p3:
+*** TODO julia-unitfulastro [2/4][50%] :p4:
 - https://github.com/JuliaAstro/UnitfulAstro.jl
 - sinopsys :: An extension of Unitful.jl for astronomers
 - [X] :packed <2023-12-11 Mon>
@@ -1716,7 +1723,7 @@ CLOSED: [2023-02-10 Fri 23:47]
   - [X] julia-unitfulangles
     - [X] :packed <2023-12-11 Mon>
 
-*** TODO julia-votables [0/4][0%] :p3:
+*** TODO julia-votables [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1734,7 +1741,7 @@ CLOSED: [2023-02-15 Wed 21:47]
     - [X] :packed <2022-12-05 Mon>
   - [X] julia-constructionbase
 
-*** TODO julia-xpa [0/4][0%] :p3:
+*** TODO julia-xpa [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
@@ -1742,31 +1749,31 @@ CLOSED: [2023-02-15 Wed 21:47]
 
 ** TODO JuliaAstroSim [0/9][0%] :author:
 - https://github.com/JuliaAstroSim
-*** TODO julia-astroio [/][%] :p3:
-*** TODO julia-astronbodysim [/][%] :p3:
-*** TODO julia-astroplot [/][%] :p3:
-*** TODO julia-benchmarkplots [/][%] :p3:
-*** TODO julia-paralleloperations [/][%] :p3:
-*** TODO julia-physicalmeshes [/][%] :p3:
-*** TODO julia-physicalparticles [/][%] :p3:
-*** TODO julia-physicaltrees [/][%] :p3:
-*** TODO julia-progressmeter [/][%] :p3:
+*** TODO julia-astroio [/][%] :p4:
+*** TODO julia-astronbodysim [/][%] :p4:
+*** TODO julia-astroplot [/][%] :p4:
+*** TODO julia-benchmarkplots [/][%] :p4:
+*** TODO julia-paralleloperations [/][%] :p4:
+*** TODO julia-physicalmeshes [/][%] :p4:
+*** TODO julia-physicalparticles [/][%] :p4:
+*** TODO julia-physicaltrees [/][%] :p4:
+*** TODO julia-progressmeter [/][%] :p4:
 ** TODO JuliaSpace [0/8][0%] :author:
 - https://github.com/JuliaSpace
-*** TODO julia-satellitetoolbox [0/4][0%] :p3:
+*** TODO julia-satellitetoolbox [0/4][0%] :p4:
 - https://github.com/JuliaSpace/SatelliteToolbox.jl
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO julia-satelliteanalysis [0/4][0%] :p3:
+*** TODO julia-satelliteanalysis [0/4][0%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-*** TODO julia-referenceframerotations [2/4][50%] :p3:
+*** TODO julia-referenceframerotations [2/4][50%] :p4:
 - https://github.com/JuliaSpace/ReferenceFrameRotations.jl
 - synopsis :: Toolbox to represent 3D rotations of coordinate frames for Julia.
 - [X] :packed <2023-02-18 Sat>
@@ -1775,29 +1782,29 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [X] :inputs [2/2][100%]
   - [X] julia-crayons
   - [X] julia-staticarrays
-*** TODO julia-orekit [/][%] :p3:
+*** TODO julia-orekit [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO julia-gmat [/][%] :p3:
+*** TODO julia-gmat [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-*** TODO julia-astrodynamics [/][%] :p3:
+*** TODO julia-astrodynamics [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO julia-astrodynpropagators [/][%] :p3:
+*** TODO julia-astrodynpropagators [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-*** TODO julia-astrodynplots [/][%] :p3:
+*** TODO julia-astrodynplots [/][%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -1937,7 +1944,7 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
 
-*** TODO HEALPix [1/4][25%] :p3:
+*** TODO HEALPix [1/4][25%] :p4:
 - https://healpix.jpl.nasa.gov/
 - https://healpix.sourceforge.io/
 - [ ] :packed
@@ -1951,7 +1958,7 @@ CLOSED: [2023-02-15 Wed 21:47]
   - [X] cfitsio
   - [X] libsharp
   - [X] zlib
-*** TODO SPICE [/][%] :p3:
+*** TODO SPICE [/][%] :p4:
 - https://naif.jpl.nasa.gov/naif/
 
 *** TODO CDF [0/4][0%] :p5:
@@ -2370,7 +2377,7 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] cfitsio
   - [X] gfortran
 
-*** TODO NEAT [0/5][0%] :p3:
+*** TODO NEAT [0/5][0%] :p4:
 - https://github.com/rwesson/NEAT
 - synopsis :: Empirical analysis of ionised nebulae, with uncertainty propagation.
 - [ ] :packed
@@ -2888,7 +2895,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 
 ** TODO NANOGrav [0/1][0%] :author:
 - https://github.com/nanograv
-*** TODO tempo [/][%] :p1:
+*** TODO tempo [/][%] :p5:
 - https://github.com/nanograv/tempo
 - synopsis :: Tempo is a program for pulsar timing data analysis.
 - [ ] :packed
@@ -2917,7 +2924,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO SunPy [4/6][66%] :author:
+** TODO SunPy [4/7][57%] :author:
 - https://sunpy.org/
 - https://github.com/sunpy
 *** DONE python-drms [5/5][100%]
@@ -2963,11 +2970,11 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pytest-mpl
   - [X] python-setuptools-scm
 
-*** TODO python-ndcube [1/4][25%] :p3:
+*** TODO python-ndcube [2/4][50%] :p1:
 - https://github.com/sunpy/ndcube
 - synopsis :: Base package for multi-dimensional contiguous and non-contiguous coordinate-aware
   arrays.
-- [ ] :packed
+- [X] :packed <2023-12-22 Fri>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [12/12][100%]
@@ -2984,8 +2991,23 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-scipy
   - [X] python-sunpy
 
-*** TODO python-radiospectra [/][%] :p3:
+*** TODO python-radiospectra [0/4][0%] :p1:
 - https://github.com/sunpy/radiospectra
+- synopsis :: Provide support for some type of radio spectra on solar physics
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [8/9][88%]
+  - [X] python-cdflib
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest-astropy
+  - [X] python-pytest-doctestplus
+  - [X] python-scipy
+  - [X] python-setuptools-scm
+  - [X] python-sunpy
+  - [ ] python-sunpy-soar
+    - [ ] :packed
 
 *** DONE python-sunpy [3/4][75%]
 CLOSED: [2022-11-25 Fri 21:10]
@@ -3039,6 +3061,16 @@ CLOSED: [2022-11-25 Fri 21:10]
   - [X] python-sqlalchemy
   - [X] python-tqdm
   - [X] python-zeep
+
+*** TODO python-sunpy-soar [1/4][25%] :p1:
+- https://github.com/sunpy/sunpy-soar
+- synopsis :: A sunpy plugin for accessing data in the Solar Orbiter Archive (SOAR).
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [2/2][100%]
+  - [X] python-sunpy
+  - [X] python-pytest
 
 ** TODO SURF [/][%] :author:
 - https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
