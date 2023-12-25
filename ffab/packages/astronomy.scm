@@ -1359,6 +1359,36 @@ based on the HDF5 standard")
 ;; added-to-downstream-guix 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
+;; 20220818T223250+0100
+(define-public python-dust-attenuation
+  ;; No release avaiallbe in PyPI
+  (let ((commit "da48969d6636a37a7520d6390baba56fa93c4dfa")
+        (revision "0"))
+    (package
+      (name "python-dust-attenuation")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/karllark/dust_attenuation")
+               (commit commit)))
+         (sha256
+          (base32 "1d79d3w1mg4phzmr9qb65hdhirb45pghq4k20x88av7sfa1ya5hg"))
+         (file-name (git-file-name name version))))
+      (build-system pyproject-build-system)
+      (propagated-inputs
+       (list python-astropy python-scipy python-matplotlib))
+      (native-inputs
+       (list python-pytest-astropy))
+      (home-page "http://dust-attenuation.readthedocs.io/")
+      (synopsis "Astronomical Dust Attenuation")
+      (description
+       "This package provides astronomical interstellar dust attenuation curves
+implemented using the astropy.modeling framework.")
+      ;; Licence check: https://github.com/karllark/dust_attenuation/issues/56
+      (license #f))))
+
 ;; 20231224T223056+0000
 (define-public python-dust-extinction
   (package
