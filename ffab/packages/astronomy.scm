@@ -911,10 +911,58 @@ celestial-to-terrestrial coordinate transformations.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      ;; FIXME: (Sharlatan-20221107T133443+0000): Failing tests
-      #:tests? #f))
-    (propagated-inputs (list python-astropy python-numpy python-pytz python-six))
-    (native-inputs (list python-pytest-astropy))
+      #:test-flags
+      #~(list "--pyargs" "astroplan"
+              "-m" "not remote_data"
+              "-k" (string-append
+                    ;; Test requiring newer python-pytz
+                    "not test_timezone"
+                    ;; Disable tests require remote data.
+                    " and not test_at_night_basic"
+                    " and not test_observability_table"
+                    " and not test_altitude_constraint"
+                    " and not test_compare_altitude_constraint_and_observer"
+                    " and not test_compare_airmass_constraint_and_observer"
+                    " and not test_galactic_plane_separation"
+                    " and not test_sun_separation"
+                    " and not test_moon_separation"
+                    " and not test_moon_illumination"
+                    " and not test_local_time_constraint_utc"
+                    " and not test_local_time_constraint_hawaii_tz"
+                    " and not test_docs_example"
+                    " and not test_regression_airmass_141"
+                    " and not test_regression_shapes"
+                    " and not test_caches_shapes"
+                    " and not test_eclipses"
+                    " and not test_event_observable"
+                    " and not test_is_night"
+                    " and not test_tonight"
+                    " and not test_observer_lon_lat_el"
+                    " and not test_hash_observer"
+                    " and not test_eq_observer"
+                    " and not test_FixedTarget_from_name"
+                    " and not test_get_skycoord")
+              "--ignore=astroplan/tests/test_scheduling.py")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'prepare-test-environment
+            (lambda _
+              (invoke "python" "setup.py" "build_ext" "--inplace")
+              (call-with-output-file "pytest.ini"
+                (lambda (port)
+                  (format port "[pytest]
+python_files = test_*.py"))))))))
+    (propagated-inputs
+     (list python-astropy
+           python-astroquery
+           python-matplotlib
+           python-numpy
+           python-pytz
+           python-six))
+    (native-inputs
+     (list python-pytest-astropy
+           python-pytest-mpl
+           python-setuptools-scm))
     (home-page "https://github.com/astropy/astroplan")
     (synopsis "Observation planning package for astronomers")
     (description "Observation planning package for astronomers")
