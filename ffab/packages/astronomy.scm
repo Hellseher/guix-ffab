@@ -901,13 +901,13 @@ celestial-to-terrestrial coordinate transformations.")
 (define-public python-astroplan
   (package
     (name "python-astroplan")
-    (version "0.8")
-    (source (origin
-              (method url-fetch)
-              (uri (pypi-uri "astroplan" version))
-              (sha256
-               (base32
-                "1ixx8q4ya7af4br9rs1jmhpivsb0zwqgi7iryxc5ykq39r3n7i0c"))))
+    (version "0.9.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "astroplan" version))
+       (sha256
+        (base32 "0jrgii0f11ckxvywinr9kcsljxnpnkh7hv5638wxwcb1iyjmx36r"))))
     (build-system pyproject-build-system)
     (arguments
      (list
@@ -1386,7 +1386,7 @@ based on the HDF5 standard")
       (description
        "This package provides astronomical interstellar dust attenuation curves
 implemented using the astropy.modeling framework.")
-      ;; Licence check: https://github.com/karllark/dust_attenuation/issues/56
+      ;; XXX: License check: https://github.com/karllark/dust_attenuation/issues/56
       (license #f))))
 
 ;; 20231224T223056+0000
