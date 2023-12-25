@@ -43,3 +43,4 @@ doc/gh-pages
 /tmp
 /git-fix.bash
 /TODO
+/etc/committer.scm

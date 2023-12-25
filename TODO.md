@@ -214,8 +214,6 @@
     astronomy.org          python-pyspedas                [0/4][0%]    :p4:
     astronomy.org          python-jdaviz                  [0/4][0%]    :p4:
     astronomy.org          python-hapiclient              [/][%]       :p4:
-    astronomy.org          python-dust-extinction         [0/4][0%]    :p4:
-    astronomy.org          python-dust-attenuation        [1/4][25%]   :p4:
     astronomy.org          python-amuse-vader             [/][%]       :p4:
     astronomy.org          python-amuse-twobody           [/][%]       :p4:
     astronomy.org          python-amuse-tutorial          [/][%]       :p4:
@@ -355,13 +353,15 @@
     astronomy.org          SiriLic                        [0/4][0%]    :p1:
     astronomy.org          python-yt                      [0/4][0%]    :p1:
     astronomy.org          python-sunpy-soar              [1/4][25%]   :p1:
-    astronomy.org          python-specutils               [1/4][25%]   :p1:
+    astronomy.org          python-specutils               [2/4][50%]   :p1:
     astronomy.org          python-sdmpy                   [/][%]       :p1:
     astronomy.org          python-sdasws                  [0/4][0%]    :p1:
     astronomy.org          python-radiospectra            [0/4][0%]    :p1:
     astronomy.org          python-pvextractor             [0/4][0%]    :p1:
     astronomy.org          python-ndcube                  [2/4][50%]   :p1:
     astronomy.org          python-hissw                   [1/4][25%]   :p1:
+    astronomy.org          python-dust-extinction         [2/4][50%]   :p1:
+    astronomy.org          python-dust-attenuation        [2/4][50%]   :p1:
     astronomy.org          python-chiantipy               [0/4][0%]    :p1:
     astronomy.org          python-astroplan               [2/4][50%]   :p1:
     astronomy.org          python-aiapy                   [0/4][0%]    :p1:

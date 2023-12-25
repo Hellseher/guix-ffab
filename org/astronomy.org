@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-22 Fri 03:27:53 GMT>
+#+modified: <2023-12-25 Mon 00:05:15 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -851,10 +851,10 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-setuptools-scm
   - [X] python-shapely
 
-*** TODO python-specutils [1/4][25%] :p1:
+*** TODO python-specutils [2/4][50%] :p1:
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
-- [ ] :packed
+- [X] :packed <2023-12-22 Fri>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [11/11][100%]
@@ -998,25 +998,25 @@ CLOSED: [2023-12-19 Tue 00:47]
     - [X] python-sgp4
 
 ** TODO karllark [0/2][0%] :author:
-*** TODO python-dust-extinction [0/4][0%] :p4:
-- https://github.com/karllark/dust_extinctionhttps://github.com/karllark/dust_extinction
+*** TODO python-dust-extinction [2/4][50%] :p1:
+- https://github.com/karllark/dust_extinction
 - synopsis :: Astronomical Dust Extinction
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [4/5][80%]
-  - [X] python-astropy
-  - [X] python-pytest
-  - [X] python-pytest-astropy
-  - [ ] python-setuptools-scm
-  - [X] python-scipy
-*** TODO python-dust-attenuation [1/4][25%] :p4:
-- https://github.com/karllark/dust_attenuation
-- synopsis :: Astronomical Dust Attenuation
-- [ ] :packed
+- [X] :packed <2023-12-24 Sun>
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-setuptools-scm
+  - [X] python-scipy
+*** TODO python-dust-attenuation [2/4][50%] :p1:
+- https://github.com/karllark/dust_attenuation
+- synopsis :: Astronomical Dust Attenuation
+- [X] :packed <2023-12-25 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6][100%]
   - [X] python-astropy
   - [X] python-matplotlib
   - [X] python-pytest
@@ -2849,7 +2849,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [14/38][36%]
+- [-] :inputs [15/38][39%]
   - [X] python-asdf
   - [ ] python-asteval
   - [X] python-astropy
@@ -2884,8 +2884,8 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [ ] python-sidecar
     - [ ] :packed
   - [ ] python-specreduce
-  - [ ] python-specutils
-    - [ ] :packed
+  - [X] python-specutils
+    - [X] :packed <2023-12-22 Fri>
   - [ ] python-stdatamodels
   - [ ] python-traitlets
   - [ ] python-vispy
@@ -3424,8 +3424,8 @@ CLOSED: [2023-11-19 Sun 17:02]
 
 ** TODO updates-2023-12 [1/3][33%]
 - date-time :: 20231215T015641+0000
-- commit ::
-- issues ::
+- commit :: 9f24041343b305db612d08ba6b7e64b7cc737edf
+- issues :: https://issues.guix.gnu.org/67915
 - [X] quick [30/30][100%]
   - [X] aocommon :: Update to 0.0.0-2.9272ea3.
   - [X] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
@@ -3457,11 +3457,11 @@ CLOSED: [2023-11-19 Sun 17:02]
   - [X] python-tweakwcs :: would be upgraded from 0.8.3 to 0.8.5
   - [X] splash :: would be upgraded from 3.9.0 to 3.10.1
   - [X] wcslib :: would be upgraded from 8.1 to 8.2.2
-- [ ] pending [0/2][0%]
+- [-] pending [1/2][50%]
   - [ ] python-stsynphot :: Add minial data sources to enable tests.
-  - [ ] python-synphot :: Pack optional packages
-    - [ ] python-dust-extinction
-    - [ ] python-specutils
+  - [X] python-synphot :: Pack optional packages
+    - [X] python-dust-extinction <2023-12-25 Mon>
+    - [X] python-specutils <2023-12-22 Fri>
 - [ ] complex [0/6][0%]
   - [ ] python-sunpy :: would be upgraded from 5.0.1 to 5.1.0. Require more packages to be avaialle:
     - [ ] https://github.com/AndrewAnnex/SpiceyPy
