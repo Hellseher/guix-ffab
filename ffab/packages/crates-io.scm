@@ -27,3 +27,21 @@
   #:use-module (guix packages)
   #:use-module (guix utils)
   #:use-module (srfi srfi-1))
+
+(define-public rust-iso8601-0.4
+  (package
+    (inherit rust-iso8601-0.3)
+    (name "rust-iso8601")
+    (version "0.4.2")
+    (source
+      (origin
+        (method url-fetch)
+        (uri (crate-uri "iso8601" version))
+        (file-name (string-append name "-" version ".tar.gz"))
+        (sha256
+         (base32
+          "15nfg6d4qlniw4gk7039s5y07lzgr1dp9snsw63lsxarnyz4zfg5"))))
+    (arguments
+     `(#:skip-build? #t
+       #:cargo-inputs
+       (("rust-nom" ,rust-nom-7))))))
