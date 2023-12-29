@@ -109,3 +109,30 @@ consistent, and reasonably well performing.")
        #:cargo-inputs
        (("rust-phf" ,rust-phf-0.10)
         ("rust-strum-macros" ,rust-strum-macros-0.25))))))
+
+(define-public rust-speedate-0.13
+  (package
+    (name "rust-speedate")
+    (version "0.13.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "speedate" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "16xi4d98ab3ag7rkba2fv37kk3d0fgg0l287hq4vz36i1z2pcbr4"))))
+    (build-system cargo-build-system)
+    (arguments
+     `(#:cargo-inputs
+       (("rust-strum" ,rust-strum-0.25)
+        ("rust-strum-macros" ,rust-strum-macros-0.25))
+       #:cargo-development-inputs
+       (("rust-chrono" ,rust-chrono-0.4)
+        ("rust-iso8601" ,rust-iso8601-0.4)
+        ("rust-paste" ,rust-paste-1))))
+    (home-page "https://github.com/pydantic/speedate/")
+    (synopsis "Lax RFC 3339 date and time parser")
+    (description
+     "Fast and simple datetime, date, time and duration parsing with relaxations of
+from RFC 3339 are compliant with ISO 8601.")
+    (license license:expat)))
