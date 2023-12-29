@@ -45,3 +45,28 @@
      `(#:skip-build? #t
        #:cargo-inputs
        (("rust-nom" ,rust-nom-7))))))
+
+(define-public rust-heck-0.4
+  (package
+    (name "rust-heck")
+    (version "0.4.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "heck" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "1a7mqsnycv5z4z5vnv1k34548jzmc0ajic7c1j8jsaspnhw5ql4m"))))
+    (build-system cargo-build-system)
+    (arguments
+     `(#:skip-build? #t
+       #:cargo-inputs
+       (("rust-unicode-segmentation" ,rust-unicode-segmentation-1))))
+    (home-page "https://github.com/withoutboats/heck")
+    (synopsis "Case conversion library")
+    (description
+     "This library exists to provide case conversion between common cases like
+CamelCase and snake_case.  It is intended to be unicode aware, internally
+consistent, and reasonably well performing.")
+    (license (list license:asl2.0
+                   license:expat))))
