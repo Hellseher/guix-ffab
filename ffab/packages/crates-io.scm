@@ -91,3 +91,21 @@ consistent, and reasonably well performing.")
         ("rust-quote" ,rust-quote-1)
         ("rust-rustversion" ,rust-rustversion-1)
         ("rust-syn" ,rust-syn-2))))))
+
+(define-public rust-strum-0.25
+  (package
+    (inherit rust-strum-0.24)
+    (name "rust-strum")
+    (version "0.25.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "strum" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "09g1q55ms8vax1z0mxlbva3vm8n2r1179kfvbccnkjcidzm58399"))))
+    (arguments
+     `(#:skip-build? #t
+       #:cargo-inputs
+       (("rust-phf" ,rust-phf-0.10)
+        ("rust-strum-macros" ,rust-strum-macros-0.25))))))
