@@ -70,3 +70,24 @@ CamelCase and snake_case.  It is intended to be unicode aware, internally
 consistent, and reasonably well performing.")
     (license (list license:asl2.0
                    license:expat))))
+
+(define-public rust-strum-macros-0.25
+  (package
+    (inherit rust-strum-macros-0.24)
+    (name "rust-strum-macros")
+    (version "0.25.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (crate-uri "strum_macros" version))
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "184y62g474zqb2f7n16x3ghvlyjbh50viw32p9w9l5lwmjlizp13"))))
+    (arguments
+     `(#:skip-build? #t
+       #:cargo-inputs
+       (("rust-heck" ,rust-heck-0.4)
+        ("rust-proc-macro2" ,rust-proc-macro2-1)
+        ("rust-quote" ,rust-quote-1)
+        ("rust-rustversion" ,rust-rustversion-1)
+        ("rust-syn" ,rust-syn-2))))))
