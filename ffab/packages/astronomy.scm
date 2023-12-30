@@ -34,6 +34,7 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages cmake)
   #:use-module (gnu packages compression)
+  #:use-module (gnu packages shells)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages documentation)
@@ -178,6 +179,67 @@ advanced capabilities such as optimized data searching using index files.")
 ;; (define-public ccfits
 ;; added-to-guix-downstream 6397f1326df8beb68383147cef55728ca876ee7a
 ;; CommitDate: Wed Jul 26 15:33:27 2023 +0200
+
+;; 20231225T161908+0000
+(define-public cspice
+  (package
+    (name "cspice")
+    (version "N0067")
+    (source
+     (origin
+       (method url-fetch)
+       ;; The distribution of the source is split into architecture and platform parts.
+       ;; It should be determined programmatically during fetch.
+       (uri (string-append
+             "https://naif.jpl.nasa.gov/pub/naif/misc/toolkit_"
+             version "/C/PC_Linux_GCC_64bit/packages/cspice.tar.Z"))
+       (sha256
+        (base32 "1kh6vvzdv4j6qz67cdl2p2sjpha3xsypxms0gvz1lbs7lr8mpab0"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:tests? #f ;; no tests provided
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure) ;; no configure
+          ;; Build and install phases were partly sourced from:
+          ;; https://salsa.debian.org/debian-astro-team
+          ;; /cspice/-/blob/debian/debian/Makefile?ref_type=heads
+          ;;
+          ;; XXX: Maybe include proper Makefile with all required targets and
+          ;; patch adding SO builds
+          ;;
+          (replace 'build
+            (lambda _
+              (setenv "TKCOMPILER" #$(cc-for-target))
+              (setenv "TKLINKOPTIONS" "-c -fPIC -DUIOLEN_int -ansi -O2 -DNON_UNIX_STDIO")
+              (setenv "TKLINKOPTIONS" "-lm -Wl,-export-dynamic")
+              (invoke "sh" "makeall.csh")))
+          (replace 'install
+            (lambda _
+              (let* ((out        #$output)
+                     (bindir     (string-append out "/bin"))
+                     (libdir     (string-append out "/lib"))
+                     (includedir (string-append out "/include")))
+                (copy-recursively "exe" bindir)
+                (copy-recursively "include" includedir)
+                (copy-recursively "lib" libdir)))))))
+    (native-inputs
+     (list tcsh))
+    (home-page "https://naif.jpl.nasa.gov/naif/toolkit.html")
+    (synopsis "Spacecraft Planet Instrument C-matrix Events")
+    (description
+     "@acronym{SPICE, Spacecraft Planet Instrument C-matrix Events} is an ancillary
+ information system developed by NASA for planetary science missions.  It enables
+ the computation of geometric and event data required for analyzing and planning
+ scientific observations obtained from spacecraft.  In addition, it plays a
+ crucial role in mission planning and executing various engineering functions
+ necessary for successful mission completion.")
+    (properties
+     '((release-monitoring-url . "https://naif.jpl.nasa.gov/naif/toolkit.html")))
+    ;; There is no attached license but there is some rules of use availalbe.
+    (license (license:non-copyleft
+              "https://naif.jpl.nasa.gov/naif/rules.html"))))
 
 ;; 20230710T213134+0100
 ;; (define-public glnemo2
