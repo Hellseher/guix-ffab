@@ -416,6 +416,29 @@ arbitration and reliable deterministic communication. It is used in cars,
 trucks, boats, wheelchairs and more.")
     (license license:gpl3+)))
 
+;; 20231230T184513+0000
+(define-public python-fastrlock
+  (package
+    (name "python-fastrlock")
+    (version "0.8.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "fastrlock" version))
+       (sha256
+        (base32 "0sim32hnpp3g3dzy903dw7rim72xl5wi6lfq520dzi7rbhhwjkk4"))))
+    (build-system pyproject-build-system)
+    (home-page "https://github.com/scoder/fastrlock")
+    (synopsis "RLock implementation for CPython")
+    (description
+     "FastRLock is a C-level implementation of an optimistic lock for CPython
+ which can be used as a replacement for @code{threading.RLock}.  It is
+implemented in Cython and offers a C-API for direct use from Cython code.  The
+lock is 10x faster than @code{threading.RLock} under normal conditions and 10%
+faster under congestion, making it a faster option than the revised RLock
+implementation in Python 3.2.")
+    (license license:expat)))
+
 ;; 20220513T200612+0100
 ;; (define-public python-parsley
 ;; added-to-downstream-guix 0ce76141bfe52b7c65d6185d036b4eaad2a0f0a3
