@@ -1,5 +1,5 @@
 ;;; GNU Guix --- Functional package management for GNU
-;;; Copyright © 2021-2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+;;; Copyright © 2021-2024 Sharlatan Hellseher <sharlatanus@gmail.com>
 ;;;
 ;;; This file is NOT part of GNU Guix.
 ;;;
@@ -149,41 +149,6 @@ from a single ECU up to whole cars.")
        (uri (pypi-uri "aiofiles" version))
        (sha256
         (base32 "0n8yj2d4srlkrhk72fcnkfb3jkv74a5aghxjhcp3p2i46lrg4d43"))))))
-
-;; 20221104T210916+0000
-(define-public python-portalocker
-  (package
-    (name "python-portalocker")
-    (version "2.6.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "portalocker" version))
-       (sha256
-        (base32
-         "0fbvx46nix49vpriipsdskbw2243gp9rxsdw69flp9s2zcq6hkwn"))))
-    (build-system python-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "pytest" "-vv")))))))
-    (native-inputs
-     (list python-pytest
-           python-pytest-cov
-           python-pytest-flake8
-           python-pytest-mypy
-           python-redis
-           python-sphinx))
-    (home-page "https://github.com/WoLpH/portalocker")
-    (synopsis "Python library to provide an API to file locking")
-    (description
-     "This package provides POSIX file locking with support of Redis to
-distibute locks across multiple computers.")
-    (license license:psfl)))
 
 ;; 20231022T002437+0100
 (define-public python-av
@@ -493,48 +458,6 @@ implementation in Python 3.2.")
 ;; (define-public parfive
 ;; added-to-downstream-guix 472917ea6c479b3546ffaea02f755ed9c6e8d46b
 ;; CommitDate: Mon Nov 7 20:29:21 2022 +0100
-
-;; 20221109T101311+0000
-(define-public python-towncrier
-  (package
-    (name "python-towncrier")
-    (version "22.12.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "towncrier" version))
-       (sha256
-        (base32 "0k83cisk139v28mjsa819b8qz733q45lr45f0bm9lsk4bzkxfjcw"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; FIXME: (Sharlatan-20221109T225359+0000): Failing test
-          ;;
-          ;; E   twisted.trial.unittest.FailTest: False is not true
-          ;;
-          (add-before 'check 'disable-failing-tests
-            (lambda _
-              (substitute* "src/towncrier/test/test_project.py"
-                (("def test_version")  "def __off_test_version")))))))
-    (propagated-inputs
-     (list python-click
-           python-click-default-group
-           python-incremental
-           python-jinja2
-           python-tomli))
-    (native-inputs (list python-packaging python-twisted python-pytest git))
-    (home-page "https://github.com/twisted/towncrier")
-    (synopsis "Manage the release notes for your project")
-    (description
-     "@code{towncrier} is a utility to produce useful, summarized news files
-(also known as changelogs) for your project.
-
-Rather than reading the Git history, or having one single file which developers
-all write to and produce merge conflicts, @code{towncrier} reads \"news
-fragments\" which contain information useful to end users.")
-    (license license:expat)))
 
 ;; 20231012T020416+0100
 (define-public python-canalystii
