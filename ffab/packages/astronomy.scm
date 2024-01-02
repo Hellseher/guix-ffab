@@ -954,6 +954,43 @@ Dates (astropy.time)} to provide UT1 values, and the polar motions are used in
 celestial-to-terrestrial coordinate transformations.")
     (license license:bsd-3)))
 
+;; 20240102T003000+0000
+(define-public python-radiospectra
+  (package
+    (name "python-radiospectra")
+    (version "0.4.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "radiospectra" version))
+       (sha256
+        (base32 "0gq61ywk7li0gxwmp4hp2hc4zbrlqgn8zy0sz24qh55kn5l5gxjr"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-home-env
+            (lambda _
+              ;; Tests require HOME to be set.
+              ;;  Permission denied: '/homeless-shelter'
+              (setenv "HOME" "/tmp"))))))
+    (propagated-inputs
+     (list python-cdflib
+           python-matplotlib
+           python-numpy
+           python-scipy
+           python-sunpy))
+    (native-inputs
+     (list python-pytest-astropy
+           python-setuptools-scm
+           python-sunpy-soar))
+    (home-page "https://sunpy.org")
+    (synopsis "Support for radio spectra on solar physics")
+    (description
+     "Provide support for some type of radio spectra in solar physics")
+    (license license:bsd-2)))
+
 ;; 20221123T230513+0000
 ;; (define-public python-reproject
 ;; added-to-downstream-guix a3d85918f90e31118bc9b7e483520d0ae6192e3d
