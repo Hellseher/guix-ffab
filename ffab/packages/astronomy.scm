@@ -1464,6 +1464,52 @@ based on the HDF5 standard")
 ;; added-to-downstream-guix 78ee6dcfe13c1561ff1d5cdfc2c2d4fa8afe0883
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
+;; 20240102T001734+0000
+(define-public python-sunpy-soar
+  (package
+    (name "python-sunpy-soar")
+    (version "1.10")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "sunpy-soar" version))
+       (sha256
+        (base32 "0pb7dr06n20hdhlqf8npb4j1qb5034cgwqi3iciqdi1wxyy5pjc6"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      ;; Disabe test requireing access to the internet.
+      ;; Temporary failure in name resolution>. Retrying with different url and
+      ;; port.
+      #~(list "-k" (string-append "not test_search"
+                                  " and not test_search_low_latency"
+                                  " and not test_insitu_search"
+                                  " and not test_no_results"
+                                  " and not test_no_instrument"
+                                  " and not test_download_path"
+                                  " and not test_search_soop"
+                                  " and not test_when_soar_provider_passed"
+                                  " and not test_when_sdac_provider_passed"
+                                  " and not test_when_wrong_provider_passed"))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'set-home-env
+            (lambda _
+              ;; Tests require HOME to be set.
+              ;;  Permission denied: '/homeless-shelter'
+              (setenv "HOME" "/tmp"))))))
+    (propagated-inputs
+     (list python-sunpy))
+    (native-inputs
+     (list python-pytest))
+    (home-page "https://docs.sunpy.org/projects/soar")
+    (synopsis "Solar Orbiter Archive plugin for SunPy")
+    (description
+     "This package provides a @code{sunpy} FIDO plugin for accessing data in the
+@acronym{Solar Orbiter Archive, SOAR}.")
+    (license license:bsd-2)))
+
 ;;20220627T213949+0100
 ;; (define-public python-drms
 ;; added-to-downstream-guix 3271fa1f402e497ff1de9cc2dbc2b09e1a32078f
