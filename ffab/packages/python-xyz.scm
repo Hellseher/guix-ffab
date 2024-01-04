@@ -427,6 +427,39 @@ faster under congestion, making it a faster option than the revised RLock
 implementation in Python 3.2.")
     (license license:expat)))
 
+;; 20240104T162846+0000
+(define-public python-inquirerpy
+  (package
+    (name "python-inquirerpy")
+    (version "0.3.4")
+    (source
+     (origin
+       (method git-fetch) ; 0.3.4 is missed in PyPI
+       (uri (git-reference
+             (url "https://github.com/kazhala/InquirerPy")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "01s1wpsfsjxd1vpvhrz9b5314fml8kg11a3fiqnrzqqlf5j33782"))))
+    (build-system pyproject-build-system)
+    (arguments
+     ;; XXX: Tests failed a lot and the project looks dorman.
+     ;; https://github.com/kazhala/InquirerPy/issues/62
+     ;; https://github.com/kazhala/InquirerPy/issues/61
+      `(#:tests? #f))
+    (propagated-inputs
+     (list python-myst-parser
+           python-pfzy
+           python-prompt-toolkit))
+    (native-inputs
+     (list python-poetry-core))
+    (home-page "https://github.com/kazhala/InquirerPy")
+    (synopsis "Python port of Inquirer.js")
+    (description
+     "This package provides a Python port of Inquirer.js - a collection of common
+interactive CLIs.")
+    (license license:expat)))
+
 ;; 20220513T200612+0100
 ;; (define-public python-parsley
 ;; added-to-downstream-guix 0ce76141bfe52b7c65d6185d036b4eaad2a0f0a3
