@@ -290,6 +290,29 @@ EDU SDK.
 @end itemize")
     (license license:expat)))
 
+;; 20240104T162509+0000
+(define-public python-pfzy
+  (package
+    (name "python-pfzy")
+    (version "0.3.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pfzy" version))
+       (sha256
+        (base32 "1wdkjkmwwg920ybmr46m1jry06fqxyc2v2r9wwc3ddhhvmjsfzki"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-myst-parser))
+    (native-inputs
+     (list python-poetry-core python-pytest))
+    (home-page "https://github.com/kazhala/pfzy")
+    (synopsis "Python port of the fzy fuzzy string matching algorithm")
+    (description
+     "This package provides a Python port of the @code{fzy} fuzzy string matching
+ algorithm.")
+    (license license:expat)))
+
 ;; 20221104T210922+0000
 (define-public python-py3amf
   (package
