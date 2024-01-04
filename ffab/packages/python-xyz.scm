@@ -449,6 +449,26 @@ implementation in Python 3.2.")
 ;; added-to-downstream-guix 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
 ;; CommitDate: Mon Nov 7 20:29:18 2022 +0100
 
+;; 20240104T155647+0000
+(define-public python-types-pyyaml
+  (package
+    (name "python-types-pyyaml")
+    (version "6.0.12.12")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "types-PyYAML" version))
+       (sha256
+        (base32 "0qjhhphqjql5xf9lbcb7472i1yl531kg3hzmbbwzvq7xjb9p6hrk"))))
+    (build-system pyproject-build-system)
+    (home-page "https://github.com/python/typeshed")
+    (synopsis "Typing stubs for @code{pyyaml}")
+    (description
+     "This package contains typing stubs for @code{pyyaml}, a
+very small subset the Python stubs contained in the complete @code{pyyaml}
+collection.")
+    (license license:asl2.0)))
+
 ;; 20240104T155342+0000
 (define-public python-types-simplejson
   (package
