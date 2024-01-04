@@ -449,6 +449,26 @@ implementation in Python 3.2.")
 ;; added-to-downstream-guix 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
 ;; CommitDate: Mon Nov 7 20:29:18 2022 +0100
 
+;; 20240104T155342+0000
+(define-public python-types-simplejson
+  (package
+    (name "python-types-simplejson")
+    (version "3.19.0.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "types-simplejson" version))
+       (sha256
+        (base32 "06zfz1wlypj5h7yii3s34rycg2r2la5529n7h1mrvnc9dy41zj7b"))))
+    (build-system pyproject-build-system)
+    (home-page "https://github.com/python/typeshed")
+    (synopsis "Typing stubs for @code{simplejson}")
+    (description
+     "This package contains typing stubs for @code{simplejson}, a
+very small subset the Python stubs contained in the complete @code{simplejson}
+collection.")
+    (license license:asl2.0)))
+
 ;; 20240104T014637+0000
 (define-public python-types-tqdm
   (package
