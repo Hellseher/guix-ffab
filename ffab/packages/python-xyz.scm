@@ -449,6 +449,30 @@ implementation in Python 3.2.")
 ;; added-to-downstream-guix 5ed098095dbabbc93b5a8b6a1f24c61517f87d2d
 ;; CommitDate: Mon Nov 7 20:29:18 2022 +0100
 
+;; 20240104T014637+0000
+(define-public python-types-tqdm
+  (package
+    (name "python-types-tqdm")
+    (version "4.66.0.5")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "types-tqdm" version))
+       (sha256
+        (base32 "0b0ifiz7pnqa8cb4cwspnpv3c86h2fvsjwhg60b8ihiqj937xgbl"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list #:tests? #f)) ; no tests provided
+    ;; XXX: According to https://pypi.org/project/types-tqdm/ the repository
+    ;; contains all contrib packages tqdm is part of them.
+    (home-page "https://github.com/python/typeshed")
+    (synopsis "Typing stubs for @code{tqdm}")
+    (description
+     "This package contains typing stubs for @code{tqdm}, a
+very small subset the Python stubs contained in the complete @code{tqdm}
+collection.")
+    (license license:asl2.0)))
+
 ;; 20221011T224747+0100
 ;; (define-public python-aioftp
 ;; added-to-downstream-guix b0db0b2b2d3c6d5fecb6c7727b3173c21b896540
