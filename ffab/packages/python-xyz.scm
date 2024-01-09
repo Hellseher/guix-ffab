@@ -495,6 +495,44 @@ interactive CLIs.")
 ;; added-to-downstream-guix 95ed62c12bb33f6b64daf2f51df0e610f1abc913
 ;; CommitDate: Fri Jul 8 23:58:12 2022 +0200
 
+;; 20240109T191355+0000
+(define-public python-grapheme
+  ;; v0.6.0 has no release tags in VCS, no tests in PyPI archive, use the latest
+  ;; commit.
+  (let ((commit "66f07ca02fc64a9ea2f9b4ad66593b226d473adb")
+        (revision "0"))
+    (package
+      (name "python-grapheme")
+      (version (git-version "0.6.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)               ; no tests in PyPI release
+         (uri (git-reference
+               (url "https://github.com/alvinlindstam/grapheme")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0fqw6iymg7s8q1pfwijx0awcj1j55jppx7hfa5ci7y0c7x4jc8v9"))))
+      (arguments
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'pretend-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                        #$(package-version this-package)))))))
+      (build-system pyproject-build-system)
+      (native-inputs
+       (list python-pytest python-twine))
+      (home-page "https://github.com/alvinlindstam/grapheme")
+      (synopsis "Unicode grapheme helpers")
+      (description
+       "A Python package for working with user perceived characters.  More
+ specifically, string manipulation and calculation functions for working with
+grapheme cluster groups (graphemes) as defined by the
+@url{http://unicode.org/reports/tr29/,Unicode Standard Annex #29}")
+      (license license:expat))))
+
 ;; 20220702T095332+0100
 ;; (define-public python-h5netcdf
 ;; added-to-downstream-guix 3bd2b1b544c45e5e341010e48bcedcb0ba593480
