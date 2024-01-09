@@ -123,6 +123,61 @@ from a single ECU up to whole cars.")
        (sha256
         (base32 "1dmzmx5k6zw8fhv9gp8hrdv8iqsb335w9pd358jgf7a4j75r94gs"))))))
 
+;; 20240109T191926+0000
+(define-public python-about-time
+  ;; No release tags in VCS, no tests in PyPI archive, use the latest commit
+  (let ((commit "bcabddd4c864d58b272a1d69b321ca9184ba45ac")
+        (revision "0"))
+    (package
+      (name "python-about-time")
+      (version (git-version "4.2.1" revision commit))
+      (source
+       (origin
+         (method git-fetch) ;no tests in PyPi archive
+         (uri (git-reference
+               (url "https://github.com/rsalmei/about-time")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0gx69ha8vg5xcy09i2fsx0lh3mg9m7xqxr9z2agzz9cp2nl5f2vv"))))
+      (build-system pyproject-build-system)
+      (arguments
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'pretend-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+                        #$(package-version this-package)))))))
+      (native-inputs
+       (list python-pytest))
+      (home-page "https://github.com/rsalmei/about-time")
+      (synopsis "Measure timing and throughput of code blocks")
+      (description
+       "@code{about-time} is a helper for tracking time and throughput of code
+blocks, with beautiful human friendly renditions.
+
+Key feature are:
+
+@itemize
+@item measure the duration of two or more blocks at the same time, including the
+whole duration
+
+@item instrument a code to cleanly retrieve durations in one line, to log or
+send to time series databases
+
+@item easily see human friendly durations in s (seconds), ms (milliseconds), µs
+(microseconds) and even ns (nanoseconds)
+
+@item easily see human friendly counts with SI prefixes like k, M, G, T, etc
+
+@item measure the actual throughput of a block
+
+@item easily see human friendly throughputs in @code{/second}, @code{/minute},
+@code{/hour} or even @code{/day}, including SI prefixes
+@end itemize")
+      (license license:expat))))
+
 ;; 20230212T201907+0000
 (define-public python-argcomplete-next
   (package
