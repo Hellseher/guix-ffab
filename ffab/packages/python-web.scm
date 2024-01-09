@@ -33,10 +33,60 @@
   #:use-module (gnu packages web)
   #:use-module (gnu packages xml)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system pyproject)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
   #:use-module (guix packages))
+
+;; 20240109T195650+0000
+(define-public python-awsipranges
+  (package
+    (name "python-awsipranges")
+    (version "0.3.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "awsipranges" version))
+       (sha256
+        (base32 "1h72k5dw58sjhavagrklssnbv4kc5f0ysfsibg4664fwm4i3y2sg"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; Tests require outbound access to
+      ;; https://ip-ranges.amazonaws.com/ip-ranges.json
+      #:tests? #f))
+    (native-inputs
+     (list python-poetry-core python-pytest))
+    (home-page "https://aws-samples.github.io/awsipranges/")
+    (synopsis "Work with the AWS IP address ranges in native Python")
+    (description "Work with the AWS IP address ranges in native Python published in
+https://ip-ranges.amazonaws.com/ip-ranges.json.
+
+Features
+@itemize
+@item Work with the AWS IP prefixes as a simple AWSIPPrefixes collection
+
+@item Quickly check if an IP address, interface, or network is contained in the
+AWS IP address ranges
+
+@item Get the AWS IP prefix that contains an IP address, interface, or network
+
+@item See what services are served from an IP prefix
+
+@item Filter the AWS IP prefixes by region, network border group, service, and
+IP prefix version
+
+@item Use the AWS prefix data in your app or automation scripts in the format
+required by your infrastructure
+
+@item Easily validate the TLS certificate presented by the IP ranges server
+
+@item awsipranges has no third-party dependencies and is compatible with CPython
+v3.7+
+
+@end itemize")
+    (license license:asl2.0)))
 
 ;; 20220615T224859+0100
 (define python-pywb
