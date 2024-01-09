@@ -178,6 +178,32 @@ send to time series databases
 @end itemize")
       (license license:expat))))
 
+;; 20240109T194103+0000
+(define-public python-alive-progress
+  (package
+    (name "python-alive-progress")
+    (version "3.1.5")
+    (source
+     (origin
+       (method git-fetch) ;no tests in PyPi archive
+       (uri (git-reference
+             (url "https://github.com/rsalmei/alive-progress")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1rpjnmhwdgxcba95sw96k56ds3hi80zgrp1047yl876c1b8nb668"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-about-time python-grapheme))
+    (native-inputs
+     (list python-click python-pytest))
+    (home-page "https://github.com/rsalmei/alive-progress")
+    (synopsis "Progress Bar, with real-time throughput, ETA, and animations")
+    (description
+     "This package provides a new kind of Progress Bar, with real-time throughput,
+ETA, and very cool animations!")
+    (license license:expat)))
+
 ;; 20230212T201907+0000
 (define-public python-argcomplete-next
   (package
