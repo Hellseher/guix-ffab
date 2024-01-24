@@ -1068,54 +1068,9 @@ python_files = test_*.py"))))))))
     (license license:bsd-3)))
 
 ;; 20221107T134441+0000
-(define-public python-specutils
-  (package
-    (name "python-specutils")
-    (version "1.12.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "specutils" version))
-       (sha256
-        (base32 "10nq00q71cyj0p74g3kyzb4hrwkbvhsd6m5zvxifc035rfnvc2qv"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; Disabling test requiring access to download
-      ;; https://datacenter.iers.org/data/9/finals2000A.all
-      ;; XXX: Check if test data may be packed as stand along package.
-      #:test-flags #~(list "-k" "not test_create_spectral_axis")
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-home-env
-            (lambda _
-              ;; Tests require HOME to be set.
-              ;;  Permission denied: '/homeless-shelter'
-              (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-asdf
-           python-asdf-astropy
-           python-gwcs
-           python-ndcube
-           python-numpy
-           python-scipy
-           python-stdatamodels))
-    (native-inputs
-     (list python-matplotlib
-           python-pytest-astropy
-           python-semantic-version
-           python-setuptools-scm
-           python-spectral-cube))
-    (home-page "https://specutils.readthedocs.io/")
-    (synopsis "Package for spectroscopic astronomical data")
-    (description
-     "@code{specutils} is a Python package for representing, loading, manipulating,
-and analyzing astronomical spectroscopic data.  The generic data containers and
-accompanying modules provide a toolbox that the astronomical community can use
-to build more domain-specific packages.  For more details about the underlying
-principles,
-see @url{https://github.com/astropy/astropy-APEs/blob/main/APE13.rst, APE13}.")
-    (license license:bsd-3)))
+;; (define-public python-specutils
+;; added-to-downstream-guix fb4293c4ecfd8af2e8500f1054a3a2f5cc1d35a2
+;; CommitDate: Wed Jan 24 22:24:38 2024 +0000
 
 ;;+end-astropy
 
@@ -1583,27 +1538,9 @@ implemented using the astropy.modeling framework.")
       (license #f))))
 
 ;; 20231224T223056+0000
-(define-public python-dust-extinction
-  (package
-    (name "python-dust-extinction")
-    (version "1.3")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "dust_extinction" version))
-       (sha256
-        (base32 "14zy6kyrfi4ash7qg1k3im1zzgr2r7rnaggzk0ar3jlfmsii743k"))))
-    (build-system pyproject-build-system)
-    (propagated-inputs
-     (list python-astropy python-scipy))
-    (native-inputs
-     (list python-pytest-astropy))
-    (home-page "http://dust-extinction.readthedocs.io/")
-    (synopsis "Interstellar Dust Extinction Models")
-    (description
-     "This package provides astronomical interstellar dust extinction curves
-implemented using the astropy.modeling framework.")
-    (license license:bsd-3)))
+;; (define-public python-dust-extinction
+;; added-to-downstream-guix 4d00cf5d7843fa112c0fd9cf309c07d93e4427e1
+;; CommitDate: Wed Jan 24 22:24:38 2024 +0000
 
 ;; 20220702T165531+0100
 ;; (define-public python-mpl-animators
@@ -1611,54 +1548,9 @@ implemented using the astropy.modeling framework.")
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221108T115048+0000
-(define-public python-ndcube
-  (package
-    (name "python-ndcube")
-    (version "2.2.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "ndcube" version))
-       (sha256
-        (base32 "1b3vbnm438j5jb48vilp145lq137fbrg1l4845rc55mz2p025x34"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-home-env
-            (lambda _
-              ;; Tests require HOME to be set.
-              ;;  Permission denied: '/homeless-shelter'
-              (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-astropy
-           python-gwcs
-           python-matplotlib
-           python-mpl-animators
-           python-numpy
-           python-reproject))
-    (native-inputs
-     (list python-dask
-           python-pytest
-           python-pytest-astropy
-           python-pytest-mpl
-           python-scipy
-           python-setuptools-scm
-           python-sunpy))
-    (home-page "https://docs.sunpy.org/projects/ndcube/")
-    (synopsis "Multi-dimensional contiguous and non-contiguous coordinate aware arrays")
-    (description
-     "@code{ndcube} is a package for manipulating, inspecting and visualizing
-multi-dimensional contiguous and non-contiguous coordinate-aware data arrays.
-
-It combines data, uncertainties, units, metadata, masking, and coordinate
-transformations into classes with unified slicing and generic coordinate
-transformations and plotting/animation capabilities.  It is designed to handle
-data of any number of dimensions and axis types (e.g. spatial, temporal,
-spectral, etc.) whose relationship between the array elements and the real world
-can be described by @acronym{WCS, World Coordinate System} translations.")
-    (license license:bsd-2)))
+;; (define-public python-ndcube
+;; added-to-downstream-guix a75c4114f8b01bfe79c85df86b8a0bcbfe6a9677
+;; CommitDate: Wed Jan 24 22:24:37 2024 +0000
 
 ;;20231127T020129+0000
 (define-public python-hapiclient

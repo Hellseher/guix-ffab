@@ -1,0 +1,40 @@
+From 9a27b6506856328e1d5bc02738ce45d2fb60217f Mon Sep 17 00:00:00 2001
+Message-ID: <9a27b6506856328e1d5bc02738ce45d2fb60217f.1705854493.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705854493.git.sharlatanus@gmail.com>
+References: <cover.1705854493.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 14 Jan 2024 20:34:28 +0000
+Subject: [PATCH 04/19] gnu: libxisf: Update to 0.2.11.
+
+* gnu/packages/astronomy.scm (libxisf): Update to 0.2.11.
+
+Change-Id: I79242d42af3db660c46be0baf05e11ea7ac680f7
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 47fc3c8fd9..85116abcce 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3080,7 +3080,7 @@ (define-public libpasastro
+ (define-public libxisf
+   (package
+     (name "libxisf")
+-    (version "0.2.10")
++    (version "0.2.11")
+     (source
+      (origin
+        (method git-fetch)
+@@ -3089,7 +3089,7 @@ (define-public libxisf
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0q5qipn8887yhrk9pmi4fksxxmqas3w2aw2p194yhzkjapxk2k9h"))))
++        (base32 "02lnlsdg7f6pbcfk9amzh2k42wsb19d97yp2jq122lzivx9inwn1"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list #:configure-flags #~(list "-DUSE_BUNDLED_LIBS=OFF")))
+-- 
+2.41.0
+

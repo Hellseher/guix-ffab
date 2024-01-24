@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-25 Mon 00:05:15 GMT>
+#+modified: <2024-01-24 Wed 23:28:57 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -851,12 +851,13 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-setuptools-scm
   - [X] python-shapely
 
-*** TODO python-specutils [2/4][50%] :p1:
+*** TODO python-specutils [4/4][100%]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
 - [X] :packed <2023-12-22 Fri>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2024-01-14 Sun>
+- [X] :paptch-applied-upstream <2024-01-24 Wed>
+  - https://issues.guix.gnu.org/68641
 - [X] :inputs [11/11][100%]
   - [X] python-asdf
   - [X] python-asdf-astropy
@@ -997,13 +998,15 @@ CLOSED: [2023-12-19 Tue 00:47]
     - [X] python-numpy
     - [X] python-sgp4
 
-** TODO karllark [0/2][0%] :author:
-*** TODO python-dust-extinction [2/4][50%] :p1:
+** TODO karllark [1/2][50%] :author:
+*** DONE python-dust-extinction [4/4][100%]
+CLOSED: [2024-01-24 Wed 23:25]
 - https://github.com/karllark/dust_extinction
 - synopsis :: Astronomical Dust Extinction
 - [X] :packed <2023-12-24 Sun>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2024-01-14 Sun>
+- [X] :paptch-applied-upstream <2024-01-24 Wed>
+  - https://issues.guix.gnu.org/68641
 - [X] :inputs [5/5][100%]
   - [X] python-astropy
   - [X] python-pytest
@@ -2924,7 +2927,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO SunPy [4/7][57%] :author:
+** TODO SunPy [5/7][71%] :author:
 - https://sunpy.org/
 - https://github.com/sunpy
 *** DONE python-drms [5/5][100%]
@@ -2970,13 +2973,15 @@ CLOSED: [2022-11-25 Fri 21:16]
   - [X] python-pytest-mpl
   - [X] python-setuptools-scm
 
-*** TODO python-ndcube [2/4][50%] :p1:
+*** DONE python-ndcube [4/4][100%]
+CLOSED: [2024-01-24 Wed 23:28]
 - https://github.com/sunpy/ndcube
 - synopsis :: Base package for multi-dimensional contiguous and non-contiguous coordinate-aware
   arrays.
 - [X] :packed <2023-12-22 Fri>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2024-01-14 Sun>
+- [X] :paptch-applied-upstream <2024-01-24 Wed>
+  - https://issues.guix.gnu.org/68641
 - [X] :inputs [12/12][100%]
   - [X] python-astropy
   - [X] python-dask
@@ -3422,7 +3427,8 @@ CLOSED: [2023-11-19 Sun 17:02]
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
 
-** TODO updates-2023-12 [1/3][33%]
+** DONE updates-2023-12 [1/3][33%]
+CLOSED: [2024-01-12 Fri 21:54]
 - date-time :: 20231215T015641+0000
 - commit :: 9f24041343b305db612d08ba6b7e64b7cc737edf
 - issues :: https://issues.guix.gnu.org/67915
@@ -3467,11 +3473,43 @@ CLOSED: [2023-11-19 Sun 17:02]
     - [ ] https://github.com/AndrewAnnex/SpiceyPy
   - [ ] python-stcal :: would be upgraded from 1.4.4 to 1.5.2. Requires more time to fix broken
     tests as it was introduced a lot of changes.
-  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Margor update, require more work
+  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Major update, require more work
     with Pyproject.toml build.
   - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
     release which has a lot of fixes.
   - [ ] indi :: would be upgraded from 2.0.4 to 2.0.5. Stelarium is failing.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+** DONE TODO updates-2024-01 [2/3][66%]
+CLOSED: [2024-01-24 Wed 22:30]
+- date-time :: 20240112T233642+0000
+- commit :: 2266754382..8f86cbd5e9  master -> master
+- issues :: https://issues.guix.gnu.org/68641
+- [X] quick [12/12][100%]
+  - [X] indi :: would be upgraded from 2.0.4 to 2.0.5
+  - [X] libxisf :: would be upgraded from 0.2.10 to 0.2.11
+  - [X] phd2 :: would be upgraded from 2.6.12 to 2.6.13
+  - [X] python-crds :: would be upgraded from 11.17.13 to 11.17.14
+  - [X] python-drms :: would be upgraded from 0.7.0 to 0.7.1
+  - [X] python-pyvo :: would be upgraded from 1.4.2 to 1.5
+  - [X] python-stcal :: would be upgraded from 1.4.4 to 1.5.2
+  - [X] python-sunpy :: would be upgraded from 5.0.1 to 5.1.1
+  - [X] python-skyfield :: would be upgraded from 1.46 to 1.47
+  - [X] python-synphot :: enable more options
+    - [X] python-dust-extinction :: new package.
+    - [X] python-ndcube :: new package
+    - [X] python-specutils :: new package
+  - [X] python-tweakwcs :: would be upgraded from 0.8.5 to 0.8.6
+  - [X] stellarium :: would be upgraded from 23.3 to 23.4
+- [X] pending [1/1][100%]
+  - [X] gpredict :: would be upgraded from 2.2.1 to 2.3. The latest tag, 2.3, has been applied to
+    the same commit as 2.2.1 and is dated for 2018 already. There is some activity on the master
+    branch.
+- [ ] complex [0/3][0%]
+  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Major update, require more work
+    with Pyproject.toml build.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
+    release which has a lot of fixes.
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
 
@@ -3481,7 +3519,7 @@ CLOSED: [2023-11-19 Sun 17:02]
 | 21cmfast                           |                 |              | X      |                  |
 | alfa                               |             2.2 |          2.2 |        |                  |
 | aocommon                           | 0.0.0-1.7329a07 |              |        |                  |
-| aoflagger                          | 3.2.0           |              | X      |                  |
+| aoflagger                          |           3.2.0 |              | X      |                  |
 | apsynsim                           |                 |              | X      |                  |
 | attrdict                           |                 |              | X      |                  |
 | blitz                              |                 |              | X      |                  |
@@ -3530,7 +3568,7 @@ CLOSED: [2023-11-19 Sun 17:02]
 | obit                               |                 |              | X      |                  |
 | owlcat                             |                 |              | X      |                  |
 | parseltongue                       |                 |              | X      |                  |
-| phd2                               |                 |              |        |                  |
+| phd2                               |          2.6.12 |              |        |                  |
 | polygon3                           |                 |              | X      |                  |
 | psfex                              |                 |              |        |                  |
 | purr                               |                 |              | X      |                  |
@@ -3573,8 +3611,7 @@ CLOSED: [2023-11-19 Sun 17:02]
 | python-cfitsio                     |                 |              |        |            3.470 |
 | python-ci-watson                   |                 |              |        |            0.6.1 |
 | python-costools                    |                 |              |        |            1.2.3 |
-| python-crds                        |                 |              |        |                  |
-| python-crds                        |                 |              |        |          10.3.11 |
+| python-crds                        |        11.17.14 |              |        |          10.3.11 |
 | python-cube-tools                  |                 |              |        |            0.0.1 |
 | python-cubeviz                     |                 |              |        |            0.3.0 |
 | python-czml3                       |                 |              |        |                  |
@@ -3587,7 +3624,7 @@ CLOSED: [2023-11-19 Sun 17:02]
 | python-dragons                     |                 |              |        |            2.1.0 |
 | python-drizzle                     |                 |              |        |             1.13 |
 | python-drizzlepac                  |                 |              |        |            3.3.0 |
-| python-drms                        |                 |              |        |                  |
+| python-drms                        |           0.7.1 |              |        |                  |
 | python-ds9                         |                 |              |        |              8.1 |
 | python-dust-extinction             |                 |              |        |              0.7 |
 | python-ephem                       |                 |              |        |                  |
@@ -3680,17 +3717,15 @@ CLOSED: [2023-11-19 Sun 17:02]
 | python-pyraf                       |                 |              |        |           2.1.15 |
 | python-pyraf-all                   |                 |              |        |              1.0 |
 | python-pyraf.kepler                |                 |              |        |            2.6.3 |
-| python-pyregion                    |                 |              |        |                  |
 | python-pyregion                    |                 |              |        |              2.0 |
 | python-pysiaf                      |                 |              |        |           0.15.0 |
 | python-pysynphot                   |                 |              |        |                  |
 | python-pysynphot                   |                 |              |        |            2.0.0 |
 | python-python-daemon               |                 |              |        |            2.0.5 |
 | python-pytools                     |                 |              |        |           2016.1 |
-| python-pyvo                        |                 |              |        |                  |
+| python-pyvo                        |             1.5 |        1.4.2 |        |                  |
 | python-pywcs                       |                 |              |        |           1.12.1 |
 | python-rad                         |                 |              |        |                  |
-| python-radio-beam                  |                 |              |        |                  |
 | python-radio-beam                  |                 |              |        |              0.2 |
 | python-recon                       |                 |              |        |            1.0.2 |
 | python-reftools                    |                 |              |        |            2.1.0 |
@@ -3717,7 +3752,7 @@ CLOSED: [2023-11-19 Sun 17:02]
 | python-sphinx-automodapi           |                 |              |        |             0.11 |
 | python-sphinx-rtd-theme            |                 |              |        |            0.1.9 |
 | python-sphinxcontrib-programoutput |                 |              |        |             0.11 |
-| python-stcal                       |                 |              |        |                  |
+| python-stcal                       |     1.5.2       |              |        |                  |
 | python-stdatamodels                |                 |              |        |                  |
 | python-stginga                     |                 |              |        |            1.3.0 |
 | python-stistools                   |                 |              |        |            1.3.0 |

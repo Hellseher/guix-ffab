@@ -1,0 +1,31 @@
+From 71ae6585d041679e17bcfd2acebb184602b5843d Mon Sep 17 00:00:00 2001
+Message-ID: <71ae6585d041679e17bcfd2acebb184602b5843d.1704423368.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1704423368.git.sharlatanus@gmail.com>
+References: <cover.1704423368.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 5 Jan 2024 02:46:33 +0000
+Subject: [PATCH 3/3] gnu: yggdrasil: Remove duplicated input.
+
+* gnu/packages/networking.scm (yggdrasil)[propagated-inputs]: Remove
+duplicated go-github-com-hjson-hjson-go.
+
+Change-Id: I13b1808ffcbf80a2b4fd17188a8b62557a943d24
+---
+ gnu/packages/networking.scm | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/gnu/packages/networking.scm b/gnu/packages/networking.scm
+index bf72fd7de2..9844430656 100644
+--- a/gnu/packages/networking.scm
++++ b/gnu/packages/networking.scm
+@@ -4459,7 +4459,6 @@ (define-public yggdrasil
+                         go-github-com-gologme-log
+                         go-github-com-hashicorp-go-syslog
+                         go-github-com-hjson-hjson-go
+-                        go-github-com-hjson-hjson-go
+                         go-github-com-kardianos-minwinsvc
+                         go-github-com-mattn-go-colorable
+                         go-github-com-mattn-go-isatty
+-- 
+2.41.0
+

@@ -1,0 +1,32 @@
+From 081003247a9cdc744d2fd120248c0b60a16318bd Mon Sep 17 00:00:00 2001
+Message-ID: <081003247a9cdc744d2fd120248c0b60a16318bd.1703214021.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Dec 2023 02:59:59 +0000
+Subject: [PATCH] gnu: shotwell: Fix build.
+
+* gnu/packages/gnome.scm (shotwell): Fix build.
+[inputs]: Swap webkitgtk to webkitgtk-for-gtk3.
+
+Change-Id: I457ed30f3bf6335c7dd88daf2132b4a8857d86c6
+---
+ gnu/packages/gnome.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/gnome.scm b/gnu/packages/gnome.scm
+index b0417b2df9..89a1c45883 100644
+--- a/gnu/packages/gnome.scm
++++ b/gnu/packages/gnome.scm
+@@ -7562,7 +7562,7 @@ (define-public shotwell
+            libwebp
+            libxml2
+            sqlite
+-           webkitgtk))
++           webkitgtk-for-gtk3))
+     (home-page "https://wiki.gnome.org/Apps/Shotwell")
+     (synopsis "Photo manager for GNOME 3")
+     (description
+
+base-commit: ca813173894360edef35a5d98878a3135e99e62a
+-- 
+2.41.0
+

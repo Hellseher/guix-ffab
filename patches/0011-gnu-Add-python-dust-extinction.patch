@@ -1,0 +1,51 @@
+From 387e2b554936385250ea29a7d031a9b4c1a0c169 Mon Sep 17 00:00:00 2001
+Message-ID: <387e2b554936385250ea29a7d031a9b4c1a0c169.1705854493.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705854493.git.sharlatanus@gmail.com>
+References: <cover.1705854493.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 14 Jan 2024 23:00:47 +0000
+Subject: [PATCH 11/19] gnu: Add python-dust-extinction.
+
+* gnu/packages/astronomy.scm (python-dust-extinction): New variable.
+
+Change-Id: I6fecfede0c347d032555b8f81bcf4f7072fc1129
+---
+ gnu/packages/astronomy.scm | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1a11aac534..c5e7da59f9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2006,6 +2006,28 @@ (define-public python-drizzle
+ code to be greatly simplified.")
+     (license license:bsd-3)))
+ 
++(define-public python-dust-extinction
++  (package
++    (name "python-dust-extinction")
++    (version "1.3")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "dust_extinction" version))
++       (sha256
++        (base32 "14zy6kyrfi4ash7qg1k3im1zzgr2r7rnaggzk0ar3jlfmsii743k"))))
++    (build-system pyproject-build-system)
++    (propagated-inputs
++     (list python-astropy python-scipy))
++    (native-inputs
++     (list python-pytest-astropy))
++    (home-page "http://dust-extinction.readthedocs.io/")
++    (synopsis "Interstellar Dust Extinction Models")
++    (description
++     "This package provides astronomical interstellar dust extinction curves
++implemented using the astropy.modeling framework.")
++    (license license:bsd-3)))
++
+ (define-public python-ephem
+   (package
+     (name "python-ephem")
+-- 
+2.41.0
+

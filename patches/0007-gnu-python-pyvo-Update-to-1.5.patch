@@ -1,0 +1,45 @@
+From acb71e7b2d3b68fe605d9e7bcfb73f262212b3b9 Mon Sep 17 00:00:00 2001
+Message-ID: <acb71e7b2d3b68fe605d9e7bcfb73f262212b3b9.1705854493.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705854493.git.sharlatanus@gmail.com>
+References: <cover.1705854493.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 14 Jan 2024 20:53:57 +0000
+Subject: [PATCH 07/19] gnu: python-pyvo: Update to 1.5.
+
+* gnu/packages/astronomy.scm (python-pyvo): Update to 1.5.
+[propagated-inputs]: Remove python-mimeparse.
+
+Change-Id: I4d3e19b95c034cf3c82cec55a198d9a927934971
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 147af695be..4c867aa66a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2282,18 +2282,18 @@ (define-public python-pyavm
+ (define-public python-pyvo
+   (package
+     (name "python-pyvo")
+-    (version "1.4.2")
++    (version "1.5")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyvo" version))
+        (sha256
+-        (base32 "1jwmgpavw80mf9sigfz5p2cqh6vz5mvm11ziqmdp5zdccn42kzk6"))))
++        (base32 "1kyd4jbspldfpwwvwxfmhq2cxqp4kfbcsiyk4gjs0ib65idxdr45"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest-astropy python-requests-mock python-setuptools-scm))
+     (propagated-inputs
+-     (list python-astropy python-mimeparse python-pillow python-requests))
++     (list python-astropy python-pillow python-requests))
+     (home-page "https://github.com/astropy/pyvo")
+     (synopsis "Access Virtual Observatory data and services")
+     (description
+-- 
+2.41.0
+

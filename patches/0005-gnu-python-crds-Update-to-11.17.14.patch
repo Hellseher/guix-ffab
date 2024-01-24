@@ -1,0 +1,62 @@
+From 3a7ee3988141d2bd94fc99d1dafa986b1ef55cc9 Mon Sep 17 00:00:00 2001
+Message-ID: <3a7ee3988141d2bd94fc99d1dafa986b1ef55cc9.1705854493.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705854493.git.sharlatanus@gmail.com>
+References: <cover.1705854493.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 14 Jan 2024 20:42:50 +0000
+Subject: [PATCH 05/19] gnu: python-crds: Update to 11.17.14.
+
+* gnu/packages/astronomy.scm (python-crds): Update to 11.17.14.
+[description]: Indent it and apply TexInfo style on URLs.
+
+Change-Id: Icd298578cf685cfbc454d5b16b9f89c6d050b93a
+---
+ gnu/packages/astronomy.scm | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 85116abcce..88d6129de5 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1859,13 +1859,13 @@ (define-public python-cdflib
+ (define-public python-crds
+   (package
+     (name "python-crds")
+-    (version "11.17.13")
++    (version "11.17.14")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "crds" version))
+               (sha256
+                (base32
+-                "0jcvyiq3z2kbd8g33gk5r99rvhn9i50lz7ngqibdafh390dz5zhc"))))
++                "1z9lrwrb07s9kn28nammjx75qb0ky7srd9i40dnkmm9zsaqz5jfm"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -1897,14 +1897,14 @@ (define-public python-crds
+     (description
+      "CRDS is a package used for working with astronomical reference files for
+ the HST and JWST telescopes.  CRDS is useful for performing various operations
+-on reference files or reference file assignment rules.  CRDS is used to assign,
+-check, and compare reference files and rules, and also to predict those datasets
+-which should potentially be reprocessed due to changes in reference files or
+-assignment rules.  CRDS has versioned rules which define the assignment of
+-references for each type and instrument configuration.  CRDS has web sites
+-corresponding to each project (http://hst-crds.stsci.edu or
+-https://jwst-crds.stsci.edu/) which record information about reference files and
+-provide related services.")
++on reference files or reference file assignment rules.  CRDS is used to
++assign, check, and compare reference files and rules, and also to predict
++those datasets which should potentially be reprocessed due to changes in
++reference files or assignment rules.  CRDS has versioned rules which define
++the assignment of references for each type and instrument configuration.  CRDS
++has web sites corresponding to each project @url{http://hst-crds.stsci.edu} or
++@url{https://jwst-crds.stsci.edu/} which record information about reference
++files and provide related services.")
+     (license license:bsd-3)))
+ 
+ (define-public python-czml3
+-- 
+2.41.0
+

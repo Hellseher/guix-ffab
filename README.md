@@ -1,14 +1,14 @@
 
 # Table of Contents
 
-1.  [Project structure and layout](#orgf7dbe40)
-    1.  [Tags legend](#orgb497717)
-2.  [Installation](#org0268079)
-    1.  [Use as channel](#org5121e3e)
-    2.  [Use as build/install source](#org264284d)
-3.  [References](#org6bccfa1)
-    1.  [Guix channels](#org9d242c6)
-    2.  [etc](#org47b9e50)
+1.  [Project structure and layout](#org080da2b)
+    1.  [Tags legend](#orgbce7e1c)
+2.  [Installation](#orgfc9554f)
+    1.  [Use as channel](#org0f0b285)
+    2.  [Use as build/install source](#orgcb41c2b)
+3.  [References](#orgb9bdf54)
+    1.  [Guix channels](#org43788f5)
+    2.  [etc](#orga5c464d)
 
 *FFAB :: Flock Full of Aleatory Burden*
 
@@ -24,7 +24,7 @@ such as **Common Lisp**, **Golan** and **Python**.
 use all the time, `wip-` branches might be broken on some stage.
 
 
-<a id="orgf7dbe40"></a>
+<a id="org080da2b"></a>
 
 # Project structure and layout
 
@@ -38,35 +38,34 @@ Layout follows Guix upstream.
     ├── guix
     │   ├── build-system
     │   └── import
-    ├── guix-dev
     ├── org
     ├── patches
     ├── scripts
     └── tmp
     
-    13 directories
+    12 directories
 
 -   **./issues.org:** Tracks all sent patches to <guix-patches@gnu.org>
 -   **./TODO.md:** Generated report from packaging process in `org/` directory.
 -   **./Makefile:** Contains CI aware lint and build targets with convenient tooling for local build.
 
-    :guix-commit 0647f308b46b7ba7aa136068712f8d82d69d1a35
-    :accepted 207
-    :pending 123
+    :guix-commit ffa73f8ef2a6cb2b93deb38b1c88a94707e7d907
+    :accepted 210
+    :pending 142
     
-    :astronomy 8
+    :astronomy 16
     :golang 72
     :lisp 4
-    :python 14
-    :misc 20
+    :python 23
+    :misc 22
     
-    Thu  2 Nov 00:20:02 GMT 2023
+    Wed 24 Jan 23:35:16 GMT 2024
 
 Any packages with suffix **-ffab** are meant to be accepted in Guix upstream but have kind of
 modifications e.g. newer version, enabled tests etc.
 
 
-<a id="orgb497717"></a>
+<a id="orgbce7e1c"></a>
 
 ## Tags legend
 
@@ -82,7 +81,7 @@ the current effort
 -   **p5:** Dormant or not so interested right now.
 
 
-<a id="org0268079"></a>
+<a id="orgfc9554f"></a>
 
 # Installation
 
@@ -90,7 +89,7 @@ All examples are based on assumptions that `guix` is the main system or availabl
 manager.
 
 
-<a id="org5121e3e"></a>
+<a id="org0f0b285"></a>
 
 ## Use as channel
 
@@ -103,7 +102,7 @@ manager.
            %default-channels)
 
 
-<a id="org264284d"></a>
+<a id="orgcb41c2b"></a>
 
 ## Use as build/install source
 
@@ -112,7 +111,7 @@ manager.
     ~$ guix build -L . python-sunpy
 
 
-<a id="org6bccfa1"></a>
+<a id="orgb9bdf54"></a>
 
 # References
 
@@ -127,7 +126,7 @@ Main official resources:
 -   **Issues:** <https://issues.guix.gnu.org/>
 
 
-<a id="org9d242c6"></a>
+<a id="org43788f5"></a>
 
 ## Guix channels
 
@@ -145,7 +144,7 @@ Main official resources:
     <https://github.com/babariviere/guix-emacs>
 
 
-<a id="org47b9e50"></a>
+<a id="orga5c464d"></a>
 
 ## etc
 
