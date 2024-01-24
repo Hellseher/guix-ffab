@@ -179,3 +179,59 @@ archives large and small as accurately as possible.")
     (description
      "Sort-friendly URI Reordering Transform (SURT) python package.")
     (license license:agpl3+)))
+
+;; TODO: (Sharlatan-20240124T233908+0000): Needs some love
+;; 20240109T190536+0000
+(define python-prowler
+  (package
+    (name "python-prowler")
+    (version "3.12.0")
+    (source
+     (origin
+       (method git-fetch) ;no tests in PyPi archive
+       (uri (git-reference
+             (url "https://github.com/prowler-cloud/prowler")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1643njlcv04r4k0nfrn68r0arpr2wj1pxhi22xgwvq4qlp1nzdq5"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-alive-progress
+           python-awsipranges
+           ;python-azure-identity
+           ;python-azure-mgmt-authorization
+           ;python-azure-mgmt-security
+           ;python-azure-mgmt-sql
+           ;python-azure-mgmt-storage
+           ;python-azure-mgmt-subscription
+           ;python-azure-storage-blob
+           python-boto3
+           python-botocore
+           python-colorama
+          ; python-detect-secrets
+           ;python-google-api-python-client
+           ;python-google-auth-httplib2
+           python-jsonschema
+           python-mkdocs
+           python-mkdocs-material
+           ;python-msgraph-core
+           ;python-msrestazure
+           python-pydantic
+           python-schema
+           ;python-shodan
+           ;python-slack-sdk
+           python-tabulate))
+    (native-inputs
+     (list python-poetry-core python-pytest))
+    (home-page "https://prowler.com/")
+    (synopsis "Cloud Security best practices assessments and audits tool")
+    (description
+     "Prowler is an Open Source security tool to perform AWS, GCP and Azure security
+best practices assessments, audits, incident response, continuous monitoring,
+hardening and forensics readiness.  It contains hundreds of controls covering
+CIS, NIST 800, NIST CSF, CISA, RBI, @code{FedRAMP}, PCI-DSS, GDPR, HIPAA, FFIEC,
+SOC2, GXP, AWS Well-Architected Framework Security Pillar, AWS Foundational
+Technical Review (FTR), ENS (Spanish National Security Scheme) and your custom
+security frameworks.")
+    (license license:asl2.0)))
