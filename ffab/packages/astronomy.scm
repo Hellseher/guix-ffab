@@ -1747,28 +1747,55 @@ capabilities.")
 ;; configure: error: could not find the libsharp library
 ;;
 ;; 20221101T215432+0000
-(define healpix
+(define healpix-cxx
   (package
-    (name "healpix")
+    (name "healpix-cxx")
     (version "3.82.0")
-    (source (origin
-              (method url-fetch)
-              (uri (string-append
-                    "mirror://sourceforge/healpix/Healpix_3.82/healpix_cxx-"
-                    version ".tar.gz"))
-              (sha256
-               (base32
-                "0ll5p8190a436ssdnbqcxfj74v7llblkmbhhxz8mjwq0ryxhn6ww"))))
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append
+             "mirror://sourceforge/healpix/Healpix_3.82/healpix_cxx-"
+             version ".tar.gz"))
+       (sha256
+        (base32 "0ll5p8190a436ssdnbqcxfj74v7llblkmbhhxz8mjwq0ryxhn6ww"))))
     (build-system gnu-build-system)
     (native-inputs
      (list autoconf automake libtool pkg-config))
     (inputs
      (list cfitsio libsharp zlib))
     (home-page "https://healpix.sourceforge.io/")
-    (synopsis "Hierarchical Equal Area isoLatitude Pixelization of a sphere")
-    (description "This package provides C++ implementation of @acronim{HEALPix, Hierarchical
-Equal Area isoLatitude Pixelization}.")
-    (license license:gpl2)))
+    (synopsis "Data analysis, simulations and visualization on the sphere")
+    (description "This package provides a C++ implementation of @acronim{HEALPix, Hierarchical
+Equal Area isoLatitude Pixelization}. The key features of HEALPix are:
+@itmimize
+@item Fast simulation and analysis of full-sky maps of CMB temperature and
+polarization anisotropy (sky maps preview) up to sub-arcminute angular
+resolution
+@item Filtering of sky maps with arbitrary circular window
+@item Constrained and non-Gaussian realization facilities
+@item Highly optimised Spherical Harmonics Transforms library (libsharp) used by
+all implementations for better performance
+@item Forward and backward scalar and spin-weighted Spherical Harmonics
+Transforms
+@item Programs to manage, modify and rotate spherical harmonic coefficients of
+arbitrary maps
+@item Pixelation of the sphere supported down to a pixel size of 0.4 mas
+(milli-arcseconds), corresponding to potentially 3.5 1018 pixels on the sphere
+@item Pixel queries in discs, triangles, polygons and strips
+@item Programs to search the maps for pixel neighbours and extrema of a random
+field
+@item Median filtering of sky maps
+@item Mask processing facilities
+@item Support for multi resolution maps (aka, Multi Order Coverage maps or MOC)
+@item Comprehensive documentation (PDF and HTML); web-based and email support
+@item Automated installation and build scripts
+@item Most critical routines are parallelized
+@item Facilities to output HEALPix maps into Google Earth/Google Sky compliant
+images and into DomeMaster format used in planetariums
+@item Routines to manipulate and visualize the FITS files generally used for I/O
+@end itimeze")
+    (license license:gpl2+)))
 
 ;; 20230319T204258+0000
 ;; (define-public phd2
