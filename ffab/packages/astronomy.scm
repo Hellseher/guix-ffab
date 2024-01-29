@@ -812,12 +812,7 @@ planetarium.")
     (build-system pyproject-build-system)
     (arguments
      (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "pytest" "test.py")))))))
+      #:test-flags #~(list "test.py")))
     (native-inputs (list python-cython python-pytest))
     (propagated-inputs (list python-numpy))
     (home-page "http://github.com/kbarbary/extinction")
