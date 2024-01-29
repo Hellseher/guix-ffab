@@ -1466,19 +1466,18 @@ based on the HDF5 standard")
     (arguments
      (list
       #:test-flags
-      ;; Disabe test requireing access to the internet.
-      ;; Temporary failure in name resolution>. Retrying with different url and
-      ;; port.
-      #~(list "-k" (string-append "not test_search"
-                                  " and not test_search_low_latency"
-                                  " and not test_insitu_search"
-                                  " and not test_no_results"
-                                  " and not test_no_instrument"
-                                  " and not test_download_path"
-                                  " and not test_search_soop"
-                                  " and not test_when_soar_provider_passed"
-                                  " and not test_when_sdac_provider_passed"
-                                  " and not test_when_wrong_provider_passed"))
+      ;; Disabe tests requireing network access.
+      #~(list "-k" (string-append
+                    "not test_search"
+                    " and not test_search_low_latency"
+                    " and not test_insitu_search"
+                    " and not test_no_results"
+                    " and not test_no_instrument"
+                    " and not test_download_path"
+                    " and not test_search_soop"
+                    " and not test_when_soar_provider_passed"
+                    " and not test_when_sdac_provider_passed"
+                    " and not test_when_wrong_provider_passed"))
       #:phases
       #~(modify-phases %standard-phases
           (add-before 'check 'set-home-env
