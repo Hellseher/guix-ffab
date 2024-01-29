@@ -750,6 +750,35 @@ monochromatic sequential colormaps like @code{blue}, @code{green}, and
 @code{red}, and others (@code{algae}, @code{pastel}, and @code{xray}).")
     (license license:bsd-3)))
 
+;; 20240129T135721+0000
+(define-public python-ewah-bool-utils
+  (package
+    (name "python-ewah-bool-utils")
+    (version "1.1.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "ewah_bool_utils" version))
+       (sha256
+        (base32 "11z9vv9m19370j762z100dqhy2ndjzkxk3w9z02lzwadbyibal3h"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'build-extensions
+            (lambda _
+              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+    (native-inputs
+     (list python-cython python-pytest))
+    (propagated-inputs
+     (list python-numpy))
+    (home-page "https://github.com/yt-project/ewah_bool_utils")
+    (synopsis "EWAH Bool Array compression")
+    (description "This package provide a Python wrapper to @acronym{EWAH,
+ Enhanced Word-Aligned Hybrid} compression bitarray method.")
+    (license license:bsd-3)))
+
 ;; 20230301T210252+0000
 ;; (define-public python-czml3
 ;; added-to-downstream-guix 0689a842710e5831d9de12964ec1fd38b360e022
