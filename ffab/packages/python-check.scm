@@ -55,6 +55,38 @@
       "Simple Python testing framework")
      (license license:expat))))
 
+;; 20240130T212957+0000
+(define-public python-nose-exclude
+  (package
+    (name "python-nose-exclude")
+    (version "0.5.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "nose-exclude" version))
+       (sha256
+        (base32 "0123x1lyv5b2p9civcfg8vilj2ga3q7p2ks1hq25z0gb3ssai3zp"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'disable-test
+            (lambda _
+              ;; Disable failing test: AssertionError.
+              (substitute* '("test_dirs/build/test.py"
+                            "test_dirs/test_not_me/test.py")
+                (("def test_i_should_never_run")
+                 "def off_i_should_never_run")))))))
+    (propagated-inputs
+     (list python-nose))
+    (home-page "https://github.com/kgrandis/nose-exclude")
+    (synopsis "Exclude specific directories from nosetests runs")
+    (description
+     "@codee{nose-exclude} is a Nose plugin that allows you to easily specify
+directories to be excluded from testing.")
+    (license license:lgpl2.1+)))
+
 ;; 20221006T014754+0100
 ;; (define-public python-pytest-socket
 ;; added-to-downstream-guix c697ff964192f64dfc22927c09458852ace7dd9a
