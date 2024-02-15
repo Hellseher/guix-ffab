@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-01-24 Wed 23:28:57 GMT>
+#+modified: <2024-02-14 Wed 14:37:55 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [5/74][6%]
+* Flow [5/77][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -693,7 +693,7 @@ CLOSED: [2023-12-19 Tue 00:43]
 - [X] :inputs [1/1][100%]
   - [X] python-numpy
 
-** TODO Astropy [7/9][77%] :author:
+** TODO Astropy [8/9][88%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -851,7 +851,8 @@ CLOSED: [2022-11-25 Fri 21:08]
   - [X] python-setuptools-scm
   - [X] python-shapely
 
-*** TODO python-specutils [4/4][100%]
+*** DONE python-specutils [4/4][100%]
+CLOSED: [2024-01-28 Sun 17:42]
 - https://github.com/astropy/specutils
 - synopsis :: Astronomical one-dimensional spectral operations.
 - [X] :packed <2023-12-22 Fri>
@@ -955,6 +956,22 @@ CLOSED: [2022-11-25 Fri 21:08]
 *** TODO INTER [/][%] :p4:
 - synopsis :: Interactive interference characterization program. A description and user manual are
   available here.
+** TODO Kapteyn Astronomical Institute [0/2][0%] :author:
+- https://www.rug.nl/research/kapteyn/
+*** TODO kapteyn [/][%] :p5:
+- https://www.astro.rug.nl/software/kapteyn/
+- synopsis ::
+*** TODO GIPSY [/][%] :p5:
+- https://www.astro.rug.nl/~gipsy/
+- synopsis :: Groningen Image Processing System
+** TODO mattyowl [/][%] :author:
+- https://github.com/mattyowl
+*** TODO python-astlib [0/4][0%] :p5:
+- https://github.com/mattyowl/astLib
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 ** TODO liberfa [2/2][100%] :author:
 - https://github.com/liberfa/pyerfa
 *** DONE python-pyerfa [4/4][100%]
@@ -1813,8 +1830,9 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO kbarbary [0/2][0%] :author:
-*** TODO python-sep [4/4][100%]
+** TODO kbarbary [1/2][50%] :author:
+*** DONE python-sep [4/4][100%]
+CLOSED: [2024-01-29 Mon 12:31]
 - https://github.com/kbarbary/sep
 - [X] :packed <2021-02-02 Tue>
 - [X] :patch-sent <2021-02-13 Sat>
@@ -1824,10 +1842,10 @@ CLOSED: [2023-02-15 Wed 21:47]
   + [X] python-cython
   + [X] python-numpy
   + [X] python-pytest
-*** TODO python-extinction [2/4][50%]
+*** TODO python-extinction [3/4][75%] :p2:
 - https://github.com/kbarbary/extinction
 - [X] :packed <2023-08-29 Tue>
-- [ ] :patch-sent
+- [X] :patch-sent <2024-01-29 Mon>
 - [ ] :paptch-applied-upstream
 - [X] :inputs [1/1][100%]
   - [X] python-numpy
@@ -2159,7 +2177,7 @@ CLOSED: [2023-03-16 Thu 21:54]
   - [X] python-scipy
 
 ** DONE pynbody [1/2][50%] :author:
-*** DONE pynbody [4/4][100%]
+*** DONE python-pynbody [4/4][100%]
 - https://github.com/pynbody/pynbody
 - synopsis :: N-body and hydro analysis tools
 - [X] :packed <2022-07-27 Wed>
@@ -2175,41 +2193,42 @@ CLOSED: [2023-03-16 Thu 21:54]
   - [X] python-posix-ipc
   - [X] python-pytest
   - [X] python-scipy
-*** TODO tangos [0/4][0%]
+*** TODO python-tangos [0/4][0%] :p1:
 - https://github.com/pynbody/tangos
-- synopsis ::
+- synopsis :: The Agile Numerical Galaxy Organisation System
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [4/28][14%]
+- [-] :inputs [22/28][78%]
   - [ ] python-hupper
   - [X] python-matplotlib
-  - [ ] python-more_itertools
+  - [X] python-more-itertools
   - [X] python-numpy
-  - [ ] python-pastedeploy
-  - [ ] python-plaster
-  - [ ] python-plaster_pastedeploy
-  - [ ] python-pymysq
+  - [X] python-pastedeploy
+  - [X] python-plaster
+  - [X] python-plaster-pastedeploy
+  - [X] python-pymysq
   - [X] python-pynbody
-  - [ ] python-pyparsing
-  - [ ] python-pyquery
-  - [ ] python-pyramid
-  - [ ] python-pyramid_debugtoolbar
-  - [ ] python-pyramid_jinja2
+  - [X] python-pyparsing
+  - [X] python-pyquery
+  - [X] python-pyramid
+  - [ ] python-pyramid-debugtoolbar
+  - [ ] python-pyramid-jinja2
   - [ ] python-pyramid_tm','pyramid_retry
-  - [ ] python-pytest
+  - [X] python-pytest
   - [ ] python-repoze.lru
   - [X] python-scipy
-  - [ ] python-sqlalchemy
-  - [ ] python-translationstring
-  - [ ] python-venusian
-  - [ ] python-waitress
-  - [ ] python-webob
-  - [ ] python-webtest
+  - [X] python-sqlalchemy
+  - [X] python-translationstring
+  - [X] python-venusian
+  - [X] python-waitress
+  - [X] python-webob
+  - [X] python-webtest
   - [ ] python-yt
-  - [ ] python-zope.deprecation
-  - [ ] python-zope.interface
-  - [ ] python-zope.sqlalchemy
+    - [ ] :packed
+  - [X] python-zope-deprecation
+  - [X] python-zope-interface
+  - [X] python-zope-sqlalchemy
 
 ** TODO QuatroPe [1/2][50%] :author:
 - https://github.com/quatrope
@@ -2333,36 +2352,64 @@ https://github.com/radio-astro-tools/radio-beam
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-** TODO yt-project [/][%] :author:
-*** TODO python-yt [0/4][0%] :p1:
+** TODO yt-project [0/3][0%] :author:
+
+*** TODO python-yt [1/4][25%] :p1:
 - https://github.com/yt-project/yt
 - synopsis :: Python library for analyzing and visualizing volumetric data.
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/18][0%]
-  - [ ] python-cmyt
-    - [ ] :packed
-  - [ ] python-ewah-bool-utils
-    - [ ] :packed
-  - [ ] python-ipywidgets
-  - [ ] python-matplotlib
-  - [ ] python-more-itertools
-  - [ ] python-nose
-  - [ ] python-nose-exclude
-    - [ ] :packed
-  - [ ] python-nose-timer
-  - [ ] python-numpy
-  - [ ] python-packaging
-  - [ ] python-pillow
-  - [ ] python-pyaml
-  - [ ] python-pytest
-  - [ ] python-pytest-mpl
-  - [ ] python-sympy
-  - [ ] python-tomli-w
-  - [ ] python-tqdm
-  - [ ] python-unyt
-    - [ ] :packed
+- [X] :inputs [18/18][100%]
+  - [X] python-cmyt
+    - [X] :packed <2024-01-29 Mon>
+  - [X] python-ewah-bool-utils
+    - [X] :packed <2024-01-29 Mon>
+  - [X] python-ipywidgets
+  - [X] python-matplotlib
+  - [X] python-more-itertools
+  - [X] python-nose
+  - [X] python-nose-exclude
+    - [X] :packed <2024-02-02 Fri>
+  - [X] python-nose-timer
+  - [X] python-numpy
+  - [X] python-packaging
+  - [X] python-pillow
+  - [X] python-pyaml
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-sympy
+  - [X] python-tomli-w
+  - [X] python-tqdm
+  - [X] python-unyt
+*** TODO python-cmyt [2/4][50%] :p1:
+- https://github.com/yt-project/cmyt
+- synopsis :: Matplotlib colormaps from the yt project
+- [X] :packed <2024-01-29 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-colorspacious
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-matplotlib
+  - [X] python-numpy
+*** TODO python-ewah-bool-utils [2/4][50%] :p1:
+- https://github.com/yt-project/ewah_bool_utils
+- [X] :packed <2024-01-29 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [3/3][100%]
+  - [X] python-cython
+  - [X] python-pytest
+  - [X] python-nump
+** TODO kgrandis [/][%] :author:
+*** TODO python-nose-exclude [2/4][50%] :p1:
+- [X] :packed <2024-02-02 Fri>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] pythno-nose
 
 ** TODO rwesson [1/2][50%] :author:
 - https://github.com/rwesson
@@ -2390,7 +2437,7 @@ CLOSED: [2022-12-01 Thu 23:15]
 
 ** TODO SAOImageDS9 [0/1][0%] :author:
 - http://ds9.si.edu/
-*** TODO SAOImageDS9 [0/4][0%] :p5:
+*** TODO SAOImageDS9 [0/4][0%] :p1:
 - https://github.com/SAOImageDS9/SAOImageDS9
 - synopsis :: DS9 is an astronomical imaging and data visualization application.
 - [ ] :packed
@@ -2917,11 +2964,17 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs
 
-** TODO Starlink [0/1][0%] :author:
+** TODO Starlink [0/2][0%] :author:
 - http://starlink.eao.hawaii.edu/starlink
 *** TODO pal [0/4][0%] :p1:
 - https://github.com/Starlink/pal
 - synopsis :: Positional Astronomy Library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO python-startlink-pyast [/][%] :p1:
+- https://github.com/Starlink/starlink-pyast
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -2996,13 +3049,13 @@ CLOSED: [2024-01-24 Wed 23:28]
   - [X] python-scipy
   - [X] python-sunpy
 
-*** TODO python-radiospectra [0/4][0%] :p1:
+*** TODO python-radiospectra [3/4][75%] :p2:
 - https://github.com/sunpy/radiospectra
 - synopsis :: Provide support for some type of radio spectra on solar physics
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2024-01-02 Tue>
+- [X] :patch-sent <2024-01-29 Mon>
 - [ ] :paptch-applied-upstream
-- [-] :inputs [8/9][88%]
+- [X] :inputs [9/9][100%]
   - [X] python-cdflib
   - [X] python-matplotlib
   - [X] python-numpy
@@ -3011,10 +3064,10 @@ CLOSED: [2024-01-24 Wed 23:28]
   - [X] python-scipy
   - [X] python-setuptools-scm
   - [X] python-sunpy
-  - [ ] python-sunpy-soar
-    - [ ] :packed
+  - [X] python-sunpy-soar
+    - [X] :packed <2024-01-29 Mon>
 
-*** DONE python-sunpy [3/4][75%]
+*** DONE python-sunpy [4/4][100%]
 CLOSED: [2022-11-25 Fri 21:10]
 - https://github.com/sunpy/sunpy
 - synopsis :: SunPy - Python for Solar Physics
@@ -3022,7 +3075,7 @@ CLOSED: [2022-11-25 Fri 21:10]
 - [X] :patch-sent <2022-11-23 Wed>
 - [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/59542
-- [-] :inputs [33/34][97%]
+- [X] :inputs [34/34][100%]
   - [X] python-asdf
   - [X] python-asdf-astropy
   - [X] python-astropy
@@ -3047,8 +3100,7 @@ CLOSED: [2022-11-25 Fri 21:10]
   - [X] python-mpl-animators
     - [X] :packed <2022-07-02 Sat>
   - [X] python-numpy
-  - [ ] python-opencv-python
-    - [ ] :packed
+  - [X] opencv
   - [X] python-packaging
   - [X] python-pandas
   - [X] python-parfive
@@ -3067,11 +3119,11 @@ CLOSED: [2022-11-25 Fri 21:10]
   - [X] python-tqdm
   - [X] python-zeep
 
-*** TODO python-sunpy-soar [1/4][25%] :p1:
+*** TODO python-sunpy-soar [3/4][75%] :p2:
 - https://github.com/sunpy/sunpy-soar
 - synopsis :: A sunpy plugin for accessing data in the Solar Orbiter Archive (SOAR).
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed <2024-01-02 Tue>
+- [X] :patch-sent <2024-01-29 Mon>
 - [ ] :paptch-applied-upstream
 - [X] :inputs [2/2][100%]
   - [X] python-sunpy
@@ -3480,7 +3532,7 @@ CLOSED: [2024-01-12 Fri 21:54]
   - [ ] indi :: would be upgraded from 2.0.4 to 2.0.5. Stelarium is failing.
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
-** DONE TODO updates-2024-01 [2/3][66%]
+** DONE updates-2024-01 [2/3][66%]
 CLOSED: [2024-01-24 Wed 22:30]
 - date-time :: 20240112T233642+0000
 - commit :: 2266754382..8f86cbd5e9  master -> master
@@ -3512,7 +3564,67 @@ CLOSED: [2024-01-24 Wed 22:30]
     release which has a lot of fixes.
   - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
     https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+** TODO updates-2024-02 [1/3][33%] :p1:
+- date-time :: 20240126T020008+0000
+- commit ::
+- issues ::
+- [X] quick [26/26][100%]
+  - [X] calceph :: would be upgraded from 3.5.4 to 3.5.5
+  - [X] indi :: would be upgraded from 2.0.5 to 2.0.6
+  - [X] phd2 :: would be upgraded from 2.6.12 to 2.6.13
+  - [X] python-aplpy :: disable tests
+  - [X] python-asdf-coordinates-schemas :: speed up tests
+  - [X] python-asdf-fits-schemas :: 0.0.1-0.572bb37 -> 0.0.1-1.d1b5e7a
+  - [X] python-asdf :: speed up tests, set as default variable
+  - [X] python-asdf-time-schemas :: 0.0.1-2.e9174083 -> 0.0.1-3.a306206
+  - [X] python-asdf-transform-schemas :: would be upgraded from 0.3.0 to 0.4.0
+  - [X] python-asdf-wcs-schemas :: would be upgraded from 0.1.1 to 0.3.0
+  - [X] python-astropy :: would be upgraded from 5.3.4 to 6.0.0.
+    - [X] python-astropy-iers-data :: new package
+    - [X] 5.3.4 -> 6.0.0
+  - [X] python-crds :: would be upgraded from 11.17.14 to 11.17.16
+  - [X] python-extinction :: new package
+  - [X] python-jwst :: would be upgraded from 1.12.5 to 1.13.4
+  - [X] python-photutils :: speedup up tests
+  - [X] python-radiospectra :: new package
+  - [X] python-rad :: would be upgraded from 0.18.0 to 0.19.0, enable tests
+  - [X] python-regions :: speed up tests
+  - [X] python-roman-datamodels :: speed up tests
+  - [X] python-roman-datamodels :: would be upgraded from 0.18.0 to 0.19.0
+  - [X] python-skyfield :: would be upgraded from 1.47 to 1.48
+  - [X] python-spectral-cube :: speed up tests
+  - [X] python-stdatamodels :: would be upgraded from 1.9.0 to 1.9.1
+  - [X] python-sunpy-soar :: new package
+  - [X] python-sunpy :: speed up tests
+  - [X] siril :: would be upgraded from 1.2.0 to 1.2.1
+- [ ] complex [0/2][0%]
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
+    release which has a lot of fixes.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+- [-] issues [2/3][66%]
+  - [X] https://github.com/spacetelescope/roman_datamodels/issues/307
+  - [X] https://github.com/asdf-format/asdf-wcs-schemas/issues/50
+  - [ ] https://github.com/aplpy/aplpy/issues/492
+*** TMP
 
+    (arguments
+     (list
+      #:test-flags
+      ;; with    -n : 12.65s
+      ;; without -n : 291.22s
+      #~(list "-n" (number->string (parallel-job-count)))))
+
+
+           python-pytest-xdist
+#+begin_example
+gnu/packages/astronomy.scm (python-asdf-3.0): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+[native-inputs]: Add python-pytest-xdist.
+#+end_example
+
+56.05s
 * Coverage
 | project                            |            guix | debian-astro | kernel | stsci-astroconda |
 |------------------------------------+-----------------+--------------+--------+------------------|
