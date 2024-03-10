@@ -869,6 +869,51 @@ exitinction laws found in the literature.")
        (sha256
         (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))))
 
+;; 20240310T110353+0000
+(define-public python-asdf-compression
+  ;; TODO: No release, change to tag when it's ready.
+  (let ((commit "57cc7e76fb4163be3e99fb740b36b5ec5ae96e49")
+        (revision "0"))
+    (package
+      (name "python-asdf-compression")
+      (version (git-version "0.0.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/asdf-format/asdf-compression")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1g6iiyls950k66dmd0pbqqdvz74kksc4j191n0ik6fhjnkiwifgs"))))
+      (build-system pyproject-build-system)
+      (arguments
+       (list
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-before 'build 'set-version
+              (lambda _
+                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
+      (native-inputs
+       (list python-numpy
+             python-pytest
+             python-semantic-version
+             python-setuptools-scm))
+      (propagated-inputs
+       (list python-asdf
+             python-blosc
+             python-lz4
+             python-zstandard))
+      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
+      (synopsis "ASDF extension to support various compression algorithms")
+      (description
+       "This package includes a plugin for the Python library ASDF to add
+support for reading and writing various compression algorithms including:
+@url{https://www.blosc.org/python-blosc/reference.html,Blosc},
+@url{https://python-lz4.readthedocs.io/en/stable/lz4.frame.html,LZ4 Frame},
+@url{http://facebook.github.io/zstd/,Zstandard}.")
+      (license license:bsd-3))))
+
 ;; (define python-asdf-wcs-schemas
 ;; added-to-downstream-guix 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
 ;; CommitDate: Sun Jan 30 11:46:19 2022 -0300
