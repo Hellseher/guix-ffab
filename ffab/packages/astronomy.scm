@@ -926,6 +926,32 @@ support for reading and writing various compression algorithms including:
 ;; added-to-upstram: 89a5c53f382eec3dc4e2b60d819b39ada003df44
 ;; CommitDate: Sun Jan 30 11:46:17 2022 -0300
 
+;; 20240310T110941+0000
+(define-public python-asdf-zarr
+  (package
+    (name "python-asdf-zarr")
+    (version "0.0.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "asdf_zarr" version))
+       (sha256
+        (base32 "0ax7c9xarh6fi2yxm1z2p90mc3d57q23a7wc8av30xg8ririrl4s"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs
+     (list python-asdf python-fsspec python-zarr))
+    (native-inputs
+     (list python-pytest python-semantic-version python-setuptools-scm))
+    (home-page "https://github.com/asdf-format/asdf-zarr")
+    (synopsis "Asdf extension to support Zarr arrays")
+    (description
+     "This package includes an extension for the Python library asdf to add
+support for reading and writing chunked
+@url{https://zarr.readthedocs.io/en/stable/,Zarr} arrays, a file storage
+format for chunked, compressed, N-dimensional arrays based on an open-source
+specification.")
+    (license license:bsd-3)))
+
 ;;+end-asdf-format
 
 ;; (define-public python-astroalign
