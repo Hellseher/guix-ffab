@@ -1,0 +1,48 @@
+From c5cd09d3d8134831fd2a10722efeb6a43e567f78 Mon Sep 17 00:00:00 2001
+Message-ID: <c5cd09d3d8134831fd2a10722efeb6a43e567f78.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 Feb 2024 15:39:33 +0000
+Subject: [PATCH 33/46] gnu: python-poppy: Speed up tests.
+
+* gnu/packages/astronomy.scm (python-poppy): Speed up tests.
+[arguments] <#:test-flags>: Add with "-n" option.
+[native-inputs]: Add python-pytest-xdist and python-scikit-image.
+
+Change-Id: Ic72b1c7c700204cc91e00dcc5a0706859420109b
+---
+ gnu/packages/astronomy.scm | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 111599f442..0a2599590a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2354,6 +2354,10 @@ (define-public python-poppy
+                (base32
+                 "0s8rb61q8dz66s8d3qg44kb6bb5gi40zl41ik9wyccgb4kyf3brp"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-n" "auto")))
+     (propagated-inputs
+      ;; XXX: With python-synphot (marked as optional) package added to the list
+      ;; it tries to download from remote host during tests and fails. Overall
+@@ -2368,8 +2372,10 @@ (define-public python-poppy
+            python-pandas
+            python-pytest
+            python-pytest-astropy
+-           python-sphinx
+-           python-setuptools-scm))
++           python-pytest-xdist
++           python-scikit-image
++           python-setuptools-scm
++           python-sphinx))
+     (home-page "https://poppy-optics.readthedocs.io/")
+     (synopsis "Physical Optics Propagation in Python")
+     (description
+-- 
+2.41.0
+

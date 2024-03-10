@@ -1,0 +1,55 @@
+From e959488e1edd32bebe07cdb85428003a672d6f49 Mon Sep 17 00:00:00 2001
+Message-ID: <e959488e1edd32bebe07cdb85428003a672d6f49.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 Jan 2024 12:30:33 +0000
+Subject: [PATCH 40/46] gnu: Add python-extinction.
+
+* gnu/packages/astronomy.scm (python-extinction): New variable.
+
+Change-Id: I0f8877f8c79f6dd03150d92269c238cd706cc0ba
+---
+ gnu/packages/astronomy.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6324d941a8..d4c731a797 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2114,6 +2114,32 @@ (define-public python-ephem
+ of dates.")
+     (license license:expat)))
+ 
++(define-public python-extinction
++  (package
++    (name "python-extinction")
++    (version "0.4.6")
++    (source
++     (origin
++       (method git-fetch) ; No tests in PyPI
++       (uri (git-reference
++             (url "https://github.com/kbarbary/extinction")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1adxq926jd469mxm6llvsljgf2jqb06905h61i9qzc7m2yrm4wga"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags #~(list "test.py")))
++    (native-inputs (list python-cython python-pytest))
++    (propagated-inputs (list python-numpy))
++    (home-page "http://github.com/kbarbary/extinction")
++    (synopsis "Fast interstellar dust extinction laws")
++    (description
++     "This package provides a cython-optimized implementations of empirical dust
++exitinction laws found in the literature.")
++    (license license:expat)))
++
+ (define-public python-hvpy
+   (package
+     (name "python-hvpy")
+-- 
+2.41.0
+

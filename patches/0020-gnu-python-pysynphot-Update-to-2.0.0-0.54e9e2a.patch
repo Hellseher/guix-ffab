@@ -1,0 +1,71 @@
+From 9c9886d856d13e5bc685509a4f3febb35c174513 Mon Sep 17 00:00:00 2001
+Message-ID: <9c9886d856d13e5bc685509a4f3febb35c174513.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 16:30:17 +0000
+Subject: [PATCH 20/46] gnu: python-pysynphot: Update to 2.0.0-0.54e9e2a.
+
+* gnu/packages/astronomy.scm (python-pysynphot): Update to
+2.0.0-0.54e9e2a.
+[source]: Swap to git checkout as release is dated.
+[arguments] <#:phases>: Add 'set-version phase.
+
+Change-Id: Ibb51304cf15f191c731727344d413e2c2fd1a5ee
+---
+ gnu/packages/astronomy.scm | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index bec314f57b..7fe80e0fdb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3909,18 +3909,29 @@ (define-public python-pyregion
+     (license license:expat)))
+ 
+ (define-public python-pysynphot
++  ;; XXX: 2.0.0 was released in 2021 there are a lot of changes since that
++  ;; time and it failed to build with python-astropy 6.0.0, use the latest
++  ;; upstream commit for now.
++  (let ((commit "54e9e2a624910c4d177ca70f8e9fb8110c8fae5b")
++        (revision "0"))
+   (package
+     (name "python-pysynphot")
+-    (version "2.0.0")
+-    (source (origin
+-              (method url-fetch)
+-              (uri (pypi-uri "pysynphot" version))
+-              (sha256
+-               (base32
+-                "1rr29m63bnj47f6gvbvg3pm1296x14ad29c6qd0sdj4f4ilrzhj5"))))
++      (version (git-version "2.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/spacetelescope/pysynphot")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "09sivpfqilk86zp8k5wmrs4g48m4kypn34jcy95y5h4ygbn5zbzy"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:phases #~(modify-phases %standard-phases
++                        (add-before 'build 'set-version
++                          (lambda _
++                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "2.0.0")))
+                         (add-before 'check 'set-env-data-path
+                           (lambda _
+                             (setenv "PYSYN_CDBS"
+@@ -3938,7 +3949,7 @@ (define-public python-pysynphot
+ observed with the Hubble Space Telescope (HST).  Passbands for standard
+ photometric systems are available, and users can incorporate their own filters,
+ spectra, and data.")
+-    (license license:bsd-3)))
++    (license license:bsd-3))))
+ 
+ (define-public python-sep
+   (package
+-- 
+2.41.0
+

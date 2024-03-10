@@ -1,0 +1,103 @@
+From 22285c764730d55ebe16e60aebe5473c3ad803d3 Mon Sep 17 00:00:00 2001
+Message-ID: <22285c764730d55ebe16e60aebe5473c3ad803d3.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 12:47:02 +0000
+Subject: [PATCH 10/46] gnu: python-astropy: Update to 6.0.0.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.0.0.
+[arguments] <#:phases>: (preparations) Adjust to be compatible with the
+new code layout. (check) Silent one more failing test.
+[propagated-inputs]: Add python-astropy-iers-data.
+[native-inputs]: Remove python-cython; add python-cython-3,
+python-matplotlib and python-pytest-mpl.
+
+Change-Id: Id48a7cf05c30c1a1f7799fdc162b910316743f7c
+---
+ gnu/packages/astronomy.scm | 28 ++++++++++++++--------------
+ 1 file changed, 14 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 45394a7070..11cdd9e862 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1478,13 +1478,13 @@ (define-public celestia-gtk
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "5.3.4")
++    (version "6.0.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "1n7iwvjari4xv37094cpiapmjhhm57b04hi4r40wqb5czbigg46l"))
++        (base32 "1nbpqx7ibm8zsyyy17y5rmfjamwz6mv0sy4drlisap9hald81k83"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -1508,16 +1508,11 @@ (define-public python-astropy
+              ;; Some tests require a writable home.
+              (setenv "HOME" "/tmp")
+              ;; Relax xfail tests.
+-             (substitute* "setup.cfg"
++             (substitute* "pyproject.toml"
+                (("xfail_strict = true") "xfail_strict = false"))
+-             ;; Replace all references to external ply.
+-             (let ((ply-files '("coordinates/angle_formats.py"
+-                                "utils/parsing.py")))
+-               (with-directory-excursion "astropy"
+-                 (map (lambda (file)
+-                        (substitute* file (("astropy.extern.ply")
+-                                           "ply")))
+-                      ply-files)))
++             ;; Replace reference to external ply.
++             (substitute* "astropy/utils/parsing.py"
++               (("astropy.extern.ply") "ply"))
+              ;; Replace reference to external configobj.
+              (with-directory-excursion "astropy/config"
+                (substitute* "configuration.py"
+@@ -1541,22 +1536,26 @@ (define-public python-astropy
+                              " and not test_ignore_sigint"
+                              " and not test_parquet_filter"
+                              ;; See https://github.com/astropy/astropy/issues/15537
+-                             " and not test_pvstar"))))))))
++                             " and not test_pvstar"
++                             ;; E ModuleNotFoundError: No module named 'wofz'
++                             " and not test_pickle_functional"))))))))
+     (native-inputs
+      (list pkg-config
+            python-colorlog
+            python-coverage
+-           python-cython
++           python-cython-3
+            python-extension-helpers
+            python-h5py
+            python-ipython
+            python-jplephem
++           python-matplotlib
+            python-objgraph
+            python-pandas
+            python-pyarrow
+            python-pytest
+            python-pytest-astropy
+            python-pytest-astropy-header
++           python-pytest-mpl
+            python-pytest-xdist
+            python-scikit-image
+            python-scipy
+@@ -1567,7 +1566,8 @@ (define-public python-astropy
+     (inputs
+      (list expat wcslib))
+     (propagated-inputs
+-     (list python-configobj
++     (list python-astropy-iers-data
++           python-configobj
+            python-numpy
+            python-packaging
+            python-ply
+-- 
+2.41.0
+

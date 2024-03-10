@@ -1,0 +1,43 @@
+From d53f505d75e4f765974c5a414e7809982930bbed Mon Sep 17 00:00:00 2001
+Message-ID: <d53f505d75e4f765974c5a414e7809982930bbed.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 15:34:30 +0000
+Subject: [PATCH 31/46] gnu: python-asdf-coordinates-schemas: Speed up tests.
+
+* gnu/packages/astronomy.scm (python-asdf-coordinates-schemas): Speed up
+tests.
+[arguments] <#:test-flags>: Add it with "-n" option.
+[native-inputs]: Add python-pytest-xdist.
+[propagated-inputs]: Swap python-asdf to python-asdf-3.0.
+
+Change-Id: I0cf8aa077dbfa28e3473e5c49ab420426038884f
+---
+ gnu/packages/astronomy.scm | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fa3edad1d6..a3dca00664 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4201,8 +4201,15 @@ (define python-asdf-coordinates-schemas
+        (sha256
+         (base32 "1x6mipg76c6qldq8s2p2wpsq0cpr9b5krp62xskljdz1f84abyg3"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-n" "auto")))
+     (native-inputs
+-     (list python-pytest python-semantic-version python-setuptools-scm))
++     (list python-pytest
++           python-pytest-xdist
++           python-semantic-version
++           python-setuptools-scm))
+     (propagated-inputs
+      (list python-asdf))
+     (home-page "https://github.com/asdf-format/asdf-coordinates-schemas")
+-- 
+2.41.0
+

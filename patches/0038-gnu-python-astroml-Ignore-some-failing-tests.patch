@@ -1,0 +1,39 @@
+From b47282f61090e0cc794ba32400001ae6cea2c613 Mon Sep 17 00:00:00 2001
+Message-ID: <b47282f61090e0cc794ba32400001ae6cea2c613.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 Feb 2024 16:25:25 +0000
+Subject: [PATCH 38/46] gnu: python-astroml: Ignore some failing tests.
+
+* gnu/packages/astronomy.scm (python-astroml) [arguments]
+<#:test-flags>: Disable some tests which are not compatible with Astropy
+6.0.0.
+
+Change-Id: I92f207e1e20a80de8904ee04aaba11469d9249b0
+---
+ gnu/packages/astronomy.scm | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f8274e7a59..54b8e66931 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -569,7 +569,13 @@ (define-public python-astroml
+     (arguments
+      (list
+       #:test-flags
+-      '(list "--ignore-glob=examples/*")
++      '(list "--ignore-glob=examples/*"
++        ;; Disable tests which are not compatible with Astropy 6.0.0, see
++        ;; <https://github.com/astroML/astroML/issues/273>.
++        "--ignore=astroML/density_estimation/tests/test_bayesian_blocks.py"
++        "--ignore=astroML/density_estimation/tests/test_bayesian_blocks.py"
++        "--ignore=astroML/density_estimation/tests/test_hist_binwidth.py"
++        "--ignore=astroML/density_estimation/tests/test_hist_binwidth.py")
+       #:phases
+       '(modify-phases %standard-phases
+          (add-after 'unpack 'patch-build-system
+-- 
+2.41.0
+

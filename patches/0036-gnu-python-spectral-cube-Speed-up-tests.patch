@@ -1,0 +1,53 @@
+From 49f1e12ceadd02c7929b9f436b0968f841c73030 Mon Sep 17 00:00:00 2001
+Message-ID: <49f1e12ceadd02c7929b9f436b0968f841c73030.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 21:39:22 +0000
+Subject: [PATCH 36/46] gnu: python-spectral-cube: Speed up tests.
+
+* gnu/packages/astronomy.scm (python-spectral-cube): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+[propagated-inputs]: Remove python-aplpy.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: Icd5afb95ea64406a2f61e4d395bfe503c668cf12
+---
+ gnu/packages/astronomy.scm | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6a9c7e3183..69b2af63d7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2730,9 +2730,17 @@ (define-public python-spectral-cube
+        (sha256
+         (base32 "0cqxgmk46gv2qa2kls8fph105lgwbwf13hvizh6w85mzgypyp740"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-n" "auto")))
+     (propagated-inputs
+      (list python-astropy
+-           python-aplpy
++           ;; XXX: Currently failing in upstream as it's optional silent
++           ;; until a new version is released, see:
++           ;; <https://github.com/aplpy/aplpy/issues/492>.
++           ;;
++           ;; python-aplpy
+            python-casa-formats-io
+            python-dask
+            python-distributed
+@@ -2752,6 +2760,7 @@ (define-public python-spectral-cube
+            ;; in [noviz] option.
+            ;; python-pvextractor
+            python-pytest-astropy
++           python-pytest-xdist
+            python-regions
+            python-semantic-version
+            python-setuptools-scm))
+-- 
+2.41.0
+

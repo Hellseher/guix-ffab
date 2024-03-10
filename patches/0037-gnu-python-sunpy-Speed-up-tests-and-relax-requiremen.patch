@@ -1,0 +1,59 @@
+From ac1e9edf55cf3e8f3bb1d9d11db60cca30990360 Mon Sep 17 00:00:00 2001
+Message-ID: <ac1e9edf55cf3e8f3bb1d9d11db60cca30990360.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 28 Jan 2024 17:38:20 +0000
+Subject: [PATCH 37/46] gnu: python-sunpy: Speed up tests and relax
+ requirements.
+
+* gnu/packages/astronomy.scm (python-sunpy): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+<#:phases>: Add 'relax-requirements.
+
+Change-Id: I67c3308b8c5e9b878377f2175f74f1c469a43610
+---
+ gnu/packages/astronomy.scm | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 69b2af63d7..f8274e7a59 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2591,16 +2591,24 @@ (define-public python-sunpy
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-k" (string-append
+-                    ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
+-                    ;; It struggles to find python-opencsv package info with
+-                    ;; 'importlib.metadata'
+-                    "not test_main_nonexisting_module"
+-                    " and not test_main_stdlib_module")
+-              ;; Requries SpicePy not packed in Guix yet.
+-              "--ignore=sunpy/coordinates/tests/test_spice.py")
++      #~(list
++         "-n" "auto"
++         "-k" (string-append
++               ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
++               ;; It struggles to find python-opencsv package info with
++               ;; 'importlib.metadata'
++               "not test_main_nonexisting_module"
++               " and not test_main_stdlib_module")
++         ;; Requries SpicePy not packed in Guix yet.
++         "--ignore=sunpy/coordinates/tests/test_spice.py")
+       #:phases
+       #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "setup.cfg"
++                ;; It's already updated in master branch, but not released yet.
++                ;; drms>=0.6.1,<0.7.0
++                (("0.7.0") "0.7.2"))))
+           (add-before 'install 'writable-compiler
+             (lambda _
+               (make-file-writable "sunpy/_compiler.c")))
+-- 
+2.41.0
+

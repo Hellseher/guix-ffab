@@ -1,0 +1,52 @@
+From 27805160caed540718c69eb55267906202a6be69 Mon Sep 17 00:00:00 2001
+Message-ID: <27805160caed540718c69eb55267906202a6be69.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 Feb 2024 15:00:52 +0000
+Subject: [PATCH 06/46] gnu: parfive: Simplify package.
+
+* gnu/packages/python-web.scm (parfive) [build-system]: Swap to
+pyproject-build-system.
+[arguments] <#:phases>: Use standard 'check phase. <#:test-flags>: Move
+disabled tests here and remove 'disable-test-requiring-network phase.
+
+Change-Id: I08b67b2aa7027ac37e0a3df4da7ebb01ea3c451e
+---
+ gnu/packages/python-web.scm | 19 ++++++++-----------
+ 1 file changed, 8 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index adae8d7272..de57d5be94 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -1326,18 +1326,15 @@ (define-public parfive
+               (sha256
+                (base32
+                 "0pf8rzfwxpkn84xzb4v8m1fy3k7kjlh8f9ln4y5xqlnbqpwi30lh"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (add-before 'check 'disable-test-requiring-network
+-                          (lambda _
+-                            (substitute* "parfive/tests/test_downloader.py"
+-                              (("def test_ftp")
+-                               "def __off_test_ftp"))))
+-                        (replace 'check
+-                          (lambda* (#:key tests? #:allow-other-keys)
+-                            (when tests?
+-                              (invoke "python" "-m" "pytest" "-vvv" "parfive")))))))
++     (list
++      ;; Disable tests requiring network access.
++      #:test-flags
++      #~(list "-k" (string-append
++                    "not test_ftp"
++                    " and not test_ftp_pasv_command"
++                    " and not test_ftp_http"))))
+     (propagated-inputs (list python-aiofiles python-aioftp python-aiohttp
+                              python-tqdm))
+     (native-inputs (list python-pytest
+-- 
+2.41.0
+

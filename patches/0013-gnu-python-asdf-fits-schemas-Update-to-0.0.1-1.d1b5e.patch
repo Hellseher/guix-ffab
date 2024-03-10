@@ -1,0 +1,44 @@
+From 515d06524c9a2262d3ff4b365eeb3b273231c01e Mon Sep 17 00:00:00 2001
+Message-ID: <515d06524c9a2262d3ff4b365eeb3b273231c01e.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 18:07:44 +0000
+Subject: [PATCH 13/46] gnu: python-asdf-fits-schemas: Update to
+ 0.0.1-1.d1b5e7a.
+
+* gnu/packages/astronomy.scm (python-asdf-fits-schemas): Update to
+0.0.1-1.d1b5e7a.
+
+Change-Id: I4448544c1111c96ec178a32222b846a66a906149
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index cb645ea558..5a22c7e808 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4184,8 +4184,8 @@ (define python-asdf-coordinates-schemas
+ 
+ (define python-asdf-fits-schemas
+   ;; TODO: No release, change to tag when it's ready.
+-  (let ((commit "572bb370d777f3a325b25c1af9d76e1b7d27dcea")
+-        (revision "0"))
++  (let ((commit "d1b5e7a12a49fe61d43855045bab106be34cd252")
++        (revision "1"))
+     (package
+       (name "python-asdf-fits-schemas")
+       (version (git-version "0.0.1" revision commit))
+@@ -4198,7 +4198,7 @@ (define python-asdf-fits-schemas
+          (file-name (git-file-name name version))
+          (sha256
+           (base32
+-           "1yqnzd0gcrdfl0jqm8m8kz5fd36i8lgh7xkglmp1chsi1cc6mkz2"))))
++           "1h2xbk9c9l2959i3sdnwviv3z0hp1f0lba2vz9hpzgcm46qadqp8"))))
+       (build-system pyproject-build-system)
+       (arguments
+        (list
+-- 
+2.41.0
+

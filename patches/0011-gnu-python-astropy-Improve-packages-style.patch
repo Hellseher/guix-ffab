@@ -1,0 +1,121 @@
+From dc664183c412db8cecd7d566ed1e317ebd20b268 Mon Sep 17 00:00:00 2001
+Message-ID: <dc664183c412db8cecd7d566ed1e317ebd20b268.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 13:08:21 +0000
+Subject: [PATCH 11/46] gnu: python-astropy: Improve packages style.
+
+* gnu/packages/astronomy.scm (python-astropy): Adjust package style.
+[arguments] <#:phases>: {preparations} Simplify it, move step setting up
+HOME env to 'prepare-test-environment phase.
+{prepare-test-environment}: New phase, consolidating all pre test
+procedures.
+{check}: Add option to run test in parallel to accelerate them. Remove
+from disabled list tests which were passed successfully.
+
+Change-Id: I306ab60b6e155c81035de9584fbd9d06a6381045
+---
+ gnu/packages/astronomy.scm | 86 ++++++++++++++++++++------------------
+ 1 file changed, 46 insertions(+), 40 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 11cdd9e862..9db5b080cc 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1499,46 +1499,52 @@ (define-public python-astropy
+              (for-each delete-file-recursively '("expat" "wcslib")))))))
+     (build-system python-build-system)
+     (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'preparations
+-           (lambda _
+-             ;; Use our own libraries in place of bundles.
+-             (setenv "ASTROPY_USE_SYSTEM_ALL" "1")
+-             ;; Some tests require a writable home.
+-             (setenv "HOME" "/tmp")
+-             ;; Relax xfail tests.
+-             (substitute* "pyproject.toml"
+-               (("xfail_strict = true") "xfail_strict = false"))
+-             ;; Replace reference to external ply.
+-             (substitute* "astropy/utils/parsing.py"
+-               (("astropy.extern.ply") "ply"))
+-             ;; Replace reference to external configobj.
+-             (with-directory-excursion "astropy/config"
+-               (substitute* "configuration.py"
+-                 (("from astropy.extern.configobj ") "")))))
+-         ;; This file is opened in both install and check phases.
+-         (add-before 'install 'writable-compiler
+-           (lambda _ (make-file-writable "astropy/_compiler.c")))
+-         (add-before 'check 'writable-compiler
+-           (lambda _ (make-file-writable "astropy/_compiler.c")))
+-         (replace 'check
+-           (lambda* (#:key inputs outputs tests? #:allow-other-keys)
+-             (when tests?
+-               (add-installed-pythonpath inputs outputs)
+-               ;; Extensions have to be rebuilt before running the tests.
+-               (invoke "python" "setup.py" "build_ext" "--inplace")
+-               (invoke "python" "-m" "pytest" "--pyargs" "astropy"
+-                       ;; Skip tests that need remote data.
+-                       "-k" (string-append
+-                             "not remote_data"
+-                             ;; XXX: Check why this tests failing.
+-                             " and not test_ignore_sigint"
+-                             " and not test_parquet_filter"
+-                             ;; See https://github.com/astropy/astropy/issues/15537
+-                             " and not test_pvstar"
+-                             ;; E ModuleNotFoundError: No module named 'wofz'
+-                             " and not test_pickle_functional"))))))))
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'preparations
++            (lambda _
++              ;; Use our own libraries in place of bundles.
++              (setenv "ASTROPY_USE_SYSTEM_ALL" "1")
++              ;; Relax xfail tests.
++              (substitute* "pyproject.toml"
++                (("xfail_strict = true") "xfail_strict = false"))
++              ;; Replace reference to external ply.
++              (substitute* "astropy/utils/parsing.py"
++                (("astropy.extern.ply") "ply"))
++              ;; Replace reference to external configobj.
++              (substitute* "astropy/config/configuration.py"
++                (("from astropy.extern.configobj ") ""))))
++          ;; This file is opened in both install and check phases.
++          (add-before 'install 'writable-compiler
++            (lambda _
++              (make-file-writable "astropy/_compiler.c")))
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              ;; Some tests require a writable home.
++              (setenv "HOME" "/tmp")
++              (make-file-writable "astropy/_compiler.c")
++              ;; Extensions have to be rebuilt before running the tests.
++              (invoke "python" "setup.py" "build_ext" "--inplace"
++                      "-j" (number->string (parallel-job-count)))))
++          ;; TODO: The swap to pyproject-build-system introduced all tests
++          ;; failed due to pytest could not load conftest.py, find out how
++          ;; to resolve it and migrate completely to pyproject-build-system.
++          (replace 'check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (invoke "python" "-m" "pytest" "--pyargs" "astropy"
++                        ;; with    -n : 133.00s
++                        ;; without -n : 326.14s
++                        "-n" (number->string (parallel-job-count))
++                        "-k" (string-append
++                              ;; Skip tests that need remote data.
++                              "not remote_data"
++                              ;; E astropy.samp.errors.SAMPProxyError:
++                              ;; <SAMPProxyError 1: 'Timeout expired!'>
++                              " and not test_main"
++                              ;; E ModuleNotFoundError: No module named 'wofz'
++                              " and not test_pickle_functional"))))))))
+     (native-inputs
+      (list pkg-config
+            python-colorlog
+-- 
+2.41.0
+

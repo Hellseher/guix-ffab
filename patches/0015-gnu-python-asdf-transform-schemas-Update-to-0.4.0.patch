@@ -1,0 +1,38 @@
+From c48a5e3aad08fe4058040558d36159f575fef129 Mon Sep 17 00:00:00 2001
+Message-ID: <c48a5e3aad08fe4058040558d36159f575fef129.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 18:03:07 +0000
+Subject: [PATCH 15/46] gnu: python-asdf-transform-schemas: Update to 0.4.0.
+
+* gnu/packages/astronomy.scm (python-asdf-transform-schemas): Update to 0.4.0.
+
+Change-Id: I44fc1564879ac5bb10c8d4411d745410782fb8ff
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9fceddce86..6630e60321 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4139,13 +4139,13 @@ (define-public python-asdf-standard
+ (define python-asdf-transform-schemas
+   (package
+     (name "python-asdf-transform-schemas")
+-    (version "0.3.0")
++    (version "0.4.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_transform_schemas" version))
+        (sha256
+-        (base32 "1midgn575970p5cnsh9y6bz77fjr392b5nfxb3z0id6c49xzzwhc"))))
++        (base32 "1jlls8mirwarf8d67gaix39d8zcx1rx8fmr9qdzrbyrmxqzxqzyy"))))
+     (build-system pyproject-build-system)
+     (arguments
+      ;; Dependency cycle with python-asdf
+-- 
+2.41.0
+

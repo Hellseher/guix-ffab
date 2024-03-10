@@ -1,0 +1,40 @@
+From c7c37ca8b1f8aa022987bbaaef2fa5370e318605 Mon Sep 17 00:00:00 2001
+Message-ID: <c7c37ca8b1f8aa022987bbaaef2fa5370e318605.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 1 Feb 2024 21:50:49 +0000
+Subject: [PATCH 03/46] gnu: indi-2.0: Update to 2.0.6.
+
+* gnu/packages/astronomy.scm (indi-2.0): Update to 2.0.6.
+
+Change-Id: Id8e9243639beadc3a9bd854af92797643b5d62d8
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3ae1f3e5ce..8fce98c764 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3467,7 +3467,7 @@ (define-public imppg
+ (define-public indi-2.0
+   (package
+     (name "indi")
+-    (version "2.0.5")
++    (version "2.0.6")
+     (source
+      (origin
+        (method git-fetch)
+@@ -3476,7 +3476,7 @@ (define-public indi-2.0
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1lmp5p1rsckb8j44g34wxpyjzzy2ff78llxyc84pv5xs9pay6p4z"))))
++        (base32 "0j1yr8wz6q6xi4dskv3yyhm0valsyfhcw1n8xpfgzbzbdzc8biyw"))))
+     (build-system cmake-build-system)
+     (arguments
+      ;; TODO: fix failing tests on aarch64-system.
+-- 
+2.41.0
+

@@ -1,0 +1,50 @@
+From 7afdb532653500d7f2bc7600c09c26ad137c57b3 Mon Sep 17 00:00:00 2001
+Message-ID: <7afdb532653500d7f2bc7600c09c26ad137c57b3.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 18 Feb 2024 15:17:26 +0000
+Subject: [PATCH 44/46] gnu: python-drizzle: Update to 1.15.0.
+
+* gnu/packages/astronomy.scm (python-drizzle): Update to 1.15.0.
+[native-inputs]: Remove python-flake8.
+
+Change-Id: Id872c5ac904a6856fd5d9061b34f36cbfdf1645e
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 282fd1ebb4..af0f30756f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2087,7 +2087,7 @@ (define-public python-drms
+ (define-public python-drizzle
+   (package
+     (name "python-drizzle")
+-    (version "1.14.4")
++    (version "1.15.0")
+     (source
+      (origin
+        (method git-fetch) ;PyPi doesn't have the test data sets
+@@ -2096,7 +2096,7 @@ (define-public python-drizzle
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "01zsq1r3p9lig0aik01szncd7nbmyi561mhi1n44yjhh7d86fp8y"))))
++        (base32 "06qh3b60xvm5f2p09l2njwwsh0n95s54r730fyfn66w8mvr1jk82"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2112,7 +2112,7 @@ (define-public python-drizzle
+     (propagated-inputs
+      (list python-astropy python-numpy))
+     (native-inputs
+-     (list python-flake8 python-pytest python-setuptools-scm))
++     (list python-pytest python-setuptools-scm))
+     (home-page "https://github.com/spacetelescope/drizzle")
+     (synopsis
+      "Astronomical tool for combining dithered images into a single image")
+-- 
+2.41.0
+

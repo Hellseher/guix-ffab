@@ -1,0 +1,40 @@
+From 4613101be303e4be115efeede54a77d9d7e58ae7 Mon Sep 17 00:00:00 2001
+Message-ID: <4613101be303e4be115efeede54a77d9d7e58ae7.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 15:13:00 +0000
+Subject: [PATCH 04/46] gnu: phd2: Update to 2.6.13.
+
+* gnu/packages/astronomy.scm (phd2): Update to 2.6.13.
+
+Change-Id: Iac8d1e00be3ea9137b10f2608c149fcbde539c7b
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8fce98c764..52ae2410e7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -982,7 +982,7 @@ (define-public gnuastro
+ (define-public phd2
+   (package
+     (name "phd2")
+-    (version "2.6.12")
++    (version "2.6.13")
+     (source
+      (origin
+        (method git-fetch)
+@@ -991,7 +991,7 @@ (define-public phd2
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "16695vyczl861fz5qinp23wqn6hzv5h1aspz9x21x67w0a3smbmy"))
++        (base32 "0shr50ngi7dliijy8fxrd1c4hzkm4vp4m0a4m0d9gvrx56vzyx0s"))
+        (modules '((guix build utils)
+                   (ice-9 ftw)
+                   (srfi srfi-26)))
+-- 
+2.41.0
+

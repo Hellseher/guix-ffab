@@ -1,0 +1,38 @@
+From 645eb9455b4546c6ef2612de1f266689b42aed84 Mon Sep 17 00:00:00 2001
+Message-ID: <645eb9455b4546c6ef2612de1f266689b42aed84.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 9 Feb 2024 16:57:26 +0000
+Subject: [PATCH 25/46] gnu: python-skyfield: Update to 1.48.
+
+* gnu/packages/astronomy.scm (python-skyfield): Update to 1.48.
+
+Change-Id: I4f94ec7c8cbea3af325fff81d570ef044f710f71
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index bc703492f9..fb10b5622e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4547,13 +4547,13 @@ (define-public python-astroalign
+ (define-public python-skyfield
+   (package
+     (name "python-skyfield")
+-    (version "1.47")
++    (version "1.48")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "skyfield" version))
+        (sha256
+-        (base32 "0272pwk88csmrrl44fc4l52agd68pkg4zbmdhs7gliq5q9wf3hrs"))))
++        (base32 "1qaz0k0lkni3y423r66mkvj99bx08qa9xgqp3cs2df70cmdz30cb"))))
+     (build-system python-build-system)
+     (arguments
+      ;; XXX: Tests depend on custom test framework
+-- 
+2.41.0
+

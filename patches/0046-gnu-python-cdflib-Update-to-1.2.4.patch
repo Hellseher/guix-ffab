@@ -1,0 +1,40 @@
+From 345f33bcef1cc020d55d21aee0accaaa5fda5764 Mon Sep 17 00:00:00 2001
+Message-ID: <345f33bcef1cc020d55d21aee0accaaa5fda5764.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Feb 2024 12:16:04 +0000
+Subject: [PATCH 46/46] gnu: python-cdflib: Update to 1.2.4.
+
+* gnu/packages/astronomy.scm (python-cdflib): Update to 1.2.4.
+
+Change-Id: If6b654bf4bfc0e195055e03fddd22bb376e15920
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 175a8ee574..d7747f051d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1927,7 +1927,7 @@ (define-public python-ccdproc
+ (define-public python-cdflib
+   (package
+     (name "python-cdflib")
+-    (version "1.2.3")
++    (version "1.2.4")
+     (source
+      (origin
+        (method git-fetch)   ; no tests in pypi archive
+@@ -1936,7 +1936,7 @@ (define-public python-cdflib
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0vpgcbc9pmx0qqfia1frnwq3jkgfp8y3ikqdnzs5bs1sr13p9p3w"))))
++        (base32 "0pjd4dwwlza2592zgdccw1s341s3ikg44pwsr1gk8vjix40m46fr"))))
+     (build-system pyproject-build-system)
+     (arguments
+      ;; Disable shaky test.
+-- 
+2.41.0
+

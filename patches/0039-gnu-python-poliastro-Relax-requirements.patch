@@ -1,0 +1,44 @@
+From 0b7ff3f706b80feabee8c1bd1fb1eedce65d9f06 Mon Sep 17 00:00:00 2001
+Message-ID: <0b7ff3f706b80feabee8c1bd1fb1eedce65d9f06.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 Feb 2024 16:50:08 +0000
+Subject: [PATCH 39/46] gnu: python-poliastro: Relax requirements.
+
+* gnu/packages/astronomy.scm (python-poliastro) [arguments] <#:phases>:
+Add 'relax-requirements phase.
+
+Change-Id: Idb75f1ee9e0b9646024fab0a1d17ea50ca63a7f5
+---
+ gnu/packages/astronomy.scm | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 54b8e66931..6324d941a8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2264,6 +2264,9 @@ (define-public python-photutils
+ of astronomical sources.")
+     (license license:bsd-3)))
+ 
++;; XXX: The project is archived, maintained fork is available see
++;; <https://github.com/poliastro/poliastro/issues/1640>.
++;; Maintained fork <https://github.com/pleiszenburg/hapsira>.
+ (define-public python-poliastro
+   (package
+     (name "python-poliastro")
+@@ -2296,6 +2299,10 @@ (define-public python-poliastro
+                                   " and not test_porkchop_plotting"))
+       #:phases
+       #~(modify-phases %standard-phases
++         (add-after 'unpack 'relax-requirements
++           (lambda _
++             (substitute* "pyproject.toml"
++               (("5.0,<6") "5.0,<7"))))
+           (add-after 'unpack 'matplotlib-compatibility
+             (lambda _
+               (substitute* "src/poliastro/plotting/static.py"
+-- 
+2.41.0
+

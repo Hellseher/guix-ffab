@@ -1,0 +1,38 @@
+From 9628ac7f52615f50c36988c56884219c4c3d535c Mon Sep 17 00:00:00 2001
+Message-ID: <9628ac7f52615f50c36988c56884219c4c3d535c.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 22:11:03 +0000
+Subject: [PATCH 17/46] gnu: python-crds: Update to 11.17.16.
+
+* gnu/packages/astronomy.scm (python-crds): Update to 11.17.16.
+
+Change-Id: Ib6f193f94c727c1280eadc15dfcc4c227e6c2a3e
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9583524660..2e809c6749 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1909,13 +1909,13 @@ (define-public python-cdflib
+ (define-public python-crds
+   (package
+     (name "python-crds")
+-    (version "11.17.14")
++    (version "11.17.16")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "crds" version))
+               (sha256
+                (base32
+-                "1z9lrwrb07s9kn28nammjx75qb0ky7srd9i40dnkmm9zsaqz5jfm"))))
++                "0j84l7132mvwww2y83h2dgz5qw792ilp3hml4h12n7ydks0w0534"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

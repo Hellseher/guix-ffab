@@ -1,0 +1,44 @@
+From 5e56970b2abcda8b8e5708d1b31344998f51d7c7 Mon Sep 17 00:00:00 2001
+Message-ID: <5e56970b2abcda8b8e5708d1b31344998f51d7c7.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 13:28:33 +0000
+Subject: [PATCH 27/46] gnu: libpasastro: Remove system constrains.
+
+* gnu/packages/astronomy.scm (libpasastro) [supported-systems]: Remove
+it.
+[arguments] <#:make-flags>: Add attempt to build on RISCV.
+
+Change-Id: I6dbc843ec25fca46b7c9501e21cc8fba1e9d7bcb
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d03adaea52..ff7db6118b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3229,8 +3229,6 @@ (define-public libpasastro
+        (sha256
+         (base32 "1na3gyb3nzb5gdgccs1653j2gnz6w3v1mqzhyhkx3yqw8bs3q5x0"))))
+     (build-system gnu-build-system)
+-    (supported-systems '("i686-linux" "x86_64-linux"
+-                         "armhf-linux" "aarch64-linux"))
+     (arguments
+      (list
+       #:tests? #f ; no tests provided
+@@ -3246,7 +3244,9 @@ (define-public libpasastro
+                '("CPU_TARGET=i386"))
+               ("x86_64-linux"
+                '("CPU_TARGET=x86_64"))
+-              ((or "armhf-linux" "aarch64-linux")
++              ;; There is no a case for RISCV in upstream, attempt to treat it
++              ;; as ARM.
++              ((or "armhf-linux" "aarch64-linux" "riscv64")
+                '("CPU_TARGET=armv7l"))
+               (_ '()))
+          (string-append "PREFIX=" #$output))
+-- 
+2.41.0
+

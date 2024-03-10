@@ -1,0 +1,40 @@
+From d0463af4fdb3c7849b3bbf744699cc2db02de730 Mon Sep 17 00:00:00 2001
+Message-ID: <d0463af4fdb3c7849b3bbf744699cc2db02de730.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 17:03:24 +0000
+Subject: [PATCH 07/46] gnu: siril: Update to 1.2.1.
+
+* gnu/packages/astronomy.scm (siril): Update to 1.2.1.
+
+Change-Id: I52492a51ad5205914b9bfa930db22809b968e5a7
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 52ae2410e7..5919393869 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1094,7 +1094,7 @@ (define-public sextractor
+ (define-public siril
+   (package
+     (name "siril")
+-    (version "1.2.0")
++    (version "1.2.1")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -1102,7 +1102,7 @@ (define-public siril
+                     (commit version)))
+               (sha256
+                (base32
+-                "0ss1m9w4cz1752vp5738057nzmqc6k7fc9pi6kr9cwgspi1haall"))
++                "1lc6ga1n18br43rlj8qmg23chfniyvjz3vx73km6sv171z4c2fwy"))
+               (file-name (git-file-name name version))))
+     (build-system meson-build-system)
+     (native-inputs (list cmake git glib libconfig pkg-config))
+-- 
+2.41.0
+

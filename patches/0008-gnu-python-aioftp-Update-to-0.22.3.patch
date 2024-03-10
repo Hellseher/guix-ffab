@@ -1,0 +1,49 @@
+From 73e728c169b6daa2e06f5e8a1ca4c243d9069a45 Mon Sep 17 00:00:00 2001
+Message-ID: <73e728c169b6daa2e06f5e8a1ca4c243d9069a45.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 Feb 2024 15:05:38 +0000
+Subject: [PATCH 08/46] gnu: python-aioftp: Update to 0.22.3.
+
+* gnu/packages/python-web.scm (python-aioftp): Update to 0.22.3.
+[build-system]: Swap to pyproject-build-system, there is no setup.py in
+new release.
+[arguments] <#:phases>: Use standard 'check phase.
+
+Change-Id: I8e6a145da86e5ed56eb184d98d54bc8093a3bd1f
+---
+ gnu/packages/python-web.scm | 12 +++---------
+ 1 file changed, 3 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index de57d5be94..cde4ac4f58 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -3546,20 +3546,14 @@ (define-public python-requests-ftp
+ (define-public python-aioftp
+   (package
+     (name "python-aioftp")
+-    (version "0.21.4")
++    (version "0.22.3")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "aioftp" version))
+               (sha256
+                (base32
+-                "1f8vql2j2b3ykqyh5bxzsp8x5f2if2c1ya232ld3hz3cc7a2dfr8"))))
+-    (build-system python-build-system)
+-    (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (replace 'check
+-                          (lambda* (#:key tests? #:allow-other-keys)
+-                            (when tests?
+-                              (invoke "pytest" "-vvv")))))))
++                "0w621mg956m9rn7v39jpwi4gpnpl90pprwl29cp640dahqqv38ms"))))
++    (build-system pyproject-build-system)
+     (native-inputs (list python-async-timeout python-pytest
+                          python-pytest-asyncio python-pytest-cov
+                          python-trustme))
+-- 
+2.41.0
+

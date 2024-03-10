@@ -1,0 +1,41 @@
+From 8f63e4880eeed24d86f91c653e7117489ecfbc44 Mon Sep 17 00:00:00 2001
+Message-ID: <8f63e4880eeed24d86f91c653e7117489ecfbc44.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 14 Feb 2024 14:32:48 +0000
+Subject: [PATCH 24/46] gnu: python-rad: Enable tests.
+
+* gnu/packages/astronomy.scm (python-rad) [arguments] <#:test-flags>:
+Enable most of the tests, ignore the one introducing cycle.
+[native-inputs]: Add python-pytest.
+
+Change-Id: Ice4bc5eb2dcaae92c44466ea1eb932544a502927
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e1ee074ca9..bc703492f9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4414,10 +4414,13 @@ (define-public python-rad
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; XXX: Tests introduce dependencies cycle, breaking it by disable them.
++      ;; Ignore tests requiring python-crds to break cycle:
+       ;; python-rad -> python-roman-datamodels -> python-crds -> python-rad
+-      #:tests? #f))
+-    (native-inputs (list python-semantic-version python-setuptools-scm))
++      #:test-flags #~(list "--ignore=tests/test_schemas.py")))
++    (native-inputs
++     (list python-pytest
++           python-semantic-version
++           python-setuptools-scm))
+     (propagated-inputs (list python-asdf python-asdf-astropy))
+     (home-page "https://github.com/spacetelescope/rad")
+     (synopsis "Roman Attribute Dictionary")
+-- 
+2.41.0
+

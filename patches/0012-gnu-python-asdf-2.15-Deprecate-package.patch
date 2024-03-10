@@ -1,0 +1,79 @@
+From c0d1e00f49d065ad09aa2df889b15ccecfcda1d7 Mon Sep 17 00:00:00 2001
+Message-ID: <c0d1e00f49d065ad09aa2df889b15ccecfcda1d7.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 15:54:04 +0000
+Subject: [PATCH 12/46] gnu: python-asdf-2.15: Deprecate package.
+
+Version 2.15.0 is no longer built with the python-astropy v6.0.0,
+fail over to the latest version.
+
+* gnu/package/astronomy.scm (python-asdf-2.15): Remove variable.
+* gnu/package/astronomy.scm (python-asdf): Fail over to python-asdf-3.0.
+
+Change-Id: I30b97c42f672571783f900825098af12c773ac87
+---
+ gnu/packages/astronomy.scm | 32 ++------------------------------
+ 1 file changed, 2 insertions(+), 30 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9db5b080cc..cb645ea558 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2973,7 +2973,7 @@ (define-public python-stcal
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (propagated-inputs
+      (list opencv ;Provides OpenCV-Python
+-           python-asdf-3.0
++           python-asdf
+            python-astropy
+            python-gwcs
+            python-numpy
+@@ -4057,7 +4057,7 @@ (define-public python-tweakwcs
+ @code{FITS WCS} and @code{JWST gWCS} are supported.")
+     (license license:bsd-3)))
+ 
+-(define-public python-asdf-3.0
++(define-public python-asdf
+   (package
+     (name "python-asdf")
+     (version "3.0.1")
+@@ -4095,34 +4095,6 @@ (define-public python-asdf-3.0
+ implementation of the ASDF Standard.")
+     (license license:bsd-3)))
+ 
+-(define-public python-asdf-2.15
+-  (package
+-    (inherit python-asdf-3.0)
+-    (version "2.15.0")
+-    (source
+-     (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "asdf" version))
+-       (sha256
+-        (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))
+-    (arguments
+-     (list #:test-flags
+-           #~(list "-k" (string-append
+-                         "not test_overwrite"
+-                         " and not test_tagging_scalars"
+-                         " and not test_info_command"
+-                         " and not test_array_inline_threshold_recursive"))))
+-    (native-inputs
+-     (modify-inputs (package-native-inputs python-asdf-3.0)
+-       (prepend python-astropy python-pytest-openfiles)))
+-    (propagated-inputs
+-     (modify-inputs (package-propagated-inputs python-asdf-3.0)
+-       (prepend python-jsonschema python-importlib-resources)))))
+-
+-(define-public python-asdf
+-  ;; Default version of ASDF..
+-  python-asdf-2.15)
+-
+ (define-public python-asdf-standard
+   (package
+     (name "python-asdf-standard")
+-- 
+2.41.0
+

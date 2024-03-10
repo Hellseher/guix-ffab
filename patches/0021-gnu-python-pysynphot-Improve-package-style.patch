@@ -1,0 +1,91 @@
+From 3344623698af93a88574da232344c24790b0cd60 Mon Sep 17 00:00:00 2001
+Message-ID: <3344623698af93a88574da232344c24790b0cd60.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 16:37:27 +0000
+Subject: [PATCH 21/46] gnu: python-pysynphot: Improve package style.
+
+* gnu/packages/astronomy.scm (python-pysynphot): Fix indention of the
+package.
+
+Change-Id: I0cb6d29a0c5184ff4701e227ec98513c8813af2b
+---
+ gnu/packages/astronomy.scm | 49 ++++++++++++++++++++++----------------
+ 1 file changed, 28 insertions(+), 21 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7fe80e0fdb..1231d12f5b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3914,8 +3914,8 @@ (define-public python-pysynphot
+   ;; upstream commit for now.
+   (let ((commit "54e9e2a624910c4d177ca70f8e9fb8110c8fae5b")
+         (revision "0"))
+-  (package
+-    (name "python-pysynphot")
++    (package
++      (name "python-pysynphot")
+       (version (git-version "2.0.0" revision commit))
+       (source
+        (origin
+@@ -3926,30 +3926,37 @@ (define-public python-pysynphot
+          (file-name (git-file-name name version))
+          (sha256
+           (base32 "09sivpfqilk86zp8k5wmrs4g48m4kypn34jcy95y5h4ygbn5zbzy"))))
+-    (build-system pyproject-build-system)
+-    (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (add-before 'build 'set-version
+-                          (lambda _
+-                            (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "2.0.0")))
+-                        (add-before 'check 'set-env-data-path
+-                          (lambda _
+-                            (setenv "PYSYN_CDBS"
+-                                    (string-append #$output "/crds")))))))
+-    (native-inputs (list python-pytest python-pytest-remotedata
+-                         python-setuptools-scm))
+-    (propagated-inputs (list python-astropy python-beautifulsoup4 python-numpy
+-                             python-pytest-astropy-header python-six))
+-    (home-page "https://github.com/spacetelescope/pysynphot")
+-    (synopsis "Python Synthetic Photometry Utilities")
+-    (description
+-     "Astrolib PySynphot (hereafter referred to only as pysynphot) is an
++      (build-system pyproject-build-system)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-before 'build 'set-version
++              (lambda _
++                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "2.0.0")))
++            (add-before 'check 'set-env-data-path
++              (lambda _
++                (setenv "PYSYN_CDBS" (string-append #$output "/crds")))))))
++      (native-inputs
++       (list python-pytest
++             python-pytest-remotedata
++             python-setuptools-scm))
++      (propagated-inputs
++       (list python-astropy
++             python-beautifulsoup4
++             python-numpy
++             python-pytest-astropy-header
++             python-six))
++      (home-page "https://github.com/spacetelescope/pysynphot")
++      (synopsis "Python Synthetic Photometry Utilities")
++      (description
++       "Astrolib PySynphot (hereafter referred to only as pysynphot) is an
+ object-oriented replacement for STSDAS SYNPHOT synthetic photometry package in
+ IRAF.  @code{pysynphot} simulates photometric data and spectra as they are
+ observed with the Hubble Space Telescope (HST).  Passbands for standard
+ photometric systems are available, and users can incorporate their own filters,
+ spectra, and data.")
+-    (license license:bsd-3))))
++      (license license:bsd-3))))
+ 
+ (define-public python-sep
+   (package
+-- 
+2.41.0
+

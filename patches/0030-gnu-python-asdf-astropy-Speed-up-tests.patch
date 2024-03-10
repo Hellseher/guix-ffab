@@ -1,0 +1,40 @@
+From a47b4cd2f9eed562e764cf4d6f3df6add3c374c2 Mon Sep 17 00:00:00 2001
+Message-ID: <a47b4cd2f9eed562e764cf4d6f3df6add3c374c2.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 26 Jan 2024 01:47:56 +0000
+Subject: [PATCH 30/46] gnu: python-asdf-astropy: Speed up tests.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+
+Change-Id: Icb2efbe6d9fa6f5154fa81189a3d0127f7d26568
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0e8b941bbe..fa3edad1d6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4318,9 +4318,12 @@ (define-public python-asdf-astropy
+         (base32 "061y7r1d2fqlr8a6gyaffqa3z5m0ymljahhvxzcb71355xkqig7v"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (add-before 'check 'set-home-env
+-                          (lambda _ (setenv "HOME" "/tmp"))))))
++     (list
++      #:test-flags
++      #~(list "-n" "auto")
++      #:phases #~(modify-phases %standard-phases
++                   (add-before 'check 'set-home-env
++                     (lambda _ (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-coverage
+            python-h5py
+-- 
+2.41.0
+

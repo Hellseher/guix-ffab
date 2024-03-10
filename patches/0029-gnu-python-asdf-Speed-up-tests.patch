@@ -1,0 +1,44 @@
+From 9b60c71cc7e81cbf59e12bedeae8945d63bdfa02 Mon Sep 17 00:00:00 2001
+Message-ID: <9b60c71cc7e81cbf59e12bedeae8945d63bdfa02.1708471786.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1708471786.git.sharlatanus@gmail.com>
+References: <cover.1708471786.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 27 Jan 2024 15:23:36 +0000
+Subject: [PATCH 29/46] gnu: python-asdf: Speed up tests.
+
+* gnu/packages/astronomy.scm (python-asdf): Enable parallel tests to
+speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: I5a369e8f3ca43b9ba88c1053d0c55d218e6adc43
+---
+ gnu/packages/astronomy.scm | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 49f2ac7268..0e8b941bbe 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4093,6 +4093,10 @@ (define-public python-asdf
+        (sha256
+         (base32 "1jsk7b4mx04l0a08j832vnl309dba3gjnha9mbd61dzs9ridrfna"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-n" "auto")))
+     (native-inputs
+      (list python-fsspec
+            python-packaging
+@@ -4100,6 +4104,7 @@ (define-public python-asdf
+            python-pytest
+            python-pytest-doctestplus
+            python-pytest-remotedata
++           python-pytest-xdist
+            python-semantic-version
+            python-setuptools-scm))
+     (propagated-inputs
+-- 
+2.41.0
+
