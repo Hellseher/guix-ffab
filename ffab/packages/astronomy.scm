@@ -1638,7 +1638,7 @@ based on the HDF5 standard")
         (revision "0"))
     (package
       (name "python-dust-attenuation")
-      (version (git-version "0.0.0" revision commit))
+      (version (git-version "0.5.0" revision commit))
       (source
        (origin
          (method git-fetch)
@@ -1658,8 +1658,9 @@ based on the HDF5 standard")
       (description
        "This package provides astronomical interstellar dust attenuation curves
 implemented using the astropy.modeling framework.")
-      ;; XXX: License check: https://github.com/karllark/dust_attenuation/issues/56
-      (license #f))))
+      ;; XXX: License check see
+      ;; <https://github.com/karllark/dust_attenuation/issues/56>.
+    (license license:bsd-3))))
 
 ;; 20231224T223056+0000
 ;; (define-public python-dust-extinction
