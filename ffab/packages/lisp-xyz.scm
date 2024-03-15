@@ -628,6 +628,40 @@ broadcasting and reduction operations.")
 ;; (define-public sbcl-shasht
 ;; added-to-downstream-guix ff11a9f449e2f259faabebd075ce2ae1e13d27c2
 ;; CommitDate: Tue May 18 09:22:08 2021 +0200
+
+;; 20240315T105328+0000
+(define-public sbcl-st-json
+  (let ((commit "4a0025bcc5b6921454822f1b9f38f697b4eeaf43")
+        (revision "0"))
+    (package
+      (name "sbcl-st-json")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/marijnh/ST-JSON")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "06qrhr5iw73k96lai2x9w52l6gnmlxy7fsr0r35gz6nz1f71x7gx"))))
+      (build-system asdf-build-system/sbcl)
+      (home-page "https://marijnhaverbeke.nl/st-json/")
+      (synopsis "JSON for Common Lisp")
+      (description
+       "ST-JSON (@code{ST} because it originated at Streamtech) is a Common Lisp
+ library for encoding and decoding JSON values (as specified on json.org).
+
+This library does mostly the same thing as CL-JSON, but is simpler and more
+precise about types (distinguishing boolean false, the empty array, and the
+empty object).")
+      (license license:zlib))))
+
+(define-public cl-st-json
+  (sbcl-package->cl-source-package sbcl-st-json))
+
+(define-public ecl-st-json
+  (sbcl-package->ecl-package sbcl-st-json))
 
 ;; 20210523T170845+0100
 ;; (define-public sbcl-djula
