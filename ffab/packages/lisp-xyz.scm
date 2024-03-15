@@ -334,6 +334,41 @@ threads and being informed when one any of them crash and die.")
 ;; added-to-downstream-guix 3de01371dc0c5fb0847d8ad64bc508f77396f56b
 ;; CommitDate: Thu Apr 22 10:36:51 2021 +0200
 
+;; 20240315T154943+0000
+(define-public sbcl-vgplot
+  (let ((commit "76329928a3709387c0779175af56ec49d16bcd35")
+        (revision "0"))
+    (package
+      (name "sbcl-vgplot")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/volkers/vgplot")
+               (commit commit)))
+         (file-name (git-file-name "vgplot" version))
+         (sha256
+          (base32 "1vc5fd787xa8831wjbmwrpg17f9isi5k8dmb85fsysz47plbvi1y"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       (list sbcl-lisp-unit))
+      (inputs
+       (list sbcl-cl-fad sbcl-cl-ppcre sbcl-ltk))
+      (home-page "https://github.com/volkers/vgplot")
+      (synopsis "Common lisp library interfacing to the gnuplot utility")
+      (description
+       "This package provides an interface to the @code{gnuplot} plotting
+utility.  The intention of the API is to resemble to some of the plot commands of
+octave or matlab.")
+      (license license:gpl3))))
+
+(define-public cl-vgplot
+  (sbcl-package->cl-source-package sbcl-vgplot))
+
+(define-public ecl-vgplot
+  (sbcl-package->ecl-package sbcl-vgplot))
+
 ;; 20210131T014135+0000
 ;; (define-public sbcl-verbose
 ;; 67793f33ecd87d717fccd07b63ed6a221a056d6e
