@@ -369,6 +369,48 @@ threads and being informed when one any of them crash and die.")
 ;; added-to-downstream-guix 9c8ed43dd884ac143d759d12f2bc451fe3853ed2
 ;; CommitDate: Sat Jan 30 11:08:15 2021 +0100
 
+;; 20240315T104048+0000
+(define-public sbcl-cl-json-pointer
+  (let ((commit "f6760e2a02972783f96b92a15f801e14a6828e0c")
+        (revision "0"))
+    (package
+      (name "sbcl-cl-json-pointer")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/y2q-actionman/cl-json-pointer")
+               (commit commit)))
+         (file-name (git-file-name "cl-json-pointer" version))
+         (sha256
+          (base32 "0b7a755wc2ghsd1pv7d32877b21h4nssp41xs017anbmj55czb2h"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+      ;; Component "cl-json-pointer/test" not found
+       `(#:tests? #f
+         #:asd-systems '("cl-json-pointer" "cl-json-pointer/synonyms")))
+      (inputs
+       (list sbcl-alexandria
+             sbcl-boost-json
+             sbcl-cl-json
+             sbcl-closer-mop
+             sbcl-st-json))
+      (home-page "https://github.com/y2q-actionman/cl-json-pointer")
+      (synopsis "JSON Pointer processor for Common Lisp")
+      (description "
+This package provides a JSON
+Pointer (@url{https://tools.ietf.org/html/rfc6901,RFC6901}) implementation for
+Common Lisp.  This libary aims to be independent from any JSON libraries (as much
+as possible).")
+      (license license:expat))))
+
+(define-public cl-json-pointer
+  (sbcl-package->cl-source-package sbcl-cl-json-pointer))
+
+(define-public ecl-cl-json-poiniter
+  (sbcl-package->ecl-package sbcl-cl-json-pointer))
+
 ;; 20210125T180331+0000
 ;; (define-public sbcl-modularize
 ;; added-to-downstream-guix f39d8d2ca96b15c4d415a36932526e1dd9ee212c
