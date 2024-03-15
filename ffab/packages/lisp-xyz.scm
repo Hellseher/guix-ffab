@@ -231,6 +231,40 @@ in swiss-arrows.")
 ;; added-to-downstream-guix a232a40b0011ef3200954f0f5e082e9adfeab2e1
 ;; CommitDate: Tue May 11 10:15:38 2021 +0200
 
+;; 20240315T102021+0000
+(define-public sbcl-trivial-monitored-thread
+  (let ((commit "b0bab23f9a9bd06f0f33809635c7ba4e6a3d5a21")
+        (revision "0"))
+    (package
+      (name "sbcl-trivial-monitored-thread")
+      (version (git-version "0.3.11" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://gitlab.com/ediethelm/trivial-monitored-thread")
+               (commit commit)))
+         (file-name (git-file-name "trivial-monitored-thread" version))
+         (sha256
+          (base32 "1ipnp2l944hc587bifxsnmiymw468imar0v8bqvgxv8pc5sym4ib"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       (list sbcl-fiveam))
+      (inputs
+       (list sbcl-iterate sbcl-log4cl sbcl-trivial-utilities))
+      (home-page "https://gitlab.com/ediethelm/trivial-monitored-thread")
+      (synopsis "Thread monitoring library for Common Lisp")
+      (description
+       "Trivial Monitored Thread offers a very simple (aka trivial) way of spawning
+threads and being informed when one any of them crash and die.")
+      (license license:expat))))
+
+(define-public cl-trivial-monitored-thread
+  (sbcl-package->cl-source-package sbcl-trivial-monitored-thread))
+
+(define-public ecl-trivial-monitored-thread
+  (sbcl-package->ecl-package sbcl-trivial-monitored-thread))
+
 ;; <2021-05-08 Sat>
 ;; (define-public sbcl-for
 ;; added-to-downstream-guix 1ab3aab59af43f42113408020cf052389cb6e303
