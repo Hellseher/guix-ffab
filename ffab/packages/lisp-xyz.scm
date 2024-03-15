@@ -583,6 +583,37 @@ broadcasting and reduction operations.")
 ;; added-to-downstream-guix 91ba42509e764543cced393cfcb99140c20227bc
 ;; CommitDate: Fri Apr 30 09:42:07 2021 +0200
 
+;; 20240315T103252+0000
+(define-public sbcl-boost-json
+  (let ((commit "eca166f5ff1f10bad14e00b9fd5bf9fcf3691a47")
+        (revision "0"))
+    (package
+      (name "sbcl-boost-json")
+      (version (git-version "1.1" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/cl-boost/json")
+               (commit commit)))
+         (file-name (git-file-name "cl-boost-json" version))
+         (sha256
+          (base32 "12k0470899qsll2qixksxf2vrhjmskk3nzp1di9k04n1b29nrakd"))))
+      (build-system asdf-build-system/sbcl)
+      (home-page "https://github.com/cl-boost/json")
+      (synopsis "JSON encoding and decoding for Common Lisp")
+      (description
+       "BOOST-JSON is a simple JSON parsing library for Common Lisp.")
+      (license license:asl2.0))))
+
+(define-public cl-boost-json
+  (sbcl-package->cl-source-package sbcl-boost-json))
+
+;; FIXME: (Sharlatan-20240315T103648+0000): Failed to build on ECL: "fORMFEED"
+;; is an illegal character name.An error occurred during initialization:
+#;(define-public ecl-boost-json
+  (sbcl-package->ecl-package sbcl-boost-json))
+
 ;; <2021-05-17 Mon>
 ;; (define-public sbcl-cl-package-locks
 ;; added-to-downstream-guix 7f96fb3f4591890bc324426b21dbfc386512f546
