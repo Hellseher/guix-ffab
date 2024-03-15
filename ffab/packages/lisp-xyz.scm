@@ -369,6 +369,39 @@ in swiss-arrows.")
 ;; added-to-downstream-guix 102f668acd3487a6b68e65a0d972e1df81cec766
 ;; CommitDate: Wed Feb 3 17:41:39 2021 +0100
 
+;; 20240315T094010+0000
+(define-public sbcl-trivial-utilities
+  (let ((commit "279ff255562628196942632c543d91c357067221")
+        (revision "0"))
+    (package
+      (name "sbcl-trivial-utilities")
+      (version (git-version "0.4.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://gitlab.com/ediethelm/trivial-utilities")
+               (commit commit)))
+         (file-name (git-file-name "trivial-utilities" version))
+         (sha256
+          (base32 "0k1xmn5f5dik7scadw0vyy67mik4ypnfqbhlv2vsg9afxzbpx2dz"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       (list sbcl-alexandria sbcl-iterate sbcl-closer-mop))
+      (home-page "https://gitlab.com/ediethelm/trivial-utilities")
+      (synopsis "Collection of useful types, functions and macros for Common Lisp")
+      (description
+       "This package provides a collection of types, functions and macros.  Some
+ of the functionality is implemented from Grham's On Lisp and Seibel's Practical
+ Common Lisp.")
+      (license license:expat))))
+
+(define-public cl-trivial-utilities
+  (sbcl-package->cl-source-package sbcl-trivial-utilities))
+
+(define-public ecl-trivial-utilities
+  (sbcl-package->ecl-package sbcl-trivial-utilities))
+
 ;; 20210108T102108+0000
 ;; (define-public sbcl-dynamic-classes
 ;; added-to-downstream-guix b76ae073722910b1373301293f0acabd7c0833ee
