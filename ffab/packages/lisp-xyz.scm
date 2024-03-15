@@ -1066,6 +1066,37 @@ LPARALLEL.")
 ;; added-to-downstream-guix ad4a46b028378f38f897c74ca5728e6cb77689ca
 ;; CommitDate: Thu Jun 24 10:33:04 2021 +0200
 ;; (define-public sbcl-cl-posix-mqueue
+
+;; 20240315T161041+0000
+(define-public sbcl-cl-punch
+  (package
+    (name "sbcl-cl-punch")
+    (version "0.2")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/windymelt/cl-punch")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name "cl-punch" version))
+       (sha256
+        (base32 "1vmbaz9y9lq4wvi8mfbyif8vc9yfk2i0qd3ysbzl152wx32dbzs3"))))
+    (build-system asdf-build-system/sbcl)
+    (native-inputs
+     (list sbcl-prove))
+    (inputs
+     (list sbcl-cl-syntax))
+    (home-page "https://github.com/windymelt/cl-punch")
+    (synopsis "Anonymous lambda literal in Common Lisp, respecting Scala")
+    (description
+     "CL-PUNCH is a Scala-like anonymous lambda literal.")
+    (license license:expat )))
+
+(define-public cl-punch
+  (sbcl-package->cl-source-package sbcl-cl-punch))
+
+(define-public ecl-cl-punch
+  (sbcl-package->ecl-package sbcl-cl-punch))
 
 ;; http://dwim.hu
 ;;+begin-hu-dwim
