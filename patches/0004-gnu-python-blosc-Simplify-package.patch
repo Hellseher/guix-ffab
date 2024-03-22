@@ -1,0 +1,33 @@
+From 2a3ba6c2cd992876d7c018ee5565d72c11a45329 Mon Sep 17 00:00:00 2001
+Message-ID: <2a3ba6c2cd992876d7c018ee5565d72c11a45329.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 09:13:28 +0000
+Subject: [PATCH 04/49] gnu: python-blosc: Simplify package.
+
+* gnu/packages/python-compression.scm (python-blosc) [arguments]
+<#:phases>: Swap to simple lambda in 'find-blosc phase as it already
+uses this-package-input procedure.
+
+Change-Id: I4d3219d9575b9573b0c384b067855fa927f122da
+---
+ gnu/packages/python-compression.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-compression.scm b/gnu/packages/python-compression.scm
+index ef289bc4d1..d076a4e161 100644
+--- a/gnu/packages/python-compression.scm
++++ b/gnu/packages/python-compression.scm
+@@ -69,7 +69,7 @@ (define-public python-blosc
+      (list #:phases
+            #~(modify-phases %standard-phases
+                (add-after 'unpack 'find-blosc
+-                 (lambda* (#:key inputs #:allow-other-keys)
++                 (lambda _
+                    (setenv "USE_SYSTEM_BLOSC" "1")
+                    (setenv "Blosc_ROOT" #$(this-package-input "c-blosc"))))
+                (replace 'check
+-- 
+2.41.0
+

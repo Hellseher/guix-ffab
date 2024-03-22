@@ -1,0 +1,39 @@
+From c04acbd13077caafa8f47860407d5c4c717bfdde Mon Sep 17 00:00:00 2001
+Message-ID: <c04acbd13077caafa8f47860407d5c4c717bfdde.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 9 Mar 2024 18:04:59 +0000
+Subject: [PATCH 20/49] gnu: python-asdf-unit-schemas: Update to 0.2.0.
+
+* gnu/packages/astronomy.scm (python-asdf-unit-schemas): Update to 0.2.0.
+
+Change-Id: Ib767a5b3e1d58205e18eb71465a1505d6ba7a7eb
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 382da91b4c..808cbb46d6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4463,14 +4463,14 @@ (define python-asdf-time-schemas
+ (define python-asdf-unit-schemas
+   (package
+     (name "python-asdf-unit-schemas")
+-    (version "0.1.0")
++    (version "0.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_unit_schemas" version))
+        (sha256
+         (base32
+-         "16grpx3a9h0v1wirp0zqrfsxm867v5c0xyr98pylzziy45kqvds2"))))
++         "0h24gvm1wip4gh3fw5ki8kwnvcy8gw6b6pajw3i1zvriamdw95fr"))))
+     (build-system pyproject-build-system)
+     (arguments
+      ;; Dependency cycle with python-asdf
+-- 
+2.41.0
+

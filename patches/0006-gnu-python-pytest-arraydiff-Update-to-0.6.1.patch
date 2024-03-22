@@ -1,0 +1,38 @@
+From 4f648367b0c4198e1a4687a62f7622b96c73a051 Mon Sep 17 00:00:00 2001
+Message-ID: <4f648367b0c4198e1a4687a62f7622b96c73a051.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Mar 2024 22:28:59 +0000
+Subject: [PATCH 06/49] gnu: python-pytest-arraydiff: Update to 0.6.1.
+
+* gnu/packages/python-check.scm (python-pytest-arraydiff): Update to 0.6.1.
+
+Change-Id: I6dd911eb38597790f66756a77f6086112329a156
+---
+ gnu/packages/python-check.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 99f52b6846..fe96bd297c 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -545,13 +545,13 @@ (define-public python-pytest-astropy
+ (define-public python-pytest-arraydiff
+   (package
+     (name "python-pytest-arraydiff")
+-    (version "0.5.0")
++    (version "0.6.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pytest-arraydiff" version))
+        (sha256
+-        (base32 "1livzfbi7ag17hskd5845dh1kdir24f7jrbw8y2s1pyhzyz4jhbi"))))
++        (base32 "1pk7v96rkypx4ld59f6p8fh5bq371ka8g7bh4h7n4df91x2v2dr9"))))
+     (build-system python-build-system)
+     (arguments
+      ;; Tests require python-astropy, which itself requires this package.
+-- 
+2.41.0
+

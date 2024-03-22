@@ -1,0 +1,60 @@
+From 8017fb71dc489ddb7f856765166d6d295f1510a2 Mon Sep 17 00:00:00 2001
+Message-ID: <8017fb71dc489ddb7f856765166d6d295f1510a2.1710883390.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710883390.git.sharlatanus@gmail.com>
+References: <cover.1710883390.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 19 Mar 2024 20:54:24 +0000
+Subject: [PATCH 01/10] gnu: Add cl-arrow-macros.
+
+* gnu/packages/lisp-xyz.scm (cl-arrow-macros, ecl-arrow-macros,
+sbcl-arrow-macros): New variables.
+
+Change-Id: I1d92139871f456d7d6780f2e60bbfed951d0298e
+---
+ gnu/packages/lisp-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index ec9bf3a9ca..cd8dd6bf14 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -10190,6 +10190,36 @@ (define-public cl-rutils
+ (define-public ecl-rutils
+   (sbcl-package->ecl-package sbcl-rutils))
+ 
++(define-public sbcl-arrow-macros
++  (let ((commit "16bdfd31298182099c7d70df4598104e5a38b05e")
++        (revision "0"))
++    (package
++      (name "sbcl-arrow-macros")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/hipeta/arrow-macros")
++               (commit commit)))
++         (file-name (git-file-name "arrow-macros" version))
++         (sha256
++          (base32 "0q4vpysk4h9ghs5zmnzzilky9jyz7i8n0x0p98nq528crbrkh6c4"))))
++      (build-system asdf-build-system/sbcl)
++      (native-inputs (list sbcl-fiveam))
++      (home-page "https://github.com/hipeta/arrow-macros/")
++      (synopsis "Clojure-like arrow macros in Common Lisp")
++      (description
++       "Arrow-macros provides clojure-like arrow macros (ex. ->, ->>) and diamond wands
++in swiss-arrows.")
++      (license license:expat))))
++
++(define-public cl-arrow-macros
++  (sbcl-package->cl-source-package sbcl-arrow-macros))
++
++(define-public ecl-arrow-macros
++  (sbcl-package->ecl-package sbcl-arrow-macros))
++
+ (define-public sbcl-arrows
+   (let ((commit "df7cf0067e0132d9697ac8b1a4f1b9c88d4f5382")
+         (revision "0"))
+-- 
+2.41.0
+

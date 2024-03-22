@@ -1,0 +1,79 @@
+From 723a2b917889f249f18648e4aaaa7d07ef7fbf81 Mon Sep 17 00:00:00 2001
+Message-ID: <723a2b917889f249f18648e4aaaa7d07ef7fbf81.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 14:27:57 +0000
+Subject: [PATCH 28/49] gnu: python-astroquery: Update to 0.4.7.
+
+* gnu/packages/astronomy.scm (python-astroquery): Update to 0.4.7.
+[arguments] <#:test-flags>: Disable one failing test.
+<#:phases>: Remove 'prepare-test-environment phase. Add custom 'check
+phase.
+
+Change-Id: I159a9d765de7f8de00c4bf226febfc90d2ba6c76
+---
+ gnu/packages/astronomy.scm | 35 +++++++++++++++++++----------------
+ 1 file changed, 19 insertions(+), 16 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b3ce51c8df..efd70f5500 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1739,34 +1739,37 @@ (define-public python-astropy-iers-data
+ (define-public python-astroquery
+   (package
+     (name "python-astroquery")
+-    (version "0.4.6")
++    (version "0.4.7")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astroquery" version))
+        (sha256
+-        (base32 "1vhkzsqlgn3ji5by2rdf2gwklhbyzvpzb1iglalhqjkkrdaaaz1h"))))
++        (base32 "1jbyfhqk74wsdjxzqi0hcrgc7ha4q8cyjx96nv6w9bjg1b5vlzq4"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+       #~(list "--pyargs" "astroquery"
+-              "-m" "not remote_data")
++              "-m" "not remote_data"
++              ;; Some tests failed with parallel run, see
++              ;; <https://github.com/astropy/astroquery/issues/2968>.
++              ;; "-n" "auto"
++              "-k" (string-append
++                    ;; Failed: DID NOT RAISE <class
++                    ;; 'astropy.utils.exceptions.AstropyDeprecationWarning'>
++                    "not test_raises_deprecation_warning"))
+       #:phases
+       #~(modify-phases %standard-phases
+-          (add-before 'check 'prepare-test-environment
+-            (lambda _
+-              (setenv "HOME" (getcwd)) ; some tests need a writable home
+-              ;; To solve pytest/conftest issue. Pytest tries to load all
+-              ;; files with word 'test' in them.
+-              ;;
+-              ;; ImportError while loading conftest ...
+-              ;; _pytest.pathlib.ImportPathMismatchError: ...
+-              ;;
+-              (call-with-output-file "pytest.ini"
+-                (lambda (port)
+-                  (format port "[pytest]
+-python_files = test_*.py"))))))))
++          (replace 'check
++            (lambda* (#:key tests? test-flags #:allow-other-keys)
++              (when tests?
++                ;; Some tests require write access to $HOME.
++                (setenv "HOME" "/tmp")
++                ;; Step out of the source directory to avoid interference;
++                ;; we want to run the installed code with extensions etc.
++                (with-directory-excursion "/tmp"
++                  (apply invoke "pytest" "-v" test-flags))))))))
+     (propagated-inputs
+      (list python-astropy
+            python-beautifulsoup4
+-- 
+2.41.0
+

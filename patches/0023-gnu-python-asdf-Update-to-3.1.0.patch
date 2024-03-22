@@ -1,0 +1,55 @@
+From 98b2e1358b603721f5813f7e629a00c1205edc26 Mon Sep 17 00:00:00 2001
+Message-ID: <98b2e1358b603721f5813f7e629a00c1205edc26.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 9 Mar 2024 21:37:24 +0000
+Subject: [PATCH 23/49] gnu: python-asdf: Update to 3.1.0.
+
+* gnu/packages/astronomy.scm (python-asdf): Update to 3.1.0.
+[arguments] <#:phases>: Add 'fix-test-setup phase.
+<#:test-arguments>: Move "-p no:legacypath" option from pyproject.toml
+to here.
+
+Change-Id: Ief5734d97d483d2e7af3ea59d702fd4697eb048a
+---
+ gnu/packages/astronomy.scm | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ff45ca1434..57585619dc 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4254,18 +4254,26 @@ (define-public python-tweakwcs
+ (define-public python-asdf
+   (package
+     (name "python-asdf")
+-    (version "3.0.1")
++    (version "3.1.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "1jsk7b4mx04l0a08j832vnl309dba3gjnha9mbd61dzs9ridrfna"))))
++        (base32 "0fa6y3gmqc0y3nz0h68vq3a84pvx6gc5zp33wg8a4n9b4kipm464"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")))
++      #~(list "-n" "auto" "-p" "no:legacypath")
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; ImportError: Error importing plugin " no:legacypath": No module
++          ;; named ' no:legacypath'
++          (add-before 'check 'fix-tests-setup
++            (lambda _
++              (substitute* "pyproject.toml"
++                ((".*:legacypath.*") "")))))))
+     (native-inputs
+      (list python-fsspec
+            python-packaging
+-- 
+2.41.0
+

@@ -1,0 +1,38 @@
+From 00f9c18b57f42b81b0ad7c8e17ad41128a68a22f Mon Sep 17 00:00:00 2001
+Message-ID: <00f9c18b57f42b81b0ad7c8e17ad41128a68a22f.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Mar 2024 22:39:11 +0000
+Subject: [PATCH 08/49] gnu: python-pytest-filter-subpackage: Update to 0.2.0.
+
+* gnu/packages/python-check.scm (python-pytest-filter-subpackage): Update to 0.2.0.
+
+Change-Id: I04f000b3a75f671340fbd351b06265b99acb3856
+---
+ gnu/packages/python-check.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index beb151178d..bee5a468fa 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -668,13 +668,13 @@ (define-public python-pytest-exploratory
+ (define-public python-pytest-filter-subpackage
+   (package
+     (name "python-pytest-filter-subpackage")
+-    (version "0.1.2")
++    (version "0.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pytest-filter-subpackage" version))
+        (sha256
+-        (base32 "10hpl3f7g2bm29lakmp8492b7lr0dp90khfni12m4gl02xks7bhz"))))
++        (base32 "0mmgg2n8qk6s2kprycjl70lxcpm43dkapplmkf32i0ai6qdqyiiz"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest
+-- 
+2.41.0
+

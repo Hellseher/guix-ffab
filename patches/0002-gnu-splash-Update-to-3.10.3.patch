@@ -1,0 +1,40 @@
+From bba2dece02af879c496d766ae382d1bc8522853a Mon Sep 17 00:00:00 2001
+Message-ID: <bba2dece02af879c496d766ae382d1bc8522853a.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Mar 2024 21:48:25 +0000
+Subject: [PATCH 02/49] gnu: splash: Update to 3.10.3.
+
+* gnu/packages/astronomy.scm (splash): Update to 3.10.3.
+
+Change-Id: Ic5f812a3c35fd76c0a722616efea2745a080c859
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8ae25b65e2..724643d17f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1203,7 +1203,7 @@ (define-public siril
+ (define-public splash
+   (package
+     (name "splash")
+-    (version "3.10.1")
++    (version "3.10.3")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -1211,7 +1211,7 @@ (define-public splash
+                     (commit (string-append "v" version))))
+               (sha256
+                (base32
+-                "1cyg7my2lbpai81nfnlj0r7pvral3kjn31dcq2p4982d2xg0dj87"))
++                "077s9if7fmccvhsbp0dhvyqcil46vpbgdm1y6qn6h34r8lfqj9z6"))
+               (file-name (git-file-name name version))))
+     (build-system gnu-build-system)
+     (arguments
+-- 
+2.41.0
+

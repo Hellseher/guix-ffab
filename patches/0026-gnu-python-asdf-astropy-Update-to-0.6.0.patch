@@ -1,0 +1,38 @@
+From d38f4fb6251f465ca7357df5586e5b9be8e41ffa Mon Sep 17 00:00:00 2001
+Message-ID: <d38f4fb6251f465ca7357df5586e5b9be8e41ffa.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 17:30:14 +0000
+Subject: [PATCH 26/49] gnu: python-asdf-astropy: Update to 0.6.0
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.6.0.
+
+Change-Id: I5eca1d6c113b053b8353ed43e7dfc2c7165a3139
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c3aa9a2ad5..d580bac681 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4492,13 +4492,13 @@ (define python-asdf-unit-schemas
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.5.0")
++    (version "0.6.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf-astropy" version))
+        (sha256
+-        (base32 "061y7r1d2fqlr8a6gyaffqa3z5m0ymljahhvxzcb71355xkqig7v"))))
++        (base32 "0cxwknkjkgiavwmsz3vzk88c3spdi1cj4kwp62hgj92g2mh5k0zh"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

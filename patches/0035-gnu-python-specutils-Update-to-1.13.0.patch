@@ -1,0 +1,38 @@
+From a4569b8fc30a0b4102e383f36a081cc1744e9441 Mon Sep 17 00:00:00 2001
+Message-ID: <a4569b8fc30a0b4102e383f36a081cc1744e9441.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 20:43:33 +0000
+Subject: [PATCH 35/49] gnu: python-specutils: Update to 1.13.0.
+
+* gnu/packages/astronomy.scm (python-specutils): Update to 1.13.0.
+
+Change-Id: Ic935f471fd9f5e27745c370940e3f70f715d2ca4
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ec890c8928..bdf65d0693 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2933,13 +2933,13 @@ (define-public python-spectral-cube
+ (define-public python-specutils
+   (package
+     (name "python-specutils")
+-    (version "1.12.0")
++    (version "1.13.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "specutils" version))
+        (sha256
+-        (base32 "10nq00q71cyj0p74g3kyzb4hrwkbvhsd6m5zvxifc035rfnvc2qv"))))
++        (base32 "0cfsigvsa0i7z2nq9ci9gxccp074kqsgr01xi2npk8xf7cjisrfq"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

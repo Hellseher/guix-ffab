@@ -1,0 +1,52 @@
+From 9bfc4448a76ab3ddf73340be06c625703d13fa41 Mon Sep 17 00:00:00 2001
+Message-ID: <9bfc4448a76ab3ddf73340be06c625703d13fa41.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 17:41:30 +0000
+Subject: [PATCH 25/49] gnu: python-asdf-wcs-schemas: Update to 0.4.0.
+
+* gnu/packages/astronomy.scm (python-asdf-wcs-schemas): Update to 0.4.0.
+[propagated-inputs]: Remove python-asdf-unit-schemas; add python-asdf-coordinates-schemas.
+
+Change-Id: I491f3f7b96b11a1ac894a30aa304d3042299de99
+---
+ gnu/packages/astronomy.scm | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9e6aec9b8c..c3aa9a2ad5 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4532,13 +4532,13 @@ (define-public python-asdf-astropy
+ (define python-asdf-wcs-schemas
+   (package
+     (name "python-asdf-wcs-schemas")
+-    (version "0.3.0")
++    (version "0.4.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_wcs_schemas" version))
+        (sha256
+-        (base32 "1r9ls2skgwq6my68nfwfah1s0q6bm2qq97s0h79vwh997jy97rai"))))
++        (base32 "1d08ng890xc1ilf3y1hrimx09x990wvg9g18n0ijwvpilnw49fy0"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4550,9 +4550,9 @@ (define python-asdf-wcs-schemas
+            python-semantic-version
+            python-setuptools-scm))
+     (propagated-inputs
+-     (list python-asdf-standard
+-           python-asdf-transform-schemas
+-           python-asdf-unit-schemas))
++     (list python-asdf-coordinates-schemas
++           python-asdf-standard
++           python-asdf-transform-schemas))
+     (home-page "https://github.com/asdf-format/asdf-wcs-schemas")
+     (synopsis "ASDF WCS Schemas")
+     (description
+-- 
+2.41.0
+

@@ -1,0 +1,35 @@
+From 16b0d647c8417c77f341509984ac8c2ede75bb69 Mon Sep 17 00:00:00 2001
+Message-ID: <16b0d647c8417c77f341509984ac8c2ede75bb69.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 09:36:51 +0000
+Subject: [PATCH 10/49] gnu: python-partd: Enable tests.
+
+Newer version of the project is migrated to pyproject.toml, this change
+may help to prepare for the future upgrade.
+
+* gnu/packages/python-xyz.scm (python-partd) [build-system]: Swap to
+pyproject-build-system, allowing to detect tests and run them.
+
+Change-Id: Ia4375b83cea6dcbf7781b3dc40f544261075d2ca
+---
+ gnu/packages/python-xyz.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 2bff593063..799174ab60 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -27405,7 +27405,7 @@ (define-public python-partd
+        (sha256
+         (base32
+          "1sy3vdfyyx3bc5590zb7gwpsmimqz8m992x9hsydq8nmhixqjrxa"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-blosc
+            python-locket
+-- 
+2.41.0
+

@@ -1,0 +1,61 @@
+From 5bef1b7e35d027a76a5890dc3898941879771abf Mon Sep 17 00:00:00 2001
+Message-ID: <5bef1b7e35d027a76a5890dc3898941879771abf.1710883390.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710883390.git.sharlatanus@gmail.com>
+References: <cover.1710883390.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 19 Mar 2024 21:06:23 +0000
+Subject: [PATCH 04/10] gnu: Add cl-boost-json.
+
+* gnu/packages/lisp-xyz.scm (cl-boost-json, sbcl-boost-json): New
+variables.
+
+Change-Id: I9b00905645f220c512c245e9cf02c74c4c1efcbc
+---
+ gnu/packages/lisp-xyz.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index b92f2a7fb3..1378fe7353 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -1692,6 +1692,37 @@ (define-public ecl-re
+ (define-public cl-re
+   (sbcl-package->cl-source-package sbcl-re))
+ 
++(define-public sbcl-boost-json
++  (let ((commit "eca166f5ff1f10bad14e00b9fd5bf9fcf3691a47")
++        (revision "0"))
++    (package
++      (name "sbcl-boost-json")
++      (version (git-version "1.1" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/cl-boost/json")
++               (commit commit)))
++         (file-name (git-file-name "cl-boost-json" version))
++         (sha256
++          (base32 "12k0470899qsll2qixksxf2vrhjmskk3nzp1di9k04n1b29nrakd"))))
++      (build-system asdf-build-system/sbcl)
++      (home-page "https://github.com/cl-boost/json")
++      (synopsis "JSON encoding and decoding for Common Lisp")
++      (description
++       "BOOST-JSON is a simple JSON parsing library for Common Lisp.")
++      (license license:asl2.0))))
++
++(define-public cl-boost-json
++  (sbcl-package->cl-source-package sbcl-boost-json))
++
++;; FIXME: Failed to build on ECL: "fORMFEED" is an illegal character name.An
++;; error occurred during initialization:
++;;
++;; (define-public ecl-boost-json
++;;  (sbcl-package->ecl-package sbcl-boost-json))
++
+ (define-public sbcl-boost-parse
+   (let ((commit "c8f7e536b950752f3e35003e7ee0446e0fd51b50")
+         (revision "0"))
+-- 
+2.41.0
+

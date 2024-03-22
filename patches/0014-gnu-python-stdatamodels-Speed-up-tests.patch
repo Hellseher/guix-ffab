@@ -1,0 +1,48 @@
+From 07d21467b55d0550b0c1001f1c2d1c6c4be214ac Mon Sep 17 00:00:00 2001
+Message-ID: <07d21467b55d0550b0c1001f1c2d1c6c4be214ac.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 12 Mar 2024 18:47:54 +0000
+Subject: [PATCH 14/49] gnu: python-stdatamodels: Speed up tests.
+
+gnu/packages/astronomy.scm (python-stdatamodels): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add "-n" option.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: I43390240a4a0db48d9abab4c34d1c1c771028486
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 724643d17f..4b3ebd642e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3181,9 +3181,11 @@ (define-public python-stdatamodels
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; Disable tests requiring access to CRDS servers to download ~500MiB of
+-      ;; data.
+-      #:test-flags #~(list "-k" "not test_crds_selectors_vs_datamodel")
++      #:test-flags
++      #~(list "-n" "auto"
++              ;; Disable tests requiring access to CRDS servers to download
++              ;; ~500MiB of data.
++              "-k" "not test_crds_selectors_vs_datamodel")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-home
+@@ -3199,6 +3201,7 @@ (define-public python-stdatamodels
+      (list python-crds
+            python-pytest
+            python-pytest-doctestplus
++           python-pytest-xdist
+            python-scipy
+            python-semantic-version
+            python-setuptools-scm))
+-- 
+2.41.0
+

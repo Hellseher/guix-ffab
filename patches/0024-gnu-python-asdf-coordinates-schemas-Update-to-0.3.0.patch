@@ -1,0 +1,38 @@
+From 560809be979dad1359a187856379086e7330abf7 Mon Sep 17 00:00:00 2001
+Message-ID: <560809be979dad1359a187856379086e7330abf7.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 17:41:28 +0000
+Subject: [PATCH 24/49] gnu: python-asdf-coordinates-schemas: Update to 0.3.0.
+
+* gnu/packages/astronomy.scm (python-asdf-coordinates-schemas): Update to 0.3.0.
+
+Change-Id: Iad7848823f4b6c996aeb74919cbf252014126075
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 57585619dc..9e6aec9b8c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4369,13 +4369,13 @@ (define python-asdf-transform-schemas
+ (define python-asdf-coordinates-schemas
+   (package
+     (name "python-asdf-coordinates-schemas")
+-    (version "0.2.0")
++    (version "0.3.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_coordinates_schemas" version))
+        (sha256
+-        (base32 "1x6mipg76c6qldq8s2p2wpsq0cpr9b5krp62xskljdz1f84abyg3"))))
++        (base32 "0kk0rlzv0kkcw6fiwvps4n0x05867xc9hxyyzica31zcvhan12y9"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

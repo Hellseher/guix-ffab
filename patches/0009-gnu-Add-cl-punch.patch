@@ -1,0 +1,60 @@
+From fd6d08a6b26c2b7f3b6f98e92f393f310fe7a9fe Mon Sep 17 00:00:00 2001
+Message-ID: <fd6d08a6b26c2b7f3b6f98e92f393f310fe7a9fe.1710883391.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710883390.git.sharlatanus@gmail.com>
+References: <cover.1710883390.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 19 Mar 2024 21:17:39 +0000
+Subject: [PATCH 09/10] gnu: Add cl-punch.
+
+* gnu/packages/lisp-xyz.scm (cl-punch, ecl-cl-punch,
+sbcl-cl-punch): New variables.
+
+Change-Id: If6f7937d02a8dec67a9594ff011c44719349fd22
+---
+ gnu/packages/lisp-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 81a0a164ae..debcfd96f2 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -4383,6 +4383,36 @@ (define-public cl-string-match
+ (define-public ecl-cl-string-match
+   (sbcl-package->ecl-package sbcl-cl-string-match))
+ 
++(define-public sbcl-cl-punch
++  (package
++    (name "sbcl-cl-punch")
++    (version "0.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/windymelt/cl-punch")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "cl-punch" version))
++       (sha256
++        (base32 "1vmbaz9y9lq4wvi8mfbyif8vc9yfk2i0qd3ysbzl152wx32dbzs3"))))
++    (build-system asdf-build-system/sbcl)
++    (native-inputs
++     (list sbcl-prove))
++    (inputs
++     (list sbcl-cl-syntax))
++    (home-page "https://github.com/windymelt/cl-punch")
++    (synopsis "Anonymous lambda literal in Common Lisp, respecting Scala")
++    (description
++     "CL-PUNCH is a Scala-like anonymous lambda literal.")
++    (license license:expat )))
++
++(define-public cl-punch
++  (sbcl-package->cl-source-package sbcl-cl-punch))
++
++(define-public ecl-cl-punch
++  (sbcl-package->ecl-package sbcl-cl-punch))
++
+ (define-public sbcl-puri
+   (let ((commit "4bbab89d9ccbb26346899d1f496c97604fec567b")
+         (revision "2"))
+-- 
+2.41.0
+

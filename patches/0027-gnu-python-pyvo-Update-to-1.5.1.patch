@@ -1,0 +1,38 @@
+From 046b8719617adc008022f635038c6271608c7864 Mon Sep 17 00:00:00 2001
+Message-ID: <046b8719617adc008022f635038c6271608c7864.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 17:01:42 +0000
+Subject: [PATCH 27/49] gnu: python-pyvo: Update to 1.5.1.
+
+* gnu/packages/astronomy.scm (python-pyvo): Update to 1.5.1.
+
+Change-Id: I51228822626a0fac9013580a7bfb7160980ac8fb
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d580bac681..b3ce51c8df 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2512,13 +2512,13 @@ (define-public python-pyavm
+ (define-public python-pyvo
+   (package
+     (name "python-pyvo")
+-    (version "1.5")
++    (version "1.5.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyvo" version))
+        (sha256
+-        (base32 "1kyd4jbspldfpwwvwxfmhq2cxqp4kfbcsiyk4gjs0ib65idxdr45"))))
++        (base32 "0cm6agaf1gvc5bi95wx6a70ngj9vn95rx78fs59vlrmpww7q2807"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest-astropy python-requests-mock python-setuptools-scm))
+-- 
+2.41.0
+

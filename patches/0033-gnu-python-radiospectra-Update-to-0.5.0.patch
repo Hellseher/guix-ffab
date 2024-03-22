@@ -1,0 +1,38 @@
+From 190308571a723c4a96060a342adb6e98d06aa392 Mon Sep 17 00:00:00 2001
+Message-ID: <190308571a723c4a96060a342adb6e98d06aa392.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 18:38:34 +0000
+Subject: [PATCH 33/49] gnu: python-radiospectra: Update to 0.5.0.
+
+* gnu/packages/astronomy.scm (python-radiospectra): Update to 0.5.0.
+
+Change-Id: I9146be6756530e5bda59ea53e3200ed8403fd672
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2986079221..ec890c8928 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4670,13 +4670,13 @@ (define-public python-radio-beam
+ (define-public python-radiospectra
+   (package
+     (name "python-radiospectra")
+-    (version "0.4.0")
++    (version "0.5.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "radiospectra" version))
+        (sha256
+-        (base32 "0gq61ywk7li0gxwmp4hp2hc4zbrlqgn8zy0sz24qh55kn5l5gxjr"))))
++        (base32 "0nw71a7i875lfwbwhpc80nvwalb7iq3fynfkbngx6f6jb3v10dgs"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

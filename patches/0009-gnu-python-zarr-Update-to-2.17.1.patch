@@ -1,0 +1,41 @@
+From 8f4f9de43b0d32c84589f585c33ece6a8ee9ace8 Mon Sep 17 00:00:00 2001
+Message-ID: <8f4f9de43b0d32c84589f585c33ece6a8ee9ace8.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Mar 2024 22:56:08 +0000
+Subject: [PATCH 09/49] gnu: python-zarr: Update to 2.17.1.
+
+* gnu/packages/python-xyz.scm (python-zarr): Update to 2.17.1.
+
+Change-Id: Id7873b68bb82400f66539d03fe9a357deb61d58c
+---
+ gnu/packages/python-xyz.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 7eacce5caf..2bff593063 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -26969,15 +26969,15 @@ (define-public python-asciitree
+ (define-public python-zarr
+   (package
+     (name "python-zarr")
+-    (version "2.13.3")
++    (version "2.17.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "zarr" version))
+        (sha256
+         (base32
+-         "135ls2q7zc98pk61a5cnh88j4hnnavcwasrswdjqyqvcc68b096v"))))
+-    (build-system python-build-system)
++         "0qb2wj60i7v1c95k6m0pskx20ss6dxrj3ym0d7z4c98jfah3ljsn"))))
++    (build-system pyproject-build-system)
+     (arguments
+      `(#:phases
+        (modify-phases %standard-phases
+-- 
+2.41.0
+

@@ -1,0 +1,49 @@
+From ad71e92bc215b0326659163b2d3026112f9185f2 Mon Sep 17 00:00:00 2001
+Message-ID: <ad71e92bc215b0326659163b2d3026112f9185f2.1710967275.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 18 Mar 2024 14:46:33 +0000
+Subject: [PATCH 49/49] gnu: python-hvpy: Update to 1.1.0.
+
+* gnu/packages/astronomy.scm (python-hvpy): Update to 1.1.0.
+[propagated-inputs]: Remove python-pydantic; add python-pydantic-2 and
+python-pydantic-settings.
+
+Change-Id: Id567cff01204d2e8d71bc49ec9ffc88b2bbb3f4e
+---
+ gnu/packages/astronomy.scm | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 14b2c37343..bde29f7990 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2305,18 +2305,20 @@ (define-public python-extinction
+ (define-public python-hvpy
+   (package
+     (name "python-hvpy")
+-    (version "1.0.1")
++    (version "1.1.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "hvpy" version))
+        (sha256
+-        (base32 "0r0asyflz2sw9zn5vgs138nh81m0rbwbakmrncbc1ghdr3g6jahv"))))
++        (base32 "0bly1bgp0axxhzzf5imqsgmms41z8cxbjahxsibvb55dk94gwig6"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ; Requires HTTP(S) access to api.beta.helioviewer.org
+-    (propagated-inputs (list python-pydantic python-requests))
+-    (native-inputs (list python-pytest python-pytest-astropy))
++    (propagated-inputs
++     (list python-pydantic-2 python-pydantic-settings python-requests))
++    (native-inputs
++     (list python-pytest python-pytest-astropy))
+     (home-page "https://helioviewer.org/")
+     (synopsis "Helioviewer Python API Wrapper")
+     (description "@code{hvpy} is a Python API wrapper around the formal
+-- 
+2.41.0
+

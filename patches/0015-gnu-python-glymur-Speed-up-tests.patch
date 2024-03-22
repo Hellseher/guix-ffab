@@ -1,0 +1,45 @@
+From b677d0661147738e1a3d765e6941da9ff72657c1 Mon Sep 17 00:00:00 2001
+Message-ID: <b677d0661147738e1a3d765e6941da9ff72657c1.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 18:41:34 +0000
+Subject: [PATCH 15/49] gnu: python-glymur: Speed up tests.
+
+* gnu/packages/python-xyz.scm (python-glymur): Enable parallel
+tests to speed them up.
+[arguments] <#:test-flags>: Add it with "-n" option.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: Ied066330cc24a50b47307cefb2694675be8af0a4
+---
+ gnu/packages/python-xyz.scm | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 4a9069bbed..763345c0c2 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -1956,6 +1956,8 @@ (define-public python-glymur
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags
++      #~(list "-n" "auto")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-library-locations
+@@ -1981,7 +1983,9 @@ (define-public python-glymur
+               ;; which is patched above.
+               (delete-file "tests/test_config.py"))))))
+     (native-inputs
+-     (list python-pytest python-scikit-image))
++     (list python-pytest
++           python-pytest-xdist
++           python-scikit-image))
+     (inputs
+      (list openjpeg  ; glymur/lib/openjp2.py
+            libtiff)) ; glymur/lib/tiff.py
+-- 
+2.41.0
+

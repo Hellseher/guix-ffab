@@ -1,0 +1,60 @@
+From 031b36ebbf4727cda69cab5927dd2d7321d41ed6 Mon Sep 17 00:00:00 2001
+Message-ID: <031b36ebbf4727cda69cab5927dd2d7321d41ed6.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 9 Mar 2024 18:17:23 +0000
+Subject: [PATCH 21/49] gnu: python-asdf-standard: Update to 1.1.1.
+
+* gnu/packages/astronomy.scm (python-asdf-standard): Update to 1.1.1.
+[arguments] <#:phases>: Swap 'remove-blocking-tests phases to use <#:test-flags>.
+<#:test-flags>: Add more file to ignore to break cycle with python-asdf.
+
+Change-Id: I8c80d4371adf55de77ef718a21bf8599d0fce17e
+---
+ gnu/packages/astronomy.scm | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 808cbb46d6..8619dac066 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4297,25 +4297,24 @@ (define-public python-asdf
+ (define-public python-asdf-standard
+   (package
+     (name "python-asdf-standard")
+-    (version "1.0.3")
++    (version "1.1.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_standard" version))
+        (sha256
+         (base32
+-         "0i7xdjwn5prg2hcnf1zhw57mszc68jjr5sv4rimpzcg7f2dgzn5g"))))
++         "00k1fzc8y8j0ar1chq0nqyfw8bgkkjgrkm32ibn0kz2vn715nlq1"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     (list #:phases #~(modify-phases %standard-phases
+-                        (add-before 'check 'remove-blocking-tests
+-                          (lambda _
+-                            ;; Remove tests require python-asdf where
+-                            ;; python-asdf require python-asdf-standard,
+-                            ;; break circular dependencies.
+-                            (for-each delete-file
+-                                      (list "tests/test_manifests.py"
+-                                            "tests/test_integration.py")))))))
++     (list
++      #:test-flags
++      ;; Remove tests requiring python-asdf where python-asdf requires
++      ;; python-asdf-standard, break circular dependencies.
++      #~(list "--ignore=tests/test_asdf_schema.py"
++              "--ignore=tests/test_integration.py"
++              "--ignore=tests/test_manifests.py"
++              "--ignore=tests/test_yaml_schema.py")))
+     (native-inputs (list python-astropy
+                          python-jsonschema
+                          python-pypa-build
+-- 
+2.41.0
+

@@ -1,0 +1,46 @@
+From 2b0af1a040c21fdb87b39d9994fb59a8c1e15c19 Mon Sep 17 00:00:00 2001
+Message-ID: <2b0af1a040c21fdb87b39d9994fb59a8c1e15c19.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 10 Mar 2024 09:26:46 +0000
+Subject: [PATCH 13/49] gnu: python-dask: Speed up tests.
+
+* gnu/packages/python-xyz.scm (python-dask) [arguments] <#:test-flags>:
+Add option to run tests in parallel.
+[native-inputs]: Add python-xdist. Reformat as a list.
+
+Change-Id: I9b4b1c53f827e1f5d3edd0908f8e37e1a3bddb71
+---
+ gnu/packages/python-xyz.scm | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 360b4db3f1..4a9069bbed 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -27488,7 +27488,8 @@ (define-public python-dask
+      (list
+       ;; Avoid coverage
+       #:test-flags
+-      #~(list "-m" "not gpu and not slow and not network"
++      #~(list "-n" "auto"
++              "-m" "not gpu and not slow and not network"
+               "-k" (string-append
+                     ;; This one cannot be interrupted.
+                     "not test_interrupt"
+@@ -27541,7 +27542,10 @@ (define-public python-dask
+            python-pyyaml))
+     (native-inputs
+      (list python-importlib-metadata
+-           python-pytest python-pytest-runner python-pytest-rerunfailures
++           python-pytest
++           python-pytest-rerunfailures
++           python-pytest-runner
++           python-pytest-xdist
+            python-versioneer))
+     (home-page "https://github.com/dask/dask/")
+     (synopsis "Parallel computing with task scheduling")
+-- 
+2.41.0
+

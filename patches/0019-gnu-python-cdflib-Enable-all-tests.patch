@@ -1,0 +1,44 @@
+From 2a872a6af097265617e0edbe4a045aa9b7f18a34 Mon Sep 17 00:00:00 2001
+Message-ID: <2a872a6af097265617e0edbe4a045aa9b7f18a34.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 9 Mar 2024 17:55:51 +0000
+Subject: [PATCH 19/49] gnu: python-cdflib: Enable all tests.
+
+* gnu/packages/astronomy.scm (python-cdflib) [arguments] <#:test-flags>:
+Remove it to enable all tests.
+
+Change-Id: I0fd44c117519efb306573d5ec603c430dbb1dc8c
+---
+ gnu/packages/astronomy.scm | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0ac26b1e7d..382da91b4c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1930,7 +1930,7 @@ (define-public python-cdflib
+     (version "1.2.6")
+     (source
+      (origin
+-       (method git-fetch)   ; no tests in pypi archive
++       (method git-fetch)               ; no tests in PyPI release
+        (uri (git-reference
+              (url "https://github.com/MAVENSDC/cdflib")
+              (commit version)))
+@@ -1939,10 +1939,7 @@ (define-public python-cdflib
+         (base32 "1wxr35sqsdqzf85xyjh1v8hmwwiyv4cn0lr7q8l1kkngfywq5l2r"))))
+     (build-system pyproject-build-system)
+     (arguments
+-     ;; Disable shaky test.
+-     ;; See https://github.com/MAVENSDC/cdflib/issues/234
+-     (list #:test-flags #~(list "-k" "not test_compute_cdfepoch16")
+-           #:phases
++     (list #:phases
+            #~(modify-phases %standard-phases
+                (add-before 'build 'set-env-version
+                  (lambda _
+-- 
+2.41.0
+

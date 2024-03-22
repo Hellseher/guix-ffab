@@ -1,0 +1,39 @@
+From 84753bbc1e24281c235744820f53569a76919b57 Mon Sep 17 00:00:00 2001
+Message-ID: <84753bbc1e24281c235744820f53569a76919b57.1710967274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 11 Mar 2024 21:03:06 +0000
+Subject: [PATCH 37/49] gnu: python-stcal: Enable sanity check.
+
+* gnu/packages/astronomy.scm (python-stcal) [arguments] <#:phases>:
+Revert 'sanity-check phase. Add 'silent-check-for-opencv phase.
+
+Change-Id: Ifd3ae01d261fe6dba8f5e75d4a5134510d826a57
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 431bd0346e..4d1bbcec87 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3140,9 +3140,12 @@ (define-public python-stcal
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+-          ;; XXX: Can't detect opencv-python version. The input opencv might
+-          ;; not set the version correctly.
+-          (delete 'sanity-check)
++          (add-before 'build 'silent-check-for-opencv
++            (lambda _
++              ;; XXX: Can't detect opencv-python version. The input opencv
++              ;; might not set the version correctly.
++              (substitute* "pyproject.toml"
++                ((".*opencv-python-headless.*") ""))))
+           (add-before 'check 'build-extensions
+             (lambda _
+               ;; Cython extensions have to be built before running the tests.
+-- 
+2.41.0
+

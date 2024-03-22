@@ -1,0 +1,49 @@
+From c3481bd989e04276b85b486a96eaefa114fd2153 Mon Sep 17 00:00:00 2001
+Message-ID: <c3481bd989e04276b85b486a96eaefa114fd2153.1710967273.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1710967273.git.sharlatanus@gmail.com>
+References: <cover.1710967273.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Mar 2024 22:36:13 +0000
+Subject: [PATCH 07/49] gnu: python-pytest-arraydiff: Enable tests.
+
+* gnu/packages/python-check.scm (python-pytest-arraydiff): Enable tests.
+[build-system]: Swap to pyproject-build-system.
+[arguments] <#:test-flags>: Disable tests requiring python-astropy to
+break dependencies cycle.
+
+Change-Id: I0e4b6681d106a999c6fc12c3fd8c8f084762a92e
+---
+ gnu/packages/python-check.scm | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index fe96bd297c..beb151178d 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -552,13 +552,18 @@ (define-public python-pytest-arraydiff
+        (uri (pypi-uri "pytest-arraydiff" version))
+        (sha256
+         (base32 "1pk7v96rkypx4ld59f6p8fh5bq371ka8g7bh4h7n4df91x2v2dr9"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     ;; Tests require python-astropy, which itself requires this package.
+-     ;; Disable tests to avoid the circular dependency problem.
+-     '(#:tests? #f))
++     (list
++      #:test-flags
++      #~(list "-k" (string-append
++                    ;; Disable tests requiring python-astropy, to break cycle.
++                    "not test_succeeds_func_fits_hdu"
++                    " and not test_fails"
++                    " and not test_generate"
++                    " and not test_default_format"))))
+     (native-inputs
+-     (list python-pytest python-setuptools-scm)) ; for sanity-check
++     (list python-pytest python-setuptools-scm))
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/astropy/pytest-arraydiff")
+-- 
+2.41.0
+
