@@ -433,8 +433,8 @@ octave or matlab.")
              sbcl-st-json))
       (home-page "https://github.com/y2q-actionman/cl-json-pointer")
       (synopsis "JSON Pointer processor for Common Lisp")
-      (description "
-This package provides a JSON
+      (description
+       "This package provides a JSON
 Pointer (@url{https://tools.ietf.org/html/rfc6901,RFC6901}) implementation for
 Common Lisp.  This libary aims to be independent from any JSON libraries (as much
 as possible).")
@@ -443,7 +443,7 @@ as possible).")
 (define-public cl-json-pointer
   (sbcl-package->cl-source-package sbcl-cl-json-pointer))
 
-(define-public ecl-cl-json-poiniter
+(define-public ecl-cl-json-pointer
   (sbcl-package->ecl-package sbcl-cl-json-pointer))
 
 ;; 20210125T180331+0000
