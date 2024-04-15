@@ -541,6 +541,23 @@ implementation in Python 3.2.")
 interactive CLIs.")
     (license license:expat)))
 
+;; 20240308T072854+0000
+(define python-mkdocs-material
+  (package
+    (name "python-mkdocs-material")
+    (version "9.5.13")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "mkdocs_material" version))
+       (sha256
+        (base32 "11xx4ns1ic02hyk6f3c66szcscyj8g7q36v0sa7sh4k3aypcmr6q"))))
+    (build-system pyproject-build-system)
+    (home-page "https://squidfunk.github.io/mkdocs-material/")
+    (synopsis "MkDocs documentation framework")
+    (description "Documentation that simply works")
+    (license license:expat)))
+
 ;; 20220513T200612+0100
 ;; (define-public python-parsley
 ;; added-to-downstream-guix 0ce76141bfe52b7c65d6185d036b4eaad2a0f0a3
