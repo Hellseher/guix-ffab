@@ -83,7 +83,7 @@
     (home-page "https://github.com/kgrandis/nose-exclude")
     (synopsis "Exclude specific directories from nosetests runs")
     (description
-     "@codee{nose-exclude} is a Nose plugin that allows you to easily specify
+     "@code{nose-exclude} is a Nose plugin that allows you to easily specify
 directories to be excluded from testing.")
     (license license:lgpl2.1+)))
 
