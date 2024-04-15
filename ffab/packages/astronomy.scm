@@ -1895,6 +1895,12 @@ can compute its position at any other time, no matter how remote.")
   (package
     (name "libsharp")
     (version "1.0.0")
+    ;; The location of the original sources redirects to GitHub. I've started
+    ;; from: <https://salsa.debian.org/debian-astro-team/libsharp> ->
+    ;;        <https://healpix.sourceforge.io/> ->
+    ;;         <https://sourceforge.net/projects/libsharp/> ->
+    ;;          <https://github.com/dagss/libsharp> ->
+    ;;           <https://github.com/Libsharp/libsharp>.
     (source
      (origin
        (method git-fetch)
@@ -1906,38 +1912,47 @@ can compute its position at any other time, no matter how remote.")
         (base32 "0ih13jl0ippxgia7dchrfldxnpwd84lhb64xqvv9swnail5866ij"))))
     (build-system gnu-build-system)
     (arguments
-     (list #:phases
-           #~(modify-phases %standard-phases
-               (replace 'check
-                 (lambda* (#:key tests? #:allow-other-keys)
-                   (when tests?
-                     (invoke "make" "test" "perftest"))))
-               (replace 'install
-                 ;; The Makefile lacks an ‘install’ target.
-                 (lambda* (#:key outputs #:allow-other-keys)
-                   (let* ((out (assoc-ref outputs "out"))
-                          (bin (string-append out "/bin"))
-                          (include (string-append out "/include"))
-                          (lib (string-append out "/lib")))
-                     (mkdir-p (string-append lib "/pkgconfig"))
-                     (with-output-to-file (string-append lib "/pkgconfig/libsharp.pc")
-                       (lambda _
-                         (format #t "prefix=~a~@
-                          exec_prefix=${prefix}~@
-                          libdir=${exec_prefix}/lib~@
-                          includedir=${prefix}/include~@
-                          ~@
-                          Name: libsharp~@
-                          Version: ~a~@
-                          Description: Spherical harmonic transforms revisited~@
-                          Libs: -L${libdir} -lsharp~@
-                          Cflags: -I${includedir}~%"
-                                 out #$version)))
-                     (copy-recursively "auto/bin" bin)
-                     (copy-recursively "auto/include" include)
-                     (copy-recursively "auto/lib" lib)))))))
+     (list
+      #:make-flags
+      #~(list
+         ;; On amd64, enable libsharp's automatic dispatch to optimized routines
+         ;; based on support for amd64 instruction sets detected at runtime.
+         #$@(match (or (%current-target-system)
+                       (%current-system))
+              ((or "armhf-linux" "aarch64-linux" "riscv64")
+               '("CFLAGS+=-DMULTIARCH"))
+              (_ '())))
+      #:phases
+      #~(modify-phases %standard-phases
+          (replace 'check
+            (lambda* (#:key tests? #:allow-other-keys)
+              (when tests?
+                (invoke "make" "test" "perftest"))))
+          (replace 'install
+            ;; The Makefile lacks an ‘install’ target.
+            (lambda _
+              (let ((bin (string-append #$output "/bin"))
+                    (include (string-append #$output "/include"))
+                    (lib (string-append #$output "/lib")))
+                (mkdir-p (string-append lib "/pkgconfig"))
+                (with-output-to-file (string-append lib "/pkgconfig/libsharp.pc")
+                  (lambda _
+                    (format #t "prefix=~a~@
+                            exec_prefix=${prefix}~@
+                            libdir=${exec_prefix}/lib~@
+                            includedir=${prefix}/include~@
+                            ~@
+                            Name: libsharp~@
+                            Version: ~a~@
+                            Description: Spherical harmonic transforms revisited~@
+                            Libs: -L${libdir} -lsharp~@
+                            Cflags: -I${includedir}~%"
+                            #$output #$version)))
+                (copy-recursively "auto/bin" bin)
+                (copy-recursively "auto/include" include)
+                (copy-recursively "auto/lib" lib)))))))
     (native-inputs
-     (list autoconf automake))
+     (list autoconf automake python-wrapper))
     (home-page "https://arxiv.org/abs/1303.4945")
     (synopsis "Spherical harmonic transforms revisited")
     (description
@@ -1954,7 +1969,7 @@ etc. Generally, libsharp's performance is at least on par with that of its
 predecessor; however, significant improvements were made to the algorithms for
 scalar SHTs, which are roughly twice as fast when using the same CPU
 capabilities.")
-    (license license:gpl2)))
+    (license license:gpl2+)))
 
 ;; 20230206T221536+0000
 (define-public stellarium-ffab
