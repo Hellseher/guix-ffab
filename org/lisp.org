@@ -1,6 +1,6 @@
 #+title: Land of Common Lisp
 #+created: <2021-04-15 Thu 21:34:35 BST>
-#+modified: <2023-12-22 Fri 03:28:47 GMT>
+#+modified: <2024-03-21 Thu 22:12:53 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Common Lisp related projects, structure follows
@@ -1950,6 +1950,36 @@ CLOSED: [2021-06-24 Thu 14:41]
   - [X] alexandria
   - [X] babel
   - [X] local-time
+
+* Monthly Update [1/1]
+** DONE updates-2024-03
+CLOSED: [2024-03-21 Thu 22:01]
+- date-time :: 20240319T215935+0000
+- commit :: 14942e2abb..c75eb3b38a to master
+- issues :: https://issues.guix.gnu.org/69904
+- quick [10/11][90%]
+  - [X] cl-arrow-macros :: new package
+    - The repository has an old "0.2.7" tag, so I guess we should use '(git-version "0.2.7" revision
+     commit)' as version.
+  - [X] cl-trivial-utilities :: new package
+  - [X] cl-trivial-monitored-thread :: new package
+  - [ ] cl-mimeparse :: new packago
+  - [X] cl-boost-json :: new package
+    - Apparently '#\formfeed' in "decode.lisp" should be replaced by '#\page'.
+  - [X] cl-st-json :: new package
+  - [X] cl-json-pointer :: new package
+  - [X] cl-easy-routes :: new package
+    - To get the support for djula, I suppose it will be necessary add an 'asd-systems' argument
+      with 'easy-routes' and 'easy-routes+djula' (maybe also adding 'eeasy-routes+errors' could be
+      useful).
+  - [X] cl-vgplot :: new package
+    - According to the headers in the lisp files, it should be 'license:gpl3+'.
+  - [X] cl-punch :: new package
+  - [X] cl-ciel :: new package
+- issues [0/2][0%]
+  - [ ]  Apparently '#\formfeed' in "decode.lisp" should be replaced by
+    '#\page'. https://github.com/cl-boost/json/pull/2
+
 
 * Testing Frameworks and helper utilities
 The list is sourced from this URL https://sabracrolleton.github.io/testing-framework to keep track
