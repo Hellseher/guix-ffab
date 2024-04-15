@@ -775,9 +775,17 @@ monochromatic sequential colormaps like @code{blue}, @code{green}, and
      (list python-numpy))
     (home-page "https://github.com/yt-project/ewah_bool_utils")
     (synopsis "EWAH Bool Array compression")
-    (description "This package provide a Python wrapper to @acronym{EWAH,
+    (description
+     "This package provide a Python wrapper to @acronym{EWAH,
  Enhanced Word-Aligned Hybrid} compression bitarray method.")
-    (license license:bsd-3)))
+    (license (list
+              ;; LICENSE: for Python code.
+              license:bsd-3
+              ;; XXX: Check if it's possible to have it as dedicated package
+              ;; and link here..
+              ;; ewah_bool_utils/cpp/LICENSE: for C++ bundle, sourced from
+              ;; <https://github.com/lemire/EWAHBoolArray>.
+              license:asl2.0))))
 
 ;; 20230301T210252+0000
 ;; (define-public python-czml3
