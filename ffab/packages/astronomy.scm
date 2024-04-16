@@ -673,7 +673,7 @@ radio astronomy.")
 (define-public psfex
   (package
     (name "psfex")
-    (version "3.21.1")
+    (version "3.24.1")
     (source
      (origin
        (method git-fetch)
@@ -682,7 +682,7 @@ radio astronomy.")
              (commit version)))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1ngxwrjj2pkb7frwcqf91hkf2hfnxw00ngzfliv61209xb1lxd3s"))))
+        (base32 "049689rz1vcbpzd8m2q5gkmigi99z9zm2lwakyql0k4jlmpr3yb7"))))
     (build-system gnu-build-system)
     (arguments
      (list
@@ -691,9 +691,9 @@ radio astronomy.")
               "--enable-openblas"
               "--enable-plplot"
               (string-append "--with-fftw-libdir="
-                             #$(this-package-input "fftwf") "/lib")
+                             #$(this-package-input "fftw") "/lib")
               (string-append "--with-fftw-incdir="
-                             #$(this-package-input "fftwf") "/include")
+                             #$(this-package-input "fftw") "/include")
               (string-append "--with-openblas-libdir="
                              #$(this-package-input "openblas") "/lib")
               (string-append "--with-openblas-incdir="
@@ -705,7 +705,7 @@ radio astronomy.")
     (native-inputs
      (list autoconf automake libtool pkg-config))
     (inputs
-     (list openblas fftwf plplot))
+     (list openblas fftw fftwf plplot))
     (home-page "https://www.astromatic.net/software/psfex")
     (synopsis "Astronomical PSF modelling and quality assessment")
     (description
