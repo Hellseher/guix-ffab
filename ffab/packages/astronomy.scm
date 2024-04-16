@@ -94,6 +94,7 @@
   #:use-module (guix build-system meson)
   #:use-module (guix build-system pyproject)
   #:use-module (guix build-system python)
+  #:use-module (guix build-system qt)
   #:use-module (guix download)
   #:use-module (guix gexp)
   #:use-module (guix git-download)
@@ -1829,6 +1830,53 @@ Programmer’s Interface, HAPI} data server API.")
     ;; TODO: (Sharlatan-20221106T121832+0000): Need more info here
     (description "")
     (license license:gpl2)))
+
+;; 20240415T214305+0100
+(define theli
+  (package
+    (name "theli")
+    (version "3.1.4")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/schirmermischa/THELI")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0yzq2vmq0kwgsxils4nsky35qh2rdrkxpjf72rb8gzd3njzfznfm"))))
+    (build-system qt-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'change-dirrectory
+            (lambda _
+              (chdir "src"))))))
+    (inputs
+     (list cfitsio
+           curl
+           fftw
+           gsl
+           lapack
+           libraw
+           libtiff
+           openblas
+           plplot
+           qtbase-5
+           qttools-5
+           scamp
+           wcslib))
+    (home-page "https://github.com/schirmermischa/THELI")
+    (synopsis "Data processing pipeline for astronomical images")
+    (description
+     "THELI is a data processing pipeline for optical, near-infrared and
+mid-infrared astronomical images. Using a hybrid memory/drive data model and
+full parallelization, it offers a vast gain in processing speed. Depending on
+the hardware and data set, processing speed may increase by factors 2 to 20.
+THELI also fully scales with the amount of available RAM and CPUs on your
+machine.")
+    (license license:gpl3+)))
 
 ;; 20220818T223250+0100
 (define-public torus
