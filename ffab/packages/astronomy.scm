@@ -669,44 +669,43 @@ radio astronomy.")
 ;; added-to-downstream-guix 1aee32a26e1a96dd457fcf62f97f514c7a562475
 ;; CommitDate: Wed Jan 27 10:39:54 2021 +0100
 
-;; TODO: (Sharlatan-20210415T225235+0100): Failing on build phase
-;;
-;; collect2: error: ld returned 1 exit status
-;;
 ;; 20221030T224339+0000
-(define psfex
+(define-public psfex
   (package
     (name "psfex")
     (version "3.21.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/astromatic/psfex")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1ngxwrjj2pkb7frwcqf91hkf2hfnxw00ngzfliv61209xb1lxd3s"))))
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/astromatic/psfex")
+             (commit version)))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1ngxwrjj2pkb7frwcqf91hkf2hfnxw00ngzfliv61209xb1lxd3s"))))
     (build-system gnu-build-system)
     (arguments
      (list
       #:configure-flags
-      #~(list "--enable-openblas"
+      #~(list "CPPFLAGS=-fcommon"
+              "--enable-openblas"
               "--enable-plplot"
-              (string-append
-               "--with-fftw-libdir=" #$(this-package-input "fftwf") "/lib")
-              (string-append
-               "--with-fftw-incdir=" #$(this-package-input "fftwf") "/include")
-              (string-append
-               "--with-openblas-libdir=" #$(this-package-input "openblas") "/lib")
-              (string-append
-               "--with-openblas-incdir=" #$(this-package-input "openblas") "/include")
-              (string-append
-               "--with-plplot-libdir=" #$(this-package-input "plplot") "/lib")
-              (string-append
-               "--with-plplot-incdir=" #$(this-package-input "plplot") "/include"))))
-    (native-inputs (list autoconf automake libtool pkg-config))
-    (inputs (list openblas fftwf plplot))
+              (string-append "--with-fftw-libdir="
+                             #$(this-package-input "fftwf") "/lib")
+              (string-append "--with-fftw-incdir="
+                             #$(this-package-input "fftwf") "/include")
+              (string-append "--with-openblas-libdir="
+                             #$(this-package-input "openblas") "/lib")
+              (string-append "--with-openblas-incdir="
+                             #$(this-package-input "openblas") "/include")
+              (string-append "--with-plplot-libdir="
+                             #$(this-package-input "plplot") "/lib")
+              (string-append "--with-plplot-incdir="
+                             #$(this-package-input "plplot") "/include"))))
+    (native-inputs
+     (list autoconf automake libtool pkg-config))
+    (inputs
+     (list openblas fftwf plplot))
     (home-page "https://www.astromatic.net/software/psfex")
     (synopsis "Astronomical PSF modelling and quality assessment")
     (description
