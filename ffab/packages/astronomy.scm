@@ -1798,6 +1798,62 @@ implemented using the astropy.modeling framework.")
 Programmer’s Interface, HAPI} data server API.")
     (license license:bsd-3)))
 
+;; 20240419T211850+0100
+(define python-hapsira
+  (package
+    (name "python-hapsira")
+    (version "0.18.0")
+    (source
+     (origin
+       ;; PyPi tarball lacks tests.
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/pleiszenburg/hapsira")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "09rimpsw98j2zk8bd3rlxh5x0zv5xxdvd0kq5d2qi30nixxbg27p"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      #~(list "-m" "not remote_data"
+              "--mpl"
+              "--mypy"
+              "--numprocesses" "auto")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'prepare-test-environment
+            (lambda _
+              (setenv "HOME" "/tmp"))))))
+    (native-inputs
+     (list python-mypy
+           python-flit-core
+           python-pytest
+           python-pytest-cov
+           python-pytest-doctestplus
+           python-pytest-mpl
+           python-pytest-mypy
+           python-pytest-xdist))
+    (propagated-inputs
+     (list python-astropy
+           python-astroquery
+           python-czml3
+           python-jplephem
+           python-matplotlib
+           python-numba
+           python-numpy
+           python-pandas
+           python-plotly
+           python-pyerfa
+           python-scipy))
+    (home-page "https://hapsira.readthedocs.io/")
+    (synopsis "Astrodynamics in Python")
+    (description
+     "@code{hapsira} is successive fork of @code{poliastro} with plotter framework saw
+a redesign and is backwards incompatible.")
+  (license license:expat)))
+
 ;; 20221123T225008+0000
 ;; (define-public python-hvpy
 ;; added-to-downstream-guix 0575012803683ebacd43029530683af7bdf791f9
