@@ -1,0 +1,38 @@
+From a0bbf191c803c2a7394013002afddd8a8fc0fe54 Mon Sep 17 00:00:00 2001
+Message-ID: <a0bbf191c803c2a7394013002afddd8a8fc0fe54.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 17:56:40 +0100
+Subject: [PATCH 26/47] gnu: python-ginga: Set HOME for sanity check.
+
+* gnu/packages/astronomy.scm (python-ginga) [arguments] <#:phases>: Add
+'set-home phase.
+
+Change-Id: I7fc9b043ae8ac465645215dabc9d8643b8e08fe2
+---
+ gnu/packages/astronomy.scm | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 70e3daa501..d183a968ed 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -723,7 +723,13 @@ (define-public python-ginga
+            (lambda _
+              (substitute* "setup.cfg"
+                ;; packaging>=23.1
+-               ((">=23.1") ">=21.3")))))))
++               ((">=23.1") ">=21.3"))))
++         (add-before 'check 'set-home
++           (lambda _
++             ;; Relax matplotlib warning: ... because the default path
++             ;; (/homeless-shelter/.config/matplotlib) is not a writable
++             ;; directory ...
++             (setenv "HOME" "/tmp"))))))
+     (propagated-inputs
+      (list opencv
+            python-astropy
+-- 
+2.41.0
+

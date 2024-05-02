@@ -1,0 +1,92 @@
+From 5deaffbf53fecb6e34cb90670672d7bdad1e8d77 Mon Sep 17 00:00:00 2001
+Message-ID: <5deaffbf53fecb6e34cb90670672d7bdad1e8d77.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 4 Apr 2024 08:22:13 +0100
+Subject: [PATCH 14/47] gnu: python-astropy: Update to 6.0.1.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.0.1.
+[arguments]: <#:test-flags>: Enable recently failing tests; disable some
+new one.
+[propagated-inputs]: Add python-matplotlib and python-scipy.
+[native-inputs]: Remove python-matplotlib and python-scipy; add
+python-threadpoolctl.
+
+Change-Id: Iaa48c84565d11c944444ecd1fd77291f4b3c8c3c
+---
+ gnu/packages/astronomy.scm | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fc3c652132..7fcb1a678d 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1546,13 +1546,13 @@ (define-public celestia-gtk
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.0.0")
++    (version "6.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "1nbpqx7ibm8zsyyy17y5rmfjamwz6mv0sy4drlisap9hald81k83"))
++        (base32 "175k2h039c0b8rsf0fdphmxbpjrszd138j8z9zkhh1kd6pg7bac9"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -1574,11 +1574,9 @@ (define-public python-astropy
+               "-k" (string-append
+                     ;; Skip tests that need remote data.
+                     "not remote_data"
+-                    ;; E astropy.samp.errors.SAMPProxyError:
+-                    ;; <SAMPProxyError 1: 'Timeout expired!'>
+-                    " and not test_main"
+-                    ;; E ModuleNotFoundError: No module named 'wofz'
+-                    " and not test_pickle_functional"))
++                    ;; ValueError: The truth value of an array with more than
++                    ;; one element is ambiguous. Use a.any() or a.all()
++                    " and not test_table_comp[t16-t26]"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'preparations
+@@ -1619,7 +1617,6 @@ (define-public python-astropy
+            python-h5py
+            python-ipython
+            python-jplephem
+-           python-matplotlib
+            python-objgraph
+            python-pandas
+            python-pyarrow
+@@ -1629,21 +1626,23 @@ (define-public python-astropy
+            python-pytest-mpl
+            python-pytest-xdist
+            python-scikit-image
+-           python-scipy
+            python-setuptools-scm
+            python-sgp4
+            python-skyfield
++           python-threadpoolctl
+            python-timezonefinder))
+     (inputs
+      (list expat wcslib))
+     (propagated-inputs
+      (list python-astropy-iers-data
+            python-configobj
++           python-matplotlib
+            python-numpy
+            python-packaging
+            python-ply
+            python-pyerfa
+-           python-pyyaml))
++           python-pyyaml
++           python-scipy))
+     (home-page "https://www.astropy.org/")
+     (synopsis "Core package for Astronomy in Python")
+     (description
+-- 
+2.41.0
+

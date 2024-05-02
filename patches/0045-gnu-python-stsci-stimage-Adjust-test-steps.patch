@@ -1,0 +1,76 @@
+From fc7f4fa14544a7b8aa01594956dbf30e03b15cdf Mon Sep 17 00:00:00 2001
+Message-ID: <fc7f4fa14544a7b8aa01594956dbf30e03b15cdf.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 20 Apr 2024 22:38:33 +0100
+Subject: [PATCH 45/47] gnu: python-stsci-stimage: Adjust test steps.
+
+* gnu/packages/astronomy.scm (python-stsci-stimage):
+[arguments]: <#:test-flags>: Add them. <#:phases>: Fail over to default
+'check phase and add 'waf-configure-build phase before check.
+[native-inputs]: Remove python-codecov and, python-pytest-cov.
+[description]: Fix indentation.
+
+Change-Id: I350c4ced2cb4afaff72d4d4941d198932cd888f5
+---
+ gnu/packages/astronomy.scm | 29 +++++++++++++++--------------
+ 1 file changed, 15 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b4a82f6353..9d82bd4c89 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3242,6 +3242,8 @@ (define-public python-stsci-imagestats
+ (define-public python-stsci-stimage
+   (package
+     (name "python-stsci-stimage")
++    ;; PyPI version was 0.2.8 but the latest version tag on GiHub was 0.2.7,
++    ;; see <https://github.com/spacetelescope/stsci.stimage/issues/38>
+     (version "0.2.8")
+     (source (origin
+               (method url-fetch)
+@@ -3252,27 +3254,26 @@ (define-public python-stsci-stimage
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags #~(list "test_c")
+       #:phases
+       #~(modify-phases %standard-phases
+-          ;; Test steps are taken from GitHub Actions.
+-          ;; See https://github.com/spacetelescope/stsci.stimage/issues/27
+-          (replace 'check
++          ;; Test steps are taken from GitHub Actions, see
++          ;; <https://github.com/spacetelescope/stsci.stimage/issues/27>
++          (add-before 'check 'waf-configure-build
+             (lambda _
+               (copy-file (string-append
+-                #$(this-package-native-input "python-waf") "/bin/waf")
+-               "waf")
+-              (invoke "python" "waf" "configure" "build" "do_tests"))))))
+-    (propagated-inputs (list python-numpy))
++                          #$(this-package-native-input "python-waf") "/bin/waf")
++                         "waf")
++              (invoke "python" "waf" "configure" "build"))))))
++    (propagated-inputs
++     (list python-numpy))
+     (native-inputs
+-     (list python-codecov
+-           python-pytest
+-           python-pytest-cov
+-           python-setuptools-scm
+-           python-waf))
++     (list python-pytest python-setuptools-scm python-waf))
+     (home-page "https://stscistimage.readthedocs.io/en/latest/")
+     (synopsis "STScI image processing")
+-    (description "This package provides an astronomical Python package with
+-image processing functions: @code{xyxymatch}, @code{geomap}.")
++    (description
++     "This package provides an astronomical Python package with image
++processing functions: @code{xyxymatch}, @code{geomap}.")
+     (license license:bsd-3)))
+ 
+ (define-public python-stcal
+-- 
+2.41.0
+

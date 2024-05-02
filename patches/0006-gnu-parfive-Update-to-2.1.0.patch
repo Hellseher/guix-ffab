@@ -1,0 +1,38 @@
+From 4be7bec0fc4d41e2d2d6ed4be8a5122d7645583c Mon Sep 17 00:00:00 2001
+Message-ID: <4be7bec0fc4d41e2d2d6ed4be8a5122d7645583c.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 10 Apr 2024 22:20:50 +0100
+Subject: [PATCH 06/47] gnu: parfive: Update to 2.1.0.
+
+* gnu/packages/python-web.scm (parfive): Update to 2.1.0.
+
+Change-Id: I6207150e012c03943d4553854123831d1bba3e55
+---
+ gnu/packages/python-web.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index 5a532f8460..fb6abb9d80 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -1378,13 +1378,13 @@ (define-public httpie
+ (define-public parfive
+   (package
+     (name "parfive")
+-    (version "2.0.2")
++    (version "2.1.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "parfive" version))
+               (sha256
+                (base32
+-                "0pf8rzfwxpkn84xzb4v8m1fy3k7kjlh8f9ln4y5xqlnbqpwi30lh"))))
++                "13nw2y7wjzj6w049av6ff4d0zxgbhkrgck0xyh676c114hcv8v6d"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

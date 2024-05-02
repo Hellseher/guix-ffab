@@ -1,0 +1,54 @@
+From 93ac541af29d2bec5008ba7a02eb89f0c31463aa Mon Sep 17 00:00:00 2001
+Message-ID: <93ac541af29d2bec5008ba7a02eb89f0c31463aa.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 17:35:57 +0100
+Subject: [PATCH 09/47] gnu: Add python-supersmoother.
+
+* gnu/packages/python-science.scm (python-supersmoother): New variable.
+
+Change-Id: I8fb43d746757014e3b773c07458b777b893adb4a
+---
+ gnu/packages/python-science.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/python-science.scm b/gnu/packages/python-science.scm
+index 862e101f6a..b39dc5bc5b 100644
+--- a/gnu/packages/python-science.scm
++++ b/gnu/packages/python-science.scm
+@@ -2449,6 +2449,31 @@ (define-public python-simple-pid
+ proportional-integral-derivative} controller.")
+     (license license:expat)))
+ 
++(define-public python-supersmoother
++  (package
++    (name "python-supersmoother")
++    (version "0.4")
++    (source
++     (origin
++       (method git-fetch)        ; no package in PyPI
++       (uri (git-reference
++             (url "https://github.com/jakevdp/supersmoother")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1lkj8l2mpki6x2pxcwlrplx63lhi8h9v2rzxgjfb0cppsfr8m1wp"))))
++    (build-system pyproject-build-system)
++    (propagated-inputs (list python-numpy))
++    (native-inputs (list python-scipy))
++    (home-page "http://github.com/jakevdp/supersmoother")
++    (synopsis "Python implementation of Friedman's Supersmoother")
++    (description
++     "This package provides an efficient implementation of
++@url{https://www.slac.stanford.edu/pubs/slacpubs/3250/slac-pub-3477.pdf,
++Friedman's SuperSmoother} based in Python.  It makes use of numpy for fast
++numerical computation.")
++    (license license:bsd-2)))
++
+ (define-public python-opt-einsum
+   (package
+     (name "python-opt-einsum")
+-- 
+2.41.0
+

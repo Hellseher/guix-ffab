@@ -1,0 +1,51 @@
+From d3ee682ac11613915e6350f7d8ef2abded23f398 Mon Sep 17 00:00:00 2001
+Message-ID: <d3ee682ac11613915e6350f7d8ef2abded23f398.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 16:35:17 +0100
+Subject: [PATCH 21/47] gnu: python-synphot: Add custom check phase.
+
+* gnu/packages/astronomy.scm (python-synphot): [arguments] <#:phases>:
+Remove 'prepare-test-environment phase; add custom 'check phase.
+
+Change-Id: I9cb6d65c226a555ccd62a3a6c08d00868a66f109
+---
+ gnu/packages/astronomy.scm | 21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4fea09067c..7ca051aa79 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4348,19 +4348,14 @@ (define-public python-synphot
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+-          (add-before 'check 'prepare-test-environment
+-            (lambda _
+-              (invoke "python" "setup.py" "build_ext" "--inplace")
+-              ;; To solve pytest/conftest issue. Pytest tries to load all
+-              ;; files with word 'test' in them.
+-              ;;
+-              ;; ImportError while loading conftest ...
+-              ;; _pytest.pathlib.ImportPathMismatchError: ...
+-              ;;
+-              (call-with-output-file "pytest.ini"
+-                (lambda (port)
+-                  (format port "[pytest]
+-python_files = test_*.py"))))))))
++          (replace 'check
++            (lambda* (#:key tests? test-flags #:allow-other-keys)
++              (when tests?
++                (invoke "python" "setup.py" "build_ext" "--inplace")
++                ;; Step out of the source directory to avoid interference; we
++                ;; want to run the installed code with extensions etc.
++                (with-directory-excursion "/tmp"
++                  (apply invoke "pytest" "-v" test-flags))))))))
+     (propagated-inputs
+      (list python-astropy
+            python-dust-extinction
+-- 
+2.41.0
+

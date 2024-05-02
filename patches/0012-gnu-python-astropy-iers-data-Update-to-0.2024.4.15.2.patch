@@ -1,0 +1,40 @@
+From d82af049c8e395921346b85d920a5f161fdc5655 Mon Sep 17 00:00:00 2001
+Message-ID: <d82af049c8e395921346b85d920a5f161fdc5655.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 4 Apr 2024 08:25:21 +0100
+Subject: [PATCH 12/47] gnu: python-astropy-iers-data: Update to
+ 0.2024.4.15.2.45.49.
+
+* gnu/packages/astronomy.scm (python-astropy-iers-data): Update to 0.2024.4.15.2.45.49.
+
+Change-Id: Iaf902a0f506f149682868d0df0710d400b21f7e6
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 749c581571..567cb54685 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1696,13 +1696,13 @@ (define-public python-astropy-iers-data
+     ;; In case of changing the source method git-fetch, consider to check the
+     ;; tag as it's not following the PyPI version, see
+     ;; <https://github.com/astropy/astropy-iers-data/issues/17>.
+-    (version "0.2024.3.18.0.29.47")
++    (version "0.2024.4.15.2.45.49")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri "astropy-iers-data" version))
++       (uri (pypi-uri "astropy_iers_data" version))
+        (sha256
+-        (base32 "1mf03iqw09rp6d8hbby33f4jwfjan9gkb1z7xqsjr2jpj7zwpn3y"))))
++        (base32 "15wran1d5bw1mm3xl3ibp6i5aa7icj9p6g1mqcyp596qmdjnm8wp"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

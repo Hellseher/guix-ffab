@@ -1,0 +1,38 @@
+From b05de592d3ae2c37ff58c6c22fd257fffeb7233b Mon Sep 17 00:00:00 2001
+Message-ID: <b05de592d3ae2c37ff58c6c22fd257fffeb7233b.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Apr 2024 11:59:04 +0100
+Subject: [PATCH 22/47] gnu: python-synphot: Update to 1.4.0.
+
+* gnu/packages/astronomy.scm (python-synphot): Update to 1.4.0.
+
+Change-Id: I070381de76cfe1bf057d1c8032d2145d5c346fa2
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7ca051aa79..c868cd824e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4336,13 +4336,13 @@ (define-public python-suntime
+ (define-public python-synphot
+   (package
+     (name "python-synphot")
+-    (version "1.3.0")
++    (version "1.4.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "synphot" version))
+        (sha256
+-        (base32 "0a54bfrx9aar66040324sw9qdjz5lg67y28sjsxhyv9h3gppc7c0"))))
++        (base32 "0fk860bxaqbamrq15pkqlbvhbf70y50cra2mgvv9r0cxq37isbi6"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

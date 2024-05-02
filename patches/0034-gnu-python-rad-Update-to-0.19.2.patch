@@ -1,0 +1,38 @@
+From 8699a909e02eb5205b08b11cd130b3a784909b4b Mon Sep 17 00:00:00 2001
+Message-ID: <8699a909e02eb5205b08b11cd130b3a784909b4b.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 11 Apr 2024 18:57:54 +0100
+Subject: [PATCH 34/47] gnu: python-rad: Update to 0.19.2.
+
+* gnu/packages/astronomy.scm (python-rad): Update to 0.19.2.
+
+Change-Id: I4de8e8228f6d7ae1ae28cac726fcce5f2058f928
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 52f908611b..10eb640e56 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4862,13 +4862,13 @@ (define-public python-gwcs
+ (define-public python-rad
+   (package
+     (name "python-rad")
+-    (version "0.19.0")
++    (version "0.19.2")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "rad" version))
+               (sha256
+                (base32
+-                "0cp3nrv1vq3g61zx6dq36vdlxd5i8g52vg4hwpxakmwvqvc8p3gd"))))
++                "08dh9asdjgfmczmqyjplgdvbk3n68qw6akd8h953wq6v3yr4k4rq"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

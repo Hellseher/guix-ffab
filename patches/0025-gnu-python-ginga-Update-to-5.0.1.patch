@@ -1,0 +1,77 @@
+From 7127ccf360cd8d0dfefbf1eec61c41c624e61316 Mon Sep 17 00:00:00 2001
+Message-ID: <7127ccf360cd8d0dfefbf1eec61c41c624e61316.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 16:59:08 +0100
+Subject: [PATCH 25/47] gnu: python-ginga: Update to 5.0.1.
+
+* gnu/packages/astronomy.scm (python-ginga): Update to 5.0.1.
+[arguments] <#:phases>: Add 'relax-requirements phase.
+[propagated-inputs]: Add opencv, python-exif-read python-packaging,
+python-pyyaml, and python-tomli.
+[native-inputs]: Add python-pytest-astropy-header.
+
+Change-Id: I314bbd9a037b134a03f5a4a174ab878e9523e4b6
+---
+ gnu/packages/astronomy.scm | 24 +++++++++++++++++++-----
+ 1 file changed, 19 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f57165050f..70e3daa501 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -707,31 +707,45 @@ (define-public python-gatspy
+ (define-public python-ginga
+   (package
+     (name "python-ginga")
+-    (version "5.0.0")
++    (version "5.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ginga" version))
+        (sha256
+-        (base32 "1kydi6qqsscgsa55fa2za35vr5j8xjn09lfbnb5ajr8yxdgm4n3y"))))
++        (base32 "1zw93487a0ilkb5w5qjgrdnavxlmdmjp6c2wyc1wp8qahby9c0xa"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++         (add-after 'unpack 'relax-requirements
++           (lambda _
++             (substitute* "setup.cfg"
++               ;; packaging>=23.1
++               ((">=23.1") ">=21.3")))))))
+     (propagated-inputs
+-     (list ;;python-exifread  ; optional, not packed yet in Guix
++     (list opencv
+            python-astropy
+            python-astroquery
+            python-dateutil
++           python-exif-read
++           python-fitsio
+            python-magic
+            python-matplotlib
+-           python-fitsio
+            python-numpy
++           python-packaging
+            python-photutils
+            python-pillow
++           python-pyyaml
+            python-qtpy
+-           python-scipy))
++           python-scipy
++           python-tomli))
+     (native-inputs
+      (list python-attrs
+            python-docutils
+            python-pytest-astropy
++           python-pytest-astropy-header
+            python-semantic-version
+            python-tornado))
+     (home-page "https://ejeschke.github.io/ginga/")
+-- 
+2.41.0
+

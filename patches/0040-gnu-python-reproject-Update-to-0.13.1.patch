@@ -1,0 +1,67 @@
+From 7fdfde3bafa3f2be622d025c96ad832780b1a17b Mon Sep 17 00:00:00 2001
+Message-ID: <7fdfde3bafa3f2be622d025c96ad832780b1a17b.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 18 Apr 2024 10:02:33 +0100
+Subject: [PATCH 40/47] gnu: python-reproject: Update to 0.13.1.
+
+* gnu/packages/astronomy.scm (python-reproject): Update to 0.13.1.
+[arguments]: <#:phases>: Add 'create-setup.py phase.
+[native-inputs]: Remove python-cython; add python-cython-3.
+
+Change-Id: I77845fa1a9748901bc08235ba95060d39b64e467
+---
+ gnu/packages/astronomy.scm | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index dd5864a582..32c70b9bdf 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2732,13 +2732,13 @@ (define-public python-regions
+ (define-public python-reproject
+   (package
+     (name "python-reproject")
+-    (version "0.13.0")
++    (version "0.13.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "reproject" version))
+        (sha256
+-        (base32 "1qkjbx8xsawhi1gjzqimais3crvkwgbzy1pr51x6anjjln88rgll"))))
++        (base32 "1xk809h2j3zj37l5lx4l87zanf9zxbxajcrff2b2f2i0jpnmxqv3"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2754,6 +2754,17 @@ (define-public python-reproject
+       #:tests? #f
+       #:phases
+       #~(modify-phases %standard-phases
++          ;; setup.py was removed in a659a260bdd7635cddc8f33c4ea04a3b6d8c1f84
++          ;; for some unknown reason, which caused the package to fail to
++          ;; build. It is being recreated based on that commit.
++          ;; TODO: Check how to implement it in python-build-system.
++          (add-after 'unpack 'create-setup.py
++            (lambda _
++              (call-with-output-file "setup.py"
++                (lambda (port)
++                  (format port "from setuptools import setup
++from extension_helpers import get_extensions
++setup(ext_modules=get_extensions())")))))
+           (add-before 'install 'writable-compiler
+             (lambda _
+               (make-file-writable "reproject/_compiler.c")))
+@@ -2778,7 +2789,7 @@ (define-public python-reproject
+            python-shapely
+            python-zarr))
+     (native-inputs
+-     (list python-cython
++     (list python-cython-3
+            python-extension-helpers
+            python-pytest-astropy
+            python-semantic-version
+-- 
+2.41.0
+

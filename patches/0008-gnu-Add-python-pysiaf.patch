@@ -1,0 +1,68 @@
+From 68ceac2bec4c3b62a015ef719d5a584510a6cd97 Mon Sep 17 00:00:00 2001
+Message-ID: <68ceac2bec4c3b62a015ef719d5a584510a6cd97.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 2 Apr 2024 21:05:17 +0100
+Subject: [PATCH 08/47] gnu: Add python-pysiaf.
+
+* gnu/packages/astronomy.scm (python-pysiaf): New variable.
+
+Change-Id: Ide732d666bccad885ed3e8c78d62df7e74524b9a
+---
+ gnu/packages/astronomy.scm | 39 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 917b838e7a..55561c98e7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4209,6 +4209,45 @@ (define-public python-pyregion
+ @end itemize")
+     (license license:expat)))
+ 
++(define-public python-pysiaf
++  (package
++    (name "python-pysiaf")
++    (version "0.22.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pysiaf" version))
++       (sha256
++        (base32 "08wb98k9k4f04455da5ns9rif8pl9r3ih537w1yj393hkjjiyzfz"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-n" "auto"
++              ;; Disable 2 failing tests, see
++              ;; <https://github.com/spacetelescope/pysiaf/issues/338>
++              "-k" (string-append "not test_write_jwst_siaf_xlsx"
++                                  " and not test_write_jwst_siaf_xml" ))))
++    (propagated-inputs
++     (list python-astropy
++           python-lxml
++           python-matplotlib
++           python-numpy
++           python-numpydoc
++           python-openpyxl
++           python-requests
++           python-scipy))
++    (native-inputs
++     (list python-pytest python-pytest-xdist))
++    (home-page "https://pysiaf.readthedocs.io/")
++    (synopsis "Handling SIAF for space telescopes")
++    (description
++     "@code{pysiaf} is a python package to access, interpret, maintain, and
++generate @acronym{Handling of Science Instrument Aperture Files, SIAF}, in
++particular for JWST.  Tools for applying the frame transformations, plotting,
++comparison, and validation are provided.")
++    (license license:bsd-3)))
++
+ (define-public python-pysynphot
+   ;; XXX: 2.0.0 was released in 2021 there are a lot of changes since that
+   ;; time and it failed to build with python-astropy 6.0.0, use the latest
+-- 
+2.41.0
+

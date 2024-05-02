@@ -1,0 +1,38 @@
+From 87d281bc3e62386ab369b51fb7069adec54d0150 Mon Sep 17 00:00:00 2001
+Message-ID: <87d281bc3e62386ab369b51fb7069adec54d0150.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 11 Apr 2024 11:23:55 +0100
+Subject: [PATCH 15/47] gnu: python-astropy-healpix: Update to 1.0.3.
+
+* gnu/packages/astronomy.scm (python-astropy-healpix): Update to 1.0.3.
+
+Change-Id: Iffc1d537bd8b3ec10fbb5ddb7c2fd6251813ccde
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7fcb1a678d..6908be0694 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1654,13 +1654,13 @@ (define-public python-astropy
+ (define-public python-astropy-healpix
+   (package
+     (name "python-astropy-healpix")
+-    (version "1.0.2")
++    (version "1.0.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy_healpix" version))
+        (sha256
+-        (base32 "0fij80ws16xzbph8z9v27w54dnc3vry8fk9p3mvxrglnjgnscvq5"))))
++        (base32 "0ilpwwvdnd4nchivwnbiy1hl07hd2mdg4wb90r2p05kvr5z2lpfy"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

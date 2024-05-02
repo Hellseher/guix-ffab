@@ -1,0 +1,31 @@
+From 120d1876270b6291c7d4ee2579c570aa86a747b9 Mon Sep 17 00:00:00 2001
+Message-ID: <120d1876270b6291c7d4ee2579c570aa86a747b9.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Apr 2024 22:44:02 +0100
+Subject: [PATCH 37/47] gnu: python-casa-formats-io: Update to 0.3.0.
+
+* gnu/packages/astronomy.scm (python-casa-formats-io): Update to 0.3.0.
+
+Change-Id: I3f8ca4c981ac31cc955d374b4e4735e53af4c868
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 14520b0596..c5243dc6e9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1973,7 +1973,7 @@ (define-public python-bayesicfitting
+ (define-public python-casa-formats-io
+   (package
+     (name "python-casa-formats-io")
+-    (version "0.2.2")
++    (version "0.3.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "casa-formats-io" version))
+-- 
+2.41.0
+

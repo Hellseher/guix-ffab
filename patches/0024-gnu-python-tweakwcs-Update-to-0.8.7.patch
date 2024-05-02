@@ -1,0 +1,38 @@
+From a7dc0c092fdf276c90bdaa95f1578bf10fc213ae Mon Sep 17 00:00:00 2001
+Message-ID: <a7dc0c092fdf276c90bdaa95f1578bf10fc213ae.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 16:41:10 +0100
+Subject: [PATCH 24/47] gnu: python-tweakwcs: Update to 0.8.7.
+
+* gnu/packages/astronomy.scm (python-tweakwcs): Update to 0.8.7.
+
+Change-Id: I2ef8f29839a99ec3b40efc34a61f57bc32216c8e
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a43f21f0b1..f57165050f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4378,13 +4378,13 @@ (define-public python-synphot
+ (define-public python-tweakwcs
+   (package
+     (name "python-tweakwcs")
+-    (version "0.8.6")
++    (version "0.8.7")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "tweakwcs" version))
+        (sha256
+-        (base32 "1j75i02xzd36gp7pf6gks6nmp4ivi9cbphya4l69py5p62iaab99"))))
++        (base32 "0cch4z5zmmi1s02n1wdwss8p7qhrzyiajkaik0gga510kgdsvx48"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.41.0
+

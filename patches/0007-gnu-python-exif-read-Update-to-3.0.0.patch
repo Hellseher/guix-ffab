@@ -1,0 +1,38 @@
+From 0bed4a2274fe5e24d69d0a99886daab999229b6f Mon Sep 17 00:00:00 2001
+Message-ID: <0bed4a2274fe5e24d69d0a99886daab999229b6f.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 3 Apr 2024 17:48:10 +0100
+Subject: [PATCH 07/47] gnu: python-exif-read: Update to 3.0.0.
+
+* gnu/packages/python-xyz.scm (python-exif-read): Update to 3.0.0.
+
+Change-Id: I19e0a19041aa943a9f3ecf262077328d52ef4d1d
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index bac90b1e07..6011b4137f 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -5181,13 +5181,13 @@ (define-public python-pyrsistent
+ (define-public python-exif-read
+   (package
+     (name "python-exif-read")
+-    (version "2.1.2")
++    (version "3.0.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "ExifRead" version))
+               (sha256
+                (base32
+-                "1b90jf6m9vxh9nanhpyvqdq7hmfx5iggw1l8kq10jrs6xgr49qkr"))))
++                "191c7sa0rca8wkspfq8nlfa6davh743mqkzrcayz5gcx2rja7i8a"))))
+     (build-system python-build-system)
+     (arguments `(#:tests? #f)) ; no tests
+     (home-page "https://github.com/ianare/exif-py")
+-- 
+2.41.0
+

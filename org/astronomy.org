@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-04-15 Mon 21:25:43 BST>
+#+modified: <2024-05-02 Thu 22:42:15 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [4/76][5%]
+* Flow [4/78][5%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -606,7 +606,7 @@ CLOSED: [2022-11-21 Mon 20:43]
    - [X] python-semantic-version
    - [X] python-setuptools-scm
    - [X] python-zarr
-** TODO AstrOmatic-software [8/11][72%] :author:
+** TODO AstrOmatic-software [10/11][90%] :author:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
 
@@ -627,28 +627,33 @@ CLOSED: [2021-01-27 Wed 11:26]
 - [X] :paptch-applied-upstream <2021-01-27 Wed>
   - https://issues.guix.gnu.org/46121
 
-*** TODO psfex [1/4][25%] :p1:
+*** DONE psfex [4/4][100%]
+CLOSED: [2024-05-02 Thu 07:55]
 - synosis :: psf modelling and quality assessment
 - http://www.astromatic.net/software/psfex
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [2/2][100%]
+- [X] :packed <2024-04-16 Tue>
+- [X] :patch-sent <2024-04-20 Sat>
+- [X] :paptch-applied-upstream <2024-04-30 Tue>
+  - https://issues.guix.gnu.org/70489
+- [X] :inputs [3/3][100%]
   - [X] fftw
+  - [X] fftwf
   - [X] plplot
 
-*** TODO scamp [0/4][0%] :p1:
+*** DONE scamp [4/4][100%]
+CLOSED: [2024-05-02 Thu 08:11]
 - http://www.astromatic.net/software/scamp
 - synosis :: astrometric calibration and photometric homogenisation
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [2/5][40%]
+- [X] :packed <2024-04-15 Mon>
+- [X] :patch-sent <2024-04-20 Sat>
+- [X] :paptch-applied-upstream <2024-04-30 Tue>
+  - https://issues.guix.gnu.org/70489
+- [X] :inputs [5/5][100%]
+  - [X] curl
+  - [X] fftwf
+  - [X] openblas
+  - [X] pkg-config
   - [X] plplot
-  - [X] atlas
-  - [ ] curl
-  - [ ] fftwf
-  - [ ] pkg-config
 
 *** DONE sextractor [4/4][100%]
 CLOSED: [2021-01-25 Mon 17:27]
@@ -709,7 +714,18 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-*** TODO VisiOmatic [0/4][0%] :p5:
+*** TODO python-visiomatic [0/5][0%] :p1:
+  - synopsis :: Web application for visualizing astronomical images
+  - [ ] :packed
+  - [ ] :patch-sent
+  - [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0]
+
+** TODO IRAF-community
+- https://iraf-community.github.io/
+*** TODO IRAF [0/0][0%] :p1:
+- https://github.com/iraf-community/iraf
+- synopsis :: Image Reduction and Analysis Facility
   - [ ] :packed
   - [ ] :patch-sent
   - [ ] :paptch-applied-upstream
@@ -945,7 +961,9 @@ CLOSED: [2024-01-28 Sun 17:42]
 *** TODO CASApy [/][%] :p4:
 - synopsis :: Common Astronomy Software Applications - the full NRAO package. Produced by the CASA consortium.
 *** TODO Tempo2 [/][%] :p4:
+- https://www.atnf.csiro.au/research/pulsar/tempo2/
 - synopsis :: pulsar timing software.
+
 *** TODO PSRCat [/][%] :p4:
 - synopsis :: ATNF pulsar catalogue software.
 *** TODO difmap [/][%] :p4:
@@ -1141,7 +1159,6 @@ CLOSED: [2024-01-24 Wed 23:25]
   - [ ] :patch-sent
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
-
 ** TODO cpinte [0/0][0%] :author:
 - https://github.com/cpinte
 - author :: Christophe Pinte
@@ -2385,7 +2402,7 @@ https://github.com/radio-astro-tools/radio-beam
   - [X] python-tables
 ** TODO ruven [0/1][0%] :author:
 - author :: https://github.com/ruven
-*** TODO IIPImage [1/4][25%] :p4:
+*** TODO IIPImage [1/4][25%] :p1:
 - https://iipimage.sourceforge.io/
 - https://github.com/ruven/iipsrv
 - synopsis :: IIPImage is an advanced high-performance feature-rich image server system for
@@ -2508,13 +2525,13 @@ CLOSED: [2022-12-01 Thu 23:15]
 ** TODO schirmermischa [0/1][0%] :author:
 - https://github.com/schirmermischa
 - author :: Mischa Schirmer
-*** TODO THELI [0/4][0%] :p1:
+*** TODO THELI [1/4][25%] :p1:
 - https://github.com/schirmermischa/THELI
 - synopsis :: data processing pipeline for astronomical images
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [12/13][92%]
+- [X] :inputs [13/13][100%]
   - [X] cfitsio
   - [X] curl
   - [X] fftw
@@ -2525,8 +2542,8 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] openblas
   - [X] qtbase-5
   - [X] qttools-5
-  - [ ] scamp
-    - [ ] :packed
+  - [X] scamp
+    - [X] :packed
   - [X] wcslib
   - [X] plplot
 ** TODO spacetelescope [19/21][90%] :author:
@@ -2946,7 +2963,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [17/38][44%]
+- [-] :inputs [23/38][60%]
   - [X] python-asdf
   - [X] python-asteval
   - [X] python-astropy
@@ -2966,21 +2983,26 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [X] python-gwcs
   - [X] python-idna
   - [ ] python-ipygoldenlayout
-  - [ ] python-ipykernel
+    - [ ] :packed
+  - [X] python-ipykernel
   - [ ] python-ipypopout
+    - [ ] :packed
   - [ ] python-ipysplitpanes
+    - [ ] :packed
   - [ ] python-ipyvue
+    - [ ] :packed
   - [ ] python-ipyvuetify
-  - [ ] python-ipywidgets
+    - [ ] :packed
+  - [X] python-ipywidgets
   - [X] python-matplotlib
   - [X] python-opencv
   - [X] python-packaging
   - [X] python-photutils
-  - [ ] python-pysiaf
-    - [ ] :packed
+  - [X] python-pysiaf
+    - [X] :packed <2024-05-02 Thu>
   - [X] python-pytest
   - [X] python-pytest-astropy
-  - [ ] python-pytest-tornasync
+  - [X] python-pytest-tornasync
   - [X] python-pyyaml
   - [X] python-regions
   - [X] python-scikit-image
@@ -2989,17 +3011,17 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [ ] python-specreduce
   - [X] python-specutils
     - [X] :packed <2023-12-22 Fri>
-  - [ ] python-stdatamodels
-  - [ ] python-traitlets
+  - [X] python-stdatamodels
+  - [X] python-traitlets
   - [ ] python-vispy
     - [ ] :packed
   - [X] python-voila
   - [ ] python-y-py
     - [ ] :packed
 
-** TODO NANOGrav [0/1][0%] :author:
+** TODO NANOGrav [0/0][0%] :author:
 - https://github.com/nanograv
-*** TODO tempo [/][%] :p5:
+*** TODO tempo [0/5][0%] :p5:
 - https://github.com/nanograv/tempo
 - synopsis :: Tempo is a program for pulsar timing data analysis.
 - [ ] :packed
@@ -3328,7 +3350,7 @@ The Solar UK Research Facility
   - [X] python-tqdm
   - [X] python-xarray
 
-* Monthly Update [11/12][91%]
+* Monthly Update [12/13][92%]
 ** DONE updates-2023-05
 CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
@@ -3750,54 +3772,63 @@ CLOSED: [2024-03-22 Fri 16:43]
   - [ ] https://github.com/astropy/astroquery/issues/2968
   - [ ] https://github.com/astromatic/skymaker/issues/3
   - [X] https://github.com/karllark/dust_attenuation/issues/56
-** TODO updates-2024-04
+** DONE updates-2024-04
+CLOSED: [2024-05-02 Thu 22:35]
 - date-time :: 20240402T134621+0100
-- commit ::
-- issues ::
-- [-] quick [22/25][88%]
-  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+- commit :: 3067eb8d60..147f1f2e0d
+- issues :: https://issues.guix.gnu.org/70489
+- [X] quick [33/33][100%]
   - [X] cfitsio :: would be upgraded from 4.3.1 to 4.4.0
   - [X] indi :: would be upgraded from 2.0.6 to 2.0.7
-  - [X] julia-arnoldimethod :: would be upgraded from 0.2.0 to 0.4.0
   - [X] libxisf :: would be upgraded from 0.2.11 to 0.2.12
   - [X] parfive :: would be upgraded from 2.0.2 to 2.1.0
+  - [X] psfex :: new package
   - [X] python-asdf-astropy :: would be upgraded from 0.6.0 to 0.6.1
-  - [ ] python-asdf :: would be upgraded from 3.1.0 to 3.2.0
+  - [X] python-asdf :: would be upgraded from 3.1.0 to 3.2.0
   - [X] python-astroplan :: would be upgraded from 0.9.1 to 0.10
   - [X] python-astropy-healpix :: would be upgraded from 1.0.2 to 1.0.3
-  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.3.18.0.29.47 to 0.2024.4.8.0.32.4
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.3.18.0.29.47 to 0.2024.4.15.2.45.49
   - [X] python-astropy :: would be upgraded from 6.0.0 to 6.0.1
   - [X] python-bayesicfitting :: would be upgraded from 3.2.0 to 3.2.1
+  - [X] python-casa-formats-io :: would be upgraded from 0.2.2 to 0.3.0
+  - [X] python-crds :: would be upgraded from 11.17.19 to 11.17.20
   - [X] python-ginga :: would be upgraded from 5.0.0 to 5.0.1
   - [X] python-jwst :: would be upgraded from 1.13.4 to 1.14.0
+  - [X] python-photutils :: would be upgraded from 1.10.0 to 1.12.0
   - [X] python-pysiaf :: new package
-  - [X] python-rad :: would be upgraded from 0.19.0 to 0.19.1
-  - [ ] python-roman-datamodels :: would be upgraded from 0.19.0 to 0.19.1
+  - [X] python-rad :: would be upgraded from 0.19.0 to 0.19.2
+  - [X] python-regions :: would be upgraded from 0.8 to 0.9
+  - [X] python-reproject :: would be upgraded from 0.13.0 to 0.13.1
+  - [X] python-roman-datamodels :: would be upgraded from 0.19.0 to 0.19.1
+  - [X] python-specutils :: would be upgraded from 1.13.0 to 1.14.0
   - [X] python-stcal :: would be upgraded from 1.6.1 to 1.7.0
   - [X] python-stdatamodels :: would be upgraded from 1.10.0 to 1.10.1
   - [X] python-stsci-imagestats :: would be upgraded from 1.8.0 to 1.8.2
+  - [X] python-stsci-stimage :: would be upgraded from 0.2.6 to 0.2.8
   - [X] python-sunpy :: would be upgraded from 5.1.1 to 5.1.2
   - [X] python-supersmoother :: new package
+  - [X] python-synphot :: would be upgraded from 1.3.0 to 1.4.0
   - [X] python-tweakwcs :: would be upgraded from 0.8.6 to 0.8.7
+  - [X] scamp :: new pacakge
   - [X] stellarium :: would be upgraded from 23.4 to 24.1
-- [-] complex [1/5][20%]
-  - [X] python-photutils :: would be upgraded from 1.10.0 to 1.11.0. Requires numpy>=1.25 and
-    resolve new build issues. release which has a lot of fixes.
-  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2. configobj needs to be substituted to
-    use from inputs.
-  - [ ] python-photutils :: would be upgraded from 1.10.0 to 1.11.0; Failed to update, no setup.py
-  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.3; E ImportError:
+- [ ] complex [0/2][0%]
+  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4; E ImportError:
     /tmp/guix-build-python-pyerfa-2.0.1.3.drv-0/pyerfa-2.0.1.3/erfa/ufunc.abi3.so: undefined symbol:
     PyDataType_ELSIZE
-  - [ ] python-reproject :: would be upgraded from 0.13.0 to 0.13.1; Failed to pass sanity check
-
-- [ ] issues [0/2][0%]
-  - [ ] [PATCH] gnu: Add gnudatalanguage. https://issues.guix.gnu.org/57416
-  - [ ]  [PATCH] Add new plplot https://issues.guix.gnu.org/46160
-
-
-
-- [X] issues [0/0][0%]
+  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2. configobj needs to be substituted to
+    use from inputs.
+- [X] issues [3/3][100%]
+  - [X] [PATCH] gnu: Add gnudatalanguage. https://issues.guix.gnu.org/57416
+  - [X] [PATCH] Add new plplot https://issues.guix.gnu.org/46160
+  - [X] https://github.com/astropy/photutils/issues/1727
+** TODO update-2024-05
+- date-time :: 20240502T223602+0100
+- commit ::
+- issues ::
+- [ ] quick [0/0][0%]
+- [ ] complex [0/2][0%]
+- [ ] issues [0/1][0%]
+  - [ ] https://github.com/spacetelescope/pysiaf/issues/338
 
 * Coverage
 | project                            |            guix | debian-astro | kernel | astropy-affiliated | stsci-astroconda |

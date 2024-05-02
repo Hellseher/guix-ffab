@@ -1,0 +1,47 @@
+From 34eb4c4e7de548ae1cbe15e099a76c0ae365d587 Mon Sep 17 00:00:00 2001
+Message-ID: <34eb4c4e7de548ae1cbe15e099a76c0ae365d587.1713654571.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1713654571.git.sharlatanus@gmail.com>
+References: <cover.1713654571.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Apr 2024 22:24:18 +0100
+Subject: [PATCH 36/47] gnu: python-roman-datamodels: Update to 0.19.1.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels): Update to 0.19.1.
+[propagated-inputs]: Remove python-asdf-standard.
+
+Change-Id: I30e2adef137bb95f37dd7651ebf8c5e6f9e6155f
+---
+ gnu/packages/astronomy.scm | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fe1bc54157..14520b0596 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4971,13 +4971,13 @@ (define-public python-radiospectra
+ (define-public python-roman-datamodels
+   (package
+     (name "python-roman-datamodels")
+-    (version "0.19.0")
++    (version "0.19.1")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "roman_datamodels" version))
+               (sha256
+                (base32
+-                "1ym06rj637fq9gxncdrn3phplk5djrzdwqghszis0di1dvsrif4j"))))
++                "1fp9rwzm5kzm0hjwwmlx7kym7yriyhxbfg2zr3y625pyvwpnl0a8"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4990,7 +4990,6 @@ (define-public python-roman-datamodels
+               (setenv "HOME" "/tmp"))))))
+     (propagated-inputs (list python-asdf
+                              python-asdf-astropy
+-                             python-asdf-standard
+                              python-astropy
+                              python-gwcs
+                              python-numpy
+-- 
+2.41.0
+
