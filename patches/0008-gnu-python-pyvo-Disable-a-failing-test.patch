@@ -1,0 +1,35 @@
+From c875556b3d9ee376f5d635d9fcc4fadef3e2751a Mon Sep 17 00:00:00 2001
+Message-ID: <c875556b3d9ee376f5d635d9fcc4fadef3e2751a.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 12 May 2024 18:23:27 +0100
+Subject: [PATCH 08/26] gnu: python-pyvo: Disable a failing test.
+
+* gnu/packages/astronomy.scm (python-pyvo) [arguments]: <#:test-flags>:
+Disable one failing test.
+
+Change-Id: I662a08126991c7db1f37d9ae04160f5a926d443f
+---
+ gnu/packages/astronomy.scm | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6b2c124f80..39fc59509c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2709,6 +2709,11 @@ (define-public python-pyvo
+        (sha256
+         (base32 "0cm6agaf1gvc5bi95wx6a70ngj9vn95rx78fs59vlrmpww7q2807"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; Disable one failing test, see
++      ;; <https://github.com/astropy/pyvo/issues/547>.
++      #:test-flags #~(list "-k" "not test_single_table_description")))
+     (native-inputs
+      (list python-pytest-astropy python-requests-mock python-setuptools-scm))
+     (propagated-inputs
+-- 
+2.41.0
+

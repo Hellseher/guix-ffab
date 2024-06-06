@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-05-02 Thu 22:42:15 BST>
+#+modified: <2024-06-06 Thu 16:52:31 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [4/78][5%]
+* Flow [5/78][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -280,100 +280,6 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-** TODO nou [0/2][0%] :author:
-- https://gitea.nouspiro.space/nou
-- https://nouspiro.space/
-*** TODO libxisf
-*** TODO tenmon [1/4][25%] :p1:
-- https://gitea.nouspiro.space/nou/tenmon
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
-
-** TODO spedas [0/1][0%] :author:
-- http://spedas.org/blog/
-*** TODO python-pyspedas [0/4][0%] :p4:
-- https://github.com/spedas/pyspedas
-- synopsis :: Python-based Space Physics Environment Data Analysis Software
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [9/12][75%]
-  - [X] python-astropy
-  - [ ] python-cdasws
-    - [ ] :packed
-  - [X] python-cdflib
-  - [ ] python-geopack
-    - [ ] :packed
-  - [X] python-hapiclient
-    - [X] :packed <2023-11-27 Mon>
-  - [X] python-netcdf4
-  - [X] python-numpy
-  - [ ] python-pytplot-mpl-temp
-    - [ ] :packed
-  - [X] python-pywavelets
-  - [X] python-requests
-  - [X] python-scipy
-  - [X] python-viresclient
-    - [X] :packed <2023-11-27 Mon>
-
-** TODO HAPI [/][%] :author:
-- https://github.com/hapi-server
-- synosis :: Heliophysics Application Programmer’s Interface (HAPI) specification for a set of
-  services to enable access to data and metadata.
-*** TODO python-hapiclient [/][%] :p4:
-- https://github.com/hapi-server/client-python
-- [X] :packed <2023-11-27 Mon>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-isodate
-  - [X] python-joblib
-  - [X] python-numpy
-  - [X] python-pandas
-  - [X] python-urllib3
-
-** DONE aplpy [1/1][100%] :author:
-CLOSED: [2023-11-01 Wed 23:54]
-*** DONE python-aplpy [4/4][100%]
-CLOSED: [2023-11-01 Wed 23:53]
-- https://github.com/aplpy/aplpy
-- [X] :packed <2023-10-05 Thu>
-- [X] :patch-sent <2023-10-11 Wed>
-- [X] :paptch-applied-upstream <2023-10-31 Tue>
-  - https://issues.guix.gnu.org/66454
-- [X] :inputs [11/11][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-numpy
-  - [X] python-pillow
-  - [X] python-pyavm
-    - [X] :packed <2023-10-05 Thu>
-  - [X] python-pyregion
-    - [X] :packed <2023-10-05 Thu>
-  - [X] python-pytest-astropy
-  - [X] python-pytest-mpl
-  - [X] python-reproject
-  - [X] python-scikit-image
-  - [X] python-shapely
-
-** TODO astrofog [1/1][100%] :author:
-- https://github.com/astrofrog
-- author :: Thomas Robitaille
-*** DONE pyavm [4/4][100%]
-CLOSED: [2023-11-01 Wed 23:55]
-- https://github.com/astrofrog/pyavm
-- [X] :packed <2023-10-05 Thu>
-- [X] :patch-sent <2023-10-11 Wed>
-- [X] :paptch-applied-upstream <2023-10-31 Tue>
-  - https://issues.guix.gnu.org/66454
-- [X] :inputs [4/4][100%]
-  - [X] python-astropy
-  - [X] python-numpy
-  - [X] python-pillow
-  - [X] python-pytest
-
 ** TODO ap-i [1/7][14%] :author:
 - https://ap-i.net/
 - https://github.com/pchev
@@ -437,6 +343,30 @@ CLOSED: [2021-01-25 Mon 17:25]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
+** DONE aplpy [1/1][100%] :author:
+CLOSED: [2023-11-01 Wed 23:54]
+*** DONE python-aplpy [4/4][100%]
+CLOSED: [2023-11-01 Wed 23:53]
+- https://github.com/aplpy/aplpy
+- [X] :packed <2023-10-05 Thu>
+- [X] :patch-sent <2023-10-11 Wed>
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
+  - https://issues.guix.gnu.org/66454
+- [X] :inputs [11/11][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pillow
+  - [X] python-pyavm
+    - [X] :packed <2023-10-05 Thu>
+  - [X] python-pyregion
+    - [X] :packed <2023-10-05 Thu>
+  - [X] python-pytest-astropy
+  - [X] python-pytest-mpl
+  - [X] python-reproject
+  - [X] python-scikit-image
+  - [X] python-shapely
+
 ** TODO aroffringa [2/3][66%] :author:
 - https://gitlab.com/aroffringa
 - author :: André Offringa
@@ -606,6 +536,22 @@ CLOSED: [2022-11-21 Mon 20:43]
    - [X] python-semantic-version
    - [X] python-setuptools-scm
    - [X] python-zarr
+** TODO astrofog [1/1][100%] :author:
+- https://github.com/astrofrog
+- author :: Thomas Robitaille
+*** DONE pyavm [4/4][100%]
+CLOSED: [2023-11-01 Wed 23:55]
+- https://github.com/astrofrog/pyavm
+- [X] :packed <2023-10-05 Thu>
+- [X] :patch-sent <2023-10-11 Wed>
+- [X] :paptch-applied-upstream <2023-10-31 Tue>
+  - https://issues.guix.gnu.org/66454
+- [X] :inputs [4/4][100%]
+  - [X] python-astropy
+  - [X] python-numpy
+  - [X] python-pillow
+  - [X] python-pytest
+
 ** TODO AstrOmatic-software [10/11][90%] :author:
 - https://github.com/astromatic
 - http://www.astromatic.net/software
@@ -714,36 +660,63 @@ CLOSED: [2021-01-22 Fri 23:03]
     - [X] zlib (gnu/packages/compression.scm:86:2)
     - [X] libjpeg-turbo (gnu/packages/image.scm:1618:2)
 
-*** TODO python-visiomatic [0/5][0%] :p1:
-  - synopsis :: Web application for visualizing astronomical images
-  - [ ] :packed
-  - [ ] :patch-sent
-  - [ ] :paptch-applied-upstream
-  - [ ] :inputs [0/0]
+*** TODO python-visiomatic [0/4][0%] :p1:
+ - https://github.com/astromatic/visiomatic
+ - synopsis :: Web application for visualizing astronomical images
+ - [ ] :packed
+ - [ ] :patch-sent
+ - [ ] :paptch-applied-upstream
+ - [-] :inputs [13/18]
+   - [X] python-astropy
+   - [ ] python-atomics
+     - [ ] :packed
+   - [X] python-fastapi
+   - [X] python-jinja2
+   - [X] python-joblib
+   - [ ] python-methodtools
+     - [ ] :packed
+   - [X] python-numpy
+   - [X] opencv
+   - [X] python-orjson
+   - [X] python-platformdirs
+   - [X] python-posix-ipc
+   - [X] python-pydantic
+   - [X] python-scikit-image
+   - [X] python-setuptools
+   - [ ] python-simplejpeg
+     - [ ] :packed
+   - [ ] python-tiler
+     - [ ] :packed
+   - [ ] python-ultradict
+     - [ ] :packed
+   - [X] python-uvicorn
 
-** TODO IRAF-community
-- https://iraf-community.github.io/
-*** TODO IRAF [0/0][0%] :p1:
-- https://github.com/iraf-community/iraf
-- synopsis :: Image Reduction and Analysis Facility
-  - [ ] :packed
-  - [ ] :patch-sent
-  - [ ] :paptch-applied-upstream
-  - [ ] :inputs [0/0]
-
-** TODO brandon-rhodes [1/1][100%] :author:
-- https://github.com/brandon-rhodes
-- https://rhodesmill.org/brandon/
-- author :: Brandon Rhodes
-*** DONE python-jplephem [4/4][100%]
-CLOSED: [2023-12-19 Tue 00:43]
-- https://github.com/brandon-rhodes/python-jplephem
-- [X] :packed <2021-02-01 Mon>
-- [X] :patch-sent <2021-02-01 Mon>
-- [X] :paptch-applied-upstream <2021-02-07 Sun>
-  - https://issues.guix.gnu.org/46237
-- [X] :inputs [1/1][100%]
-  - [X] python-numpy
+** TODO ASTRON [0/0][0%] :author:
+- https://git.astron.nl/RD
+*** TODO EveryBeam [1/4][25%] :p1:
+- https://git.astron.nl/RD/EveryBeam
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [18/18][100%]
+  - [X] boost
+  - [X] casacore
+  - [X] cfitsio
+  - [X] doxygen
+  - [X] eigen3
+  - [X] fftw
+  - [X] graphviz
+  - [X] gsl
+  - [X] gtkmm-3
+  - [X] hdf5
+  - [X] lapack
+  - [X] libpng
+  - [X] libxml2
+  - [X] openblas
+  - [X] pybind11
+  - [X] python-distutils
+  - [X] wcslib
+  - [X] wget
 
 ** TODO Astropy [8/9][88%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
@@ -1011,94 +984,19 @@ CLOSED: [2024-01-28 Sun 17:42]
 *** TODO INTER [/][%] :p4:
 - synopsis :: Interactive interference characterization program. A description and user manual are
   available here.
-** TODO Kapteyn Astronomical Institute [0/2][0%] :author:
-- https://www.rug.nl/research/kapteyn/
-*** TODO kapteyn [/][%] :p5:
-- https://www.astro.rug.nl/software/kapteyn/
-- synopsis ::
-*** TODO GIPSY [/][%] :p5:
-- https://www.astro.rug.nl/~gipsy/
-- synopsis :: Groningen Image Processing System
-** TODO mattyowl [/][%] :author:
-- https://github.com/mattyowl
-*** TODO python-astlib [0/4][0%] :p5:
-- https://github.com/mattyowl/astLib
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-** TODO liberfa [2/2][100%] :author:
-- https://github.com/liberfa/pyerfa
-*** DONE python-pyerfa [4/4][100%]
-CLOSED: [2023-12-19 Tue 02:39]
-- https://github.com/liberfa/pyerfa
-- [X] :packed <2021-02-07 Sun>
-- [X] :patch-sent <2021-02-13 Sat>
-- [X] :paptch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46492
-- [X] :inputs [4/4][100%]
-  - [X] python-pytest
-  - [X] python-setuptools-scm
+** TODO brandon-rhodes [1/1][100%] :author:
+- https://github.com/brandon-rhodes
+- https://rhodesmill.org/brandon/
+- author :: Brandon Rhodes
+*** DONE python-jplephem [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:43]
+- https://github.com/brandon-rhodes/python-jplephem
+- [X] :packed <2021-02-01 Mon>
+- [X] :patch-sent <2021-02-01 Mon>
+- [X] :paptch-applied-upstream <2021-02-07 Sun>
+  - https://issues.guix.gnu.org/46237
+- [X] :inputs [1/1][100%]
   - [X] python-numpy
-  - [X] erfa [4/4][100%]
-    - [X] :packed <2021-02-07 Sun>
-*** DONE erfa [4/4][100%]
-CLOSED: [2023-12-19 Tue 02:39]
-- https://github.com/liberfa/erfa
-- [X] :packed <2021-02-07 Sun>
-- [X] :patch-sent <2021-02-13 Sat>
-- [X] :paptch-applied-upstream <2021-02-19 Fri>
-  - https://issues.guix.gnu.org/46492
-- [X] :inputs [4/4][100%]
-  + [X] pkg-config
-  + [X] libtool
-  + [X] automake
-  + [X] autoreconf
-
-** TODO skyfielders [1/1][100%] :author:
-- https://github.com/skyfielders
-*** DONE python-skyfield [4/4][100%]
-CLOSED: [2023-12-19 Tue 00:47]
-  - https://github.com/skyfielders/python-skyfield
-  - [X] :packed <2021-02-07 Sun>
-  - [X] :patch-sent <2021-02-07 Sun>
-  - [X] :paptch-applied-upstream <2021-02-19 Fri>
-    - https://issues.guix.gnu.org/46375
-  - [X] :inputs [4/4][100%]
-    - [X] python-certifi
-    - [X] python-jplephem
-    - [X] python-numpy
-    - [X] python-sgp4
-
-** TODO karllark [1/2][50%] :author:
-*** DONE python-dust-extinction [4/4][100%]
-CLOSED: [2024-01-24 Wed 23:25]
-- https://github.com/karllark/dust_extinction
-- synopsis :: Astronomical Dust Extinction
-- [X] :packed <2023-12-24 Sun>
-- [X] :patch-sent <2024-01-14 Sun>
-- [X] :paptch-applied-upstream <2024-01-24 Wed>
-  - https://issues.guix.gnu.org/68641
-- [X] :inputs [5/5][100%]
-  - [X] python-astropy
-  - [X] python-pytest
-  - [X] python-pytest-astropy
-  - [X] python-setuptools-scm
-  - [X] python-scipy
-
-*** TODO python-dust-attenuation [2/4][50%] :p4:
-- https://github.com/karllark/dust_attenuation
-- synopsis :: Astronomical Dust Attenuation
-- [X] :packed <2023-12-25 Mon>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [6/6][100%]
-  - [X] python-astropy
-  - [X] python-matplotlib
-  - [X] python-pytest
-  - [X] python-pytest-astropy
-  - [X] python-scipy
-  - [X] python-setuptools-scm
 
 ** TODO casacore [1/2][50%] :author:
 - https://github.com/casacore
@@ -1206,6 +1104,17 @@ CLOSED: [2024-01-24 Wed 23:25]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
+** TODO demorest [/][%] :author:
+- https://github.com/demorest
+- author :: Paul Demorest
+*** TODO python-sdmpy [/][%] :p1:
+- https://github.com/demorest/sdmpy
+- synopsis :: Python classes for reading VLA/ALMA Science Data Model (SDM)
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs
+
 ** TODO dokester [0/1][0%] :author:
 *** TODO BayesicFitting [2/4][50%]
 - https://github.com/dokester/BayesicFitting
@@ -1242,6 +1151,24 @@ CLOSED: [2024-01-24 Wed 23:25]
   - [X] tcl
   - [X] wcslib
   - [X] zlib
+
+** TODO ESA [0/1][0%] :author:
+- https://github.com/ESA-VirES
+*** TODO python-viresclient [/][%] :p1:
+- https://github.com/ESA-VirES/VirES-Python-Client
+- [X] :packed <2023-11-27 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [9/9][100%]
+  - [X] python-cdflib
+  - [X] python-jinja2
+  - [X] python-netcdf4
+  - [X] python-pandas
+  - [X] python-pytest
+  - [X] python-requests
+  - [X] python-tables
+  - [X] python-tqdm
+  - [X] python-xarray
 
 ** TODO esheldon [0/3][0%] :author:
 - https://github.com/esheldon
@@ -1336,7 +1263,8 @@ CLOSED: [2022-11-14 Mon 20:33]
   - [X] python-scipy
   - [X] python-sphinx
 
-** TODO gnudatalanguage [/][%] :author:
+** DONE gnudatalanguage [0/0][100%] :author:
+CLOSED: [2024-06-06 Thu 16:51]
 - https://github.com/gnudatalanguage
 - https://gnudatalanguage.github.io/
 GDL - GNU Data Language GDL is a free/libre/open source incremental compiler compatible with IDL
@@ -1380,6 +1308,22 @@ CLOSED: [2021-12-18 Sat 16:12]
   + [X] freeimage
   + [X] glew
   + [X] wxwidgets
+
+** TODO HAPI [0/0][0%] :author:
+- https://github.com/hapi-server
+- synosis :: Heliophysics Application Programmer’s Interface (HAPI) specification for a set of
+  services to enable access to data and metadata.
+*** TODO python-hapiclient [2/4][50%] :p4:
+- https://github.com/hapi-server/client-python
+- [X] :packed <2023-11-27 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [5/5][100%]
+  - [X] python-isodate
+  - [X] python-joblib
+  - [X] python-numpy
+  - [X] python-pandas
+  - [X] python-urllib3
 
 ** TODO IAUSOFA [0/1][0%] :author:
 - http://www.iausofa.org/
@@ -1479,6 +1423,15 @@ CLOSED: [2021-01-31 Sun 13:07]
 
 *** TODO indi-service-type [/][%] :p5:
 
+** TODO IRAF-community [0/1][0%] :author:
+- https://iraf-community.github.io/
+*** TODO IRAF [0/0][0%] :p1:
+- https://github.com/iraf-community/iraf
+- synopsis :: Image Reduction and Analysis Facility
+  - [ ] :packed
+  - [ ] :patch-sent
+  - [ ] :paptch-applied-upstream
+  - [ ] :inputs [0/0]
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
@@ -1889,6 +1842,44 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
+** TODO Kapteyn Astronomical Institute [0/2][0%] :author:
+- https://www.rug.nl/research/kapteyn/
+*** TODO kapteyn [/][%] :p5:
+- https://www.astro.rug.nl/software/kapteyn/
+- synopsis ::
+*** TODO GIPSY [/][%] :p5:
+- https://www.astro.rug.nl/~gipsy/
+- synopsis :: Groningen Image Processing System
+** TODO karllark [1/2][50%] :author:
+*** DONE python-dust-extinction [4/4][100%]
+CLOSED: [2024-01-24 Wed 23:25]
+- https://github.com/karllark/dust_extinction
+- synopsis :: Astronomical Dust Extinction
+- [X] :packed <2023-12-24 Sun>
+- [X] :patch-sent <2024-01-14 Sun>
+- [X] :paptch-applied-upstream <2024-01-24 Wed>
+  - https://issues.guix.gnu.org/68641
+- [X] :inputs [5/5][100%]
+  - [X] python-astropy
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-setuptools-scm
+  - [X] python-scipy
+
+*** TODO python-dust-attenuation [2/4][50%] :p4:
+- https://github.com/karllark/dust_attenuation
+- synopsis :: Astronomical Dust Attenuation
+- [X] :packed <2023-12-25 Mon>
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [6/6][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-setuptools-scm
+
 ** TODO kbarbary [2/2][100%] :author:
 *** DONE python-sep [4/4][100%]
 CLOSED: [2024-01-29 Mon 12:31]
@@ -1911,6 +1902,42 @@ CLOSED: [2024-02-27 Tue 23:04]
   - https://issues.guix.gnu.org/69295
 - [X] :inputs [1/1][100%]
   - [X] python-numpy
+
+** TODO kgrandis [/][%] :author:
+*** TODO python-nose-exclude [3/4][75%] :p2:
+- [X] :packed <2024-02-02 Fri>
+- [X] :patch-sent <2024-03-12 Tue>
+- [ ] :paptch-applied-upstream
+- [X] :inputs [1/1][100%]
+  - [X] pythno-nose
+
+** TODO liberfa [2/2][100%] :author:
+- https://github.com/liberfa/pyerfa
+*** DONE python-pyerfa [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:39]
+- https://github.com/liberfa/pyerfa
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  - [X] python-pytest
+  - [X] python-setuptools-scm
+  - [X] python-numpy
+  - [X] erfa [4/4][100%]
+    - [X] :packed <2021-02-07 Sun>
+*** DONE erfa [4/4][100%]
+CLOSED: [2023-12-19 Tue 02:39]
+- https://github.com/liberfa/erfa
+- [X] :packed <2021-02-07 Sun>
+- [X] :patch-sent <2021-02-13 Sat>
+- [X] :paptch-applied-upstream <2021-02-19 Fri>
+  - https://issues.guix.gnu.org/46492
+- [X] :inputs [4/4][100%]
+  + [X] pkg-config
+  + [X] libtool
+  + [X] automake
+  + [X] autoreconf
 
 ** TODO Libsharp [0/1][0%] :author:
 - https://github.com/Libsharp
@@ -1956,6 +1983,55 @@ CLOSED: [2024-02-27 Tue 23:04]
   - [ ] python-sunpy-sphinx-theme
     - [ ] :packed
 
+** TODO LOFAR-telescope [0/2][0%] :author:
+- https://github.com/lofar-astron
+*** TODO DP3 [0/4][0%] :p4:
+- https://github.com/lofar-astron/DP3
+- https://git.astron.nl/RD/DP3
+- synopsis :: DP3: streaming processing pipeline for radio interferometric data
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [16/18][88%]
+  - [X] python
+  - [X] libhdf5
+  - [X] casacore
+  - [X] openblas
+  - [X] lapack-dev,
+  - [X] boost
+  - [X] libxml2
+  - [X] libpng
+  - [X] cfitsio
+  - [X] armadillo
+  - [X] aoflagger
+  - [ ] everybeam
+    - [ ] :packed
+  - [X] libgtkmm
+  - [ ] idg
+    - [ ] :packed
+  - [X] pkg-config
+  - [X] pybind11
+  - [X] wcslib
+  - [X] wget
+*** TODO LOFARBeam [1/4][25%] :p4:
+- https://github.com/lofar-astron/LOFARBeam
+- synopsis :: LOFAR station response library
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [X] :inputs [3/3][100%]
+  - [X] casacore
+  - [X] boost
+  - [X] python
+
+** TODO mattyowl [/][%] :author:
+- https://github.com/mattyowl
+*** TODO python-astlib [0/4][0%] :p5:
+- https://github.com/mattyowl/astLib
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 ** TODO MAVENSDC [1/3][33%] :author:
 - https://github.com/MAVENSDC
 - https://lasp.colorado.edu/maven/sdc/public/
@@ -2001,6 +2077,16 @@ CLOSED: [2024-02-27 Tue 23:04]
 *** TODO easyaccess [/][%] :p4:
 - https://github.com/mgckind/easyaccess
 
+** TODO NANOGrav [0/0][0%] :author:
+- https://github.com/nanograv
+*** TODO tempo [0/5][0%] :p5:
+- https://github.com/nanograv/tempo
+- synopsis :: Tempo is a program for pulsar timing data analysis.
+- [ ] :packed
+- [ ] :patch-prepared
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/0][0%]
 ** TODO NASA [0/8][0%] :author:
 *** TODO HEAsoft [0/4][0%] :p5:
 - https://heasarc.gsfc.nasa.gov/docs/software/lheasoft/
@@ -2083,21 +2169,21 @@ CLOSED: [2024-02-27 Tue 23:04]
 - [ ] :paptch-applied-upstream
 - [-] :inputs [0/0][0%]
 
-** TODO spacepy [/][%] :author:
-- https://spacepy.github.io/
-*** TODO python-spacepy
-- https://github.com/spacepy/spacepy
+** TODO nou [1/2][50%] :author:
+- https://gitea.nouspiro.space/nou
+- https://nouspiro.space/
+*** DONE libxisf [4/4][100%]
+CLOSED: [2024-05-02 Thu 23:51]
+- [X] :packed
+- [X] :patch-sent
+- [X] :paptch-applied-upstream
+- [X] :inputs [0/0][0%]
+*** TODO tenmon [1/4][25%] :p1:
+- https://gitea.nouspiro.space/nou/tenmon
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [5/6][83%]
-  - [X] python-numpy
-  - [X] python-python-dateutil
-  - [X] python-scipy
-  - [X] python-matplotlib
-  - [X] python-h5py
-  - [ ] cdf
-    - :packed
+- [X] :inputs [0/0][0%]
 
 ** TODO OpenAstronomy [0/0][100%] :author:
 - https://github.com/OpenAstronomy
@@ -2175,6 +2261,16 @@ guiding software from Stark Labs.
   - [ ] tracy
     - [ ] :packed
   - [X] websocketpp
+
+** TODO OxfordSKA [0/1][0%] :author:
+- https://github.com/OxfordSKA
+*** TODO OSKAR [0/4][0%] :p5:
+- https://github.com/OxfordSKA/OSKAR
+- synopsis :: SKA Radio Telescope Simulator
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [0/0][0%]
 
 ** TODO PaulMcMillan-Astro [0/1][0%] :author:
 https://github.com/PaulMcMillan-Astro/
@@ -2415,66 +2511,6 @@ https://github.com/radio-astro-tools/radio-beam
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
-** TODO yt-project [0/3][0%] :author:
-
-*** TODO python-yt [1/4][25%] :p1:
-- https://github.com/yt-project/yt
-- synopsis :: Python library for analyzing and visualizing volumetric data.
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [18/18][100%]
-  - [X] python-cmyt
-    - [X] :packed <2024-01-29 Mon>
-  - [X] python-ewah-bool-utils
-    - [X] :packed <2024-01-29 Mon>
-  - [X] python-ipywidgets
-  - [X] python-matplotlib
-  - [X] python-more-itertools
-  - [X] python-nose
-  - [X] python-nose-exclude
-    - [X] :packed <2024-02-02 Fri>
-  - [X] python-nose-timer
-  - [X] python-numpy
-  - [X] python-packaging
-  - [X] python-pillow
-  - [X] python-pyaml
-  - [X] python-pytest
-  - [X] python-pytest-mpl
-  - [X] python-sympy
-  - [X] python-tomli-w
-  - [X] python-tqdm
-  - [X] python-unyt
-*** TODO python-cmyt [3/4][75%] :p2:
-- https://github.com/yt-project/cmyt
-- synopsis :: Matplotlib colormaps from the yt project
-- [X] :packed <2024-01-29 Mon>
-- [X] :patch-sent <2024-03-12 Tue>
-- [ ] :paptch-applied-upstream
-- [X] :inputs [5/5][100%]
-  - [X] python-colorspacious
-  - [X] python-pytest
-  - [X] python-pytest-mpl
-  - [X] python-matplotlib
-  - [X] python-numpy
-*** TODO python-ewah-bool-utils [3/4][75%] :p2:
-- https://github.com/yt-project/ewah_bool_utils
-- [X] :packed <2024-01-29 Mon>
-- [X] :patch-sent <2024-03-12 Tue>
-- [ ] :paptch-applied-upstream
-- [X] :inputs [3/3][100%]
-  - [X] python-cython
-  - [X] python-pytest
-  - [X] python-nump
-
-** TODO kgrandis [/][%] :author:
-*** TODO python-nose-exclude [3/4][75%] :p2:
-- [X] :packed <2024-02-02 Fri>
-- [X] :patch-sent <2024-03-12 Tue>
-- [ ] :paptch-applied-upstream
-- [X] :inputs [1/1][100%]
-  - [X] pythno-nose
-
 ** TODO rwesson [1/2][50%] :author:
 - https://github.com/rwesson
 - https://nebulousresearch.org/
@@ -2522,6 +2558,10 @@ CLOSED: [2022-12-01 Thu 23:15]
   - [X] xvfb (guix xvfb)-run)
   - [ ] funtools
 
+** TODO SARAO [/][%] :author:
+- http://www.sarao.ac.za/
+- https://github.com/ska-sa
+
 ** TODO schirmermischa [0/1][0%] :author:
 - https://github.com/schirmermischa
 - author :: Mischa Schirmer
@@ -2546,6 +2586,37 @@ CLOSED: [2022-12-01 Thu 23:15]
     - [X] :packed
   - [X] wcslib
   - [X] plplot
+** TODO skyfielders [1/1][100%] :author:
+- https://github.com/skyfielders
+*** DONE python-skyfield [4/4][100%]
+CLOSED: [2023-12-19 Tue 00:47]
+  - https://github.com/skyfielders/python-skyfield
+  - [X] :packed <2021-02-07 Sun>
+  - [X] :patch-sent <2021-02-07 Sun>
+  - [X] :paptch-applied-upstream <2021-02-19 Fri>
+    - https://issues.guix.gnu.org/46375
+  - [X] :inputs [4/4][100%]
+    - [X] python-certifi
+    - [X] python-jplephem
+    - [X] python-numpy
+    - [X] python-sgp4
+
+** TODO spacepy [/][%] :author:
+- https://spacepy.github.io/
+*** TODO python-spacepy
+- https://github.com/spacepy/spacepy
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [-] :inputs [5/6][83%]
+  - [X] python-numpy
+  - [X] python-python-dateutil
+  - [X] python-scipy
+  - [X] python-matplotlib
+  - [X] python-h5py
+  - [ ] cdf
+    - :packed
+
 ** TODO spacetelescope [19/21][90%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
@@ -3019,26 +3090,32 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [ ] python-y-py
     - [ ] :packed
 
-** TODO NANOGrav [0/0][0%] :author:
-- https://github.com/nanograv
-*** TODO tempo [0/5][0%] :p5:
-- https://github.com/nanograv/tempo
-- synopsis :: Tempo is a program for pulsar timing data analysis.
-- [ ] :packed
-- [ ] :patch-prepared
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
-** TODO demorest [/][%] :author:
-- https://github.com/demorest
-- author :: Paul Demorest
-*** TODO python-sdmpy [/][%] :p1:
-- https://github.com/demorest/sdmpy
-- synopsis :: Python classes for reading VLA/ALMA Science Data Model (SDM)
+** TODO spedas [0/1][0%] :author:
+- http://spedas.org/blog/
+*** TODO python-pyspedas [0/4][0%] :p1:
+- https://github.com/spedas/pyspedas
+- synopsis :: Python-based Space Physics Environment Data Analysis Software
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs
+- [-] :inputs [10/12][83%]
+  - [X] python-astropy
+  - [ ] python-cdasws
+    - [ ] :packed
+  - [X] python-cdflib
+  - [X] python-geopack
+    - [X] :packed <2024-05-19 Sun>
+  - [X] python-hapiclient
+    - [X] :packed <2023-11-27 Mon>
+  - [X] python-netcdf4
+  - [X] python-numpy
+  - [ ] python-pytplot-mpl-temp
+    - [ ] :packed
+  - [X] python-pywavelets
+  - [X] python-requests
+  - [X] python-scipy
+  - [X] python-viresclient
+    - [X] :packed <2023-11-27 Mon>
 
 ** TODO Starlink [0/2][0%] :author:
 - http://starlink.eao.hawaii.edu/starlink
@@ -3237,84 +3314,6 @@ CLOSED: [2024-02-27 Tue 23:03]
 - https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
 The Solar UK Research Facility
 
-** TODO OxfordSKA [0/1][0%] :author:
-- https://github.com/OxfordSKA
-*** TODO OSKAR [0/4][0%] :p5:
-- https://github.com/OxfordSKA/OSKAR
-- synopsis :: SKA Radio Telescope Simulator
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [0/0][0%]
-
-** TODO LOFAR-telescope [0/2][0%] :author:
-- https://github.com/lofar-astron
-*** TODO DP3 [0/4][0%] :p4:
-- https://github.com/lofar-astron/DP3
-- https://git.astron.nl/RD/DP3
-- synopsis :: DP3: streaming processing pipeline for radio interferometric data
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [-] :inputs [16/18][88%]
-  - [X] python
-  - [X] libhdf5
-  - [X] casacore
-  - [X] openblas
-  - [X] lapack-dev,
-  - [X] boost
-  - [X] libxml2
-  - [X] libpng
-  - [X] cfitsio
-  - [X] armadillo
-  - [X] aoflagger
-  - [ ] everybeam
-    - [ ] :packed
-  - [X] libgtkmm
-  - [ ] idg
-    - [ ] :packed
-  - [X] pkg-config
-  - [X] pybind11
-  - [X] wcslib
-  - [X] wget
-*** TODO LOFARBeam [1/4][25%] :p4:
-- https://github.com/lofar-astron/LOFARBeam
-- synopsis :: LOFAR station response library
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [3/3][100%]
-  - [X] casacore
-  - [X] boost
-  - [X] python
-
-** TODO ASTRON [/][%] :authro:
-- https://git.astron.nl/RD
-*** TODO EveryBeam
-- https://git.astron.nl/RD/EveryBeam
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [X] :inputs [18/18][100%]
-  - [X] boost
-  - [X] casacore
-  - [X] cfitsio
-  - [X] doxygen
-  - [X] eigen3
-  - [X] fftw
-  - [X] graphviz
-  - [X] gsl
-  - [X] gtkmm-3
-  - [X] hdf5
-  - [X] lapack
-  - [X] libpng
-  - [X] libxml2
-  - [X] openblas
-  - [X] pybind11
-  - [X] python-distutils
-  - [X] wcslib
-  - [X] wget
-
 ** TODO wtbarnes [0/1][0%] :author:
 - author :: Will Barnes
 *** TODO python-hissw [1/4][25%] :p1:
@@ -3332,25 +3331,79 @@ The Solar UK Research Facility
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO ESA [/][%] :author:
-- https://github.com/ESA-VirES
-*** TODO python-viresclient [/][%] :p4:
-- https://github.com/ESA-VirES/VirES-Python-Client
-- [X] :packed <2023-11-27 Mon>
+** TODO yt-project [3/4][75%] :author:
+- https://github.com/yt-project
+- http://yt-project.org/
+- synopsis :: A toolkit for analysis and visualization of volumetric data
+
+*** DONE python-yt [4/4][100%]
+CLOSED: [2024-06-06 Thu 14:06]
+- https://github.com/yt-project/yt
+- synopsis :: Python library for analyzing and visualizing volumetric data.
+- [X] :packed
+- [X] :patch-sent <2024-05-20 Mon>
+- [X] :paptch-applied-upstream <2024-05-30 Thu>
+  - https://issues.guix.gnu.org/71084
+- [X] :inputs [18/18][100%]
+  - [X] python-cmyt
+    - [X] :packed <2024-01-29 Mon>
+  - [X] python-ewah-bool-utils
+    - [X] :packed <2024-01-29 Mon>
+  - [X] python-ipywidgets
+  - [X] python-matplotlib
+  - [X] python-more-itertools
+  - [X] python-nose
+  - [X] python-nose-exclude
+    - [X] :packed <2024-02-02 Fri>
+  - [X] python-nose-timer
+  - [X] python-numpy
+  - [X] python-packaging
+  - [X] python-pillow
+  - [X] python-pyaml
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-sympy
+  - [X] python-tomli-w
+  - [X] python-tqdm
+  - [X] python-unyt
+*** DONE python-cmyt [4/4][100%]
+CLOSED: [2024-06-06 Thu 14:12]
+- https://github.com/yt-project/cmyt
+- synopsis :: Matplotlib colormaps from the yt project
+- [X] :packed <2024-01-29 Mon>
+- [X] :patch-sent <2024-03-12 Tue>
+- [X] :paptch-applied-upstream <2024-03-29 Fri>
+  - https://issues.guix.gnu.org/69924
+- [X] :inputs [5/5][100%]
+  - [X] python-colorspacious
+  - [X] python-pytest
+  - [X] python-pytest-mpl
+  - [X] python-matplotlib
+  - [X] python-numpy
+*** DONE python-ewah-bool-utils [3/4][75%]
+CLOSED: [2024-06-06 Thu 14:14]
+- https://github.com/yt-project/ewah_bool_utils
+- [X] :packed <2024-01-29 Mon>
+- [X] :patch-sent <2024-03-12 Tue>
+- [X] :paptch-applied-upstream <2024-03-29 Fri>
+  - https://issues.guix.gnu.org/69924
+- [X] :inputs [3/3][100%]
+  - [X] python-cython
+  - [X] python-pytest
+  - [X] python-nump
+*** TODO python-yt-astro-analysis [1/4][25%] :p1:
+- https://github.com/yt-project/yt_astro_analysis
+- synopsis :: yt astrophysical analysis modules
+- [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [9/9][100%]
-  - [X] python-cdflib
-  - [X] python-jinja2
-  - [X] python-netcdf4
-  - [X] python-pandas
-  - [X] python-pytest
-  - [X] python-requests
-  - [X] python-tables
-  - [X] python-tqdm
-  - [X] python-xarray
+- [X] :inputs [4/4][100%]
+  - [X] python-h5py
+  - [X] python-yt
+  - [X] python-numpy
+  - [X] python-packaging
 
-* Monthly Update [12/13][92%]
+* Monthly Update [13/14][92%]
 ** DONE updates-2023-05
 CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
@@ -3728,7 +3781,7 @@ CLOSED: [2024-03-22 Fri 16:43]
 - date-time :: 20240305T212809+0000
 - commit :: 66b20dc567ed9801ab55209fc412e4db92d7b0b0
 - issues :: https://issues.guix.gnu.org/69924
-- [X] quick [32/32][100%]
+- [X] quick [36/36][100%]
   - [X] calcmysky :: would be upgraded from 0.3.1 to 0.3.2
   - [X] python-asdf-astropy :: would be upgraded from 0.5.0 to 0.6.0
   - [X] python-asdf-compression :: new package
@@ -3743,15 +3796,20 @@ CLOSED: [2024-03-22 Fri 16:43]
   - [X] python-astropy-iers-data :: would be upgraded from 0.2024.2.19.0.28.47 to 0.2024.3.18.0.29.47
   - [X] python-astroquery :: would be upgraded from 0.4.6 to 0.4.7
   - [X] python-cdflib :: would be upgraded from 1.2.4 to 1.2.6
+  - [X] python-cmyt :: new package
   - [X] python-crds :: would be upgraded from 11.17.16 to 11.17.19
   - [X] python-distributed :: speed up tests
   - [X] python-drizzle :: would be upgraded from 1.15.0 to 1.15.1
+  - [X] python-ewah-bool-utils :: new package
   - [X] python-ginga :: would be upgraded from 4.1.1 to 5.0.0
   - [X] python-glymur :: would be upgraded from 0.12.8 to 0.12.9
   - [X] python-gwcs :: would be upgraded from 0.20.0 to 0.21.0
+  - [X] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0
+  - [X] python-pydantic-settings :: new package
   - [X] python-pynbody :: would be upgraded from 1.5.2 to 1.6.0
   - [X] python-pytest-arraydiff :: would be upgraded from 0.5.0 to 0.6.1
   - [X] python-pytest-doctestplus :: would be upgraded from 1.0.0 to 1.2.0
+  - [X] python-pytest-examples :: new package
   - [X] python-pytest-filter-subpackage :: would be upgraded from 0.1.2 to 0.2.0
   - [X] python-pyvo :: would be upgraded from 1.5 to 1.5.1
   - [X] python-radiospectra :: would be upgraded from 0.4.0 to 0.5.0
@@ -3760,7 +3818,6 @@ CLOSED: [2024-03-22 Fri 16:43]
   - [X] python-stdatamodels :: would be upgraded from 1.9.1 to 1.10.0
   - [X] python-suntime :: would be upgraded from 1.2.5 to 1.3.2
   - [X] splash :: would be upgraded from 3.10.1 to 3.10.3
-  - [X] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0
 - [X] complex [2/2][100%]
   - [X] python-photutils :: would be upgraded from 1.10.0 to 1.11.0. Requires numpy>=1.25 and
     resolve new build issues. release which has a lot of fixes.
@@ -3821,14 +3878,64 @@ CLOSED: [2024-05-02 Thu 22:35]
   - [X] [PATCH] gnu: Add gnudatalanguage. https://issues.guix.gnu.org/57416
   - [X] [PATCH] Add new plplot https://issues.guix.gnu.org/46160
   - [X] https://github.com/astropy/photutils/issues/1727
-** TODO update-2024-05
+** DONE updates-2024-05
+CLOSED: [2024-06-06 Thu 14:05]
 - date-time :: 20240502T223602+0100
+- commit :: c220874a37..c2cb630061
+- issues :: https://issues.guix.gnu.org/71084
+- [X] quick [19/19][100%]
+  - [X] calceph :: would be upgraded from 3.5.5 to 4.0.0
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.4.15.2.45.49 to 0.2024.5.13.0.30.12
+  - [X] python-astropy :: would be upgraded from 6.0.1 to 6.1.0
+  - [X] python-astroscrappy :: would be upgraded from 1.1.0 to 1.2.0
+  - [X] python-ccdproc ::  would be upgraded from 2.4.1 to 2.4.2
+  - [X] python-cdflib :: would be upgraded from 1.2.6 to 1.3.1
+  - [X] python-crds :: would be upgraded from 11.17.20 to 11.17.22
+  - [X] python-dust-extinction :: would be upgraded from 1.3 to 1.4
+  - [X] python-jplephem :: would be upgraded from 2.21 to 2.22
+  - [X] python-geopack :: new package, to add python-pyspedas
+  - [X] python-yt :: new package
+  - [X] python-comm :: new package, to update python-ipywidgets
+  - [X] python-rad :: would be upgraded from 0.19.2 to 0.20.0
+  - [X] python-ewah-bool-utils :: would be upgraded from 1.1.0 to 1.2.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.19.1 to 0.20.0
+  - [X] python-specutils :: would be upgraded from 1.14.0 to 1.15.0
+  - [X] python-stsci-image :: would be upgraded from 2.3.5 to 2.3.7
+  - [X] python-sunpy :: would be upgraded from 5.1.2 to 5.1.3
+  - [X] python-viresclient :: new package, to add python-pyspedas
+- [ ] complex [0/3][0%]
+  - [ ] python-calceph :: new package
+  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4; E ImportError:
+    /tmp/guix-build-python-pyerfa-2.0.1.3.drv-0/pyerfa-2.0.1.3/erfa/ufunc.abi3.so: undefined symbol:
+    PyDataType_ELSIZE
+  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2. configobj needs to be substituted to
+    use from inputs.
+- [ ] issues [0/2][0%]
+  - [ ] https://github.com/spacetelescope/pysiaf/issues/338
+  - [ ] https://github.com/tsssss/geopack/issues/21
+** TODO updates-2024-06 :p1:
+- date-time :: 20240606T142012+0100
 - commit ::
 - issues ::
-- [ ] quick [0/0][0%]
-- [ ] complex [0/2][0%]
-- [ ] issues [0/1][0%]
-  - [ ] https://github.com/spacetelescope/pysiaf/issues/338
+- [ ] quick [0/18][0%]
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+  - [ ] cfitsio :: would be upgraded from 4.4.0 to 3100
+  - [ ] ginga-qt5 :: would be upgraded from 5.0.1 to 5.1.0
+  - [ ] gpredict :: would be upgraded from 2.2.1 to 2.3
+  - [ ] indi :: would be upgraded from 2.0.7 to 2.0.88
+  - [ ] python-astropy-iers-data :: would be upgraded from 0.2024.5.13.0.30.12 to 0.2024.6.3.0.31.14
+  - [ ] python-dust-extinction :: would be upgraded from 1.4 to 1.4.1
+  - [ ] python-ginga :: would be upgraded from 5.0.1 to 5.1.0
+  - [ ] python-ndcube :: would be upgraded from 2.2.0 to 2.2.1
+  - [ ] python-photutils :: would be upgraded from 1.12 to 1.12.0
+  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4
+  - [ ] python-pynbody :: would be upgraded from 1.6.0 to 1.6.0.post0
+  - [ ] python-pyvo :: would be upgraded from 1.5.1 to 1.5.2
+  - [ ] python-stcal :: would be upgraded from 1.7.0 to 1.7.1
+  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2
+  - [ ] python-stsci-image :: would be upgraded from 2.3.7 to 2.3.8
+  - [ ] python-stsci-stimage :: would be upgraded from 0.2.8 to 0.2.9
+  - [ ] python-yt-astro-analysis :: new package
 
 * Coverage
 | project                            |            guix | debian-astro | kernel | astropy-affiliated | stsci-astroconda |

@@ -1,0 +1,54 @@
+From 35425561a7156934134aaef95fbc47a1d2a87579 Mon Sep 17 00:00:00 2001
+Message-ID: <35425561a7156934134aaef95fbc47a1d2a87579.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 16 May 2024 10:40:34 +0100
+Subject: [PATCH 15/26] gnu: python-rad: Update to 0.20.0
+
+* gnu/packages/astronomy.scm (python-rad): Update to 0.20.0. Adjust
+indentation.
+
+Change-Id: I5921c5153ace1032313121c00c73423f3d1e7c84
+---
+ gnu/packages/astronomy.scm | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e7ce7e7efc..16e5310e74 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4997,13 +4997,13 @@ (define-public python-gwcs
+ (define-public python-rad
+   (package
+     (name "python-rad")
+-    (version "0.19.2")
+-    (source (origin
+-              (method url-fetch)
+-              (uri (pypi-uri "rad" version))
+-              (sha256
+-               (base32
+-                "08dh9asdjgfmczmqyjplgdvbk3n68qw6akd8h953wq6v3yr4k4rq"))))
++    (version "0.20.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "rad" version))
++       (sha256
++        (base32 "05b7qjhahzfjdp820m3qm69wrzb73njjqrzkk7hxkd8gbrbp0mj1"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -5012,7 +5012,8 @@ (define-public python-rad
+       #:test-flags #~(list "--ignore=tests/test_schemas.py")))
+     (native-inputs
+      (list python-pytest python-setuptools-scm))
+-    (propagated-inputs (list python-asdf python-asdf-astropy))
++    (propagated-inputs
++     (list python-asdf python-asdf-astropy))
+     (home-page "https://github.com/spacetelescope/rad")
+     (synopsis "Roman Attribute Dictionary")
+     (description
+-- 
+2.41.0
+

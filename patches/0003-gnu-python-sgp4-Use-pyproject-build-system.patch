@@ -1,0 +1,32 @@
+From 2edb8f2aa7a5d07da03392e5ceafe147ec124b71 Mon Sep 17 00:00:00 2001
+Message-ID: <2edb8f2aa7a5d07da03392e5ceafe147ec124b71.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 May 2024 22:27:51 +0100
+Subject: [PATCH 03/26] gnu: python-sgp4: Use pyproject-build-system.
+
+* gnu/packages/astronomy.scm (python-sgp4): [build-system]: Swap to
+pyproject-build-system.
+
+Change-Id: Iebaba503a439d858f1e603ab3f7e4bd17be2adb1
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e78d9b7a40..2d9acc5192 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2855,7 +2855,7 @@ (define-public python-sgp4
+        (uri (pypi-uri "sgp4" version))
+        (sha256
+         (base32 "0aalbmldks6ykgkcxwkvnp04q0avhv903m5zwvg8i7zvl99xrbfq"))))
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/brandon-rhodes/python-sgp4")
+-- 
+2.41.0
+

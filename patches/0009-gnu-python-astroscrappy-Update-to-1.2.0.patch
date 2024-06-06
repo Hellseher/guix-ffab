@@ -1,0 +1,54 @@
+From 73487691e50968f6f44a5c39ae685fbe4680013b Mon Sep 17 00:00:00 2001
+Message-ID: <73487691e50968f6f44a5c39ae685fbe4680013b.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 11 May 2024 08:31:31 +0100
+Subject: [PATCH 09/26] gnu: python-astroscrappy: Update to 1.2.0.
+
+* gnu/packages/astronomy.scm (python-astroscrappy): Update to 1.2.0.
+[native-inputs]: Remove python-cython, python-h5py, python-pandas, and
+python-scikit-image; add python-cython-3.
+
+Change-Id: I8008d35e94f9076c489709ad241f97dec6e22b2a
+---
+ gnu/packages/astronomy.scm | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 39fc59509c..48dde56d1e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1936,13 +1936,13 @@ (define-public python-astroquery
+ (define-public python-astroscrappy
+   (package
+     (name "python-astroscrappy")
+-    (version "1.1.0")
++    (version "1.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astroscrappy" version))
+        (sha256
+-        (base32 "0shmfilvzpmlwz4fh0bx4kqmzr0y39fgga6vipxb5d1rx1y6q6by"))))
++        (base32 "0r2alg8imr201ykjsvr6y43bzw8mwbc4ddprn8f6qfw9k4hsx8ff"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -1958,12 +1958,9 @@ (define-public python-astroscrappy
+               (make-file-writable "astroscrappy/_compiler.c")
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+-     (list python-cython
++     (list python-cython-3
+            python-extension-helpers
+-           python-h5py
+-           python-pandas
+            python-pytest-astropy
+-           python-scikit-image
+            python-scipy
+            python-setuptools-scm))
+     (propagated-inputs (list python-astropy python-numpy))
+-- 
+2.41.0
+

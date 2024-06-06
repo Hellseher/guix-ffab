@@ -1,0 +1,55 @@
+From 6d0c28a75a18978079a6c0b6c5848015c366e891 Mon Sep 17 00:00:00 2001
+Message-ID: <6d0c28a75a18978079a6c0b6c5848015c366e891.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 May 2024 21:40:20 +0100
+Subject: [PATCH 01/26] gnu: python-sep: Refresh package style.
+
+* gnu/packages/astronomy.scm (python-sep): Refresh package style.
+[package]: Swap to package/inherit.
+[build-system]: Swap to pyproject-build-system.
+[arguments]: <#:test-flags>: Activate tests for Python.
+[native-inputs]: Do not modify inherited inputs, override instead. Add
+python-pytest.
+[propagated-inputs]: Override inputs.
+[synopsis]: Add Python specific synopsis.
+
+Change-Id: I86f68972eb51e9d546bcba6ee4f33de726c022e2
+---
+ gnu/packages/astronomy.scm | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3701a7e90c..62100c4c51 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4472,19 +4472,16 @@ (define-public python-pysynphot
+       (license license:bsd-3))))
+ 
+ (define-public python-sep
+-  (package
+-    (inherit libsep)
++  (package/inherit libsep
+     (name "python-sep")
+-    (build-system python-build-system)
++    (build-system pyproject-build-system)
+     (arguments
+-     (strip-keyword-arguments
+-      '(#:make-flags) (package-arguments libsep)))
++     (list #:test-flags #~(list "test.py")))
+     (native-inputs
+-     (modify-inputs (package-inputs libsep)
+-       (prepend python-cython)))
++     (list python-cython python-pytest))
+     (propagated-inputs
+-     (modify-inputs (package-inputs libsep)
+-       (prepend python-numpy)))))
++     (list  python-numpy))
++    (synopsis "Python library for Source Extraction and Photometry")))
+ 
+ (define-public python-suntime
+   (package
+-- 
+2.41.0
+

@@ -1,0 +1,55 @@
+From 2575be52b1554a2b97f27f66709cbfc42b12aa2d Mon Sep 17 00:00:00 2001
+Message-ID: <2575be52b1554a2b97f27f66709cbfc42b12aa2d.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 8 May 2024 00:35:45 +0100
+Subject: [PATCH 05/26] gnu: calceph: Update to 4.0.0.
+
+* gnu/packages/astronomy.scm (calceph): Update to 4.0.0.
+[source]: Swap to git checkout.
+[build-system]: Swap to cmake-build-system.
+[properties]: Remove them.
+
+Change-Id: Ic1559a1f956aa90200c911fbee057c55a7fb9874
+---
+ gnu/packages/astronomy.scm | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f7683f6d71..c3894c284a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -191,20 +191,21 @@ (define-public aocommon
+ (define-public calceph
+   (package
+     (name "calceph")
+-    (version  "3.5.5")
++    (version  "4.0.0")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (string-append
+-             "https://www.imcce.fr/content/medias/recherche/equipes/asd/calceph/calceph-"
+-             version ".tar.gz"))
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://gitlab.obspm.fr/imcce_calceph/calceph")
++             (commit (string-append name "_"
++                                    (string-replace-substring version "." "_")))))
+        (sha256
+-        (base32 "1jiaqyir2qcxzjlhk7f9fhrf6snjsiwxznvzdl996xr6m4lzbb7p"))))
+-    (build-system gnu-build-system)
++        (base32 "1yabdq51plg3dijp68xajhsz395gi2fyp5qkvrj3dgv8d4qw52nw"))
++       (file-name (git-file-name name version))))
++    (build-system cmake-build-system)
+     (native-inputs
+      (list gfortran))
+     (home-page "https://www.imcce.fr/inpop/calceph")
+-    (properties `((release-monitoring-url . ,home-page)))
+     (synopsis "Astronomical library to access the binary planetary ephemeris files")
+     (description
+      "The CALCEPH Library is designed to access the binary planetary ephemeris files,
+-- 
+2.41.0
+

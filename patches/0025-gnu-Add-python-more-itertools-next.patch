@@ -1,0 +1,64 @@
+From b26d6404cdd0a286c912d44a47f9412b47b904b7 Mon Sep 17 00:00:00 2001
+Message-ID: <b26d6404cdd0a286c912d44a47f9412b47b904b7.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 May 2024 11:54:52 +0100
+Subject: [PATCH 25/26] gnu: Add python-more-itertools-next.
+
+* gnu/packages/python-xyz.scm (python-more-itertools-next): New variable.
+
+Change-Id: Ia9deef0c19931356446e2731a315d27ce54e6ab0
+---
+ gnu/packages/python-xyz.scm | 35 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 9d3066cab4..520dcd0b69 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -26462,6 +26462,41 @@ (define-public python-more-itertools
+ working with iterables.")
+     (license license:expat)))
+ 
++;; Needed for python-yt, older version fails with exception: E ImportError:
++;; cannot import name 'mark_ends' from 'more_itertools'
++;; (<...>more_itertools/__init__.py)
++(define-public python-more-itertools-next
++  (package
++    (inherit python-more-itertools)
++    (name "python-more-itertools")
++    (version "10.2.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "more-itertools" version))
++       (sha256
++        (base32
++         "1q9rq9g026m4wl6ki2q8pw7xbc02vl34qqw702h9jgixqj0b9k4g"))
++       (snippet
++        ;; distutils.errors.DistutilsOptionError: No configuration found for
++        ;; dynamic 'description'. Some dynamic fields need to be specified via
++        ;; `tool.setuptools.dynamic`others must be specified via the equivalent
++        ;; attribute in `setup.py`.
++        '(delete-file "setup.py"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (replace 'check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (invoke "python" "-m" "unittest")))))))
++    (native-inputs
++     (list python-flit-core))
++    (propagated-inputs
++     (list python-six))))
++
+ (define-public python-latexcodec
+   (package
+     (name "python-latexcodec")
+-- 
+2.41.0
+

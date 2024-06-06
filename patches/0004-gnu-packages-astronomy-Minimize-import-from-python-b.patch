@@ -1,0 +1,33 @@
+From b385aa86d8ed2bbcb74a2fae32cb92693c5d9351 Mon Sep 17 00:00:00 2001
+Message-ID: <b385aa86d8ed2bbcb74a2fae32cb92693c5d9351.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 May 2024 23:23:43 +0100
+Subject: [PATCH 04/26] gnu: packages/astronomy: Minimize import from python
+ build system.
+
+* gnu/packages/astronomy.scm: Select just pypi-uri from python build
+system module.
+
+Change-Id: I1b02cdd24a6456d58136ee126f7bdb2a01dce9b4
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2d9acc5192..f7683f6d71 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -97,7 +97,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (guix build-system copy)
+   #:use-module (guix build-system gnu)
+   #:use-module (guix build-system meson)
+-  #:use-module (guix build-system python)
++  #:use-module ((guix build-system python) #:select (pypi-uri))
+   #:use-module (guix build-system pyproject)
+   #:use-module (guix download)
+   #:use-module (guix gexp)
+-- 
+2.41.0
+

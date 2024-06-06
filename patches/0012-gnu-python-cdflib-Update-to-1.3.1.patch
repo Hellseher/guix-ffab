@@ -1,0 +1,50 @@
+From c57de02fd5fbcf7b5b93ea94f2a8c52db8c006ce Mon Sep 17 00:00:00 2001
+Message-ID: <c57de02fd5fbcf7b5b93ea94f2a8c52db8c006ce.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 15 May 2024 10:05:04 +0100
+Subject: [PATCH 12/26] gnu: python-cdflib: Update to 1.3.1.
+
+* gnu/packages/astronomy.scm (python-cdflib): Update to 1.3.1.
+[propagated-inputs]: Remove python-attrs.
+
+Change-Id: I13abd2608c18796e6d8d5d37bee0a037fbd2794d
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2065badfa4..c6baece0f7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2076,7 +2076,7 @@ (define-public python-ccdproc
+ (define-public python-cdflib
+   (package
+     (name "python-cdflib")
+-    (version "1.2.6")
++    (version "1.3.1")
+     (source
+      (origin
+        (method git-fetch)               ; no tests in PyPI release
+@@ -2085,7 +2085,7 @@ (define-public python-cdflib
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1wxr35sqsdqzf85xyjh1v8hmwwiyv4cn0lr7q8l1kkngfywq5l2r"))))
++        (base32 "0zmz9wjhlq43lqy5k4fld9cj5k39s1hkkaligrn3kpf9hcbd79qn"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:phases
+@@ -2098,7 +2098,7 @@ (define-public python-cdflib
+                  (lambda _
+                    (setenv "HOME" (getcwd)))))))
+     (propagated-inputs
+-     (list python-attrs python-numpy))
++     (list python-numpy))
+     (native-inputs
+      (list python-astropy
+            python-hypothesis
+-- 
+2.41.0
+

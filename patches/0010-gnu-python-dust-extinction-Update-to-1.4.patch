@@ -1,0 +1,38 @@
+From 933f506761050ebfe9f51cbc78accdebd0f03a41 Mon Sep 17 00:00:00 2001
+Message-ID: <933f506761050ebfe9f51cbc78accdebd0f03a41.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 11 May 2024 10:05:10 +0100
+Subject: [PATCH 10/26] gnu: python-dust-extinction: Update to 1.4.
+
+* gnu/packages/astronomy.scm (python-dust-extinction): Update to 1.4.
+
+Change-Id: I335f9ae01c022c6bea229b73f131aab459126809
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 48dde56d1e..d832b738a9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2299,13 +2299,13 @@ (define-public python-drizzle
+ (define-public python-dust-extinction
+   (package
+     (name "python-dust-extinction")
+-    (version "1.3")
++    (version "1.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "dust_extinction" version))
+        (sha256
+-        (base32 "14zy6kyrfi4ash7qg1k3im1zzgr2r7rnaggzk0ar3jlfmsii743k"))))
++        (base32 "0yw2mdsbsmk0cs9wzsmmrnkhriyhj1gir6irjsfxd518fa8bik2k"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astropy python-scipy))
+-- 
+2.41.0
+

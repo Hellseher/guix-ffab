@@ -1,0 +1,38 @@
+From bb987a39984d8f26edd34071dddf0f8c69e3f42b Mon Sep 17 00:00:00 2001
+Message-ID: <bb987a39984d8f26edd34071dddf0f8c69e3f42b.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 12 May 2024 18:23:25 +0100
+Subject: [PATCH 11/26] gnu: python-ccdproc: Update to 2.4.2.
+
+* gnu/packages/astronomy.scm (python-ccdproc): Update to 2.4.2.
+
+Change-Id: Ic6be0d26ae6f612c9b57fd88b0458496c28b353a
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d832b738a9..2065badfa4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2048,13 +2048,13 @@ (define-public python-casa-formats-io
+ (define-public python-ccdproc
+   (package
+     (name "python-ccdproc")
+-    (version "2.4.1")
++    (version "2.4.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ccdproc" version))
+        (sha256
+-        (base32 "186plgfhrj7wivs053y65jlv1x33y8ii31jdr2rm4s6pl0j7x29z"))))
++        (base32 "14faivm9nihpdwzg0jx1c9zr7jk22gjfjw78raq6h63ypl10i6yx"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-memory-profiler
+-- 
+2.41.0
+

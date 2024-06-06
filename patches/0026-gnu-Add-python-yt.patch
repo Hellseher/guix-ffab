@@ -1,0 +1,108 @@
+From 3c7101bfce5de852cc7aa14e675bc2268bea6660 Mon Sep 17 00:00:00 2001
+Message-ID: <3c7101bfce5de852cc7aa14e675bc2268bea6660.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 May 2024 11:55:03 +0100
+Subject: [PATCH 26/26] gnu: Add python-yt.
+
+* gnu/packages/astronomy.scm (python-yt): New variable.
+
+Change-Id: Ic8331de39e0a5e875aef8d49b7597c269b2b155e
+---
+ gnu/packages/astronomy.scm | 79 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 122be3b260..c1fe5b0a47 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5268,6 +5268,85 @@ (define-public python-wiimatch
+ using (multivariate) polynomials.")
+     (license license:bsd-3)))
+ 
++(define-public python-yt
++  (package
++    (name "python-yt")
++    (version "4.3.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "yt" version))
++       (sha256
++        (base32 "03jy35vyniyd1pd3sv0zpd2f3ks2iyqw65xv28ids8nw6v1vavbv"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:build-backend "setuptools.build_meta"
++      #:test-flags
++      #~(list "-n" "auto")
++      #:phases
++      #~(modify-phases %standard-phases
++         (add-after 'unpack 'relax-requirements
++           (lambda _
++             (substitute* "pyproject.toml"
++               ;; XXX: Updating ipywidgets requires long chain of rebuilds,
++               ;; maybe for python-team.
++               ;;
++               ;; ipywidgets>=8.0.0
++               ((">=8.0.0") ">=7.6.3"))))
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              (setenv "HOME" "/tmp")
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++    (propagated-inputs
++     (list python-cmyt
++           python-ewah-bool-utils
++           python-ipywidgets
++           python-matplotlib
++           python-more-itertools-next
++           python-numpy
++           python-packaging
++           python-pillow
++           python-tomli-w
++           python-tqdm
++           python-unyt))
++    (native-inputs
++     (list python-cython-3
++           python-nose
++           python-nose-exclude
++           python-nose-timer
++           python-pyaml
++           python-pytest
++           python-pytest-mpl
++           python-pytest-xdist
++           python-setuptools
++           python-sympy))
++    (home-page "http://yt-project.org/")
++    (synopsis "Analyzing and visualizing volumetric data framework")
++    (description
++     "This package provides a structured, variable-resolution meshes,
++ unstructured meshes, and discrete or sampled data such as particles.  Focused on
++ driving physically-meaningful inquiry, it has been applied in domains such as
++ astrophysics, seismology, nuclear engineering, molecular dynamics, and
++ oceanography.")
++    (license (list
++              ;; COPYING.txt: for Python code.
++              ;;
++              ;; yt uses a shared copyright model. Each contributor maintains
++              ;; copyright over their contributions to yt. But, it is important
++              ;; to note that these contributions are typically only changes to
++              ;; the repositories. Thus, the yt source code, in its entirety is
++              ;; not the copyright of any single person or institution. Instead,
++              ;; it is the collective copyright of the entire yt Development
++              ;; Team. If individual contributors want to maintain a record of
++              ;; what changes/contributions they have specific copyright on,
++              ;; they should indicate their copyright in the commit message of
++              ;; the change, when they commit the change to one of the yt
++              ;; repositories.
++              license:bsd-3
++              ;; yt/frontends/artio/artio_headers/LICENSE: for C code.
++              license:lgpl3))))
++
+ (define-public unsio
+   ;; There is no versioned tag, use the latest commit.
+   (let ((commit "25e52468298e1194c9726ef5dba9d5fbb46870f5")
+-- 
+2.41.0
+

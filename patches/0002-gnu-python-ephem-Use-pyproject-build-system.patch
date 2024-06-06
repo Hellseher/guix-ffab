@@ -1,0 +1,44 @@
+From 7695460e41cfb95ca6bb415877f32a43ed29c3e6 Mon Sep 17 00:00:00 2001
+Message-ID: <7695460e41cfb95ca6bb415877f32a43ed29c3e6.1716242563.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 May 2024 22:24:12 +0100
+Subject: [PATCH 02/26] gnu: python-ephem: Use pyproject-build-system.
+
+* gnu/packages/astronomy.scm (python-ephem): Adjust indentation.
+[build-system]: Swap to pyproject-build-system.
+
+Change-Id: Idc21c004f93f2362a70b2e9fb874ff125fd8c3fa
+---
+ gnu/packages/astronomy.scm | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 62100c4c51..e78d9b7a40 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2324,13 +2324,13 @@ (define-public python-ephem
+   (package
+     (name "python-ephem")
+     (version "4.1.5")
+-    (source (origin
+-              (method url-fetch)
+-              (uri (pypi-uri "ephem" version))
+-              (sha256
+-               (base32
+-                "0ainqbnvw320pc61q5b6ad6f2mhn1pvrlnq489cwfx0m82mahr0c"))))
+-    (build-system python-build-system)
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "ephem" version))
++       (sha256
++        (base32 "0ainqbnvw320pc61q5b6ad6f2mhn1pvrlnq489cwfx0m82mahr0c"))))
++    (build-system pyproject-build-system)
+     (native-inputs (list tzdata))
+     (home-page "https://rhodesmill.org/pyephem/")
+     (synopsis "Compute positions of the planets and stars")
+-- 
+2.41.0
+

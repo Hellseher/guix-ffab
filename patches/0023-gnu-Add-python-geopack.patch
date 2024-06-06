@@ -1,0 +1,55 @@
+From 8d47c8ab6580702fae508628f7df1f46f977e180 Mon Sep 17 00:00:00 2001
+Message-ID: <8d47c8ab6580702fae508628f7df1f46f977e180.1716242564.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1716242563.git.sharlatanus@gmail.com>
+References: <cover.1716242563.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 May 2024 09:56:21 +0100
+Subject: [PATCH 23/26] gnu: Add python-geopack.
+
+* gnu/packages/geo.scm (python-geopack): New variable.
+
+Change-Id: I674b09030684dd0d9f94b4b87cf96aeea983ee89
+---
+ gnu/packages/geo.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/geo.scm b/gnu/packages/geo.scm
+index c9152fb4f8..69e7b58677 100644
+--- a/gnu/packages/geo.scm
++++ b/gnu/packages/geo.scm
+@@ -959,6 +959,32 @@ (define-public python-fiona
+ pyproj, Rtree, and Shapely.")
+     (license license:bsd-3)))
+ 
++(define-public python-geopack
++  (package
++    (name "python-geopack")
++    (version "1.0.10")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "geopack" version))
++       (sha256
++        (base32 "0mryjp7m4h99qlpvnn40s81sygr73qcv8rkmjp9pcli1gz829kjf"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; XXX Reported upstream <https://github.com/tsssss/geopack/issues/21>.
++      #:tests? #f))
++    (native-inputs
++     (list python-pytest))
++    (propagated-inputs
++     (list python-numpy python-scipy))
++    (home-page "https://github.com/tsssss/geopack")
++    (synopsis "Python version of geopack and Tsyganenko models")
++    (description
++     "Python version of geopack and Tsyganenko models, compatible with
++@code{geopack05} and @code{geopack08}.")
++    (license license:expat)))
++
+ (define-public python-geopandas
+   (package
+     (name "python-geopandas")
+-- 
+2.41.0
+
