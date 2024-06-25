@@ -2320,3 +2320,30 @@ complexeties.")
     (description
      "Fork version of @code{jessevdk/go-flags}")
     (license license:bsd-3)))
+
+(define-public go-github-com-google-go-tpm
+  (package
+    (name "go-github-com-google-go-tpm")
+    (version "0.9.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/google/go-tpm")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1pv77fmlxrnxasj6fjvzrv9yaf2qb45x1zss3nbsdvzgpwviaiyi"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:go go-1.20
+      #:import-path "github.com/google/go-tpm"))
+    (propagated-inputs
+     (list go-golang-org-x-sys
+           go-golang-org-x-crypto))
+    (home-page "https://github.com/google/go-tpm")
+    (synopsis "Go-TPM library")
+    (description
+     "TPM 2.0 library for directly communicating with a TPM device.")
+    (license license:asl2.0)))
