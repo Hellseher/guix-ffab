@@ -38,7 +38,7 @@
 (define-public go-github-com-gin-gonic-gin
   (package
     (name "go-github-com-gin-gonic-gin")
-    (version "1.8.1")
+    (version "1.10.0")
     (source
      (origin
        (method git-fetch)
@@ -47,33 +47,26 @@
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0fbs44q2w1cx891l3i1jxfrvf9v3ar3hlb8vnqlg7nbkch04jkdf"))))
+        (base32 "01xjvw2d46b77jnszgbwqbdzh9jx7y3h5ik3q30y9dn9gaq5mhks"))))
     (build-system go-build-system)
     (arguments
      (list
+      #:go go-1.21
       #:import-path "github.com/gin-gonic/gin"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
     (propagated-inputs
-     (list go-github-com-davecgh-go-spew
+     (list ;go-github-com-bytedance-sonic
            go-github-com-gin-contrib-sse
-           go-github-com-go-playground-locales
-           go-github-com-go-playground-universal-translator
            go-github-com-go-playground-validator-v10
            go-github-com-goccy-go-json
            go-github-com-json-iterator-go
-           go-github-com-leodido-go-urn
            go-github-com-mattn-go-isatty
-           go-github-com-modern-go-concurrent
-           go-github-com-modern-go-reflect2
            go-github-com-pelletier-go-toml-v2
-           go-github-com-pmezard-go-difflib
-           go-github-com-stretchr-testify
+           go-github-com-quic-go-quic-go
            go-github-com-ugorji-go-codec
-           go-golang-org-x-crypto
            go-golang-org-x-net
-           go-golang-org-x-sys
-           go-golang-org-x-text
            go-google-golang-org-protobuf
-           go-gopkg-in-yaml-v2
            go-gopkg-in-yaml-v3))
     (home-page "https://gin-gonic.com/")
     (synopsis "Golang HTTP web framework")
