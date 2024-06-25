@@ -41,55 +41,70 @@
 (define github-cli
   (package
     (name "github-cli")
-    (version "2.3.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/cli/cli")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0qf19rkckbfwcsk9rkfnbrzrksb6r50p7gda25lbw86n2c3k18wp"))))
+    (version "2.52.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/cli/cli")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "19maavw95iwviwg314k2z0736n3cnwbsnv0f4yfc0cfys8mp985x"))))
     (build-system go-build-system)
-    ;; (arguments
-    ;; '(#:unpack-path "github.com/cli/cli/v2"
-    ;; #:import-path "github.com/cli/cli/v2"))
-    (native-inputs (list go-github-com-alecaivazis-survey-v2
-                         go-github-com-briandowns-spinner
-                         go-github-com-charmbracelet-glamour
-                         go-github-com-cli-browser
-                         go-github-com-cli-oauth
-                         go-github-com-cli-safeexec
-                         go-github-com-cli-shurcool-graphql
-                         go-github-com-cpuguy83-go-md2man-v2
-                         go-github-com-creack-pty
-                         go-github-com-gabriel-vasile-mimetype
-                         go-github-com-google-go-cmp-cmp
-                         go-github-com-google-shlex
-                         go-github-com-hashicorp-go-version
-                         go-github-com-henvic-httpretty
-                         go-github-com-itchyny-gojq
-                         go-github-com-kballard-go-shellquote
-                         go-github-com-makenowjust-heredoc
-                         go-github-com-mattn-go-colorable
-                         go-github-com-mattn-go-isatty
-                         go-github-com-mattn-go-runewidth
-                         go-github-com-mgutz-ansi
-                         go-github-com-mitchellh-go-homedir
-                         go-github-com-muesli-termenv
-                         go-github-com-rivo-uniseg
-                         go-github-com-shurcool-githubv4
-                         go-github-com-spf13-cobra
-                         go-github-com-spf13-pflag
-                         go-github-com-stretchr-objx
-                         go-github-com-stretchr-testify
-                         go-golang-org-x-crypto
-                         go-golang-org-x-sync
-                         go-golang-org-x-sys
-                         go-golang-org-x-term
-                         go-gopkg-in-yaml-v3))
-    (home-page "https://github.com/cli/cli")
+    (arguments
+     (list
+      #:go go-1.21
+      #:install-source? #f
+      #:import-path "github.com/cli/cli/v2"))
+    (native-inputs
+     (list go-github-com-alecaivazis-survey-v2
+           go-github-com-makenowjust-heredoc
+           go-github-com-briandowns-spinner
+           go-github-com-cenkalti-backoff-v4
+           go-github-com-charmbracelet-glamour
+           go-github-com-charmbracelet-lipgloss
+           go-github-com-cli-go-gh-v2
+           go-github-com-cli-oauth
+           go-github-com-cli-safeexec
+           go-github-com-cpuguy83-go-md2man-v2
+           go-github-com-creack-pty
+           go-github-com-distribution-reference
+           go-github-com-gabriel-vasile-mimetype
+           go-github-com-gdamore-tcell-v2
+           go-github-com-google-go-cmp
+           go-github-com-google-go-containerregistry
+           go-github-com-google-shlex
+           go-github-com-gorilla-websocket
+           go-github-com-hashicorp-go-multierror
+           go-github-com-hashicorp-go-version
+           go-github-com-henvic-httpretty
+           go-github-com-in-toto-in-toto-golang
+           go-github-com-joho-godotenv
+           go-github-com-kballard-go-shellquote
+           go-github-com-mattn-go-colorable
+           go-github-com-mattn-go-isatty
+           go-github-com-mgutz-ansi
+           go-github-com-microsoft-dev-tunnels
+           go-github-com-muhammadmuzzammil1998-jsonc
+           go-github-com-opentracing-opentracing-go
+           go-github-com-rivo-tview
+           go-github-com-shurcool-githubv4
+           go-github-com-sigstore-protobuf-specs
+           go-github-com-sigstore-sigstore-go
+           go-github-com-spf13-cobra
+           go-github-com-spf13-pflag
+           go-github-com-stretchr-testify
+           go-github-com-zalando-go-keyring
+           go-golang-org-x-crypto
+           go-golang-org-x-sync
+           go-golang-org-x-term
+           go-golang-org-x-text
+           go-google-golang-org-grpc
+           go-google-golang-org-protobuf
+           go-gopkg-in-h2non-gock-v1
+           go-gopkg-in-yaml-v3))
+    (home-page "https://cli.github.com/")
     (synopsis "GitHub CLI")
     (description
      "@code{gh} is GitHub on the command line. It brings pull requests, issues,
