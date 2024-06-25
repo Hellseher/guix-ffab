@@ -1,0 +1,70 @@
+From 505f7cb30b24dd7b74aa6ed17d83b20ad94b9442 Mon Sep 17 00:00:00 2001
+Message-ID: <505f7cb30b24dd7b74aa6ed17d83b20ad94b9442.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Jun 2024 22:12:27 +0100
+Subject: [PATCH 30/30] gnu: Add python-jwst-reffiles.
+
+* gnu/packages/astronomy.scm (python-jwst-reffiles): New variable.
+
+Change-Id: I6c8f80e0b26109c31c610d242a364db0ac9a66a5
+---
+ gnu/packages/astronomy.scm | 41 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c6f69d2e03..2ce0d66894 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4225,6 +4225,47 @@ (define-public python-jwst
+ exposures and high-level data products (mosaics, extracted spectra, etc.).")
+     (license license:bsd-3)))
+ 
++(define-public python-jwst-reffiles
++  (package
++    (name "python-jwst-reffiles")
++    (version "1.0.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "jwst_reffiles" version))
++       (sha256
++        (base32 "1dlw955cw49qczdmimglmlcbal8vd3wbv5j48ckllvjgd59pwr3s"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; FIXME: Invistigate why it failes on python-jwst side where the
++      ;; python-tweakwcs is built just fine:
++      ;;
++      ;; <...>/tweakwcs/matchutils.py:18: in <module>
++      ;; from stsci.stimage import xyxymatch
++      ;; E   ModuleNotFoundError: No module named 'stsci.stimage'
++      #:tests? #f
++      #:phases
++      #~(modify-phases %standard-phases
++          (delete 'sanity-check))))
++    (propagated-inputs
++     (list python-astropy
++           python-jwst
++           python-matplotlib
++           python-numpy
++           python-scipy))
++    (native-inputs
++     (list python-pytest
++           python-stsci-stimage))
++    (home-page "https://github.com/spacetelescope/jwst_reffiles")
++    (synopsis "Tool for JWST's CRDS-formatted reference files creation")
++    (description
++     "This package provides a tool to create @acronym{Calibration References
++Data System,CRDS}-formatted reference files for @acronym{James Webb Space
++Telescope,JWST} from a set of input dark current files and a set of flat field
++files.")
++    (license license:bsd-3)))
++
+ (define-public python-pyerfa
+   (package
+     (name "python-pyerfa")
+-- 
+2.41.0
+

@@ -1,0 +1,48 @@
+From a514e6a496dd1999f4a950106a9b7e1fd8f12fe0 Mon Sep 17 00:00:00 2001
+Message-ID: <a514e6a496dd1999f4a950106a9b7e1fd8f12fe0.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 13 Jun 2024 14:08:55 +0100
+Subject: [PATCH 16/30] gnu: python-stpipe: Update to 0.5.2.
+
+* gnu/packages/astronomy.scm (python-stpipe): Update to 0.5.2.
+[source]: Add snippet adjusting references to configobj.
+
+Change-Id: I213f4d082757813db1652b7189348fb9ddd527b6
+---
+ gnu/packages/astronomy.scm | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 81a339446b..625ffe6a55 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3412,13 +3412,22 @@ (define-public python-stdatamodels
+ (define-public python-stpipe
+   (package
+     (name "python-stpipe")
+-    (version "0.5.1")
++    (version "0.5.2")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stpipe" version))
+               (sha256
+                (base32
+-                "11ccb3v2s20lf851061s4nanljwm9s9xzkcfgb3qhv0hjwziq0vr"))))
++                "0r29m143ll1j9irixazrkqggzg9xbkcw7fl9xmi69zpxbh5mjgz0"))
++              (modules '((guix build utils)))
++              (snippet
++               '(begin
++                  ;; Replace reference to external configobj.
++                  (substitute* (find-files "." "\\.py$")
++                    (("from astropy.extern import configobj") "import configobj")
++                    (("from astropy.extern.configobj import validate") "import validate")
++                    (("from astropy.extern.configobj.configobj import ") "from configobj import ")
++                    (("from astropy.extern.configobj.validate import ") "from validate import "))))))
+     (arguments
+      (list
+       ;; See https://github.com/spacetelescope/stpipe/issues/114
+-- 
+2.41.0
+

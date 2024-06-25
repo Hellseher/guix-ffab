@@ -1,0 +1,38 @@
+From 580d0e4380418598f4cde71fa39b5db075142df1 Mon Sep 17 00:00:00 2001
+Message-ID: <580d0e4380418598f4cde71fa39b5db075142df1.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 11 Jun 2024 21:48:55 +0100
+Subject: [PATCH 09/30] gnu: python-ginga: Update to 5.1.0.
+
+* gnu/packages/astronomy.scm (python-ginga): Update to 5.1.0.
+
+Change-Id: I7ac35ccf2bc38709cf4d3929d8f13a0b48050587
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a51ddc5afb..38ebfe23fb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1044,13 +1044,13 @@ (define-public python-gatspy
+ (define-public python-ginga
+   (package
+     (name "python-ginga")
+-    (version "5.0.1")
++    (version "5.1.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ginga" version))
+        (sha256
+-        (base32 "1zw93487a0ilkb5w5qjgrdnavxlmdmjp6c2wyc1wp8qahby9c0xa"))))
++        (base32 "0c6vpcz59x889z8ggq6r5ci9cf10m7r9h262r6chx31mzdr010wf"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

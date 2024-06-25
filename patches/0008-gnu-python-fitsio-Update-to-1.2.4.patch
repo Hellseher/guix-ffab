@@ -1,0 +1,48 @@
+From ca1c265c2319dde748e8cc464918a4c4a2fa7eab Mon Sep 17 00:00:00 2001
+Message-ID: <ca1c265c2319dde748e8cc464918a4c4a2fa7eab.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 15 Jun 2024 09:40:08 +0100
+Subject: [PATCH 08/30] gnu: python-fitsio: Update to 1.2.4.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.2.4.
+
+Change-Id: I82c7b8c85c3d61a8fd83e786a109914c4c91dbe2
+---
+ gnu/packages/astronomy.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index bddb841cbe..a51ddc5afb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -948,21 +948,21 @@ (define-public python-extinction
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.2.1")
++    (version "1.2.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "19him5rcpjyz14ghkmifnd1xl3ivlyy84h45k6j2pyr5ixc60ky6"))
++        (base32 "0y7n7wh73ha6439djrhwmqbvgpagrdgaasbrikvw2zb5qx3y6zym"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio. When update the package check the
+         ;; current bundled version.
+         #~(begin
+-            (delete-file-recursively "cfitsio-4.2.0")
++            (delete-file-recursively "cfitsio-4.4.1-20240617")
+             (substitute* "MANIFEST.in"
+-              (("recursive-include cfitsio-4.2.0.*$\n") ""))))))
++              (("recursive-include cfitsio-4.4.0.*$\n") ""))))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-06-06 Thu 16:52:31 BST>
+#+modified: <2024-06-25 Tue 22:24:34 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -41,241 +41,241 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-bse [/][%] :p4:
+*** TODO python-amuse-bse [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-capreole [/][%] :p4:
+*** TODO python-amuse-capreole [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-distributed [/][%] :p4:
+*** TODO python-amuse-distributed [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-evtwin [/][%] :p4:
+*** TODO python-amuse-evtwin [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-fastkick [/][%] :p4:
+*** TODO python-amuse-fastkick [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-fi [/][%] :p4:
+*** TODO python-amuse-fi [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-fractalcluster [/][%] :p4:
+*** TODO python-amuse-fractalcluster [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-framework [/][%] :p4:
+*** TODO python-amuse-framework [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-gadget2 [/][%] :p4:
+*** TODO python-amuse-gadget2 [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-galactics [/][%] :p4:
+*** TODO python-amuse-galactics [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-galaxia [/][%] :p4:
+*** TODO python-amuse-galaxia [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-halogen [/][%] :p4:
+*** TODO python-amuse-halogen [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-hermite [/][%] :p4:
+*** TODO python-amuse-hermite [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-hop [/][%] :p4:
+*** TODO python-amuse-hop [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-huayno [/][%] :p4:
+*** TODO python-amuse-huayno [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-kepler [/][%] :p4:
+*** TODO python-amuse-kepler [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-kepler-orbiters [/][%] :p4:
+*** TODO python-amuse-kepler-orbiters [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mameclot [/][%] :p4:
+*** TODO python-amuse-mameclot [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mercury [/][%] :p4:
+*** TODO python-amuse-mercury [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mesa [/][%] :p4:
+*** TODO python-amuse-mesa [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mesa-r15140 [/][%] :p4:
+*** TODO python-amuse-mesa-r15140 [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mesa-r2208 [/][%] :p4:
+*** TODO python-amuse-mesa-r2208 [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mikkola [/][%] :p4:
+*** TODO python-amuse-mikkola [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mmams [/][%] :p4:
+*** TODO python-amuse-mmams [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mobse [/][%] :p4:
+*** TODO python-amuse-mobse [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-mosse [/][%] :p4:
+*** TODO python-amuse-mosse [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-petar [/][%] :p4:
+*** TODO python-amuse-petar [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-ph4 [/][%] :p4:
+*** TODO python-amuse-ph4 [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-phantom [/][%] :p4:
+*** TODO python-amuse-phantom [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-phigrape [/][%] :p4:
+*** TODO python-amuse-phigrape [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-seba [/][%] :p4:
+*** TODO python-amuse-seba [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-secularmultiple [/][%] :p4:
+*** TODO python-amuse-secularmultiple [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-simplex [/][%] :p4:
+*** TODO python-amuse-simplex [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-smalln [/][%] :p4:
+*** TODO python-amuse-smalln [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-sphray [/][%] :p4:
+*** TODO python-amuse-sphray [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-sse [/][%] :p4:
+*** TODO python-amuse-sse [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-tests [/][%] :p4:
+*** TODO python-amuse-tests [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-tutorial [/][%] :p4:
+*** TODO python-amuse-tutorial [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-twobody [/][%] :p4:
+*** TODO python-amuse-twobody [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-*** TODO python-amuse-vader [/][%] :p4:
+*** TODO python-amuse-vader [1/4][25%] :p4:
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
@@ -421,7 +421,7 @@ CLOSED: [2023-11-01 Wed 23:53]
   - [X] python
   - [X] atool
 
-** TODO asdf-format [9/11][81%] :author:
+** TODO asdf-format [11/11][100%] :author:
 - https://github.com/asdf-format
 *** DONE python-asdf [4/4][100%]
 CLOSED: [2023-12-19 Tue 00:42]
@@ -437,11 +437,13 @@ CLOSED: [2023-12-19 Tue 00:42]
    + [X] python-importlib-resources
    + [X] python-jsonschema
    + [X] python-numpy
-*** TODO python-asdf-compression [2/4][50%] :p2:
+*** DONE python-asdf-compression [4/4][100%]
+CLOSED: [2024-06-25 Tue 22:12]
  - https://github.com/asdf-format/asdf-compression
  - [X] :packed <2024-03-10 Sun>
- - [ ] :patch-sent
- - [ ] :paptch-applied-upstream
+ - [X] :patch-sent <2024-04-20 Sat>
+ - [X] :paptch-applied-upstream <2024-04-29 Mon>
+   - https://issues.guix.gnu.org/69924
  - [X] :inputs [8/8][100%]
    - [X] python-asdf
    - [X] python-blosc
@@ -524,11 +526,13 @@ CLOSED: [2022-11-21 Mon 20:43]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-asdf-zarr [2/4][50%] :p2:
+*** DONE python-asdf-zarr [4/4][100%]
+CLOSED: [2024-06-25 Tue 22:11]
  - https://github.com/asdf-format/asdf-zarr
  - [X] :packed <2024-03-10 Sun>
- - [ ] :patch-sent
- - [ ] :paptch-applied-upstream
+ - [X] :patch-sent <2024-04-20 Sat>
+ - [X] :paptch-applied-upstream <2024-04-29 Mon>
+   - https://issues.guix.gnu.org/69924
  - [X] :inputs [6/6][100%]
    - [X] python-asdf
    - [X] python-fsspec
@@ -718,7 +722,7 @@ CLOSED: [2021-01-22 Fri 23:03]
   - [X] wcslib
   - [X] wget
 
-** TODO Astropy [8/9][88%] :author:
+** TODO Astropy [9/9][100%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -745,11 +749,13 @@ CLOSED: [2022-11-22 Tue 20:33]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** TODO python-astroplan [2/4][50%] :p2:
+*** DONE python-astroplan [4/4][100%]
+CLOSED: [2024-06-25 Tue 22:13]
 - https://github.com/astropy/astroplan
 - [X] :packed <2022-11-07 Mon>
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2024-04-20 Sat>
+- [X] :paptch-applied-upstream <2024-04-29 Mon>
+  - https://issues.guix.gnu.org/69924
 - [X] :inputs [5/5][100%]
   - [X] python-astropy
   - [X] python-numpy
@@ -1040,7 +1046,7 @@ CLOSED: [2023-12-19 Tue 00:43]
 
 ** TODO CHIANTI [0/1][0%] :author:
 - http://www.chiantidatabase.org/chianti_download.html
-*** TODO python-chiantipy [0/4][0%] :p1:
+*** TODO python-chiantipy [0/4][0%] :p4:
 - https://github.com/chianti-atomic/ChiantiPy
 - synopsis :: ChiantiPy is a python package to calculate the radiative properties of astrophysical
   plasmas based on the CHIANTI atomic database
@@ -1842,8 +1848,10 @@ CLOSED: [2023-02-15 Wed 21:47]
 - [ ] :paptch-applied-upstream
 - [X] :inputs [0/0][0%]
 
-** TODO Kapteyn Astronomical Institute [0/2][0%] :author:
+** TODO KAI [0/2][0%] :author:
 - https://www.rug.nl/research/kapteyn/
+  /Kapteyn Astronomical Institute/
+  - https://www.rug.nl/research/kapteyn/
 *** TODO kapteyn [/][%] :p5:
 - https://www.astro.rug.nl/software/kapteyn/
 - synopsis ::
@@ -1903,11 +1911,13 @@ CLOSED: [2024-02-27 Tue 23:04]
 - [X] :inputs [1/1][100%]
   - [X] python-numpy
 
-** TODO kgrandis [/][%] :author:
-*** TODO python-nose-exclude [3/4][75%] :p2:
+** TODO kgrandis [1/1][100%] :author:
+*** DONE python-nose-exclude [3/4][75%]
+CLOSED: [2024-06-25 Tue 22:17]
 - [X] :packed <2024-02-02 Fri>
-- [X] :patch-sent <2024-03-12 Tue>
-- [ ] :paptch-applied-upstream
+- [X] :patch-sent <2024-04-20 Sat>
+- [X] :paptch-applied-upstream <2024-04-29 Mon>
+  - https://issues.guix.gnu.org/69924
 - [X] :inputs [1/1][100%]
   - [X] pythno-nose
 
@@ -2052,8 +2062,9 @@ CLOSED: [2023-12-19 Tue 02:39]
   - [X] python-pytest-remotedata
   - [X] python-xarray
 
-*** TODO python-pytplot [1/4][25%] :p4:
+*** TODO python-pytplot [1/4][25%] :p1:
 - https://github.com/MAVENSDC/pytplot
+- https://pypi.org/project/pytplot-mpl-temp/
 - synopsis :: python version of the IDL tplot libraries
 - [ ] :packed
 - [ ] :patch-sent
@@ -3080,6 +3091,7 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [ ] python-sidecar
     - [ ] :packed
   - [ ] python-specreduce
+    - [X] :packed
   - [X] python-specutils
     - [X] :packed <2023-12-22 Fri>
   - [X] python-stdatamodels
@@ -3316,13 +3328,17 @@ The Solar UK Research Facility
 
 ** TODO wtbarnes [0/1][0%] :author:
 - author :: Will Barnes
-*** TODO python-hissw [1/4][25%] :p1:
+*** TODO python-hissw [2/4][50%] :p4:
 - https://github.com/wtbarnes/hissw
 - synopsis :: Lightweight implementain of SolarSoftware stack.
-- [X] :packed <2022-12-20 Tue>
+- [X] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs
+- [X] :inputs [4/4]
+  - [X] python-astropy
+  - [X] python-jinja2
+  - [X] python-pytest
+  - [X] python-scipy
 ** TODO XEphem [0/4][0%] :author:
 - http://www.clearskyinstitute.com/xephem/
 - synopsis ::
@@ -3916,26 +3932,46 @@ CLOSED: [2024-06-06 Thu 14:05]
 ** TODO updates-2024-06 :p1:
 - date-time :: 20240606T142012+0100
 - commit ::
-- issues ::
-- [ ] quick [0/18][0%]
-  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
-  - [ ] cfitsio :: would be upgraded from 4.4.0 to 3100
-  - [ ] ginga-qt5 :: would be upgraded from 5.0.1 to 5.1.0
-  - [ ] gpredict :: would be upgraded from 2.2.1 to 2.3
-  - [ ] indi :: would be upgraded from 2.0.7 to 2.0.88
-  - [ ] python-astropy-iers-data :: would be upgraded from 0.2024.5.13.0.30.12 to 0.2024.6.3.0.31.14
-  - [ ] python-dust-extinction :: would be upgraded from 1.4 to 1.4.1
-  - [ ] python-ginga :: would be upgraded from 5.0.1 to 5.1.0
-  - [ ] python-ndcube :: would be upgraded from 2.2.0 to 2.2.1
-  - [ ] python-photutils :: would be upgraded from 1.12 to 1.12.0
-  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4
-  - [ ] python-pynbody :: would be upgraded from 1.6.0 to 1.6.0.post0
-  - [ ] python-pyvo :: would be upgraded from 1.5.1 to 1.5.2
-  - [ ] python-stcal :: would be upgraded from 1.7.0 to 1.7.1
-  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2
-  - [ ] python-stsci-image :: would be upgraded from 2.3.7 to 2.3.8
-  - [ ] python-stsci-stimage :: would be upgraded from 0.2.8 to 0.2.9
-  - [ ] python-yt-astro-analysis :: new package
+- issues :: https://issues.guix.gnu.org/71702
+- [X] quick [26/26][100%]
+  - [X] indi :: would be upgraded from 2.0.7 to 2.0.8
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.5.13.0.30.12 to 0.2024.6.17.0.31.35
+  - [X] python-astropy :: would be upgraded from 6.1.0 to 6.1.1
+  - [X] python-corner :: new package
+  - [X] python-crds :: would be upgraded from 11.17.22 to 11.17.25
+  - [X] python-drizzle :: would be upgraded from 1.15.1 to 1.15.2
+  - [X] python-dust-extinction :: would be upgraded from 1.4 to 1.4.1
+  - [X] python-fitsio :: would be upgraded from 1.2.1 to 1.2.4
+  - [X] python-ginga :: would be upgraded from 5.0.1 to 5.1.0
+  - [X] python-jwst-reffiles :: new package
+  - [X] python-naima :: new package
+  - [X] python-ndcube :: would be upgraded from 2.2.0 to 2.2.2
+  - [X] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4
+  - [X] python-pyvo :: would be upgraded from 1.5.1 to 1.5.2
+  - [X] python-regularizepsf :: new package
+  - [X] python-skyfield :: would be upgraded from 1.48 to 1.49
+  - [X] python-spherical-geometry :: would be upgraded from 1.3.1 to 1.3.2
+  - [X] python-statmorph :: new package
+  - [X] python-statmorph :: new package
+  - [X] python-stcal :: would be upgraded from 1.7.0 to 1.7.1
+  - [X] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2
+  - [X] python-stsci-imagestats :: would be upgraded from 1.8.2 to 1.8.3
+  - [X] python-stsci-image :: would be upgraded from 2.3.7 to 2.3.9
+  - [X] python-sunpy :: would be upgraded from 5.1.3 to 5.1.4
+  - [X] python-yt-astro-analysis :: new package
+  - [X] siril :: would be upgraded from 1.2.1 to 1.2.3
+- [ ] complex [0/3][0%]
+  - [ ] python-stsci-stimage :: would be upgraded from 0.2.8 to 0.2.9; File
+    "/gnu/store/hd1nddp02f06f6ly1g3pjmskba90svlv-python-tweakwcs-0.8.7/lib/python3.10/site-packages/tweakwcs/matchutils.py",
+    line 18, in <module> from stsci.stimage import xyxymatch
+  - [ ] python-calceph :: new package
+  - [ ] python-stcal :: would be upgraded from 1.7.1 to 1.7.2
+    src/stcal/ramp_fitting/src/slope_fitter.c:3489:39: error: ‘NPY_NTYPES_LEGACY’ undeclared (first use in this function)
+  3489 | printf("NPY_NTYPES_LEGACY = %d\n",NPY_NTYPES_LEGACY);
+- [ ] issues [0/2][0%]
+  - [ ] https://github.com/spacetelescope/stsci.stimage/issues/38
+  - [ ] https://github.com/sunpy/ndcube/issues/733
+
 
 * Coverage
 | project                            |            guix | debian-astro | kernel | astropy-affiliated | stsci-astroconda |
@@ -4004,7 +4040,6 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-appdirs                     |                 |              |        |                    |            1.4.0 |
 | python-aprio                       |                 |              |        |                    |            1.0.1 |
 | python-asdf                        |                 |              |        |                    |                  |
-| python-asdf                        |                 |              |        |                    |                  |
 | python-asdf                        |                 |              |        |                    |            2.8.1 |
 | python-asdf-astropy                |                 |              |        |                    |                  |
 | python-asdf-standard               |                 |              |        |                    |                  |
@@ -4016,7 +4051,9 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-astroimtools                |                 |              |        |                    |              0.3 |
 | python-astrolib.coords             |                 |              |        |                    |           0.39.6 |
 | python-astroml                     |                 |              |        |                    |                  |
+| python-astroplan                   |                 |              |        |                    |                  |
 | python-astropy                     |             5.1 |              |        |                    |                  |
+| python-astropy                     |                 |              |        |                    |                  |
 | python-astropy-healpix             |                 |              |        |                    |                  |
 | python-astropy-healpix             |                 |              |        |                    |            0.3.1 |
 | python-astroquery                  |                 |              |        |                    |                  |
@@ -4025,15 +4062,17 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-astroscrappy                |                 |              |        |                    |            1.0.5 |
 | python-asv                         |                 |              |        |                    |            0.1.1 |
 | python-atlas-generic               |                 |              |        |                    |           3.10.2 |
+| python-baseband                    |                 |              |        |                    |                  |
 | python-bayesicfitting              |                 |              |        |                    |                  |
 | python-calcos                      |                 |              |        |                    |           3.3.10 |
-| python-casa-formats-io             |                 |              |        |                    |                  |
 | python-casacore                    |                 |              | X      |                    |                  |
-| python-ccdproc                     |                 |              |        |                    |                  |
-| python-ccdproc                     |                 |              |        |                    |      1.3.0.post1 |
+| python-casa-formats-io             |                 |              |        |                    |                  |
+| python-ccdproc                     |   2.4.2         |              |        |                    |      1.3.0.post1 |
 | python-cdflib                      |                 |              |        |                    |                  |
 | python-cfitsio                     |                 |              |        |                    |            3.470 |
 | python-ci-watson                   |                 |              |        |                    |            0.6.1 |
+| python-cluster-lensing             |                 |              |        |                    |                  |
+| python-corral-pipeline             |                 |              |        |                    |                  |
 | python-costools                    |                 |              |        |                    |            1.2.3 |
 | python-crds                        |        11.17.14 |              |        |                    |          10.3.11 |
 | python-cube-tools                  |                 |              |        |                    |            0.0.1 |
@@ -4051,28 +4090,42 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-drms                        |           0.7.1 |              |        |                    |                  |
 | python-ds9                         |                 |              |        |                    |              8.1 |
 | python-dust-extinction             |                 |              |        |                    |              0.7 |
+| python-dust_extinction             |                 |              |        |                    |                  |
+| python-einsteinpy                  |                 |              |        |                    |                  |
 | python-ephem                       |                 |              |        |                    |                  |
 | python-extension-helpers           |                 |              |        |                    |              0.1 |
+| python-feets                       |                 |              |        |                    |                  |
 | python-fftw                        |                 |              |        |                    |            3.3.4 |
 | python-fitsblender                 |                 |              |        |                    |            0.3.6 |
 | python-fitsio                      |                 |              |        |                    |                  |
 | python-fitsverify                  |                 |              |        |                    |             4.18 |
+| python-gala                        |                 |              |        |                    |                  |
+| python-galpy                       |                 |              |        |                    |                  |
+| python-gammapy                     |                 |              |        |                    |                  |
 | python-gatspy                      |                 |              |        |                    |                  |
 | python-gemini                      |                 |              |        |                    |              2.0 |
 | python-gemini-calmgr               |                 |              |        |                    |           0.9.12 |
 | python-ginga                       |           4.1.1 |              |        |                    |            3.2.0 |
+| python-ginga                       |                 |              |        |                    |                  |
 | python-glue-core                   |                 |              |        |                    |           0.12.0 |
 | python-glue-ginga                  |                 |              |        |                    |              0.2 |
 | python-glue-vispy-viewers          |                 |              |        |                    |              0.9 |
 | python-glueviz                     |                 |              |        |                    |           0.12.0 |
+| python-glueviz                     |                 |              |        |                    |                  |
 | python-gwcs                        |          0.19.0 |              |        |                    |           0.16.1 |
+| python-gwcs                        |                 |              |        |                    |                  |
+| python-halotools                   |                 |              |        |                    |                  |
 | python-hdf5                        |                 |              |        |                    |           1.12.0 |
+| python-hendrics                    |                 |              |        |                    |                  |
+| python-hips                        |                 |              |        |                    |                  |
 | python-hstaxe                      |                 |              |        |                    |            1.0.0 |
 | python-hstcal                      |                 |              |        |                    |            2.7.1 |
 | python-htc-utils                   |                 |              |        |                    |            0.1.0 |
 | python-hvpy                        |                 |              |        |                    |                  |
 | python-imexam                      |                 |              |        |                    |            0.9.1 |
+| python-imexam                      |                 |              |        |                    |                  |
 | python-iraf                        |                 |              |        |                    |        2.16.UR.1 |
+| python-iraf.adccdrom               |                 |              |        |                    |       2013-01-02 |
 | python-iraf-all                    |                 |              |        |                    |              1.0 |
 | python-iraf-axe                    |                 |              |        |                    |            2.6.2 |
 | python-iraf-cfh12k                 |                 |              |        |                    |       2013-01-02 |
@@ -4102,7 +4155,6 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-iraf-x11                    |                 |              |        |                    |              2.0 |
 | python-iraf-xdimsum                |                 |              |        |                    |       2010-11-18 |
 | python-iraf-xray                   |                 |              |        |                    |          2.5.y2k |
-| python-iraf.adccdrom               |                 |              |        |                    |       2013-01-02 |
 | python-jdat-notebooks              |                 |              |        |                    |            0.4.0 |
 | python-jplephem                    |            2.20 |              |        |                    |              2.9 |
 | python-jwst                        |                 |              |        |                    |                  |
@@ -4111,9 +4163,17 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-jwst-gtvt                   |                 |              |        |                    |            0.1.0 |
 | python-jwst-visit-parser           |                 |              |        |                    |            0.1.2 |
 | python-jwxml                       |                 |              |        |                    |            0.3.0 |
+| python-kanon                       |                 |              |        |                    |                  |
+| python-lenstronomy                 |                 |              |        |                    |                  |
+| python-ligo.skymap                 |                 |              |        |                    |                  |
+| python-linetools                   |                 |              |        |                    |                  |
+| python-marxs                       |                 |              |        |                    |                  |
+| python-mocpy                       |                 |              |        |                    |                  |
 | python-mosviz                      |                 |              |        |                    |            0.3.0 |
 | python-mpl-animators               |                 |              |        |                    |                  |
+| python-naima                       |                 |              |        |                    |                  |
 | python-nictools                    |                 |              |        |                    |            1.1.5 |
+| python-omnifit                     |                 |              |        |                    |                  |
 | python-opuscoords                  |                 |              |        |                    |            1.0.2 |
 | python-pandokia                    |                 |              |        |                    |            2.4.1 |
 | python-parsley                     |                 |              |        |                    |              1.3 |
@@ -4123,11 +4183,13 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-poppy                       |                 |              |        |                    |                  |
 | python-poppy                       |                 |              |        |                    |            1.0.2 |
 | python-purge-path                  |                 |              |        |                    |            1.2.0 |
-| python-py-expression-eval          |                 |              |        |                    |            0.3.4 |
 | python-pyavm                       |                 |              |        |                    |                  |
+| python-pycbc                       |                 |              |        |                    |                  |
+| python-pydl                        |                 |              |        |                    |                  |
 | python-pydrizzle                   |                 |              |        |                    |            6.4.4 |
 | python-pyds9                       |                 |              |        |                    |   1.9.0.dev185+g |
 | python-pyerfa                      |                 |              |        |                    |                  |
+| python-py-expression-eval          |                 |              |        |                    |            0.3.4 |
 | python-pyfftw                      |                 |              |        |                    |            0.9.2 |
 | python-pyfu                        |                 |              |        |                    |             0.10 |
 | python-pynbody                     |                 |              |        |                    |                  |
@@ -4142,22 +4204,28 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-pyraf-all                   |                 |              |        |                    |              1.0 |
 | python-pyraf.kepler                |                 |              |        |                    |            2.6.3 |
 | python-pyregion                    |                 |              |        |                    |              2.0 |
+| python-pyregion                    |                 |              |        |                    |                  |
 | python-pysiaf                      |                 |              |        |                    |           0.15.0 |
+| python-pyspeckit                   |                 |              |        |                    |                  |
 | python-pysynphot                   |                 |              |        |                    |                  |
 | python-pysynphot                   |                 |              |        |                    |            2.0.0 |
 | python-python-daemon               |                 |              |        |                    |            2.0.5 |
 | python-pytools                     |                 |              |        |                    |           2016.1 |
 | python-pyvo                        |             1.5 |        1.4.2 |        |                    |                  |
+| python-pyvo                        |                 |              |        |                    |                  |
 | python-pywcs                       |                 |              |        |                    |           1.12.1 |
 | python-rad                         |                 |              |        |                    |                  |
 | python-radio-beam                  |                 |              |        |                    |              0.2 |
 | python-recon                       |                 |              |        |                    |            1.0.2 |
 | python-reftools                    |                 |              |        |                    |            2.1.0 |
 | python-regions                     |                 |              |        |                    |                  |
+| python-regularizepsf               |                 |              |        |                    |                  |
 | python-relic                       |                 |              |        |                    |            1.1.2 |
 | python-reproject                   |                 |              |        |                    |                  |
 | python-reproject                   |                 |              |        |                    |              0.4 |
 | python-roman-datamodels            |                 |              |        |                    |                  |
+| python-saba                        |                 |              |        |                    |                  |
+| python-sbpy                        |                 |              |        |                    |                  |
 | python-selenium                    |                 |              |        |                    |           2.49.2 |
 | python-semantic-version            |                 |              |        |                    |            2.8.4 |
 | python-sep                         |                 |              |        |                    |                  |
@@ -4165,20 +4233,25 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-sgp4                        |                 |              |        |                    |                  |
 | python-shunit2                     |                 |              |        |                    |            2.0.3 |
 | python-skyfield                    |                 |              |        |                    |                  |
+| python-sncosmo                     |                 |              |        |                    |                  |
+| python-specreduce                  |                 |              |        |                    |                  |
 | python-spectral-cube               |                 |              |        |                    |                  |
 | python-spectral-cube               |                 |              |        |                    |            0.4.4 |
 | python-specutils                   |                 |              |        |                    |              1.3 |
+| python-specutils                   |                 |              |        |                    |                  |
 | python-specview                    |                 |              |        |                    |              0.1 |
 | python-specviz                     |                 |              |        |                    |            0.7.0 |
 | python-sphere                      |                 |              |        |                    |           1.0.10 |
 | python-spherical-geometry          |                 |              |        |                    |                  |
 | python-spherical-geometry          |                 |              |        |                    |           1.2.22 |
 | python-sphinx-automodapi           |                 |              |        |                    |             0.11 |
-| python-sphinx-rtd-theme            |                 |              |        |                    |            0.1.9 |
 | python-sphinxcontrib-programoutput |                 |              |        |                    |             0.11 |
+| python-sphinx-rtd-theme            |                 |              |        |                    |            0.1.9 |
+| python-statmorph                   |                 |              |        |                    |                  |
 | python-stcal                       |           1.5.2 |              |        |                    |                  |
 | python-stdatamodels                |                 |              |        |                    |                  |
 | python-stginga                     |                 |              |        |                    |            1.3.0 |
+| python-stingray                    |                 |              |        |                    |                  |
 | python-stistools                   |                 |              |        |                    |            1.3.0 |
 | python-stpipe                      |                 |              |        |                    |                  |
 | python-stregion                    |                 |              |        |                    |            1.1.6 |
@@ -4197,8 +4270,8 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-stsci-rtd-theme             |                 |              |        |                    |            0.0.1 |
 | python-stsci-skypac                |                 |              |        |                    |            1.0.8 |
 | python-stsci-sphere                |                 |              |        |                    |              0.2 |
-| python-stsci-sphinx-theme          |                 |              |        |                    |            0.1.0 |
 | python-stsci-sphinxext             |                 |              |        |                    |            1.2.2 |
+| python-stsci-sphinx-theme          |                 |              |        |                    |            0.1.0 |
 | python-stsci-stimage               |                 |              |        |                    |                  |
 | python-stsci-stimage               |                 |              |        |                    |            0.2.4 |
 | python-stsci-tools                 |                 |              |        |                    |            4.0.1 |
@@ -4219,6 +4292,7 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-wfpc2tools                  |                 |              |        |                    |            1.0.4 |
 | python-wiimatch                    |                 |              |        |                    |                  |
 | python-xpa                         |                 |              |        |                    |           2.1.18 |
+| python-zodipy                      |                 |              |        |                    |                  |
 | pyxis                              |                 |              | X      |                    |                  |
 | qfits                              |                 |              |        |                    |                  |
 | scabha                             |                 |              | X      |                    |                  |
@@ -4234,7 +4308,6 @@ CLOSED: [2024-06-06 Thu 14:05]
 | stuff                              |                 |              |        |                    |                  |
 | sunclock                           |                 |              |        |                    |                  |
 | swarp                              |                 |              |        |                    |                  |
-| swarp                              |                 |              |        |                    |                  |
 | tigger-lsm                         |                 |              | X      |                    |                  |
 | tirific                            |                 |              | X      |                    |                  |
 | tokenize-rt                        |                 |              | X      |                    |                  |
@@ -4243,66 +4316,8 @@ CLOSED: [2024-06-06 Thu 14:05]
 | wcslib                             |                 |              |        |                    |                  |
 | wcstools                           |                 |              |        |                    |                  |
 | weightwatcher                      |                 |              |        |                    |                  |
-| weightwatcher                      |                 |              |        |                    |                  |
 | wsclean                            |                 |              | X      |                    |                  |
 | xplanet                            |           1.3.1 |              |        |                    |                  |
-| python-agnpy                       |                 |              |        |                    |                  |
-| python-aplpy                       |                 |              |        |                    |                  |
-| python-asdf-astropy                |                 |              |        |                    |                  |
-| python-astroalign                  |                 |              |        |                    |                  |
-| python-astroml                     |                 |              |        |                    |                  |
-| python-astroplan                   |                 |              |        |                    |                  |
-| python-astropy                     |                 |              |        |                    |                  |
-| python-astropy-healpix             |                 |              |        |                    |                  |
-| python-astroquery                  |                 |              |        |                    |                  |
-| python-astroscrappy                |                 |              |        |                    |                  |
-| python-baseband                    |                 |              |        |                    |                  |
-| python-bayesicfitting              |                 |              |        |                    |                  |
-| python-ccdproc                     |                 |              |        |                    |                  |
-| python-cluster-lensing             |                 |              |        |                    |                  |
-| python-corral-pipeline             |                 |              |        |                    |                  |
-| python-dust_extinction             |                 |              |        |                    |                  |
-| python-einsteinpy                  |                 |              |        |                    |                  |
-| python-feets                       |                 |              |        |                    |                  |
-| python-gala                        |                 |              |        |                    |                  |
-| python-galpy                       |                 |              |        |                    |                  |
-| python-gammapy                     |                 |              |        |                    |                  |
-| python-ginga                       |                 |              |        |                    |                  |
-| python-glueviz                     |                 |              |        |                    |                  |
-| python-gwcs                        |                 |              |        |                    |                  |
-| python-halotools                   |                 |              |        |                    |                  |
-| python-hendrics                    |                 |              |        |                    |                  |
-| python-hips                        |                 |              |        |                    |                  |
-| python-imexam                      |                 |              |        |                    |                  |
-| python-kanon                       |                 |              |        |                    |                  |
-| python-lenstronomy                 |                 |              |        |                    |                  |
-| python-ligo.skymap                 |                 |              |        |                    |                  |
-| python-linetools                   |                 |              |        |                    |                  |
-| python-marxs                       |                 |              |        |                    |                  |
-| python-mocpy                       |                 |              |        |                    |                  |
-| python-naima                       |                 |              |        |                    |                  |
-| python-omnifit                     |                 |              |        |                    |                  |
-| python-photutils                   |                 |              |        |                    |                  |
-| python-poliastro                   |                 |              |        |                    |                  |
-| python-pycbc                       |                 |              |        |                    |                  |
-| python-pydl                        |                 |              |        |                    |                  |
-| python-pyregion                    |                 |              |        |                    |                  |
-| python-pyspeckit                   |                 |              |        |                    |                  |
-| python-pyvo                        |                 |              |        |                    |                  |
-| python-regions                     |                 |              |        |                    |                  |
-| python-regularizepsf               |                 |              |        |                    |                  |
-| python-reproject                   |                 |              |        |                    |                  |
-| python-saba                        |                 |              |        |                    |                  |
-| python-sbpy                        |                 |              |        |                    |                  |
-| python-sncosmo                     |                 |              |        |                    |                  |
-| python-specreduce                  |                 |              |        |                    |                  |
-| python-spectral-cube               |                 |              |        |                    |                  |
-| python-specutils                   |                 |              |        |                    |                  |
-| python-spherical-geometry          |                 |              |        |                    |                  |
-| python-statmorph                   |                 |              |        |                    |                  |
-| python-stingray                    |                 |              |        |                    |                  |
-| python-synphot                     |                 |              |        |                    |                  |
-| python-zodipy                      |                 |              |        |                    |                  |
 
 - debian-astro ::  Astronomical packages collection maintained by Debian Astro Team
   https://salsa.debian.org/debian-astro-team

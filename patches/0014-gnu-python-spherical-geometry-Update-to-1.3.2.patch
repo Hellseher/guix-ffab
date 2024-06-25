@@ -1,0 +1,40 @@
+From 547622c7c8f633b3e54d27acfb91049bb5272208 Mon Sep 17 00:00:00 2001
+Message-ID: <547622c7c8f633b3e54d27acfb91049bb5272208.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Jun 2024 09:54:28 +0100
+Subject: [PATCH 14/30] gnu: python-spherical-geometry: Update to 1.3.2.
+
+* gnu/packages/astronomy.scm (python-spherical-geometry): Update to 1.3.2.
+
+Change-Id: Iabce4c4ab105dcc379a500a3c50a27c48065c35c
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ca97704d5e..2bae2c6739 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3176,7 +3176,7 @@ (define-public python-specutils
+ (define-public python-spherical-geometry
+   (package
+     (name "python-spherical-geometry")
+-    (version "1.3.1")
++    (version "1.3.2")
+     (source
+      (origin
+        (method git-fetch)
+@@ -3185,7 +3185,7 @@ (define-public python-spherical-geometry
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "172f81h42jq6mv3gpx497z2nkhkx11w4pzmcqljcicri2zqj1m6g"))))
++        (base32 "0znzfy3bmnsncvahf8qdav0c9403fn99d1gp25lainhv7kxfk44c"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

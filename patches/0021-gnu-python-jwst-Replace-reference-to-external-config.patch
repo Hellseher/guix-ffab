@@ -1,0 +1,42 @@
+From 073a637c6db0a696d876bcc838372c91a724878b Mon Sep 17 00:00:00 2001
+Message-ID: <073a637c6db0a696d876bcc838372c91a724878b.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 13 Jun 2024 14:14:31 +0100
+Subject: [PATCH 21/30] gnu: python-jwst: Replace reference to external
+ configobj.
+
+* gnu/packages/astronomy.scm (python-jwst) [source]: Replace reference
+to external configobj.
+
+Change-Id: Id539446c16a16c5ff86f1518cbc0080bdefc85b5
+---
+ gnu/packages/astronomy.scm | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 394b043596..9bdc19a17e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4047,7 +4047,16 @@ (define-public python-jwst
+               (uri (pypi-uri "jwst" version))
+               (sha256
+                (base32
+-                "0knl2x0z3djsln8mi3a4bkxjz49iwmnr1v6wwsk13zvpkfq21vv4"))))
++                "0knl2x0z3djsln8mi3a4bkxjz49iwmnr1v6wwsk13zvpkfq21vv4"))
++              (modules '((guix build utils)))
++              (snippet
++               '(begin
++                  ;; Replace reference to external configobj.
++                  (substitute* (find-files "." "\\.py$")
++                    (("from astropy.extern import configobj") "import configobj")
++                    (("from astropy.extern.configobj import validate") "import validate")
++                    (("from astropy.extern.configobj.configobj import ") "from configobj import ")
++                    (("from astropy.extern.configobj.validate import ") "from validate import "))))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

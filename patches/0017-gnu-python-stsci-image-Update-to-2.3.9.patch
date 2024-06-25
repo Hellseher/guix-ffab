@@ -1,0 +1,38 @@
+From e60ae04a4485839bad340cf65f2a1bcf7d68504f Mon Sep 17 00:00:00 2001
+Message-ID: <e60ae04a4485839bad340cf65f2a1bcf7d68504f.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 13 Jun 2024 14:40:43 +0100
+Subject: [PATCH 17/30] gnu: python-stsci-image: Update to 2.3.9.
+
+* gnu/packages/astronomy.scm (python-stsci-image): Update to 2.3.9.
+
+Change-Id: Ie2b568859a93e16401414e77498034f7c8e90d89
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 625ffe6a55..ebad2b7e05 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3227,13 +3227,13 @@ (define-public python-spherical-geometry
+ (define-public python-stsci-image
+   (package
+     (name "python-stsci-image")
+-    (version "2.3.7")
++    (version "2.3.9")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stsci_image" version))
+        (sha256
+-        (base32 "13sbych5929isrick2035rk31qcb1icm2l6pz7pjqsi45hsffxxm"))))
++        (base32 "0w7s93jsz61ccbhj7irl28q4jgiwa7y9k8pfj24q8vc9zvs530pj"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

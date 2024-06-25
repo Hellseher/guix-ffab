@@ -1,0 +1,40 @@
+From 307ba8ec1f2c91e2a441113270c3d9922256c5ac Mon Sep 17 00:00:00 2001
+Message-ID: <307ba8ec1f2c91e2a441113270c3d9922256c5ac.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Jun 2024 10:17:25 +0100
+Subject: [PATCH 06/30] gnu: python-drizzle: Update to 1.15.2.
+
+* gnu/packages/astronomy.scm (python-drizzle): Update to 1.15.2.
+
+Change-Id: Ic63933d740056a16a9e514783c1e85090c0693b9
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 38215e59c4..1b4f403557 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2274,7 +2274,7 @@ (define-public python-drms
+ (define-public python-drizzle
+   (package
+     (name "python-drizzle")
+-    (version "1.15.1")
++    (version "1.15.2")
+     (source
+      (origin
+        (method git-fetch) ;PyPi doesn't have the test data sets
+@@ -2283,7 +2283,7 @@ (define-public python-drizzle
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "14l3d3bx73r7cxhcl1cfh1q088qh5wq5pz5fs9dx7w79kp8mp6pg"))))
++        (base32 "1fp6gcvp6nz4a2mmy9vjn5wwywldhkg8bjjgb4ldn0vpv9k4nv8q"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

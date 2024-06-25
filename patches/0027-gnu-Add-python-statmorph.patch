@@ -1,0 +1,56 @@
+From a013316353373083564990201c706abe5a6af194 Mon Sep 17 00:00:00 2001
+Message-ID: <a013316353373083564990201c706abe5a6af194.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 13 Jun 2024 11:49:32 +0100
+Subject: [PATCH 27/30] gnu: Add python-statmorph.
+
+* gnu/packages/astronomy.scm (python-statmorph): New variable.
+
+Change-Id: Ie1d71e17f46bdb85c7c109f25b55bbb3b72af08c
+---
+ gnu/packages/astronomy.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4e8ebc3830..7dbb95f788 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3304,6 +3304,33 @@ (define-public python-spherical-geometry
+     ;; QD_LIBRARY_LICENSE.rst for bandeled QD source
+     (license license:bsd-3)))
+ 
++(define-public python-statmorph
++  (package
++    (name "python-statmorph")
++    (version "0.5.7")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "statmorph" version))
++       (sha256
++        (base32 "06rbwrqlvdzn9innx05kjjmm4mmacd8kwwsfdf5idbwzby5ny5lw"))))
++    (build-system pyproject-build-system)
++    (propagated-inputs
++     (list python-astropy
++           python-numpy
++           python-photutils
++           python-scikit-image
++           python-scipy))
++    (native-inputs
++     (list python-pytest))
++    (home-page "https://github.com/vrodgom/statmorph")
++    (synopsis "Non-parametric morphological diagnostics of galaxy images")
++    (description
++     "The package @code{statmorph} implements functionality of calculating
++non-parametric morphological diagnostics of galaxy images (e.g., Gini-M_{20}
++and CAS statistics), as well as fitting 2D Sérsic profiles.")
++    (license license:bsd-3)))
++
+ (define-public python-stsci-image
+   (package
+     (name "python-stsci-image")
+-- 
+2.41.0
+

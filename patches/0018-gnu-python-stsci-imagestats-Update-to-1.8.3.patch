@@ -1,0 +1,31 @@
+From 9103a556fb5413be147cc6228095974f8c8d26de Mon Sep 17 00:00:00 2001
+Message-ID: <9103a556fb5413be147cc6228095974f8c8d26de.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Jun 2024 10:01:15 +0100
+Subject: [PATCH 18/30] gnu: python-stsci-imagestats: Update to 1.8.3.
+
+* gnu/packages/astronomy.scm (python-stsci-imagestats): Update to 1.8.3.
+
+Change-Id: Ice324f258efea8871db04596d4d980be0faa7fc2
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ebad2b7e05..1ea0c8ce7c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3255,7 +3255,7 @@ (define-public python-stsci-image
+ (define-public python-stsci-imagestats
+   (package
+     (name "python-stsci-imagestats")
+-    (version "1.8.2")
++    (version "1.8.3")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stsci.imagestats" version))
+-- 
+2.41.0
+

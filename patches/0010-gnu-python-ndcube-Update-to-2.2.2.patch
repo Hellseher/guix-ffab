@@ -1,0 +1,50 @@
+From a6604f006448a968b2fa178279b819ff3cb69fdb Mon Sep 17 00:00:00 2001
+Message-ID: <a6604f006448a968b2fa178279b819ff3cb69fdb.1718966788.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1718966788.git.sharlatanus@gmail.com>
+References: <cover.1718966788.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 13 Jun 2024 10:20:37 +0100
+Subject: [PATCH 10/30] gnu: python-ndcube: Update to 2.2.2.
+
+* gnu/packages/astronomy.scm (python-ndcube): Update to 2.2.2.
+
+Change-Id: Ie7c31312e4b5cc6087d17e9572bf202abd13fc50
+---
+ gnu/packages/astronomy.scm | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 38ebfe23fb..26bc443132 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2410,18 +2410,25 @@ (define-public python-mpl-animators
+ (define-public python-ndcube
+   (package
+     (name "python-ndcube")
+-    (version "2.2.0")
++    (version "2.2.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ndcube" version))
+        (sha256
+-        (base32 "1b3vbnm438j5jb48vilp145lq137fbrg1l4845rc55mz2p025x34"))))
++        (base32 "0d82xldinvjw4csql4w3k44ibprbz0b0g5ixq9a5f6c7zbvfc24l"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      ;; Break cycle: python-ndcube -> python-specutils -> python-ndcube, see
++      ;; <https://github.com/sunpy/ndcube/issues/733>.
++      #:test-flags #~(list "-k" "not test_rebin_specutils")
+       #:phases
+       #~(modify-phases %standard-phases
++          (add-after 'unpack 'break-cycle
++            (lambda _
++              (substitute* "ndcube/tests/test_ndcube.py"
++                (("from specutils import Spectrum1D") ""))))
+           (add-before 'check 'set-home-env
+             (lambda _
+               ;; Tests require HOME to be set.
+-- 
+2.41.0
+
