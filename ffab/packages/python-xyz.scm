@@ -23,11 +23,10 @@
   #:use-module (gnu packages astronomy)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
-  #:use-module (gnu packages fontutils)
   #:use-module (gnu packages commencement)
-  #:use-module (gnu packages xiph)
   #:use-module (gnu packages compression)
   #:use-module (gnu packages databases)
+  #:use-module (gnu packages fontutils)
   #:use-module (gnu packages freedesktop)
   #:use-module (gnu packages gcc)
   #:use-module (gnu packages geo)
@@ -42,12 +41,14 @@
   #:use-module (gnu packages python-science)
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
+  #:use-module (gnu packages qt)
   #:use-module (gnu packages serialization)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages statistics)
   #:use-module (gnu packages time)
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages video)
+  #:use-module (gnu packages xiph)
   #:use-module (gnu packages xml)
   #:use-module (gnu packages)
   #:use-module (guix build-system python)
@@ -412,6 +413,75 @@ EDU SDK.
     (description
      "This package provides a Python module Py3AMF which is a fork of PyAMF
 with support of Python v3+.")
+    (license license:expat)))
+
+;; 20240606T223134+0100
+(define python-pytplot
+  (package
+    (name "python-pytplot")
+    (version "1.7.28")
+    ;; pytplot source is dated and released under other name in PyPI, both
+    ;; lead to the same GitHub homepage:
+    ;; <https://pypi.org/project/pytplot-mpl-temp>
+    ;; <https://pypi.org/project/pytplot>
+    (source
+     (origin
+       (method git-fetch) ;no tests in PyPi archive
+       (uri (git-reference
+             (url "https://github.com/MAVENSDC/pytplot")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1ip1l5l68wf5iq0vrqmniy590v2bdrrrz3lcs9s8k4qwns45pzxl"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      #~(list
+         ;; E TypeError: 'CDFInfo' object is not subscriptable
+         "-k" (string-append "not test_cdf_euv_read"
+                        " and not test_cdf_swe_read"
+                        " and not test_qt_import"
+                        " and not test_math"))))
+    (propagated-inputs
+     (list python-cdflib
+           python-bokeh
+           python-dateutil
+           python-matplotlib
+           python-netcdf4
+           python-numpy
+           python-pandas
+           python-pyqt
+           ;; python-pyqtwebengine ; not packed, depens on Qt WebEngine
+           python-scipy
+           python-xarray))
+    (native-inputs
+     (list python-astropy
+           python-mypy
+           python-pytest
+           python-pytest-cov))
+    (home-page "https://github.com/MAVENSDC/pytplot")
+    (synopsis "Implementation of IDL tplot libraries in Python")
+    (description
+     "Pytplot is an effort by the Laboratory for Atmospheric and Space Physics to
+replicate the functionality IDL tplot library. It is a tool for manipulating,
+analyzing, and plotting time series data. Primarily, it is focused on handling
+lines and spectrograms from satellite data. It can plot using either Qt via
+pytqtgraph, or using HTML files via Bokeh.
+Featues:
+
+@itemize
+@item reads in data from a variety of sources (including netCDF and CDF file
+readers)
+@item stores data in a common format, alongside all of its metadata and plot
+options
+@item plots the data in a stacked time series plot with time as the common axis
+@item easily add new axes
+@item provides a list of simple commands to modify the plots (line styles,
+colors, etc), or overplot two different variables
+@item provides time series data analysis/manipulation routines
+@item provides tools to enable mouse interactions with other python routines
+@end itemize")
     (license license:expat)))
 
 ;; 20231011T015829+0100
