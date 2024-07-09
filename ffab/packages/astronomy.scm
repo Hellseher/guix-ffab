@@ -34,7 +34,6 @@
   #:use-module (gnu packages check)
   #:use-module (gnu packages cmake)
   #:use-module (gnu packages compression)
-  #:use-module (gnu packages shells)
   #:use-module (gnu packages curl)
   #:use-module (gnu packages databases)
   #:use-module (gnu packages documentation)
@@ -77,6 +76,7 @@
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages qt)
   #:use-module (gnu packages readline)
+  #:use-module (gnu packages shells)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages sqlite)
   #:use-module (gnu packages swig)
@@ -87,6 +87,7 @@
   #:use-module (gnu packages version-control)
   #:use-module (gnu packages wxwidgets)
   #:use-module (gnu packages xml)
+  #:use-module (gnu packages xorg)
   #:use-module (guix build utils)
   #:use-module (guix build-system cmake)
   #:use-module (guix build-system copy)
@@ -874,6 +875,43 @@ planetarium.")
 ;; (define-public python-sep
 ;; added-to-downstream-guix d1bd22b9fb17e94931b7ebe23c6d9735b195442a
 ;; CommitDate: Fri Feb 19 11:05:33 2021 +0100
+
+;; 20240709T221729+0100
+(define-public python-echo
+  (package
+    (name "python-echo")
+    (version "0.8.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "echo" version))
+       (sha256
+        (base32 "1hr2kgjmf5gcjbg1mry03ca1dayfwy8mi8as42jfg0apsa3bfvvj"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'start-xorg-server
+            (lambda _
+              ;; The test suite requires a running X server.
+              (system "Xvfb :99 -screen 0 1024x768x24 &")
+              (setenv "DISPLAY" ":99.0"))))))
+    (propagated-inputs
+     (list python-numpy
+           python-qtpy
+           python-pyqt-6))
+    (native-inputs
+     (list python-pytest
+           python-pytest-cov
+           python-setuptools-scm
+           xorg-server-for-tests))
+    (home-page "https://github.com/glue-viz/echo")
+    (synopsis "Callback Properties in Python")
+    (description
+     "Echo is a small library for attaching callback functions to property
+state changes.")
+    (license license:expat)))
 
 ;; 20230829T212256+0100
 (define-public python-extinction
