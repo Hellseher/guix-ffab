@@ -2374,3 +2374,39 @@ complexeties.")
      "This package provides helpers such as map, find, contains and filter, it's an
 alternative implementation of standard @code{reflect} module.")
     (license license:expat)))
+
+;; 20240723T112554+0100
+(define-public go-github-com-samber-lo
+  (package
+    (name "go-github-com-samber-lo")
+    (version "1.46.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/samber/lo")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0m01f3vhi3isyn9wj7av7vi7a4szvd1pss7cy3npk1zag0xa5z36"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/samber/lo"
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; XXX: Workaround for go-build-system's lack of Go modules
+          ;; support.
+          (replace 'check
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (when tests?
+                (with-directory-excursion (string-append "src/" import-path)
+                  (invoke "go" "test" "-v" "./..."))))))))
+    (propagated-inputs
+     (list go-golang-org-x-text))
+    (home-page "https://github.com/samber/lo")
+    (synopsis "Lodash-style Golang library")
+    (description
+     "This package provides re-implemented Golang Generics map, filter, contains, find
+functionality.")
+    (license license:expat)))
