@@ -2434,3 +2434,34 @@ functionality.")
     (description
      "This package implements a doubly linked list based on @code{container/list}.")
     (license license:bsd-3)))
+
+;; 20240723T142942+0100
+(define-public go-github-com-buger-jsonparser
+  (package
+    (name "go-github-com-buger-jsonparser")
+    (version "1.1.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/buger/jsonparser")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0qv2lsh2biwxn927941gqiv5pqg7n4v58j0i536pjp7pr17pq7dp"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/buger/jsonparser"
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'remove-benchmarks
+            (lambda* (#:key import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (delete-file-recursively "benchmark")))))))
+    (home-page "https://github.com/buger/jsonparser")
+    (synopsis "Alternative JSON parser for Golang")
+    (description
+     "This package provides an alternative implementation of standard
+@code{encoding/json} with higher performance.")
+    (license license:expat)))
