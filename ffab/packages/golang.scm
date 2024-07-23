@@ -2465,3 +2465,44 @@ functionality.")
      "This package provides an alternative implementation of standard
 @code{encoding/json} with higher performance.")
     (license license:expat)))
+
+;; 20240723T150420+0100
+(define-public go-github-com-mailru-easyjson
+  (package
+    (name "go-github-com-mailru-easyjson")
+    (version "0.7.7")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mailru/easyjson")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0clifkvvy8f45rv3cdyv58dglzagyvfcqb63wl6rij30c5j2pzc1"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/mailru/easyjson"
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'remove-benchmarks-and-tests
+            (lambda* (#:key import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (delete-file-recursively "benchmark")
+                (delete-file-recursively "tests"))))
+          ;; XXX: Workaround for go-build-system's lack of Go modules
+          ;; support.
+          (replace 'check
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (when tests?
+                (with-directory-excursion (string-append "src/" import-path)
+                  (invoke "go" "test" "-v" "./..."))))))))
+    (propagated-inputs
+     (list go-github-com-josharian-intern))
+    (home-page "https://github.com/mailru/easyjson")
+    (synopsis "Fast JSON serializer for golang")
+    (description
+     "Package easyjson provides a fast and easy way to marshal/unmarshal Go structs
+to/from JSON without the use of reflection.")
+    (license license:expat)))
