@@ -2506,3 +2506,50 @@ functionality.")
      "Package easyjson provides a fast and easy way to marshal/unmarshal Go structs
 to/from JSON without the use of reflection.")
     (license license:expat)))
+
+;; 20240723T151752+0100
+(define-public go-github-com-wk8-go-ordered-map-v2
+  (package
+    (name "go-github-com-wk8-go-ordered-map-v2")
+    (version "2.1.8")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/wk8/go-ordered-map")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0vzl2j6m9pz8ckikf9z2da9zxdbi7fwhcwq8rmzpmf34zl8cjn1g"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/wk8/go-ordered-map/v2"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (propagated-inputs
+     (list go-github-com-bahlo-generic-list-go
+           go-github-com-buger-jsonparser
+           go-github-com-mailru-easyjson
+           go-gopkg-in-yaml-v3))
+    (home-page "https://github.com/wk8/go-ordered-map")
+    (synopsis "Optimal implementation of ordered maps for Golang")
+    (description
+     "Package orderedmap implements an ordered map, i.e. a map that also keeps track
+of the order in which keys were inserted.
+
+It offers the following features:
+@itemize
+@item optimal runtime performance (all operations are constant time)
+@item optimal memory usage (only one copy of values, no unnecessary memory
+allocation)
+@item allows iterating from newest or oldest keys indifferently, without memory
+copy, allowing to break the iteration, and in time linear to the number of keys
+iterated over rather than the total length of the ordered map
+@item supports any generic types for both keys and values. If you're running go
+< 1.18, you can use version 1 that takes and returns generic interface{}s
+instead of using generics
+@item idiomatic API, akin to that of container/list
+@item support for JSON and YAML marshalling
+@end itemize")
+    (license license:asl2.0)))
