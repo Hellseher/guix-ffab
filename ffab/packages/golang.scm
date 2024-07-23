@@ -2410,3 +2410,27 @@ alternative implementation of standard @code{reflect} module.")
      "This package provides re-implemented Golang Generics map, filter, contains, find
 functionality.")
     (license license:expat)))
+
+;; 20240723T142257+0100
+(define-public go-github-com-bahlo-generic-list-go
+  (package
+    (name "go-github-com-bahlo-generic-list-go")
+    (version "0.2.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/bahlo/generic-list-go")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1nif01xg2y7ihhik65xkx74kszamgvz9ykknj81p71mmdv0fm304"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/bahlo/generic-list-go"))
+    (home-page "https://github.com/bahlo/generic-list-go")
+    (synopsis "Golang container/list but with generics")
+    (description
+     "This package implements a doubly linked list based on @code{container/list}.")
+    (license license:bsd-3)))
