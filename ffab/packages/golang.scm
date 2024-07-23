@@ -19,14 +19,14 @@
 (define-module (ffab packages golang)
   #:use-module (ffab packages golang-web)
   #:use-module (ffab packages protobuf)
-  #:use-module ((guix licenses)
-                #:prefix license:)
+  #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
   #:use-module (gnu packages golang)
   #:use-module (gnu packages golang-build)
   #:use-module (gnu packages golang-check)
   #:use-module (gnu packages golang-crypto)
+  #:use-module (gnu packages golang-xyz)
   #:use-module (gnu packages syncthing)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages version-control)
@@ -2347,3 +2347,30 @@ complexeties.")
     (description
      "TPM 2.0 library for directly communicating with a TPM device.")
     (license license:asl2.0)))
+
+;; 20240723T111432+0100
+(define-public go-github-com-thoas-go-funk
+  (package
+    (name "go-github-com-thoas-go-funk")
+    (version "0.9.3")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/thoas/go-funk")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1jq4q0pmn7h67yd9xbzvgs9vchqmzzi7axhrin4dsz2lxbzqhn2y"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/thoas/go-funk"))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/thoas/go-funk")
+    (synopsis "Various Golang utility library")
+    (description
+     "This package provides helpers such as map, find, contains and filter, it's an
+alternative implementation of standard @code{reflect} module.")
+    (license license:expat)))
