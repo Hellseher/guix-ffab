@@ -2553,3 +2553,41 @@ instead of using generics
 @item support for JSON and YAML marshalling
 @end itemize")
     (license license:asl2.0)))
+
+;; 20240724T094120+0100
+(define-public go-github-com-invopop-jsonschema
+  (package
+    (name "go-github-com-invopop-jsonschema")
+    (version "0.12.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/invopop/jsonschema")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0badhbc4k9pb01ag819r1014wzk3abcljnyky72rb96wbrhxb5iv"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/invopop/jsonschema"))
+      (native-inputs
+       (list go-github-com-stretchr-testify))
+      (propagated-inputs
+       (list go-github-com-wk8-go-ordered-map-v2))
+    (home-page "https://github.com/invopop/jsonschema")
+      (synopsis "Generate JSON Schemas from Go types")
+    (description
+     "Package jsonschema uses reflection to generate JSON Schemas from Go types.
+
+Features:
+@itemize
+@item supports arbitrarily complex types, including interface{}, maps, slices,
+etc.
+@item supports json-schema features such as minLength, maxLength, pattern,
+format, etc.
+@item supports simple string and numeric enums
+@item supports custom property fields via the jsonschema_extras struct tag
+@end itemize")
+    (license license:expat)))
