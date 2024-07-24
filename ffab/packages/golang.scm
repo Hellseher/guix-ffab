@@ -2591,3 +2591,39 @@ format, etc.
 @item supports custom property fields via the jsonschema_extras struct tag
 @end itemize")
     (license license:expat)))
+
+;; 20240723T153612+0100
+(define-public go-github-com-karimkhaleel-jsonschema
+  (let ((commit "44bdb914ed9cb9a7c1ee319bfad4e6725fc084e8")
+        (revision "0"))
+    (package
+      (inherit go-github-com-invopop-jsonschema)
+      (name "go-github-com-karimkhaleel-jsonschema")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/karimkhaleel/jsonschema")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0ywkc62504wacx9jnd95vf05qwsx4alhfg1v654w3k3ifkdcdzz4"))
+         (modules '((guix build utils)))
+         (snippet
+          #~(begin
+              ;; Module name has not been changed upstream after forking
+              ;; <github.com/invopop/jsonschema>.
+              (substitute* (find-files ".")
+                (("github.com/invopop/jsonschema")
+                 "github.com/karimkhaleel/jsonschema"))))))
+      (build-system go-build-system)
+      (arguments
+       (list
+        #:import-path "github.com/karimkhaleel/jsonschema"))
+      (home-page "https://github.com/karimkhaleel/jsonschema")
+      (description
+       (string-append (package-description go-github-com-invopop-jsonschema)
+                      "\nThis package is a modified clone of
+@url{github.com/invopop/jsonschema} for purpose of LazyGit project."))
+      (license license:expat))))
