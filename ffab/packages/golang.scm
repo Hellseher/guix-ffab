@@ -2754,3 +2754,41 @@ visiting of items in some particular ways:
      "This package provides helper methods/structs that involve generics which were
 added in Go 1.18.")
     (license license:expat)))
+
+;;20240724T112511+0100
+(define-public go-github-com-stefanhaller-git-todo-parser
+  (let ((commit "fd957137b6e23538ef395ac5a3d2c6a00e8b2da3")
+        (revision "0"))
+    (package
+      (inherit go-github-com-fsmiamoto-git-todo-parser)
+      (name "go-github-com-stefanhaller-git-todo-parser")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/stefanhaller/git-todo-parser")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "003256c3fkmlz6zmgzwnic284xb6vbnqf5sakjz13d38gz5mj3ax"))))
+      (build-system go-build-system)
+      (arguments
+       (list
+        #:import-path "github.com/stefanhaller/git-todo-parser"
+        #:phases
+        #~(modify-phases %standard-phases
+            ;; XXX: Workaround for go-build-system's lack of Go modules
+            ;; support.
+            (delete 'build)
+            (replace 'check
+              (lambda* (#:key tests? import-path #:allow-other-keys)
+                (when tests?
+                  (with-directory-excursion (string-append "src/" import-path)
+                    (invoke "go" "test" "-v" "./..."))))))))
+      (home-page "https://github.com/stefanhaller/git-todo-parser")
+      (description
+       (string-append (package-description go-github-com-fsmiamoto-git-todo-parser)
+                      "\nThis package is a modified clone of
+@url{https://github.com/fsmiamoto/git-todo-parser} for purpose of LazyGit project."))
+      (license license:expat))))
