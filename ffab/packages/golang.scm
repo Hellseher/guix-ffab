@@ -2638,3 +2638,44 @@ format, etc.
                       "\nThis package is a modified clone of
 @url{github.com/invopop/jsonschema} for purpose of LazyGit project."))
       (license license:expat))))
+
+;; 20240724T105548+0100
+(define-public go-gopkg-in-ozeidan-fuzzy-patricia-v3
+  (package
+    (name "go-gopkg-in-ozeidan-fuzzy-patricia-v3")
+    (version "3.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://gopkg.in/ozeidan/fuzzy-patricia.v3")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0wn6fq1g7f6djrj407r8nimm5fyp7lji22ng7a4rg8pf7ihrqzrp"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "gopkg.in/ozeidan/fuzzy-patricia.v3"
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; XXX: Workaround for go-build-system's lack of Go modules
+          ;; support.
+          (delete 'build)
+          (replace 'check
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (when tests?
+                (with-directory-excursion (string-append "src/" import-path)
+                  (invoke "go" "test" "-v" "./..."))))))))
+    (home-page "https://gopkg.in/ozeidan/fuzzy-patricia.v3")
+    (synopsis "Radix tree implementation for Golang")
+    (description
+     "This package provides a patricia trie implementation, enabling fast
+visiting of items in some particular ways:
+
+@itemize
+@item visit all items saved in the tree
+@item visit all items matching particular prefix (visit subtree)
+@item given a string, visit all items matching some prefix of that string
+@end itemize")
+    (license license:expat)))
