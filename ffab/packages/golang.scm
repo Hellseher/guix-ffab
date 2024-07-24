@@ -2722,3 +2722,35 @@ visiting of items in some particular ways:
     (description
      "This package provides a shared functionality for lazygit, lazydocker, etc.")
     (license license:expat)))
+
+;; 20240724T111303+0100
+(define-public go-github-com-jesseduffield-generics
+  (package
+    (name "go-github-com-jesseduffield-generics")
+    (version "0.0.0-20220320043834-727e535cbe68")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/generics")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "182wdkvc57lnwli8wpyykd1jyywnlq1m6vx8l7pi2wwjp0msq1wx"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      ;; XXX: Tests fail a lot: too many return values, check with upstream.
+      #:tests? #f
+      #:import-path "github.com/jesseduffield/generics"
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; XXX: Workaround for go-build-system's lack of Go modules support.
+          (delete 'build))))
+    (propagated-inputs `(("go-golang-org-x-exp" ,go-golang-org-x-exp)))
+    (home-page "https://github.com/jesseduffield/generics")
+    (synopsis "Extensions on the Golang Generics packages")
+    (description
+     "This package provides helper methods/structs that involve generics which were
+added in Go 1.18.")
+    (license license:expat)))
