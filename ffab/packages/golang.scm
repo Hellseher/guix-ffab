@@ -2679,3 +2679,46 @@ visiting of items in some particular ways:
 @item given a string, visit all items matching some prefix of that string
 @end itemize")
     (license license:expat)))
+
+;; 20240724T110414+0100
+(define-public go-github-com-jesseduffield-lazycore
+  (package
+    (name "go-github-com-jesseduffield-lazycore")
+    (version "0.0.0-20221023210126-718a4caea996")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/jesseduffield/lazycore")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "05x45q86yf033npddc4bk110j9p1l3qikgjilsqb4wjd3mxfrh52"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/jesseduffield/lazycore"
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'disable-failing-tests
+            (lambda* (#:key import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (substitute* (find-files "." "\\_test.go$")
+                  (("TestGetLazyRootDirectory") "OffTestGetLazyRootDirectory")))))
+          ;; XXX: Workaround for go-build-system's lack of Go modules
+          ;; support.
+          (delete 'build)
+          (replace 'check
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (when tests?
+                (with-directory-excursion (string-append "src/" import-path)
+                  (invoke "go" "test" "-v" "./..."))))))))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (propagated-inputs
+     (list go-github-com-samber-lo))
+    (home-page "https://github.com/jesseduffield/lazycore")
+    (synopsis "Shared functionality for lazygit projects")
+    (description
+     "This package provides a shared functionality for lazygit, lazydocker, etc.")
+    (license license:expat)))
