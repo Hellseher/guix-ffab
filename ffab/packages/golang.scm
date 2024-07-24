@@ -1377,24 +1377,35 @@ system's current language.")
 (define-public go-github-com-fsmiamoto-git-todo-parser
   (package
     (name "go-github-com-fsmiamoto-git-todo-parser")
-    (version "0.0.2")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/fsmiamoto/git-todo-parser")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0jm83d0id8igyifqdcn8rx331jhly8kk4zlh3xid66y39l3hlqwq"))))
+    (version "0.0.5")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/fsmiamoto/git-todo-parser")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0lmylpc2998nnxw7rppzadlkpj8g36h8k3wrfakaqb6kgw6svkgr"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/fsmiamoto/git-todo-parser/todo"
-       #:unpack-path "github.com/fsmiamoto/git-todo-parser"))
+     (list
+      #:import-path "github.com/fsmiamoto/git-todo-parser"
+      #:phases
+      #~(modify-phases %standard-phases
+          ;; XXX: Workaround for go-build-system's lack of Go modules
+          ;; support.
+          (delete 'build)
+          (replace 'check
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (when tests?
+                (with-directory-excursion (string-append "src/" import-path)
+                  (invoke "go" "test" "-v" "./..."))))))))
     (native-inputs (list go-github-com-stretchr-testify))
     (home-page "https://github.com/fsmiamoto/git-todo-parser")
     (synopsis "Small parser for git todo files")
-    (description "Small parser for git todo files.")
+    (description
+     "This package provides a small parser for git todo files.")
     (license license:public-domain)))
 
 ;; 20220803T200936+0100
