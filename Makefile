@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2024-06-06 Thu 16:43:29 BST>
+# Modified : <2024-07-30 Tue 15:32:49 BST>
 
 GET_PUBLIC := grep "define-public"
 FILTER_FLAVORS := | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
@@ -63,7 +63,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= 2b2337f275a6421a0d0964c54987df4ac74162e6
+GUIX_COMMIT ?= 2aa0127d4e3d2363c04caab88137b070b6cf1318
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD

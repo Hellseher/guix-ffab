@@ -1,0 +1,48 @@
+From f3324658cbacf36c37308ac00224621bfb373cc3 Mon Sep 17 00:00:00 2001
+Message-ID: <f3324658cbacf36c37308ac00224621bfb373cc3.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 23:12:54 +0100
+Subject: [PATCH 14/34] gnu: python-photutils: Update to 1.13.0.
+
+* gnu/packages/astronomy.scm (python-photutils): Update to 1.13.0.
+[native-inputs]: Remove python-cython; add python-cython-3.
+
+Change-Id: Id73418fc2324882055015fb2bb2664b00b38a1a3
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 73deeef890..da63bbc5d0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2499,13 +2499,13 @@ (define-public python-photutils
+     (name "python-photutils")
+     ;; PyPI version for source archive is missing minor 0, See
+     ;; <https://github.com/astropy/photutils/issues/1727>
+-    (version "1.12")
++    (version "1.13.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "photutils" version))
+        (sha256
+-        (base32 "0y4kcj6qjnzwjswc0c2iimh11b0jz6b9ianbh58w4gnb4y71lr6r"))))
++        (base32 "1lhpcxh2adknzlmrddqd712yzpwdlqlw9jn49ajj4kz5z7822dns"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2548,7 +2548,7 @@ (define-public python-photutils
+            python-shapely
+            python-tqdm))
+     (native-inputs
+-     (list python-cython
++     (list python-cython-3
+            python-extension-helpers
+            python-pytest-astropy
+            python-pytest-xdist
+-- 
+2.41.0
+

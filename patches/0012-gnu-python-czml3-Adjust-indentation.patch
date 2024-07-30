@@ -1,0 +1,47 @@
+From 3cc0eca93ad5aeb8e5d98e6c2b45d52861a60f68 Mon Sep 17 00:00:00 2001
+Message-ID: <3cc0eca93ad5aeb8e5d98e6c2b45d52861a60f68.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 22:40:53 +0100
+Subject: [PATCH 12/34] gnu: python-czml3: Adjust indentation.
+
+* gnu/packages/astronomy.scm (python-czml3): Adjust indentation.
+
+Change-Id: I28fefff7cec5d6c1d69ce4b760da607289ce6e1e
+---
+ gnu/packages/astronomy.scm | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4f51cbfc63..65a9b733a1 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2218,15 +2218,15 @@ (define-public python-czml3
+   (package
+     (name "python-czml3")
+     (version "1.0.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/poliastro/czml3")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1vm9ajpnwxncvsl1ix3jarqyi14b0703g12wsr8b0agkrjlpmvmx"))))
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/poliastro/czml3")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1vm9ajpnwxncvsl1ix3jarqyi14b0703g12wsr8b0agkrjlpmvmx"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-attrs
+-- 
+2.41.0
+

@@ -1,0 +1,40 @@
+From eb87b7106f8c8beb582454b882963959d38296c1 Mon Sep 17 00:00:00 2001
+Message-ID: <eb87b7106f8c8beb582454b882963959d38296c1.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 22:40:04 +0100
+Subject: [PATCH 11/34] gnu: python-czml3: Update to 1.0.1.
+
+* gnu/packages/astronomy.scm (python-czml3): Update to 1.0.1.
+
+Change-Id: Ib9d21c24befcebb81455dafd4563570b97570613
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 20063c3b06..4f51cbfc63 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2217,7 +2217,7 @@ (define-public python-crds
+ (define-public python-czml3
+   (package
+     (name "python-czml3")
+-    (version "0.7.0")
++    (version "1.0.1")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -2226,7 +2226,7 @@ (define-public python-czml3
+               (file-name (git-file-name name version))
+               (sha256
+                (base32
+-                "0pbwcsmc9nw591rck586ca9hwwhmm54rjjmp8gflhzq8b7f48lkc"))))
++                "1vm9ajpnwxncvsl1ix3jarqyi14b0703g12wsr8b0agkrjlpmvmx"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-attrs
+-- 
+2.41.0
+

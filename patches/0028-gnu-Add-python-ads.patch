@@ -1,0 +1,62 @@
+From 79d4504b350f1d63cc0773951669fcada6d560d1 Mon Sep 17 00:00:00 2001
+Message-ID: <79d4504b350f1d63cc0773951669fcada6d560d1.1721514687.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 2 Jul 2024 21:55:27 +0100
+Subject: [PATCH 28/34] gnu: Add python-ads.
+
+* gnu/packages/astronomy.scm (python-ads): New variable.
+
+Change-Id: Ia4ae54c90cd77ff15c8171a992ddc1ce823557e8
+---
+ gnu/packages/astronomy.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fa832ee93f..c25e49e411 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -89,6 +89,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (gnu packages tls)
+   #:use-module (gnu packages version-control)
+   #:use-module (gnu packages video)
++  #:use-module (gnu packages web)
+   #:use-module (gnu packages wxwidgets)
+   #:use-module (gnu packages xiph)
+   #:use-module (gnu packages xml)
+@@ -677,6 +678,31 @@ (define-public psfex
+ model-fitting photometry or morphological analyses.")
+     (license license:gpl3+)))
+ 
++(define-public python-ads
++  (package
++    (name "python-ads")
++    (version "0.12.6")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "ads" version))
++       (sha256
++        (base32 "18aizbsmhwz99flz8n101mi0n0lk3m3qqzfvmxrmjwqvydfypjml"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-httpretty))
++    (propagated-inputs
++     (list python-mock
++           python-requests
++           python-six
++           python-werkzeug))
++    (home-page "http://www.github.com/andycasey/ads/")
++    (synopsis "Python client to NASA's Astrophysics Data System")
++    (description
++     "This package provdies a Python Module to Interact with NASA's
++@acronym{Astrophysics Data System,ADS} that Doesn't Suck™.")
++    (license license:expat)))
++
+ (define-public python-aplpy
+   (package
+     (name "python-aplpy")
+-- 
+2.41.0
+

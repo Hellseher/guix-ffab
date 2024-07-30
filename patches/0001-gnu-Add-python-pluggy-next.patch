@@ -1,0 +1,41 @@
+From db9051c44d3463a74480d66b56f964b50f1d7494 Mon Sep 17 00:00:00 2001
+Message-ID: <db9051c44d3463a74480d66b56f964b50f1d7494.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jul 2024 23:00:19 +0100
+Subject: [PATCH 01/34] gnu: Add python-pluggy-next.
+
+* gnu/packages/python-build.scm (python-pluggy-next): New variable.
+
+Change-Id: If3ec3f930a799df9602db71112a6c6a5272b524c
+---
+ gnu/packages/python-build.scm | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/gnu/packages/python-build.scm b/gnu/packages/python-build.scm
+index 71f9e5c7da..72da369208 100644
+--- a/gnu/packages/python-build.scm
++++ b/gnu/packages/python-build.scm
+@@ -87,6 +87,18 @@ (define-public python-pluggy
+    (home-page "https://pypi.org/project/pluggy/")
+    (license license:expat)))
+ 
++(define-public python-pluggy-next
++  (package/inherit python-pluggy
++    (name "python-pluggy")
++    (version "1.5.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pluggy" version))
++       (sha256
++        (base32 "1w8c3mpliqm9biqw75ci8cfj1x5pb6g5zwblqp27ijgxjj7aizrc"))))
++    (build-system pyproject-build-system)))
++
+ (define-public python-toml
+   (package
+     (name "python-toml")
+-- 
+2.41.0
+

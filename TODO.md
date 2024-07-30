@@ -60,6 +60,7 @@
     astronomy.org          yt-project              [3/4][75%]     :author:
     astronomy.org          XEphem                  [0/4][0%]      :author:
     astronomy.org          wtbarnes                [0/1][0%]      :author:
+    astronomy.org          UniversityOfBristol     [/][%]         :author:
     astronomy.org          SURF                    [/][%]         :author:
     astronomy.org          SunPy                   [7/8][87%]     :author:
     astronomy.org          Starlink                [0/2][0%]      :author:
@@ -105,7 +106,8 @@
     astronomy.org          indigo-astronomy        [0/1][0%]      :author:
     astronomy.org          icyphy                  [0/1][0%]      :author:
     astronomy.org          IAUSOFA                 [0/1][0%]      :author:
-    astronomy.org          HAPI                    [0/0][0%]      :author:
+    astronomy.org          HAPI                    [0/1][0%]      :author:
+    astronomy.org          glue-viz                [2/2][100%]    :author:
     astronomy.org          Gammapy                 [0/1][0%]      :author:
     astronomy.org          free-astro              [1/2][50%]     :author:
     astronomy.org          ESO                     [1/3][33%]     :author:
@@ -114,7 +116,7 @@
     astronomy.org          ericmandel              [0/1][0%]      :author:
     astronomy.org          dstndstn                [0/1][0%]      :author:
     astronomy.org          dokester                [0/1][0%]      :author:
-    astronomy.org          demorest                [/][%]         :author:
+    astronomy.org          demorest                [0/1][0%]      :author:
     astronomy.org          danieljprice            [1/3][33%]     :author:
     astronomy.org          cpinte                  [0/0][0%]      :author:
     astronomy.org          C-Munipack-library      [0/0][0%]      :author:
@@ -125,7 +127,7 @@
     astronomy.org          Astropy                 [9/9][100%]    :author:
     astronomy.org          ASTRON                  [0/0][0%]      :author:
     astronomy.org          AstrOmatic-software     [10/11][90%]   :author:
-    astronomy.org          astrofog                [1/1][100%]    :author:
+    astronomy.org          astrofog                [2/2][100%]    :author:
     astronomy.org          asdf-format             [11/11][100%]  :author:
     astronomy.org          aroffringa              [2/3][66%]     :author:
     astronomy.org          ap-i                    [1/7][14%]     :author:
@@ -371,7 +373,7 @@
     astronomy.org          python-sdasws                  [0/4][0%]   :p1:
     astronomy.org          python-pytplot                 [1/4][25%]  :p1:
     astronomy.org          python-pyspedas                [0/4][0%]   :p1:
-    astronomy.org          python-pvextractor             [0/4][0%]   :p1:
+    astronomy.org          python-pvextractor             [1/4][25%]  :p1:
     astronomy.org          python-aiapy                   [0/4][0%]   :p1:
     astronomy.org          phantom                        [0/4][0%]   :p1:
     astronomy.org          pal                            [0/4][0%]   :p1:
@@ -411,7 +413,7 @@
     golang.org             hashicorp/terraform            [0/4][0%]   
     golang.org             hashicorp/nomad                [0/4][0%]   
     golang.org             gin-gonic/gin                  [1/4][25%]  
-    astronomy.org          updates-2024-06                :p1:        
+    astronomy.org          update-2024-08                             
     astronomy.org          python-spacepy                             
     astronomy.org          BayesicFitting                 [2/4][50%]  
     
@@ -437,7 +439,6 @@
     astronomy.org          missfits                         [3/3][100%]  
     astronomy.org          phd2                             [4/4][100%]  
     astronomy.org          psfex                            [4/4][100%]  
-    astronomy.org          pyavm                            [4/4][100%]  
     astronomy.org          python-aplpy                     [4/4][100%]  
     astronomy.org          python-asdf                      [4/4][100%]  
     astronomy.org          python-asdf-astropy              [3/3][100%]  
@@ -461,18 +462,22 @@
     astronomy.org          python-drizzle                   [5/5][100%]  
     astronomy.org          python-drms                      [5/5][100%]  
     astronomy.org          python-dust-extinction           [4/4][100%]  
+    astronomy.org          python-echo                      [4/4][100%]  
     astronomy.org          python-ewah-bool-utils           [3/4][75%]   
     astronomy.org          python-extension-helpers         [4/4][100%]  
     astronomy.org          python-extinction                [4/4][100%]  
+    astronomy.org          python-glue-core                 [4/4][100%]  
     astronomy.org          python-gwcs                      [4/4][100%]  
     astronomy.org          python-hvpy                      [4/4][100%]  
     astronomy.org          python-jplephem                  [4/4][100%]  
     astronomy.org          python-jwst                      [4/4][100%]  
     astronomy.org          python-mpl-animations            [4/4][100%]  
+    astronomy.org          python-mpl-scatter-density       [4/4][100%]  
     astronomy.org          python-ndcube                    [4/4][100%]  
     astronomy.org          python-nose-exclude              [3/4][75%]   
     astronomy.org          python-poliastro                 [4/4][100%]  
     astronomy.org          python-poppy                     [4/4][100%]  
+    astronomy.org          python-pyavm                     [4/4][100%]  
     astronomy.org          python-pyerfa                    [4/4][100%]  
     astronomy.org          python-pynbody                   [4/4][100%]  
     astronomy.org          python-pyregion                  [4/4][100%]  
@@ -486,7 +491,7 @@
     astronomy.org          python-roman-datamodels          [5/5][100%]  
     astronomy.org          python-sep                       [4/4][100%]  
     astronomy.org          python-skyfield                  [4/4][100%]  
-    astronomy.org          python-spectral-cube             [3/4][75%]   
+    astronomy.org          python-spectral-cube             [4/4][100%]  
     astronomy.org          python-specutils                 [4/4][100%]  
     astronomy.org          python-spherical-geometry        [4/4][100%]  
     astronomy.org          python-stcal                     [3/3][100%]  
@@ -512,6 +517,7 @@
     astronomy.org          stiff                            [3/3][100%]  
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
+    astronomy.org          update-2024-07                                
     astronomy.org          updates-2023-05                               
     astronomy.org          updates-2023-06                               
     astronomy.org          updates-2023-07                               
@@ -525,6 +531,7 @@
     astronomy.org          updates-2024-03                               
     astronomy.org          updates-2024-04                               
     astronomy.org          updates-2024-05                               
+    astronomy.org          updates-2024-06                               
     astronomy.org          weightwatcher                    [3/3][100%]  
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  

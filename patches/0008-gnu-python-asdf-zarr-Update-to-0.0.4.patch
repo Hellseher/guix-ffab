@@ -1,0 +1,38 @@
+From 5dd4a0bfcb38ebae2aa1937b9db821442da06493 Mon Sep 17 00:00:00 2001
+Message-ID: <5dd4a0bfcb38ebae2aa1937b9db821442da06493.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 22:34:37 +0100
+Subject: [PATCH 08/34] gnu: python-asdf-zarr: Update to 0.0.4.
+
+* gnu/packages/astronomy.scm (python-asdf-zarr): Update to 0.0.4.
+
+Change-Id: I4bb166d2b2c89d9159a52da91ea581a0c41614e1
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7623b72fb4..31da463f26 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4832,13 +4832,13 @@ (define python-asdf-unit-schemas
+ (define-public python-asdf-zarr
+   (package
+     (name "python-asdf-zarr")
+-    (version "0.0.3")
++    (version "0.0.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_zarr" version))
+        (sha256
+-        (base32 "0ax7c9xarh6fi2yxm1z2p90mc3d57q23a7wc8av30xg8ririrl4s"))))
++        (base32 "0xddz4hnsypyvqxhi43alaqh2vl1ripcl4p63qn6dk2v90lra8c0"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-asdf python-fsspec python-zarr))
+-- 
+2.41.0
+

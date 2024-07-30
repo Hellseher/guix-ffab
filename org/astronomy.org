@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-06-25 Tue 22:24:34 BST>
+#+modified: <2024-07-30 Tue 21:39:46 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [5/78][6%]
+* Flow [5/81][6%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -540,10 +540,10 @@ CLOSED: [2024-06-25 Tue 22:11]
    - [X] python-semantic-version
    - [X] python-setuptools-scm
    - [X] python-zarr
-** TODO astrofog [1/1][100%] :author:
+** TODO astrofog [2/2][100%] :author:
 - https://github.com/astrofrog
 - author :: Thomas Robitaille
-*** DONE pyavm [4/4][100%]
+*** DONE python-pyavm [4/4][100%]
 CLOSED: [2023-11-01 Wed 23:55]
 - https://github.com/astrofrog/pyavm
 - [X] :packed <2023-10-05 Thu>
@@ -555,6 +555,20 @@ CLOSED: [2023-11-01 Wed 23:55]
   - [X] python-numpy
   - [X] python-pillow
   - [X] python-pytest
+*** DONE python-mpl-scatter-density [4/4][100%]
+CLOSED: [2024-07-30 Tue 15:37]
+- https://github.com/astrofrog/mpl-scatter-density
+- [X] :packed <2024-07-15 Mon>
+- [X] :patch-sent <2024-07-20 Sat>
+- [X] :paptch-applied-upstream <2024-07-30 Tue>
+  - https://issues.guix.gnu.org/72219
+- [X] :inputs [6/6][100%]
+  - [X] python-fast-histogram
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-pytest-mpl
 
 ** TODO AstrOmatic-software [10/11][90%] :author:
 - https://github.com/astromatic
@@ -1110,7 +1124,7 @@ CLOSED: [2023-12-19 Tue 00:43]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO demorest [/][%] :author:
+** TODO demorest [0/1][0%] :author:
 - https://github.com/demorest
 - author :: Paul Demorest
 *** TODO python-sdmpy [/][%] :p1:
@@ -1269,6 +1283,56 @@ CLOSED: [2022-11-14 Mon 20:33]
   - [X] python-scipy
   - [X] python-sphinx
 
+** TODO glue-viz [2/2][100%] :author:
+- https://glueviz.org/
+*** DONE python-glue-core [4/4][100%]
+CLOSED: [2024-07-30 Tue 15:36]
+- https://github.com/glue-viz/glue
+- [X] :packed <2024-07-01 Mon>
+- [X] :patch-sent <2024-07-20 Sat>
+- [X] :paptch-applied-upstream <2024-07-30 Tue>
+  - https://issues.guix.gnu.org/72219
+- [X] :inputs [19/19][100%]
+  - [X] python-echo
+    - [X] :packed <2024-07-09 Tue>
+  - [X] python-astropy
+  - [X] python-dill
+  - [X] python-fast-histogram
+    - [X] :packed <2024-07-15 Mon>
+  - [X] python-h5py
+  - [X] python-ipython
+  - [X] python-matplotlib
+  - [X] python-mpl-scatter-density
+    - [X] :packed <2024-07-15 Mon>
+  - [X] python-numpy
+  - [X] python-objgraph
+  - [X] python-openpyxl
+  - [X] python-pandas
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-pytest-mpl
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-shapely
+  - [X] python-xlrd
+
+*** DONE python-echo [4/4][100%]
+CLOSED: [2024-07-30 Tue 21:37]
+- https://github.com/glue-viz/echo
+- [X] :packed <2024-07-09 Tue>
+- [X] :patch-sent <2024-07-20 Tue>
+- [X] :paptch-applied-upstream <2024-07-30 Tue>
+  - https://issues.guix.gnu.org/72219
+- [X] :inputs [8/8][100%]
+  - [X] python-numpy
+  - [X] python-pyqt-6
+  - [X] python-pytest
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-qtpy
+  - [X] python-setuptools-scm
+  - [X] xorg-server-for-tests
+
 ** DONE gnudatalanguage [0/0][100%] :author:
 CLOSED: [2024-06-06 Thu 16:51]
 - https://github.com/gnudatalanguage
@@ -1315,7 +1379,7 @@ CLOSED: [2021-12-18 Sat 16:12]
   + [X] glew
   + [X] wxwidgets
 
-** TODO HAPI [0/0][0%] :author:
+** TODO HAPI [0/1][0%] :author:
 - https://github.com/hapi-server
 - synosis :: Heliophysics Application Programmer’s Interface (HAPI) specification for a set of
   services to enable access to data and metadata.
@@ -1372,6 +1436,7 @@ CLOSED: [2021-12-18 Sat 16:12]
   + [ ] libtiff (comes as external)
   + [ ] libusb (comes as external)
   + [ ] novas  (comes as external)
+
 ** TODO INDI-Library [1/3][33%] :author:
 - https://www.indilib.org/
 - synopsis :: INDI Library is an open source software to control astronomical equipment. It is based
@@ -1438,6 +1503,7 @@ CLOSED: [2021-01-31 Sun 13:07]
   - [ ] :patch-sent
   - [ ] :paptch-applied-upstream
   - [ ] :inputs [0/0]
+
 ** TODO jobovy [0/1][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
@@ -2368,7 +2434,7 @@ CLOSED: [2023-03-16 Thu 21:54]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [24/28][85%]
+- [-] :inputs [25/28][89%]
   - [X] python-hupper
   - [X] python-matplotlib
   - [X] python-more-itertools
@@ -2394,12 +2460,11 @@ CLOSED: [2023-03-16 Thu 21:54]
   - [X] python-waitress
   - [X] python-webob
   - [X] python-webtest
-  - [ ] python-yt
-    - [ ] :packed
+  - [X] python-yt
+    - [X] :packed <2024-07-15 Mon>
   - [X] python-zope-deprecation
   - [X] python-zope-interface
   - [X] python-zope-sqlalchemy
-
 ** TODO QuatroPe [1/2][50%] :author:
 - https://github.com/quatrope
 - https://www.quatrope.org/
@@ -2437,21 +2502,28 @@ CLOSED: [2023-10-03 Tue 00:47]
   - [X] python-pytest-cov
   - [X] python-pytest-openfiles
 
-*** TODO python-pvextractor [0/4][0%] :p1:
+*** TODO python-pvextractor [1/4][25%] :p1:
 - https://github.com/radio-astro-tools/pvextractor
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [X] :inputs [7/7][100%]
+  - [X] python-astropy
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-qtpy
+  - [X] python-scipy
+  - [X] python-spectral-cube
+  - [X] python-pytest-astropy
 
-*** DONE python-spectral-cube [3/4][75%]
+*** DONE python-spectral-cube [4/4][100%]
 CLOSED: [2023-11-02 Thu 00:11]
 - https://github.com/radio-astro-tools/spectral-cube
 - [X] :packed <2023-10-10 Tue>
 - [X] :patch-sent <2023-10-11 Wed>
 - [X] :paptch-applied-upstream <2023-10-31 Tue>
   - https://issues.guix.gnu.org/66454
-- [-] :inputs [14/15][93%]
+- [X] :inputs [15/15][100%]
   - [X] python-aplpy
     - [X] :packed <2023-10-05 Thu>
   - [X] python-astropy
@@ -2461,7 +2533,7 @@ CLOSED: [2023-11-02 Thu 00:11]
   - [X] python-distributed
   - [X] python-fsspec
   - [X] python-glue-core
-    - [X] :packed <2023-10-10 Tue>
+    - [X] :packed <2024-07-30 Tue>
   - [X] python-joblib
   - [X] python-matplotlib
   - [X] python-numpy
@@ -2470,8 +2542,8 @@ CLOSED: [2023-11-02 Thu 00:11]
   - [X] python-reproject
   - [X] python-scipy
   - [X] python-six
-  - [ ] python-yt (optional)
-    - [ ] :packed
+  - [X] python-yt (optional)
+    - [X] :packed <2024-07-30 Tue>
 
 *** DONE python-radio-beam [4/4][100%]
 CLOSED: [2023-11-02 Thu 00:13]
@@ -2488,7 +2560,6 @@ https://github.com/radio-astro-tools/radio-beam
   - [X] python-scipy
   - [X] python-scipy
   - [X] python-six
-
 ** TODO revoltek [0/1][0%] :author:
 *** TODO losoto [1/4][25%] :p5:
 - http://github.com/revoltek/losoto/
@@ -3045,7 +3116,7 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [-] :inputs [23/38][60%]
+- [-] :inputs [26/38][68%]
   - [X] python-asdf
   - [X] python-asteval
   - [X] python-astropy
@@ -3054,12 +3125,12 @@ CLOSED: [2023-06-14 Wed 19:29]
     - [ ] :packed
   - [ ] python-bqplot-image-gl
     - [ ] :packed
-  - [ ] python-echo
-    - [ ] :packed
+  - [X] python-echo
+    - [X] :packed <2024-07-15 Mon>
   - [ ] python-glue-astronomy
     - [ ] :packed
-  - [ ] python-glue-core
-    - [ ] :packed
+  - [X] python-glue-core
+    - [X] :packed <2024-07-30 Tue>
   - [ ] python-glue-jupyter
     - [ ] :packed
   - [X] python-gwcs
@@ -3090,7 +3161,7 @@ CLOSED: [2023-06-14 Wed 19:29]
   - [X] python-scikit-image
   - [ ] python-sidecar
     - [ ] :packed
-  - [ ] python-specreduce
+  - [X] python-specreduce
     - [X] :packed
   - [X] python-specutils
     - [X] :packed <2023-12-22 Fri>
@@ -3326,6 +3397,11 @@ CLOSED: [2024-02-27 Tue 23:03]
 - https://www.mssl.ucl.ac.uk/surf/surfsolarsoft.html
 The Solar UK Research Facility
 
+** TODO UniversityOfBristol [/][%] :author:
+*** TOPCAT [/][%] :p1:
+- https://www.star.bris.ac.uk/~mbt/topcat/#install
+- synopsis :: Tool for OPerations on Catalogues And Tables
+
 ** TODO wtbarnes [0/1][0%] :author:
 - author :: Will Barnes
 *** TODO python-hissw [2/4][50%] :p4:
@@ -3419,7 +3495,7 @@ CLOSED: [2024-06-06 Thu 14:14]
   - [X] python-numpy
   - [X] python-packaging
 
-* Monthly Update [13/14][92%]
+* Monthly Update [15/16][93%]
 ** DONE updates-2023-05
 CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
@@ -3929,7 +4005,8 @@ CLOSED: [2024-06-06 Thu 14:05]
 - [ ] issues [0/2][0%]
   - [ ] https://github.com/spacetelescope/pysiaf/issues/338
   - [ ] https://github.com/tsssss/geopack/issues/21
-** TODO updates-2024-06 :p1:
+** DONE updates-2024-06
+CLOSED: [2024-07-01 Mon 16:48]
 - date-time :: 20240606T142012+0100
 - commit ::
 - issues :: https://issues.guix.gnu.org/71702
@@ -3971,7 +4048,55 @@ CLOSED: [2024-06-06 Thu 14:05]
 - [ ] issues [0/2][0%]
   - [ ] https://github.com/spacetelescope/stsci.stimage/issues/38
   - [ ] https://github.com/sunpy/ndcube/issues/733
-
+** DONE update-2024-07
+CLOSED: [2024-07-30 Tue 13:56]
+- date-time :: 20240701T164850+0100
+- commit :: b5c33f99e3...1b7d53dad7 to master
+- issues :: https://issues.guix.gnu.org/72219
+- [X] quick [26/27][96%]
+  - [X] add python-ads :: Python client to NASA's Astrophysics Data System
+  - [X] add python-dunamai :: Dynamic version generation
+  - [X] add python-echo :: Callback Properties in Python
+  - [X] add python-glue-core :: Multidimensional data visualization project
+  - [X] add python-kanon :: History of astronomy
+  - [X] add python-looseversion :: Version numbering for anarchists and software realists
+  - [X] add python-mpl-scatter-density :: Matplotlib helpers to make density scatter plots
+  - [X] add python-poetry-dynamic-versioning :: Poetry plugin enabling VCS tags dynamic versioning
+  - [X] add python-sbpy :: Python module for small-body planetary astronomy
+  - [X] add python-sncosmo :: Package for supernova cosmology based on astropy
+  - [X] cfitsio :: would be upgraded from 4.4.0 to 4.4.1
+  - [X] python-asdf :: would be upgraded from 3.2.0 to 3.3.0
+  - [X] python-asdf-zarr :: would be upgraded from 0.0.3 to 0.0.4
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.6.17.0.31.35 to 0.2024.7.15.0.31.42
+  - [X] python-crds :: would be upgraded from 11.17.25 to 11.17.26
+  - [X] python-czml3 :: would be upgraded from 0.7.0 to 1.0.1
+  - [X] python-extension-helpers :: would be upgraded from 1.0.0 to 1.1.1
+  - [X] python-jwst :: would be upgraded from 1.14.0 to 1.15.1
+  - [X] python-photutils :: would be upgraded from 1.12 to 1.13.0
+  - [X] python-pytest-openfiles :: would be upgraded from 0.5.0 to 0.6.0
+  - [X] python-stdatamodels :: would be upgraded from 1.10.1 to 2.0.0
+  - [X] python-stpipe :: would be upgraded from 0.5.2 to 0.6.0
+  - [X] python-sunpy :: would be upgraded from 5.1.4 to 5.1.5
+  - [X] python-tweakwcs :: would be upgraded from 0.8.7 to 0.8.8
+  - [X] stellarium :: would be upgraded from 24.1 to 24.2
+- [ ] complex [0/2][0%]
+  - [ ] python-calceph :: new package
+  - [ ] python-stcal :: would be upgraded from 1.7.1 to 1.7.3
+  - [ ] gnuastro :: would be upgraded from 0.22 to 0.23, faling to pass tests
+    src/stcal/ramp_fitting/src/slope_fitter.c:3494:39: error: ‘NPY_NTYPES_LEGACY’ undeclared (first
+    use in this function) 3494 | printf("NPY_NTYPES_LEGACY = %d\n",NPY_NTYPES_LEGACY);
+- [ ] issues [0/3][0%]
+  - [ ] https://github.com/astromatic/skymaker/issues/3#issuecomment-2223888413
+  - [ ] warning: no tags were found for stuff, https://github.com/astromatic/stuff/issues/6
+  - warning: no tags were found for unsio
+  - warning: no tags were found for aocommon
+  - warning: no tags were found for sunclock
+  - [ ] https://github.com/iraf-community/iraf/issues/403#event-13473716972
+** TODO update-2024-08
+- date-time ::
+- commit ::
+- issues ::
+- [ ] quick [0/0][0%]
 
 * Coverage
 | project                            |            guix | debian-astro | kernel | astropy-affiliated | stsci-astroconda |
@@ -4067,7 +4192,7 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-calcos                      |                 |              |        |                    |           3.3.10 |
 | python-casacore                    |                 |              | X      |                    |                  |
 | python-casa-formats-io             |                 |              |        |                    |                  |
-| python-ccdproc                     |   2.4.2         |              |        |                    |      1.3.0.post1 |
+| python-ccdproc                     |           2.4.2 |              |        |                    |      1.3.0.post1 |
 | python-cdflib                      |                 |              |        |                    |                  |
 | python-cfitsio                     |                 |              |        |                    |            3.470 |
 | python-ci-watson                   |                 |              |        |                    |            0.6.1 |
@@ -4107,7 +4232,7 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-gemini-calmgr               |                 |              |        |                    |           0.9.12 |
 | python-ginga                       |           4.1.1 |              |        |                    |            3.2.0 |
 | python-ginga                       |                 |              |        |                    |                  |
-| python-glue-core                   |                 |              |        |                    |           0.12.0 |
+| python-glue-core                   |          1.21.1 |              |        |                    |           0.12.0 |
 | python-glue-ginga                  |                 |              |        |                    |              0.2 |
 | python-glue-vispy-viewers          |                 |              |        |                    |              0.9 |
 | python-glueviz                     |                 |              |        |                    |           0.12.0 |
@@ -4225,7 +4350,7 @@ CLOSED: [2024-06-06 Thu 14:05]
 | python-reproject                   |                 |              |        |                    |              0.4 |
 | python-roman-datamodels            |                 |              |        |                    |                  |
 | python-saba                        |                 |              |        |                    |                  |
-| python-sbpy                        |                 |              |        |                    |                  |
+| python-sbpy                        |  0.4.0          |              |        |                    |                  |
 | python-selenium                    |                 |              |        |                    |           2.49.2 |
 | python-semantic-version            |                 |              |        |                    |            2.8.4 |
 | python-sep                         |                 |              |        |                    |                  |

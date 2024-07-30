@@ -1,0 +1,38 @@
+From 5606a0f41d4618513c70d847022bda173e02bb3e Mon Sep 17 00:00:00 2001
+Message-ID: <5606a0f41d4618513c70d847022bda173e02bb3e.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 23:14:03 +0100
+Subject: [PATCH 15/34] gnu: python-extension-helpers: Update to 1.1.1.
+
+* gnu/packages/python-xyz.scm (python-extension-helpers): Update to 1.1.1.
+
+Change-Id: Ia5fa0b445232314134d0127add75fcf2082bbc59
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index fcf01f3d04..036bda6262 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -5047,13 +5047,13 @@ (define-public python-exceptiongroup
+ (define-public python-extension-helpers
+ (package
+   (name "python-extension-helpers")
+-  (version "1.0.0")
++  (version "1.1.1")
+   (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "extension-helpers" version))
+       (sha256
+-        (base32 "1rjha07ds633fb81hn3i2yzk3v2flbi6qa091ix4mkvrgk3gl6ya"))))
++        (base32 "001zd6gfs9yrwjny1fxzycxx0kcasshlyl6rh1kgzm13ll2d6pgr"))))
+   (build-system pyproject-build-system)
+   ;; FIXME: pytest failed to load test suit, find out why.
+   ;;  - _pytest.pathlib.ImportPathMismatchError: ('extension_helpers.conftes
+-- 
+2.41.0
+

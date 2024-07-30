@@ -1,0 +1,56 @@
+From 7d54b1076193a20064721d3245a8da39880d5b6f Mon Sep 17 00:00:00 2001
+Message-ID: <7d54b1076193a20064721d3245a8da39880d5b6f.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jul 2024 23:00:32 +0100
+Subject: [PATCH 07/34] gnu: python-asdf: Update to 3.3.0.
+
+* gnu/packages/astronomy.scm (python-asdf): Update to 3.3.0.
+[native-inputs]: Remove python-pytest; add python-pytest-8.
+
+Change-Id: Ia2d284156553741dea8cd5481840a79bb18d5f8e
+---
+ gnu/packages/astronomy.scm | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 96a5bd4004..7623b72fb4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -740,18 +740,18 @@ (define-public python-aplpy
+ (define-public python-asdf
+   (package
+     (name "python-asdf")
+-    (version "3.2.0")
++    (version "3.3.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf" version))
+        (sha256
+-        (base32 "1wj556g15gwp6ir5hg083l15sifdsf23giqkx0jbn4lgdwjffbgr"))))
++        (base32 "0pwy8p3idz40a1z07d0lvvd0mwwya8g52wrp72frgpagjkvj3ska"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto" "-p" "no:legacypath")
++      #~(list "-p" "no:legacypath")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-pypojrect-toml
+@@ -767,7 +767,9 @@ (define-public python-asdf
+      (list python-fsspec
+            python-packaging
+            python-psutil
+-           python-pytest
++           ;; 3.3.0+ requries newer version of pytest, see
++           ;; <https://github.com/asdf-format/asdf/issues/1804>.
++           python-pytest-8
+            python-pytest-doctestplus
+            python-pytest-remotedata
+            python-pytest-xdist
+-- 
+2.41.0
+

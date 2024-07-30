@@ -1,0 +1,40 @@
+From af8bc4bbb8421dd5d740f88e4b586c00c4fb3470 Mon Sep 17 00:00:00 2001
+Message-ID: <af8bc4bbb8421dd5d740f88e4b586c00c4fb3470.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 22:18:18 +0100
+Subject: [PATCH 03/34] gnu: cfitsio: Update to 4.4.1.
+
+* gnu/packages/astronomy.scm (cfitsio): Update to 4.4.1.
+
+Change-Id: Ia589fb141192b59ee5e422a8106da89dff931e85
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 01ef7304d9..bbffe744ab 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -536,7 +536,7 @@ (define-public celestia-gtk
+ (define-public cfitsio
+   (package
+     (name "cfitsio")
+-    (version "4.4.0")
++    (version "4.4.1")
+     (source
+      (origin
+        (method url-fetch)
+@@ -544,7 +544,7 @@ (define-public cfitsio
+              "https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/"
+              "cfitsio-" version ".tar.gz"))
+        (sha256
+-        (base32 "1abb4ky6pjyi9f9ly8qjmkb5h25d5xxqlrxrgjg86q77bbwhr44m"))))
++        (base32 "098x1l8ijwsjp2ivp3v7pamrmpgwj5xmgb4yppm9w3w044zxr8b6"))))
+     (build-system gnu-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

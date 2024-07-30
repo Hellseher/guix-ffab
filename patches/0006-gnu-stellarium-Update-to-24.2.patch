@@ -1,0 +1,40 @@
+From 184bc0bc3f824f9afe899a94cd17cec768e1a0a7 Mon Sep 17 00:00:00 2001
+Message-ID: <184bc0bc3f824f9afe899a94cd17cec768e1a0a7.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 22:30:38 +0100
+Subject: [PATCH 06/34] gnu: stellarium: Update to 24.2.
+
+* gnu/packages/astronomy.scm (stellarium): Update to 24.2.
+
+Change-Id: I316fee7463b9185fa264fdcd68e55f424b2d8f32
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 98e08fb6bd..96a5bd4004 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1566,7 +1566,7 @@ (define-public stackistry
+ (define-public stellarium
+   (package
+     (name "stellarium")
+-    (version "24.1")
++    (version "24.2")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1575,7 +1575,7 @@ (define-public stellarium
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "15r8vg1xb4q8vwy10dfs4543bg6r3463sgrpkqk6fpxx46d8axxp"))))
++        (base32 "01iq1cxbhr3xknzpk4spflxj3msf9wk19b4lqlifi1pwaz18pb5n"))))
+     (build-system cmake-build-system)
+     ;; TODO: Complete documentation build and split into dedicated outputs.
+     (arguments
+-- 
+2.41.0
+

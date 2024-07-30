@@ -1,0 +1,41 @@
+From 3a3ec20af8809309ced91febedfa894ea7c456f3 Mon Sep 17 00:00:00 2001
+Message-ID: <3a3ec20af8809309ced91febedfa894ea7c456f3.1721514686.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721514686.git.sharlatanus@gmail.com>
+References: <cover.1721514686.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 2 Jul 2024 13:05:18 +0100
+Subject: [PATCH 18/34] gnu: python-pytest-openfiles: Simplify package.
+
+* gnu/packages/python-check.scm (python-pytest-openfiles)
+[build-system]: Swap to pyproject-build-system.
+[arguments]: <#:phases>: Use default 'chck phase.
+
+Change-Id: I3bbbacd8694afdfee020f11d37f5c035bdad73f9
+---
+ gnu/packages/python-check.scm | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index b6e401b443..74e833686f 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -847,15 +847,7 @@ (define-public python-pytest-openfiles
+        (uri (pypi-uri "pytest_openfiles" version))
+        (sha256
+         (base32 "14x9f1l9a5ghf527i5qfcfa003mkrky1dhx2hfwq5nma9v1n0lgz"))))
+-    (build-system python-build-system)
+-    (arguments
+-     '(#:phases
+-       (modify-phases %standard-phases
+-         (replace 'check
+-           (lambda* (#:key inputs outputs #:allow-other-keys)
+-             ;; Make the installed plugin discoverable by Pytest.
+-             (add-installed-pythonpath inputs outputs)
+-             (invoke "pytest" "-vv"))))))
++    (build-system pyproject-build-system)
+     (native-inputs
+      (list python-setuptools-scm python-pytest))
+     (propagated-inputs
+-- 
+2.41.0
+
