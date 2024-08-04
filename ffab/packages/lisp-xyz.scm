@@ -52,35 +52,9 @@
   #:use-module (json))
 
 ;; 20240313T223823+0000
-(define-public sbcl-arrow-macros
-  (let ((commit "16bdfd31298182099c7d70df4598104e5a38b05e")
-        (revision "0"))
-    (package
-      (name "sbcl-arrow-macros")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/hipeta/arrow-macros")
-               (commit commit)))
-         (file-name (git-file-name "arrow-macros" version))
-         (sha256
-          (base32 "0q4vpysk4h9ghs5zmnzzilky9jyz7i8n0x0p98nq528crbrkh6c4"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-fiveam))
-      (home-page "https://github.com/hipeta/arrow-macros/")
-      (synopsis "Clojure-like arrow macros in Common Lisp")
-      (description
-       "Arrow-macros provides clojure-like arrow macros (ex. ->, ->>) and diamond wands
-in swiss-arrows.")
-      (license license:expat))))
-
-(define-public cl-arrow-macros
-  (sbcl-package->cl-source-package sbcl-arrow-macros))
-
-(define-public ecl-arrow-macros
-  (sbcl-package->ecl-package sbcl-arrow-macros))
+;; (define-public sbcl-arrow-macros
+;; added-downstream-guix 14942e2abbc115d7af53d2d02c383f93abdc4589
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
 ;; 20201201T143902+0000
 ;; (define-public sbcl-cl-log
@@ -91,9 +65,6 @@ in swiss-arrows.")
 ;; (define-public sbcl-zs3
 ;; added-to-downstream-guix cebfb29abb151ede95696181d2446c63504593d7
 ;; CommitDate: Sat Dec 5 16:01:19 2020 +0100
-
-;; https://github.com/lispgames
-;;+begin-lispgames
 
 ;; 20220525T231520+0100
 ;; (define-public sbcl-glop
@@ -104,11 +75,6 @@ in swiss-arrows.")
 ;; (define-public sbcl-sdl2-mixer
 ;; added-to-downstream-guix ad854e06b4300d70bcb04ca8ed483d864f3114c7
 ;; CommitDate: Mon Feb 27 13:51:23 2023 +0100
-
-;;+end-lispgames
-
-;; https://github.com/dimitri
-;;+begin-dimitri
 
 ;; 20201219T163755+0000
 ;; (define-public sbcl-qmynd
@@ -125,21 +91,10 @@ in swiss-arrows.")
 ;; added-to-downstream-guix 1fc9baeebb24a36431736f1a187e501943918444
 ;; CommitDate: Sat Jan 2 11:13:06 2021 +0100
 
-;;+end-dimitri
-
-;; https://git.mfiano.net/mfiano
-;;+begin-mfiano
-
 ;; 20210203T000433+0000
 ;; (define-public sbcl-golden-utils
 ;; added-to-downstream-guix ed39a7c1dc6bde13f770e751cb6106c2a85d70c5
 ;; CommitDate: Wed Feb 3 17:41:38 2021 +0100
-
-;;+end-mfiano
-
-;; https://github.com/Shirakumo
-;; https://github.com/Shinmera
-;;+begin-shirakumo
 
 ;; 20230326T100349+0100
 ;; (define-public sbcl-harmony
@@ -232,38 +187,9 @@ in swiss-arrows.")
 ;; CommitDate: Tue May 11 10:15:38 2021 +0200
 
 ;; 20240315T102021+0000
-(define-public sbcl-trivial-monitored-thread
-  (let ((commit "b0bab23f9a9bd06f0f33809635c7ba4e6a3d5a21")
-        (revision "0"))
-    (package
-      (name "sbcl-trivial-monitored-thread")
-      (version (git-version "0.3.11" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://gitlab.com/ediethelm/trivial-monitored-thread")
-               (commit commit)))
-         (file-name (git-file-name "trivial-monitored-thread" version))
-         (sha256
-          (base32 "1ipnp2l944hc587bifxsnmiymw468imar0v8bqvgxv8pc5sym4ib"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-fiveam))
-      (inputs
-       (list sbcl-iterate sbcl-log4cl sbcl-trivial-utilities))
-      (home-page "https://gitlab.com/ediethelm/trivial-monitored-thread")
-      (synopsis "Thread monitoring library for Common Lisp")
-      (description
-       "Trivial Monitored Thread offers a very simple (aka trivial) way of spawning
-threads and being informed when one any of them crash and die.")
-      (license license:expat))))
-
-(define-public cl-trivial-monitored-thread
-  (sbcl-package->cl-source-package sbcl-trivial-monitored-thread))
-
-(define-public ecl-trivial-monitored-thread
-  (sbcl-package->ecl-package sbcl-trivial-monitored-thread))
+;; (define-public sbcl-trivial-monitored-thread
+;; added-downstream-guix 43208401d0ce4f17f0138298babf0844afdd4d8f
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
 ;; <2021-05-08 Sat>
 ;; (define-public sbcl-for
@@ -335,39 +261,9 @@ threads and being informed when one any of them crash and die.")
 ;; CommitDate: Thu Apr 22 10:36:51 2021 +0200
 
 ;; 20240315T154943+0000
-(define-public sbcl-vgplot
-  (let ((commit "76329928a3709387c0779175af56ec49d16bcd35")
-        (revision "0"))
-    (package
-      (name "sbcl-vgplot")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/volkers/vgplot")
-               (commit commit)))
-         (file-name (git-file-name "vgplot" version))
-         (sha256
-          (base32 "1vc5fd787xa8831wjbmwrpg17f9isi5k8dmb85fsysz47plbvi1y"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-lisp-unit))
-      (inputs
-       (list sbcl-cl-fad sbcl-cl-ppcre sbcl-ltk))
-      (home-page "https://github.com/volkers/vgplot")
-      (synopsis "Common lisp library interfacing to the gnuplot utility")
-      (description
-       "This package provides an interface to the @code{gnuplot} plotting
-utility.  The intention of the API is to resemble to some of the plot commands of
-octave or matlab.")
-      (license license:gpl3))))
-
-(define-public cl-vgplot
-  (sbcl-package->cl-source-package sbcl-vgplot))
-
-(define-public ecl-vgplot
-  (sbcl-package->ecl-package sbcl-vgplot))
+;; (define-public sbcl-vgplot
+;; added-downstream-guix 7b50f5b79b8b83b54e4198dd4dd0354f73cc3608
+;; CommitDate: Thu Mar 21 21:57:33 2024 +0000
 
 ;; 20210131T014135+0000
 ;; (define-public sbcl-verbose
@@ -405,46 +301,9 @@ octave or matlab.")
 ;; CommitDate: Sat Jan 30 11:08:15 2021 +0100
 
 ;; 20240315T104048+0000
-(define-public sbcl-cl-json-pointer
-  (let ((commit "f6760e2a02972783f96b92a15f801e14a6828e0c")
-        (revision "0"))
-    (package
-      (name "sbcl-cl-json-pointer")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/y2q-actionman/cl-json-pointer")
-               (commit commit)))
-         (file-name (git-file-name "cl-json-pointer" version))
-         (sha256
-          (base32 "0b7a755wc2ghsd1pv7d32877b21h4nssp41xs017anbmj55czb2h"))))
-      (build-system asdf-build-system/sbcl)
-      (arguments
-      ;; Component "cl-json-pointer/test" not found
-       `(#:tests? #f
-         #:asd-systems '("cl-json-pointer" "cl-json-pointer/synonyms")))
-      (inputs
-       (list sbcl-alexandria
-             sbcl-boost-json
-             sbcl-cl-json
-             sbcl-closer-mop
-             sbcl-st-json))
-      (home-page "https://github.com/y2q-actionman/cl-json-pointer")
-      (synopsis "JSON Pointer processor for Common Lisp")
-      (description
-       "This package provides a JSON
-Pointer (@url{https://tools.ietf.org/html/rfc6901,RFC6901}) implementation for
-Common Lisp.  This libary aims to be independent from any JSON libraries (as much
-as possible).")
-      (license license:expat))))
-
-(define-public cl-json-pointer
-  (sbcl-package->cl-source-package sbcl-cl-json-pointer))
-
-(define-public ecl-cl-json-pointer
-  (sbcl-package->ecl-package sbcl-cl-json-pointer))
+;; (define-public sbcl-cl-json-pointer
+;; added-downstream-guix ada63ef5c211a46b90175e67fd4800ebec7ca529
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
 ;; 20210125T180331+0000
 ;; (define-public sbcl-modularize
@@ -461,19 +320,10 @@ as possible).")
 ;; added-to-downstream-guix 051c1271209a1a0f9ff258f9034600d650e25ca8
 ;; CommitDate: Wed Feb 3 23:41:09 2021 +0100
 
-;;+end-shirakumo
-
-;;+begin-misc
-
 ;; 20201226T235607+0000
 ;; (define-public sbcl-uax-15
 ;; added-to-downstream-guix 14efb2f8ebd641fc3a9ee2ad802591e87dd4131a
 ;; CommitDate: Mon Dec 28 14:31:17 2020 +0100
-
-;;+end-misc
-
-;; https://github.com/gwkkwg
-;;+begin-gwkkwg
 
 ;; 20210203T001510+0000
 ;; (define-public sbcl-trivial-timeout
@@ -481,37 +331,9 @@ as possible).")
 ;; CommitDate: Wed Feb 3 17:41:39 2021 +0100
 
 ;; 20240315T094010+0000
-(define-public sbcl-trivial-utilities
-  (let ((commit "279ff255562628196942632c543d91c357067221")
-        (revision "0"))
-    (package
-      (name "sbcl-trivial-utilities")
-      (version (git-version "0.4.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://gitlab.com/ediethelm/trivial-utilities")
-               (commit commit)))
-         (file-name (git-file-name "trivial-utilities" version))
-         (sha256
-          (base32 "0k1xmn5f5dik7scadw0vyy67mik4ypnfqbhlv2vsg9afxzbpx2dz"))))
-      (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-alexandria sbcl-iterate sbcl-closer-mop))
-      (home-page "https://gitlab.com/ediethelm/trivial-utilities")
-      (synopsis "Collection of useful types, functions and macros for Common Lisp")
-      (description
-       "This package provides a collection of types, functions and macros.  Some
- of the functionality is implemented from Grham's On Lisp and Seibel's Practical
- Common Lisp.")
-      (license license:expat))))
-
-(define-public cl-trivial-utilities
-  (sbcl-package->cl-source-package sbcl-trivial-utilities))
-
-(define-public ecl-trivial-utilities
-  (sbcl-package->ecl-package sbcl-trivial-utilities))
+;; (define-public sbcl-trivial-utilities
+;; added-downstream-guix c75eb3b38a4db9d42479124fbd847a3edc09688a
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
 ;; 20210108T102108+0000
 ;; (define-public sbcl-dynamic-classes
@@ -543,8 +365,6 @@ as possible).")
 ;; added-to-downstream-guix 89ebe054c5c32a6bb751548addda6fd31a27d099
 ;; CommitDate: Fri Nov 18 14:15:41 2022 +0100
 
-;;+end-gwkkwg
-
 ;; 20210204T013223+0000
 ;; (define-public sbcl-specialization-store
 ;; added-to-downstream-guix 68608dd412c49a3372567b2d43633d9c7161ecbb
@@ -604,9 +424,6 @@ as possible).")
 ;; (define-public sbcl-cl-svg
 ;; added-to-downstream-guix f7b45ede9f9220a647cd4bae36e629a18a677cfb
 ;; CommitDate: Mon Apr 19 17:11:00 2021 +0200
-
-;;https://github.com/inconvergent
-;;+begin-inconvergent
 
 ;; NOTE: (Sharlatan-20231010T015304+0100): Arcvhied project. See auxin. For a
 ;; stripped version of this repo
@@ -647,9 +464,6 @@ broadcasting and reduction operations.")
 (define-public cl-veq
   (sbcl-package->cl-source-package sbcl-veq))
 
-;;+end-inconvergent
-
-
 ;; <2021-04-29 Thu>
 ;; (define-public sbcl-unit-test
 ;; added-to-downstream-guix c72c3e50cd29c45f9e4f32313e5d937905085050
@@ -661,35 +475,9 @@ broadcasting and reduction operations.")
 ;; CommitDate: Fri Apr 30 09:42:07 2021 +0200
 
 ;; 20240315T103252+0000
-(define-public sbcl-boost-json
-  (let ((commit "eca166f5ff1f10bad14e00b9fd5bf9fcf3691a47")
-        (revision "0"))
-    (package
-      (name "sbcl-boost-json")
-      (version (git-version "1.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/cl-boost/json")
-               (commit commit)))
-         (file-name (git-file-name "cl-boost-json" version))
-         (sha256
-          (base32 "12k0470899qsll2qixksxf2vrhjmskk3nzp1di9k04n1b29nrakd"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://github.com/cl-boost/json")
-      (synopsis "JSON encoding and decoding for Common Lisp")
-      (description
-       "BOOST-JSON is a simple JSON parsing library for Common Lisp.")
-      (license license:asl2.0))))
-
-(define-public cl-boost-json
-  (sbcl-package->cl-source-package sbcl-boost-json))
-
-;; FIXME: (Sharlatan-20240315T103648+0000): Failed to build on ECL: "fORMFEED"
-;; is an illegal character name.An error occurred during initialization:
-#;(define-public ecl-boost-json
-  (sbcl-package->ecl-package sbcl-boost-json))
+;; (define-public sbcl-boost-json
+;; added-downstream-guix 78b4f2bc44ea8a2e3a545346d98e4d946685b48a
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
 ;; <2021-05-17 Mon>
 ;; (define-public sbcl-cl-package-locks
@@ -707,39 +495,10 @@ broadcasting and reduction operations.")
 ;; CommitDate: Tue May 18 09:22:08 2021 +0200
 
 ;; 20240315T105328+0000
-(define-public sbcl-st-json
-  (let ((commit "4a0025bcc5b6921454822f1b9f38f697b4eeaf43")
-        (revision "0"))
-    (package
-      (name "sbcl-st-json")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/marijnh/ST-JSON")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "06qrhr5iw73k96lai2x9w52l6gnmlxy7fsr0r35gz6nz1f71x7gx"))))
-      (build-system asdf-build-system/sbcl)
-      (home-page "https://marijnhaverbeke.nl/st-json/")
-      (synopsis "JSON for Common Lisp")
-      (description
-       "ST-JSON (@code{ST} because it originated at Streamtech) is a Common Lisp
- library for encoding and decoding JSON values (as specified on json.org).
+;; (define-public sbcl-st-json
+;; added-downstream-guix 56fd98238b1eb415e6055f70d0c83fc0f0eb026c
+;; CommitDate: Thu Mar 21 21:57:32 2024 +0000
 
-This library does mostly the same thing as CL-JSON, but is simpler and more
-precise about types (distinguishing boolean false, the empty array, and the
-empty object).")
-      (license license:zlib))))
-
-(define-public cl-st-json
-  (sbcl-package->cl-source-package sbcl-st-json))
-
-(define-public ecl-st-json
-  (sbcl-package->ecl-package sbcl-st-json))
-
 ;; 20210523T170845+0100
 ;; (define-public sbcl-djula
 ;; added-to-downstream-guix 3a89ff123a52059743d48f6c3428fc436b4d397a
@@ -991,9 +750,6 @@ LPARALLEL.")
 ;; (define-public sbcl-cl-gss
 ;; added-to-downstream-guix d244282b698087bb6f6cf3c1c4d57b7a5e2e8ffa
 ;; CommitDate: Tue Nov 15 11:22:29 2022 +0100
-
-;;https://github.com/fukamachi
-;;+begin-fukamachi
 
 ;; 20210520T162625+0100
 ;; (define-public sbcl-woo
@@ -1010,8 +766,6 @@ LPARALLEL.")
 ;; added-to-downstream-guix 0195d9041a5f440a7e2e14b39e98f596fddf0c12
 ;; CommitDate: Fri May 21 10:22:59 2021 +0200
 
-;;+end-fukamachi
-
 ;; 20210520T224438+0100
 ;; (define-public sbcl-json-streams
 ;; added-to-downstream-guix 20eb41b66adc5933cf34323a3c010b8d57ab7eae
@@ -1031,124 +785,40 @@ LPARALLEL.")
 ;; (define-public sbcl-org-sampler
 ;; added-to-downstream-guix e101a117eb5af9affcf68e27e91d68d3bfd72986
 ;; CommitDate: Thu Jun 24 14:22:09 2021 +0200
-
-;; https://github.com/rpav
-;;+begin-rpav
-
 ;; 20220227T233910+0100
 ;; (define-public sbcl-cl-cairo2
 ;; added-to-downstream-guix a71e4554419e48cf24bb7f96b6e3f74427d65de5
 ;; CommitDate: Mon Feb 27 14:02:28 2023 +0100
-
-;;+end-rpav
-
-;; https://github.com/sjl
-;;+begin-sjl
 
 ;; 20210608T233910+0100
 ;; (define-public sbcl-adopt
 ;; added-to-downstream-guix c0037bd5080460c88aa80000e8fa5d8f3493c335
 ;; CommitDate: Mon Nov 21 10:10:27 2022 +0100
 
-;;+end-sjl
-
-;; https://github.com/VitoVan
-;;+begin-VitoVan
-
 ;; 20220227T233910+0100
 ;; (define-public sbcl-calm
 ;; added-to-downstream-guix 55054c1235ff2048079d4b83840cf22a61d04e5a
 ;; CommitDate: Mon Feb 27 14:13:11 2023 +0100
 
-;;+end-VitoVan
-
 ;; 20210621T110738+0100
 ;; added-to-downstream-guix ad4a46b028378f38f897c74ca5728e6cb77689ca
 ;; CommitDate: Thu Jun 24 10:33:04 2021 +0200
 ;; (define-public sbcl-cl-posix-mqueue
 
 ;; 20240315T161041+0000
-(define-public sbcl-cl-punch
-  (package
-    (name "sbcl-cl-punch")
-    (version "0.2")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/windymelt/cl-punch")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name "cl-punch" version))
-       (sha256
-        (base32 "1vmbaz9y9lq4wvi8mfbyif8vc9yfk2i0qd3ysbzl152wx32dbzs3"))))
-    (build-system asdf-build-system/sbcl)
-    (native-inputs
-     (list sbcl-prove))
-    (inputs
-     (list sbcl-cl-syntax))
-    (home-page "https://github.com/windymelt/cl-punch")
-    (synopsis "Anonymous lambda literal in Common Lisp, respecting Scala")
-    (description
-     "CL-PUNCH is a Scala-like anonymous lambda literal.")
-    (license license:expat )))
-
-(define-public cl-punch
-  (sbcl-package->cl-source-package sbcl-cl-punch))
-
-(define-public ecl-cl-punch
-  (sbcl-package->ecl-package sbcl-cl-punch))
-
-;; http://dwim.hu
-;;+begin-hu-dwim
+;; (define-public sbcl-cl-punch
+;; added-downstream-guix e631772fd7a36f7a96795cc63219f36f08371c0d
+;; CommitDate: Thu Mar 21 21:57:33 2024 +0000
 
 ;; 20221103T171243+0000
 ;; (define-public sbcl-hu.dwim.graphviz
 ;; added-to-downstream-guix 53c8cbb31428322e16c255f73fb7f7670ef7f8aa
 ;; CommitDate: Thu Nov 3 15:07:16 2022 +0100
 
-;;+end-hu-dwim
-
-
 ;; 20240315T152307+0000
-(define-public sbcl-easy-routes
-  (let ((commit "7832f8bf3d07825b5eb967a2ef04da7c40c18248")
-        (revision "0"))
-    (package
-      (name "sbcl-easy-routes")
-      (version (git-version "0.0.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/mmontone/easy-routes")
-               (commit commit)))
-         (file-name (git-file-name "cl-easy-routes" version))
-         (sha256
-          (base32 "1banw54kz2llzb9h5sm47ckfc9l348m7qncm0npsy0w837rxkyzx"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs (list sbcl-stefil))
-      (inputs
-        (list sbcl-djula sbcl-hunchentoot sbcl-routes))
-      (home-page "https://github.com/mmontone/easy-routes/")
-      (synopsis "Routes handling utility on top of Hunchentoot")
-      (description
-       "EASY-ROUTES is yet another routes handling system on top of Hunchentoot.  It's
-just glue code for Restas routing subsystem (CL-ROUTES).
-
-It supports:
-@itemize
-@item dispatch based on HTTP method
-@item arguments extraction from the url path
-@item decorators
-@item URL generation from route names
-@end itemize")
-      (license license:expat ))))
-
-(define-public cl-easy-routes
-  (sbcl-package->cl-source-package sbcl-easy-routes))
-
-(define-public ecl-easy-routes
-  (sbcl-package->ecl-package sbcl-easy-routes))
+;; (define-public sbcl-easy-routes
+;; added-downstream-guix 869954270fed3ee583091991661be7842d90fa8c
+;; CommitDate: Thu Mar 21 21:57:33 2024 +0000
 
 ;; <2021-11-07 Sun>
 ;; (define-public sbcl-eventbus
@@ -1159,9 +829,6 @@ It supports:
 ;; added-to-downstream-guix 4beb013c84cd44a2e6dc03a2697615c660985f4a
 ;; CommitDate: Wed Dec 1 09:44:03 2021 +0100
 ;; (define-public sbcl-cl-liballegro
-
-;; https://github.com/borodust
-;;+begin-borodust
 
 ;; NOTE: (Sharlatan-20221112T212701+0000): Complete package, missing long chain.
 ;;
@@ -1196,99 +863,11 @@ It supports:
 
 (define ecl-claw
   (sbcl-package->ecl-package sbcl-cl-resect))
-;;+end-borodust
-
 
 ;; 20240313T223838+0000
-(define-public sbcl-ciel
-  (let ((commit "6cc1cef5e37e9f495c8163271a5de48de99f348a")
-        (revision "0"))
-    (package
-      (name "sbcl-ciel")
-      (version (git-version "0.1.0" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/ciel-lang/CIEL")
-               (commit commit)))
-         (file-name (git-file-name "ciel" version))
-         (sha256
-          (base32 "1bwafbbsppxqvijf43dii55mpzrklh6faj2m5dhajg2f2m8qckgi"))))
-      (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-fiveam))
-      (inputs
-       (list sbcl-access
-             sbcl-alexandria
-             sbcl-arrow-macros
-             sbcl-bordeaux-threads
-             sbcl-cl-ansi-text
-             sbcl-cl-ansi-text
-             sbcl-cl-cron
-             sbcl-cl-csv
-             sbcl-cl-json-pointer
-             sbcl-cl-ppcre
-             sbcl-cl-punch
-             sbcl-cl-reexport
-             sbcl-cl-str
-             sbcl-clesh
-             sbcl-clingon
-             sbcl-closer-mop
-             sbcl-cmd
-             sbcl-dbi
-             sbcl-defstar
-             sbcl-deploy
-             sbcl-dexador
-             sbcl-dissect
-             sbcl-easy-routes
-             sbcl-file-notify
-             sbcl-fn
-             sbcl-for
-             sbcl-fset
-             sbcl-generic-cl
-             sbcl-hunchentoot
-             sbcl-local-time
-             sbcl-log4cl
-             sbcl-lparallel
-             sbcl-lquery
-             sbcl-metabang-bind
-             sbcl-modf
-             sbcl-named-readtables
-             sbcl-nodgui
-             sbcl-parse-float
-             sbcl-parse-number
-             sbcl-printv
-             sbcl-pythonic-string-reader
-             sbcl-quicksearch
-             sbcl-quri
-             sbcl-repl-utilities
-             sbcl-serapeum
-             sbcl-shasht
-             sbcl-shlex
-             sbcl-spinneret
-             sbcl-sxql
-             sbcl-trivia
-             sbcl-trivial-arguments
-             sbcl-trivial-do
-             sbcl-trivial-monitored-thread
-             sbcl-trivial-package-local-nicknames
-             sbcl-trivial-types
-             sbcl-vgplot
-             sbcl-which))
-      (home-page "http://ciel-lang.org/")
-      (synopsis "CIEL Is an Extended Lisp")
-      (description
-       "CIEL is a ready-to-use collection of libraries providing: a binary, to
-run CIEL scripts; a simple full-featured REPL for the terminal; a Lisp library
-and a core image .")
-      (license license:expat))))
-
-(define-public cl-ciel
-  (sbcl-package->cl-source-package sbcl-ciel))
-
-(define-public ecl-ciel
-  (sbcl-package->ecl-package sbcl-ciel))
+;; (define-public sbcl-ciel
+;; added-downstream-guix 79394fd0a9a86c33337743b717c6fd7e0ebb6c23
+;; CommitDate: Thu Mar 21 21:57:33 2024 +0000
 
 ;; NOTE: (Sharlatan-20220622T211349+0100): This package contains JavaScript
 ;; blobs and has to be withdrawn from upstream.

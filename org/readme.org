@@ -27,17 +27,18 @@ tree  -d ../
 ../
 ├── etc
 ├── ffab
-│   ├── guix
-│   │   ├── build-system
-│   │   └── import
 │   └── packages
 │       └── patches
+├── guix
+│   ├── build-system
+│   └── import
+├── issues
 ├── org
 ├── patches
 ├── scripts
 └── tmp
 
-12 directories
+13 directories
 #+end_src
 
 - ./issues.org :: Tracks all sent patches to <guix-patches@gnu.org>
@@ -51,17 +52,17 @@ make list
 
 #+RESULTS:
 #+begin_src org
-:guix-commit ffa73f8ef2a6cb2b93deb38b1c88a94707e7d907
-:accepted 210
-:pending 142
+:guix-commit 8006d74ce6dbe74806d14e74e3f32e7a5c92811a
+:accepted 231
+:pending 156
 
-:astronomy 16
-:golang 72
+:astronomy 17
+:golang 82
 :lisp 4
-:python 23
-:misc 22
+:python 22
+:misc 26
 
-Wed 24 Jan 23:34:49 GMT 2024
+Sun  4 Aug 22:39:16 BST 2024
 #+end_src
 
 Any packages with suffix *-ffab* are meant to be accepted in Guix upstream but have kind of
@@ -101,7 +102,7 @@ manager.
 #+end_example
 
 * References
-Main official resources:
+Main official services and resources:
 - VCS :: https://git.savannah.gnu.org/cgit/guix.git Read only git repository hosted at Savanha.
 - CI and Substitutes ::
   - https://ci.guix.gnu.org Main CI and substitute and server

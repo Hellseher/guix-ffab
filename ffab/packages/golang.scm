@@ -1111,65 +1111,6 @@ Highlighted features:
 Ansi characters and produces the appropriate function calls.  The results of the
 function calls are platform dependent.")
     (license license:expat)))
-
-;;+begin_github.com/modern-go
-
-;; 20220730T152705+0100
-(define-public go-github-com-modern-go-reflect2
-  (package
-    (name "go-github-com-modern-go-reflect2")
-    (version "1.0.2")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/modern-go/reflect2")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "05a89f9j4nj8v1bchfkv2sy8piz746ikj831ilbp54g8dqhl8vzr"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/modern-go/reflect2"))
-    (home-page "https://github.com/modern-go/reflect2")
-    (synopsis "Implementaion of Golang reflect")
-    (description
-     "Reflect api that avoids runtime @code{reflect.Value} cost:
-@itemize
-@item reflect get/set @code{interface{}}, with type checking
-@item reflect get/set @code{unsafe.Pointer}, without type checking
-@item @code{reflect2.TypeByName} works like @code{Class.forName} found in java
-@end itemize")
-    (license license:asl2.0)))
-
-;; 20220730T155408+0100
-(define-public go-github-com-modern-go-concurrent
-  (package
-    (name "go-github-com-modern-go-concurrent")
-    (version "1.0.3")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/modern-go/concurrent")
-                    (commit version)))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0s0fxccsyb8icjmiym5k7prcqx36hvgdwl588y0491gi18k5i4zs"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/modern-go/concurrent"))
-    (home-page "https://github.com/modern-go/concurrent")
-    (synopsis "Concurrency utilities for Golang")
-    (description
-     "Concurrency utilities for Go, including a backported version of
-+@code{sync.Map} for Go < 1.9 named @code{concurrent.Map}, and
-+@code{concurrent.Executor}.")
-    (license license:asl2.0)))
-
-;;+end_github.com/modern-go
-
-;;+begin_github.com/go-playground
 
 ;; 20220731T210059+0100
 (define-public go-github-com-go-playground-validator-v10
@@ -1212,41 +1153,6 @@ function calls are platform dependent.")
                 "1cl9c4s405zddzrj36hhs0a18g02zscdl46fyipp6k91mhvai8wz"))))
     (arguments
      '(#:import-path "github.com/go-playground/assert/v2"))))
-
-;;+end_github.com/go-playground
-
-;; 20220731T213050+0100
-(define-public go-github-com-json-iterator-go
-  (package
-    (name "go-github-com-json-iterator-go")
-    (version "1.1.12")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/json-iterator/go")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1c8f0hxm18wivx31bs615x3vxs2j3ba0v6vxchsjhldc8kl311bz"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/json-iterator/go"))
-    (native-inputs (list go-github-com-stretchr-testify))
-    (propagated-inputs (list go-github-com-modern-go-reflect2
-                             go-github-com-modern-go-concurrent
-                             go-github-com-google-gofuzz
-                             go-github-com-davecgh-go-spew))
-    (home-page "https://github.com/json-iterator/go")
-    (synopsis "Golang encoding/json high-performance replacemenvt")
-    (description
-     "Package jsoniter implements encoding and decoding of JSON as defined in
-@url{https://rfc-editor.org/rfc/rfc4627.html,RFC 4627} and provides interfaces
-with identical syntax of standard lib encoding/json.  Converting from
-encoding/json to jsoniter is no more than replacing the package with jsoniter
-and variable type declarations (if any).  jsoniter interfaces gives 100%
-compatibility with code using standard lib.")
-    (license license:expat)))
 
 ;; 20220731T220023+0100
 (define-public go-github-com-pelletier-go-toml-v2
@@ -1726,62 +1632,6 @@ github.com/sergi/go-diff, mainly for diffing strings in tests")
       (description
        "Package shlex provides a simple lexical analysis like Unix shell.")
       (license license:expat))))
-
-;; 20220804T214550+0100
-(define-public go-github-com-jessevdk-go-flags
-  (package
-    (name "go-github-com-jessevdk-go-flags")
-    (version "1.5.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/jessevdk/go-flags")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "13ixw1yx4bvcj66lkc8zgwf9j7gkvj686g991gycdsafvdvca0lj"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/jessevdk/go-flags"
-       #:modules ((ice-9 match)
-                  (guix build go-build-system)
-                  (guix build utils))
-       #:phases (modify-phases %standard-phases
-                  (add-before 'check 'patch-diff-path
-                    (lambda* (#:key inputs #:allow-other-keys)
-                      (substitute* "src/github.com/jessevdk/go-flags/assert_test.go"
-                        (("diff\",")
-                         (string-append (search-input-file inputs "/bin/diff")
-                                        "\",")))))
-                  (add-after 'patch-diff-path 'set-epoch-time
-                    (lambda _
-                      (setenv "SOURCE_DATE_EPOCH" "1630000000")))
-                  (add-after 'patch-diff-path 'disable-failing-tests
-                    (lambda _
-                      ;; Disable failing tests:
-                      (for-each (match-lambda
-                                  ((file test)
-                                   (let ((regex (string-append "^(func\\s+)("
-                                                               test "\\()")))
-                                     (substitute* file
-                                       ((regex all before test_name)
-                                        (string-append before "Disabled"
-                                                       test_name))))))
-                                ;; Issue with epoch time, remove when it's merged
-                                ;; https://github.com/jessevdk/go-flags/pull/376
-                                '(("src/github.com/jessevdk/go-flags/help_test.go"
-                                   "TestMan"))))))))
-    (native-inputs (list diffutils))
-    (propagated-inputs (list go-golang-org-x-sys))
-    (home-page "https://github.com/jessevdk/go-flags")
-    (synopsis "Command line arguments parsing library for Golang")
-    (description
-     "Package flags provides an extensive command line option parser.  The flags
-package is similar in functionality to the go built-in flag package but provides
-more options and uses reflection to provide a convenient and succinct way of
-specifying command line options.")
-    (license license:bsd-3)))
 
 ;; 20220804T214322+0100
 (define-public go-github-com-go-git-go-billy-v5

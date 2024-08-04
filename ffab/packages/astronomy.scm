@@ -671,130 +671,14 @@ radio astronomy.")
 ;; CommitDate: Wed Jan 27 10:39:54 2021 +0100
 
 ;; 20221030T224339+0000
-(define-public psfex
-  (package
-    (name "psfex")
-    (version "3.24.1")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/astromatic/psfex")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "049689rz1vcbpzd8m2q5gkmigi99z9zm2lwakyql0k4jlmpr3yb7"))))
-    (build-system gnu-build-system)
-    (arguments
-     (list
-      #:configure-flags
-      #~(list "CPPFLAGS=-fcommon"
-              "--enable-openblas"
-              "--enable-plplot"
-              (string-append "--with-fftw-libdir="
-                             #$(this-package-input "fftw") "/lib")
-              (string-append "--with-fftw-incdir="
-                             #$(this-package-input "fftw") "/include")
-              (string-append "--with-openblas-libdir="
-                             #$(this-package-input "openblas") "/lib")
-              (string-append "--with-openblas-incdir="
-                             #$(this-package-input "openblas") "/include")
-              (string-append "--with-plplot-libdir="
-                             #$(this-package-input "plplot") "/lib")
-              (string-append "--with-plplot-incdir="
-                             #$(this-package-input "plplot") "/include"))))
-    (native-inputs
-     (list autoconf automake libtool pkg-config))
-    (inputs
-     (list openblas fftw fftwf plplot))
-    (home-page "https://www.astromatic.net/software/psfex")
-    (synopsis "Astronomical PSF modelling and quality assessment")
-    (description
-     "@acronym{PSFEx, PSF Extractor} extracts models of the @acronym{PSF, Point
-Spread Function} from FITS images processed with SExtractor, and measures the
-quality of images. The generated PSF models can be used for model-fitting
-photometry or morphological analyses.")
-    (license license:gpl3+)))
+;; (define-public psfex
+;; added-downstream-guix 147f1f2e0d3fe3b267f3e0f7c1d859bcb779c850
+;; CommitDate: Tue Apr 30 21:36:14 2024 +0100
 
 ;; 20240414T222620+0100
-(define-public scamp
-  (package
-    (name "scamp")
-    (version "2.10.0")
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/astromatic/scamp")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0qic52mzw9avf1a1fsr85mlh63b7hq6d4wj2d00zgdllmclj5l9q"))))
-    (build-system gnu-build-system)
-    (arguments
-     (list
-      #:configure-flags
-      #~(list "CPPFLAGS=-fcommon"
-              "--enable-openblas"
-              "--enable-plplot"
-              (string-append "--with-curl-incdir="
-                             #$(this-package-input "curl") "/include")
-              (string-append "--with-curl-libdir="
-                             #$(this-package-input "curl") "/lib")
-              (string-append "--with-fftw-incdir="
-                             #$(this-package-input "fftwf") "/include")
-              (string-append "--with-fftw-libdir="
-                             #$(this-package-input "fftwf") "/lib")
-              (string-append "--with-openblas-incdir="
-                             #$(this-package-input "openblas") "/include")
-              (string-append "--with-openblas-libdir="
-                             #$(this-package-input "openblas") "/lib")
-              (string-append "--with-plplot-incdir="
-                             #$(this-package-input "plplot") "/include")
-              (string-append "--with-plplot-libdir="
-                             #$(this-package-input "plplot") "/lib"))))
-    (native-inputs
-     (list autoconf
-           automake
-           libtool
-           pkg-config
-           python-astropy
-           python-numpy
-           python-wrapper))
-    (inputs
-     (list curl fftwf openblas plplot))
-    (home-page "https://www.astromatic.net/software/scamp/")
-    (synopsis "Compute astrometric solutions")
-    (description
-     "@acronym{Software for Calibrating AstroMetry and Photometry,SCAMP} is a
-software that computes astrometric projection parameters from source catalogues
-derived from @url{http://fits.gsfc.nasa.gov/,FITS} images.  The computed solution
-is expressed according to the
-@url{http://www.atnf.csiro.au/people/mcalabre/WCS/index.html,WCS} standard. The
-main features of SCAMP are:
-
-@itemize
-@item compatibility with @code{SExtractor} FITS or Multi-Extension FITS
-catalogue format in input
-@item generation of WCS-compliant and @code{SWarp}-compatible FITS image headers
-in output
-@item automatic grouping of catalogues on the sky
-@item selectable on-line astrometric reference catalogue
-@item Automatic determination of scale, position angle, flipping and coordinate
-shift using fast pattern-matching
-@item various astrometric calibration modes for single detectors and detector
-arrays
-@item combined astrometric solutions for multi-channel/instrument surveys
-@item highly configurable astrometric distortion polynomials
-@item correction for differential chromatic refraction
-@item proper motion measurements
-@item multi-threaded code that takes advantage of multiple processors
-@item @url{http://www.ivoa.net/documents/VOTable,VOTable}-compliant XML output
-of meta-data
-@item @url{http://en.wikipedia.org/wiki/XSLT,XSLT} filter sheet provided for
-convenient access to metadata from a regular web browser
-@end itemize")
-    (license license:gpl3+)))
+;; (define-public scamp
+;; added-downstream-guix bba6eca50967d84c8a4dbddf90c9c874ae2484aa
+;; CommitDate: Tue Apr 30 21:36:14 2024 +0100
 
 ;; (define-public weightwatcher
 ;; added-to-downstream-guix a80d489227738dffea24713555c9d940f5ffcce0
@@ -877,75 +761,18 @@ planetarium.")
 ;; CommitDate: Fri Feb 19 11:05:33 2021 +0100
 
 ;; 20240709T221729+0100
-(define-public python-echo
-  (package
-    (name "python-echo")
-    (version "0.8.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "echo" version))
-       (sha256
-        (base32 "1hr2kgjmf5gcjbg1mry03ca1dayfwy8mi8as42jfg0apsa3bfvvj"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'start-xorg-server
-            (lambda _
-              ;; The test suite requires a running X server.
-              (system "Xvfb :99 -screen 0 1024x768x24 &")
-              (setenv "DISPLAY" ":99.0"))))))
-    (propagated-inputs
-     (list python-numpy
-           python-qtpy
-           python-pyqt-6))
-    (native-inputs
-     (list python-pytest
-           python-pytest-cov
-           python-setuptools-scm
-           xorg-server-for-tests))
-    (home-page "https://github.com/glue-viz/echo")
-    (synopsis "Callback Properties in Python")
-    (description
-     "Echo is a small library for attaching callback functions to property
-state changes.")
-    (license license:expat)))
+;; (define-public python-echo
+;; added-downstream-guix 71c5db87694812add83633f8ac9332fd9b3fe59b
+;; CommitDate: Tue Jul 30 10:30:48 2024 +0100
 
 ;; 20230829T212256+0100
-(define-public python-extinction
-  (package
-    (name "python-extinction")
-    (version "0.4.6")
-    (source
-     (origin
-       (method git-fetch) ; No tests in PyPI
-       (uri (git-reference
-             (url "https://github.com/kbarbary/extinction")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1adxq926jd469mxm6llvsljgf2jqb06905h61i9qzc7m2yrm4wga"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags #~(list "test.py")))
-    (native-inputs (list python-cython python-pytest))
-    (propagated-inputs (list python-numpy))
-    (home-page "http://github.com/kbarbary/extinction")
-    (synopsis "Fast interstellar dust extinction laws")
-    (description
-     "This package provides a cython-optimized implementations of empirical dust
-exitinction laws found in the literature.")
-    (license license:expat)))
+;; (define-public python-extinction
+;; added-downstream-guix 691a732cfdc823ec6afaec500cae980e4f6b248d
+;; CommitDate: Tue Feb 27 22:52:00 2024 +0000
 
 ;; (define-public python-jplephem
 ;; added-to-downstream-guix 35d13a9099cad3326f0961760bb4ee2ceb692fa9
 ;; CommitDate: Sun Feb 7 10:20:52 2021 +0100
-
-;; https://github.com/asdf-format
-;;+begin-asdf-format
 
 ;; 20221019T231950+0100
 ;; (define-public python-asdf-standard
@@ -988,49 +815,9 @@ exitinction laws found in the literature.")
         (base32 "11s56797l5330kkhppkyz0bsvms016knmyswj4gx91zrxf8iqvv8"))))))
 
 ;; 20240310T110353+0000
-(define-public python-asdf-compression
-  ;; TODO: No release, change to tag when it's ready.
-  (let ((commit "57cc7e76fb4163be3e99fb740b36b5ec5ae96e49")
-        (revision "0"))
-    (package
-      (name "python-asdf-compression")
-      (version (git-version "0.0.1" revision commit))
-      (source
-       (origin
-         (method git-fetch)
-         (uri (git-reference
-               (url "https://github.com/asdf-format/asdf-compression")
-               (commit commit)))
-         (file-name (git-file-name name version))
-         (sha256
-          (base32 "1g6iiyls950k66dmd0pbqqdvz74kksc4j191n0ik6fhjnkiwifgs"))))
-      (build-system pyproject-build-system)
-      (arguments
-       (list
-        #:phases
-        #~(modify-phases %standard-phases
-            (add-before 'build 'set-version
-              (lambda _
-                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.0.1"))))))
-      (native-inputs
-       (list python-numpy
-             python-pytest
-             python-semantic-version
-             python-setuptools-scm))
-      (propagated-inputs
-       (list python-asdf
-             python-blosc
-             python-lz4
-             python-zstandard))
-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
-      (synopsis "ASDF extension to support various compression algorithms")
-      (description
-       "This package includes a plugin for the Python library ASDF to add
-support for reading and writing various compression algorithms including:
-@url{https://www.blosc.org/python-blosc/reference.html,Blosc},
-@url{https://python-lz4.readthedocs.io/en/stable/lz4.frame.html,LZ4 Frame},
-@url{http://facebook.github.io/zstd/,Zstandard}.")
-      (license license:bsd-3))))
+;; (define-public python-asdf-compression
+;; added-downstream-guix 6933d9ef0a2d0d248c42940973417b23d8af13e3
+;; CommitDate: Fri Mar 29 15:08:11 2024 +0000
 
 ;; (define python-asdf-wcs-schemas
 ;; added-to-downstream-guix 007495210d41bcb8dc3ddcf8e04f2d85c75ba990
@@ -1700,9 +1487,6 @@ based on the HDF5 standard")
 ;; (define-public python-pyavm
 ;; added-to-downstream-guix ea2e0eb36bf63da2628e6ed0d1f30dc5e789b969
 ;; CommitDate: Tue Oct 31 13:15:24 2023 -0400
-
-;; https://github.com/sunpy
-;;+begin-sunpy
 
 ;; 20220627T202513+0100
 ;; (define-public python-sunpy
@@ -1710,49 +1494,9 @@ based on the HDF5 standard")
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20240102T001734+0000
-(define-public python-sunpy-soar
-  (package
-    (name "python-sunpy-soar")
-    (version "1.10")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "sunpy-soar" version))
-       (sha256
-        (base32 "0pb7dr06n20hdhlqf8npb4j1qb5034cgwqi3iciqdi1wxyy5pjc6"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags
-      ;; Disabe tests requireing network access.
-      #~(list "-k" (string-append
-                    "not test_search"
-                    " and not test_search_low_latency"
-                    " and not test_insitu_search"
-                    " and not test_no_results"
-                    " and not test_no_instrument"
-                    " and not test_download_path"
-                    " and not test_search_soop"
-                    " and not test_when_soar_provider_passed"
-                    " and not test_when_sdac_provider_passed"
-                    " and not test_when_wrong_provider_passed"))
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-home-env
-            (lambda _
-              ;; Tests require HOME to be set.
-              ;;  Permission denied: '/homeless-shelter'
-              (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-sunpy))
-    (native-inputs
-     (list python-pytest))
-    (home-page "https://docs.sunpy.org/projects/soar")
-    (synopsis "Solar Orbiter Archive plugin for SunPy")
-    (description
-     "This package provides a @code{sunpy} FIDO plugin for accessing data in the
-@acronym{Solar Orbiter Archive, SOAR}.")
-    (license license:bsd-2)))
+;; (define-public python-sunpy-soar
+;; added-downstream-guix a5cf84ded9452c7704290741c18b4c9181ed0ae2
+;; CommitDate: Tue Feb 27 22:52:00 2024 +0000
 
 ;;20220627T213949+0100
 ;; (define-public python-drms

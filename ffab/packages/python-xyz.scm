@@ -42,6 +42,7 @@
   #:use-module (gnu packages python-web)
   #:use-module (gnu packages python-xyz)
   #:use-module (gnu packages qt)
+  #:use-module (gnu packages xorg)
   #:use-module (gnu packages serialization)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages statistics)
@@ -233,144 +234,14 @@ ETA, and very cool animations!")
         (base32 "0n8yj2d4srlkrhk72fcnkfb3jkv74a5aghxjhcp3p2i46lrg4d43"))))))
 
 ;; 20231022T002437+0100
-(define-public python-av
-  (package
-    (name "python-av")
-    (version "10.0.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "av" version))
-       (sha256
-        (base32 "01byqsjclkg65mhr6b4i2r2n4y7af9kdd2c35lxny27121b3vzca"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags
-      #~(list
-         ;; Tests require outbound access to download test data
-         ;; from http://fate.ffmpeg.org/fate-suite:
-         ;;
-         ;; E urllib.error.URLError: <urlopen error [Errno -3]
-         ;; Temporary failure in name resolution>
-         ;;
-         "--ignore=tests/test_doctests.py"
-         "--ignore=tests/test_timeout.py"
-         "-k"
-         (string-append
-          "not test_data"
-          " and not test_container_probing"
-          " and not test_stream_probing"
-          " and not test_transcode"
-          " and not test_codec_tag"
-          " and not test_parse"
-          " and not test_decode_audio_sample_count"
-          " and not test_decoded_motion_vectors"
-          " and not test_decoded_motion_vectors_no_flag"
-          " and not test_decoded_time_base"
-          " and not test_decoded_video_frame_count"
-          " and not test_encoding_aac"
-          " and not test_encoding_dnxhd"
-          " and not test_encoding_dvvideo"
-          " and not test_encoding_h264"
-          " and not test_encoding_mjpeg"
-          " and not test_encoding_mp2"
-          " and not test_encoding_mpeg1video"
-          " and not test_encoding_mpeg4"
-          " and not test_encoding_pcm_s24le"
-          " and not test_encoding_png"
-          " and not test_encoding_tiff"
-          " and not test_encoding_xvid"
-          " and not test_reading_from_buffer"
-          " and not test_reading_from_buffer_no_seek"
-          " and not test_reading_from_file"
-          " and not test_reading_from_pipe_readonly"
-          " and not test_reading_from_write_readonly"
-          " and not test_writing_to_custom_io_dash"
-          " and not test_writing_to_custom_io_image2"
-          " and not test_decode_half"
-          " and not test_seek_end"
-          " and not test_seek_float"
-          " and not test_seek_int64"
-          " and not test_seek_middle"
-          " and not test_seek_start"
-          " and not test_stream_seek"
-          " and not test_selection"
-          " and not test_stream_tuples"
-          " and not test_movtext"
-          " and not test_vobsub"
-          " and not test_roundtrip"
-          " and not test_stream_probing"))
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'build-extensions
-            (lambda _
-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
-    (native-inputs
-     (list pkg-config
-           python-cython
-           python-editorconfig
-           python-numpy
-           python-pillow
-           python-pytest))
-    (inputs
-     ;; XXX: Build is failing with FFmpeg 6.0, unresolved upstream.
-     ;; See https://github.com/PyAV-Org/PyAV/issues/1106
-     (list ffmpeg-5))
-    (home-page "https://github.com/PyAV-Org/PyAV")
-    (synopsis "Pythonic bindings for FFmpeg's libraries.")
-    (description
-     "PyAV is a Python library that allows for direct and precise manipulation
-of media through containers, streams, packets, codecs, and frames. It provides
-access to the powerful FFmpeg libraries while managing the complex details as
-much as possible. PyAV also facilitates data transformation and integration with
-other packages such as Numpy and Pillow. However, working with media is a
-challenging task and PyAV cannot abstract it away or make all the best decisions
-for you. If you can accomplish your tasks with the ffmpeg command, PyAV may not
-be necessary. Nonetheless, PyAV is an essential tool when working with media
-that requires its specific capabilities.")
-    (license license:bsd-3)))
+;; (define-public python-av
+;; added-downstram-guix a59922dab6e2b957ca882113a231c1e318ee8269
+;; CommitDate: Fri Jan 5 00:31:36 2024 -0500
 
 ;; 20231022T014831+0100
-(define-public python-djitellopy
-  (package
-    (name "python-djitellopy")
-    (version "2.5.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "djitellopy" version))
-       (sha256
-        (base32 "1kc0syb4hpn7fay0rxpazmczag6jw3pncrrc6v762jj0afiwkrps"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:tests? #f ; No tests provided.
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; XXX: Can't detect opencv-python version. The input opencv might not
-          ;; set the version correctly.
-          (delete 'sanity-check))))
-    ;; opencv provides OpenCV-Python which is Listed as install requirement.
-    (propagated-inputs
-     (list opencv
-           python-av
-           python-numpy
-           python-pillow))
-    (home-page "https://github.com/damiafuentes/DJITelloPy")
-    (synopsis "DJI Tello drone lib with video streaming, swarms and state packets")
-    (description
-     "DJI Tello drone python interface using the official Tello SDK and Tello
-EDU SDK.
-
- This library has the following features:
-@itemize
-@item Implementation of all tello commands
-@item Retrieve a video stream easely
-@item Receive and parse state packets
-@item Control a swarm of drones
-@end itemize")
-    (license license:expat)))
+;; (define-public python-djitellopy
+;; added-downstram-guix 2ef73c6bf5a6885153f2ab0594961878ee0dbf04
+;; CommitDate: Fri Jan 5 00:31:36 2024 -0500
 
 ;; 20240104T162509+0000
 (define-public python-pfzy
@@ -812,88 +683,14 @@ original python-can canalystii source.")
     (license license:bsd-3)))
 
 ;; 20240424T233655+0100
-(define-public python-corner
-  (package
-    (name "python-corner")
-    (version "2.2.2")
-    (source
-     (origin
-       (method git-fetch) ;no tests in PyPi archive
-       (uri (git-reference
-             (url "https://github.com/dfm/corner.py")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1i4dk4jxh0saysya2cnsfwlxwpldbdl174i9pwi4qj82av9jr2ii"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags
-      #~(list
-         ;; XXX: Disable tests which failed with mismatched images, check why.
-         "-k" (string-append "not test_labels[png]"
-                             " and not test_title_quantiles[png]"
-                             " and not test_title_quantiles_default[png]"
-                             " and not test_title_quantiles_raises[png]"
-                             " and not test_bins[png]"
-                             " and not test_bins_log[png]"
-                             " and not test_titles1[png]"
-                             " and not test_titles2[png]"
-                             " and not test_pandas[png]"
-                             " and not test_tight[png]"
-                             " and not test_extended_overplotting[png]"
-                             " and not test_reverse_overplotting[png]"
-                             " and not test_arviz[png]"
-                             " and not test_range_fig_arg[png]"))
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'build 'pretend-version
-            ;; XXX: Make sure you're either building from a fully intact git
-            ;; repository or PyPI tarballs. Most other sources (such as GitHub's
-            ;; tarballs, a git checkout without the .git folder) don't contain
-            ;; the necessary metadata and will not work.
-            (lambda _
-              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version))))))
-    (propagated-inputs
-     (list python-matplotlib))
-    (native-inputs
-     (list python-arviz python-pytest python-scipy python-setuptools-scm))
-    (home-page "http://corner.readthedocs.io/")
-    (synopsis "Make some beautiful corner plots")
-    (description
-     "This Python module uses @code{matplotlib} to visualize multidimensional
-samples using a scatterplot matrix. In these visualizations, each one- and
-two-dimensional projection of the sample is plotted to reveal covariances.
-corner was originally conceived to display the results of Markov Chain Monte
-Carlo simulations and the defaults are chosen with this application in mind but
-it can be used for displaying many qualitatively different samples.")
-    (license license:bsd-2)))
+;; (define-public python-corner
+;; added-downstream-guix c8e4b2740bc1fb9f880ce80a2c7b28c75f1b5022
+;; CommitDate: Sun Jun 30 10:11:19 2024 +0100
 
 ;; 20240129T120744+0000
-(define-public python-cmyt
-  (package
-    (name "python-cmyt")
-    (version "2.0.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "cmyt" version))
-       (sha256
-        (base32 "1zabmckr1z637pfqqvlkj0asfqqvx2x92163dby8x0c8yiqgdvjb"))))
-    (build-system pyproject-build-system)
-    (native-inputs
-     (list python-colorspacious python-pytest python-pytest-mpl))
-    (propagated-inputs
-     (list python-matplotlib python-numpy))
-    (home-page "https://yt-project.org/")
-    (synopsis "Matplotlib colormaps from the yt project")
-    (description
-     "This package provides a range of colormaps designed for scientific
-use with Matplotlib.  It includes perceptually uniform sequential colormaps such
-as @code{abre}, @code{dusk}, @code{kepl}, and @code{octarine}, as well as
-monochromatic sequential colormaps like @code{blue}, @code{green}, and
-@code{red}, and others (@code{algae}, @code{pastel}, and @code{xray}).")
-    (license license:bsd-3)))
+;; (define-public python-cmyt
+;; added-downstream-guix 0fd36bed26cd82b6b1330d839422ee090b11a37d
+;; CommitDate: Fri Mar 29 15:08:11 2024 +0000
 
 ;; 20240129T135721+0000
 (define-public python-ewah-bool-utils
@@ -931,6 +728,11 @@ monochromatic sequential colormaps like @code{blue}, @code{green}, and
               ;; ewah_bool_utils/cpp/LICENSE: for C++ bundle, sourced from
               ;; <https://github.com/lemire/EWAHBoolArray>.
               license:asl2.0))))
+
+;; 20240710T141942+0100
+;; (define-public python-mpl-scatter-density
+;; added-downstream-guix c6ecd58a0d3b8c5f77de3583e4c1a9484c19f0d5
+;; CommitDate: Tue Jul 30 10:30:48 2024 +0100
 
 ;; 20230301T210252+0000
 ;; (define-public python-czml3
