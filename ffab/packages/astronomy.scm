@@ -1987,4 +1987,47 @@ that path, and along the spectral axis, producing a position-velocity or
 position-frequency slice.")
     (license license:bsd-3)))
 
+;; 20240804T231529+0100
+(define-public python-glue-qt
+  (package
+    (name "python-glue-qt")
+    (version "0.3.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "glue-qt" version))
+       (sha256
+        (base32 "15ycykhg02xmsrlyv90qxckssmrq355qaqmz7p8nnqygm0gyrnx1"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:phases
+      #~(modify-phases %standard-phases
+           (add-before 'check 'prepare-x
+             (lambda _
+               (system "Xvfb &")
+               (setenv "DISPLAY" ":0")
+               (setenv "HOME" "/tmp"))))))
+    (propagated-inputs
+     (list python-astropy
+           python-echo
+           python-glue-core
+           python-ipykernel
+           python-ipython
+           python-matplotlib
+           python-numpy
+           python-pvextractor
+           python-qtconsole
+           python-qtpy
+           python-scipy))
+    (native-inputs
+     (list python-objgraph
+           python-pytest
+           python-setuptools-scm
+           xorg-server-for-tests))
+    (home-page "http://glueviz.org")
+    (synopsis "Multidimensional data visualization across files")
+    (description "Multidimensional data visualization across files.")
+    (license license:bsd-3)))
+
 ;; End of astronomy.scm
