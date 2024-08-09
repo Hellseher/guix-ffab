@@ -2012,6 +2012,7 @@ position-frequency slice.")
      (list python-astropy
            python-echo
            python-glue-core
+           python-h5py ;; for python-glue-core
            python-ipykernel
            python-ipython
            python-matplotlib
