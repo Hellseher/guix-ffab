@@ -1,0 +1,88 @@
+From 875d1c4f25951e420d14db5d7b8deea81c9683e7 Mon Sep 17 00:00:00 2001
+Message-ID: <875d1c4f25951e420d14db5d7b8deea81c9683e7.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 30 Jul 2024 23:27:12 +0100
+Subject: [PATCH 22/32] gnu: python-sunpy: Update to 6.0.1.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 6.0.1.
+[propagated-inputs]: Remove python-jplephem and python-sqlalchemy; add python-pyerfa.
+[native-inputs]: Remove python-pytest and python-pytest-doctestplus; add
+python-jplephem.
+
+Change-Id: I5e291fdb0fcf19e107a390fc68dec9fb9a8395bb
+---
+ gnu/packages/astronomy.scm | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 49b26e0e8b..fc0d348d26 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3222,13 +3222,13 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "5.1.5")
++    (version "6.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1jdkkcv247chsj08wrxxv0m577ji5cg7mxx5pw7q0ahmnq93xk2p"))))
++        (base32 "1yp7x26fzxs66bfvzaim8ns5q6514l66mbz5gabhlxb9pp8i6i85"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3247,10 +3247,11 @@ (define-public python-sunpy
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'relax-requirements
+             (lambda _
+-              (substitute* "setup.cfg"
+-                ;; It's already updated in master branch, but not released yet.
+-                ;; drms>=0.6.1,<0.7.0
+-                (("0.7.0") "0.7.2"))))
++              (substitute* "pyproject.toml"
++                ;; packaging>=23.0
++                ((">=23.0") ">=21.3")
++                ;; numpy>=1.23.5
++                ((">=1.23.5") ">=1.23.2"))))
+           (add-before 'install 'writable-compiler
+             (lambda _
+               (make-file-writable "sunpy/_compiler.c")))
+@@ -3266,10 +3267,10 @@ (define-public python-sunpy
+            python-aiohttp
+            python-extension-helpers
+            python-hvpy
++           python-jplephem
++           ;; python-mplcairo ; Not packed yet in Guix
+            python-packaging
+-           python-pytest
+            python-pytest-astropy
+-           python-pytest-doctestplus
+            python-pytest-mock
+            python-pytest-mpl
+            python-pytest-xdist
+@@ -3288,16 +3289,15 @@ (define-public python-sunpy
+            python-h5netcdf
+            python-h5py
+            python-hypothesis
+-           python-jplephem
+            python-matplotlib
+            python-mpl-animators
+            python-numpy
+            python-pandas
++           python-pyerfa
+            python-reproject
+            python-scikit-image
+            python-scipy
+            ;; python-spiceypy ; Not packed yet in Guix, long jorney.
+-           python-sqlalchemy
+            python-tqdm
+            python-zeep))
+     (home-page "https://sunpy.org")
+-- 
+2.41.0
+

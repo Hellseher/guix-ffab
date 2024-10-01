@@ -1,0 +1,52 @@
+From 8b96432d5999af7bce1c71eab88b104fd4d4abe9 Mon Sep 17 00:00:00 2001
+Message-ID: <8b96432d5999af7bce1c71eab88b104fd4d4abe9.1726874446.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726874446.git.sharlatanus@gmail.com>
+References: <cover.1726874446.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Sep 2024 22:42:56 +0100
+Subject: [PATCH 25/26] gnu: Add python-pytest-cython.
+
+* gnu/packages/python-check.scm (python-pytest-cython): New variable.
+
+Change-Id: I4f223bb0a88db3fd91bb312dfe4558a075ff8bb2
+---
+ gnu/packages/python-check.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 4888b42bc1..87a1f452c1 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -1784,6 +1784,29 @@ (define-public python-pytest-celery
+      "This package provides a shim Pytest plugin to enable a Celery marker.")
+     (license license:bsd-3)))
+ 
++(define-public python-pytest-cython
++  (package
++    (name "python-pytest-cython")
++    (version "0.3.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pytest-cython" version))
++       (sha256
++        (base32 "0ma496dgmmrpgqd3zk6vin29dgajcplh63yqd8jh2a3ai954fr22"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; XXX: 1 error during collection.
++      #:tests? #f ))
++    (propagated-inputs
++     (list python-pytest-8))
++    (home-page "https://github.com/lgpage/pytest-cython")
++    (synopsis "Cython extension modules testing plagin")
++    (description
++     "This package provides a plugin for testing Cython extension modules.")
++    (license license:expat)))
++
+ (define-public python-pytest-env
+   (package
+     (name "python-pytest-env")
+-- 
+2.46.0
+

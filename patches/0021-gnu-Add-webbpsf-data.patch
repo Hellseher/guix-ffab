@@ -1,0 +1,52 @@
+From 24b4ecee5500a38b69fa2c1f9b83835a6b089531 Mon Sep 17 00:00:00 2001
+Message-ID: <24b4ecee5500a38b69fa2c1f9b83835a6b089531.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Sep 2024 15:15:17 +0100
+Subject: [PATCH v2 21/25] gnu: Add webbpsf-data.
+
+* gnu/packages/astronomy.scm (webbpsf-data): New variable.
+
+Change-Id: I8b9836053f81187e2367a943ac981906880856b9
+---
+ gnu/packages/astronomy.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9652d232bb..74b0e63481 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6423,6 +6423,29 @@ (define-public wcstools
+ manipulate images.")
+     (license license:gpl2+)))
+ 
++(define-public webbpsf-data
++  (package
++    (name "webbpsf-data")
++    (version "1.4.0")
++    (source
++     (origin
++       (method url-fetch)
++       ;; 70.1MiB archive
++       (uri "https://stsci.box.com/shared/static/qxpiaxsjwo15ml6m4pkhtk36c9jgj70k.gz")
++       (file-name (string-append "webbpsf-data-" version ".tar.gz"))
++       (sha256
++        (base32 "0b3qxp6mrm2dwsdnqnprf4yrp0zbncknildqmf28wgginwa5sch8"))))
++    (build-system copy-build-system)
++    (arguments
++     (list
++      #:install-plan #~'(("." "share/webbpsf-data"))))
++    (home-page "https://webbpsf.readthedocs.io/en/stable/installation.html")
++    (synopsis "JWST pupil shape, instrument throughputs, and aperture positions data files")
++    (description
++     "This package contains FIT and CSV files requried for WebbPSF
++installation and distributed separatly from it.")
++    (license license:bsd-3)))
++
+ (define-public weightwatcher
+   (package
+     (name "weightwatcher")
+-- 
+2.46.0
+

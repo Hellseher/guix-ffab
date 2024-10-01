@@ -1,0 +1,62 @@
+From b857ba466d78f7fb9af3a3fc1454a46b6d9a2659 Mon Sep 17 00:00:00 2001
+Message-ID: <b857ba466d78f7fb9af3a3fc1454a46b6d9a2659.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Sep 2024 15:15:18 +0100
+Subject: [PATCH v2 23/25] gnu: Add python-ci-watson.
+
+* gnu/packages/astronomy.scm (python-ci-watson): New variable.
+
+Change-Id: I0590bdd7c3847d9b5cc80de94e40149c475bd46a
+---
+ gnu/packages/astronomy.scm | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 973e6af594..3675ccd14e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2794,6 +2794,39 @@ (define-public python-cdflib
+ @end itemize")
+     (license license:expat)))
+ 
++(define-public python-ci-watson
++  (package
++    (name "python-ci-watson")
++    (version "0.7.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "ci_watson" version))
++       (sha256
++        (base32 "1qb5iyb053k1711ic93rcm0z344dc6h8vg8fpkbqpg5z6q0v2b0y"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'patch-pypojrect-toml
++            (lambda _
++              (substitute* "setup.cfg"
++                ;; ImportError: Error importing plugin " no:legacypath": No
++                ;; module named ' no:legacypath'
++                (("-p no:legacypath") "")))))))
++    (propagated-inputs
++     (list python-crds
++           python-pytest
++           python-requests))
++    (native-inputs
++     (list python-pytest-astropy-header))
++    (home-page "https://github.com/spacetelescope/ci_watson")
++    (synopsis "Helper functions for STScI software")
++    (description
++     "This package contains a helper functionality to test ROMAN and JWST.")
++    (license license:bsd-3)))
++
+ (define-public python-cmyt
+   (package
+     (name "python-cmyt")
+-- 
+2.46.0
+

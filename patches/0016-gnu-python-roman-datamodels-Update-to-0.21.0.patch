@@ -1,0 +1,44 @@
+From d43298be7f3e643a15ab70996b4c344ca106455c Mon Sep 17 00:00:00 2001
+Message-ID: <d43298be7f3e643a15ab70996b4c344ca106455c.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Aug 2024 22:17:59 +0100
+Subject: [PATCH 16/32] gnu: python-roman-datamodels: Update to 0.21.0.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels): Update to 0.21.0.
+
+Change-Id: I0cde48b566ef594ec5a83d7a8f1b5d6fc65acaa8
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a9dd4360c4..3124422f08 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5374,18 +5374,18 @@ (define-public python-radiospectra
+ (define-public python-roman-datamodels
+   (package
+     (name "python-roman-datamodels")
+-    (version "0.20.0")
++    (version "0.21.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "roman_datamodels" version))
+        (sha256
+-        (base32 "1918wnssf478w168mhv009jkirmny8hyfxrkwvl8iish36dcqagh"))))
++        (base32 "00hwyxixdk3i48nhqnn7pnkkp3fran6fn8kzwx2w4bjkwv8cd126"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")
++      #~(list "--numprocesses" "auto")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'set-env
+-- 
+2.41.0
+

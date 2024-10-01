@@ -1,0 +1,38 @@
+From 26736f5363b83f3fb12c4bb167886dba68233202 Mon Sep 17 00:00:00 2001
+Message-ID: <26736f5363b83f3fb12c4bb167886dba68233202.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Sep 2024 15:08:32 +0100
+Subject: [PATCH v2 15/25] gnu: python-stcal: Update to 1.9.0.
+
+* gnu/packages/astronomy.scm (python-stcal): Update to 1.9.0.
+
+Change-Id: I431c3e02586d5331567cea7f2eb9df2e05b24b00
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fd6bb9f45a..5fe7371a65 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4053,13 +4053,13 @@ (define-public python-stsci-stimage
+ (define-public python-stcal
+   (package
+     (name "python-stcal")
+-    (version "1.8.0")
++    (version "1.9.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stcal" version))
+        (sha256
+-        (base32 "0vcq1462wdfi96qqsd5bidx38bbpnpcm18j6s761jz8ymi6vifap"))))
++        (base32 "1n843r19zyjm14iadfbi71ixpk0jrbhaj7h3szy1yhnhrfsrkwar"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

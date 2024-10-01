@@ -1,0 +1,56 @@
+From 3bee9de7af568c4abe420df879415ec3255774b0 Mon Sep 17 00:00:00 2001
+Message-ID: <3bee9de7af568c4abe420df879415ec3255774b0.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Sep 2024 15:19:08 +0100
+Subject: [PATCH v2 17/25] gnu: python-sunpy: Update to 6.0.2.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 6.0.2.
+[arguments]: <#:test-flags>: Enable more tests as the issue is resolved.
+
+Change-Id: Ib7506442d8c1447425a4ca24a7ffeb5c1cd9fa6a
+---
+ gnu/packages/astronomy.scm | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 42f60b6f71..6fab4491d6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3572,27 +3572,20 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "6.0.1")
++    (version "6.0.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1yp7x26fzxs66bfvzaim8ns5q6514l66mbz5gabhlxb9pp8i6i85"))))
++        (base32 "0mzmq2ncqgq61c1maxwynrmzcyiafnlil5mx4vhy2cvdyacm8yc9"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list
+-         "--numprocesses" "auto"
+-         "-k" (string-append
+-               ;; XXX: Failed: DID NOT RAISE <class 'ModuleNotFoundError'>
+-               ;; It struggles to find python-opencsv package info with
+-               ;; 'importlib.metadata'
+-               "not test_main_nonexisting_module"
+-               " and not test_main_stdlib_module")
+-         ;; Requries SpicePy not packed in Guix yet.
+-         "--ignore=sunpy/coordinates/tests/test_spice.py")
++      #~(list "--numprocesses" "auto"
++              ;; Requries SpicePy not packed in Guix yet.
++              "--ignore=sunpy/coordinates/tests/test_spice.py")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'relax-requirements
+-- 
+2.46.0
+

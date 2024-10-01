@@ -1,0 +1,95 @@
+From 3a9d3fd0764d810b84418f0e4d0cebc386b69d18 Mon Sep 17 00:00:00 2001
+Message-ID: <3a9d3fd0764d810b84418f0e4d0cebc386b69d18.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 13 Aug 2024 16:53:33 +0100
+Subject: [PATCH 01/32] gnu: indi-2.0: Adjust package style.
+
+* gnu/packages/astronomy.scm (indi-2.0): Apply G-expressions.
+[arguments] <tests>: Enable tests on all architectures.
+<parallel-tests>: Disable it to make tests more stable.
+<configure-flags>: Build all tests, do not set "Release" build type.
+<phases>: Add 'patch-udev-rule phase. Refresh custom 'check phase to
+include integration tests.'
+[inputs]: Add kmod.
+
+Change-Id: I46223344b042e2516065a4382fb0feb36645ebf9
+---
+ gnu/packages/astronomy.scm | 46 +++++++++++++++++++++-----------------
+ 1 file changed, 26 insertions(+), 20 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 212650630c..c7c244ed96 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -61,6 +61,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (gnu packages jupyter)
+   #:use-module (gnu packages libevent)
+   #:use-module (gnu packages libusb)
++  #:use-module (gnu packages linux)
+   #:use-module (gnu packages lua)
+   #:use-module (gnu packages machine-learning)
+   #:use-module (gnu packages maths)
+@@ -4316,26 +4317,30 @@ (define-public indi-2.0
+         (base32 "1rsy6ihwl3fnv502pmycx0xry9qn1qfz13kwdifcf2075wqd1lx9"))))
+     (build-system cmake-build-system)
+     (arguments
+-     ;; TODO: fix failing tests on aarch64-system.
+-     `(#:tests? ,(not (or (%current-target-system) (target-aarch64?)))
+-       #:configure-flags
+-       (let ((out (assoc-ref %outputs "out")))
+-         (list
+-          "-DINDI_BUILD_UNITTESTS=ON"
+-          "-DCMAKE_BUILD_TYPE=Release"
+-          (string-append "-DCMAKE_INSTALL_PREFIX=" out)
+-          (string-append "-DUDEVRULES_INSTALL_DIR=" out "/lib/udev/rules.d")))
+-       #:phases
+-       (modify-phases %standard-phases
+-         (replace 'check
+-           (lambda* (#:key tests? #:allow-other-keys)
+-             (when tests?
+-               (with-directory-excursion "test"
+-                 (invoke "ctest")))))
+-         (add-before 'install 'set-install-directories
+-           (lambda* (#:key outputs #:allow-other-keys)
+-             (let ((out (assoc-ref outputs "out")))
+-               (mkdir-p (string-append out "/lib/udev/rules.d"))))))))
++     (list
++      #:parallel-tests? #f  ; Socket address collisions between tests
++      #:configure-flags
++      #~(list "-DINDI_BUILD_UNITTESTS=ON"
++              "-DINDI_BUILD_INTEGTESTS=ON"
++              "-DCMAKE_INSTALL_LIBDIR=lib"
++              (string-append "-DCMAKE_INSTALL_PREFIX=" #$output)
++              (string-append "-DUDEVRULES_INSTALL_DIR=" #$output "/lib/udev/rules.d"))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'patch-udev-rules
++            (lambda _
++              (substitute* (list "drivers/auxiliary/99-indi_auxiliary.rules"
++                                 "drivers/video/80-dbk21-camera.rules")
++                (("/bin/sh") (which "sh"))
++                (("/sbin/modprobe")
++                 (string-append #$(this-package-input "kmod") "/bin/modprobe")))))
++          (replace 'check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (with-directory-excursion "integs"
++                  (invoke "ctest" "-V" "--output-on-failure"))
++                (with-directory-excursion "test"
++                  (invoke "ctest" "-V"))))))))
+     (native-inputs
+      (list googletest))
+     (inputs
+@@ -4343,6 +4348,7 @@ (define-public indi-2.0
+            curl
+            fftw
+            gsl
++           kmod
+            libev
+            libjpeg-turbo
+            libnova
+-- 
+2.41.0
+

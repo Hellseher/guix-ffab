@@ -1,0 +1,56 @@
+From 59bb6ebbdaa75c8bd9dcbdade5566198bcb9f224 Mon Sep 17 00:00:00 2001
+Message-ID: <59bb6ebbdaa75c8bd9dcbdade5566198bcb9f224.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 30 Jul 2024 22:44:13 +0100
+Subject: [PATCH 12/32] gnu: python-mpl-animators: Update to 1.2.0.
+
+* gnu/packages/astronomy.scm (python-mpl-animators): Update to 1.2.0.
+[arguments]: <#:phases>: Add 'set-home phase.
+[native-inputs]: Add python-pytest-doctestplus and python-pytest-xdist.
+
+Change-Id: I6cbdc2e51e0841540c0944ceeb3e154ba2907ca7
+---
+ gnu/packages/astronomy.scm | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index c3d912ca21..51dd065109 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2641,17 +2641,29 @@ (define-public python-kanon
+ (define-public python-mpl-animators
+   (package
+     (name "python-mpl-animators")
+-    (version "1.1.1")
++    (version "1.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "mpl_animators" version))
+        (sha256
+-        (base32 "078dshs383ny182dac0spg7z0iilcwa0fnwv1vizsr6p1d3ar98b"))))
++        (base32 "0xxzwxp2zss2s5ci6d349nfdc4hcbm10pqmf5zf14yn66plc1r4k"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++         (add-before 'check 'set-home
++           (lambda _
++             ;; Relax matplotlib warning: ... because the default path
++             ;; (/homeless-shelter/.config/matplotlib) is not a writable
++             ;; directory ...
++             (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-pytest
++           python-pytest-doctestplus
+            python-pytest-mpl
++           python-pytest-xdist
+            python-setuptools-scm))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.41.0
+

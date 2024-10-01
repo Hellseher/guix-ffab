@@ -1,0 +1,38 @@
+From cdd846d898afcc3720bef978dc7f1b5a4e2d0889 Mon Sep 17 00:00:00 2001
+Message-ID: <cdd846d898afcc3720bef978dc7f1b5a4e2d0889.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Sep 2024 21:11:50 +0100
+Subject: [PATCH v2 10/25] gnu: python-jwst: Update to 1.16.0.
+
+* gnu/packages/astronomy.scm (python-jwst): Update to 1.16.0.
+
+Change-Id: I7084b58eed04d5faf49cbd16aa43bf493a6655d8
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f44b4e48c0..ca521aab0a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4795,13 +4795,13 @@ (define-public python-jplephem
+ (define-public python-jwst
+   (package
+     (name "python-jwst")
+-    (version "1.15.1")
++    (version "1.16.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "jwst" version))
+               (sha256
+                (base32
+-                "1nl5fixakqvjhg9q5biivwaqpi6lzx9w4fq0n6imwccag2gv1va3"))
++                "06krkpfhwpc825bsdl0rffd9qlqw1rl928fwxa7cywds5dahpiyn"))
+               (modules '((guix build utils)))
+               (snippet
+                '(begin
+-- 
+2.46.0
+

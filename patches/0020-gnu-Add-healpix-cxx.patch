@@ -1,0 +1,59 @@
+From 62c843136bd2dfcd7e06f93977851440f94f0830 Mon Sep 17 00:00:00 2001
+Message-ID: <62c843136bd2dfcd7e06f93977851440f94f0830.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 11 Sep 2024 14:10:53 +0100
+Subject: [PATCH v2 20/25] gnu: Add healpix-cxx.
+
+* gnu/packages/astronomy.scm (healpix-cxx): New variable.
+
+Change-Id: I1d70cd44efa86f89e3fc8f4f60d0b259ecd78acf
+---
+ gnu/packages/astronomy.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9e2cf878b9..9652d232bb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -648,6 +648,36 @@ (define-public healpix
+ dynamic library for the C language implementation of HEALPix.")
+     (license license:gpl2+)))
+ 
++(define-public healpix-cxx
++  (package
++    (inherit healpix)
++    (name "healpix-cxx")
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'chdir-cxx
++            (lambda _
++              (chdir "src/cxx")))
++          (add-after 'chdir-cxx 'adjust-unit-tests
++            (lambda _
++              (substitute* "configure.ac"
++                ;; Run unit tests using serial harness, taken from
++                ;; <https://salsa.debian.org/debian-astro-team/healpix-cxx/>.
++                (("foreign subdir-objects -Wall -Werror")
++                 "foreign serial-tests subdir-objects -Wall -Werror"))))
++           (replace 'bootstrap
++             (lambda _
++               (invoke "aclocal")
++               (invoke "automake" "--add-missing")
++               (invoke "autoconf"))))))
++    (inputs (modify-inputs (package-inputs healpix)
++              (prepend libsharp zlib)))
++    (description
++     (string-replace-substring (package-description healpix)
++                    "C language"
++                    "C++ language"))))
++
+ (define-public erfa
+   (package
+     (name "erfa")
+-- 
+2.46.0
+

@@ -1,0 +1,40 @@
+From 2176b75ce7d45357e9175bf725667ad8d741476e Mon Sep 17 00:00:00 2001
+Message-ID: <2176b75ce7d45357e9175bf725667ad8d741476e.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 5 Aug 2024 21:40:30 +0100
+Subject: [PATCH 10/32] gnu: python-glue-core: Adjust inputs.
+
+* gnu/packages/astronomy.scm (python-glue-core): Add missing inputs
+highlighted in sanity-check on python-glue-astronomy.
+[propagated-inputs]: Add python-h5py and python-pillow.
+
+Change-Id: I6b63152f4b80aa708d882e2b8b598480a620bfca
+---
+ gnu/packages/astronomy.scm | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0febff6867..c3d912ca21 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1166,6 +1166,7 @@ (define-public python-glue-core
+            python-dill
+            python-echo
+            python-fast-histogram
++           python-h5py
+            python-ipython
+            python-matplotlib
+            python-mpl-scatter-density
+@@ -1173,6 +1174,7 @@ (define-public python-glue-core
+            python-openpyxl
+            python-pandas
+            ;; python-pyavm ; optional, not packed
++           python-pillow
+            python-scikit-image
+            python-scipy
+            python-setuptools
+-- 
+2.41.0
+

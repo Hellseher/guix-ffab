@@ -1,0 +1,40 @@
+From 76a97e9b934005e152290e72e5f2a2baeedd689a Mon Sep 17 00:00:00 2001
+Message-ID: <76a97e9b934005e152290e72e5f2a2baeedd689a.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Sep 2024 13:31:52 +0100
+Subject: [PATCH v2 01/25] gnu: calcmysky: Update to 0.3.3.
+
+* gnu/packages/astronomy.scm (calcmysky): Update to 0.3.3.
+
+Change-Id: Ia2afb27fdc866edcf6f3167484ab70a4ff12a5d6
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1a6b0e866b..be58fa64af 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -294,7 +294,7 @@ (define-public calceph
+ (define-public calcmysky
+   (package
+     (name "calcmysky")
+-    (version "0.3.2")
++    (version "0.3.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -303,7 +303,7 @@ (define-public calcmysky
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1kybjlddrm8x4x5y82qczi6z1d2riv6zcfjzrh7pzg2vwj89izh0"))))
++        (base32 "0njsapy3qlyg3y0p5a849xydzhnzk4p5s0s37zxw9k5nnaf4vinp"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list #:configure-flags
+-- 
+2.46.0
+

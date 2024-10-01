@@ -1,0 +1,88 @@
+From c2d204a1ed98b4949a02a1e87ac5bda216e37069 Mon Sep 17 00:00:00 2001
+Message-ID: <c2d204a1ed98b4949a02a1e87ac5bda216e37069.1726874446.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726874446.git.sharlatanus@gmail.com>
+References: <cover.1726874446.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Sep 2024 22:43:09 +0100
+Subject: [PATCH 26/26] gnu: Add python-healpy.
+
+* gnu/packages/astronomy.scm (python-healpy): New variable.
+
+Change-Id: I471145f504d4e8d7a2611a6a1fd3c4f0d0472033
+---
+ gnu/packages/astronomy.scm | 59 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3675ccd14e..291ea8d1ca 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1413,6 +1413,65 @@ (define-public python-glue-qt
+     (description "Multidimensional data visualization across files.")
+     (license license:bsd-3)))
+ 
++(define-public python-healpy
++  (package
++    (name "python-healpy")
++    ;; The latest version depends on custom fork of HEALPix with changes not
++    ;; ported to upstream yet, see
++    ;; <https://github.com/healpy/healpy/issues/949>.
++    (version "1.16.6")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "healpy" version))
++       (sha256
++        (base32 "1w99cgszh2mzcn5x8p0gdzn3r96vyfdnvbwm20a1l9fdiy16xcha"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      ;; Disable tests requiring network access.
++      #~(list "-k" (string-append "not test_astropy_download_file"
++                                  " and not test_pixelweights_local_datapath"
++                                  " and not test_rotate_map_polarization_alms"))
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; XXX: It's not compatible with pytest-8, enable when newer version
++          ;; is available.
++          (add-after 'unpack 'disable-doctest
++            (lambda _
++            (substitute* "pyproject.toml"
++              (("--doctest-plus") ""))))
++          (add-before 'check 'build-extensions
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++    (native-inputs
++     (list nss-certs-for-test
++           pkg-config
++           python-cython-3
++           python-pytest-8
++           python-pytest-astropy-header
++           python-pytest-cython
++           ;python-pytest-doctestplus
++           python-setuptools-scm))
++    (propagated-inputs
++     (list python-astropy
++           python-colorlog
++           python-matplotlib
++           python-numpy
++           python-scipy))
++    (inputs
++     (list cfitsio
++           healpix-cxx
++           libsharp))
++    (home-page "http://healpy.readthedocs.org/")
++    (synopsis "Healpix tools package for Python")
++    (description
++     "healpy is a Python package to handle pixelated data on the sphere.  It
++is based on the Hierarchical Equal Area isoLatitude Pixelization (HEALPix)
++scheme and bundles the HEALPix C++ library.")
++    (license license:gpl2+)))
++
+ (define-public python-pvextractor
+   (package
+     (name "python-pvextractor")
+-- 
+2.46.0
+

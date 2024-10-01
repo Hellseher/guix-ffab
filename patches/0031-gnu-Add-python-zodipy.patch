@@ -1,0 +1,69 @@
+From 891ad4880f4f963f51cba8ef0ac82bdb4e74df97 Mon Sep 17 00:00:00 2001
+Message-ID: <891ad4880f4f963f51cba8ef0ac82bdb4e74df97.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Aug 2024 23:16:58 +0100
+Subject: [PATCH 31/32] gnu: Add python-zodipy.
+
+* gnu/packages/astronomy.scm (python-zodipy): New variable.
+
+Change-Id: I15a7603330ee0ca19ec6073ac312e15f44db1a2b
+---
+ gnu/packages/astronomy.scm | 40 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e36a3b57ce..11c0ca306e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6017,6 +6017,46 @@ (define-public python-yt-astro-analysis
+ @end itemize")
+     (license (list license:bsd-3 license:lgpl3))))
+ 
++(define-public python-zodipy
++  (package
++    (name "python-zodipy")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch) ;; no tests in the PyPI tarball
++       (uri (git-reference
++             (url "https://github.com/Cosmoglobe/zodipy")
++             (commit (string-append "v." version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "08hwicpv3wfpccr2cj1vxb8iy7av12yjs3prq0zw7qc89imrgrbn"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "pyproject.toml"
++                ;; numpy = "^1.26.4"
++                (("1.26.4") "1.23.2")
++                ;; scipy = "^1.13.0"
++                (("1.13.0") "1.12.0")))))))
++    (propagated-inputs
++     (list python-astropy
++           python-jplephem
++           python-numpy
++           python-scipy))
++    (native-inputs
++     (list python-poetry-core
++           python-pytest))
++    (home-page "https://github.com/Cosmoglobe/zodipy")
++    (synopsis "Zodiacal emission simulations")
++    (description
++     "ZodiPy is an package for simulating zodiacal light in intensity for
++arbitrary solar system observers.")
++    (license license:gpl3+)))
++
+ (define-public qfits
+   (package
+     (name "qfits")
+-- 
+2.41.0
+

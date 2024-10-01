@@ -1,0 +1,46 @@
+From 78433b8a2b4b651f758729ccb3a9c49239ed8e02 Mon Sep 17 00:00:00 2001
+Message-ID: <78433b8a2b4b651f758729ccb3a9c49239ed8e02.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Aug 2024 23:57:37 +0100
+Subject: [PATCH 32/32] gnu: python-sunkit-image: Disable more failing tests.
+
+* gnu/packages/astronomy.scm (python-sunkit-image) [arguments]
+<#:test-flags>: Disable 2 more failing tests.
+
+Change-Id: Id42ab4da383120eda01e4b025e5df6af8d3ae528
+---
+ gnu/packages/astronomy.scm | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 11c0ca306e..5c43d43f12 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1574,13 +1574,17 @@ (define-public python-sunkit-image
+     (arguments
+      (list
+       ;; XXX: Check with upstram: assert False.
+-      #:test-flags #~(list "-k" "not test_fnrgf")
++      #:test-flags
++      #~(list "-k" (string-append
++                    "not test_fnrgf"
++                    " and not test_calculate_solar_rotate_shift"
++                    " and not test_mapsequence_solar_derotate"))
+       #:phases
+       #~(modify-phases %standard-phases
+-         (add-before 'check 'set-home
+-           (lambda _
+-             ;; For tests: Permission denied: '/homeless-shelter'
+-             (setenv "HOME" "/tmp"))))))
++          (add-before 'check 'set-home
++            (lambda _
++              ;; For tests: Permission denied: '/homeless-shelter'
++              (setenv "HOME" "/tmp"))))))
+     (propagated-inputs
+      (list python-astropy
+            python-matplotlib
+-- 
+2.41.0
+

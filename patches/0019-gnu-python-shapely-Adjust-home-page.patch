@@ -1,0 +1,35 @@
+From 60fb0b4de08ab10ac992df92ff665d6445986790 Mon Sep 17 00:00:00 2001
+Message-ID: <60fb0b4de08ab10ac992df92ff665d6445986790.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 31 Jul 2024 09:25:32 +0100
+Subject: [PATCH 19/32] gnu: python-shapely: Adjust home page.
+
+Permanent redirect from <https://github.com/Toblerity/Shapely> to
+<https://github.com/shapely/shapely>.
+
+* gnu/packages/python-xyz.scm (python-shapely) [home-page]: Fix lint
+warning.
+
+Change-Id: Ifa78b15647e58a832a5da108f0fbe9f51fdb21df
+---
+ gnu/packages/python-xyz.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 589928bb28..0a9afc958c 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -2629,7 +2629,7 @@ (define-public python-shapely
+      (list geos))
+     (propagated-inputs
+      (list python-numpy))
+-    (home-page "https://github.com/Toblerity/Shapely")
++    (home-page "https://github.com/shapely/shapely")
+     (synopsis "Library for the manipulation and analysis of geometric objects")
+     (description "Shapely is a Python package for manipulation and analysis of
+ planar geometric objects.  It is based on the @code{GEOS} library.")
+-- 
+2.41.0
+

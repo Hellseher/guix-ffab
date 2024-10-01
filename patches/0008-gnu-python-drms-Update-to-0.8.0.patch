@@ -1,0 +1,49 @@
+From eafd2aab31b35f72f38e0ef5fdaafa8d909bf6de Mon Sep 17 00:00:00 2001
+Message-ID: <eafd2aab31b35f72f38e0ef5fdaafa8d909bf6de.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 30 Jul 2024 22:23:31 +0100
+Subject: [PATCH 08/32] gnu: python-drms: Update to 0.8.0.
+
+* gnu/packages/astronomy.scm (python-drms): Update to 0.8.0.
+[native-inputs]: Remove python-pytest.
+
+Change-Id: Id42d08c1b6e8921cd8fb9e4b58b71a2e133f6679
+---
+ gnu/packages/astronomy.scm | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 91271e665f..b3ca5074c3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2422,20 +2422,18 @@ (define-public python-czml3
+ (define-public python-drms
+   (package
+     (name "python-drms")
+-    (version "0.7.1")
++    (version "0.8.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "drms" version))
+        (sha256
+-        (base32 "01q00zwpbhik9lgbc42z6q791ybxc41rxgrj04fpcfkl3hcl0nyr"))))
++        (base32 "19lqy510d7iyxfz445h2rn4d0rvmd4d3lnjmvbkvv270ckpfw09f"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-astropy
+-           python-pytest-astropy
+-           python-pytest
+-           python-setuptools-scm))
+-    (propagated-inputs (list python-numpy python-pandas))
++     (list python-astropy python-pytest-astropy python-setuptools-scm))
++    (propagated-inputs
++     (list python-numpy python-pandas))
+     (home-page "https://sunpy.org")
+     (synopsis "Access astronomical HMI, AIA and MDI data with Python")
+     (description
+-- 
+2.41.0
+

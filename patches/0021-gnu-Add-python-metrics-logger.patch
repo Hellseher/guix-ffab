@@ -1,0 +1,52 @@
+From ee491bd5a2d33cb0630becb6c52aa470dd6f2eb8 Mon Sep 17 00:00:00 2001
+Message-ID: <ee491bd5a2d33cb0630becb6c52aa470dd6f2eb8.1726874446.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726874446.git.sharlatanus@gmail.com>
+References: <cover.1726874446.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 19 Sep 2024 15:15:17 +0100
+Subject: [PATCH 21/26] gnu: Add python-metrics-logger.
+
+* gnu/packages/python-xyz.scm (python-metrics-logger): New variable.
+
+Change-Id: I864d4f3a71f31214f6fba5d3ef42e681bf0a6585
+---
+ gnu/packages/python-xyz.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 6975cca1f7..ed506b19c3 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -29651,6 +29651,29 @@ (define-public python-mercantile
+ translating between quadkey and tile coordinates.")
+     (license license:bsd-3)))
+ 
++(define-public python-metrics-logger
++  (package
++    (name "python-metrics-logger")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "metrics_logger" version))
++       (sha256
++        (base32 "1fri00gb7x8ihjz8a25xc6wv5mkr55w0gdsf83pcqfc6hm094wh2"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-pytest))
++    (home-page "https://github.com/spacetelescope/metrics_logger")
++    (synopsis
++     "Standardized logging for metrics capture for applications with requirements.")
++    (description
++     "The metrics logger is a simple decorator intended to provide
++standardized logging for annotated pytest methods with tags to identify
++associated build requirements. As this is a generic utility, any method can be
++decorated and any type of tagging can be provided.")
++    (license #f)))
++
+ (define-public python-xyzservices
+   (package
+     (name "python-xyzservices")
+-- 
+2.46.0
+

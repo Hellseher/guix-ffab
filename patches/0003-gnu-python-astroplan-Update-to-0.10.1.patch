@@ -1,0 +1,38 @@
+From b48f9ab5da9b470b7ba094cdb510b62e48998de9 Mon Sep 17 00:00:00 2001
+Message-ID: <b48f9ab5da9b470b7ba094cdb510b62e48998de9.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 16 Aug 2024 20:18:15 +0100
+Subject: [PATCH 03/32] gnu: python-astroplan: Update to 0.10.1.
+
+* gnu/packages/astronomy.scm (python-astroplan): Update to 0.10.1.
+
+Change-Id: I7968e02a1525ab8f2440b0192db566ffdfad935a
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 81f31eb163..95073889b8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2002,13 +2002,13 @@ (define-public python-astropy-iers-data
+ (define-public python-astroplan
+   (package
+     (name "python-astroplan")
+-    (version "0.10")
++    (version "0.10.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astroplan" version))
+        (sha256
+-        (base32 "0nl7yi0h5nn4id1jifd8hpwzqdarq9z2iq56x0j2kmj3472cjw0n"))))
++        (base32 "0nb97fz0mlypdlvs09wyh0z7mxw0d6aqqkd9yfzhlqz1fwrprn9r"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

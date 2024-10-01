@@ -1,0 +1,38 @@
+From a5074d6744d76d0933f5c12321520d150979f90c Mon Sep 17 00:00:00 2001
+Message-ID: <a5074d6744d76d0933f5c12321520d150979f90c.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 Aug 2024 22:23:16 +0100
+Subject: [PATCH 17/32] gnu: python-specutils: Update to 1.16.0.
+
+* gnu/packages/astronomy.scm (python-specutils): Update to 1.16.0.
+
+Change-Id: Ic9796b2ab717e64ee00658b76a0e0e470a89100e
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3124422f08..bf43123538 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3477,13 +3477,13 @@ (define-public python-spectral-cube
+ (define-public python-specutils
+   (package
+     (name "python-specutils")
+-    (version "1.15.0")
++    (version "1.16.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "specutils" version))
+        (sha256
+-        (base32 "0gx90dn9vmbvd7a53xb7a51jabskrad52g7imgy0ih1jchdls2pj"))))
++        (base32 "1bv1f0bpyc8pgxywcmhd3rpmnx0l604iqn4cx6isa9jfp6gnd0z3"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

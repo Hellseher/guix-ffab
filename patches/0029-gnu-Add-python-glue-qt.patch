@@ -1,0 +1,71 @@
+From 5b6719dba2f2eda1175324bc74ff4a059b7e6859 Mon Sep 17 00:00:00 2001
+Message-ID: <5b6719dba2f2eda1175324bc74ff4a059b7e6859.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 5 Aug 2024 22:15:35 +0100
+Subject: [PATCH 29/32] gnu: Add python-glue-qt.
+
+* gnu/packages/astronomy.scm (python-glue-qt): New variable.
+
+Change-Id: I44a58be6282a76bbd20e5501012a41b87563c5c3
+---
+ gnu/packages/astronomy.scm | 42 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 38f9db1c8c..4c96098145 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1237,6 +1237,48 @@ (define-public python-glue-core
+ across many files.")
+     (license license:bsd-3)))
+ 
++(define-public python-glue-qt
++  (package
++    (name "python-glue-qt")
++    (version "0.3.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "glue-qt" version))
++       (sha256
++        (base32 "15ycykhg02xmsrlyv90qxckssmrq355qaqmz7p8nnqygm0gyrnx1"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++           (add-before 'check 'prepare-x
++             (lambda _
++               (system "Xvfb &")
++               (setenv "DISPLAY" ":0")
++               (setenv "HOME" "/tmp"))))))
++    (propagated-inputs
++     (list python-astropy
++           python-echo
++           python-glue-core
++           python-ipykernel
++           python-ipython
++           python-matplotlib
++           python-numpy
++           python-pvextractor
++           python-qtconsole
++           python-qtpy
++           python-scipy))
++    (native-inputs
++     (list python-objgraph
++           python-pytest
++           python-setuptools-scm
++           xorg-server-for-tests))
++    (home-page "http://glueviz.org")
++    (synopsis "Multidimensional data visualization across files")
++    (description "Multidimensional data visualization across files.")
++    (license license:bsd-3)))
++
+ (define-public python-pvextractor
+   (package
+     (name "python-pvextractor")
+-- 
+2.41.0
+

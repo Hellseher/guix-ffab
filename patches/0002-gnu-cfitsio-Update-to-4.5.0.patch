@@ -1,0 +1,62 @@
+From b1926e1db0415784f586ca1e80a02de9e97f27f8 Mon Sep 17 00:00:00 2001
+Message-ID: <b1926e1db0415784f586ca1e80a02de9e97f27f8.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 3 Sep 2024 12:38:39 +0100
+Subject: [PATCH v2 02/25] gnu: cfitsio: Update to 4.5.0.
+
+* gnu/packages/astronomy.scm (cfitsio): Update to 4.5.0.
+[description]: Adjust indentation, fix some lint warning and replace "dfn"
+with "acronym".
+[properties]: Add "release-monitoring-url" property.
+
+Change-Id: I6717f2c68d11845839f34eae073965857ca318c5
+---
+ gnu/packages/astronomy.scm | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index be58fa64af..81cd6a79ac 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -541,7 +541,7 @@ (define-public celestia-gtk
+ (define-public cfitsio
+   (package
+     (name "cfitsio")
+-    (version "4.4.1")
++    (version "4.5.0")
+     (source
+      (origin
+        (method url-fetch)
+@@ -549,7 +549,7 @@ (define-public cfitsio
+              "https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/"
+              "cfitsio-" version ".tar.gz"))
+        (sha256
+-        (base32 "098x1l8ijwsjp2ivp3v7pamrmpgwj5xmgb4yppm9w3w044zxr8b6"))))
++        (base32 "02ff4xsc4r6vam4m4nmp426bpl7klbx6nn5ajgj6452w6v1lz1g4"))))
+     (build-system gnu-build-system)
+     (arguments
+      (list
+@@ -574,11 +574,15 @@ (define-public cfitsio
+     (inputs (list bzip2 curl zlib))
+     (home-page "https://heasarc.gsfc.nasa.gov/fitsio/fitsio.html")
+     (synopsis "Library for reading and writing FITS files")
+-    (description "CFITSIO provides simple high-level routines for reading and
+-writing @dfn{FITS} (Flexible Image Transport System) files that insulate the
+-programmer from the internal complexities of the FITS format. CFITSIO also
++    (description
++     "CFITSIO provides simple high-level routines for reading and writing
++@acronym{Flexible Image Transport System,FITS} files that insulate the
++programmer from the internal complexities of the FITS format.  CFITSIO also
+ provides many advanced features for manipulating and filtering the information
+ in FITS files.")
++    (properties
++     '((release-monitoring-url .
++        "https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html")))
+     (license (license:non-copyleft "file://License.txt"
+                                    "See License.txt in the distribution."))))
+ 
+-- 
+2.46.0
+

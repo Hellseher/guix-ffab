@@ -1,0 +1,57 @@
+From d15bc2d59386a0f4f81e8cd13aa4386a21c56f38 Mon Sep 17 00:00:00 2001
+Message-ID: <d15bc2d59386a0f4f81e8cd13aa4386a21c56f38.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 17 Sep 2024 09:25:14 +0100
+Subject: [PATCH v2 05/25] gnu: python-astropy: Update to 6.1.3.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.1.3.
+[arguments]: <#:test-flags>: Enable more tests.
+
+Change-Id: Id9ad7141bcc06f45bc8408896fc216b655b49642
+---
+ gnu/packages/astronomy.scm | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index eceeb23a3a..acfc603153 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2156,13 +2156,13 @@ (define-public stellarium
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.1.2")
++    (version "6.1.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "0fhx9zjsqp7z8z8phafpbwpb46idrbsamkfg42l8j0z94i73s452"))
++        (base32 "0w09fn7zy2nr5pvvqwmi3s3cm3y5pzxpn7wldz7bbxn1xp6k9j4s"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -2180,15 +2180,13 @@ (define-public python-astropy
+      (list
+       #:test-flags
+       #~(list "--pyargs" "astropy"
+-              "-n" "auto"
++              "--numprocesses" "auto"
+               "-k" (string-append
+                     ;; Skip tests that need remote data.
+                     "not remote_data"
+                     ;; ValueError: The truth value of an array with more than
+                     ;; one element is ambiguous. Use a.any() or a.all()
+-                    " and not test_table_comp[t16-t26]"
+-                    ;; E Unreliable test timings! <...>
+-                    " and not test_datetime_timedelta_roundtrip"))
++                    " and not test_table_comp[t16-t26]"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'preparations
+-- 
+2.46.0
+

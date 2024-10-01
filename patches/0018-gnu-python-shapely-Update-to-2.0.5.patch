@@ -1,0 +1,38 @@
+From 4abe20cc335d409d7476cbbe79de6f7e79f5ca18 Mon Sep 17 00:00:00 2001
+Message-ID: <4abe20cc335d409d7476cbbe79de6f7e79f5ca18.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 31 Jul 2024 09:03:06 +0100
+Subject: [PATCH 18/32] gnu: python-shapely: Update to 2.0.5.
+
+* gnu/packages/python-xyz.scm (python-shapely): Update to 2.0.5.
+
+Change-Id: Ia5a49492a5bf02e514d8f3524dc3c26227660901
+---
+ gnu/packages/python-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 6caa9ab7bc..589928bb28 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -2607,13 +2607,13 @@ (define-public python-rasterio
+ (define-public python-shapely
+   (package
+     (name "python-shapely")
+-    (version "2.0.2")
++    (version "2.0.5")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "shapely" version))
+        (sha256
+-        (base32 "1rs90q4ys5cav0hz1dq72wq2mk4aqlqqbfjrnb2zzfkiq42cq4qp"))))
++        (base32 "0cpyziixzdj7xqkya4k6fwr0qmrw8k84fsrx6p5sdgw6qxmkdwmz"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.41.0
+

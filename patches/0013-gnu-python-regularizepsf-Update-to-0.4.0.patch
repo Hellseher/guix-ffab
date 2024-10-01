@@ -1,0 +1,50 @@
+From 489e3a33064e798d6670970069a634cbf43c1b13 Mon Sep 17 00:00:00 2001
+Message-ID: <489e3a33064e798d6670970069a634cbf43c1b13.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Sep 2024 14:39:24 +0100
+Subject: [PATCH v2 13/25] gnu: python-regularizepsf: Update to 0.4.0.
+
+* gnu/packages/astronomy.scm (python-regularizepsf): Update to 0.4.0.
+[propagated-inputs]: Remove python-sep; add python-sep-pjw.
+
+Change-Id: I1480a686d87a7e9fe971c5b1450db4c74d4ef7e8
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1c5fa5b6d3..044ebbbcb8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3421,7 +3421,7 @@ (define-public python-regions
+ (define-public python-regularizepsf
+   (package
+     (name "python-regularizepsf")
+-    (version "0.3.4")
++    (version "0.4.0")
+     (source
+      (origin
+        (method git-fetch) ; no tests data in the PyPI tarball
+@@ -3430,7 +3430,7 @@ (define-public python-regularizepsf
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "078nklks6hjq0hgv6wpbh2x1m2yh6kmzyfgdzd9q82lxpjy1vq0i"))))
++        (base32 "0b16lscrzd1lribwis19y6dh6qrgddhcinlc2lbwkzzqqkjdnyzi"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3453,7 +3453,7 @@ (define-public python-regularizepsf
+            python-numpy
+            python-scikit-image
+            python-scipy
+-           python-sep))
++           python-sep-pjw))
+     (native-inputs
+      (list python-cython
+            python-pytest
+-- 
+2.46.0
+

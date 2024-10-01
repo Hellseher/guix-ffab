@@ -1,0 +1,59 @@
+From cec1b33304fd83aa222e5f0f5d9d11fc319793bf Mon Sep 17 00:00:00 2001
+Message-ID: <cec1b33304fd83aa222e5f0f5d9d11fc319793bf.1726926634.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726926633.git.sharlatanus@gmail.com>
+References: <cover.1726926633.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Sep 2024 15:00:22 +0100
+Subject: [PATCH v2 14/25] gnu: python-sbpy: Update to 0.5.0.
+
+* gnu/packages/astronomy.scm (python-sbpy): Update to 0.5.0.
+[arguments]: <#:test-flags>: Enable all tests as upstream resolve
+issues.  Add parallelisation to tests.
+
+Change-Id: Ibab879910faf45b6d9319e9a5ee4ad59735cce4f
+---
+ gnu/packages/astronomy.scm | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 044ebbbcb8..fd6bb9f45a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5178,23 +5178,17 @@ (define-public python-pysynphot
+ (define-public python-sbpy
+   (package
+     (name "python-sbpy")
+-    (version "0.4.0")
++    (version "0.5.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sbpy" version))
+        (sha256
+-        (base32 "18f3056fgzpvjj43m845wl9znl4dqxs8f8qv3gpay7kik4l8a1fc"))))
++        (base32 "1xqi29rrh7v05zmvyl8gffrkrw5rlcxig1w6xw1v8f7ikydb5plv"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      #:test-flags
+-      ;; See <https://github.com/NASA-Planetary-Science/sbpy/issues/397>.
+-      #~(list "--ignore=sbpy/spectroscopy/tests/test_specgrad.py"
+-              ;; See <https://github.com/NASA-Planetary-Science/sbpy/issues/398>
+-              "-k" (string-append "not test_from_fluxd"
+-                                  " and not test_bandpass"
+-                                  " and not test_spectral_density_vega_bp"))
++      #:test-flags #~(list "--numprocesses" "auto")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-home-env
+@@ -5209,6 +5203,7 @@ (define-public python-sbpy
+            python-ginga
+            python-numpy
+            python-photutils
++           ;python-pyoorb ;not packed yet in Guix
+            python-pyyaml
+            python-scipy
+            python-synphot))
+-- 
+2.46.0
+

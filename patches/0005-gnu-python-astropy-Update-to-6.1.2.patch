@@ -1,0 +1,38 @@
+From 40e605332dadcd5b3976113f55abe34e0a76c3bb Mon Sep 17 00:00:00 2001
+Message-ID: <40e605332dadcd5b3976113f55abe34e0a76c3bb.1724198118.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1724198118.git.sharlatanus@gmail.com>
+References: <cover.1724198118.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 30 Jul 2024 22:03:23 +0100
+Subject: [PATCH 05/32] gnu: python-astropy: Update to 6.1.2.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.1.2.
+
+Change-Id: Ia0c01d57201e45fc2def7323a363bde852e22fa7
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index dac36ebeba..83811a73bf 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1813,13 +1813,13 @@ (define-public stellarium
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.1.1")
++    (version "6.1.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "0f31wgjg22phcx8fw7p612qp3v2ak7nziisnsnwaqc0wj5fz9ip5"))
++        (base32 "0fhx9zjsqp7z8z8phafpbwpb46idrbsamkfg42l8j0z94i73s452"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+-- 
+2.41.0
+
