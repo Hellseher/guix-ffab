@@ -1,0 +1,40 @@
+From 27d4d6c4d00a1d27bde0111628affe2da40a82bf Mon Sep 17 00:00:00 2001
+Message-ID: <27d4d6c4d00a1d27bde0111628affe2da40a82bf.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 8 Oct 2024 21:01:36 +0100
+Subject: [PATCH 01/42] gnu: calceph: Update to 4.0.1.
+
+* gnu/packages/astronomy.scm (calceph): Update to 4.0.1.
+
+Change-Id: Ic643270cea8bfb0d7af30412ad6bddd4a63cea41
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 106f524a73..e36ba53036 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -259,7 +259,7 @@ (define-public aoflagger
+ (define-public calceph
+   (package
+     (name "calceph")
+-    (version  "4.0.0")
++    (version  "4.0.1")
+     (source
+      (origin
+        (method git-fetch)
+@@ -268,7 +268,7 @@ (define-public calceph
+              (commit (string-append name "_"
+                                     (string-replace-substring version "." "_")))))
+        (sha256
+-        (base32 "1yabdq51plg3dijp68xajhsz395gi2fyp5qkvrj3dgv8d4qw52nw"))
++        (base32 "00q7iww72g6rgnq2br0g2py0ll57690gid08vyva6ffswyb3g923"))
+        (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+     (native-inputs
+-- 
+2.46.0
+

@@ -1,0 +1,49 @@
+From e83a7431eeb526db22a63477e88cb8f16ceb6ea0 Mon Sep 17 00:00:00 2001
+Message-ID: <e83a7431eeb526db22a63477e88cb8f16ceb6ea0.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Oct 2024 20:21:20 +0100
+Subject: [PATCH 31/42] gnu: Add python-hsluv.
+
+* gnu/packages/python-xyz.scm (python-hsluv): New variable.
+
+Change-Id: I97a5b09f66150f0d77f62caa7c8f8410807d5340
+---
+ gnu/packages/python-xyz.scm | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 60fdeea809..545fa0d6b6 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -11465,6 +11465,26 @@ (define-public python-honcho
+ displayed.")
+     (license license:expat)))
+ 
++(define-public python-hsluv
++  (package
++    (name "python-hsluv")
++    (version "5.0.4")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "hsluv" version))
++       (sha256
++        (base32 "0bmpd7qxcvin8szblilxmw50v7mygf6a6i180h82123s893gk092"))))
++    (build-system pyproject-build-system)
++    (home-page "https://www.hsluv.org")
++    (synopsis "Human-friendly HSL colour space implemented in Python")
++    (description
++     "Human-friendly @acronym{Hue Saturation Lightness,HSL}.  HSLuv extends
++@url{http://en.wikipedia.org/wiki/CIELUV,CIELUV} with a new saturation
++component that allows you to span all the available chroma as a neat
++percentage.")
++    (license license:expat)))
++
+ (define-public python-pebble
+   (package
+     (name "python-pebble")
+-- 
+2.46.0
+

@@ -1,0 +1,44 @@
+From 6a87aaba682ed1c601dc97745495f5ccb4bbd3b3 Mon Sep 17 00:00:00 2001
+Message-ID: <6a87aaba682ed1c601dc97745495f5ccb4bbd3b3.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 21:35:28 +0000
+Subject: [PATCH 17/46] gnu: python-bayesicfitting: Update to 3.2.2.
+
+* gnu/packages/astronomy.scm (python-bayesicfitting): Update to 3.2.2.
+
+Change-Id: Id956076478a2e670f49703c9890a845cb601a167
+---
+ gnu/packages/astronomy.scm | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4a96837e16..a3b2392fa7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1906,18 +1906,16 @@ (define-public python-astroml
+ (define-public python-bayesicfitting
+   (package
+     (name "python-bayesicfitting")
+-    (version "3.2.1")
++    (version "3.2.2")
+     (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+              (url "https://github.com/dokester/BayesicFitting")
+-             ;; Tag style has been changed, see
+-             ;; <https://github.com/dokester/BayesicFitting/issues/23>.
+-             (commit (string-append "v." version))))
++             (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0brqvy4r75vh93lj4jwv8wcrc96ka1v44f5ckjvr65y30plnfwg2"))))
++        (base32 "15zl6r5agfc07lnkrr4qwzx0naql0jblh96j095jyqywd2qnhfsb"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

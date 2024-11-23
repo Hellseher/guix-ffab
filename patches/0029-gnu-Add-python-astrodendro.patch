@@ -1,0 +1,71 @@
+From dc1dab9951439da05fd0475e9abfedc7c841dff7 Mon Sep 17 00:00:00 2001
+Message-ID: <dc1dab9951439da05fd0475e9abfedc7c841dff7.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Oct 2024 19:10:58 +0100
+Subject: [PATCH 29/42] gnu: Add python-astrodendro.
+
+* gnu/packages/astronomy.scm (python-astrodendro): New variable.
+
+Change-Id: I23bee0e92f1a172c6688f79629c172ecb0b7dd62
+---
+ gnu/packages/astronomy.scm | 42 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a371a16da2..ca6ce1d4f8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1549,6 +1549,48 @@ (define-public python-astroalign
+ astronomical images, especially when there is no WCS information available.")
+     (license license:expat)))
+ 
++(define-public python-astrodendro
++  ;; XXX: 0.2.0 was released 8 years ago and not compatible with Python 3.10,
++  ;; use the latest commit on master branch, see
++  ;; <https://github.com/dendrograms/astrodendro/issues/189>.
++  (let ((commit "3181c36489caa4c62b36b7ec8e06f4da65af6fda")
++        (revision "0"))
++    (package
++      (name "python-astrodendro")
++      (version (git-version "0.2.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/dendrograms/astrodendro")
++               (commit commit)))
++         (sha256
++          (base32 "1imahzl0g8r1lxyiz9wi9q4zk519yxgn6qs1nb0ybb34sipjs4kz"))
++         (file-name (git-file-name name version))))
++      (build-system pyproject-build-system)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-before 'build 'set-env-version
++              (lambda _
++                (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
++                        #$(version-major+minor+point version)))))))
++      (native-inputs
++       (list python-pytest
++             python-setuptools-scm))
++      (propagated-inputs
++       (list python-astropy
++             python-h5py
++             python-matplotlib
++             python-numpy))
++      (home-page "https://dendrograms.readthedocs.io/")
++      (synopsis "Astronomical dendrograms computation")
++      (description
++       "This package provides an way to compute dendrograms of observed or
++simulated Astronomical data in Python.")
++      (license license:expat))))
++
+ (define-public python-astroml
+   (package
+     (name "python-astroml")
+-- 
+2.46.0
+

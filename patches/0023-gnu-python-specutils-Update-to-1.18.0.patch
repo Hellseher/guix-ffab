@@ -1,0 +1,87 @@
+From 3d6ed402b544e66231b1b1f20f8317b5a5af4b48 Mon Sep 17 00:00:00 2001
+Message-ID: <3d6ed402b544e66231b1b1f20f8317b5a5af4b48.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 10 Oct 2024 12:50:10 +0100
+Subject: [PATCH 23/42] gnu: python-specutils: Update to 1.18.0.
+
+* gnu/packages/astronomy.scm (python-specutils): Update to 1.18.0.
+[arguments]<#:phases>: Add 'relax-requirements phase.
+[propagated-inputs]: Add python-astropy.
+[native-inputs]: Add python-setuptools.
+[description]: Fix indentation.
+
+Change-Id: Ia77fc28b8735f188e211ffd476911a03e54f2325
+---
+ gnu/packages/astronomy.scm | 23 +++++++++++++++--------
+ 1 file changed, 15 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ce8e4eddd4..fad0e68346 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4435,13 +4435,13 @@ (define-public python-spectral-cube
+ (define-public python-specutils
+   (package
+     (name "python-specutils")
+-    (version "1.16.0")
++    (version "1.18.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "specutils" version))
+        (sha256
+-        (base32 "1bv1f0bpyc8pgxywcmhd3rpmnx0l604iqn4cx6isa9jfp6gnd0z3"))))
++        (base32 "16fwazgk1cbqd9njrmwg4xyxg4qykv8c5mk5bzxwz1q5arjc8cy7"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4451,6 +4451,11 @@ (define-public python-specutils
+       #:test-flags #~(list "-k" "not test_create_spectral_axis")
+       #:phases
+       #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "setup.cfg"
++                ;; numpy>=1.24
++                (("1.24") "1.23.2"))))
+           (add-before 'check 'set-home-env
+             (lambda _
+               ;; Tests require HOME to be set.
+@@ -4460,6 +4465,7 @@ (define-public python-specutils
+      (list ;; python-stdatamodels ; cycle with python-synphot, optional.
+            python-asdf
+            python-asdf-astropy
++           python-astropy
+            python-gwcs
+            python-ndcube
+            python-numpy
+@@ -4467,17 +4473,18 @@ (define-public python-specutils
+     (native-inputs
+      (list python-matplotlib
+            python-pytest-astropy
++           python-setuptools
+            python-setuptools-scm
+            python-spectral-cube))
+     (home-page "https://specutils.readthedocs.io/")
+     (synopsis "Package for spectroscopic astronomical data")
+     (description
+-     "@code{specutils} is a Python package for representing, loading, manipulating,
+-and analyzing astronomical spectroscopic data.  The generic data containers and
+-accompanying modules provide a toolbox that the astronomical community can use
+-to build more domain-specific packages.  For more details about the underlying
+-principles,
+-see @url{https://github.com/astropy/astropy-APEs/blob/main/APE13.rst, APE13}.")
++     "@code{specutils} is a Python package for representing, loading,
++manipulating,and analyzing astronomical spectroscopic data.  The generic data
++containers and accompanying modules provide a toolbox that the astronomical
++community can use to build more domain-specific packages.  For more details
++about the underlying principles, see
++@url{https://github.com/astropy/astropy-APEs/blob/main/APE13.rst, APE13}.")
+     (license license:bsd-3)))
+ 
+ (define-public python-spherical-geometry
+-- 
+2.46.0
+

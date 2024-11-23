@@ -1,0 +1,80 @@
+From f01ac31b5a768497c83ec325926f4d9e4a93d1fc Mon Sep 17 00:00:00 2001
+Message-ID: <f01ac31b5a768497c83ec325926f4d9e4a93d1fc.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 16:08:34 +0000
+Subject: [PATCH 25/46] gnu: python-astrodendro: Fix indentation.
+
+* gnu/packages/astronomy.scm (python-astrodendro): Fix indentation.
+
+Change-Id: I3bfe4cd012c55d6affaaab8c0ee8cee3d4f9847c
+---
+ gnu/packages/astronomy.scm | 50 +++++++++++++++++++-------------------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 78e9d0c156..1a45356bf8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1808,32 +1808,32 @@ (define-public python-astroalign
+     (license license:expat)))
+ 
+ (define-public python-astrodendro
+-    (package
+-      (name "python-astrodendro")
+-      (version "0.3.1")
+-      (source
+-       (origin
+-         (method url-fetch)
+-         (uri (pypi-uri "astrodendro" version))
+-         (sha256
+-          (base32 "0pav2rq5q0wyr38g6z8ai4z2iqqc9x04iwll158yvkvgnv352m0i"))))
+-      (build-system pyproject-build-system)
+-      (native-inputs
+-       (list python-pytest
+-             python-setuptools
+-             python-setuptools-scm
+-             python-wheel))
+-      (propagated-inputs
+-       (list python-astropy
+-             python-h5py
+-             python-matplotlib
+-             python-numpy))
+-      (home-page "https://dendrograms.readthedocs.io/")
+-      (synopsis "Astronomical dendrograms computation")
+-      (description
+-       "This package provides an way to compute dendrograms of observed or
++  (package
++    (name "python-astrodendro")
++    (version "0.3.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "astrodendro" version))
++       (sha256
++        (base32 "0pav2rq5q0wyr38g6z8ai4z2iqqc9x04iwll158yvkvgnv352m0i"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-pytest
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list python-astropy
++           python-h5py
++           python-matplotlib
++           python-numpy))
++    (home-page "https://dendrograms.readthedocs.io/")
++    (synopsis "Astronomical dendrograms computation")
++    (description
++     "This package provides an way to compute dendrograms of observed or
+ simulated Astronomical data in Python.")
+-      (license license:expat)))
++    (license license:expat)))
+ 
+ (define-public python-astroml
+   (package
+-- 
+2.46.0
+

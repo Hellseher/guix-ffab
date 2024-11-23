@@ -1,0 +1,50 @@
+From dc9aae7173775ad421f764e9bfd8ca3e23ed4f74 Mon Sep 17 00:00:00 2001
+Message-ID: <dc9aae7173775ad421f764e9bfd8ca3e23ed4f74.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 10 Oct 2024 11:32:48 +0100
+Subject: [PATCH 18/42] gnu: python-pyxsim: Update to 4.4.2.
+
+* gnu/packages/astronomy.scm (python-pyxsim): Update to 4.4.2.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: I37cb512dbe3f37aaf1ad9c4a4f2b31a9aec25519
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5d1ea336fb..a1cac1ee3b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2045,13 +2045,13 @@ (define-public python-pvextractor
+ (define-public python-pyxsim
+   (package
+     (name "python-pyxsim")
+-    (version "4.4.1")
++    (version "4.4.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyxsim" version))
+        (sha256
+-        (base32 "1vviy9hk2z3h0fi6c8207ps5pklsjn0a77pqq6wa4sa1n07clc8i"))))
++        (base32 "1zryblpcc2yfhk1ybhv35p4zkp04hqwdrslrwm6my0pichb30py6"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2076,7 +2076,9 @@ (define-public python-pyxsim
+            python-yt))
+     (native-inputs
+      (list python-cython-3
+-           python-setuptools-scm))
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (home-page "https://hea-www.cfa.harvard.edu/~jzuhone/pyxsim/")
+     (synopsis "Simulating X-ray observations from astrophysical sources")
+     (description
+-- 
+2.46.0
+

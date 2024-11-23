@@ -1,0 +1,38 @@
+From e66d7545e49c7163200d1c2b657bf2a516ef5f47 Mon Sep 17 00:00:00 2001
+Message-ID: <e66d7545e49c7163200d1c2b657bf2a516ef5f47.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 9 Oct 2024 22:42:44 +0100
+Subject: [PATCH 11/42] gnu: python-ephem: Update to 4.1.6.
+
+* gnu/packages/astronomy.scm (python-ephem): Update to 4.1.6.
+
+Change-Id: I1a2f89d7ef5ec3289b92ce450a83d4c59f4457b5
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b44844cb5b..3ba6bb50e0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3453,13 +3453,13 @@ (define-public python-dust-extinction
+ (define-public python-ephem
+   (package
+     (name "python-ephem")
+-    (version "4.1.5")
++    (version "4.1.6")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ephem" version))
+        (sha256
+-        (base32 "0ainqbnvw320pc61q5b6ad6f2mhn1pvrlnq489cwfx0m82mahr0c"))))
++        (base32 "0ps2lr6aa477262yw13w3hh0h5rzmywdlji0wbnkxnzrfvmf9lhf"))))
+     (build-system pyproject-build-system)
+     (native-inputs (list tzdata))
+     (home-page "https://rhodesmill.org/pyephem/")
+-- 
+2.46.0
+

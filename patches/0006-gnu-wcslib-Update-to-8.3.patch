@@ -1,0 +1,39 @@
+From 541e64bcfea499e131e8f330ab41499e040cbf97 Mon Sep 17 00:00:00 2001
+Message-ID: <541e64bcfea499e131e8f330ab41499e040cbf97.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Oct 2024 17:36:40 +0100
+Subject: [PATCH 06/42] gnu: wcslib: Update to 8.3.
+
+* gnu/packages/astronomy.scm (wcslib): Update to 8.3.
+
+Change-Id: I200ac8887e47dafacd33e6b9168defb928e93c50
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a844be296e..1b773110bb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6522,14 +6522,14 @@ (define-public unsio
+ (define-public wcslib
+   (package
+     (name "wcslib")
+-    (version "8.2.2")
++    (version "8.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (string-append "https://www.atnf.csiro.au/people/mcalabre/WCS/"
+                            "wcslib-" version ".tar.bz2"))
+        (sha256
+-        (base32 "0cvqppjf7gk0f3rs9cc46h5fffv2l8ylrb234r9fbx0px0525632"))
++        (base32 "0225c77jypjjlfw6zd53447qnrmlq1fl38xzi4mw1fr7g50s67j3"))
+        (snippet
+         #~(begin (use-modules (guix build utils))
+                  (delete-file-recursively "C/flexed")))))
+-- 
+2.46.0
+

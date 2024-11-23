@@ -1,0 +1,70 @@
+From 440069c442b24040362c18f5dc8dbd36b4c2a159 Mon Sep 17 00:00:00 2001
+Message-ID: <440069c442b24040362c18f5dc8dbd36b4c2a159.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 15:24:51 +0000
+Subject: [PATCH 22/46] gnu: python-aplpy: Update to 2.2.0.
+
+* gnu/packages/astronomy.scm (python-aplpy): Update to 2.2.0.
+[arguments]<tests>: Enable them.
+<phases>: Add 'set-env phase.
+[native-inputs]: Add python-setuptools, python-setuptools-scm, and
+python-wheel.
+
+Change-Id: I050d5e174112afe5abd707e784a152feac5cef59
+---
+ gnu/packages/astronomy.scm | 20 ++++++++++++--------
+ 1 file changed, 12 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 21adcd42a0..4f4d2ef504 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1584,21 +1584,28 @@ (define-public python-ads
+ (define-public python-aplpy
+   (package
+     (name "python-aplpy")
+-    (version "2.1.0")
++    (version "2.2.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "aplpy" version))
+        (sha256
+-        (base32 "0ph9jhv4q4i4z6nkqr6hjw9148kdlnayxsn83qgv5dqn0h3nc9r8"))))
++        (base32 "03c8k7y75f5bwm8d08fr5xfaay4d9jzr5sas4j2frs7zrr8aak51"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; FIXME: https://github.com/aplpy/aplpy/issues/492
+-      #:tests? #f
++      #:test-flags #~(list "--pyargs" "aplpy")
+       #:phases
+       #~(modify-phases %standard-phases
+-          (delete 'sanity-check))))
++          (add-after 'unpack 'set-env
++            (lambda _
++              (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list python-pytest-astropy
++           python-pytest-mpl
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+      (list python-astropy
+            python-matplotlib
+@@ -1609,9 +1616,6 @@ (define-public python-aplpy
+            python-reproject
+            python-scikit-image
+            python-shapely))
+-    (native-inputs
+-     (list python-pytest-astropy
+-           python-pytest-mpl))
+     (home-page "http://aplpy.github.io")
+     (synopsis "Astronomical Plotting Library in Python")
+     (description
+-- 
+2.46.0
+

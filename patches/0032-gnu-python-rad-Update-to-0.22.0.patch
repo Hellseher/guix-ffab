@@ -1,0 +1,55 @@
+From cfcd455f783991ce9319da83c37fa36e25fea69d Mon Sep 17 00:00:00 2001
+Message-ID: <cfcd455f783991ce9319da83c37fa36e25fea69d.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 16:54:55 +0000
+Subject: [PATCH 32/46] gnu: python-rad: Update to 0.22.0.
+
+* gnu/packages/astronomy.scm (python-rad): Update to 0.22.0.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: If9509ccba985f08a3a6d263316beb263ff055db4
+---
+ gnu/packages/astronomy.scm | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 50d7b57ad5..23c8a85386 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6259,13 +6259,13 @@ (define-public python-gwcs
+ (define-public python-rad
+   (package
+     (name "python-rad")
+-    (version "0.21.0")
++    (version "0.22.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "rad" version))
+        (sha256
+-        (base32 "0b2gfsyccfx9dmmh725h7qjh5rxabg5w1j52yzfi8b0a8nmg6j6a"))))
++        (base32 "1p6v49gzbzishy1kdd5g8nbl97qp459s1smb6j94wvif4262zkm8"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -6273,9 +6273,13 @@ (define-public python-rad
+       ;; python-rad -> python-roman-datamodels -> python-crds -> python-rad
+       #:test-flags #~(list "--ignore=tests/test_schemas.py")))
+     (native-inputs
+-     (list python-pytest python-setuptools-scm))
++     (list python-pytest
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+-     (list python-asdf python-asdf-astropy))
++     (list python-asdf
++           python-asdf-astropy))
+     (home-page "https://github.com/spacetelescope/rad")
+     (synopsis "Roman Attribute Dictionary")
+     (description
+-- 
+2.46.0
+

@@ -1,0 +1,108 @@
+From 05418bef3448c1256f88e86b284142fa20cb8042 Mon Sep 17 00:00:00 2001
+Message-ID: <05418bef3448c1256f88e86b284142fa20cb8042.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 21:31:35 +0000
+Subject: [PATCH 16/46] gnu: python-astropy: Update to 6.1.6.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.1.6.
+[arguments]<test-flags>: Disable one failing test.
+[propagated-inputs]: Add python-h5py, python-jplephem, and python-pyarrow.
+[native-inputs]: Remove python-colorlog, python-coverage, python-h5py,
+python-jplephem, and python-pyarrow; add python-setuptools and
+python-wheel.
+
+Change-Id: I44bdf23c84c64952e5ae846ad4b3a9c7173f2c06
+---
+ gnu/packages/astronomy.scm | 30 +++++++++++++++++-------------
+ 1 file changed, 17 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index db4cdbb88f..4a96837e16 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3190,13 +3190,13 @@ (define-public stackistry
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.1.4")
++    (version "6.1.6")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "0d0cnqm0p00ap8wys5jcg9h958c6mizx87wzwvmrpackn3i5h59n"))
++        (base32 "0iv8mkdflfprigv3g6666v80nvg6blwz0989hqw232g7gms57qb3"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -3215,12 +3215,16 @@ (define-public python-astropy
+       #:test-flags
+       #~(list "--pyargs" "astropy"
+               "--numprocesses" (number->string (parallel-job-count))
+-              "-k" (string-append
++              "-k" (string-join
+                     ;; Skip tests that need remote data.
+-                    "not remote_data"
+-                    ;; ValueError: The truth value of an array with more than
+-                    ;; one element is ambiguous. Use a.any() or a.all()
+-                    " and not test_table_comp[t16-t26]"))
++                    (list "not remote_data"
++                          ;; ValueError: The truth value of an array with more than
++                          ;; one element is ambiguous. Use a.any() or a.all()
++                          "test_table_comp[t16-t26]"
++                          ;; UnboundLocalError: local variable 'ihd'
++                          ;; referenced before assignment
++                          "test_delay_doc_updates")
++                    " and not "))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'preparations
+@@ -3255,36 +3259,36 @@ (define-public python-astropy
+     (native-inputs
+      (list nss-certs-for-test
+            pkg-config
+-           python-colorlog
+-           python-coverage
+            python-cython-3
+            python-extension-helpers
+-           python-h5py
+            python-ipython
+-           python-jplephem
+            python-objgraph
+            python-pandas
+-           python-pyarrow
+            python-pytest
+            python-pytest-astropy
+            python-pytest-astropy-header
+            python-pytest-mpl
+            python-pytest-xdist
+            python-scikit-image
++           python-setuptools
+            python-setuptools-scm
+            python-sgp4
+            python-skyfield
+            python-threadpoolctl
+-           python-timezonefinder))
++           python-timezonefinder
++           python-wheel))
+     (inputs
+      (list expat wcslib))
+     (propagated-inputs
+      (list python-astropy-iers-data
+            python-configobj
++           python-h5py
++           python-jplephem
+            python-matplotlib
+            python-numpy
+            python-packaging
+            python-ply
++           python-pyarrow
+            python-pyerfa
+            python-pyyaml
+            python-scipy))
+-- 
+2.46.0
+

@@ -1,0 +1,67 @@
+From cb5f185f6e6fc0f9b41e28032cafb494078951c7 Mon Sep 17 00:00:00 2001
+Message-ID: <cb5f185f6e6fc0f9b41e28032cafb494078951c7.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 2 Oct 2024 10:26:31 +0100
+Subject: [PATCH 33/42] gnu: Add python-sirilic.
+
+* gnu/packages/astronomy.scm (python-sirilic): New variable.
+
+Change-Id: I34fef6d705f01e76566076e25767bd61851d5adc
+---
+ gnu/packages/astronomy.scm | 38 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2c8b9da73a..191b440baa 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2160,6 +2160,44 @@ (define-public python-pyxsim
+ end products of specific X-ray observatories.")
+     (license license:bsd-3)))
+ 
++(define-public python-sirilic
++  (package
++    (name "python-sirilic")
++    (version "1.15.12")
++    (source
++     (origin
++       (method git-fetch) ; not published on PyPI
++       (uri (git-reference
++             (url "https://gitlab.com/free-astro/sirilic")
++             (commit (string-append "V" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "08j7gkyc5jd3kavffdxcr9b1ckmsswsvm61f301kvdqk2xcsh0gb"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list #:tests? #f)) ; no tests
++    (native-inputs
++     (list nss-certs-for-test))
++    (propagated-inputs
++     (list python-requests
++           python-wxpython))
++    (home-page "https://siril.org/tutorials/pysiril/")
++    (synopsis "Acquisition files preparation software to proces with SiriL")
++    (description
++     "SiriLic (SiriL's Interactif Companion) is a software for preparing
++acquisition files (raw, Biases, Flat and Dark) for processing with SiriL
++software.
++
++Features:
++@itemize
++@item structuring the SiriL working directory into sub-folders
++@item convert Raw, Biases , Dark or Flat files into SiriL sequence
++@item automatically generate the SiriL script according to the files present
++and the options
++@item batch process multiple channel and sessions
++@end itemize")
++    (license license:gpl3)))
++
+ (define-public python-sncosmo
+   (package
+     (name "python-sncosmo")
+-- 
+2.46.0
+

@@ -1,0 +1,51 @@
+From 42517f9e422d9b85e0fb6b0a70f0d4654e5bebf0 Mon Sep 17 00:00:00 2001
+Message-ID: <42517f9e422d9b85e0fb6b0a70f0d4654e5bebf0.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 18 Oct 2024 23:11:41 +0100
+Subject: [PATCH 13/42] gnu: python-ndcube: Update to 2.2.3.
+
+* gnu/packages/astronomy.scm (python-ndcube): Update to 2.2.3.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: I1357dfd6cec1d191ba5d03a96023e35ad1e88177
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3ba6bb50e0..789acd3c05 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3651,13 +3651,13 @@ (define-public python-naima
+ (define-public python-ndcube
+   (package
+     (name "python-ndcube")
+-    (version "2.2.2")
++    (version "2.2.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ndcube" version))
+        (sha256
+-        (base32 "0d82xldinvjw4csql4w3k44ibprbz0b0g5ixq9a5f6c7zbvfc24l"))))
++        (base32 "01sxmy5ki5bcgva5z3m20mg20dfx5n6dkb41kdfcdizqmsw96qmn"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3695,8 +3695,10 @@ (define-public python-ndcube
+            python-pytest-astropy
+            python-pytest-mpl
+            python-scipy
++           python-setuptools
+            python-setuptools-scm
+-           python-sunpy))
++           python-sunpy
++           python-wheel))
+     (home-page "https://docs.sunpy.org/projects/ndcube/")
+     (synopsis "Multi-dimensional contiguous and non-contiguous coordinate aware arrays")
+     (description
+-- 
+2.46.0
+

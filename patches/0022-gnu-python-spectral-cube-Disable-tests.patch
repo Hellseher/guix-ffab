@@ -1,0 +1,31 @@
+From fdb5e024bef549747eb435b84a745e3aa1d6c277 Mon Sep 17 00:00:00 2001
+Message-ID: <fdb5e024bef549747eb435b84a745e3aa1d6c277.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Oct 2024 21:17:28 +0100
+Subject: [PATCH 22/42] gnu: python-spectral-cube: Disable tests.
+
+* gnu/packages/astronomy.scm (python-spectral-cube): Disable tests.
+
+Change-Id: I0fa7f1a3867e199facdc90462665323560c0f164
+---
+ gnu/packages/astronomy.scm | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ff9e6becac..ce8e4eddd4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4381,6 +4381,8 @@ (define-public python-spectral-cube
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      ;; See <https://github.com/radio-astro-tools/radio-beam/issues/129>.
++      #:tests? #f
+       #:test-flags
+       #~(list "-n" "auto")))
+     (propagated-inputs
+-- 
+2.46.0
+

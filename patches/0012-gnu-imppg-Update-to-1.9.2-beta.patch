@@ -1,0 +1,55 @@
+From 0bb341b0c3fedb8a29e9df16dd5696b5cac4d6e8 Mon Sep 17 00:00:00 2001
+Message-ID: <0bb341b0c3fedb8a29e9df16dd5696b5cac4d6e8.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 21:08:59 +0000
+Subject: [PATCH 12/46] gnu: imppg: Update to 1.9.2-beta.
+
+* gnu/packages/astronomy.scm (imppg): Update to 1.9.2-beta.
+[arguments]<tests>: Enable them.
+[inputs]: Add lua.
+
+Change-Id: Idcc043bd1ec9ca76a81451cede3d2e13a902d3cb
+---
+ gnu/packages/astronomy.scm | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0f19e02dc6..247ead0320 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -957,7 +957,7 @@ (define-public healpix-cxx
+ (define-public imppg
+   (package
+     (name "imppg")
+-    (version "0.6.5")
++    (version "1.9.2-beta")
+     (source
+      (origin
+        (method git-fetch)
+@@ -966,15 +966,16 @@ (define-public imppg
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0a6wb1a9adwd01dmy0r03xxp8iz9y7mvh30088ajilhj4lf90vxa"))))
++        (base32 "13kqvl9ay4x0ia7iikxbhg96pp46f1awr382p05gxdvsxksq900v"))))
+     (build-system cmake-build-system)
+-    (arguments
+-     (list ;; No test provided
+-      #:tests? #f))
+     (native-inputs
+      (list boost pkg-config))
+     (inputs
+-     (list cfitsio freeimage glew wxwidgets-3.0))
++     (list cfitsio
++           freeimage
++           glew
++           lua
++           wxwidgets-3.0))
+     (home-page "https://github.com/GreatAttractor/imppg")
+     (synopsis "Astronomical Image Post-Proccessor (ImPPG)")
+     (description
+-- 
+2.46.0
+

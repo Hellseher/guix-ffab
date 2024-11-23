@@ -1,0 +1,74 @@
+From 5176887852814866a844f46f0f4484ff60243141 Mon Sep 17 00:00:00 2001
+Message-ID: <5176887852814866a844f46f0f4484ff60243141.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Oct 2024 15:51:25 +0100
+Subject: [PATCH 12/42] gnu: python-glymur: Update to 0.13.6.
+
+* gnu/packages/python-xyz.scm (python-glymur): Update to 0.13.6.
+[phases]: Remove 'disable-failing-tests and move the logic to
+<#:tests-flags>.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: Ied56e22d938b7cc61969892b680c9e72d1cfce1e
+---
+ gnu/packages/python-xyz.scm | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 8849096026..60fdeea809 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -2255,7 +2255,7 @@ (define-public python-gh-md-to-html
+ (define-public python-glymur
+   (package
+     (name "python-glymur")
+-    (version "0.13.5")
++    (version "0.13.6")
+     (source
+      (origin
+        (method git-fetch)   ; no tests data in PyPi package
+@@ -2264,12 +2264,15 @@ (define-public python-glymur
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1n2n7bj5w29w5y2gcl4hxhqf85n0j2crkln9i0mprq3xw8finxpx"))))
++        (base32 "06v6g0fwzmy2imhrvy0q4zrhrlrp24yhs098vi13r92ga63c72xl"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")
++      #~(list "--numprocesses" "auto"
++              ;; Failing test due to inability of ctypes.util.find_library()
++              ;; to determine library path, which is patched above.
++              "--ignore=tests/test_config.py")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-library-locations
+@@ -2287,17 +2290,13 @@ (define-public python-glymur
+                   (search-input-file inputs "/lib/libtiff.so") "\"\n"
+                   "    elif libname == \"c\":\n"
+                   "        path = \""
+-                  (search-input-file inputs "/lib/libc.so.6") "\"\n")))))
+-          (add-before 'check 'disable-failing-tests
+-            (lambda _
+-              ;; Failing test due to inability of
+-              ;; ctypes.util.find_library() to determine library path,
+-              ;; which is patched above.
+-              (delete-file "tests/test_config.py"))))))
++                  (search-input-file inputs "/lib/libc.so.6") "\"\n"))))))))
+     (native-inputs
+      (list python-pytest
+            python-pytest-xdist
+-           python-scikit-image))
++           python-scikit-image
++           python-setuptools
++           python-wheel))
+     (inputs
+      (list openjpeg  ; glymur/lib/openjp2.py
+            libtiff)) ; glymur/lib/tiff.py
+-- 
+2.46.0
+

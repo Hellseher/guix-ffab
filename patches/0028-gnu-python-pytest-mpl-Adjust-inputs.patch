@@ -1,0 +1,34 @@
+From cd1cc97c31daf671425e1020e527ae9495f15126 Mon Sep 17 00:00:00 2001
+Message-ID: <cd1cc97c31daf671425e1020e527ae9495f15126.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Oct 2024 19:11:11 +0100
+Subject: [PATCH 28/42] gnu: python-pytest-mpl: Adjust inputs.
+
+* gnu/packages/python-check.scm (python-pytest-mpl) [native-inputs]: Add
+python-setuptools-scm and python-wheel.
+
+Change-Id: Ifbfdc080207832be6ad919aa1ee329bc0335694b
+---
+ gnu/packages/python-check.scm | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-check.scm b/gnu/packages/python-check.scm
+index 4eb6cb1a10..ed83996177 100644
+--- a/gnu/packages/python-check.scm
++++ b/gnu/packages/python-check.scm
+@@ -995,7 +995,9 @@ (define-public python-pytest-mpl
+      (list
+       #:test-flags #~(list "-m" "mpl_image_compare")))
+     (native-inputs
+-     (list python-pytest))
++     (list python-pytest
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+      (list python-jinja2
+            python-matplotlib
+-- 
+2.46.0
+

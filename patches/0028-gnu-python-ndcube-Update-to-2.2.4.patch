@@ -1,0 +1,38 @@
+From 65ae76e3a179c8678aa04817cc5adab3d9723fed Mon Sep 17 00:00:00 2001
+Message-ID: <65ae76e3a179c8678aa04817cc5adab3d9723fed.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 16:31:29 +0000
+Subject: [PATCH 28/46] gnu: python-ndcube: Update to 2.2.4.
+
+* gnu/packages/astronomy.scm (python-ndcube): Update to 2.2.4.
+
+Change-Id: I326497497ca71d156ead1c45a14d24556fe6bd9b
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 546b0c6e0c..33e20c16f8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4019,13 +4019,13 @@ (define-public python-naima
+ (define-public python-ndcube
+   (package
+     (name "python-ndcube")
+-    (version "2.2.3")
++    (version "2.2.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ndcube" version))
+        (sha256
+-        (base32 "01sxmy5ki5bcgva5z3m20mg20dfx5n6dkb41kdfcdizqmsw96qmn"))))
++        (base32 "08l4nq43igpic6v3zjnyjq3yy44czg79798rmv5la52hbzbz1kj3"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

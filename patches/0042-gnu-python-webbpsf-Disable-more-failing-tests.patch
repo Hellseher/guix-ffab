@@ -1,0 +1,36 @@
+From 7a4463eee39dd9c80dda59948ea445642dcd0724 Mon Sep 17 00:00:00 2001
+Message-ID: <7a4463eee39dd9c80dda59948ea445642dcd0724.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Oct 2024 17:36:38 +0100
+Subject: [PATCH 42/42] gnu: python-webbpsf: Disable more failing tests.
+
+* gnu/packages/astronomy.scm (python-webbpsf) [arguments]
+<#:test-flags>: Disable more failing tests, requiring a fresh version of
+NumPy.
+
+Change-Id: Id7b66181b3f9a70b3491b5fc927026c230f99d59
+---
+ gnu/packages/astronomy.scm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5178bc4bf7..eea58b35b6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6491,7 +6491,10 @@ (define-public python-webbpsf
+                     ;; Test requiring network access
+                     "not test_monthly_trending_plot_auto_opdtable"
+                     " and not test_monthly_trending_plot_opdtable_param"
+-                    " and not test_delta_wfe_around_time"))
++                    " and not test_delta_wfe_around_time"
++                    ;; Newer NumPy is required
++                    " and not test_nircam_errors"
++                    " and not test_all_detectors"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-env
+-- 
+2.46.0
+

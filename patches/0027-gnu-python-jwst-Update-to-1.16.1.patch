@@ -1,0 +1,50 @@
+From 2beef3d71d8be75fd765b6452fe0ab6ae3ef4563 Mon Sep 17 00:00:00 2001
+Message-ID: <2beef3d71d8be75fd765b6452fe0ab6ae3ef4563.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 16:22:14 +0000
+Subject: [PATCH 27/46] gnu: python-jwst: Update to 1.16.1.
+
+* gnu/packages/astronomy.scm (python-jwst): Update to 1.16.1.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: Id5c45dccc8f1b06826a3bae09e2b8bc68d6f5a20
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 692c54e66e..546b0c6e0c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5365,13 +5365,13 @@ (define-public python-jplephem
+ (define-public python-jwst
+   (package
+     (name "python-jwst")
+-    (version "1.16.0")
++    (version "1.16.1")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "jwst" version))
+               (sha256
+                (base32
+-                "06krkpfhwpc825bsdl0rffd9qlqw1rl928fwxa7cywds5dahpiyn"))
++                "1bqfgqp4gdm1ky5dvzhzpgygwr710h4mbykp5sb9aw3cw9jg1bk7"))
+               (modules '((guix build utils)))
+               (snippet
+                '(begin
+@@ -5431,7 +5431,9 @@ (define-public python-jwst
+                          python-pytest-openfiles
+                          python-requests-mock
+                          ;; python-ruff ; not packed yet in Guix
+-                         python-setuptools-scm))
++                         python-setuptools
++                         python-setuptools-scm
++                         python-wheel))
+     (home-page "https://jwst-pipeline.readthedocs.io/en/latest/")
+     (synopsis
+      "Python library for science observations from the James Webb Space Telescope")
+-- 
+2.46.0
+

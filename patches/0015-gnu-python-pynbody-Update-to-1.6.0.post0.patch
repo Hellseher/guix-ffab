@@ -1,0 +1,40 @@
+From 482b876fba5601d9060b07fc3c9e83c2d2f22a36 Mon Sep 17 00:00:00 2001
+Message-ID: <482b876fba5601d9060b07fc3c9e83c2d2f22a36.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Oct 2024 20:37:09 +0100
+Subject: [PATCH 15/42] gnu: python-pynbody: Update to 1.6.0.post0.
+
+* gnu/packages/astronomy.scm (python-pynbody): Update to 1.6.0.post0.
+
+Change-Id: Ib05e972e13b823930bd644fce70475a3ad8aff96
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 455bfdec44..2d37ae3999 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5147,7 +5147,7 @@ (define-public python-pyerfa
+ (define-public python-pynbody
+   (package
+     (name "python-pynbody")
+-    (version "1.6.0")
++    (version "1.6.0.post0")
+     (source
+      (origin
+        (method git-fetch) ;PyPi doesn't have not prebuit version.
+@@ -5156,7 +5156,7 @@ (define-public python-pynbody
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "00isg6nsqzgjqpkczwvrcmj3ndzav3bfzla0a72b44cgdj20wyv8"))
++        (base32 "0rl9ais4yc6kdijq1il4vi3mplp7z6bcih4x55axhan5n3n7riwi"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Symlink goes to not existing directory.
+-- 
+2.46.0
+

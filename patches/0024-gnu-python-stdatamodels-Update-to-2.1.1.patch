@@ -1,0 +1,50 @@
+From 8c0061c3f692667e8759bdcec19b1f82e4f5a41e Mon Sep 17 00:00:00 2001
+Message-ID: <8c0061c3f692667e8759bdcec19b1f82e4f5a41e.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Oct 2024 21:17:37 +0100
+Subject: [PATCH 24/42] gnu: python-stdatamodels: Update to 2.1.1.
+
+* gnu/packages/astronomy.scm (python-stdatamodels): Update to 2.1.1.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: Iec917b39410ea356152a77308e5b77562da0cc5b
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fad0e68346..6e849efe8c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4732,13 +4732,13 @@ (define-public python-stcal
+ (define-public python-stdatamodels
+   (package
+     (name "python-stdatamodels")
+-    (version "2.1.0")
++    (version "2.1.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stdatamodels" version))
+        (sha256
+-        (base32 "0bgb0n1nqwnvd6bh0f1cnbk3j2yygch88l9834hmsns4rg1ak6j9"))))
++        (base32 "08zkr0amc65dj2lr90d2r29cj23f8h0ms94qmmcgcq2r4xlpna10"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4764,7 +4764,9 @@ (define-public python-stdatamodels
+            python-pytest-doctestplus
+            python-pytest-xdist
+            python-scipy
+-           python-setuptools-scm))
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (home-page "https://github.com/spacetelescope/stdatamodels")
+     (synopsis
+      "Core support for DataModel classes used in calibration pipelines")
+-- 
+2.46.0
+

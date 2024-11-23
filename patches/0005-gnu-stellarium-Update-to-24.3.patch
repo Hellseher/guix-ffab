@@ -1,0 +1,49 @@
+From 2a46414e92d4c62ab8e1e960f3d4556ab2a810f1 Mon Sep 17 00:00:00 2001
+Message-ID: <2a46414e92d4c62ab8e1e960f3d4556ab2a810f1.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 8 Oct 2024 20:52:20 +0100
+Subject: [PATCH 05/42] gnu: stellarium: Update to 24.3.
+
+* gnu/packages/astronomy.scm (stellarium): Update to 24.3.
+
+Change-Id: Ife3a63c27360a6997b367e5d7fc011359d98395f
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8e9d060813..a844be296e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2663,7 +2663,7 @@ (define-public stackistry
+ (define-public stellarium
+   (package
+     (name "stellarium")
+-    (version "24.2")
++    (version "24.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2672,7 +2672,7 @@ (define-public stellarium
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "01iq1cxbhr3xknzpk4spflxj3msf9wk19b4lqlifi1pwaz18pb5n"))))
++        (base32 "0wwaddbqcia6jaz3lc1cf63pvi9bqj2cglp428i77jlfs3dfj45j"))))
+     (build-system cmake-build-system)
+     ;; TODO: Complete documentation build and split into dedicated outputs.
+     (arguments
+@@ -2705,7 +2705,7 @@ (define-public stellarium
+            qtlocation-5
+            qtmultimedia-5
+            qtpositioning
+-           qtscript
++           qtscript ; the last v5 left to rename
+            qtserialport-5
+            qttranslations
+            qtwebengine-5
+-- 
+2.46.0
+

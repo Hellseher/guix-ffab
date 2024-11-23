@@ -1,0 +1,59 @@
+From 3970850fbacd1917d7c9c615db3c8277ea824972 Mon Sep 17 00:00:00 2001
+Message-ID: <3970850fbacd1917d7c9c615db3c8277ea824972.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 21:15:31 +0000
+Subject: [PATCH 14/46] gnu: python-asdf-astropy: Update to 0.7.0.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.7.0.
+[source]: Adjust the name of package as it changed in PyPI.
+[phases]{relax-requirements}: New phase.
+
+Change-Id: I84fbbc2d7612d192f662e60011fa9925021d128d
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0cd741bea1..5b78017929 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1699,21 +1699,28 @@ (define-public python-asdf
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.6.1")
++    (version "0.7.0")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri "asdf-astropy" version))
++       (uri (pypi-uri "asdf_astropy" version))
+        (sha256
+-        (base32 "1ipjpjiirycj2npicbp39ka7db61vx45j8dm2iis71g5l1rzkblp"))))
++        (base32 "0985bhmhnjzlf8n78r1i1dfhbvq167xqz0667kg3jm0l2177b0f9"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+       #~(list "--numprocesses" (number->string (parallel-job-count)))
+-      #:phases #~(modify-phases %standard-phases
+-                   (add-before 'check 'set-home-env
+-                     (lambda _ (setenv "HOME" "/tmp"))))))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "pyproject.toml"
++                ;; numpy>=1.24, all tests passed successfuly. Scheduled for
++                ;; update in python-team.
++                ((">=1.24") ">=1.23"))))
++          (add-before 'check 'set-home-env
++            (lambda _ (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-coverage
+            python-h5py
+-- 
+2.46.0
+

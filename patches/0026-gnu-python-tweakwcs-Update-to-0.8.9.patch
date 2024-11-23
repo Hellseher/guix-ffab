@@ -1,0 +1,50 @@
+From 650f56897bc16b795da87009ad300b7055a713d5 Mon Sep 17 00:00:00 2001
+Message-ID: <650f56897bc16b795da87009ad300b7055a713d5.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Oct 2024 21:24:17 +0100
+Subject: [PATCH 26/42] gnu: python-tweakwcs: Update to 0.8.9.
+
+* gnu/packages/astronomy.scm (python-tweakwcs): Update to 0.8.9.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: I0d00a9964ee10711a0f751990939633d07634282
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 80a534d815..b262c7306c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6096,13 +6096,13 @@ (define-public python-skyfield
+ (define-public python-tweakwcs
+   (package
+     (name "python-tweakwcs")
+-    (version "0.8.8")
++    (version "0.8.9")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "tweakwcs" version))
+        (sha256
+-        (base32 "148as0x1szk1wv13bwk947qs3rw5xj2286ccdbhzfzarng58a386"))))
++        (base32 "0a1ygsar9l6jybji9qibz6ja3picv9aiw2jmdcsqdfqhrppknqp7"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astropy
+@@ -6117,7 +6117,9 @@ (define-public python-tweakwcs
+            python-pytest
+            python-pytest-cov
+            python-scipy
+-           python-setuptools-scm))
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (home-page "https://tweakwcs.readthedocs.io/en/latest/")
+     (synopsis
+      "Algorithms for matching and aligning catalogs and for tweaking the WCS")
+-- 
+2.46.0
+

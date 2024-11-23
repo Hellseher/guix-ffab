@@ -1,0 +1,38 @@
+From fd825e0101e104377943e12dfb32ff8d991664b2 Mon Sep 17 00:00:00 2001
+Message-ID: <fd825e0101e104377943e12dfb32ff8d991664b2.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 7 Oct 2024 08:16:54 +0100
+Subject: [PATCH 09/42] gnu: python-astropy: Update to 6.1.4.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.1.4.
+
+Change-Id: I255426bf289d3e39dd2a39c40787b90e97452906
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7c83acb185..6cbe16269a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2732,13 +2732,13 @@ (define-public stellarium
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.1.3")
++    (version "6.1.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "0w09fn7zy2nr5pvvqwmi3s3cm3y5pzxpn7wldz7bbxn1xp6k9j4s"))
++        (base32 "0d0cnqm0p00ap8wys5jcg9h958c6mizx87wzwvmrpackn3i5h59n"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+-- 
+2.46.0
+

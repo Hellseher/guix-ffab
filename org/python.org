@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2024-01-01 Mon 23:56:29 GMT>
+#+modified: <2024-11-23 Sat 20:39:33 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -15,7 +15,7 @@ Guix upstream.
   - ffab/packages/python-check.scm
   - ffab/packages/python-web.scm
 
-* Flow [8/21][38%]
+* Flow [8/23][34%]
 ** DONE aio-libs [1/1][100%] :author:
 CLOSED: [2022-11-08 Tue 11:00]
 - https://github.com/aio-libs
@@ -327,16 +327,55 @@ CLOSED: [2023-06-09 Fri 22:34]
   - [X] python-werkzeug
   - [X] python-wsgiprox
 
-** TODO WoLpH [0/1][0%] :author:
-- https://github.com/WoLpH
+** TODO dfm [0/1][0%] :author:
+*** WAIT python-george [3/4][75%] :p3:
+- https://github.com/dfm/george
+- [X] :packed <2024-11-01 Fri>
+- [X] :patch-sent <2024-11-23 Sat>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/74497
+- [X] :inputs [7/7][100%]
+  - [X] cmake-minimal
+  - [X] pybind11
+  - [X] python-pytest
+  - [X] python-scikit-build-core
+  - [X] python-setuptools-scm
+  - [X] python-numpy
+  - [X] python-scipy
 
-*** TODO portalocker [2/4][50%]
-- https://github.com/WoLpH/portalocker
-- [X] :packed <2022-11-04 Fri>
+** TODO lzkelley [0/2][0%] :author:
+*** WAIT python-kalepy [3/4][75%] :p3:
+- https://github.com/lzkelley/kalepy
+- synopsis :: Kernel Density Estimation (KDE) and sampling
+- [X] :packed <2024-11-01 Fri>
+- [X] :patch-sent <2024-11-23 Sat>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/74497
+- [X] :inputs [8/8][100%]
+  - [X] python-matplotlib
+  - [X] python-numba
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-six
+  - [X] python-wheel
+*** TODO python-zcode [0/4][0%] :p4:
+- https://github.com/lzkelley/zcode
+- synopsis :: General purpose utility code for a variety of (scientific/computational) applications
+- [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [4/4][100%]
+- [ ] :inputs [0/0][0%]
+** TODO cdgriffith [0/0][0%] :author:
+- https://github.com/cdgriffith
+- https://codecalamity.com/
+*** WAIT python-puremagic [3/4][75%] :p3:
+- https://github.com/lzkelley/zcode
+- synopsis :: implementation of identifying files based off their magic numbers
+- [X] :packed <2024-11-23 Sat>
+- [X] :patch-sent <2024-11-23 Sat>
+- [ ] :paptch-applied-upstream
+  - https://issues.guix.gnu.org/74497
+- [X] :inputs [1/1][100%]
   - [X] python-pytest
-  - [X] python-pytest-cov
-  - [X] python-pytest-flake8
-  - [X] python-pytest-mypy

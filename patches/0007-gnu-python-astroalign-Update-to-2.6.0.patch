@@ -1,0 +1,57 @@
+From fb461d591bfe01b49bd9b23fffbfa84cf02e8c32 Mon Sep 17 00:00:00 2001
+Message-ID: <fb461d591bfe01b49bd9b23fffbfa84cf02e8c32.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 18 Oct 2024 23:04:55 +0100
+Subject: [PATCH 07/42] gnu: python-astroalign: Update to 2.6.0.
+
+* gnu/packages/astronomy.scm (python-astroalign): Update to 2.6.0.
+[propagated-inputs]: Remove python-sep; add python-sep-pjw.
+[native-inputs]: Add python-setuptools.
+
+Change-Id: Ib233920b84d1c7110f2f0c3ecb82d2c68cb79a4c
+---
+ gnu/packages/astronomy.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1b773110bb..43cd5c9ad3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1518,7 +1518,7 @@ (define-public python-asdf-astropy
+ (define-public python-astroalign
+   (package
+     (name "python-astroalign")
+-    (version "2.5.1")
++    (version "2.6.0")
+     (source
+      (origin
+        ;; There are no tests in the PyPI tarball.
+@@ -1528,19 +1528,20 @@ (define-public python-astroalign
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1kr5cszcxvrdbksy7mvv3ps1h1jzrn4yamfr6x7whkbi6bpqf7xp"))))
++        (base32 "19dmdnp2hzhzd25601xrfflhxi3j2rgpwf3nl882173wb544cxyq"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-astropy
+            python-ccdproc
+            python-pillow
+-           python-pytest))
++           python-pytest
++           python-setuptools))
+     (propagated-inputs
+      (list python-bottleneck
+            python-numpy
+            python-scikit-image
+            python-scipy
+-           python-sep))
++           python-sep-pjw))
+     (home-page "https://astroalign.readthedocs.io/")
+     (synopsis "Astrometric Alignment of Images")
+     (description
+-- 
+2.46.0
+

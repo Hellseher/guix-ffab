@@ -1,0 +1,50 @@
+From 19b46ca4df21e18d024dc623fa47dfba3ec32557 Mon Sep 17 00:00:00 2001
+Message-ID: <19b46ca4df21e18d024dc623fa47dfba3ec32557.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 9 Oct 2024 22:31:49 +0100
+Subject: [PATCH 10/42] gnu: python-crds: Update to 12.0.4.
+
+* gnu/packages/astronomy.scm (python-crds): Update to 12.0.4.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: I9ceeca97a8d05a0c7f72ca61c03c8d2b9877f7fb
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6cbe16269a..b44844cb5b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3292,13 +3292,13 @@ (define-public python-cmyt
+ (define-public python-crds
+   (package
+     (name "python-crds")
+-    (version "11.18.4")
++    (version "12.0.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "crds" version))
+        (sha256
+-        (base32 "1z6apmss8wym3lpp2mifqxz0i5vvi39g0i2agvw0lchcyzw3jvig"))))
++        (base32 "1xsw120npgf962p3s9rddi88ppmvr0hs6203dnv05wvq2jyfsymv"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3318,7 +3318,9 @@ (define-public python-crds
+            python-stsynphot
+            python-requests))
+     (native-inputs
+-     (list python-setuptools-scm))
++     (list python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (home-page "https://hst-crds.stsci.edu")
+     (synopsis "Calibration Reference Data System for HST and JWST")
+     (description
+-- 
+2.46.0
+

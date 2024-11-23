@@ -1,0 +1,63 @@
+From 98ceee6774547ea7b808a0cd5ab1231b44c4ca71 Mon Sep 17 00:00:00 2001
+Message-ID: <98ceee6774547ea7b808a0cd5ab1231b44c4ca71.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 1 Oct 2024 19:11:11 +0100
+Subject: [PATCH 30/42] gnu: python-glue-core: Adjust inputs.
+
+* gnu/packages/astronomy.scm (python-glue-core): Enable more options by
+adding missing inputs.
+[propagated-inputs]: Add python-astrodendro and python-pyavm.
+[native-inputs]: Remove python-h5py, python-objgraph, python-pytest-cov,
+and python-setuptools; add python-wheel.
+
+Change-Id: I6d014c0347edaff58e8f7a36484d01e3ce2b406b
+---
+ gnu/packages/astronomy.scm | 15 ++++++---------
+ 1 file changed, 6 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ca6ce1d4f8..e0ecac8e10 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1900,7 +1900,7 @@ (define-public python-glue-core
+         (base32 "1xms896ds70sbym1cr5lrbjl4i8vixy3mcc6qsg1b3ppvky76vmn"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+-     (list ;; python-astrodendro ; optional, not packed
++     (list python-astrodendro
+            python-astropy
+            python-dill
+            python-echo
+@@ -1912,22 +1912,19 @@ (define-public python-glue-core
+            python-numpy
+            python-openpyxl
+            python-pandas
+-           ;; python-pyavm ; optional, not packed
++           python-pyavm
+            python-pillow
+            python-scikit-image
+            python-scipy
+-           python-setuptools
++           python-setuptools ; to load extenral plugins, glue/main.py.
+            python-shapely
+            python-spectral-cube
+            python-xlrd))
+     (native-inputs
+-     (list python-h5py
+-           python-objgraph
+-           python-pytest
+-           python-pytest-cov
++     (list python-pytest
+            python-pytest-mpl
+-           python-setuptools
+-           python-setuptools-scm))
++           python-setuptools-scm
++           python-wheel))
+     (home-page "http://glueviz.org")
+     (synopsis "Multidimensional data visualization project")
+     (description
+-- 
+2.46.0
+

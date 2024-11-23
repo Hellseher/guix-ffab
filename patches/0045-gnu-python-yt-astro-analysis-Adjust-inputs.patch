@@ -1,0 +1,47 @@
+From f3ad6bd14f4b7f8ac1848de1c1c63a017960ae1d Mon Sep 17 00:00:00 2001
+Message-ID: <f3ad6bd14f4b7f8ac1848de1c1c63a017960ae1d.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 21:47:50 +0000
+Subject: [PATCH 45/46] gnu: python-yt-astro-analysis: Adjust inputs.
+
+* gnu/packages/astronomy.scm (python-yt-astro-analysis) [native-inputs]:
+Remove python-nose; add python-pytest.
+
+Change-Id: I0b08ced355e739f1522cc749ea96db65413dc7b5
+---
+ gnu/packages/astronomy.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 858fb75d45..999914b3f9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6700,8 +6700,9 @@ (define-public python-yt-astro-analysis
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; Disable test which require MPI setup and failed to run, check why.
+-      #:test-flags #~(list "--ignore=test_halo_finders_ts.py")
++      ;; Disable test which requires MPI setup and failed to run, check why.
++      #:test-flags
++      #~(list "--ignore=yt_astro_analysis/halo_analysis/tests/test_halo_finders_ts.py")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'build-extensions
+@@ -6709,9 +6710,9 @@ (define-public python-yt-astro-analysis
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list python-cython
+-           python-nose
+-           python-tomli
++           python-pytest
+            python-setuptools
++           python-tomli
+            python-wheel))
+     (propagated-inputs
+      (list python-h5py
+-- 
+2.46.0
+

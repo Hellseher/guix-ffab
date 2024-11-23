@@ -1,0 +1,65 @@
+From 1422dddf7010cdd392db1aa55607060d3ca57f9c Mon Sep 17 00:00:00 2001
+Message-ID: <1422dddf7010cdd392db1aa55607060d3ca57f9c.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 1 Nov 2024 20:26:03 +0000
+Subject: [PATCH 04/46] gnu: Add python-george.
+
+* gnu/packages/statistics.scm (python-george): New variable.
+
+Change-Id: Iff4de57093cbb954b7cb1e079ca9ef71b964e64e
+---
+ gnu/packages/statistics.scm | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/gnu/packages/statistics.scm b/gnu/packages/statistics.scm
+index 2f48598f87..a96e92c780 100644
+--- a/gnu/packages/statistics.scm
++++ b/gnu/packages/statistics.scm
+@@ -63,6 +63,7 @@ (define-module (gnu packages statistics)
+   #:use-module (gnu packages bison)
+   #:use-module (gnu packages boost)
+   #:use-module (gnu packages check)
++  #:use-module (gnu packages cmake)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages cran)
+   #:use-module (gnu packages curl)
+@@ -2158,6 +2159,34 @@ (define-public python-altair
+      "Vega-Altair is a declarative statistical visualization library for Python.")
+     (license license:expat)))
+ 
++(define-public python-george
++  (package
++    (name "python-george")
++    (version "0.4.3")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "george" version))
++       (sha256
++        (base32 "1zvbdq50ds820aj06lr2nrzwg121bkd9bg0aq83gvk7lf8yqgp4v"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list cmake-minimal
++           pybind11
++           python-pytest
++           python-scikit-build-core
++           python-setuptools-scm))
++    (propagated-inputs
++     (list python-numpy
++           python-scipy))
++    (home-page "https://george.readthedocs.io")
++    (synopsis "Fast Gaussian Processes for regression")
++    (description
++     "George is a fast and flexible Python library for Gaussian Process (GP)
++Regression, focused on efficiently evaluating the marginalized likelihood of a
++dataset under a GP prior, even as this dataset gets Big.")
++    (license license:expat)))
++
+ (define-public python-getdist
+   (package
+     (name "python-getdist")
+-- 
+2.46.0
+

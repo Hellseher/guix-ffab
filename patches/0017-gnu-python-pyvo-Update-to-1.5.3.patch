@@ -1,0 +1,52 @@
+From 31103c4445c5cd0b2412a81e298f61dfd70cebb7 Mon Sep 17 00:00:00 2001
+Message-ID: <31103c4445c5cd0b2412a81e298f61dfd70cebb7.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 19 Oct 2024 23:02:28 +0100
+Subject: [PATCH 17/42] gnu: python-pyvo: Update to 1.5.3.
+
+* gnu/packages/astronomy.scm (python-pyvo): Update to 1.5.3.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: I75aac22869320c78cd036c3be1ffe6892469ee59
+---
+ gnu/packages/astronomy.scm | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 00a7e0d17b..5d1ea336fb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3950,18 +3950,24 @@ (define-public python-pyavm
+ (define-public python-pyvo
+   (package
+     (name "python-pyvo")
+-    (version "1.5.2")
++    (version "1.5.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyvo" version))
+        (sha256
+-        (base32 "0wcg3jhfwjd9gqs74mw63sgi1yhmgljx1bwk3mxn0p6fv924r8mq"))))
++        (base32 "0zlqn7qflv5ipmlqkq85qjgggz84zi67jm45w4ayfapmhh74sa7x"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-pytest-astropy python-requests-mock python-setuptools-scm))
++     (list python-pytest-astropy
++           python-requests-mock
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+-     (list python-astropy python-pillow python-requests))
++     (list python-astropy
++           python-pillow
++           python-requests))
+     (home-page "https://github.com/astropy/pyvo")
+     (synopsis "Access Virtual Observatory data and services")
+     (description
+-- 
+2.46.0
+

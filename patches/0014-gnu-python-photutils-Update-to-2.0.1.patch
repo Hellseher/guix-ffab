@@ -1,0 +1,74 @@
+From 20ea87247b1e8dc7df89d3acb102c6a1631d7bae Mon Sep 17 00:00:00 2001
+Message-ID: <20ea87247b1e8dc7df89d3acb102c6a1631d7bae.1729453324.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1729453324.git.sharlatanus@gmail.com>
+References: <cover.1729453324.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 19 Oct 2024 22:52:30 +0100
+Subject: [PATCH 14/42] gnu: python-photutils: Update to 2.0.1.
+
+* gnu/packages/astronomy.scm (python-photutils): Update to 2.0.1.
+[arguments]<#:phases>: Add 'relax-requirements phase.
+[propagated-inputs]: Remove python-scikit-learn; add python-regions.
+[native-inputs]: Add python-setuptools.
+
+Change-Id: If8533af300fdc695e9415d80806c5d88620921cb
+---
+ gnu/packages/astronomy.scm | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 789acd3c05..455bfdec44 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3716,22 +3716,25 @@ (define-public python-ndcube
+ (define-public python-photutils
+   (package
+     (name "python-photutils")
+-    ;; PyPI version for source archive is missing minor 0, See
+-    ;; <https://github.com/astropy/photutils/issues/1727>
+-    (version "1.13.0")
++    (version "2.0.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "photutils" version))
+        (sha256
+-        (base32 "1lhpcxh2adknzlmrddqd712yzpwdlqlw9jn49ajj4kz5z7822dns"))))
++        (base32 "1mcsp5bsg3i6w3v9gf7vhkyhlxsn57hgbs0b94p5c4hcv9fa4y3g"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")
++      #~(list "--numprocesses" "auto")
+       #:phases
+       #~(modify-phases %standard-phases
++         (add-after 'unpack 'relax-requirements
++           (lambda _
++             (substitute* "pyproject.toml"
++               ;; numpy>=1.24
++               ((">=1.24") ">=1.23"))))
+           ;; setup.py was removed in 36c3231ce5b80ad470fa78be2e96df859d2daf41
+           ;; for some unknown reason, which caused the package to fail to
+           ;; build. It is being recreated based on that commit.
+@@ -3761,8 +3764,8 @@ (define-public python-photutils
+            python-matplotlib
+            python-numpy
+            python-rasterio
++           python-regions
+            python-scikit-image
+-           python-scikit-learn
+            python-scipy
+            python-shapely
+            python-tqdm))
+@@ -3771,6 +3774,7 @@ (define-public python-photutils
+            python-extension-helpers
+            python-pytest-astropy
+            python-pytest-xdist
++           python-setuptools
+            python-setuptools-scm))
+     (home-page "https://github.com/astropy/photutils")
+     (synopsis "Source detection and photometry")
+-- 
+2.46.0
+

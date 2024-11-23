@@ -1,0 +1,38 @@
+From 05686a17eb7d6a7cf3dc7fc117e4a9b63ff15239 Mon Sep 17 00:00:00 2001
+Message-ID: <05686a17eb7d6a7cf3dc7fc117e4a9b63ff15239.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 17:07:34 +0000
+Subject: [PATCH 34/46] gnu: python-reproject: Update to 0.14.1.
+
+* gnu/packages/astronomy.scm (python-reproject): Update to 0.14.1.
+
+Change-Id: I4d354d42193933cb50440383a544d25f9418749b
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0391c339cb..d793a63889 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4440,13 +4440,13 @@ (define-public python-regularizepsf
+ (define-public python-reproject
+   (package
+     (name "python-reproject")
+-    (version "0.14.0")
++    (version "0.14.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "reproject" version))
+        (sha256
+-        (base32 "1h5v74da32ai9dkhcdn3xx4h05awlxhhnrsdjj1sb644c1vlyg6x"))))
++        (base32 "0yg5dga054xdwsx75q204h04gmrw0mgayc74l4rpymcbkckymj2k"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

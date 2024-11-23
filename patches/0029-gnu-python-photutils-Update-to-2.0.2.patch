@@ -1,0 +1,38 @@
+From 8166568aa1b7dadb720304ea54c808232e44323c Mon Sep 17 00:00:00 2001
+Message-ID: <8166568aa1b7dadb720304ea54c808232e44323c.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 21 Nov 2024 16:34:46 +0000
+Subject: [PATCH 29/46] gnu: python-photutils: Update to 2.0.2.
+
+* gnu/packages/astronomy.scm (python-photutils): Update to 2.0.2.
+
+Change-Id: I28b9d14f13157362c4781068c16c22b890c34a24
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 33e20c16f8..a6d0700702 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4084,13 +4084,13 @@ (define-public python-ndcube
+ (define-public python-photutils
+   (package
+     (name "python-photutils")
+-    (version "2.0.1")
++    (version "2.0.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "photutils" version))
+        (sha256
+-        (base32 "1mcsp5bsg3i6w3v9gf7vhkyhlxsn57hgbs0b94p5c4hcv9fa4y3g"))))
++        (base32 "0lpah7a4wb3r7i8d4gc5bmb34bx3idg921220xhsgdplml77syzh"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

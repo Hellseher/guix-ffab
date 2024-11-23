@@ -1,0 +1,118 @@
+From 1c0016b6886251ca04defdbc93e1c8b1afe56ae7 Mon Sep 17 00:00:00 2001
+Message-ID: <1c0016b6886251ca04defdbc93e1c8b1afe56ae7.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 2 Nov 2024 23:34:29 +0000
+Subject: [PATCH 08/46] gnu: Add python-vispy.
+
+* gnu/packages/python-graphics.scm (python-vispy): New variable.
+
+Change-Id: Icb648d621101e0f4b60ada8c0ebbd3a05eea6fb4
+---
+ gnu/packages/python-graphics.scm | 74 +++++++++++++++++++++++++++++++-
+ 1 file changed, 73 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-graphics.scm b/gnu/packages/python-graphics.scm
+index 403a3c3b34..bc0c93a8ee 100644
+--- a/gnu/packages/python-graphics.scm
++++ b/gnu/packages/python-graphics.scm
+@@ -16,15 +16,17 @@ (define-module (gnu packages python-graphics)
+   #:use-module (guix packages)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages audio)
++  #:use-module (gnu packages base)
+   #:use-module (gnu packages check)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages fontutils)
+   #:use-module (gnu packages gl)
+-  #:use-module (gnu packages base)
+   #:use-module (gnu packages gtk)
++  #:use-module (gnu packages maths)
+   #:use-module (gnu packages pulseaudio)
+   #:use-module (gnu packages python-build)
+   #:use-module (gnu packages python-xyz)
++  #:use-module (gnu packages simulation)
+   #:use-module (gnu packages video)
+   #:use-module (gnu packages xorg))
+ 
+@@ -235,6 +237,76 @@ (define-public python-pyglet
+ music." )
+     (license license:bsd-3)))
+ 
++(define-public python-vispy
++  (package
++    (name "python-vispy")
++    (version "0.14.3")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "vispy" version))
++       (sha256
++        (base32 "07fkk4bdffn0iq5cprk7ydj978rqc4lvzfcs2vkzgfh8m53vifzg"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      ;; Test requiring network access to download test data from
++      ;; <https://raw.githubusercontent.com/vispy/demo-data/main/CONTRIBUTING.txt>.
++      #~(list "-k" (string-append "not test_read_write_image"
++                                  " and not test_wavefront"
++                                  " and not test_config"))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'patch-library-path
++            (lambda _
++              (substitute* (list "vispy/ext/egl.py"
++                                 "vispy/ext/fontconfig.py"
++                                 "vispy/gloo/gl/es2.py"
++                                 "vispy/gloo/gl/gl2.py")
++                (("ctypes\\.util\\.find_library\\('EGL'\\)")
++                 (format #f "'~a/~a'" #$(this-package-input "mesa")
++                         "lib/libEGL.so"))
++                (("ctypes\\.util\\.find_library\\('GL'\\)")
++                 (format #f "'~a/~a'" #$(this-package-input "mesa")
++                         "lib/libGL.so"))
++                (("ctypes\\.util\\.find_library\\('GLESv2'\\)")
++                 (format #f "'~a/~a'" #$(this-package-input "mesa")
++                         "lib/libGLESv2.so"))
++                (("util\\.find_library\\('fontconfig'\\)")
++                 (format #f "'~a/~a'" #$(this-package-input "fontconfig-minimal")
++                         "lib/libfontconfig.so")))))
++          (add-before 'check 'prepare-test-environment
++            (lambda _
++              ;; XXX: Check how to set DPI to run headless tests, fails when
++              ;; DISPLAY is set.
++              ;; E RuntimeError: could not determine DPI
++              (setenv "HOME" "/tmp")
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++    (native-inputs
++     (list python-cython-3
++           python-pytest
++           python-setuptools
++           python-setuptools-scm))
++    (inputs
++     (list fontconfig
++           mesa))
++    (propagated-inputs
++     (list python-freetype-py
++           python-hsluv
++           python-kiwisolver
++           python-meshio
++           python-numpy
++           python-packaging
++           python-pillow))
++    (home-page "http://vispy.org")
++    (synopsis "Interactive scientific visualization in Python")
++    (description
++     "VisPy is a high-performance interactive 2D/3D data visualization library
++leveraging the computational power of modern Graphics Processing Units (GPUs)
++through the OpenGL library to display very large datasets.")
++    (license license:bsd-3)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above in alphabetical order.
+-- 
+2.46.0
+

@@ -1,0 +1,36 @@
+From 5db0e732ed0e45cb209f2aad6fe88ed279e6c369 Mon Sep 17 00:00:00 2001
+Message-ID: <5db0e732ed0e45cb209f2aad6fe88ed279e6c369.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 20:28:51 +0000
+Subject: [PATCH 11/46] gnu: healpix-source: Update commentary note.
+
+* gnu/packages/astronomy.scm (healpix-source): Adjust commentary grammar
+and provide example of C++ variant of the package naming.
+
+Change-Id: I5b50b0d7ad1310a96315dc16da1eb384c5bac533
+---
+ gnu/packages/astronomy.scm | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 7c6c048520..0f19e02dc6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -862,8 +862,10 @@ (define-public gpredict
+     (license license:gpl2+)))
+ 
+ (define* (healpix-source #:key version sha256-base32-hash)
+-    ;; The sources of HEALPix containing 6 independent packages (Fortran90,
+-    ;; IDL, C, C++, java and python) and distributed togather libsharp.
++    ;; The sources of HEALPix contains 6 independent packages (Fortran90, IDL,
++    ;; C, C++, Java and Python) and distributed together with libsharp.  There
++    ;; is also a fresh C++ tarball which does not follow the naming pattern
++    ;; e.g. healpix_cxx-3.82.1.tar.gz.
+      (origin
+        (method url-fetch)
+        (uri
+-- 
+2.46.0
+

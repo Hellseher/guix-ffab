@@ -1,0 +1,33 @@
+From c70aea362001e189a3d97fc98edc2e304ffe1028 Mon Sep 17 00:00:00 2001
+Message-ID: <c70aea362001e189a3d97fc98edc2e304ffe1028.1732384228.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732384228.git.sharlatanus@gmail.com>
+References: <cover.1732384228.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 14 Nov 2024 20:21:07 +0000
+Subject: [PATCH 10/46] gnu: gpredict: Update commentary note.
+
+* gnu/packages/astronomy.scm (gpredict): Add a link to new lease request
+in upstream bug tracker.
+
+Change-Id: I120430c5e55b1848ea03c07474fa0fa9e80aa505
+---
+ gnu/packages/astronomy.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 74e57c3ef7..7c6c048520 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -805,7 +805,8 @@ (define-public gnuastro
+ 
+ (define-public gpredict
+   ;; The latest tag, 2.3, has no major difference with 2.2.1 and is dated for
+-  ;; 2018. Additionally, there is some activity on the master branch.
++  ;; 2018. Additionally, there is some activity on the master branch, see
++  ;; <https://github.com/csete/gpredict/issues/368>.
+   (package
+     (name "gpredict")
+     (version "2.2.1")
+-- 
+2.46.0
+
