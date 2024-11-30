@@ -460,16 +460,13 @@ was made to get a better separation of core libraries and applications.
      (origin
        (method url-fetch)
        ;; The archive version is esoteric here, meanwhile it's mentioned as
-       ;; normal semantic version in documentation (eg. 39_1)
-       (uri (let ((pkg-version
-                   (string-append
-                    (string-replace-substring (version-major+minor version) "." "")
-                    "_" (car (reverse (string-split version #\.))))))
-              (string-append
-               "https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/cdf"
-               pkg-version "/linux/cdf" pkg-version "-dist-cdf.tar.gz")))
+       ;; normal semantic version in documentation (eg. 39_1), update the URL
+       ;; URL accordingly.
+       (uri (string-append
+             "https://spdf.gsfc.nasa.gov/pub/software/cdf/dist/"
+             "cdf39_1/linux/cdf39_1-dist-cdf.tar.gz" ))
        (sha256
-        (base32 "16hvfkfxajhglbbfql58fq6w1cs9x1zllgw5i7ip9d4szz53fccb"))))
+        (base32 "08k6yv6gb0abhqp7dfysll5dgqc7kqbcvyiq4winnilazp6n1n01"))))
     (build-system gnu-build-system)
     (arguments
      (list
@@ -486,8 +483,6 @@ was made to get a better separation of core libraries and applications.
       #~(modify-phases %standard-phases
           ;; no configure
           (delete 'configure))))
-    (native-inputs
-     (list less))
     (home-page "https://cdf.gsfc.nasa.gov/")
     (synopsis "NASA's Common Data Format library and tools")
     (description
@@ -500,9 +495,11 @@ the storage and manipulation of multidimensional data in a platform- and
 discipline-independent fashion.
 
 This package provides library and binary utilities to manipulate CDF files.")
-    ;; https://cdf.gsfc.nasa.gov/html/cdf_copyright.html
     ;; This software may be copied or redistributed as long as it is not sold
-    ;; for profit.
+    ;; for profit, see <https://cdf.gsfc.nasa.gov/html/cdf_copyright.html>.
+    ;;
+    ;; There are no license agreements or costs involved in obtaining or using
+    ;; CDF, see <https://cdf.gsfc.nasa.gov/html/faq.html>.
     (license (license:non-copyleft
               "file://CDF_copyright.txt"
               "See CDF_copyright.txt in the distribution."))))
