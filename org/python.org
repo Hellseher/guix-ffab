@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2024-11-23 Sat 20:39:33 GMT>
+#+modified: <2024-11-30 Sat 15:25:58 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -327,12 +327,13 @@ CLOSED: [2023-06-09 Fri 22:34]
   - [X] python-werkzeug
   - [X] python-wsgiprox
 
-** TODO dfm [0/1][0%] :author:
-*** WAIT python-george [3/4][75%] :p3:
+** TODO dfm [1/1][100%] :author:
+*** DONE python-george [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:20]
 - https://github.com/dfm/george
 - [X] :packed <2024-11-01 Fri>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [7/7][100%]
   - [X] cmake-minimal
@@ -343,13 +344,14 @@ CLOSED: [2023-06-09 Fri 22:34]
   - [X] python-numpy
   - [X] python-scipy
 
-** TODO lzkelley [0/2][0%] :author:
-*** WAIT python-kalepy [3/4][75%] :p3:
+** TODO lzkelley [1/2][50%] :author:
+*** DONE python-kalepy [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:25]
 - https://github.com/lzkelley/kalepy
 - synopsis :: Kernel Density Estimation (KDE) and sampling
 - [X] :packed <2024-11-01 Fri>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [8/8][100%]
   - [X] python-matplotlib
@@ -367,15 +369,16 @@ CLOSED: [2023-06-09 Fri 22:34]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-** TODO cdgriffith [0/0][0%] :author:
+** TODO cdgriffith [1/1][100%] :author:
 - https://github.com/cdgriffith
 - https://codecalamity.com/
-*** WAIT python-puremagic [3/4][75%] :p3:
+*** DONE python-puremagic [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:21]
 - https://github.com/lzkelley/zcode
 - synopsis :: implementation of identifying files based off their magic numbers
 - [X] :packed <2024-11-23 Sat>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [1/1][100%]
   - [X] python-pytest

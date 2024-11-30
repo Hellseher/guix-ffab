@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-11-23 Sat 20:41:15 GMT>
+#+modified: <2024-11-30 Sat 15:28:03 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -736,7 +736,7 @@ CLOSED: [2021-01-22 Fri 23:03]
   - [X] wcslib
   - [X] wget
 
-** TODO Astropy [10/12][83%] :author:
+** TODO Astropy [11/12][91%] :author:
 - https://docs.astropy.org/en/stable/io/fits/
 - https://www.astropy.org/affiliated/
 - https://github.com/astropy
@@ -941,12 +941,13 @@ CLOSED: [2024-10-30 Wed 19:46]
   - [X] python-setuptools
   - [X] python-setuptools-scm
   - [X] python-wheel
-*** WAIT python-spisea [3/4][75%] :p3:
+*** DONE python-spisea [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:20]
 - https://github.com/astropy/SPISEA
 - synopsis :: Stellar Population Synthesis Modeling
 - [X] :packed <2024-11-14 Thu>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [10/10][100%]
   - [X] python-astropy
@@ -1703,15 +1704,16 @@ CLOSED: [2024-10-30 Wed 19:41]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO JuliaAstro [7/35][20%] :author:
+** TODO JuliaAstro [8/35][22%] :author:
 - http://juliaastro.org/dev/index.html
 - https://github.com/JuliaAstro
-*** WAIT julia-astroangles [3/4][75%] :p3:
+*** DONE julia-astroangles [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:20]
 - https://github.com/JuliaAstro/AstroAngles.jl
 - synopsis :: Lightweight string parsing and representation of angles.
 - [X] :packed <2024-11-02 Sat>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :patch-applied-upstream
+- [X] :patch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [2/2][100%]
   - [X] julia-formatting
@@ -2340,13 +2342,14 @@ CLOSED: [2023-12-19 Tue 02:39]
 - author :: Matias Carrasco Kind
 *** TODO easyaccess [/][%] :p4:
 - https://github.com/mgckind/easyaccess
-** TODO lzkelley [0/1][0%] :author:
-*** WAIT python-cosmopy [3/4][75%] :p3:
+** TODO lzkelley [1/1][100%] :author:
+*** DONE python-cosmopy [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:21]
 - https://github.com/lzkelley/cosmopy
 - synopsis :: Cosmological calculator in Python
 - [X] :packed <2024-11-01 Fri>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [9/9][100%]
   - [X] python-astropy
@@ -2358,13 +2361,14 @@ CLOSED: [2023-12-19 Tue 02:39]
   - [X] python-setuptools
   - [X] python-setuptools
   - [X] python-wheel
-** TODO Hazboun6 [0/2][0%] :author:
-*** WAIT python-hasasia [3/4][75%] :p3:
+** TODO Hazboun6 [1/2][50%] :author:
+*** DONE python-hasasia [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:22]
 - https://github.com/Hazboun6/hasasia
 - synopsis :: Pulsar timing array sensitivity curves calculation in Python
 - [X] :packed <2024-11-01 Fri>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [5/5][100%]
   - [X] python-astropy
@@ -2380,7 +2384,7 @@ CLOSED: [2023-12-19 Tue 02:39]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO NANOGrav [0/3][0%] :author:
+** TODO NANOGrav [1/3][33%] :author:
 - https://github.com/nanograv
 *** TODO python-tempo [0/5][0%] :p5:
 - https://github.com/nanograv/tempo
@@ -2396,11 +2400,12 @@ CLOSED: [2023-12-19 Tue 02:39]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-*** WAIT python-holodeck [3/4][75%] :p3:
+*** DONE python-holodeck [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:22]
 - https://github.com/nanograv/holodeck
 - [X] :packed <2024-11-01 Fri>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [21/21][100%]
   - [X] python-astropy
@@ -2489,9 +2494,10 @@ CLOSED: [2024-09-30 Mon 22:52]
 *** TODO SPICE [/][%] :p4:
 - https://naif.jpl.nasa.gov/naif/
 
-*** WAIT CDF [3/4][75%] :p3:
+*** HOLD CDF [3/4][75%] :p5:
 - https://cdf.gsfc.nasa.gov/
 - synopsis ::
+- not accepted to Guix main channel.
 - [X] :packed <2022-11-02 Wed>
 - [X] :patch-sent <2024-11-23 Sat>
 - [ ] :paptch-applied-upstream
@@ -3667,13 +3673,14 @@ CLOSED: [2023-06-14 Wed 19:29]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
-** TODO vispy [0/1][0%] :author:
-*** WAIT python-vispy [3/4][75%] :p3:
+** TODO vispy [1/1][100%] :author:
+*** DONE python-vispy [4/4][100%]
+CLOSED: [2024-11-30 Sat 15:23]
 - https://github.com/vispy/vispy
 - synopsis :: Spiral galaxy simulation
 - [X] :packed <2024-11-23 Sat>
 - [X] :patch-sent <2024-11-23 Sat>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream
   - https://issues.guix.gnu.org/74497
 - [X] :inputs [5/5][100%]
   - [X] python-freetype-py
@@ -4001,7 +4008,7 @@ CLOSED: [2024-08-06 Tue 15:25]
   - [X] python-numpy
   - [X] python-packaging
 
-* Monthly Update [18/19][94%]
+* Monthly Update [19/19][100%]
 ** DONE updates-2023-05
 CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
@@ -4732,9 +4739,10 @@ CLOSED: [2024-10-30 Wed 19:40]
   - [ ] Casacore update compilation issue https://issues.guix.gnu.org/73670
   - [ ] gnuastro 0.23 fails to pass tests
   - [ ] python-asdf :: would be upgraded from 3.3.0 to 3.4.0
-** TODO update-2024-11 :p1:
+** DONE updates-2024-11
+CLOSED: [2024-11-30 Sat 15:28]
 - date-time :: 20241121T165726+0000
-- commit ::
+- commit :: 09da0d3f0b..63508a6548
 - issues :: 74497-done@debbugs.gnu.org; https://issues.guix.gnu.org/74497
 - [-] quick [40/42][95%]
   - [X] add cdf :: NASA's Common Data Format library and tools
