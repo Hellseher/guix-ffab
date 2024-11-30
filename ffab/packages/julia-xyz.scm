@@ -25,6 +25,28 @@
   #:use-module (guix git-download)
   #:use-module (guix packages))
 
+;; 2s0241102T144137+0000
+(define julia-accessors
+  (package
+    (name "julia-accessors")
+    (version "0.1.38")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/JuliaObjects/Accessors.jl")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0pl4rvmnx77nr5fh276y49qlwxb8kjqvib44ck9abkwahr9drvb0"))))
+    (build-system julia-build-system)
+    (home-page "https://github.com/JuliaObjects/Accessors.jl")
+    (synopsis "Update immutable data")
+    (description
+     "The goal of Accessors.jl is to make updating immutable data simple.  It
+is the successor of Setfield.jl.")
+    (license license:expat)))
+
 ;; 20221210T223056+0000
 (define-public julia-images
   (package
