@@ -1,0 +1,40 @@
+From ddffd66f0c505455fa6f10a3770ab1cc74dbef2c Mon Sep 17 00:00:00 2001
+Message-ID: <ddffd66f0c505455fa6f10a3770ab1cc74dbef2c.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 11:53:05 +0000
+Subject: [PATCH 02/38] gnu: julia-dataapi: Update to 1.16.0.
+
+* gnu/packages/julia-xyz.scm (julia-dataapi): Update to 1.16.0.
+
+Change-Id: I96f00b74ef954d3ee7f41e571ceb5adc50e0acbf
+---
+ gnu/packages/julia-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 0a908ae1ef..c66fa2bc92 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -1498,7 +1498,7 @@ (define-public julia-csv
+ (define-public julia-dataapi
+   (package
+     (name "julia-dataapi")
+-    (version "1.13.0")
++    (version "1.16.0")
+     (source
+       (origin
+         (method git-fetch)
+@@ -1507,7 +1507,7 @@ (define-public julia-dataapi
+                (commit (string-append "v" version))))
+         (file-name (git-file-name name version))
+         (sha256
+-         (base32 "1x5pdpjlbk29766ark7rmzjbl0rhxmsb1cp04lc891aknh30rn3i"))))
++         (base32 "1n3i5ajm7a955nggba8k15m9i0ybiq42v6drn5dqb57lj6sylbbz"))))
+     (build-system julia-build-system)
+     (home-page "https://github.com/JuliaData/DataAPI.jl")
+     (synopsis "Data-focused namespace for packages to share functions")
+-- 
+2.46.0
+

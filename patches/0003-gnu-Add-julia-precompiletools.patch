@@ -1,0 +1,61 @@
+From 680887b99e74c6c17cc53379e9030cf42d560887 Mon Sep 17 00:00:00 2001
+Message-ID: <680887b99e74c6c17cc53379e9030cf42d560887.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Dec 2024 21:20:09 +0000
+Subject: [PATCH 03/38] gnu: Add julia-precompiletools.
+
+* gnu/packages/julia-xyz.scm (julia-precompiletools): New variable.
+
+Change-Id: Ic3e3be424a72e296a3653dac1516241d2c8d48f3
+---
+ gnu/packages/julia-xyz.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index c66fa2bc92..35bb76411f 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -5004,6 +5004,38 @@ (define-public julia-positivefactorizations
+ definite.")
+     (license license:expat)))
+ 
++(define-public julia-precompiletools
++  (package
++    (name "julia-precompiletools")
++    (version "1.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaLang/PrecompileTools.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "07b69gmgs3zxs86l9g9dymv3sfgncm8sl86sp0ck6xf5ly10phiy"))))
++    (build-system julia-build-system)
++    (arguments
++     (list
++      ;; Tets fail with error: caused by: GitError(Code:ERROR, Class:SSL,
++      ;; OpenSSL error: failed to load certificates: error:80000002:system
++      ;; library::No such file or directory).
++      #:tests? #f))
++    (propagated-inputs
++     (list julia-preferences))
++    (home-page "https://github.com/JuliaLang/PrecompileTools.jl")
++    (synopsis "Reduce time-to-first-execution of Julia code")
++    (description
++     "@code{PrecompileTools} is designed to help reduce delay on first usage
++of Julia code.  It can force precompilation of specific workloads;
++particularly with Julia 1.9 and higher, the precompiled code is automatically
++saved to disk, so that it doesn't need to be compiled freshly in each Julia
++session.")
++    (license license:expat)))
++
+ (define-public julia-preferences
+   (package
+     (name "julia-preferences")
+-- 
+2.46.0
+

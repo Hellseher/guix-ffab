@@ -1,0 +1,52 @@
+From 5094ce0403c97ddee6f0cab1f84f2955f00c785a Mon Sep 17 00:00:00 2001
+Message-ID: <5094ce0403c97ddee6f0cab1f84f2955f00c785a.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 11:53:04 +0000
+Subject: [PATCH 06/38] gnu: Add julia-commonsolve.
+
+* gnu/packages/julia-xyz.scm (julia-commonsolve): New variable.
+
+Change-Id: If73125bcfe53b26c818fedd14bd8ddbbb863e887
+---
+ gnu/packages/julia-xyz.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 3af2932391..5097770159 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -1240,6 +1240,29 @@ (define-public julia-combinatorics
+ focusing mostly (as of now) on enumerative combinatorics and permutations.")
+     (license license:expat)))
+ 
++(define-public julia-commonsolve
++  (package
++    (name "julia-commonsolve")
++    (version "0.2.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/SciML/CommonSolve.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1w05fp02g5cmqzqp96hcpriwjpqx61sl481rj92gf4y4xpinmdf5"))))
++    (build-system julia-build-system)
++    (home-page "https://docs.sciml.ai/CommonSolve/stable")
++    (synopsis "Common solve function for scientific machine learning")
++    (description
++     "CommonSolve.jl provides @code{solve}, @code{init}, @code{solve!}, and
++@code{step!} commands.  By using the same definition, solver libraries from
++other completely different ecosystems can extend the functions and thus not
++clash with SciML if both ecosystems export the solve command.")
++    (license license:expat)))
++
+ (define-public julia-commonsubexpressions
+   (package
+     (name "julia-commonsubexpressions")
+-- 
+2.46.0
+

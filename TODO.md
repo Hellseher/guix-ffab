@@ -37,14 +37,19 @@
     lisp.org               borodust                [0/2][0%]      :author:
     julia-xyz.org          yakir12                 [0/0][0%]      :author:
     julia-xyz.org          timholy                 [0/1][0%]      :author:
-    julia-xyz.org          SciML                   [1/1][100%]    :author:
+    julia-xyz.org          SciML                   [2/2][100%]    :author:
     julia-xyz.org          sbromberger             [1/1][100%]    :author:
-    julia-xyz.org          oxinabox                [0/1][0%]      :author:
+    julia-xyz.org          rafaqz                  [2/3][66%]     :author:
+    julia-xyz.org          oxinabox                [0/0][0%]      :author:
     julia-xyz.org          kbarbary                [0/1][0%]      :author:
     julia-xyz.org          JuliaTime               [1/1][100%]    :author:
+    julia-xyz.org          JuliaTesting            [1/1][100%]    :author:
     julia-xyz.org          JuliaSIMD               [0/2][0%]      :author:
+    julia-xyz.org          JuliaObjects/           [0/1][0%]      :author:
+    julia-xyz.org          JuliaMath               [0/1][0%]      :author:
     julia-xyz.org          JuliaLinearAlgebra      [1/1][100%]    :author:
     julia-xyz.org          JuliaImages             [0/3][0%]      :author:
+    julia-xyz.org          JuliaFunctional         [1/1][100%]    :author:
     julia-xyz.org          JuliaBinaryWrappers     [1/1][100%]    :author:
     julia-xyz.org          JuliaArrays             [0/1][0%]      :author:
     julia-xyz.org          helgee                  [3/3][100%]    :author:
@@ -82,7 +87,7 @@
     astronomy.org          revoltek                [0/1][0%]      :author:
     astronomy.org          radio-astro-tools       [4/4]          :author:
     astronomy.org          QuatroPe                [1/2][50%]     :author:
-    astronomy.org          pysat                   [0/2][0%]      :author:
+    astronomy.org          pysat                   [1/10][10%]    :author:
     astronomy.org          poliastro               [2/2][100%]    :author:
     astronomy.org          PaulMcMillan-Astro      [0/1][0%]      :author:
     astronomy.org          OxfordSKA               [0/1][0%]      :author:
@@ -175,7 +180,7 @@
     astronomy.org          julia-backgroundmeshes         [0/4][0%]   :p5:
     astronomy.org          julia-astroimageview           [0/4][0%]   :p5:
     astronomy.org          julia-astroimages              [0/4][0%]   :p5:
-    astronomy.org          julia-astrobase                [1/4][25%]  :p5:
+    astronomy.org          julia-astrobase                [0/4][0%]   :p5:
     astronomy.org          inistarter                     [0/4][0%]   :p5:
     astronomy.org          indi-service-type              [/][%]      :p5:
     astronomy.org          INDIGO                         [0/4]       :p5:
@@ -212,7 +217,7 @@
     julia-xyz.org          julia-imagedistances           [/][%]      :p4:
     julia-xyz.org          julia-imagecontrastadjustment  [1/4][25%]  :p4:
     julia-xyz.org          julia-dierckx                  [0/4][0%]   :p4:
-    julia-xyz.org          julia-datadeps                 [/][%]      :p4:
+    julia-xyz.org          julia-datadeps                 [0/4][0%]   :p4:
     databases.org          reindexer                      [/][%]      :p4:
     astronomy.org          WSClean                        [0/4][0%]   :p4:
     astronomy.org          WCSLIB                         [/][%]      :p4:
@@ -232,6 +237,14 @@
     astronomy.org          RadialVelocities.              [/][%]      :p4:
     astronomy.org          python-sunkit-magex            [0/4][0%]   :p4:
     astronomy.org          python-streamtracer            [/][%]      :p4:
+    astronomy.org          python-pysat-space-weather     [0/4][0%]   :p4:
+    astronomy.org          python-pysat-sessions          [0/4][0%]   :p4:
+    astronomy.org          python-pysat-nasa              [0/4][0%]   :p4:
+    astronomy.org          python-pysat-models            [0/4][0%]   :p4:
+    astronomy.org          python-pysat-missions          [0/4][0%]   :p4:
+    astronomy.org          python-pysat-madrigal          [0/4][0%]   :p4:
+    astronomy.org          python-pysat-cdaac             [0/4][0%]   :p4:
+    astronomy.org          python-pysat-amisr             [0/4][0%]   :p4:
     astronomy.org          python-pfsspy                  [0/4][0%]   :p4:
     astronomy.org          python-jdaviz                  [0/4][0%]   :p4:
     astronomy.org          python-hissw                   [2/4][50%]  :p4:
@@ -373,11 +386,13 @@
     julia-xyz.org          julia-loopvectorization        [0/4][0%]   :p1:
     golang.org             miller                         [1/5][20%]  :p1:
     golang.org             caddy                          [0/4][0%]   :p1:
+    astro-updates.org      updates-2025-01                [0/3][0%]   :p1:
     astronomy.org          uvsph                          [0/4][0%]   :p1:
     astronomy.org          Torus                          [1/4][25%]  :p1:
     astronomy.org          tenmon                         [1/4][25%]  :p1:
     astronomy.org          SAOImageDS9                    [0/4][0%]   :p1:
     astronomy.org          python-visiomatic              [0/4][0%]   :p1:
+    astronomy.org          python-topsy                   [0/4][0%]   :p1:
     astronomy.org          python-tangos                  [0/4][0%]   :p1:
     astronomy.org          python-startlink-pyast         [0/4][0%]   :p1:
     astronomy.org          python-ssph                    [1/4][25%]  :p1:
@@ -387,8 +402,7 @@
     astronomy.org          python-pytplot                 [1/4][25%]  :p1:
     astronomy.org          python-pyspedas                [0/4][0%]   :p1:
     astronomy.org          python-pysm                    [/][%]      :p1:
-    astronomy.org          python-pysatcdf                [0/4][0%]   :p1:
-    astronomy.org          python-pysat                   [0/4][0%]   :p1:
+    astronomy.org          python-pysat-cdf               [0/4][0%]   :p1:
     astronomy.org          python-pydl                    [0/4][0%]   :p1:
     astronomy.org          python-lenstronomy             [0/4][0%]   :p1:
     astronomy.org          python-imexam                  [0/5][0%]   :p1:
@@ -434,6 +448,9 @@
     lisp.org               cl-plplot                      [0/4][0%]   
     lisp.org               cl-claw                        [0/4][0%]   
     lisp.org               cl-bodge                       [0/4][0%]   
+    julia-xyz.org          julia-roots                    [0/4][0%]   
+    julia-xyz.org          julia-dimensionaldata          [1/4][25%]  
+    julia-xyz.org          julia-accessors                [0/4][0%]   
     high-availability.org  corosync-qdevice               [1/4][25%]  
     golang.org             hashicorp/terraform            [0/4][0%]   
     golang.org             hashicorp/nomad                [0/4][0%]   
@@ -518,6 +535,7 @@
     astronomy.org          python-pyerfa                    [4/4][100%]  
     astronomy.org          python-pynbody                   [4/4][100%]  
     astronomy.org          python-pyregion                  [4/4][100%]  
+    astronomy.org          python-pysat                     [4/4][100%]  
     astronomy.org          python-pysynphot                 [5/5][5/5]   
     astronomy.org          python-pytest-astropy            [4/4][100%]  
     astronomy.org          python-pytest-astropy-header     [4/4][100%]  
@@ -560,26 +578,27 @@
     astronomy.org          stiff                            [3/3][100%]  
     astronomy.org          stuff                            [3/3][100%]  
     astronomy.org          swarp                            [3/3][100%]  
-    astronomy.org          updates-2023-05                               
-    astronomy.org          updates-2023-06                               
-    astronomy.org          updates-2023-07                               
-    astronomy.org          updates-2023-08                               
-    astronomy.org          updates-2023-09                               
-    astronomy.org          updates-2023-10                               
-    astronomy.org          updates-2023-11                               
-    astronomy.org          updates-2023-12                               
-    astronomy.org          updates-2024-01                               
-    astronomy.org          updates-2024-02                               
-    astronomy.org          updates-2024-03                               
-    astronomy.org          updates-2024-04                               
-    astronomy.org          updates-2024-05                               
-    astronomy.org          updates-2024-06                               
-    astronomy.org          updates-2024-07                               
-    astronomy.org          updates-2024-08                               
-    astronomy.org          updates-2024-09                               
-    astronomy.org          updates-2024-10                               
-    astronomy.org          updates-2024-11                               
     astronomy.org          weightwatcher                    [3/3][100%]  
+    astro-updates.org      updates-2023-05                  [3/35][8%]   
+    astro-updates.org      updates-2023-06                  [2/2][100%]  
+    astro-updates.org      updates-2023-07                  [0/1][0%]    
+    astro-updates.org      updates-2023-08                  [1/2][50%]   
+    astro-updates.org      updates-2023-09                  [1/2][50%]   
+    astro-updates.org      updates-2023-10                  [1/3][33%]   
+    astro-updates.org      updates-2023-11                  [2/3][66%]   
+    astro-updates.org      updates-2023-12                  [1/3][33%]   
+    astro-updates.org      updates-2024-01                  [2/3][66%]   
+    astro-updates.org      updates-2024-02                  [2/3][66%]   
+    astro-updates.org      updates-2024-03                  [2/3][66%]   
+    astro-updates.org      updates-2024-04                  [2/3][66%]   
+    astro-updates.org      updates-2024-05                  [1/3][33%]   
+    astro-updates.org      updates-2024-06                  [1/3][33%]   
+    astro-updates.org      updates-2024-07                  [1/3][33%]   
+    astro-updates.org      updates-2024-08                  [1/3][33%]   
+    astro-updates.org      updates-2024-09                  [1/3][33%]   
+    astro-updates.org      updates-2024-10                  [1/3][33%]   
+    astro-updates.org      updates-2024-11                  [1/3][33%]   
+    astro-updates.org      updates-2024-12                  [1/3][33%]   
     audio.org              libmixed                         [4/4][100%]  
     cran.org               opencpu                          [4/4][100%]  
     databases.org          pgloader                                      
@@ -591,12 +610,17 @@
     high-availability.org  pacemaker                        [4/4][100%]  
     julia-xyz.org          julia-arnoldimethod              [4/4][100%]  
     julia-xyz.org          julia-cfitrsio-jll               [4/4][100%]  
+    julia-xyz.org          julia-commonsolve                [4/4][100%]  
+    julia-xyz.org          julia-compositionsbase           [4/4][100%]  
+    julia-xyz.org          julia-extents                    [4/4][100%]  
     julia-xyz.org          julia-inflate                    [4/4][100%]  
+    julia-xyz.org          julia-interfaces                 [4/4][100%]  
     julia-xyz.org          julia-itemgraphs                 [4/4][100%]  
     julia-xyz.org          julia-leapseconds                [4/4][100%]  
     julia-xyz.org          julia-lightgraphs                [4/4][100%]  
     julia-xyz.org          julia-muladdmacro                [4/4][100%]  
     julia-xyz.org          julia-optionaldata               [4/4][100%]  
+    julia-xyz.org          julia-performancetesttools       [4/4][100%]  
     julia-xyz.org          julia-remotefiles                [4/4][100%]  
     lisp.org               3b-bmfont                        [4/4][100%]  
     lisp.org               asdf-system-connections          [3/3][100%]  
@@ -690,7 +714,7 @@
     astronomy.org          gnudatalanguage                  [0/0][100%]  :author:
     astronomy.org          GreatAttractor                   [2/2][100%]  :author:
     astronomy.org          OpenPHDGuiding                   [1/1][100%]  :author:
-    astronomy.org          pynbody                          [1/2][50%]   :author:
+    astronomy.org          pynbody                          [1/3][33%]   :author:
     astronomy.org          skyfielders                      [1/1][100%]  :author:
     golang.org             valyala                          [1/1][100%]  :author:
     lisp.org               3b                               [4/4][100%]  :author:

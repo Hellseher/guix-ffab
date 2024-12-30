@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2023-12-22 Fri 03:28:32 GMT>
+#+modified: <2024-12-30 Mon 15:42:49 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Julia programming language rel
 - GNU Guix :: gnu/packages/julia-xyz.scm
 - FFAB :: ffab/packages/julia-xyz.scm
 
-* Flow [0/14][0%]
+* Flow [0/19][0%]
 ** TODO JuliaImages [0/3][0%] :author:
 - https://github.com/JuliaImages
 *** TODO julia-images [0/4][0%] :p4:
@@ -66,6 +66,19 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [X] :inputs [1/1][100%]
+** JiliaStdLib [5/6]
+- [X] julia-sparsearrays
+  - https://github.com/JuliaSparse/SparseArrays.jl
+- [X] julia-statistics
+  - https://github.com/JuliaStats/Statistics.jl
+- [X] julia-random
+  - https://github.com/JuliaLang/julia/blob/master/stdlib/Random/src/Random.jl
+- [X] julia-linearalgebra
+  - https://github.com/JuliaLang/LinearAlgebra.jl
+- [X] julia-dates
+  - https://github.com/JuliaLang/julia/blob/master/stdlib/Dates/src/Dates.jl
+- [ ] julia-markdown
+  - https://docs.julialang.org/en/v1/stdlib/Markdown/
 
 ** TODO yakir12 [0/0][0%] :author:
 - author :: Yakir Luc Gagnon
@@ -89,10 +102,66 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :inputs [0/1][0%]
   Wrapper for Fortran library, which is not free.
   - [ ] julia-dierckx-jll
+** TODO JuliaMath [0/1][0%] :author:
+*** TODO julia-roots [0/4][0%]
+- https://github.com/JuliaMath/Roots.jl
+- synopsis :: Root finding functions for Julia
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [2/4][50%]
+  - [ ] julia-accessors
+    - [ ] :packed
+  - [X] julia-chainrulescore
+  - [X] julia-commonsolve
+    - [X] :packed <2024-12-10 Tue>
+  - [ ] julia-printf
+** TODO JuliaObjects/ [0/1][0%] :author:
+*** TODO julia-accessors [0/4][0%]
+- https://github.com/JuliaObjects/Accessors.jl
+- synopsis :: Update immutable data
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [-] :inputs [10/11][90%]
+  - [X] julia-compositionsbase
+    - [X] :packed <2024-12-10 Tue>
+  - [X] julia-constructionbase
+  - [X] julia-aqua
+  - [X] julia-benchmarktools
+  - [X] julia-staticarrays
+  - [ ] julia-axiskeys
+  - [X] julia-staticnumbers
+    - [X] :packed <2024-12-10 Tue>
+  - [X] julia-inversefunctions
+  - [X] julia-performancetesttools
+    - [X] :packed <2024-12-10 Tue>
+  - [X] julia-macrotools
+  - [X] julia-requires
+** TODO JuliaTesting [1/1][100%] :author:
+*** DONE julia-performancetesttools [4/4][100%]
+CLOSED: [2024-12-30 Mon 15:38]
+- https://github.com/JuliaTesting/PerformanceTestTools.jl
+- synopsis ::
+- [X] :packed <2024-12-10 Tue>
+- [X] :patch-sent
+- [X] :patch-applied-upstream <2024-12-30 Mon>
+  - https://issues.guix.gnu.org/75015
+- [X] :inputs [0/0][0%]
+** TODO JuliaFunctional [1/1][100%] :author:
+*** DONE julia-compositionsbase [4/4][100%]
+CLOSED: [2024-12-30 Mon 15:36]
+- https://github.com/JuliaFunctional/CompositionsBase.jl
+- synopsis :: Composition of morphisms
+- [X] :packed <2024-12-10 Tue>
+- [X] :patch-sent
+- [X] :patch-applied-upstream <2024-12-30 Mon>
+  - https://issues.guix.gnu.org/75015
+- [X] :inputs [0/0][0%]
 
-** TODO oxinabox [0/1][0%] :author:
+** TODO oxinabox [0/0][0%] :author:
 - https://github.com/oxinabox
-*** TODO julia-datadeps [/][%] :p4:
+*** TODO julia-datadeps [0/4][0%] :p4:
 - https://github.com/oxinabox/DataDeps.jl
 - synopsis :: reproducible data setup for reproducible science
 - [ ] :packed
@@ -123,6 +192,49 @@ CLOSED: [2023-03-03 Fri 21:28]
   - https://issues.guix.gnu.org/61611
 - [X] :inputs [1/1][100%]
   - [X] julia-erfa
+** TODO rafaqz [2/3][66%] :author:
+*** TODO julia-dimensionaldata [1/4][25%]
+- https://github.com/rafaqz/DimensionalData.jl
+- synopsis :: Named dimensions and indexing for julia arrays and other data
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [X] :inputs [14/14][100%]
+  - [X] julia-adapt
+  - [X] julia-arrayinterface
+  - [X] julia-constructionbase
+  - [X] julia-dataapi
+  - [X] julia-extents
+    - [X] :packed <2024-12-10 Tue>
+  - [X] julia-interfaces
+    - [X] :packed <2024-12-10 Tue>
+  - [X] julia-intervalsets
+  - [X] julia-invertedindices
+  - [X] julia-iteratorinterfaceextensions
+  - [X] julia-precompiletools
+  - [X] julia-recipesbase
+  - [X] julia-tabletraits
+  - [X] julia-tables
+*** DONE julia-interfaces [4/4][100%]
+CLOSED: [2024-12-30 Mon 15:38]
+- https://github.com/rafaqz/Interfaces.jl
+- synopsis :: Macros to define and implement interfaces, to ensure they are checked and correct.
+- [X] :packed <2024-12-10 Tue>
+- [X] :patch-sent
+- [X] :patch-applied-upstream <2024-12-30 Mon>
+  - https://issues.guix.gnu.org/75015
+- [X] :inputs [2/2][100%]
+  - [X] julia-aqua
+  - [X] julia-documenter
+*** DONE julia-extents [4/4][100%]
+CLOSED: [2024-12-30 Mon 15:37]
+- https://github.com/rafaqz/Extents.jl
+- synopsis :: A shared Extent object for Julia spatial data, with DE-9IM spatial predicates
+- [X] :packed <2024-12-10 Tue>
+- [X] :patch-sent
+- [X] :patch-applied-upstream <2024-12-30 Mon>
+  - https://issues.guix.gnu.org/75015
+- [X] :inputs [0/0][0%]
 
 ** TODO JuliaSIMD [0/2][0%] :author:
 - https://github.com/JuliaSIMD
@@ -132,7 +244,7 @@ CLOSED: [2023-03-03 Fri 21:28]
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
-- [-] :inputs [9/21][42%]
+- [-] :inputs [10/21][47%]
   - [X] julia-arrayinterface
   - [ ] julia-arrayinterfacecore
     - [ ] :packed
@@ -151,8 +263,7 @@ CLOSED: [2023-03-03 Fri 21:28]
   - [X] julia-offsetarrays
   - [ ] julia-polyesterweave
     - [ ] :packed
-  - [ ] julia-simdtypes
-    - [ ] :packed
+  - [X] julia-simdtypes
   - [ ] julia-sleefpirates
     - [ ] :packed
   - [ ] julia-snoopprecompile
@@ -294,7 +405,7 @@ CLOSED: [2023-03-03 Fri 21:23]
   - [X] julia-staticarrays
   - [X] julia-genericschur
 
-** TODO SciML [1/1][100%] :author:
+** TODO SciML [2/2][100%] :author:
 - https://github.com/SciML
 - https://sciml.ai/
 *** DONE julia-muladdmacro [4/4][100%]
@@ -306,4 +417,13 @@ CLOSED: [2023-03-03 Fri 21:18]
 - [X] :patch-sent <2023-02-19 Sun>
 - [X] :patch-applied-upstream <2023-03-03 Fri>
   - https://issues.guix.gnu.org/61611
+- [X] :inputs [0/0][0%]
+*** DONE julia-commonsolve [4/4][100%]
+CLOSED: [2024-12-30 Mon 15:33]
+- https://github.com/SciML/CommonSolve.jl
+- synopsis :: A common solve function for scientific machine learning (SciML) and beyond
+- [X] :packed <2024-12-10 Tue>
+- [X] :patch-sent
+- [X] :patch-applied-upstream <2024-12-30 Mon>
+  - https://issues.guix.gnu.org/75015
 - [X] :inputs [0/0][0%]

@@ -1,0 +1,51 @@
+From f7beda4e89a97f071fc82c4eaaf0b287db81b6eb Mon Sep 17 00:00:00 2001
+Message-ID: <f7beda4e89a97f071fc82c4eaaf0b287db81b6eb.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Dec 2024 21:44:40 +0000
+Subject: [PATCH 31/38] gnu: python-stsci-stimage: Adjust inputs.
+
+* gnu/packages/astronomy.scm (python-stsci-stimage):
+[native-inputs]: Add python-setuptools. Sort alphabetically.
+
+Change-Id: I75fe8eb911b13a83bbe096aec665a33fde05cfdf
+---
+ gnu/packages/astronomy.scm | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 27224c70d9..c42c48f272 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5199,8 +5199,6 @@ (define-public python-stsci-imagestats
+ (define-public python-stsci-stimage
+   (package
+     (name "python-stsci-stimage")
+-    ;; PyPI version was 0.2.8 but the latest version tag on GiHub was 0.2.7,
+-    ;; see <https://github.com/spacetelescope/stsci.stimage/issues/38>
+     (version "0.2.9")
+     (source (origin
+               (method url-fetch)
+@@ -5223,13 +5221,14 @@ (define-public python-stsci-stimage
+                           #$(this-package-native-input "python-waf") "/bin/waf")
+                          "waf")
+               (invoke "python" "waf" "configure" "build"))))))
+-    (propagated-inputs
+-     (list python-numpy))
+     (native-inputs
+      (list python-pytest
+-           python-wheel
++           python-setuptools
+            python-setuptools-scm
+-           python-waf))
++           python-waf
++           python-wheel))
++    (propagated-inputs
++     (list python-numpy))
+     (home-page "https://stscistimage.readthedocs.io/en/latest/")
+     (synopsis "STScI image processing")
+     (description
+-- 
+2.46.0
+

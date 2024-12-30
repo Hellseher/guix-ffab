@@ -1,0 +1,32 @@
+From bde4337a2b9031786b4332b466425f107c53c467 Mon Sep 17 00:00:00 2001
+Message-ID: <bde4337a2b9031786b4332b466425f107c53c467.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 16 Dec 2024 21:55:02 +0000
+Subject: [PATCH 16/38] gnu: python-asdf-standard: Adjust native inputs.
+
+* gnu/packages/astronomy.scm (python-asdf-standard) [native-inputs]:
+Remove python-astropy; add python-astropy-minimal.
+
+Change-Id: I7eac445679adbccc2d31ff6fe39807d3bfa1bf6d
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 93ca3b925e..a6f363772f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5933,7 +5933,7 @@ (define-public python-asdf-standard
+               "--ignore=tests/test_manifests.py"
+               "--ignore=tests/test_yaml_schema.py")))
+     (native-inputs
+-     (list python-astropy
++     (list python-astropy-minimal
+            python-jsonschema
+            python-pypa-build
+            python-pytest
+-- 
+2.46.0
+

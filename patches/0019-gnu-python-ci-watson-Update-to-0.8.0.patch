@@ -1,0 +1,58 @@
+From bd976000d47320cce7da68699532481271c84b0a Mon Sep 17 00:00:00 2001
+Message-ID: <bd976000d47320cce7da68699532481271c84b0a.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 15:49:06 +0000
+Subject: [PATCH 19/38] gnu: python-ci-watson: Update to 0.8.0.
+
+* gnu/packages/astronomy.scm (python-ci-watson): Update to 0.8.0.
+[propagated-inputs]: Add python-readchar.
+[native-inputs]: Add python-setuptools and python-wheel.
+
+Change-Id: Ic395b2d2251432ec0991bced9f2df85fa528c684
+---
+ gnu/packages/astronomy.scm | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8537bdb0dd..18894529c2 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3696,13 +3696,13 @@ (define-public python-cdflib
+ (define-public python-ci-watson
+   (package
+     (name "python-ci-watson")
+-    (version "0.7.0")
++    (version "0.8.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ci_watson" version))
+        (sha256
+-        (base32 "1qb5iyb053k1711ic93rcm0z344dc6h8vg8fpkbqpg5z6q0v2b0y"))))
++        (base32 "1rlhs8y0splmzr76z1s35zl68qm748nlayha8m81b0zhkhicxvhg"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3714,12 +3714,15 @@ (define-public python-ci-watson
+                 ;; ImportError: Error importing plugin " no:legacypath": No
+                 ;; module named ' no:legacypath'
+                 (("-p no:legacypath") "")))))))
++    (native-inputs
++     (list python-pytest-astropy-header
++           python-setuptools
++           python-wheel))
+     (propagated-inputs
+      (list python-crds
+            python-pytest
++           python-readchar
+            python-requests))
+-    (native-inputs
+-     (list python-pytest-astropy-header))
+     (home-page "https://github.com/spacetelescope/ci_watson")
+     (synopsis "Helper functions for STScI software")
+     (description
+-- 
+2.46.0
+

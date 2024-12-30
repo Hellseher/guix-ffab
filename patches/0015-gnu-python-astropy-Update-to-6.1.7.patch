@@ -1,0 +1,45 @@
+From 9b5788f1d5e3f4dad2cc1f5aee35cafd3fe5c9fe Mon Sep 17 00:00:00 2001
+Message-ID: <9b5788f1d5e3f4dad2cc1f5aee35cafd3fe5c9fe.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 15:17:43 +0000
+Subject: [PATCH 15/38] gnu: python-astropy: Update to 6.1.7.
+
+* gnu/packages/astronomy.scm (python-astropy): Update to 6.1.7.
+
+Change-Id: I10eb5927df83392552535f00dcfb649e43d9129c
+---
+ gnu/packages/astronomy.scm | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4fdbf1742f..93ca3b925e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3260,16 +3260,20 @@ (define-public stackistry
+ deconvolution).  Such post-processing is not performed by Stackistry.")
+     (license license:gpl3+)))
+ 
++;; XXX: Upgrading to the latest version requires Python3.11+ and fresh
++;; versions of numpy, PyYAML, packaging, Pandas and matplotlib, see
++;; <https://github.com/astropy/astropy/blob/v7.0.0/CHANGES.rst
++;; #other-changes-and-additions>.
+ (define-public python-astropy
+   (package
+     (name "python-astropy")
+-    (version "6.1.6")
++    (version "6.1.7")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy" version))
+        (sha256
+-        (base32 "0iv8mkdflfprigv3g6666v80nvg6blwz0989hqw232g7gms57qb3"))
++        (base32 "1vspagb4vbmkl6fm3mr78577dgdq992ggwkd5qawpdh6cccaq1d4"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+-- 
+2.46.0
+

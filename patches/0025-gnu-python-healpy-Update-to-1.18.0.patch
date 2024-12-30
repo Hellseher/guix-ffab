@@ -1,0 +1,54 @@
+From 03cb38edb279c2026f5cf37795b14f34cc4135e3 Mon Sep 17 00:00:00 2001
+Message-ID: <03cb38edb279c2026f5cf37795b14f34cc4135e3.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Dec 2024 21:05:19 +0000
+Subject: [PATCH 25/38] gnu: python-healpy: Update to 1.18.0.
+
+* gnu/packages/astronomy.scm (python-healpy): Update to 1.18.0.
+[arguments] <phases>: Remove 'build-extensions, add 'pre-check and
+delete conftest.py causing tests to fail.
+
+Change-Id: I1293ed04b578f0525d9f862c049bc76038583184
+---
+ gnu/packages/astronomy.scm | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4bb6bc2816..344a136c3e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2647,16 +2647,13 @@ (define-public python-hasasia
+ (define-public python-healpy
+   (package
+     (name "python-healpy")
+-    ;; The latest version depends on custom fork of HEALPix with changes not
+-    ;; ported to upstream yet, see
+-    ;; <https://github.com/healpy/healpy/issues/949>.
+-    (version "1.16.6")
++    (version "1.18.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "healpy" version))
+        (sha256
+-        (base32 "1w99cgszh2mzcn5x8p0gdzn3r96vyfdnvbwm20a1l9fdiy16xcha"))))
++        (base32 "12ajn55kjgnqadyamh6cw4q8i01nyv6isgf47lcnv2jch27zs4ka"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2673,8 +2670,9 @@ (define-public python-healpy
+             (lambda _
+             (substitute* "pyproject.toml"
+               (("--doctest-plus") ""))))
+-          (add-before 'check 'build-extensions
++          (add-before 'check 'pre-check
+             (lambda _
++              (delete-file "lib/healpy/conftest.py")
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+      (list nss-certs-for-test
+-- 
+2.46.0
+

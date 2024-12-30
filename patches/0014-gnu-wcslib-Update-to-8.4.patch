@@ -1,0 +1,51 @@
+From ea90daccb3b862fba0e9537478463654b9f9e2ef Mon Sep 17 00:00:00 2001
+Message-ID: <ea90daccb3b862fba0e9537478463654b9f9e2ef.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Dec 2024 00:08:17 +0000
+Subject: [PATCH 14/38] gnu: wcslib: Update to 8.4.
+
+* gnu/packages/astronomy.scm (wcslib): Update to 8.4.
+[source]<uri>: Fix it as changed upstream.
+[home-page]: Likewise.
+
+Change-Id: Ie527d9669af5a41d1f9a186464c04ea0e3991ff1
+---
+ gnu/packages/astronomy.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6d4dfb4566..4fdbf1742f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7202,14 +7202,14 @@ (define-public unsio
+ (define-public wcslib
+   (package
+     (name "wcslib")
+-    (version "8.3")
++    (version "8.4")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (string-append "https://www.atnf.csiro.au/people/mcalabre/WCS/"
++       (uri (string-append "https://www.atnf.csiro.au/people/mcalabre/WCS/WCS/"
+                            "wcslib-" version ".tar.bz2"))
+        (sha256
+-        (base32 "0225c77jypjjlfw6zd53447qnrmlq1fl38xzi4mw1fr7g50s67j3"))
++        (base32 "1p1606jscky6cw32qwx7k7nwv24jm9c85mzfrm9qnjni4r2882wn"))
+        (snippet
+         #~(begin (use-modules (guix build utils))
+                  (delete-file-recursively "C/flexed")))))
+@@ -7234,7 +7234,7 @@ (define-public wcslib
+      (list cfitsio))
+     (native-inputs
+      (list flex))
+-    (home-page "https://www.atnf.csiro.au/people/mcalabre/WCS")
++    (home-page "https://www.atnf.csiro.au/people/mcalabre/WCS/WCS")
+     (synopsis "Library which implements the FITS WCS standard")
+     (description "The FITS \"World Coordinate System\" (@dfn{WCS}) standard
+ defines keywords and usage that provide for the description of astronomical
+-- 
+2.46.0
+

@@ -1,0 +1,32 @@
+From 4f62db5bda24784eb1605ccee0e2e6fe271e70c3 Mon Sep 17 00:00:00 2001
+Message-ID: <4f62db5bda24784eb1605ccee0e2e6fe271e70c3.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Dec 2024 23:33:03 +0000
+Subject: [PATCH 34/38] gnu: python-roman-datamodels: Adjust input.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels)
+[propagated-inputs]: Remove python-asdf; add python-asdf-3.
+
+Change-Id: I19ec90d9b416b5eaedcd6ec3a415b0525f0a180c
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 34b5b7acca..e368ce57d4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6316,7 +6316,7 @@ (define-public python-roman-datamodels
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-     (list python-asdf
++     (list python-asdf-3
+            python-asdf-astropy
+            python-astropy
+            python-gwcs
+-- 
+2.46.0
+

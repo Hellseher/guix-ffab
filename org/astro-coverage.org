@@ -1,0 +1,355 @@
+#+title: Astro Coverage
+
+| project                            |            guix | debian-astro | kernel | astropy-affiliated | stsci-astroconda |
+|------------------------------------+-----------------+--------------+--------+--------------------+------------------|
+| 21cmfast                           |                 |              | X      |                    |                  |
+| alfa                               |             2.2 |          2.2 |        |                    |                  |
+| aocommon                           | 0.0.0-1.7329a07 |              |        |                    |                  |
+| aoflagger                          |           3.2.0 |              | X      |                    |                  |
+| apsynsim                           |                 |              | X      |                    |                  |
+| attrdict                           |                 |              | X      |                    |                  |
+| blitz                              |                 |              | X      |                    |                  |
+| brats                              |                 |              | X      |                    |                  |
+| calceph                            |                 |              |        |                    |                  |
+| calcmysky                          |                 |              |        |                    |                  |
+| calcmysky-qt5                      |                 |              |        |                    |                  |
+| casacore                           |                 |              |        |                    |                  |
+| casacore                           |                 |              | X      |                    |                  |
+| casacore-data                      |                 |              | X      |                    |                  |
+| casalite                           |                 |              | X      |                    |                  |
+| casarest                           |                 |              | X      |                    |                  |
+| ccfits                             |                 |              |        |                    |                  |
+| celestia                           |                 |              |        |                    |                  |
+| celestia-gtk                       |                 |              |        |                    |                  |
+| cfitsio                            |                 |              |        |                    |                  |
+| cubical                            |                 |              | X      |                    |                  |
+| dysco                              |                 |              | X      |                    |                  |
+| eht-imaging                        |                 |              | X      |                    |                  |
+| erfa                               |                 |              |        |                    |                  |
+| everybeam                          |                 |              | X      |                    |                  |
+| eye                                |                 |              |        |                    |                  |
+| future-fstrings                    |                 |              | X      |                    |                  |
+| glnemo2                            |                 |              |        |                    |                  |
+| gnuastro                           |                 |              |        |                    |                  |
+| gpredict                           |                 |              |        |                    |                  |
+| idg                                |                 |              | X      |                    |                  |
+| imppg                              |                 |              |        |                    |                  |
+| indi                               |                 |              |        |                    |                  |
+| indi                               |                 |              |        |                    |                  |
+| katdal                             |                 |              | X      |                    |                  |
+| katpoint                           |                 |              | X      |                    |                  |
+| katversion                         |                 |              | X      |                    |                  |
+| kittens                            |                 |              | X      |                    |                  |
+| libnova                            |                 |              |        |                    |                  |
+| libpasastro                        |                 |              |        |                    |                  |
+| libsep                             |                 |              |        |                    |                  |
+| libskry                            |                 |              |        |                    |                  |
+| libxisf                            |                 |              |        |                    |                  |
+| lofarbeam                          |                 |              | X      |                    |                  |
+| lsmtool                            |                 |              | X      |                    |                  |
+| makems                             |                 |              | X      |                    |                  |
+| meqtrees-cattery                   |                 |              | X      |                    |                  |
+| meqtrees-timba                     |                 |              | X      |                    |                  |
+| missfits                           |           2.8.0 |              |        |                    |                  |
+| obit                               |                 |              | X      |                    |                  |
+| owlcat                             |                 |              | X      |                    |                  |
+| parseltongue                       |                 |              | X      |                    |                  |
+| phd2                               |          2.6.12 |              |        |                    |                  |
+| polygon3                           |                 |              | X      |                    |                  |
+| psfex                              |                 |              |        |                    |                  |
+| purr                               |                 |              | X      |                    |                  |
+| pyfftw                             |                 |              | X      |                    |                  |
+| pymonetdb                          |                 |              | X      |                    |                  |
+| pyslalib                           |                 |              | X      |                    |                  |
+| python-acstools                    |                 |              |        |                    |            3.3.1 |
+| python-aplpy                       |                 |              |        |                    |                  |
+| python-appdirs                     |                 |              |        |                    |            1.4.0 |
+| python-aprio                       |                 |              |        |                    |            1.0.1 |
+| python-asdf                        |                 |              |        |                    |                  |
+| python-asdf                        |                 |              |        |                    |            2.8.1 |
+| python-asdf-astropy                |                 |              |        |                    |                  |
+| python-asdf-standard               |                 |              |        |                    |                  |
+| python-asdf-standard               |                 |              |        |                    |            1.0.0 |
+| python-asteval                     |                 |              |        |                    |           0.9.13 |
+| python-astral                      |                 |              |        |                    |                  |
+| python-astroalign                  |                 |              |        |                    |                  |
+| python-astroconda-iraf-helpers     |                 |              |        |                    |            0.2.0 |
+| python-astroimtools                |                 |              |        |                    |              0.3 |
+| python-astrolib.coords             |                 |              |        |                    |           0.39.6 |
+| python-astroml                     |                 |              |        |                    |                  |
+| python-astroplan                   |                 |              |        |                    |                  |
+| python-astropy                     |             5.1 |              |        |                    |                  |
+| python-astropy                     |                 |              |        |                    |                  |
+| python-astropy-healpix             |                 |              |        |                    |                  |
+| python-astropy-healpix             |                 |              |        |                    |            0.3.1 |
+| python-astroquery                  |                 |              |        |                    |                  |
+| python-astroquery                  |                 |              |        |                    |              0.4 |
+| python-astroscrappy                |                 |              |        |                    |                  |
+| python-astroscrappy                |                 |              |        |                    |            1.0.5 |
+| python-asv                         |                 |              |        |                    |            0.1.1 |
+| python-atlas-generic               |                 |              |        |                    |           3.10.2 |
+| python-baseband                    |                 |              |        |                    |                  |
+| python-bayesicfitting              |                 |              |        |                    |                  |
+| python-calcos                      |                 |              |        |                    |           3.3.10 |
+| python-casacore                    |                 |              | X      |                    |                  |
+| python-casa-formats-io             |                 |              |        |                    |                  |
+| python-ccdproc                     |           2.4.2 |              |        |                    |      1.3.0.post1 |
+| python-cdflib                      |                 |              |        |                    |                  |
+| python-cfitsio                     |                 |              |        |                    |            3.470 |
+| python-ci-watson                   |                 |              |        |                    |            0.6.1 |
+| python-cluster-lensing             |                 |              |        |                    |                  |
+| python-corral-pipeline             |                 |              |        |                    |                  |
+| python-costools                    |                 |              |        |                    |            1.2.3 |
+| python-crds                        |        11.17.14 |              |        |                    |          10.3.11 |
+| python-cube-tools                  |                 |              |        |                    |            0.0.1 |
+| python-cubeviz                     |                 |              |        |                    |            0.3.0 |
+| python-czml3                       |                 |              |        |                    |                  |
+| python-d2to1                       |                 |              |        |                    |           0.2.12 |
+| python-da5-notebooks               |                 |              |        |                    |              1.0 |
+| python-dbus-glib                   |                 |              |        |                    |            0.108 |
+| python-dbus-python                 |                 |              |        |                    |            1.2.4 |
+| python-decorator                   |                 |              |        |                    |            4.0.9 |
+| python-disco-stu                   |                 |              |        |                    |            1.3.6 |
+| python-dragons                     |                 |              |        |                    |            2.1.0 |
+| python-drizzle                     |                 |              |        |                    |             1.13 |
+| python-drizzlepac                  |                 |              |        |                    |            3.3.0 |
+| python-drms                        |           0.7.1 |              |        |                    |                  |
+| python-ds9                         |                 |              |        |                    |              8.1 |
+| python-dust-extinction             |                 |              |        |                    |              0.7 |
+| python-dust_extinction             |                 |              |        |                    |                  |
+| python-einsteinpy                  |                 |              |        |                    |                  |
+| python-ephem                       |                 |              |        |                    |                  |
+| python-extension-helpers           |                 |              |        |                    |              0.1 |
+| python-feets                       |                 |              |        |                    |                  |
+| python-fftw                        |                 |              |        |                    |            3.3.4 |
+| python-fitsblender                 |                 |              |        |                    |            0.3.6 |
+| python-fitsio                      |                 |              |        |                    |                  |
+| python-fitsverify                  |                 |              |        |                    |             4.18 |
+| python-gala                        |                 |              |        |                    |                  |
+| python-galpy                       |                 |              |        |                    |                  |
+| python-gammapy                     |                 |              |        |                    |                  |
+| python-gatspy                      |                 |              |        |                    |                  |
+| python-gemini                      |                 |              |        |                    |              2.0 |
+| python-gemini-calmgr               |                 |              |        |                    |           0.9.12 |
+| python-ginga                       |           4.1.1 |              |        |                    |            3.2.0 |
+| python-ginga                       |                 |              |        |                    |                  |
+| python-glue-core                   |          1.21.1 |              |        |                    |           0.12.0 |
+| python-glue-ginga                  |                 |              |        |                    |              0.2 |
+| python-glue-vispy-viewers          |                 |              |        |                    |              0.9 |
+| python-glueviz                     |                 |              |        |                    |           0.12.0 |
+| python-glueviz                     |                 |              |        |                    |                  |
+| python-gwcs                        |          0.19.0 |              |        |                    |           0.16.1 |
+| python-gwcs                        |                 |              |        |                    |                  |
+| python-halotools                   |                 |              |        |                    |                  |
+| python-hdf5                        |                 |              |        |                    |           1.12.0 |
+| python-hendrics                    |                 |              |        |                    |                  |
+| python-hips                        |                 |              |        |                    |                  |
+| python-hstaxe                      |                 |              |        |                    |            1.0.0 |
+| python-hstcal                      |                 |              |        |                    |            2.7.1 |
+| python-htc-utils                   |                 |              |        |                    |            0.1.0 |
+| python-hvpy                        |                 |              |        |                    |                  |
+| python-imexam                      |                 |              |        |                    |            0.9.1 |
+| python-iraf                        |                 |              |        |                    |        2.16.UR.1 |
+| python-iraf.adccdrom               |                 |              |        |                    |       2013-01-02 |
+| python-iraf-all                    |                 |              |        |                    |              1.0 |
+| python-iraf-axe                    |                 |              |        |                    |            2.6.2 |
+| python-iraf-cfh12k                 |                 |              |        |                    |       2013-01-02 |
+| python-iraf-cirred                 |                 |              |        |                    |       2007-12-13 |
+| python-iraf-ctio                   |                 |              |        |                    |       2010-11-18 |
+| python-iraf-cutoutpkg              |                 |              |        |                    |       2001-04-05 |
+| python-iraf-deitab                 |                 |              |        |                    |       2013-01-02 |
+| python-iraf-esowfi                 |                 |              |        |                    |       2013-01-02 |
+| python-iraf-finder                 |                 |              |        |                    |              2.2 |
+| python-iraf-fitsutil               |                 |              |        |                    |       2011-02-22 |
+| python-iraf-gemini                 |                 |              |        |                    |             1.14 |
+| python-iraf-gmisc                  |                 |              |        |                    |       2010-11-18 |
+| python-iraf-guiapps                |                 |              |        |                    |       2010-11-18 |
+| python-iraf-mem0                   |                 |              |        |                    |       2013-01-02 |
+| python-iraf-mscdb                  |                 |              |        |                    |       2011-02-28 |
+| python-iraf-mscred                 |                 |              |        |                    |             5.04 |
+| python-iraf-mtools                 |                 |              |        |                    |       2013-01-02 |
+| python-iraf-nfextern               |                 |              |        |                    |       2013-01-02 |
+| python-iraf-os-libs                |                 |              |        |                    |              1.0 |
+| python-iraf-rvsao                  |                 |              |        |                    |            2.7.8 |
+| python-iraf-sqiid                  |                 |              |        |                    |       2013-01-02 |
+| python-iraf-stecf                  |                 |              |        |                    |             3.17 |
+| python-iraf-stsdas                 |                 |              |        |                    |           3.18.3 |
+| python-iraf-tables                 |                 |              |        |                    |           3.18.3 |
+| python-iraf-ucsclris               |                 |              |        |                    |       2013-01-02 |
+| python-iraf-upsqiid                |                 |              |        |                    |       2013-01-02 |
+| python-iraf-x11                    |                 |              |        |                    |              2.0 |
+| python-iraf-xdimsum                |                 |              |        |                    |       2010-11-18 |
+| python-iraf-xray                   |                 |              |        |                    |          2.5.y2k |
+| python-jdat-notebooks              |                 |              |        |                    |            0.4.0 |
+| python-jplephem                    |            2.20 |              |        |                    |              2.9 |
+| python-jwst                        |                 |              |        |                    |                  |
+| python-jwst-coronagraph-visibility |                 |              |        |                    |            0.4.4 |
+| python-jwst-footprints             |                 |              |        |                    |            2.2.0 |
+| python-jwst-gtvt                   |                 |              |        |                    |            0.1.0 |
+| python-jwst-visit-parser           |                 |              |        |                    |            0.1.2 |
+| python-jwxml                       |                 |              |        |                    |            0.3.0 |
+| python-kanon                       |                 |              |        |                    |                  |
+| python-lenstronomy                 |                 |              |        |                    |                  |
+| python-ligo.skymap                 |                 |              |        |                    |                  |
+| python-linetools                   |                 |              |        |                    |                  |
+| python-marxs                       |                 |              |        |                    |                  |
+| python-mocpy                       |                 |              |        |                    |                  |
+| python-mosviz                      |                 |              |        |                    |            0.3.0 |
+| python-mpl-animators               |                 |              |        |                    |                  |
+| python-naima                       |                 |              |        |                    |                  |
+| python-nictools                    |                 |              |        |                    |            1.1.5 |
+| python-omnifit                     |                 |              |        |                    |                  |
+| python-opuscoords                  |                 |              |        |                    |            1.0.2 |
+| python-pandokia                    |                 |              |        |                    |            2.4.1 |
+| python-parsley                     |                 |              |        |                    |              1.3 |
+| python-photutils                   |                 |              |        |                    |                  |
+| python-photutils                   |                 |              |        |                    |            1.1.0 |
+| python-poliastro                   |                 |              |        |                    |                  |
+| python-poppy                       |                 |              |        |                    |                  |
+| python-poppy                       |                 |              |        |                    |            1.0.2 |
+| python-purge-path                  |                 |              |        |                    |            1.2.0 |
+| python-pyavm                       |                 |              |        |                    |                  |
+| python-pycbc                       |                 |              |        |                    |                  |
+| python-pydl                        |                 |              |        |                    |                  |
+| python-pydrizzle                   |                 |              |        |                    |            6.4.4 |
+| python-pyds9                       |                 |              |        |                    |   1.9.0.dev185+g |
+| python-pyerfa                      |                 |              |        |                    |                  |
+| python-py-expression-eval          |                 |              |        |                    |            0.3.4 |
+| python-pyfftw                      |                 |              |        |                    |            0.9.2 |
+| python-pyfu                        |                 |              |        |                    |             0.10 |
+| python-pynbody                     |                 |              |        |                    |                  |
+| python-pyobjc-core                 |                 |              |        |                    |            3.1.1 |
+| python-pyobjc-framework-cocoa      |                 |              |        |                    |            3.1.1 |
+| python-pyobjc-framework-quartz     |                 |              |        |                    |            3.1.1 |
+| python-pyopengl                    |                 |              |        |                    |          3.1.3b1 |
+| python-pyopengl-accelerate         |                 |              |        |                    |          3.1.3b1 |
+| python-pypdf2                      |                 |              |        |                    |           1.26.0 |
+| python-pyqtgraph                   |                 |              |        |                    |           0.10.0 |
+| python-pyraf                       |                 |              |        |                    |           2.1.15 |
+| python-pyraf-all                   |                 |              |        |                    |              1.0 |
+| python-pyraf.kepler                |                 |              |        |                    |            2.6.3 |
+| python-pyregion                    |                 |              |        |                    |              2.0 |
+| python-pyregion                    |                 |              |        |                    |                  |
+| python-pysiaf                      |                 |              |        |                    |           0.15.0 |
+| python-pyspeckit                   |                 |              |        |                    |                  |
+| python-pysynphot                   |                 |              |        |                    |                  |
+| python-pysynphot                   |                 |              |        |                    |            2.0.0 |
+| python-python-daemon               |                 |              |        |                    |            2.0.5 |
+| python-pytools                     |                 |              |        |                    |           2016.1 |
+| python-pyvo                        |             1.5 |        1.4.2 |        |                    |                  |
+| python-pyvo                        |                 |              |        |                    |                  |
+| python-pywcs                       |                 |              |        |                    |           1.12.1 |
+| python-rad                         |                 |              |        |                    |                  |
+| python-radio-beam                  |                 |              |        |                    |              0.2 |
+| python-recon                       |                 |              |        |                    |            1.0.2 |
+| python-reftools                    |                 |              |        |                    |            2.1.0 |
+| python-regions                     |                 |              |        |                    |                  |
+| python-regularizepsf               |                 |              |        |                    |                  |
+| python-relic                       |                 |              |        |                    |            1.1.2 |
+| python-reproject                   |                 |              |        |                    |                  |
+| python-reproject                   |                 |              |        |                    |              0.4 |
+| python-roman-datamodels            |                 |              |        |                    |                  |
+| python-saba                        |                 |              |        |                    |                  |
+| python-sbpy                        |  0.4.0          |              |        |                    |                  |
+| python-selenium                    |                 |              |        |                    |           2.49.2 |
+| python-semantic-version            |                 |              |        |                    |            2.8.4 |
+| python-sep                         |                 |              |        |                    |                  |
+| python-sextractor                  |                 |              |        |                    |           2.19.5 |
+| python-sgp4                        |                 |              |        |                    |                  |
+| python-shunit2                     |                 |              |        |                    |            2.0.3 |
+| python-skyfield                    |                 |              |        |                    |                  |
+| python-sncosmo                     |                 |              |        |                    |                  |
+| python-specreduce                  |                 |              |        |                    |                  |
+| python-spectral-cube               |                 |              |        |                    |                  |
+| python-spectral-cube               |                 |              |        |                    |            0.4.4 |
+| python-specutils                   |                 |              |        |                    |              1.3 |
+| python-specutils                   |                 |              |        |                    |                  |
+| python-specview                    |                 |              |        |                    |              0.1 |
+| python-specviz                     |                 |              |        |                    |            0.7.0 |
+| python-sphere                      |                 |              |        |                    |           1.0.10 |
+| python-spherical-geometry          |                 |              |        |                    |                  |
+| python-spherical-geometry          |                 |              |        |                    |           1.2.22 |
+| python-sphinx-automodapi           |                 |              |        |                    |             0.11 |
+| python-sphinxcontrib-programoutput |                 |              |        |                    |             0.11 |
+| python-sphinx-rtd-theme            |                 |              |        |                    |            0.1.9 |
+| python-statmorph                   |                 |              |        |                    |                  |
+| python-stcal                       |           1.5.2 |              |        |                    |                  |
+| python-stdatamodels                |                 |              |        |                    |                  |
+| python-stginga                     |                 |              |        |                    |            1.3.0 |
+| python-stingray                    |                 |              |        |                    |                  |
+| python-stistools                   |                 |              |        |                    |            1.3.0 |
+| python-stpipe                      |                 |              |        |                    |                  |
+| python-stregion                    |                 |              |        |                    |            1.1.6 |
+| python-stsci                       |                 |              |        |                    |            3.2.0 |
+| python-stsci-convolve              |                 |              |        |                    |            2.2.2 |
+| python-stsci-data-analysis         |                 |              |        |                    |            4.0.0 |
+| python-stsci-distutils             |                 |              |        |                    |            0.3.8 |
+| python-stsci-hst                   |                 |              |        |                    |            3.1.1 |
+| python-stsci-image                 |                 |              |        |                    |                  |
+| python-stsci-image                 |                 |              |        |                    |            2.3.4 |
+| python-stsci-imagemanip            |                 |              |        |                    |            1.1.4 |
+| python-stsci-imagestats            |                 |              |        |                    |                  |
+| python-stsci-imagestats            |                 |              |        |                    |            1.6.2 |
+| python-stsci-ndimage               |                 |              |        |                    |           0.10.1 |
+| python-stsci-numdisplay            |                 |              |        |                    |            1.6.1 |
+| python-stsci-rtd-theme             |                 |              |        |                    |            0.0.1 |
+| python-stsci-skypac                |                 |              |        |                    |            1.0.8 |
+| python-stsci-sphere                |                 |              |        |                    |              0.2 |
+| python-stsci-sphinxext             |                 |              |        |                    |            1.2.2 |
+| python-stsci-sphinx-theme          |                 |              |        |                    |            0.1.0 |
+| python-stsci-stimage               |                 |              |        |                    |                  |
+| python-stsci-stimage               |                 |              |        |                    |            0.2.4 |
+| python-stsci-tools                 |                 |              |        |                    |            4.0.1 |
+| python-stsynphot                   |                 |              |        |                    |                  |
+| python-stsynphot                   |                 |              |        |                    |            1.1.0 |
+| python-stwcs                       |                 |              |        |                    |            1.6.1 |
+| python-sunpy                       |                 |              |        |                    |                  |
+| python-suntime                     |                 |              |        |                    |                  |
+| python-synphot                     |                 |              |        |                    |                  |
+| python-synphot                     |                 |              |        |                    |            1.1.1 |
+| python-tweakwcs                    |                 |              |        |                    |                  |
+| python-tweakwcs                    |                 |              |        |                    |            0.7.3 |
+| python-verhawk                     |                 |              |        |                    |            0.0.2 |
+| python-wcstools                    |                 |              |        |                    |            3.9.5 |
+| python-webbpsf                     |                 |              |        |                    |            1.0.0 |
+| python-webbpsf-data                |                 |              |        |                    |            1.0.0 |
+| python-wfc3tools                   |                 |              |        |                    |            1.3.5 |
+| python-wfpc2tools                  |                 |              |        |                    |            1.0.4 |
+| python-wiimatch                    |                 |              |        |                    |                  |
+| python-xpa                         |                 |              |        |                    |           2.1.18 |
+| python-zodipy                      |                 |              |        |                    |                  |
+| pyxis                              |                 |              | X      |                    |                  |
+| qfits                              |                 |              |        |                    |                  |
+| scabha                             |                 |              | X      |                    |                  |
+| scamp                              |                 |              |        |                    |                  |
+| sextractor                         |          2.25.0 |              |        |                    |                  |
+| sgp4                               |                 |              |        |                    |                  |
+| sharedarray                        |                 |              | X      |                    |                  |
+| siril                              |                 |              |        |                    |                  |
+| skymaker                           |                 |              |        |                    |                  |
+| splash                             |                 |              |        |                    |                  |
+| stackistry                         |                 |              |        |                    |                  |
+| stellarium                         |                 |              |        |                    |                  |
+| stuff                              |                 |              |        |                    |                  |
+| sunclock                           |                 |              |        |                    |                  |
+| swarp                              |                 |              |        |                    |                  |
+| tigger-lsm                         |                 |              | X      |                    |                  |
+| tirific                            |                 |              | X      |                    |                  |
+| tokenize-rt                        |                 |              | X      |                    |                  |
+| unittest-xml-reporting             |                 |              | X      |                    |                  |
+| unsio                              |                 |              |        |                    |                  |
+| wcslib                             |                 |              |        |                    |                  |
+| wcstools                           |                 |              |        |                    |                  |
+| weightwatcher                      |                 |              |        |                    |                  |
+| wsclean                            |                 |              | X      |                    |                  |
+| xplanet                            |           1.3.1 |              |        |                    |                  |
+
+- debian-astro ::  Astronomical packages collection maintained by Debian Astro Team
+  https://salsa.debian.org/debian-astro-team
+  - maintainers ::
+- kern :: Radio Astronomy Software Suite. Collection of the DEB packages
+  - https://kernsuite.info/packages/
+  - https://github.com/kernsuite
+  - https://github.com/kernsuite-debian
+- stsci-astroconda :: https://ssb.stsci.edu/astroconda/
+- astropy-affiliated :: https://www.astropy.org/affiliated/registry.json

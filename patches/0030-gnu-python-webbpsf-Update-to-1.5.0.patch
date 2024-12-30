@@ -1,0 +1,61 @@
+From dd66caf5133f112a8a134187fe9046cdf221e1bb Mon Sep 17 00:00:00 2001
+Message-ID: <dd66caf5133f112a8a134187fe9046cdf221e1bb.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Dec 2024 00:03:45 +0000
+Subject: [PATCH 30/38] gnu: python-webbpsf: Update to 1.5.0.
+
+* gnu/packages/astronomy.scm (python-webbpsf): Update to 1.5.0.
+[arguments]<test-flags>: Enable 2 tests after NumPy has been
+updated. Skip one more test requiring network access.
+
+Change-Id: I54fb11fdbbb1c19bed39e00a9c1036ed09e03387
+---
+ gnu/packages/astronomy.scm | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ca503585e0..27224c70d9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6440,26 +6440,26 @@ (define-public python-viresclient
+ (define-public python-webbpsf
+   (package
+     (name "python-webbpsf")
+-    (version "1.4.0")
++    (version "1.5.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "webbpsf" version))
+        (sha256
+-        (base32 "1084vbk2q3kybxgvh8f2zbsi2w2z8zapsfjkgd6km4yhwqv1wl4a"))))
++        (base32 "0aad817lh2llld9wmb4mvdnncz916niw2apnhip8gc78fi1imfri"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+       #~(list "--numprocesses" (number->string (parallel-job-count))
+-              "-k" (string-append
+-                    ;; Test requiring network access
+-                    "not test_monthly_trending_plot_auto_opdtable"
+-                    " and not test_monthly_trending_plot_opdtable_param"
+-                    " and not test_delta_wfe_around_time"
+-                    ;; Newer NumPy is required
+-                    " and not test_nircam_errors"
+-                    " and not test_all_detectors"))
++              "-k"
++              ;; Tests requiring network access.
++              (string-join
++               (list "not test_delta_wfe_around_time"
++                     "test_get_webbpsf_data_path_invalid"
++                     "test_monthly_trending_plot_auto_opdtable"
++                     "test_monthly_trending_plot_opdtable_param")
++               " and not "))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-env
+-- 
+2.46.0
+

@@ -1,0 +1,52 @@
+From 792b4fabc5bf35af9b20ecd1dac1ec017e45e2b1 Mon Sep 17 00:00:00 2001
+Message-ID: <792b4fabc5bf35af9b20ecd1dac1ec017e45e2b1.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 11:53:04 +0000
+Subject: [PATCH 07/38] gnu: Add julia-compositionsbase.
+
+* gnu/packages/julia-xyz.scm (julia-compositionsbase): New variable.
+
+Change-Id: I154e3a036607ef97377c93ca0a95a17adbd29db6
+---
+ gnu/packages/julia-xyz.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index 5097770159..e312efae80 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -1315,6 +1315,29 @@ (define-public julia-compat
+ way.")
+     (license license:expat)))
+ 
++(define-public julia-compositionsbase
++  (package
++    (name "julia-compositionsbase")
++    (version "0.1.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/JuliaFunctional/CompositionsBase.jl")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "11cfmc0rv0i8j6l7v59k4b367xx006nsxy9lkmqlzikc679zzzwa"))))
++    (build-system julia-build-system)
++    (native-inputs
++     (list julia-documenter))
++    (home-page "https://github.com/JuliaFunctional/CompositionsBase.jl")
++    (synopsis "Composition of morphisms")
++    (description
++     "CompositionsBase.jl exports @code{∘}, @code{⨟} operators and also the
++ASCII aliases, @code{compose}, and @code{opcompose}.")
++    (license license:expat)))
++
+ (define-public julia-configurations
+   (package
+     (name "julia-configurations")
+-- 
+2.46.0
+

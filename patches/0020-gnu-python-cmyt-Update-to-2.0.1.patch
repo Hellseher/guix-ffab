@@ -1,0 +1,75 @@
+From 3a9d258e8a16bdb87190634bcbea69b75e3515ef Mon Sep 17 00:00:00 2001
+Message-ID: <3a9d258e8a16bdb87190634bcbea69b75e3515ef.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 19:46:11 +0000
+Subject: [PATCH 20/38] gnu: python-cmyt: Update to 2.0.1.
+
+* gnu/packages/astronomy.scm (python-cmyt): Update to 2.0.1.
+[source]: Swap to git checkout containing tests.
+[arguments]<phases>: Add 'relax-requirements.
+[native-inputs]: Remove python-setuptools and python-wheel; add
+python-hatchling.
+[description]: Adjust fill column.
+
+Change-Id: I5eb5cf848c26e3fb9f16f7d611d06047387981e7
+---
+ gnu/packages/astronomy.scm | 27 +++++++++++++++++++--------
+ 1 file changed, 19 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 18894529c2..7e9b3e72d4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3732,28 +3732,39 @@ (define-public python-ci-watson
+ (define-public python-cmyt
+   (package
+     (name "python-cmyt")
+-    (version "2.0.0")
++    (version "2.0.1")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "cmyt" version))
++       (method git-fetch) ; no tests in the PyPI tarball
++       (uri (git-reference
++             (url "https://github.com/yt-project/cmyt")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1zabmckr1z637pfqqvlkj0asfqqvx2x92163dby8x0c8yiqgdvjb"))))
++        (base32 "0d1szsgjd09ya53vx7g5ryz2jdxl19p9rvrm4xz8v53vbqrp18cv"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "pyproject.toml"
++                ;; numpy>=1.26
++                ((">=1.26") ">=1.23")))))))
+     (native-inputs
+      (list python-colorspacious
+            python-pytest
+            python-pytest-mpl
+-           python-setuptools
+-           python-wheel))
++           python-hatchling))
+     (propagated-inputs
+      (list python-matplotlib
+            python-numpy))
+     (home-page "https://yt-project.org/")
+     (synopsis "Matplotlib colormaps from the yt project")
+     (description
+-     "This package provides a range of colormaps designed for scientific
+-use with Matplotlib.  It includes perceptually uniform sequential colormaps such
++     "This package provides a range of colormaps designed for scientific use
++with Matplotlib.  It includes perceptually uniform sequential colormaps such
+ as @code{abre}, @code{dusk}, @code{kepl}, and @code{octarine}, as well as
+ monochromatic sequential colormaps like @code{blue}, @code{green}, and
+ @code{red}, and others (@code{algae}, @code{pastel}, and @code{xray}).")
+-- 
+2.46.0
+

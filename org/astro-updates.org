@@ -1,0 +1,853 @@
+#+title: Astro Updates
+
+* Monthly Updates [20/21][95%]
+** DONE updates-2023-05 [3/35][8%]
+CLOSED: [2023-11-22 Wed 00:25]
+- date-time :: 20230516T203501+0100
+- commit ::
+- [X] python-fitsio 1.1.8, use Gexp
+- [X] python-astropy-healpix, use Gexp
+- [X] python-astroquery, use Gexp.
+- [ ] python-czml3
+- [ ] python-drms
+- [ ] python-ephem
+- [ ] python-hvpy
+- [ ] python-mpl-animators
+- [ ] python-photutils
+- [ ] python-poliastro
+- [ ] python-poppy
+- [ ] python-pyvo
+- [ ] python-regions
+- [ ] python-reproject
+- [ ] python-sgp4
+- [ ] python-sunpy
+- [ ] python-astral
+- [ ] python-spherical-geometry
+- [ ] python-jplephem
+- [ ] python-pyerfa
+- [ ] python-pynbody
+- [ ] python-sep
+- [ ] python-suntime
+- [ ] python-asdf
+- [ ] python-asdf-standard
+- [ ] python-asdf-transform-schemas
+- [ ] python-asdf-coordinates-schemas
+- [ ] python-asdf-fits-schemas
+- [ ] python-asdf-time-schemas
+- [ ] python-asdf-unit-schemas
+- [ ] python-asdf-astropy
+- [ ] python-asdf-wcs-schemas
+- [ ] python-gwcs
+- [ ] python-astroalign
+- [ ] python-skyfield
+** DONE updates-2023-06 [2/2][100%]
+CLOSED: [2023-11-22 Wed 00:25]
+- date-time :: 20230618T115854+0100
+- commit :: e4087930f3ad60918689be5f4bca4ce3e22429f5
+- [X] quick [17/17][100%]
+  - [X] calceph :: from 3.5.1 to 3.5.2
+  - [X] calcmysky :: from 0.3.0 to 0.3.1
+  - [X] libxisf :: from 0.2.1 to 0.2.8
+  - [X] python-astropy :: from 5.2.2 to 5.3
+  - [X] python-ccdproc :: from 2.4.0 to 2.4.1
+  - [X] python-cdflib :: from 0.4.9 to 1.0.5
+  - [X] python-drms :: from 0.6.3 to 0.6.4
+  - [X] python-fitsio :: from 1.1.8 to 1.1.9
+  - [X] python-pyerfa :: from 2.0.0.1 to 2.0.0.3
+  - [X] python-reproject :: from 0.10.0 to 0.11.0
+  - [X] python-stcal :: from 1.3.7 to 1.3.8
+  - [X] python-stdatamodels :: from 1.5.0 to 1.6.0
+  - [X] python-sunpy :: from 4.1.5 to 5.0.0
+  - [X] python-synphot :: from 1.2.0 to 1.2.1
+  - [X] splash :: from 3.7.2 to 3.8.2
+  - [X] python-photutils :: from 1.7.0 to 1.8.0
+  - [X] sextractor :: from 2.25.0 to 2.28.0, fix build
+- [X] complex [9/9][100%]
+  - [X] celestia :: from 1.6.1-815.9dbdf29 to 1.6.3
+  - [X] eye :: fix build
+  - [X] missfits :: fix build
+  - [X] sgp4 :: https://github.com/dnwrnr/sgp4/issues/34
+  - [X] skymaker :: from 3.10.5 to 3.10.5-0.1a69c47, fix build
+  - [X] stuff :: from 1.26.0 to 1.26.0-0.9008dc0, fix build
+  - [X] swarp :: from 2.38.0 to 2.41.2, fix build
+  - [X] weightwatcher :: Fix build
+  - [X] xplanet :: improve style
+** DONE updates-2023-07 [0/1][0%]
+CLOSED: [2023-11-22 Wed 00:26]
+- date-time ::
+- commit ::
+- [ ] complex [0/7][0%]
+  - [ ] aocommon ::
+  - [ ] aoflagger :: from 3.2.0 to 3.3.0
+  - [ ] casacore :: from 3.4.0 to 3.5.0 (more work)
+  - [ ] gpredict :: from 2.2.1 to 2.3
+  - [ ] indi :: from 1.9.9 to 2.0.2 (stellarium failing)
+  - [ ] libpasastro :: from 1.4.0-1.e3c218d to 1.4.1 (more work)
+  - [ ] python-spherical-geometry :: from 1.2.22 to 1.2.23
+    - https://github.com/spacetelescope/spherical_geometry/issues/227
+** DONE updates-2023-08 [1/2][50%]
+CLOSED: [2023-11-22 Wed 00:26]
+- date-time :: 20230905T163102+0100
+- commit :: 8d19ff23052bffb1c43f0d39f543eb0b1e363074
+- issues :: https://issues.guix.gnu.org/65814
+- [X] quick [16/16][100%]
+  - [X] libxisf :: would be upgraded from 0.2.8 to 0.2.9.
+  - [X] python-astropy-healpix :: would be upgraded from 0.7 to 1.0.0.
+  - [X] python-astropy :: would be upgraded from 5.3.1 to 5.3.2
+  - [X] python-bayesicfitting :: would be upgraded from 3.1.1 to 3.2.0
+  - [X] python-cdflib :: would be upgraded from 1.0.5 to 1.1.0.
+  - [X] python-crds :: would be upgraded from 11.17.0 to 11.17.4.
+  - [X] python-fitsio :: would be upgraded from 1.1.10 to 1.2.0
+  - [X] python-jwst :: would be upgraded from 1.10.2 to 1.11.4
+  - [X] python-photutils :: would be upgraded from 1.7.0 to 1.9.0
+  - [X] python-pyvo :: would be upgraded from 1.4.1 to 1.4.2
+  - [X] python-rad :: would be upgraded from 0.15.0 to 0.17.1
+  - [X] python-roman-datamodels :: would be upgraded from 0.15.0 to 0.17.1
+  - [X] python-stdatamodels :: would be upgraded from 1.7.1 to 1.8.0
+  - [X] python-sunpy :: Enable more tests.
+  - [X] python-tslearn :: would be upgraded from 0.6.1 to 0.6.2
+  - [X] splash :: would be upgraded from 3.8.2 to 3.8.4.
+- [ ] complex [0/8][0%]
+  - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.1. Requires lower version of
+    python-jsonschema which and also contain vendorized version which breaks all tests now,
+    https://github.com/asdf-format/asdf-standard/releases/tag/1.0.3
+  - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0. Building the following 22 packages would
+    ensure 66 dependent packages are rebuilt: alfa@2.2 splash@3.8.2 sextractor@2.28.0 imppg@0.6.5
+    stellarium@23.2 python-fitsio@1.1.10 glnemo2@1.21.0 siril@1.0.6 python-tslearn@0.6.1
+    python-regions@0.7 python-jwst@1.10.2 python-astroalign@2.4.2 python-sunpy@5.0.0
+    python-poliastro@0.17.0 julia-wcs@0.6.2 phd2@2.6.11 gnuastro@0.20 aoflagger@3.3.0 swarp@2.41.5
+    julia-fitsio@0.17.0 gwenview@23.04.3 labplot@2.9.0.
+    Need more love with dependents.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Requires more fresh version of
+    python-pydantic, which depends on python-pydantic-core which require brand new Rust based
+    package.
+  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
+    the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failerur, more work requried.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Build failerur, more work requried.
+  - [ ] indi :: would be upgraded from 1.9.9 to 2.0.3. stellarium failing.
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1. Full package reformat is
+    requried.
+** DONE updates-2023-09 [1/2][50%]
+CLOSED: [2023-10-10 Tue 00:44]
+- date-time :: 20230905T163102+0100
+- commit :: 8e6022732ab6c4ba256f99d925f5fd413a87372c
+- issues :: https://issues.guix.gnu.org/66412
+- [X] quick [16/16][100%]
+  - [X] calceph :: would be upgraded from 3.5.2 to 3.5.3
+  - [X] indi :: would be upgraded from 1.9.9 to 2.0.4
+  - [X] python-cdflib :: would be upgraded from 1.1.0 to 1.2.1
+  - [X] python-crds :: would be upgraded from 11.17.4 to 11.17.6
+  - [X] python-drizzle :: would be upgraded from 1.13.7 to 1.14.3
+  - [X] python-gwcs :: would be upgraded from 0.18.3 to 0.19.0
+  - [X] python-jplephem :: would be upgraded from 2.18 to 2.19
+  - [X] python-jwst :: would be upgraded from 1.11.4 to 1.12.3
+  - [X] python-reproject :: would be upgraded from 0.11.0 to 0.12.0
+  - [X] python-stcal :: would be upgraded from 1.4.2 to 1.4.4
+  - [X] python-stdatamodels :: would be upgraded from 1.8.0 to 1.8.3
+  - [X] python-stpipe :: would be upgraded from 0.5.0 to 0.5.1
+  - [X] python-sunpy :: would be upgraded from 5.0.0 to 5.0.1
+  - [X] python-tweakwcs :: would be upgraded from 0.8.2 to 0.8.3
+  - [X] siril :: would be upgraded from 1.0.6 to 1.2.0
+  - [X] stellarium :: would be upgraded from 23.2 to 23.3
+- [ ] complex [0/6][0%]
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.3.0. Build failed, more work required.
+  - [ ] python-asdf :: would be upgraded from 2.15.0 to 2.15.2. Custom JsonSchema implementation.
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Requires more fresh version of
+    python-pydantic, which depends on python-pydantic-core which require brand new Rust based
+    package.
+  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23. Can't be updated to
+    the latest see: https://github.com/spacetelescope/spherical_geometry/issues/227
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0.  Failed to build with adc7333f961259aa627ae930b06cc9f1b522401f commit (newer then 3.5.0 tag). Fortrant and Boost issue.
+** DONE updates-2023-10 [1/3][33%]
+CLOSED: [2023-11-14 Tue 00:33]
+- date-time :: 20231023T002143+0100
+- commit :: 554956439ba5837a8ea3af78829ed595381273be
+- issues :: https://issues.guix.gnu.org/66778
+- [X] quick [17/17][100%]
+  - [X] erfa :: would be upgraded from 2.0.0 to 2.0.1
+  - [X] glnemo2 :: Fix home-page.
+  - [X] imppg :: would be upgraded from 0.6.5 to 1.9.1-beta, use standard configure phase.
+  - [X] libxisf :: would be upgraded from 0.2.9 to 0.2.10
+  - [X] python-asdf :: would be upgraded from 2.15.0 to 3.0.0
+  - [X] python-astroalign :: would be upgraded from 2.4.2 to 2.5.0
+  - [X] python-astropy :: would be upgraded from 5.3.3 to 5.3.4
+    - https://github.com/astropy/astropy/issues/15537
+  - [X] python-cdflib :: would be upgraded from 1.2.1 to 1.2.3
+  - [X] python-crds :: would be upgraded from 11.17.6 to 11.17.7
+  - [X] python-ephem :: would be upgraded from 4.1.4 to 4.1.5
+  - [X] python-jwst :: would be upgraded from 1.12.3 to 1.12.5
+  - [X] python-pyerfa :: would be upgraded from 2.0.0.3 to 2.0.1.1
+  - [X] python-pynbody :: Update to 1.4.1
+  - [X] python-pytest-astropy :: would be upgraded from 0.10.0 to 0.11.0
+  - [X] python-pytest-doctestplus :: would be upgraded from 0.12.1 to 1.0.0
+  - [X] python-pytest-remotedata :: would be upgraded from 0.4.0 to 0.4.1
+  - [X] python-spherical-geometry :: Enable tests
+- [ ] complex [0/6][0%]
+  - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
+  - [ ] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.2.23
+  - [ ] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+- [ ] archived [0/1]
+  - [ ] python-poliastro :: https://github.com/poliastro/poliastro/issues/1640
+** DONE updates-2023-11 [2/3][66%]
+CLOSED: [2023-11-19 Sun 17:02]
+- date-time :: 20231114T223727+0000
+- commit :: a0d337e79c87d7c38c79d0291974f490cb137a52
+- issues :: https://issues.guix.gnu.org/67237
+- [X] quick [22/22][100%]
+  - [X] celestia :: would be upgraded from 1.6.3 to 1.6.4
+  - [X] gpredict :: Upate package style.
+  - [X] libpasastro :: would be upgraded from 1.4.0-1.e3c218d to 1.4.1
+  - [X] python-asdf :: would be upgraded from 3.0.0 to 3.0.1
+  - [X] python-astroalign :: would be upgraded from 2.5.0 to 2.5.1
+  - [X] python-casa-formats-io :: would be upgraded from 0.2.1 to 0.2.2
+  - [X] python-crds :: would be upgraded from 11.17.7 to 11.17.9
+  - [X] python-fitsio :: would be upgraded from 1.2.0 to 1.2.1
+  - [X] python-jplephem :: would be upgraded from 2.19 to 2.20
+  - [X] python-posix-ipc :: would be upgraded from 1.0.5 to 1.1.1
+  - [X] python-pynbody :: would be upgraded from 1.4.1 to 1.4.2
+  - [X] python-rad :: would be upgraded from 0.17.1 to 0.18.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.17.1 to 0.18.0
+  - [X] python-sgp4 :: would be upgraded from 2.22 to 2.23
+  - [X] python-wiimatch :: would be upgraded from 0.3.1 to 0.3.2
+  - [X] splash :: would be upgraded from 3.8.4 to 3.9.0
+  - [X] python-extension-helpers :: would be upgraded from 1.0.0 to 1.1.0, enable test, improve style.
+  - [X] python-astroquery :: improve package style.
+  - [X] parfive :: would be upgraded from 2.0.1 to 2.0.2, improve style.
+  - [X] python-pytest-socket :: would be upgraded from 0.5.1 to 0.6.0
+  - [X] python-stsci-stimage :: enable tests
+  - [X] python-memory-profiler :: enable all tests
+- [X] pending [1/1][100%]
+  - [X] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
+    - [X] https://issues.guix.gnu.org/66896
+    - [X] https://github.com/spacetelescope/spherical_geometry/issues/227
+- [ ] complex [0/4][0%]
+  - [ ] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
+  - [ ] cfitsio :: would be upgraded from 4.2.0 to 4.3.0: Require rebuild-the-world.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+
+** DONE updates-2023-12 [1/3][33%]
+CLOSED: [2024-01-12 Fri 21:54]
+- date-time :: 20231215T015641+0000
+- commit :: 9f24041343b305db612d08ba6b7e64b7cc737edf
+- issues :: https://issues.guix.gnu.org/67915
+- [X] quick [30/30][100%]
+  - [X] aocommon :: Update to 0.0.0-2.9272ea3.
+  - [X] aoflagger :: would be upgraded from 3.2.0 to 3.4.0
+  - [X] calceph :: would be upgraded from 3.5.3 to 3.5.4
+  - [X] cfitsio :: would be upgraded from 4.2.0 to 4.3.1
+  - [X] julia-fitsio :: updating from version 0.17.0 to version 0.17.1
+  - [X] libpasastro :: would be upgraded from 1.4.1 to 1.4.2
+  - [X] phd2 :: would be upgraded from 2.6.11 to 2.6.12
+  - [X] python-asdf-astropy :: would be upgraded from 0.4.0 to 0.5.0
+  - [X] python-astropy-healpix :: would be upgraded from 1.0.0 to 1.0.2
+  - [X] python-crds :: would be upgraded from 11.17.9 to 11.17.13
+  - [X] python-drizzle :: would be upgraded from 1.14.3 to 1.14.4
+  - [X] python-drms :: would be upgraded from 0.6.4 to 0.7.0
+  - [X] python-gwcs :: would be upgraded from 0.19.0 to 0.20.0
+  - [X] python-jplephem :: would be upgraded from 2.20 to 2.21
+  - [X] python-mpl-animators :: would be upgraded from 1.1.0 to 1.1.1
+  - [X] python-photutils :: would be upgraded from 1.9.0 to 1.10.0
+  - [X] python-pynbody :: would be upgraded from 1.4.2 to 1.5.2
+  - [X] python-radio-beam :: would be upgraded from 0.3.6 to 0.3.7
+  - [X] python-regions :: Use G-expressions, swap to pyproject-build-system
+  - [X] python-regions :: would be upgraded from 0.7 to 0.8
+  - [X] python-reproject :: would be upgraded from 0.12.0 to 0.13.0
+  - [X] python-spectral-cube :: would be upgraded from 0.6.3 to 0.6.5
+  - [X] python-spherical-geometry :: would be upgraded from 1.2.22 to 1.3.1
+  - [X] python-stdatamodels :: would be upgraded from 1.8.3 to 1.9.0
+  - [X] python-stsci-imagestats :: would be upgraded from 1.6.3 to 1.8.0, enable tests
+  - [X] python-stsynphot :: would be upgraded from 1.2.0 to 1.3.0
+  - [X] python-synphot :: would be upgraded from 1.2.1 to 1.3.0
+  - [X] python-tweakwcs :: would be upgraded from 0.8.3 to 0.8.5
+  - [X] splash :: would be upgraded from 3.9.0 to 3.10.1
+  - [X] wcslib :: would be upgraded from 8.1 to 8.2.2
+- [-] pending [1/2][50%]
+  - [ ] python-stsynphot :: Add minial data sources to enable tests.
+  - [X] python-synphot :: Pack optional packages
+    - [X] python-dust-extinction <2023-12-25 Mon>
+    - [X] python-specutils <2023-12-22 Fri>
+- [ ] complex [0/6][0%]
+  - [ ] python-sunpy :: would be upgraded from 5.0.1 to 5.1.0. Require more packages to be avaialle:
+    - [ ] https://github.com/AndrewAnnex/SpiceyPy
+  - [ ] python-stcal :: would be upgraded from 1.4.4 to 1.5.2. Requires more time to fix broken
+    tests as it was introduced a lot of changes.
+  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Major update, require more work
+    with Pyproject.toml build.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
+    release which has a lot of fixes.
+  - [ ] indi :: would be upgraded from 2.0.4 to 2.0.5. Stelarium is failing.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+** DONE updates-2024-01 [2/3][66%]
+CLOSED: [2024-01-24 Wed 22:30]
+- date-time :: 20240112T233642+0000
+- commit :: 2266754382..8f86cbd5e9  master -> master
+- issues :: https://issues.guix.gnu.org/68641
+- [X] quick [12/12][100%]
+  - [X] indi :: would be upgraded from 2.0.4 to 2.0.5
+  - [X] libxisf :: would be upgraded from 0.2.10 to 0.2.11
+  - [X] phd2 :: would be upgraded from 2.6.12 to 2.6.13
+  - [X] python-crds :: would be upgraded from 11.17.13 to 11.17.14
+  - [X] python-drms :: would be upgraded from 0.7.0 to 0.7.1
+  - [X] python-pyvo :: would be upgraded from 1.4.2 to 1.5
+  - [X] python-stcal :: would be upgraded from 1.4.4 to 1.5.2
+  - [X] python-sunpy :: would be upgraded from 5.0.1 to 5.1.1
+  - [X] python-skyfield :: would be upgraded from 1.46 to 1.47
+  - [X] python-synphot :: enable more options
+    - [X] python-dust-extinction :: new package.
+    - [X] python-ndcube :: new package
+    - [X] python-specutils :: new package
+  - [X] python-tweakwcs :: would be upgraded from 0.8.5 to 0.8.6
+  - [X] stellarium :: would be upgraded from 23.3 to 23.4
+- [X] pending [1/1][100%]
+  - [X] gpredict :: would be upgraded from 2.2.1 to 2.3. The latest tag, 2.3, has been applied to
+    the same commit as 2.2.1 and is dated for 2018 already. There is some activity on the master
+    branch.
+- [ ] complex [0/3][0%]
+  - [ ] python-astropy :: would be upgraded from 5.3.4 to 6.0.0. Major update, require more work
+    with Pyproject.toml build.
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for new
+    release which has a lot of fixes.
+  - [ ] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+** DONE updates-2024-02 [2/3][66%]
+CLOSED: [2024-02-27 Tue 23:00]
+- date-time :: 20240126T020008+0000
+- commit :: e3c612a7de679c96b9eafdb0da500dcc18d9a101
+- issues :: https://issues.guix.gnu.org/69295
+- [X] quick [36/36][100%]
+  - [X] calceph :: would be upgraded from 3.5.4 to 3.5.5
+  - [X] giza :: would be upgraded from 1.3.2 to 1.4.1
+  - [X] indi :: would be upgraded from 2.0.5 to 2.0.6
+  - [X] parfive :: would be upgraded from 2.0.1 to 2.0.2
+  - [X] phd2 :: would be upgraded from 2.6.12 to 2.6.13
+  - [X] python-aioftp :: would be upgraded from 0.21.4 to 0.22.3
+  - [X] python-aplpy :: disable tests
+  - [X] python-asdf-coordinates-schemas :: speed up tests
+  - [X] python-asdf-fits-schemas :: 0.0.1-0.572bb37 -> 0.0.1-1.d1b5e7a
+  - [X] python-asdf :: speed up tests, set as default variable
+  - [X] python-asdf-time-schemas :: 0.0.1-2.e9174083 -> 0.0.1-3.a306206
+  - [X] python-asdf-transform-schemas :: would be upgraded from 0.3.0 to 0.4.0
+  - [X] python-asdf-wcs-schemas :: would be upgraded from 0.1.1 to 0.3.0
+  - [X] python-astropy :: would be upgraded from 5.3.4 to 6.0.0.
+    - [X] python-astropy-iers-data :: new package
+    - [X] 5.3.4 -> 6.0.0
+  - [X] python-cdflib :: would be upgraded from 1.2.3 to 1.2.4
+  - [X] python-crds :: would be upgraded from 11.17.14 to 11.17.16
+  - [X] python-drizzle :: would be upgraded from 1.14.4 to 1.15.0
+  - [X] python-extinction :: new package
+  - [X] python-ginga :: new package
+  - [X] python-h5netcdf :: would be upgraded from 1.1.0 to 1.3.0
+  - [X] python-jwst :: would be upgraded from 1.12.5 to 1.13.4
+  - [X] python-photutils :: speedup up tests
+  - [X] python-poppy :: speedup up tests
+  - [X] python-posix-ipc :: would be upgraded from 1.0.5 to 1.1.1
+  - [X] python-radiospectra :: new package
+  - [X] python-rad :: would be upgraded from 0.18.0 to 0.19.0, enable tests
+  - [X] python-regions :: speed up tests
+  - [X] python-roman-datamodels :: speed up tests
+  - [X] python-roman-datamodels :: would be upgraded from 0.18.0 to 0.19.0
+  - [X] python-skyfield :: would be upgraded from 1.47 to 1.48
+  - [X] python-spectral-cube :: speed up tests
+  - [X] python-stcal :: would be upgraded from 1.5.2 to 1.6.0
+  - [X] python-stdatamodels :: would be upgraded from 1.9.0 to 1.9.1
+  - [X] python-sunpy-soar :: new package
+  - [X] python-sunpy :: speed up tests
+  - [X] siril :: would be upgraded from 1.2.0 to 1.2.1
+- [X] complex [3/3][100%]
+  - [X] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for a new
+    release including build fixes.
+  - [X] python-photutils :: would be upgraded from 1.10.0 to 1.11.0. Requires numpy>=1.25 and
+    resolve new build issues. release which has a lot of fixes.
+  - [X] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0. Tests require
+    https://github.com/pydantic/pydantic-settings and the fresh version of pydantic. Big efforts.
+- [-] issues [2/3][66%]
+  - [X] https://github.com/spacetelescope/roman_datamodels/issues/307
+  - [X] https://github.com/asdf-format/asdf-wcs-schemas/issues/50
+  - [ ] https://github.com/aplpy/aplpy/issues/492
+** DONE updates-2024-03 [2/3][66%]
+CLOSED: [2024-03-22 Fri 16:43]
+- date-time :: 20240305T212809+0000
+- commit :: 66b20dc567ed9801ab55209fc412e4db92d7b0b0
+- issues :: https://issues.guix.gnu.org/69924
+- [X] quick [36/36][100%]
+  - [X] calcmysky :: would be upgraded from 0.3.1 to 0.3.2
+  - [X] python-asdf-astropy :: would be upgraded from 0.5.0 to 0.6.0
+  - [X] python-asdf-compression :: new package
+  - [X] python-asdf-coordinates-schemas :: would be upgraded from 0.2.0 to 0.3.2
+  - [X] python-asdf-standard :: would be upgraded from 1.0.3 to 1.1.1
+  - [X] python-asdf-transform-schemas :: would be upgraded from 0.4.0 to 0.5.0
+  - [X] python-asdf-unit-schemas :: would be upgraded from 0.1.0 to 0.2.0
+  - [X] python-asdf-wcs-schemas  :: would be upgraded from 0.3.0 to 0.4.0
+  - [X] python-asdf :: would be upgraded from 3.0.1 to 3.1.0
+  - [X] python-asdf-zarr :: new package
+  - [X] python-astroplan :: new package
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.2.19.0.28.47 to 0.2024.3.18.0.29.47
+  - [X] python-astroquery :: would be upgraded from 0.4.6 to 0.4.7
+  - [X] python-cdflib :: would be upgraded from 1.2.4 to 1.2.6
+  - [X] python-cmyt :: new package
+  - [X] python-crds :: would be upgraded from 11.17.16 to 11.17.19
+  - [X] python-distributed :: speed up tests
+  - [X] python-drizzle :: would be upgraded from 1.15.0 to 1.15.1
+  - [X] python-ewah-bool-utils :: new package
+  - [X] python-ginga :: would be upgraded from 4.1.1 to 5.0.0
+  - [X] python-glymur :: would be upgraded from 0.12.8 to 0.12.9
+  - [X] python-gwcs :: would be upgraded from 0.20.0 to 0.21.0
+  - [X] python-hvpy :: would be upgraded from 1.0.1 to 1.1.0
+  - [X] python-pydantic-settings :: new package
+  - [X] python-pynbody :: would be upgraded from 1.5.2 to 1.6.0
+  - [X] python-pytest-arraydiff :: would be upgraded from 0.5.0 to 0.6.1
+  - [X] python-pytest-doctestplus :: would be upgraded from 1.0.0 to 1.2.0
+  - [X] python-pytest-examples :: new package
+  - [X] python-pytest-filter-subpackage :: would be upgraded from 0.1.2 to 0.2.0
+  - [X] python-pyvo :: would be upgraded from 1.5 to 1.5.1
+  - [X] python-radiospectra :: would be upgraded from 0.4.0 to 0.5.0
+  - [X] python-specutils :: would be upgraded from 1.12.0 to 1.13.0
+  - [X] python-stcal :: would be upgraded from 1.6.0 to 1.6.1
+  - [X] python-stdatamodels :: would be upgraded from 1.9.1 to 1.10.0
+  - [X] python-suntime :: would be upgraded from 1.2.5 to 1.3.2
+  - [X] splash :: would be upgraded from 3.10.1 to 3.10.3
+- [X] complex [2/2][100%]
+  - [X] python-photutils :: would be upgraded from 1.10.0 to 1.11.0. Requires numpy>=1.25 and
+    resolve new build issues. release which has a lot of fixes.
+  - [X] casacore :: would be upgraded from 3.4.0 to 3.5.0. Failing with C++20, waiting for a new
+    release including build fixes.
+- [-] issues [3/5][60%]
+  - [X] https://github.com/astropy/asdf-astropy/issues/222
+  - [X] https://github.com/pynbody/pynbody/issues/778
+  - [ ] https://github.com/astropy/astroquery/issues/2968
+  - [ ] https://github.com/astromatic/skymaker/issues/3
+  - [X] https://github.com/karllark/dust_attenuation/issues/56
+** DONE updates-2024-04 [2/3][66%]
+CLOSED: [2024-05-02 Thu 22:35]
+- date-time :: 20240402T134621+0100
+- commit :: 3067eb8d60..147f1f2e0d
+- issues :: https://issues.guix.gnu.org/70489
+- [X] quick [33/33][100%]
+  - [X] cfitsio :: would be upgraded from 4.3.1 to 4.4.0
+  - [X] indi :: would be upgraded from 2.0.6 to 2.0.7
+  - [X] libxisf :: would be upgraded from 0.2.11 to 0.2.12
+  - [X] parfive :: would be upgraded from 2.0.2 to 2.1.0
+  - [X] psfex :: new package
+  - [X] python-asdf-astropy :: would be upgraded from 0.6.0 to 0.6.1
+  - [X] python-asdf :: would be upgraded from 3.1.0 to 3.2.0
+  - [X] python-astroplan :: would be upgraded from 0.9.1 to 0.10
+  - [X] python-astropy-healpix :: would be upgraded from 1.0.2 to 1.0.3
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.3.18.0.29.47 to 0.2024.4.15.2.45.49
+  - [X] python-astropy :: would be upgraded from 6.0.0 to 6.0.1
+  - [X] python-bayesicfitting :: would be upgraded from 3.2.0 to 3.2.1
+  - [X] python-casa-formats-io :: would be upgraded from 0.2.2 to 0.3.0
+  - [X] python-crds :: would be upgraded from 11.17.19 to 11.17.20
+  - [X] python-ginga :: would be upgraded from 5.0.0 to 5.0.1
+  - [X] python-jwst :: would be upgraded from 1.13.4 to 1.14.0
+  - [X] python-photutils :: would be upgraded from 1.10.0 to 1.12.0
+  - [X] python-pysiaf :: new package
+  - [X] python-rad :: would be upgraded from 0.19.0 to 0.19.2
+  - [X] python-regions :: would be upgraded from 0.8 to 0.9
+  - [X] python-reproject :: would be upgraded from 0.13.0 to 0.13.1
+  - [X] python-roman-datamodels :: would be upgraded from 0.19.0 to 0.19.1
+  - [X] python-specutils :: would be upgraded from 1.13.0 to 1.14.0
+  - [X] python-stcal :: would be upgraded from 1.6.1 to 1.7.0
+  - [X] python-stdatamodels :: would be upgraded from 1.10.0 to 1.10.1
+  - [X] python-stsci-imagestats :: would be upgraded from 1.8.0 to 1.8.2
+  - [X] python-stsci-stimage :: would be upgraded from 0.2.6 to 0.2.8
+  - [X] python-sunpy :: would be upgraded from 5.1.1 to 5.1.2
+  - [X] python-supersmoother :: new package
+  - [X] python-synphot :: would be upgraded from 1.3.0 to 1.4.0
+  - [X] python-tweakwcs :: would be upgraded from 0.8.6 to 0.8.7
+  - [X] scamp :: new pacakge
+  - [X] stellarium :: would be upgraded from 23.4 to 24.1
+- [ ] complex [0/2][0%]
+  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4; E ImportError:
+    /tmp/guix-build-python-pyerfa-2.0.1.3.drv-0/pyerfa-2.0.1.3/erfa/ufunc.abi3.so: undefined symbol:
+    PyDataType_ELSIZE
+  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2. configobj needs to be substituted to
+    use from inputs.
+- [X] issues [3/3][100%]
+  - [X] [PATCH] gnu: Add gnudatalanguage. https://issues.guix.gnu.org/57416
+  - [X] [PATCH] Add new plplot https://issues.guix.gnu.org/46160
+  - [X] https://github.com/astropy/photutils/issues/1727
+** DONE updates-2024-05 [1/3][33%]
+CLOSED: [2024-06-06 Thu 14:05]
+- date-time :: 20240502T223602+0100
+- commit :: c220874a37..c2cb630061
+- issues :: https://issues.guix.gnu.org/71084
+- [X] quick [19/19][100%]
+  - [X] calceph :: would be upgraded from 3.5.5 to 4.0.0
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.4.15.2.45.49 to 0.2024.5.13.0.30.12
+  - [X] python-astropy :: would be upgraded from 6.0.1 to 6.1.0
+  - [X] python-astroscrappy :: would be upgraded from 1.1.0 to 1.2.0
+  - [X] python-ccdproc ::  would be upgraded from 2.4.1 to 2.4.2
+  - [X] python-cdflib :: would be upgraded from 1.2.6 to 1.3.1
+  - [X] python-crds :: would be upgraded from 11.17.20 to 11.17.22
+  - [X] python-dust-extinction :: would be upgraded from 1.3 to 1.4
+  - [X] python-jplephem :: would be upgraded from 2.21 to 2.22
+  - [X] python-geopack :: new package, to add python-pyspedas
+  - [X] python-yt :: new package
+  - [X] python-comm :: new package, to update python-ipywidgets
+  - [X] python-rad :: would be upgraded from 0.19.2 to 0.20.0
+  - [X] python-ewah-bool-utils :: would be upgraded from 1.1.0 to 1.2.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.19.1 to 0.20.0
+  - [X] python-specutils :: would be upgraded from 1.14.0 to 1.15.0
+  - [X] python-stsci-image :: would be upgraded from 2.3.5 to 2.3.7
+  - [X] python-sunpy :: would be upgraded from 5.1.2 to 5.1.3
+  - [X] python-viresclient :: new package, to add python-pyspedas
+- [ ] complex [0/3][0%]
+  - [ ] python-calceph :: new package
+  - [ ] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4; E ImportError:
+    /tmp/guix-build-python-pyerfa-2.0.1.3.drv-0/pyerfa-2.0.1.3/erfa/ufunc.abi3.so: undefined symbol:
+    PyDataType_ELSIZE
+  - [ ] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2. configobj needs to be substituted to
+    use from inputs.
+- [ ] issues [0/2][0%]
+  - [ ] https://github.com/spacetelescope/pysiaf/issues/338
+  - [ ] https://github.com/tsssss/geopack/issues/21
+** DONE updates-2024-06 [1/3][33%]
+CLOSED: [2024-07-01 Mon 16:48]
+- date-time :: 20240606T142012+0100
+- commit ::
+- issues :: https://issues.guix.gnu.org/71702
+- [X] quick [25/25][100%]
+  - [X] indi :: would be upgraded from 2.0.7 to 2.0.8
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.5.13.0.30.12 to 0.2024.6.17.0.31.35
+  - [X] python-astropy :: would be upgraded from 6.1.0 to 6.1.1
+  - [X] python-corner :: new package
+  - [X] python-crds :: would be upgraded from 11.17.22 to 11.17.25
+  - [X] python-drizzle :: would be upgraded from 1.15.1 to 1.15.2
+  - [X] python-dust-extinction :: would be upgraded from 1.4 to 1.4.1
+  - [X] python-fitsio :: would be upgraded from 1.2.1 to 1.2.4
+  - [X] python-ginga :: would be upgraded from 5.0.1 to 5.1.0
+  - [X] python-jwst-reffiles :: new package
+  - [X] python-naima :: new package
+  - [X] python-ndcube :: would be upgraded from 2.2.0 to 2.2.2
+  - [X] python-pyerfa :: would be upgraded from 2.0.1.1 to 2.0.1.4
+  - [X] python-pyvo :: would be upgraded from 1.5.1 to 1.5.2
+  - [X] python-regularizepsf :: new package
+  - [X] python-skyfield :: would be upgraded from 1.48 to 1.49
+  - [X] python-spherical-geometry :: would be upgraded from 1.3.1 to 1.3.2
+  - [X] python-statmorph :: new package
+  - [X] python-stcal :: would be upgraded from 1.7.0 to 1.7.1
+  - [X] python-stpipe :: would be upgraded from 0.5.1 to 0.5.2
+  - [X] python-stsci-imagestats :: would be upgraded from 1.8.2 to 1.8.3
+  - [X] python-stsci-image :: would be upgraded from 2.3.7 to 2.3.9
+  - [X] python-sunpy :: would be upgraded from 5.1.3 to 5.1.4
+  - [X] python-yt-astro-analysis :: new package
+  - [X] siril :: would be upgraded from 1.2.1 to 1.2.3
+- [ ] complex [0/3][0%]
+  - [ ] python-stsci-stimage :: would be upgraded from 0.2.8 to 0.2.9; File
+    "/gnu/store/hd1nddp02f06f6ly1g3pjmskba90svlv-python-tweakwcs-0.8.7/lib/python3.10/site-packages/tweakwcs/matchutils.py",
+    line 18, in <module> from stsci.stimage import xyxymatch
+  - [ ] python-calceph :: new package
+  - [ ] python-stcal :: would be upgraded from 1.7.1 to 1.7.2
+    src/stcal/ramp_fitting/src/slope_fitter.c:3489:39: error: ‘NPY_NTYPES_LEGACY’ undeclared (first use in this function)
+  3489 | printf("NPY_NTYPES_LEGACY = %d\n",NPY_NTYPES_LEGACY);
+- [ ] issues [0/2][0%]
+  - [ ] https://github.com/spacetelescope/stsci.stimage/issues/38
+  - [ ] https://github.com/sunpy/ndcube/issues/733
+** DONE updates-2024-07 [1/3][33%]
+CLOSED: [2024-07-30 Tue 13:56]
+- date-time :: 20240701T164850+0100
+- commit :: b5c33f99e3...1b7d53dad7 to master
+- issues :: https://issues.guix.gnu.org/72219
+- [X] quick [25/25][100%]
+  - [X] add python-ads :: Python client to NASA's Astrophysics Data System
+  - [X] add python-dunamai :: Dynamic version generation
+  - [X] add python-echo :: Callback Properties in Python
+  - [X] add python-glue-core :: Multidimensional data visualization project
+  - [X] add python-kanon :: History of astronomy
+  - [X] add python-looseversion :: Version numbering for anarchists and software realists
+  - [X] add python-mpl-scatter-density :: Matplotlib helpers to make density scatter plots
+  - [X] add python-poetry-dynamic-versioning :: Poetry plugin enabling VCS tags dynamic versioning
+  - [X] add python-sbpy :: Python module for small-body planetary astronomy
+  - [X] add python-sncosmo :: Package for supernova cosmology based on astropy
+  - [X] cfitsio :: would be upgraded from 4.4.0 to 4.4.1
+  - [X] python-asdf :: would be upgraded from 3.2.0 to 3.3.0
+  - [X] python-asdf-zarr :: would be upgraded from 0.0.3 to 0.0.4
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.6.17.0.31.35 to 0.2024.7.15.0.31.42
+  - [X] python-crds :: would be upgraded from 11.17.25 to 11.17.26
+  - [X] python-czml3 :: would be upgraded from 0.7.0 to 1.0.1
+  - [X] python-extension-helpers :: would be upgraded from 1.0.0 to 1.1.1
+  - [X] python-jwst :: would be upgraded from 1.14.0 to 1.15.1
+  - [X] python-photutils :: would be upgraded from 1.12 to 1.13.0
+  - [X] python-pytest-openfiles :: would be upgraded from 0.5.0 to 0.6.0
+  - [X] python-stdatamodels :: would be upgraded from 1.10.1 to 2.0.0
+  - [X] python-stpipe :: would be upgraded from 0.5.2 to 0.6.0
+  - [X] python-sunpy :: would be upgraded from 5.1.4 to 5.1.5
+  - [X] python-tweakwcs :: would be upgraded from 0.8.7 to 0.8.8
+  - [X] stellarium :: would be upgraded from 24.1 to 24.2
+- [ ] complex [0/3][0%]
+  - [ ] python-calceph :: new package
+  - [ ] python-stcal :: would be upgraded from 1.7.1 to 1.7.3
+  - [ ] gnuastro :: would be upgraded from 0.22 to 0.23, faling to pass tests
+    src/stcal/ramp_fitting/src/slope_fitter.c:3494:39: error: ‘NPY_NTYPES_LEGACY’ undeclared (first
+    use in this function) 3494 | printf("NPY_NTYPES_LEGACY = %d\n",NPY_NTYPES_LEGACY);
+- [ ] issues [0/3][0%]
+  - [ ] https://github.com/astromatic/skymaker/issues/3#issuecomment-2223888413
+  - [ ] warning: no tags were found for stuff, https://github.com/astromatic/stuff/issues/6
+  - warning: no tags were found for unsio
+  - warning: no tags were found for aocommon
+  - warning: no tags were found for sunclock
+  - [ ] https://github.com/iraf-community/iraf/issues/403#event-13473716972
+
+** DONE updates-2024-08 [1/3][33%]
+CLOSED: [2024-08-27 Tue 17:06]
+- date-time :: 20240730T225526+0100
+- commit :: 1e69ac70c7..0cf4de40a2 to master
+- issues :: https://issues.guix.gnu.org/72741
+- [X] quick [27/27][100%]
+  - [X] add python-glue-astronomy :: Astronomy-specific plugins for glue
+  - [X] add python-glue-qt :: Multidimensional data visualization across files
+  - [X] add python-pvextractor :: Position-Velocity diagram extrac
+  - [X] add python-pyxsim :: Simulating X-ray observations from astrophysical sources
+  - [X] add python-soxs :: Simulated Observations of X-ray Sources
+  - [X] add python-specreduce :: Spectroscopic Reductions
+  - [X] add python-zodipy :: Zodiacal emission simulations
+  - [X] indi :: would be upgraded from 2.0.8 to 2.0.9
+  - [X] python-astroplan :: would be upgraded from 0.10 to 0.10.1
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.7.15.0.31.42 to 0.2024.8.12.0.32.58
+  - [X] python-astropy :: would be upgraded from 6.1.1 to 6.1.2
+  - [X] python-crds :: would be upgraded from 11.17.26 to 11.18.1
+  - [X] python-czml3 :: would be upgraded from 1.0.1 to 1.0.2
+  - [X] python-drms :: would be upgraded from 0.7.1 to 0.8.0
+  - [X] python-dust-extinction :: would be upgraded from 1.4.1 to 1.5
+  - [X] python-glymur :: would be upgraded from 0.12.9 to 0.13.5
+  - [X] python-mpl-animators :: would be upgraded from 1.1.1 to 1.2.0
+  - [X] python-radiospectra :: would be upgraded from 0.5.0 to 0.6.0
+  - [X] python-rad :: would be upgraded from 0.20.0 to 0.21.0
+  - [X] python-reproject :: would be upgraded from 0.13.1 to 0.14.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.20.0 to 0.21.0
+  - [X] python-shapely :: would be upgraded from 2.0.2 to 2.0.5
+  - [X] python-specutils :: would be upgraded from 1.15.0 to 1.16.0
+  - [X] python-stcal :: would be upgraded from 1.7.1 to 1.8.0
+  - [X] python-stpipe :: would be upgraded from 0.6.0 to 0.7.00
+  - [X] python-sunpy :: would be upgraded from 5.1.5 to 6.0.1
+  - [X] python-viresclient :: would be upgraded from 0.11.6 to 0.12.0
+- [ ] complex [0/2]
+  - [ ] python-asdf :: would be upgraded from 3.3.0 to 3.4.0; requires newer attr see
+    <https://lists.gnu.org/archive/html/guix-devel/2024-08/msg00033.html>.
+  - [ ] python-regularizepsf :: would be upgraded from 0.3.4 to 0.3.6; new version requires python-sep-pjw to be packed, a fork of python-sep
+- [-] issues [2/4][50%]
+  - [ ] https://issues.guix.gnu.org/49207#8
+  - [X] https://github.com/spacetelescope/stpipe/issues/114
+  - [X] https://github.com/karllark/dust_attenuation/issues/56
+  - [ ] https://github.com/demorest/sdmpy/issues/13
+
+** DONE updates-2024-09 [1/3][33%]
+CLOSED: [2024-09-30 Mon 22:36]
+- date-time :: 20240903T111829+0100
+- commit :: db990cfe40..5ca47c7d8d to master
+- issues :: https://issues.guix.gnu.org/73399
+- [X] quick [21/21][100%]
+  - [X] add healpix ::
+  - [X] add healpix-cxx ::
+  - [X] add libsharp ::
+  - [X] add python-ci-watson ::
+  - [X] add python-healpy ::
+  - [X] add python-webbpsf ::
+  - [X] add webbpsf-data ::
+  - [X] calcmysky :: would be upgraded from 0.3.2 to 0.3.3
+  - [X] cfitsio :: would be upgraded from 4.4.1 to ４.5.0
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.8.12.0.32.58 to 0.2024.9.16.0.32.21
+  - [X] python-astropy :: would be upgraded from 6.1.2 to 6.1.3
+  - [X] python-crds :: would be upgraded from 11.18.1 to 11.18.4
+  - [X] python-drizzle :: would be upgraded from 1.15.2 to 1.15.3
+  - [X] python-jwst :: would be upgraded from 1.15.1 to 1.16.0
+  - [X] python-pysiaf :: would be upgraded from 0.22.0 to 0.23.3
+  - [X] python-regularizepsf :: would be upgraded from 0.3.4 to 0.4.0
+  - [X] python-sbpy :: would be upgraded from 0.4.0 to 0.5.0
+  - [X] python-stcal :: would be upgraded from 1.8.0 to 1.9.0
+  - [X] python-stdatamodels :: would be upgraded from 2.0.0 to 2.1.0
+  - [X] python-sunpy :: would be upgraded from 6.0.1 to 6.0.2
+  - [X] siril :: would be upgraded from 1.2.3 to 1.2.4
+- [ ] complex [0/2]
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.6.1
+  - [ ] python-asdf :: would be upgraded from 3.3.0 to 3.4.0; requires newer attr see
+    <https://lists.gnu.org/archive/html/guix-devel/2024-08/msg00033.html>.
+- [-] issues [1/9][11%]
+  - [ ] warning :: no tags were found for aocommon
+  - [ ] warning :: no tags were found for python-asdf-compression
+  - [ ] warning :: no tags were found for stuff
+  - [ ] warning :: no tags were found for sunclock
+  - [ ] warning :: no tags were found for unsio
+  - [ ] gnuastro :: would be upgraded from 0.22 to 0.23; Failing on tessts, report to upstream
+  - [ ] https://github.com/sunpy/ndcube/issues/758
+  - [ ] Issue with python-ginga tests: AssertionError: Not equal to tolerance rtol=1e-07,
+    atol=0.0001 "-k" "not test_fwhm"
+  - [X] https://github.com/healpy/healpy/issues/949
+** DONE updates-2024-10 [1/3][33%]
+CLOSED: [2024-10-30 Wed 19:40]
+- date-time :: 20241001T191832+0100
+- commit :: 223839b614..64b7dc2e45
+- issues :: 73915@debbugs.gnu.org; https://issues.guix.gnu.org/73915
+- [X] quick [36/36][100%]
+  - [X] add iraf-community :: Image Reduction and Analysis Facility
+  - [X] add python-acstools :: Hubble Space Telescope Advanced Camera for Surveys Tools
+  - [X] add python-astrodendro :: Astronomical dendrograms computation
+  - [X] add python-coolest :: Strong Gravitational Lensing Analyses
+  - [X] add python-getdist :: GetDist Monte Carlo sample analysis, plotting and GUI
+  - [X] add python-halotools :: N-body simulations and constrain models of cosmology evolution
+  - [X] add python-hsluv :: Human-friendly HSL colour space implemented in Python
+  - [X] add python-pycollada :: Reading and writing collada documents library
+  - [X] add python-pymcubes :: Marching cubes for Python
+  - [X] add python-pysiril :: Python interface to SiriL
+  - [X] add python-sirilic :: Acquisition files preparation software to proces with SiriL
+  - [X] calceph :: would be upgraded from 4.0.0 to 4.0.1
+  - [X] indi :: would be upgraded from 2.0.9 to 2.1.0
+  - [X] python-astroalign :: would be upgraded from 2.5.1 to 2.6.0
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.9.16.0.32.21 to 0.2024.10.14.0.32.55
+  - [X] python-astropy :: would be upgraded from 6.1.3 to 6.1.4
+  - [X] python-crds :: would be upgraded from 11.18.4 to 12.0.4
+  - [X] python-ephem :: would be upgraded from 4.1.5 to 4.1.6
+  - [X] python-ndcube :: would be upgraded from 2.2.2 to 2.2.3
+  - [X] python-photutils :: would be upgraded from 1.13.0 to 2.0.1
+  - [X] python-pynbody :: would be upgraded from 1.6.0 to 1.6.0.post0
+  - [X] python-pyregion :: would be upgraded from 2.2.0 to 2.3.0
+  - [X] python-pyvo :: would be upgraded from 1.5.2 to 1.5.3
+  - [X] python-pyxsim :: would be upgraded from 4.4.1 to 4.4.2
+  - [X] python-radio-beam :: would be upgraded from 0.3.7 to 0.3.8
+  - [X] python-regions :: would be upgraded from 0.9 to 0.10
+  - [X] python-sep-pjw :: would be upgraded from 1.3.5 to 1.3.6
+  - [X] python-specutils :: would be upgraded from 1.16.0 to 1.18.0
+  - [X] python-stdatamodels :: would be upgraded from 2.1.0 to 2.1.1
+  - [X] python-sunpy :: would be upgraded from 6.0.2 to 6.0.3
+  - [X] python-glymur :: would be upgraded from 0.13.5 to 0.13.6
+  - [X] python-tweakwcs :: would be upgraded from 0.8.8 to 0.8.9
+  - [X] python-zodipy :: would be upgraded from 1.0.0 to 1.1.0
+  - [X] siril :: would be upgraded from 1.2.4 to 1.3.3
+  - [X] stellarium :: would be upgraded from 24.2 to 24.3
+  - [X] wcslib :: would be upgraded from 8.2.2 to 8.3
+- [ ] complex [0/0]
+- [ ] issues [0/4][0%]
+  - [ ] python-spectral-cube :: Report on cycle - python-spectral-cube@0.6.5 ->
+    python-glue-core@1.21.1 -> python-glue-qt@0.3.1 -> python-spectral-cube@0.6.5
+  - [ ] Casacore update compilation issue https://issues.guix.gnu.org/73670
+  - [ ] gnuastro 0.23 fails to pass tests
+  - [ ] python-asdf :: would be upgraded from 3.3.0 to 3.4.0
+** DONE updates-2024-11 [1/3][33%]
+CLOSED: [2024-11-30 Sat 15:28]
+- date-time :: 20241121T165726+0000
+- commit :: 09da0d3f0b..63508a6548
+- issues :: 74497-done@debbugs.gnu.org; https://issues.guix.gnu.org/74497
+- [X] quick [41/41][100%]
+  - [X] add cdf :: NASA's Common Data Format library and tools
+  - [X] add julia-astroangles :: Lightweight string parsing and representation of angles
+  - [X] add python-cosmopy :: Cosmological calculator in Python
+  - [X] add python-george :: Fast Gaussian Processes for regression
+  - [X] add python-hasasia :: Pulsar timing array sensitivity curves calculation in Python
+  - [X] add python-holodeck :: MBH Binary Population Synthesis for Gravitational Wave Calculations
+  - [X] add python-kalepy :: Kernel Density Estimation (KDE) and sampling
+  - [X] add python-puremagic :: Pure Python implementation of magic file detection
+  - [X] add python-spisea :: Stellar Population Synthesis Modeling
+  - [X] add python-vispy :: Interactive scientific visualization in Python
+  - [X] imppg :: would be upgraded from 0.6.5 to 1.9.2-beta
+  - [X] libpasastro :: would be upgraded from 1.4.2 to 1.4.3
+  - [X] python-aplpy :: would be upgraded from 2.1.0 to 2.2.0
+  - [X] python-asdf-astropy :: would be upgraded from 0.6.1 to 0.7.0
+  - [X] python-astroalign :: would be upgraded from 2.6.0 to 2.6.1
+  - [X] python-astrodendro :: would be upgraded from 0.2.0-0.3181c36 to 0.3.1
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2024.10.14.0.32.55 to 0.2024.11.18.0.35.2
+  - [X] python-astropy :: would be upgraded from 6.1.4 to 6.1.6
+  - [X] python-bayesicfitting :: would be upgraded from 3.2.1 to 3.2.2
+  - [X] python-cdflib :: would be upgraded from 1.3.1 to 1.3.2
+  - [X] python-crds :: would be upgraded from 12.0.4 to 12.0.6
+  - [X] python-drizzle :: would be upgraded from 1.15.3 to 2.0.0
+  - [X] python-ginga :: would be upgraded from 5.1.0 to 5.2.0
+  - [X] python-jwst :: would be upgraded from 1.16.0 to 1.16.1
+  - [X] python-ndcube :: would be upgraded from 2.2.3 to 2.2.4
+  - [X] python-photutils :: would be upgraded from 2.0.1 to 2.0.2
+  - [X] python-pyerfa :: would be upgraded from 2.0.1.4 to 2.0.1.5
+  - [X] python-pyvo :: would be upgraded from 1.5.3 to 1.6
+  - [X] python-rad :: would be upgraded from 0.21.0 to 0.22.0
+  - [X] python-regularizepsf :: would be upgraded from 0.4.0 to 1.0.2
+  - [X] python-reproject :: would be upgraded from 0.14.0 to 0.14.1
+  - [X] python-roman-datamodels :: would be upgraded from 0.21.0 to 0.22.0
+  - [X] python-sep-pjw :: would be upgraded from 1.3.6 to 1.3.7
+  - [X] python-sncosmo :: would be upgraded from 2.11.1 to 2.11.2
+  - [X] python-specutils :: would be upgraded from 1.18.0 to 1.19.0
+  - [X] python-statmorph :: would be upgraded from 0.5.7 to 0.6.0
+  - [X] python-stcal :: would be upgraded from 1.9.0 to 1.10.0
+  - [X] python-stdatamodels :: would be upgraded from 2.1.1 to 2.1.2
+  - [X] python-stsynphot :: would be upgraded from 1.3.0 to 1.4.0
+  - [X] python-synphot :: would be upgraded from 1.4.0 to 1.5.0
+  - [X] python-yt :: would be upgraded from 4.3.1 to 4.4.0
+- [ ] complex [0/1]
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.6.1
+- [ ] issues [0/4][0%]
+  - [ ] python-asdf :: would be upgraded from 3.3.0 to 3.5.00; new nump is required
+    - python-asdf :: would be upgraded from 3.3.0 to 4.0.0
+  - [ ] gpredict :: would be upgraded from 2.2.1 to 2.3
+  - [ ] gnuastro :: would be upgraded from 0.22 to 0.23
+  - [ ] python-spectral-cube :: Report on cycle - python-spectral-cube@0.6.5 ->
+    python-glue-core@1.21.1 -> python-glue-qt@0.3.1 -> python-spectral-cube@0.6.5
+** DONE updates-2024-12 [1/3][33%]
+CLOSED: [2024-12-30 Mon 15:32]
+- date-time :: 20241221T202236+0000
+- commit :: 654e867bad...40b9f33066
+- issues :: 74729-done@debbugs.gnu.org, 75015-done@debbugs.gnu.org https://issues.guix.gnu.org/75015
+- [X] quick [31/31][100%]
+  - [X] add julia-commonsolve ::
+  - [X] add julia-compositionsbase ::
+  - [X] add julia-extents ::
+  - [X] add julia-interfaces ::
+  - [X] add julia-performancetesttools ::
+  - [X] add julia-precompiletools :: Reduce time-to-first-execution of Julia code
+  - [X] add julia-staticnumbers ::
+  - [X] add python-pysat :: Supports science analysis across disparate data platforms
+  - [X] calceph :: would be upgraded from 4.0.1 to 4.0.3
+  - [X] healpix :: would be upgraded from 3.8.2 to 3.8.3
+  - [X] indi :: would be upgraded from 2.1.0 to 2.1.1
+  - [X] julia-preferences :: would be upgraded from 1.2.2 to 1.4.3
+  - [X] python-asdf :: would be upgraded from 3.3.0 to 4.0.0
+  - [X] python-astropy :: would be upgraded from 6.1.6 to 6.1.7
+    - to 7.0.0, hard dependenicies on Python3.11+
+  - [X] python-bayesicfitting :: would be upgraded from 3.2.2 to 3.2.3
+  - [X] python-ci-watson :: would be upgraded from 0.7.0 to 0.8.0
+  - [X] python-cmyt :: would be upgraded from 2.0.0 to 2.0.1
+  - [X] python-crds :: would be upgraded from 12.0.6 to 12.0.8
+  - [X] python-extinction :: would be upgraded from 0.4.6 to 0.4.7
+  - [X] python-gwcs :: would be upgraded from 0.21.0 to 0.22.1
+  - [X] python-halotools :: would be upgraded from 0.9.1 to 0.9.2
+  - [X] python-healpy :: would be upgraded from 1.16.6 to 1.18.0
+  - [X] python-pysiaf :: would be upgraded from 0.23.3 to 0.24.1
+  - [X] python-spisea :: would be upgraded from 2.1.11 to 2.1.13
+  - [X] python-stdatamodels  :: would be upgraded from 2.1.2 to 2.2.0
+  - [X] python-stpipe  :: would be upgraded from 0.7.0 to 0.8.0
+  - [X] python-sunpy :: would be upgraded from 6.0.3 to 6.0.4
+  - [X] python-viresclient  :: would be upgraded from 0.12.0 to 0.12.1
+  - [X] python-webbpsf :: would be upgraded from 1.4.0 to 1.5.0
+    - [X] webbpsf-data :: would be upgraded from 1.4.0 to 1.5.0
+  - [X] splash :: would be upgraded from 3.10.3 to 3.11.1
+  - [X] wcslib :: would be upgraded from 8.3 to 8.4
+- [ ] complex [0/7]
+  - [ ] python-czml3 :: would be upgraded from 1.0.2 to 2.0.1, more packages required
+  - [ ] python-pynbody :: would be upgraded from 1.6.0.post0 to 2.0.0, majore update
+  - [ ] casacore :: would be upgraded from 3.4.0 to 3.6.1
+  - [ ] gnuastro :: would be upgraded from 0.22 to 0.23, test fails
+    - python-asdf :: 3.3.0->4.0.0
+    - new nump is required
+  - [ ] add python-mocpy :: Create and manipulate MOCs (Multi-Order Coverage maps)
+  - [ ] add python-cdshealpix :: Rust required
+  - [ ] python-numcodecs :: would be upgraded from 0.10.2 to 0.14.1
+    numpy > 1.7
+- [ ] issues [0/6][0%]
+  - [ ] python-stcal  :: would be upgraded from 1.10.0 to 1.11.0, failed to build with numpy 1.24
+  - [ ] [PATCH 0/4] Astro update 2024-12 - Rust packages. <https://issues.guix.gnu.org/74729>.
+  - [ ] warning: no tags were found for stuff
+  - [ ] warning: no tags were found for python-asdf-compression
+  - [ ] warning: no tags were found for sunclock
+  - [ ] warning: no tags were found for unsio
+** TODO updates-2025-01 [0/3][0%] :p1:
+- date-time ::
+- commit ::
+- issues ::
+- [ ] quick [0/0][0%]
+- [ ] complex [0/0][0%]
+- [ ] issues [0/0][0%]

@@ -1,0 +1,44 @@
+From 193b38b72f64409c6df019978bdf3412747880c0 Mon Sep 17 00:00:00 2001
+Message-ID: <193b38b72f64409c6df019978bdf3412747880c0.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 17 Dec 2024 23:47:30 +0000
+Subject: [PATCH 11/38] gnu: healpix: Update to 3.8.3.
+
+* gnu/packages/astronomy.scm (healpix, healpix-cxx): Update to 3.8.3.
+
+Change-Id: If6feac33390a92a26fae9ee07fd8aac7894d6f5e
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 00a1cc4b82..8c5eddf8ae 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -821,18 +821,18 @@ (define* (healpix-source #:key version sha256-base32-hash)
+                (version-list (string-split version #\.))
+                (name+version (format #f "~a_~{~a.~a~a~}" name version-list)))
+           (string-append "mirror://sourceforge/healpix/"
+-                         name+version "/" name+version "_" "2022Jul28.tar.gz")))
++                         name+version "/" name+version "_" "2024Nov13.tar.gz")))
+        (sha256
+         (base32 sha256-base32-hash ))))
+ 
+ (define-public healpix
+   (package
+     (name "healpix")
+-    (version "3.8.2")
++    (version "3.8.3")
+     (source
+      (healpix-source
+       #:version version
+-      #:sha256-base32-hash "09x1lafq01gzk16yvmz2pdhrxnqfjp3b2p9hlgy0dbrdg82ryqj7"))
++      #:sha256-base32-hash "1nhxad4zbk6qm6zblvyvyaavfq7vy8asq150n83dfvsrzj7c2xl8"))
+     (build-system gnu-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

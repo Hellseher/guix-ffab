@@ -1,0 +1,40 @@
+From 779a2391c1aa11e6e1ecd5ac78c125be0001ed37 Mon Sep 17 00:00:00 2001
+Message-ID: <779a2391c1aa11e6e1ecd5ac78c125be0001ed37.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Dec 2024 21:20:10 +0000
+Subject: [PATCH 01/38] gnu: julia-preferences: Update to 1.4.3.
+
+* gnu/packages/julia-xyz.scm (julia-preferences): Update to 1.4.3.
+
+Change-Id: Ia8ddaf611a7845879481ca6b2b30ec416f73c2c5
+---
+ gnu/packages/julia-xyz.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/julia-xyz.scm b/gnu/packages/julia-xyz.scm
+index be2501a934..0a908ae1ef 100644
+--- a/gnu/packages/julia-xyz.scm
++++ b/gnu/packages/julia-xyz.scm
+@@ -5007,7 +5007,7 @@ (define-public julia-positivefactorizations
+ (define-public julia-preferences
+   (package
+     (name "julia-preferences")
+-    (version "1.2.2")
++    (version "1.4.3")
+     (source
+       (origin
+         (method git-fetch)
+@@ -5016,7 +5016,7 @@ (define-public julia-preferences
+                (commit (string-append "v" version))))
+         (file-name (git-file-name name version))
+         (sha256
+-         (base32 "1cail43iqzbi6m9v6981rhz47zf2lcvhs5ds5gdqvc9nx5frghxq"))))
++         (base32 "09q5d223ad37qp6vqjm46la9vf8skj30z1ri3qmadq6vdycav7xm"))))
+     (build-system julia-build-system)
+     (arguments
+      (list #:tests? #f))        ; Tests try to mkdir /.julia
+-- 
+2.46.0
+

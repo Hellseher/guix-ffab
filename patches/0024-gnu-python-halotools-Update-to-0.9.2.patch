@@ -1,0 +1,38 @@
+From 955e868909b9ef7bfc99e6794a80c5d78e5a68c9 Mon Sep 17 00:00:00 2001
+Message-ID: <955e868909b9ef7bfc99e6794a80c5d78e5a68c9.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 10 Dec 2024 20:41:48 +0000
+Subject: [PATCH 24/38] gnu: python-halotools: Update to 0.9.2.
+
+* gnu/packages/astronomy.scm (python-halotools): Update to 0.9.2.
+
+Change-Id: I21505a54c2537977fc5346f21ef626b0699b7891
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index caaf3c59d6..4bb6bc2816 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2565,13 +2565,13 @@ (define-public python-gwcs
+ (define-public python-halotools
+   (package
+     (name "python-halotools")
+-    (version "0.9.1")
++    (version "0.9.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "halotools" version))
+        (sha256
+-        (base32 "1fn74ljb4yv3nprgzaf9awiyjdvkmzf1a1n2kvajbax835qcs3bz"))))
++        (base32 "1fa4w8dabr0zx6xwnrdwdipf4s6sg7q25jmq42n9q8n64kjx60vb"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

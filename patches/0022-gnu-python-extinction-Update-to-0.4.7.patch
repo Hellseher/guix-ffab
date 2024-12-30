@@ -1,0 +1,40 @@
+From f172d749c37ba0245a335b6fceca733789765ce8 Mon Sep 17 00:00:00 2001
+Message-ID: <f172d749c37ba0245a335b6fceca733789765ce8.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Dec 2024 20:49:09 +0000
+Subject: [PATCH 22/38] gnu: python-extinction: Update to 0.4.7.
+
+* gnu/packages/astronomy.scm (python-extinction): Update to 0.4.7.
+
+Change-Id: If37e5335e5e7cd7dd8ed9b394108507b3b544f41
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 71971aea90..b9db39530b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2184,7 +2184,7 @@ (define-public python-ephem
+ (define-public python-extinction
+   (package
+     (name "python-extinction")
+-    (version "0.4.6")
++    (version "0.4.7")
+     (source
+      (origin
+        (method git-fetch) ; No tests in PyPI
+@@ -2193,7 +2193,7 @@ (define-public python-extinction
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1adxq926jd469mxm6llvsljgf2jqb06905h61i9qzc7m2yrm4wga"))))
++        (base32 "04k9mfbijf2nwzhh9sxpkswxk7077d7gbc6nq4hjb51h8rslcjg2"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

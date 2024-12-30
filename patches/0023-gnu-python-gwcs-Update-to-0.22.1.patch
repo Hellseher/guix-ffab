@@ -1,0 +1,66 @@
+From 32c94e36890bf372f655356d84abc896d73e7923 Mon Sep 17 00:00:00 2001
+Message-ID: <32c94e36890bf372f655356d84abc896d73e7923.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Dec 2024 21:27:28 +0000
+Subject: [PATCH 23/38] gnu: python-gwcs: Update to 0.22.1.
+
+* gnu/packages/astronomy.scm (python-gwcs): Update to 0.22.1.
+[arguments] <phases>: Add 'relax-requirements.
+[propagated-inputs]: Add python-asdf.
+[native-inputs]: Remove python-asdf-3, python-jsonschema,
+python-jmespath, and python-pytest-doctestplus; add
+python-pytest-astropy.
+
+(python-asdf-3): Delete variable.
+
+Change-Id: I535176880f840ab60fe262324633226816c16be5
+
+gnu: Remove python-asdf-3.
+
+Change-Id: Id8422b905b5890dfbb27e9aeafd764092a6ab14e
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b9db39530b..caaf3c59d6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2521,19 +2521,26 @@ (define-public python-glue-qt
+ (define-public python-gwcs
+   (package
+     (name "python-gwcs")
+-    (version "0.21.0")
++    (version "0.22.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "gwcs" version))
+        (sha256
+-        (base32 "1fn5l4v236bl7xqi1is40c2q57dji8by98iwqcndfnmjwqf7zllc"))))
++        (base32 "0lvab51ryfb4sjsnckmap7idh29as2mjngkyin4ngfy7hdzknvg9"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++         (add-after 'unpack 'relax-requirements
++           (lambda _
++             (substitute* "pyproject.toml"
++               ;; scipy>=1.14.1
++               ((">=1.14.1") ">=1.12.0")))))))
+     (native-inputs
+-     (list python-jsonschema
+-           python-jmespath
+-           python-pytest
+-           python-pytest-doctestplus
++     (list python-pytest
++           python-pytest-astropy
+            python-pyyaml
+            python-setuptools-scm))
+     (propagated-inputs
+-- 
+2.46.0
+

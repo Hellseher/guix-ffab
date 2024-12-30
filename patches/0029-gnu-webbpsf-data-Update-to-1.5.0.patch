@@ -1,0 +1,41 @@
+From d5b56a2f60cb85773ad2a83efcbb02a1830f7ffb Mon Sep 17 00:00:00 2001
+Message-ID: <d5b56a2f60cb85773ad2a83efcbb02a1830f7ffb.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 18 Dec 2024 00:03:51 +0000
+Subject: [PATCH 29/38] gnu: webbpsf-data: Update to 1.5.0.
+
+* gnu/packages/astronomy.scm (webbpsf-data): Update to 1.5.0.
+
+Change-Id: If9a456c292dde91d61ef399230c042a2b0924ae2
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index be821da1d0..ca503585e0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7319,15 +7319,15 @@ (define-public wcstools
+ (define-public webbpsf-data
+   (package
+     (name "webbpsf-data")
+-    (version "1.4.0")
++    (version "1.5.0")
+     (source
+      (origin
+        (method url-fetch)
+-       ;; 70.1MiB archive
++       ;; 73.9MiB archive
+        (uri "https://stsci.box.com/shared/static/qxpiaxsjwo15ml6m4pkhtk36c9jgj70k.gz")
+        (file-name (string-append "webbpsf-data-" version ".tar.gz"))
+        (sha256
+-        (base32 "0b3qxp6mrm2dwsdnqnprf4yrp0zbncknildqmf28wgginwa5sch8"))))
++        (base32 "0lnzjvn9276v00p5g4894jgdb9mw4mr89q64l7ywikz9khk3j5gc"))))
+     (build-system copy-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

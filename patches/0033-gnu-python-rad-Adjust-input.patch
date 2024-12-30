@@ -1,0 +1,32 @@
+From 203808852846090fa92306b315f8ffcc2c843980 Mon Sep 17 00:00:00 2001
+Message-ID: <203808852846090fa92306b315f8ffcc2c843980.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 20 Dec 2024 23:33:03 +0000
+Subject: [PATCH 33/38] gnu: python-rad: Adjust input.
+
+* gnu/packages/astronomy.scm (python-rad) [propagated-inputs]: Remove
+python-asdf; add python-asdf-3.
+
+Change-Id: I2a91d8cf2913177b50f553a7c5902a779081a92e
+---
+ gnu/packages/astronomy.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 73a4434c01..34b5b7acca 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6193,7 +6193,7 @@ (define-public python-rad
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-     (list python-asdf
++     (list python-asdf-3
+            python-asdf-astropy))
+     (home-page "https://github.com/spacetelescope/rad")
+     (synopsis "Roman Attribute Dictionary")
+-- 
+2.46.0
+

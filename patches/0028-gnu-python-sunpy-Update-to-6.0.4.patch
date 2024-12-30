@@ -1,0 +1,38 @@
+From fd982f68ea4256f6b936cf86050549b8ad558e0f Mon Sep 17 00:00:00 2001
+Message-ID: <fd982f68ea4256f6b936cf86050549b8ad558e0f.1734811274.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1734811274.git.sharlatanus@gmail.com>
+References: <cover.1734811274.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 17 Dec 2024 13:31:09 +0000
+Subject: [PATCH 28/38] gnu: python-sunpy: Update to 6.0.4.
+
+* gnu/packages/astronomy.scm (python-sunpy): Update to 6.0.4.
+
+Change-Id: Ib0b6ae82fb2b4ff7882c1c4aa25d15d16ec8a77d
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 94d1065297..be821da1d0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4738,13 +4738,13 @@ (define-public python-sgp4
+ (define-public python-sunpy
+   (package
+     (name "python-sunpy")
+-    (version "6.0.3")
++    (version "6.0.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy" version))
+        (sha256
+-        (base32 "1v3bnl9dhs9ks7jhmwy10qq6a99v2xcpalmigb255fxi9pqcy8lj"))))
++        (base32 "1x659wal84m00czkjjkvkawxivgc5d43m71m3q817zmpjkin7bma"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+
