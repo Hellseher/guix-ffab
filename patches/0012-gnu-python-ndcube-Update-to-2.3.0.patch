@@ -1,0 +1,57 @@
+From fa42b89c78773443737d6977ff8cdc628f841559 Mon Sep 17 00:00:00 2001
+Message-ID: <fa42b89c78773443737d6977ff8cdc628f841559.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 20 Jan 2025 21:03:26 +0000
+Subject: [PATCH 12/27] gnu: python-ndcube: Update to 2.3.0.
+
+* gnu/packages/astronomy.scm (python-ndcube): Update to 2.3.0.
+[arguments] <test-flags>: Run tests in parallel, it's supported by
+upstream.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: I92cfb35e22434226711de80b923ca02f865afaf1
+---
+ gnu/packages/astronomy.scm | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5ad39ff879c..4e1b091bb21 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4157,18 +4157,19 @@ (define-public python-naima
+ (define-public python-ndcube
+   (package
+     (name "python-ndcube")
+-    (version "2.2.4")
++    (version "2.3.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ndcube" version))
+        (sha256
+-        (base32 "08l4nq43igpic6v3zjnyjq3yy44czg79798rmv5la52hbzbz1kj3"))))
++        (base32 "1pza5g38gn941dwy8yahkd37lb7z80czs1yj38xhn2cf0s69779h"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-k" (string-append
++      #~(list "--numprocesses" (number->string (parallel-job-count))
++              "-k" (string-append
+                     ;; Break cycle: python-ndcube -> python-specutils ->
+                     ;; python-ndcube, see
+                     ;; <https://github.com/sunpy/ndcube/issues/733>.
+@@ -4200,6 +4201,8 @@ (define-public python-ndcube
+            python-pytest
+            python-pytest-astropy
+            python-pytest-mpl
++           ;; python-pytest-memray ; not packaged yet
++           python-pytest-xdist
+            python-scipy
+            python-setuptools
+            python-setuptools-scm
+-- 
+2.47.1
+

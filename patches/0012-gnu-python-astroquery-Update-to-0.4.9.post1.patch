@@ -1,0 +1,38 @@
+From 381fb98c6e759444b28adadb91ce17e20e5eae02 Mon Sep 17 00:00:00 2001
+Message-ID: <381fb98c6e759444b28adadb91ce17e20e5eae02.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 14 Feb 2025 20:39:23 +0000
+Subject: [PATCH 12/51] gnu: python-astroquery: Update to 0.4.9.post1.
+
+* gnu/packages/astronomy.scm (python-astroquery): Update to 0.4.9.post1.
+
+Change-Id: I747b055ba53b20f4fc1732aafa57e54b871fb02b
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index cc7da2e021a..bb9436a2732 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3953,13 +3953,13 @@ (define-public python-astroplan
+ (define-public python-astroquery
+   (package
+     (name "python-astroquery")
+-    (version "0.4.8")
++    (version "0.4.9.post1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astroquery" version))
+        (sha256
+-        (base32 "1dgc792xp6bpb63kqhwqpmc7ck9ifr6wlcqqgl091mfrjy40h4aw"))))
++        (base32 "15viynwq96gyb12q894fi2j4jlzmba3lk86l469ixmrnj3qnn4aw"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.47.1
+

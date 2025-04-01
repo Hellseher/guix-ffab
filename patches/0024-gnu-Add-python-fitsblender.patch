@@ -1,0 +1,60 @@
+From 04cfdaabab262c3bbc7eadc42cc3853f532867d1 Mon Sep 17 00:00:00 2001
+Message-ID: <04cfdaabab262c3bbc7eadc42cc3853f532867d1.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Mar 2025 20:20:33 +0000
+Subject: [PATCH 24/34] gnu: Add python-fitsblender.
+
+* gnu/packages/astronomy.scm (python-fitsblender): New variable.
+
+Change-Id: I7644ee3d1ae7aefd1d4ff054e9d30953e8e902a9
+---
+ gnu/packages/astronomy.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1d50c8d04a..35b90be498 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2865,6 +2865,37 @@ (define-public python-extinction
+ exitinction laws found in the literature.")
+     (license license:expat)))
+ 
++(define-public python-fitsblender
++  (package
++    (name "python-fitsblender")
++    (version "0.4.4")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "fitsblender" version))
++       (sha256
++        (base32 "1ba1374axaxh3dzzpii6q05z4jcrfp7yjk1wsfm2gzmxalnp0f6r"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-pytest
++           python-pytest-cov
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list python-astropy
++           python-numpy
++           python-stsci-tools))
++    (home-page "https://github.com/spacetelescope/fitsblender")
++    (synopsis "Aggregate values in FITS headers")
++    (description
++     "This package supports the creation of a combined header for a FITS file
++based on the contents of the headers of a set of input FITS images.  A rules
++file defines what keywords will be present in the combined output header as
++well as how the output value will be determined from the set of values from
++all the input image headers.")
++    (license license:bsd-3)))
++
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-- 
+2.48.1
+

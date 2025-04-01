@@ -1,0 +1,38 @@
+From b6a1412066359cf77f6d6f18fce57a269f045b78 Mon Sep 17 00:00:00 2001
+Message-ID: <b6a1412066359cf77f6d6f18fce57a269f045b78.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 23:28:52 +0000
+Subject: [PATCH 15/34] gnu: python-pixell: Update to 0.28.4.
+
+* gnu/packages/astronomy.scm (python-pixell): Update to 0.28.4.
+
+Change-Id: I3949b5dd80e0bdef495b6e4e73a4b6f848dfba57
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 91a5d84d34..2ba6e0bbdc 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3561,13 +3561,13 @@ (define-public python-mapsims
+ (define-public python-pixell
+   (package
+     (name "python-pixell")
+-    (version "0.28.0")
++    (version "0.28.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pixell" version))
+        (sha256
+-        (base32 "11xd0ld329vr3spg5nzszn0bxzahnvkrh2akkd7qff33ndf75hkk"))))
++        (base32 "1li6gcplqi1az9hf6kl1gsykdrrf62wra91n17r97s041hj70n3a"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list gfortran
+-- 
+2.48.1
+

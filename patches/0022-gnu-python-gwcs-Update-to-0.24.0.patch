@@ -1,0 +1,38 @@
+From 82251e37df0ff25e92b40de4d6da040ebba60228 Mon Sep 17 00:00:00 2001
+Message-ID: <82251e37df0ff25e92b40de4d6da040ebba60228.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 16:40:11 +0000
+Subject: [PATCH 22/51] gnu: python-gwcs: Update to 0.24.0.
+
+* gnu/packages/astronomy.scm (python-gwcs): Update to 0.24.0.
+
+Change-Id: I83e762ab80b9dac07f4e6879c9c4e5b1d7e50175
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1ebc6a9d46a..4f06cc28791 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2785,13 +2785,13 @@ (define-public python-glue-qt
+ (define-public python-gwcs
+   (package
+     (name "python-gwcs")
+-    (version "0.22.1")
++    (version "0.24.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "gwcs" version))
+        (sha256
+-        (base32 "0lvab51ryfb4sjsnckmap7idh29as2mjngkyin4ngfy7hdzknvg9"))))
++        (base32 "0q3f2rnl4d1p98kypr1jfkajwih22sbx3smn492yf9dbj92bv1v3"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.47.1
+

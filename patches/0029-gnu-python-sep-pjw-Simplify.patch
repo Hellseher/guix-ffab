@@ -1,0 +1,50 @@
+From 158160cf373fa89e34503e40de1cf2f8b1054682 Mon Sep 17 00:00:00 2001
+Message-ID: <158160cf373fa89e34503e40de1cf2f8b1054682.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 15:04:41 +0000
+Subject: [PATCH 29/51] gnu: python-sep-pjw: Simplify.
+
+* gnu/packages/astronomy.scm (python-sep-pjw) [arguments] <phases>:
+Remove 'relax-requirements.
+[native-inputs]: Remove python-setuptools-scm; add
+python-setuptools-scm-next.
+
+Change-Id: Ibe66f67a638649967d1e1c9dfa1b5dd6d0843ca1
+---
+ gnu/packages/astronomy.scm | 14 ++------------
+ 1 file changed, 2 insertions(+), 12 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8376ea4ae46..8664d073a7f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6165,22 +6165,12 @@ (define-public python-sep-pjw
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      #:test-flags #~(list "test.py")
+-      #:phases
+-      #~(modify-phases %standard-phases
+-          (add-after 'unpack 'relax-requirements
+-            (lambda _
+-              (substitute* "pyproject.toml"
+-                ;; numpy>=1.23.5
+-                (("1.23.5") "1.23.2")
+-                ;; TypeError: Configuration.__init__() got an unexpected
+-                ;; keyword argument 'version_file'
+-                (("version_file = .*") "")))))))
++      #:test-flags #~(list "test.py")))
+     (native-inputs
+      (list python-cython
+            python-pytest
+            python-setuptools
+-           python-setuptools-scm
++           python-setuptools-scm-next
+            python-wheel))
+     (propagated-inputs
+      (list python-numpy))
+-- 
+2.47.1
+

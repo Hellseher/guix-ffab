@@ -1,0 +1,38 @@
+From 35351fb9669be585be535fa133582f541b5efbde Mon Sep 17 00:00:00 2001
+Message-ID: <35351fb9669be585be535fa133582f541b5efbde.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Feb 2025 11:30:40 +0000
+Subject: [PATCH 35/51] gnu: python-soxs: Update to 5.0.0.
+
+* gnu/packages/astronomy.scm (python-soxs): Update to 5.0.0.
+
+Change-Id: I9640fb9f0ef181d787b4e7c817660c9d4c271da1
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 636bcb8717e..82b4aecf1a9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3496,13 +3496,13 @@ (define-public python-so-noise-models
+ (define-public python-soxs
+   (package
+     (name "python-soxs")
+-    (version "4.8.5")
++    (version "5.0.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "soxs" version))
+        (sha256
+-        (base32 "1m5q3i7hk7jqdpd46h13c4a16b74p0k4mqkxhs43b4vi95h70qrj"))))
++        (base32 "1pckpyg8b34ql79zr0bzxrl41nynd522skdjmk2cs23k7ps32nwm"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.47.1
+

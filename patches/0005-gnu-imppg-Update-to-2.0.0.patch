@@ -1,0 +1,51 @@
+From 7d6884ff6a69d0df3af85bc16fc956bc8ca37f5d Mon Sep 17 00:00:00 2001
+Message-ID: <7d6884ff6a69d0df3af85bc16fc956bc8ca37f5d.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 14 Mar 2025 00:30:30 +0000
+Subject: [PATCH 05/34] gnu: imppg: Update to 2.0.0.
+
+* gnu/packages/astronomy.scm (imppg): Update to 2.0.0.
+[arguments] <tests?>: Disable, reported upstream.
+
+Change-Id: Ibdbd81d89011e13a9c03226e63b51dbaa5b19d68
+---
+ gnu/packages/astronomy.scm | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2e72cf9238..a74f6c3947 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -969,7 +969,7 @@ (define-public healpix-cxx
+ (define-public imppg
+   (package
+     (name "imppg")
+-    (version "1.9.2-beta")
++    (version "2.0.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -978,12 +978,15 @@ (define-public imppg
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "13kqvl9ay4x0ia7iikxbhg96pp46f1awr382p05gxdvsxksq900v"))))
++        (base32 "0cq7syrcclf1ykaxpjv73a30g4m8fbnqdphfs13932i0a7vgkaid"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list
+-      ;; See <https://github.com/GreatAttractor/imppg/issues/28>.
+-      #:tests? (target-x86-64?)))
++      ;; Tests fail on i686 see:
++      ;; <https://github.com/GreatAttractor/imppg/issues/28>;
++      ;; Tests hang on any architectures see:
++      ;; <https://github.com/GreatAttractor/imppg/issues/34>.
++      #:tests? #f))
+     (native-inputs
+      (list boost pkg-config))
+     (inputs
+-- 
+2.48.1
+

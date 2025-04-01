@@ -1,0 +1,43 @@
+From 5630fd923022901ac6f97198bf8ddd7c26c33b89 Mon Sep 17 00:00:00 2001
+Message-ID: <5630fd923022901ac6f97198bf8ddd7c26c33b89.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 12:21:36 +0000
+Subject: [PATCH 17/51] gnu: python-extinction: Fix source and home-page URL.
+
+* gnu/packages/astronomy.scm (python-extinction) [source] <url>: It
+permanent redirects to <https://github.com/sncosmo/extinction>, adjust
+accordingly.
+[home-page]: Likewise.
+
+Change-Id: I96da111424481f15576612cd46217f43f6f7cb24
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 36d022f8ae3..7aa708ab1c4 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2441,7 +2441,7 @@ (define-public python-extinction
+      (origin
+        (method git-fetch) ; No tests in PyPI
+        (uri (git-reference
+-             (url "https://github.com/kbarbary/extinction")
++             (url "https://github.com/sncosmo/extinction")
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+@@ -2457,7 +2457,7 @@ (define-public python-extinction
+            python-wheel))
+     (propagated-inputs
+      (list python-numpy))
+-    (home-page "http://github.com/kbarbary/extinction")
++    (home-page "https://github.com/sncosmo/extinction")
+     (synopsis "Fast interstellar dust extinction laws")
+     (description
+      "This package provides a cython-optimized implementations of empirical dust
+-- 
+2.47.1
+

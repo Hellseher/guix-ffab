@@ -1,0 +1,41 @@
+From dfe7eea3ea0979266163dd25092a69f74576bd52 Mon Sep 17 00:00:00 2001
+Message-ID: <dfe7eea3ea0979266163dd25092a69f74576bd52.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 12 Feb 2025 18:16:27 +0000
+Subject: [PATCH 09/51] gnu: python-astropy: Simplify check phase.
+
+* gnu/packages/astronomy.scm (python-astropy) [phases] {check}: Remove
+make file writable and build extension steps.  Run tests from output,
+which provides access to built library.
+
+Change-Id: I87168de8197bed0c47274bca5fb3a92a02f5b845
+---
+ gnu/packages/astronomy.scm | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 230eb7f76c9..d75c20f0d1e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3729,14 +3729,10 @@ (define-public python-astropy
+             (lambda* (#:key tests? test-flags #:allow-other-keys)
+               (when tests?
+                 (setenv "HOME" "/tmp")
+-                (make-file-writable "astropy/_compiler.c")
+-                ;; Extensions have to be rebuilt before running the tests.
+-                (invoke "python" "setup.py" "build_ext" "--inplace"
+-                        "-j" (number->string (parallel-job-count)))
+                 ;; Step out of the source directory to avoid interference; we
+                 ;; want to run the installed code with extensions etc.
+-                (with-directory-excursion "/tmp"
+-                  (apply invoke "pytest" "-v" test-flags))))))))
++                (with-directory-excursion #$output
++                  (apply invoke "pytest" "-vv" test-flags))))))))
+     (native-inputs
+      (list nss-certs-for-test
+            pkg-config
+-- 
+2.47.1
+

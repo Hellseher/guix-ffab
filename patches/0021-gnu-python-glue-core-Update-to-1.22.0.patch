@@ -1,0 +1,38 @@
+From 40e0e23a8fc2c6a131cdbc3b30c8ab662bf88f79 Mon Sep 17 00:00:00 2001
+Message-ID: <40e0e23a8fc2c6a131cdbc3b30c8ab662bf88f79.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 16:34:09 +0000
+Subject: [PATCH 21/51] gnu: python-glue-core: Update to 1.22.0.
+
+* gnu/packages/astronomy.scm (python-glue-core): Update to 1.22.0.
+
+Change-Id: I01b61ac8c4046044cd734d53ce5b033c3bd238a5
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index df0ae5cc118..1ebc6a9d46a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2689,13 +2689,13 @@ (define-public python-glue-astronomy
+ (define-public python-glue-core
+   (package
+     (name "python-glue-core")
+-    (version "1.21.1")
++    (version "1.22.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "glue_core" version))
+        (sha256
+-        (base32 "1xms896ds70sbym1cr5lrbjl4i8vixy3mcc6qsg1b3ppvky76vmn"))))
++        (base32 "0cx97zbi58fjl9j6wg8clygdiv6a95wgc2azw7ffg16y3qlqwkzs"))))
+     (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-astrodendro
+-- 
+2.47.1
+

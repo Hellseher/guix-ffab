@@ -1,0 +1,42 @@
+From b266d88fdc5e11c74ec8aa8b9ae7479b96766c7b Mon Sep 17 00:00:00 2001
+Message-ID: <b266d88fdc5e11c74ec8aa8b9ae7479b96766c7b.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Jan 2025 14:50:51 +0000
+Subject: [PATCH 17/27] gnu: Add python-pvextractor-bootstrap.
+
+* gnu/packages/astronomy.scm (python-pvextractor-bootstrap): New variable.
+
+Change-Id: I2020fdb58b325056b41ea1038fe79c245c3fec60
+---
+ gnu/packages/astronomy.scm | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fde482f0868..aa9c9d2b111 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2982,6 +2982,19 @@ (define-public python-pvextractor
+ position-frequency slice.")
+     (license license:bsd-3)))
+ 
++(define-public python-pvextractor-bootstrap
++  (hidden-package
++   (package
++     (inherit python-pvextractor)
++     (arguments
++      (list #:tests? #f
++            #:phases #~(modify-phases %standard-phases
++                         (delete 'sanity-check))))
++     (propagated-inputs '())
++     (native-inputs
++      (list python-setuptools
++            python-wheel)))))
++
+ (define-public python-pysiril
+   (package
+     (name "python-pysiril")
+-- 
+2.47.1
+

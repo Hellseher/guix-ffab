@@ -1,0 +1,67 @@
+From 96f3b9c274f6ae2b3a6992d41468922a210cb6ef Mon Sep 17 00:00:00 2001
+Message-ID: <96f3b9c274f6ae2b3a6992d41468922a210cb6ef.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 20 Jan 2025 20:38:14 +0000
+Subject: [PATCH 09/27] gnu: python-cdflib: Update to 1.3.3.
+
+* gnu/packages/astronomy.scm (python-cdflib): Update to 1.3.3.
+[native-inputs]: Remove python-astropy and python-hypothesis; add
+python-astropy-minimal.
+
+Change-Id: I71192f39ac63152bd919a9ba9acdd3475d744e1e
+---
+ gnu/packages/astronomy.scm | 14 ++++++--------
+ 1 file changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0cecabc4b8b..ff879490409 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2028,7 +2028,7 @@ (define-public python-ccdproc
+ (define-public python-cdflib
+   (package
+     (name "python-cdflib")
+-    (version "1.3.2")
++    (version "1.3.3")
+     (source
+      (origin
+        (method git-fetch)               ; no tests in PyPI release
+@@ -2037,28 +2037,26 @@ (define-public python-cdflib
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0g723s5xg7vd37vlbjpgpiljd3vxwccslwzcf619zvdnc2xbcw2c"))))
++        (base32 "1b7r3hfkb3ldi02a6pzdcm4vrnz2ywsxy7zgg5jn903i4686wnsb"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:phases
+            #~(modify-phases %standard-phases
+                (add-before 'build 'set-env-version
+                  (lambda _
+-                   (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+-                           #$version)))
++                   (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version)))
+                (add-before 'check 'set-home-env
+                  (lambda _
+                    (setenv "HOME" (getcwd)))))))
+     (native-inputs
+-     (list python-astropy
+-           python-hypothesis
++     (list python-astropy-minimal
+            python-pytest
+            python-pytest-cov
+            python-pytest-remotedata
+            python-setuptools
+            python-setuptools-scm
+-           python-xarray
+-           python-wheel))
++           python-wheel
++           python-xarray))
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/MAVENSDC/cdflib")
+-- 
+2.47.1
+

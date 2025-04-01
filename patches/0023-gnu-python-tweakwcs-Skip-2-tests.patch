@@ -1,0 +1,51 @@
+From 687cc7f9e22af51d9fdf71fba08e9a3b8975fa5e Mon Sep 17 00:00:00 2001
+Message-ID: <687cc7f9e22af51d9fdf71fba08e9a3b8975fa5e.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Feb 2025 12:37:57 +0000
+Subject: [PATCH 23/51] gnu: python-tweakwcs: Skip 2 tests.
+
+* gnu/packages/astronomy.scm (python-tweakwcs) [arguments] <test-flags>:
+Skip 2 not compatible with GWCS@0.24 tests.
+[native-inputs]: Remove python-codecov and python-pytest-cov.
+
+Change-Id: I1e0c1be92970613f4b3c04e6e9821884db6bcb8d
+---
+ gnu/packages/astronomy.scm | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4f06cc28791..516969fb3a8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6743,6 +6743,15 @@ (define-public python-tweakwcs
+        (sha256
+         (base32 "0a1ygsar9l6jybji9qibz6ja3picv9aiw2jmdcsqdfqhrppknqp7"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      ;; 2 tests are not compatible with gwcs>=0.24, skip them for now
++      ;; and enable in the next release, see
++      ;; <https://github.com/spacetelescope/tweakwcs/pull/220>.
++      #~(list "-k" (string-append
++                    "not test_jwstgwcs_bad_pipelines_no_vacorr"
++                    " and not test_jwstgwcs_bad_pipelines_with_vacorr"))))
+     (propagated-inputs
+      (list python-astropy
+            python-gwcs
+@@ -6752,9 +6761,7 @@ (define-public python-tweakwcs
+            python-stsci-imagestats
+            python-stsci-stimage))
+     (native-inputs
+-     (list python-codecov
+-           python-pytest
+-           python-pytest-cov
++     (list python-pytest
+            python-scipy
+            python-setuptools
+            python-setuptools-scm
+-- 
+2.47.1
+

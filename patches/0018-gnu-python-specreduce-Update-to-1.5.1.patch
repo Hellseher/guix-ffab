@@ -1,0 +1,38 @@
+From 70ac21be5896db7f47ee8e9775eba191678599d7 Mon Sep 17 00:00:00 2001
+Message-ID: <70ac21be5896db7f47ee8e9775eba191678599d7.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Mar 2025 00:22:55 +0000
+Subject: [PATCH 18/34] gnu: python-specreduce: Update to 1.5.1.
+
+* gnu/packages/astronomy.scm (python-specreduce): Update to 1.5.1.
+
+Change-Id: Ib8ed6da65e477381685eae95a05e2650cca22ddb
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d03f0ea346..2f1d7268f0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4085,13 +4085,13 @@ (define-public python-soxs
+ (define-public python-specreduce
+   (package
+     (name "python-specreduce")
+-    (version "1.4.1")
++    (version "1.5.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "specreduce" version))
+        (sha256
+-        (base32 "14ba4ws2z3kpw007f3hpslgp5i6dx082xhql4aim7j82211gpj6s"))))
++        (base32 "0lx2v6wp5lrn9n7b6i15ib3a2rwndjhrm70h2r9mmx7vx44d9sd2"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.48.1
+

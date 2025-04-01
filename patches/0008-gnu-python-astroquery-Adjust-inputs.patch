@@ -1,0 +1,61 @@
+From d3670949c8361ea32fff45bf971422f56438e022 Mon Sep 17 00:00:00 2001
+Message-ID: <d3670949c8361ea32fff45bf971422f56438e022.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 21:20:51 +0000
+Subject: [PATCH 08/34] gnu: python-astroquery: Adjust inputs.
+
+* gnu/packages/astronomy.scm (python-astroquery): [propagated-inputs]:
+Add python-astropy-healpix, python-boto3, and python-regions.
+[native-inputs]: Remove python-astropy-healpix and python-regions; add
+python-pytest-doctestplus.
+[description]: Start from a new line.
+
+Change-Id: I73a68ce54b413f6a8ada628f5a75c8732206ec68
+---
+ gnu/packages/astronomy.scm | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2eda5a9a65..e308dcb02c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4335,26 +4335,29 @@ (define-public python-astroquery
+                   (apply invoke "pytest" "-v" test-flags))))))))
+     (native-inputs
+      (list nss-certs-for-test
+-           python-astropy-healpix
+            python-matplotlib
+-           ;; python-mocpy : Not packed yet, optional
+            python-pytest-astropy
+            python-pytest-dependency
+-           python-regions
++           python-pytest-doctestplus
+            python-setuptools
+            python-wheel))
+     (propagated-inputs
+      (list python-astropy
++           python-astropy-healpix
+            python-beautifulsoup4
++           python-boto3
+            python-html5lib
+            python-keyring
++           ;; python-mocpy : Not packed yet, optional and Rust is required
+            python-numpy
+            python-pyvo
++           python-regions
+            python-requests))
+     (home-page "https://astroquery.readthedocs.io/en/latest/index.html")
+     (synopsis "Access online astronomical data resources")
+-    (description "Astroquery is a package that contains a collection of tools
+-to access online Astronomical data.  Each web service has its own sub-package.")
++    (description
++     "Astroquery is a package that contains a collection of tools to access
++online Astronomical data.  Each web service has its own sub-package.")
+     (license license:bsd-3)))
+ 
+ (define-public python-astroscrappy
+-- 
+2.48.1
+

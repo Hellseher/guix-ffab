@@ -1,0 +1,39 @@
+From 5c862c2bf2d959aaf6910792978e944365b109ca Mon Sep 17 00:00:00 2001
+Message-ID: <5c862c2bf2d959aaf6910792978e944365b109ca.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 14 Mar 2025 00:39:46 +0000
+Subject: [PATCH 07/34] gnu: python-astropy-iers-data: Update to
+ 0.2025.3.17.0.34.53.
+
+* gnu/packages/astronomy.scm (python-astropy-iers-data): Update to 0.2025.3.17.0.34.53.
+
+Change-Id: I1924e0d7d52f29a083ac8bbf3e39e9d014eb92a5
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2876788f47..2eda5a9a65 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4189,13 +4189,13 @@ (define-public python-astropy-healpix
+ (define-public python-astropy-iers-data
+   (package
+     (name "python-astropy-iers-data")
+-    (version "0.2025.2.17.0.34.13")
++    (version "0.2025.3.17.0.34.53")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy_iers_data" version))
+        (sha256
+-        (base32 "0q390s0by2szq82lligwgpbmvmdwi0jyxp0sh51kzrijg928bdil"))))
++        (base32 "0a7a548za7rppsggcnj8njjqq4ajlhrx27qql32jlxzl986havv4"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ; no tests
+-- 
+2.48.1
+

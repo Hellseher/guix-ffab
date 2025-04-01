@@ -1,0 +1,61 @@
+From 0157b31328a3acfb71ff8383be45c6c6dec847b9 Mon Sep 17 00:00:00 2001
+Message-ID: <0157b31328a3acfb71ff8383be45c6c6dec847b9.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 3 Feb 2025 18:28:31 +0000
+Subject: [PATCH 02/51] gnu: Add python-casacore.
+
+* gnu/packages/astronomy.scm (python-casacore): New variable.
+
+Change-Id: I25182daf664c00945f560cb5b7e66c796e165d3f
+---
+ gnu/packages/astronomy.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1cd4d743597..54e974c5a6b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2053,6 +2053,38 @@ (define-public python-casa-formats-io
+ is independent of and does not use @code{casacore}.")
+     (license license:lgpl2.0)))
+ 
++(define-public python-casacore
++  (package
++    (name "python-casacore")
++    (version "3.6.1")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "python_casacore" version))
++       (sha256
++        (base32 "10dva4b3mz0n885d1n91dyzmwj1gwn6mcwd2qrm678kfdccarhfx"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list boost
++           cmake-minimal
++           python-pytest
++           python-scikit-build-core
++           python-setuptools-scm))
++    (inputs
++     (list casacore
++           cfitsio
++           hdf5
++           openblas
++           wcslib))
++    (propagated-inputs
++     (list python-numpy))
++    (home-page "https://casacore.github.io/python-casacore")
++    (synopsis "Python wrapper for Casacore")
++    (description
++     "This package provides a wrapper around @code{casacore}, the radio
++astronomy library.")
++    (license license:gpl3+)))
++
+ (define-public python-ccdproc
+   (package
+     (name "python-ccdproc")
+-- 
+2.47.1
+

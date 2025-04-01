@@ -1,0 +1,64 @@
+From f75af593f5d9264d50b8ce7250d326eea471305f Mon Sep 17 00:00:00 2001
+Message-ID: <f75af593f5d9264d50b8ce7250d326eea471305f.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 16:33:49 +0000
+Subject: [PATCH 41/51] gnu: Add python-glfw.
+
+* gnu/packages/python-graphics.scm (python-glfw): New variable.
+
+Change-Id: Icfc1413fbec367c2b9efc9f9461c9cf24e05fa12
+---
+ gnu/packages/python-graphics.scm | 35 ++++++++++++++++++++++++++++++++
+ 1 file changed, 35 insertions(+)
+
+diff --git a/gnu/packages/python-graphics.scm b/gnu/packages/python-graphics.scm
+index da8ef2d4df1..4539a3398d2 100644
+--- a/gnu/packages/python-graphics.scm
++++ b/gnu/packages/python-graphics.scm
+@@ -100,6 +100,41 @@ (define-public python-glcontext
+ ModernGL on multiple platforms.")
+       (license license:expat))))
+ 
++(define-public python-glfw
++  (package
++    (name "python-glfw")
++    (version "2.8.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "glfw" version))
++       (sha256
++        (base32 "1w36jvn6fx8p7irhwj6bbl67m2id3s0227b3w7bgw9hbicr0vsch"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:tests? #f ; no tests provided
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'fix-lib-paths
++            (lambda _
++              (substitute* "glfw/library.py"
++                (("_get_library_search_paths\\(\\), ")
++                 (format #f "[ '~a/lib' ],"
++                         #$(this-package-input "glfw")))))))))
++    (native-inputs
++     (list python-pytest
++           python-setuptools
++           python-wheel))
++    (inputs
++     (list glfw))
++    (home-page "https://github.com/FlorianRhiem/pyGLFW")
++    (synopsis "Python bindings for GLFW")
++    (description
++     "This package provides Python bindings for @url{http://www.glfw.org/,
++GLFW} OpenGL application development library.")
++    (license license:expat)))
++
+ (define-public python-pyglet
+   (package
+     (name "python-pyglet")
+-- 
+2.47.1
+

@@ -1,0 +1,40 @@
+From d43229cd83137ac33a17aad255fb40bafb9eecdb Mon Sep 17 00:00:00 2001
+Message-ID: <d43229cd83137ac33a17aad255fb40bafb9eecdb.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 11:31:40 +0000
+Subject: [PATCH 14/51] gnu: python-czml3: Update to 2.3.4.
+
+* gnu/packages/astronomy.scm (python-czml3): Update to 2.3.4.
+
+Change-Id: I924e8f0e6e5414ce75b2edd829aaf1a2366c22bf
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 33264de56c6..32ddad9b1ca 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2276,7 +2276,7 @@ (define-public python-crds
+ (define-public python-czml3
+   (package
+     (name "python-czml3")
+-    (version "2.3.0")
++    (version "2.3.4")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2287,7 +2287,7 @@ (define-public python-czml3
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1125239knl4w2njnrqvdc5qzjvq80zlf247z72za7qz6k0rnv3rw"))))
++        (base32 "1ws26kx975c48s6zzj57fyi1d0aiv0arxcrb4hg7jdvhrcyh3nlk"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list python-pytest
+-- 
+2.47.1
+

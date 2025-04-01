@@ -1,0 +1,59 @@
+From 5eb93ca4b6e68471eeeccc7a4df2f0cf2b9d4381 Mon Sep 17 00:00:00 2001
+Message-ID: <5eb93ca4b6e68471eeeccc7a4df2f0cf2b9d4381.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 2 Mar 2025 20:48:48 +0000
+Subject: [PATCH 25/34] gnu: Add python-simplify-polyline.
+
+* gnu/packages/python-xyz.scm (python-simplify-polyline): New variable.
+
+Change-Id: Ib4030f83db16caa07650f35080e7172f7d611f8f
+---
+ gnu/packages/python-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index d22720619c..7b68ec3390 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -743,6 +743,36 @@ (define-public python-shxparser
+ many CNC and laser operations.")
+     (license license:expat)))
+ 
++(define-public python-simplify-polyline
++  (package
++    (name "python-simplify-polyline")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "simplify_polyline" version))
++       (sha256
++        (base32 "08f6bvwbg04z19pirq4ynsiq89yhbzqh9g6zbnp9fvdnmics7hgw"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list python-pytest
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list python-numpy))
++    (home-page "https://github.com/ShayHill/simplify_polyline")
++    (synopsis "Simplify an open or closed polyline")
++    (description
++     "This package implements functionality to work with plyline.
++Features:
++@itemize
++@item Visvalingham-Whyatt - removes the smallest triangles formed by
++three consecutive points in a polyline or polygon
++@item Douglas-Peucker - gives a better representation of the convex hull
++@end itemize")
++    (license license:expat)))
++
+ (define-public python-takethetime
+   (package
+     (name "python-takethetime")
+-- 
+2.48.1
+

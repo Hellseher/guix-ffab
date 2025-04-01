@@ -1,0 +1,63 @@
+From ae68597b8fe5be604d27bf4b50a40c94b77e1311 Mon Sep 17 00:00:00 2001
+Message-ID: <ae68597b8fe5be604d27bf4b50a40c94b77e1311.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Jan 2025 18:27:04 +0000
+Subject: [PATCH 19/27] gnu: python-statmorph: Update to 0.6.1.
+
+* gnu/packages/astronomy.scm (python-statmorph): Update to 0.6.1.
+[arguments] <tests>: Skip 3 failing tests, reported upstream.
+<phases>: Add 'relax-requirements.
+[native-inputs]: Add python-wheel.
+
+Change-Id: I2a794c585cf9ed3c484fbdc761c7426425965dba
+---
+ gnu/packages/astronomy.scm | 23 ++++++++++++++++++++---
+ 1 file changed, 20 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1ad0bd4dc8c..ea9cbcd79b7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5062,17 +5062,34 @@ (define-public python-spisea
+ (define-public python-statmorph
+   (package
+     (name "python-statmorph")
+-    (version "0.6.0")
++    (version "0.6.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "statmorph" version))
+        (sha256
+-        (base32 "1575vmk4kl06yxyid7mb1r7llbrmraagvx2b0h5x335ha7irnkjk"))))
++        (base32 "0q9h8yqd8w8ckakn3hx7r5mag3vpgaah077rvi3bdmkmix5ky7r9"))))
+     (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      ;; See <https://github.com/vrodgom/statmorph/issues/13>.
++      #~(list "-k" (string-join
++                    (list "not test_no_psf"
++                          "test_psf"
++                          "test_weightmap")
++                    " and not "))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "setup.py"
++                ;; scikit-image>=0.25.0
++                ((">=0.25.0") ">=0.23.2")))))))
+     (native-inputs
+      (list python-pytest
+-           python-setuptools))
++           python-setuptools
++           python-wheel))
+     (propagated-inputs
+      (list python-astropy
+            python-numpy
+-- 
+2.47.1
+

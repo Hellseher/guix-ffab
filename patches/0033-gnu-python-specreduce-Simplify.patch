@@ -1,0 +1,47 @@
+From 4f6b36ec9be9fd47eefcc13cad7414ed6f85dc36 Mon Sep 17 00:00:00 2001
+Message-ID: <4f6b36ec9be9fd47eefcc13cad7414ed6f85dc36.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 14:55:54 +0000
+Subject: [PATCH 33/51] gnu: python-specreduce: Simplify.
+
+* gnu/packages/astronomy.scm (python-specreduce) [arguments] <phases>:
+Remove 'patch-pyproject-toml.
+[native-inputs]: Remove python-setuptools-scm; add
+python-setuptools-scm-next.
+
+Change-Id: Ia582574b00bfb5a08a39c8ac8bac591fd661706e
+---
+ gnu/packages/astronomy.scm | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index d406bab2717..9df3e2f828f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3566,12 +3566,6 @@ (define-public python-specreduce
+                     " and not specreduce.calibration_data.get_reference_file_path"))
+       #:phases
+       #~(modify-phases %standard-phases
+-          (add-after 'unpack 'patch-pypojrect-toml
+-            (lambda _
+-              (substitute* "pyproject.toml"
+-                ;; TypeError: Configuration.__init__() got an unexpected
+-                ;; keyword argument 'version_file'
+-                (("version_file = .*") ""))))
+          (add-before 'check 'set-home
+            (lambda _
+              ;; Relax matplotlib warning: ... because the default path
+@@ -3581,7 +3575,7 @@ (define-public python-specreduce
+     (native-inputs
+      (list python-photutils
+            python-pytest-astropy
+-           python-setuptools-scm
++           python-setuptools-scm-next
+            python-wheel))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.47.1
+

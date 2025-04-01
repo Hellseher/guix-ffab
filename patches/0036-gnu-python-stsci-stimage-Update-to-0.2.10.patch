@@ -1,0 +1,38 @@
+From 0546f56a9b8183705783234aab5985ba7448c5ff Mon Sep 17 00:00:00 2001
+Message-ID: <0546f56a9b8183705783234aab5985ba7448c5ff.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 20 Feb 2025 20:52:29 +0000
+Subject: [PATCH 36/51] gnu: python-stsci-stimage: Update to 0.2.10.
+
+* gnu/packages/astronomy.scm (python-stsci-stimage): Update to 0.2.10.
+
+Change-Id: I917c3ed9456fd2d7a5595c33ddb6da8645aacd2c
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 82b4aecf1a9..a13a4c232d3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5467,13 +5467,13 @@ (define-public python-stsci-imagestats
+ (define-public python-stsci-stimage
+   (package
+     (name "python-stsci-stimage")
+-    (version "0.2.9")
++    (version "0.2.10")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "stsci_stimage" version))
+               (sha256
+                (base32
+-                "18sqmjiyn76hzkmv3g8549vfygi136gnar6pb0s7wb44j7cvc0in"))))
++                "02qzblw11kfdw9rp2m26zbzlzl3w0dnrhncn383a3sw3dwjn9lpf"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.47.1
+

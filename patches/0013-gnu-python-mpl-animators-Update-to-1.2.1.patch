@@ -1,0 +1,65 @@
+From f2ac675664f5ebabbf310a628b92d7b1ba26d87b Mon Sep 17 00:00:00 2001
+Message-ID: <f2ac675664f5ebabbf310a628b92d7b1ba26d87b.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 23:05:45 +0000
+Subject: [PATCH 13/34] gnu: python-mpl-animators: Update to 1.2.1.
+
+* gnu/packages/astronomy.scm (python-mpl-animators): Update to 1.2.1.
+[native-inputs]: Remove python-pytest-xdist and python-setuptools-scm; add
+python-setuptools-scm-next.
+
+Change-Id: I69befc54fcb77a7c74a876be93f58eaf5a71fb27
+---
+ gnu/packages/astronomy.scm | 19 +++++++++----------
+ 1 file changed, 9 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a898309d54..91a5d84d34 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4709,31 +4709,30 @@ (define-public python-kanon
+ (define-public python-mpl-animators
+   (package
+     (name "python-mpl-animators")
+-    (version "1.2.0")
++    (version "1.2.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "mpl_animators" version))
+        (sha256
+-        (base32 "0xxzwxp2zss2s5ci6d349nfdc4hcbm10pqmf5zf14yn66plc1r4k"))))
++        (base32 "1jscdgx1ynqvidh0kc6jxhjlp7lxhilwnp5pb6ddi7nb10as90kz"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:phases
+       #~(modify-phases %standard-phases
+-         (add-before 'check 'set-home
+-           (lambda _
+-             ;; Relax matplotlib warning: ... because the default path
+-             ;; (/homeless-shelter/.config/matplotlib) is not a writable
+-             ;; directory ...
+-             (setenv "HOME" "/tmp"))))))
++          (add-before 'check 'set-home
++            (lambda _
++              ;; Relax matplotlib warning: ... because the default path
++              ;; (/homeless-shelter/.config/matplotlib) is not a writable
++              ;; directory ...
++              (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-pytest
+            python-pytest-doctestplus
+            python-pytest-mpl
+-           python-pytest-xdist
+            python-setuptools
+-           python-setuptools-scm
++           python-setuptools-scm-next
+            python-wheel))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.48.1
+

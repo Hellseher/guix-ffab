@@ -1,0 +1,59 @@
+From ed83f447648590f08380216a935e560b2b9a1887 Mon Sep 17 00:00:00 2001
+Message-ID: <ed83f447648590f08380216a935e560b2b9a1887.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 4 Mar 2025 00:28:02 +0000
+Subject: [PATCH 27/34] gnu: Add python-stsci-skypac.
+
+* gnu/packages/astronomy.scm (python-stsci-skypac): New variable.
+
+Change-Id: Ia4a87dbc7a3d5323907a2dea98df696582965532
+---
+ gnu/packages/astronomy.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 3143867010..df3131646b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7026,6 +7026,36 @@ (define-public python-skyfield
+ orbit around the Earth.")
+     (license license:expat)))
+ 
++(define-public python-stsci-skypac
++  (package
++    (name "python-stsci-skypac")
++    (version "1.0.10")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "stsci_skypac" version))
++       (sha256
++        (base32 "0amfknfxzrmia0d8x83i9h2v5760ynvfgfs0kzpb1ib0vyaci671"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list #:tests? #f)) ; no tests in PyPI or git
++    (native-inputs
++     (list python-setuptools
++           python-setuptools-scm-next
++           python-wheel))
++    (propagated-inputs
++     (list python-astropy
++           python-numpy
++           python-spherical-geometry
++           python-stsci-imagestats
++           python-stsci-tools
++           python-stwcs))
++    (home-page "https://stsci-skypac.readthedocs.io/en/latest")
++    (synopsis "Sky matching on image mosaic")
++    (description
++     "This package implements a functionality to match sky on image mosaic.")
++    (license license:bsd-3)))
++
+ (define-public python-stsci-tools
+   (package
+     (name "python-stsci-tools")
+-- 
+2.48.1
+

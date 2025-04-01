@@ -1,0 +1,47 @@
+From 6e8219b2e525a24f9eee7067f38e15bfbe348dfb Mon Sep 17 00:00:00 2001
+Message-ID: <6e8219b2e525a24f9eee7067f38e15bfbe348dfb.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 17 Jan 2025 09:18:37 +0000
+Subject: [PATCH 06/27] gnu: python-astropy-iers-data: Update to
+ 0.2025.1.20.0.32.27.
+
+* gnu/packages/astronomy.scm (python-astropy-iers-data): Update to 0.2025.1.20.0.32.27.
+[native-inptus]: Remove python-hypothesis.
+
+Change-Id: I75bd9bfd5199741c3df98240439ef2d5302e6510
+---
+ gnu/packages/astronomy.scm | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a80c6fee941..9dc026ece3a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3520,19 +3520,18 @@ (define-public python-astropy-healpix
+ (define-public python-astropy-iers-data
+   (package
+     (name "python-astropy-iers-data")
+-    (version "0.2024.11.18.0.35.2")
++    (version "0.2025.1.20.0.32.27")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy_iers_data" version))
+        (sha256
+-        (base32 "1n6j5pa5whcpx2hn7n78a7k2xllwgj5gq4lkb9jimrdvx7p0hl5i"))))
++        (base32 "1r4vdg90kk4d84vd0gjhnqlwazccsa1w53lj0d1dlkfnbhlkdfmi"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ; no tests
+     (native-inputs
+-     (list python-hypothesis
+-           python-setuptools
++     (list python-setuptools
+            python-setuptools-scm
+            python-wheel))
+     (home-page "https://docs.astropy.org/en/latest/utils/iers.html")
+-- 
+2.47.1
+

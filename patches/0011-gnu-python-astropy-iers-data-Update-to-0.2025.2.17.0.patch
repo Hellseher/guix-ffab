@@ -1,0 +1,49 @@
+From d3d4c79555d0a27ec0c7c81120534d28a5731878 Mon Sep 17 00:00:00 2001
+Message-ID: <d3d4c79555d0a27ec0c7c81120534d28a5731878.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 14 Feb 2025 20:25:29 +0000
+Subject: [PATCH 11/51] gnu: python-astropy-iers-data: Update to
+ 0.2025.2.17.0.34.13.
+
+* gnu/packages/astronomy.scm (python-astropy-iers-data): Update to 0.2025.2.17.0.34.13.
+[synopsis]: Fix lint warning, shorten it.
+
+Change-Id: I689e20b12f59392c85b609d128aa0e9e2c149c4d
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index db3500c2910..cc7da2e021a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3840,13 +3840,13 @@ (define-public python-astropy-healpix
+ (define-public python-astropy-iers-data
+   (package
+     (name "python-astropy-iers-data")
+-    (version "0.2025.1.20.0.32.27")
++    (version "0.2025.2.17.0.34.13")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "astropy_iers_data" version))
+        (sha256
+-        (base32 "1r4vdg90kk4d84vd0gjhnqlwazccsa1w53lj0d1dlkfnbhlkdfmi"))))
++        (base32 "0q390s0by2szq82lligwgpbmvmdwi0jyxp0sh51kzrijg928bdil"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list #:tests? #f)) ; no tests
+@@ -3855,7 +3855,7 @@ (define-public python-astropy-iers-data
+            python-setuptools-scm
+            python-wheel))
+     (home-page "https://docs.astropy.org/en/latest/utils/iers.html")
+-    (synopsis "IERS Earth Rotation and Leap Second tables for the astropy core package")
++    (synopsis "IERS Earth Rotation and Leap Second tables for Astropy core")
+     (description
+      "The @code{iers} package provides access to the tables provided by the
+ @acronym{International Earth Rotation and Reference Systems, IERS} service, in
+-- 
+2.47.1
+

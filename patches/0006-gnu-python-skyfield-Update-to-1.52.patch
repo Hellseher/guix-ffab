@@ -1,0 +1,40 @@
+From e0c22b6d552b93b7b63246adf177c2b659a4678d Mon Sep 17 00:00:00 2001
+Message-ID: <e0c22b6d552b93b7b63246adf177c2b659a4678d.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 23:44:49 +0000
+Subject: [PATCH 06/34] gnu: python-skyfield: Update to 1.52.
+
+* gnu/packages/astronomy.scm (python-skyfield): Update to 1.52.
+
+Change-Id: I0dbae6c4f7ffad9c177d0e51a5483b361e5ad3db
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a74f6c3947..2876788f47 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6915,7 +6915,7 @@ (define-public python-roman-datamodels
+ (define-public python-skyfield
+   (package
+     (name "python-skyfield")
+-    (version "1.49")
++    (version "1.52")
+     (source
+      (origin
+        (method git-fetch) ; PyPI tarball lacks test data
+@@ -6924,7 +6924,7 @@ (define-public python-skyfield
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1rk71lzy8w28f2kzhxb3pyndncrj91jay43nvqlrlzjxi2rbg7ix"))))
++        (base32 "08gg94fb4h5gjsywzy539h9znyghbi0rqnfsnajhwf5vq8wwhbzq"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.48.1
+

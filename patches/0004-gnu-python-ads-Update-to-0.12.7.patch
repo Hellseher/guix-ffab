@@ -1,0 +1,38 @@
+From d0c41423fd93f72036336406b6d7f45b8779ceba Mon Sep 17 00:00:00 2001
+Message-ID: <d0c41423fd93f72036336406b6d7f45b8779ceba.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 17 Jan 2025 09:15:38 +0000
+Subject: [PATCH 04/27] gnu: python-ads: Update to 0.12.7.
+
+* gnu/packages/astronomy.scm (python-ads): Update to 0.12.7.
+
+Change-Id: I54bda0030109e2d3c36eb6620f8cf50e19e1a4f0
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 545a7434e69..eda8ca325b1 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1511,13 +1511,13 @@ (define-public python-acstools
+ (define-public python-ads
+   (package
+     (name "python-ads")
+-    (version "0.12.6")
++    (version "0.12.7")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ads" version))
+        (sha256
+-        (base32 "18aizbsmhwz99flz8n101mi0n0lk3m3qqzfvmxrmjwqvydfypjml"))))
++        (base32 "156y3zp0nm77976rwsxjjdh7yvggas8s6m0nm523khvn4lq8f9n0"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+      (list nss-certs-for-test
+-- 
+2.47.1
+

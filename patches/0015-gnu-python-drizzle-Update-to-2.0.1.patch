@@ -1,0 +1,64 @@
+From e83274842ee9a17e47306d8def18e4c356746f8f Mon Sep 17 00:00:00 2001
+Message-ID: <e83274842ee9a17e47306d8def18e4c356746f8f.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 11:42:32 +0000
+Subject: [PATCH 15/51] gnu: python-drizzle: Update to 2.0.1.
+
+* gnu/packages/astronomy.scm (python-drizzle): Update to 2.0.1.
+[propagated-inputs]: Remove python-astropy.
+[native-inputs]: Add python-astropy-minimal and python-gwcs.
+
+Change-Id: I27f910d31a96b1578b876696cb11edf1bbcff0e2
+---
+ gnu/packages/astronomy.scm | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 32ddad9b1ca..6e1d8d4e8bb 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2311,7 +2311,7 @@ (define-public python-czml3
+ (define-public python-drizzle
+   (package
+     (name "python-drizzle")
+-    (version "2.0.0")
++    (version "2.0.1")
+     (source
+      (origin
+        (method git-fetch) ;PyPi doesn't have the test data sets
+@@ -2320,7 +2320,7 @@ (define-public python-drizzle
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1psa98n81wphin15j7k0392rh94dkhnwrjp32lr40gb9ldp52mcm"))))
++        (base32 "113fqr87glqkvh4szqvbv0b6brr3bwp4d65qy1r1q4b90318p2zf"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2334,16 +2334,16 @@ (define-public python-drizzle
+               ;; Cython extensions have to be built before running the tests.
+               (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (native-inputs
+-     (list python-pytest
++     (list python-astropy-minimal
++           python-gwcs
++           python-pytest
+            python-setuptools
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-     (list python-astropy
+-           python-numpy))
++     (list python-numpy))
+     (home-page "https://github.com/spacetelescope/drizzle")
+-    (synopsis
+-     "Astronomical tool for combining dithered images into a single image")
++    (synopsis "Combining dithered images into a single image")
+     (description
+      "The drizzle library is a Python package for combining dithered images
+ into a single image.  This library is derived from code used in DrizzlePac.
+-- 
+2.47.1
+

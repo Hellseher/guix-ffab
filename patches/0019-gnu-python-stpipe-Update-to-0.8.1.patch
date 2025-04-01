@@ -1,0 +1,58 @@
+From 4ac3b64d5c3f3165ab418e0a1a915042e0ba0f14 Mon Sep 17 00:00:00 2001
+Message-ID: <4ac3b64d5c3f3165ab418e0a1a915042e0ba0f14.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Mar 2025 10:33:15 +0000
+Subject: [PATCH 19/34] gnu: python-stpipe: Update to 0.8.1.
+
+* gnu/packages/astronomy.scm (python-stpipe): Update to 0.8.1.
+[propagated-inputs]: Add python-importlib-metadata and python-pyyaml.
+[native-inputs]: Remove python-pytest-openfiles.
+
+Change-Id: Idc8ea72b5bf19e435489eef055cec31a93e40494
+---
+ gnu/packages/astronomy.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 2f1d7268f0..790a5f2f9e 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5951,13 +5951,13 @@ (define-public python-stdatamodels
+ (define-public python-stpipe
+   (package
+     (name "python-stpipe")
+-    (version "0.8.0")
++    (version "0.8.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stpipe" version))
+        (sha256
+-        (base32 "1883gbn9dy3f53423rka55r828ml38dsqdamn2bgf2w5xf6cp7dg"))
++        (base32 "1bvdcyhqnk10ks60hcdh8javgva23y9rxqsk69frdij39ainb872"))
+        (modules '((guix build utils)))
+        (snippet
+         '(begin
+@@ -5971,14 +5971,15 @@ (define-public python-stpipe
+     (native-inputs
+      (list python-pytest
+            python-pytest-doctestplus
+-           python-pytest-openfiles
+-           python-setuptools-scm
+            python-setuptools
++           python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+      (list python-asdf
+            python-astropy
+            python-crds
++           python-importlib-metadata
++           python-pyyaml
+            python-stdatamodels))
+     (home-page "https://github.com/spacetelescope/stpipe")
+     (synopsis "Framework for calibration pipeline software")
+-- 
+2.48.1
+

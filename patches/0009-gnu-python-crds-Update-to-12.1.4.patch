@@ -1,0 +1,68 @@
+From 9e53ba816c557c6b622a47d48080d434f0ee5a86 Mon Sep 17 00:00:00 2001
+Message-ID: <9e53ba816c557c6b622a47d48080d434f0ee5a86.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 21:33:43 +0000
+Subject: [PATCH 09/34] gnu: python-crds: Update to 12.1.4.
+
+* gnu/packages/astronomy.scm (python-crds): Update to 12.1.4.
+[propagated-inputs]: Add python-beautifulsoup4.
+
+Change-Id: Ieb6a690115beae8231378bbbf201f1fa27cfcf0c
+---
+ gnu/packages/astronomy.scm | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index e308dcb02c..816a2a7c32 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2568,13 +2568,13 @@ (define-public python-cosmopy
+ (define-public python-crds
+   (package
+     (name "python-crds")
+-    (version "12.0.9")
++    (version "12.1.4")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "crds" version))
+        (sha256
+-        (base32 "0cf6pr6lixqhmvig9ajhh68yd1ri7dninamakvs728mjd5nswmw3"))))
++        (base32 "1h4il1gpk3219lskd17vfa5wpbpj2mhacv2yv9v4v33kwzfjb5w7"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -2582,21 +2582,22 @@ (define-public python-crds
+       ;; additional test data. See:
+       ;; https://github.com/spacetelescope/crds/blob/master/setup_test_cache
+       #:tests? #f))
++    (native-inputs
++     (list python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+      (list python-asdf
+            python-astropy
++           python-beautifulsoup4
+            python-boto3
+            python-filelock
+            python-numpy
+            python-parsley
+            python-pysynphot
++           python-requests
+            python-roman-datamodels
+-           python-stsynphot
+-           python-requests))
+-    (native-inputs
+-     (list python-setuptools
+-           python-setuptools-scm
+-           python-wheel))
++           python-stsynphot))
+     (home-page "https://hst-crds.stsci.edu")
+     (synopsis "Calibration Reference Data System for HST and JWST")
+     (description
+-- 
+2.48.1
+

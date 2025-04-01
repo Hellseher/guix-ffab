@@ -1,0 +1,55 @@
+From e1cff3f3334664fa1d9e5d42e2d6d613bc970970 Mon Sep 17 00:00:00 2001
+Message-ID: <e1cff3f3334664fa1d9e5d42e2d6d613bc970970.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 14:33:33 +0000
+Subject: [PATCH 16/51] gnu: python-drms: Update to 0.9.0.
+
+* gnu/packages/astronomy.scm (python-drms): Update to 0.9.0.
+[propagated-inputs]: Add python-packaging.
+[native-inputs]: Remove python-astropy and python-setuptools-scm; add
+python-astropy-minimal and python-setuptools-scm-next.
+
+Change-Id: I160e85a89985f194d1701800c56301c3a70599d9
+---
+ gnu/packages/astronomy.scm | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6e1d8d4e8bb..36d022f8ae3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2357,22 +2357,24 @@ (define-public python-drizzle
+ (define-public python-drms
+   (package
+     (name "python-drms")
+-    (version "0.8.0")
++    (version "0.9.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "drms" version))
+        (sha256
+-        (base32 "19lqy510d7iyxfz445h2rn4d0rvmd4d3lnjmvbkvv270ckpfw09f"))))
++        (base32 "0nnyqzy9dblis3q1xhx77z8ys1k969fh9qqdvmapn46v91299gml"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-astropy
++     (list python-astropy-minimal
+            python-pytest-astropy
+            python-setuptools
+-           python-setuptools-scm
++           python-setuptools-scm-next
+            python-wheel))
+     (propagated-inputs
+-     (list python-numpy python-pandas))
++     (list python-numpy
++           python-packaging
++           python-pandas))
+     (home-page "https://sunpy.org")
+     (synopsis "Access astronomical HMI, AIA and MDI data with Python")
+     (description
+-- 
+2.47.1
+

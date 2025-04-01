@@ -1,0 +1,58 @@
+From 7e8eb77b4988a15df07d42b00e4571ac2e2c67b1 Mon Sep 17 00:00:00 2001
+Message-ID: <7e8eb77b4988a15df07d42b00e4571ac2e2c67b1.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 17 Feb 2025 14:14:05 +0000
+Subject: [PATCH 08/51] gnu: python-asdf-astropy: Update to 0.7.1.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy): Update to 0.7.1.
+[propagated-inputs]: Add python-asdf-standard.
+[native-inputs]: Remove python-coverage.
+
+Change-Id: I18c99197d7fe4f9af4ee00c65ef2236c6b8f6517
+---
+ gnu/packages/astronomy.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a91bc5e523c..230eb7f76c9 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1717,13 +1717,13 @@ (define-public python-asdf-3
+ (define-public python-asdf-astropy
+   (package
+     (name "python-asdf-astropy")
+-    (version "0.7.0")
++    (version "0.7.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "asdf_astropy" version))
+        (sha256
+-        (base32 "0985bhmhnjzlf8n78r1i1dfhbvq167xqz0667kg3jm0l2177b0f9"))))
++        (base32 "1ir4c2mp6hbkkcry2q22sa2rxcs3ry3gpa4v9a1vsi89xr4a99as"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -1734,8 +1734,7 @@ (define-public python-asdf-astropy
+           (add-before 'check 'set-home-env
+             (lambda _ (setenv "HOME" "/tmp"))))))
+     (native-inputs
+-     (list python-coverage
+-           python-h5py
++     (list python-h5py
+            python-pandas
+            python-pytest
+            python-pytest-astropy
+@@ -1746,6 +1745,7 @@ (define-public python-asdf-astropy
+     (propagated-inputs
+      (list python-asdf
+            python-asdf-coordinates-schemas
++           python-asdf-standard
+            python-asdf-transform-schemas
+            python-astropy
+            python-numpy
+-- 
+2.47.1
+

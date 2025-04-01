@@ -1,0 +1,32 @@
+From 908520e54d323371733d4786d458f4c695ab4b07 Mon Sep 17 00:00:00 2001
+Message-ID: <908520e54d323371733d4786d458f4c695ab4b07.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 22:45:37 +0000
+Subject: [PATCH 12/34] gnu: python-glue-qt: Enable tests.
+
+* gnu/packages/astronomy.scm (python-glue-qt): Enable tests, upstream
+has fixed them.
+
+Change-Id: Ic9a98f9beb56c0e29a2a68c04f26eab5d3f18934
+---
+ gnu/packages/astronomy.scm | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5f8fccf3da..a898309d54 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3147,8 +3147,6 @@ (define-public python-glue-qt
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; Broken upstram, see <https://github.com/glue-viz/glue-qt/issues/23>.
+-      #:tests? #f
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'build 'set-env-version
+-- 
+2.48.1
+

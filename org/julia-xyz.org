@@ -1,6 +1,6 @@
 #+title: Julia Lang land
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2024-12-30 Mon 15:42:49 GMT>
+#+modified: <2025-01-12 Sun 21:43:10 GMT>
 
 * Synopsis
 This workflow file contains packaging process for Julia programming language related packages.
@@ -124,7 +124,7 @@ This workflow file contains packaging process for Julia programming language rel
 - [ ] :patch-sent
 - [ ] :patch-applied-upstream
 - [-] :inputs [10/11][90%]
-  - [X] julia-compositionsbase
+  - [X] julia-compositionsbases
     - [X] :packed <2024-12-10 Tue>
   - [X] julia-constructionbase
   - [X] julia-aqua

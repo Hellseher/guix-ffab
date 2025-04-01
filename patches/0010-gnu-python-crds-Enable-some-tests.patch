@@ -1,0 +1,77 @@
+From 0739b9113b24d660db173e224ed442f73e088a8d Mon Sep 17 00:00:00 2001
+Message-ID: <0739b9113b24d660db173e224ed442f73e088a8d.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 22:18:29 +0000
+Subject: [PATCH 10/34] gnu: python-crds: Enable some tests.
+
+* gnu/packages/astronomy.scm (python-crds) [arguments] <tests?>: Enable
+them.
+<test-flags>: Ignore tests files which tests require network access,
+additional test data or just fail the most.
+[native-inputs]: Add python-mock, python-pytest, python-pytest-astropy,
+python-pytest-doctestplus, and python-stsynphot.
+
+Change-Id: Ic4634c8354c5094c45091b7e08e5bcea944fe47b
+---
+ gnu/packages/astronomy.scm | 41 +++++++++++++++++++++++++++++++++-----
+ 1 file changed, 36 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 816a2a7c32..920376e038 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2578,13 +2578,44 @@ (define-public python-crds
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; XXX: Tests require Internet access to https://hst-crds.stsci.edu and
+-      ;; additional test data. See:
+-      ;; https://github.com/spacetelescope/crds/blob/master/setup_test_cache
+-      #:tests? #f))
++      #:test-flags
++      ;; XXX: Tests require a complex set up and test data, try to run some
++      ;; minimal portion of unit tests to persist package comparability during
++      ;; updates.
++      #~(map
++         (lambda (ignore) (format #f "--ignore=~a" ignore))
++         ;; Introduce cycle: python-crds -> python-stdatamodels -> python-crds
++         (list "test/bestrefs/test_bestrefs.py"
++               ;; Network is required to access <https://hst-crds.stsci.edu>.
++               "test/bestrefs/"
++               "test/submit/"
++               ;; XXX: Excluding test files which tests fail the most, maybe
++               ;; find a way how to enable/fix them.
++               "test/certify/test_certify.py"
++               "test/core/test_cmdline.py"
++               "test/core/test_heavy_client.py"
++               "test/core/test_reftypes.py"
++               "test/core/test_rmap.py"
++               "test/core/test_substitutions.py"
++               "test/misc/test_check_archive.py"
++               "test/misc/test_synphot.py"
++               "test/refactoring/test_refactor.py"
++               "test/roman/test_roman.py"
++               "test/test_bad_files.py"
++               "test/test_build6.py"
++               "test/test_diff.py"
++               "test/test_list.py"
++               "test/test_matches.py"
++               "test/test_rowdiff.py"
++               "test/test_sync.py"))))
+     (native-inputs
+-     (list python-setuptools
++     (list python-mock
++           python-pytest
++           python-pytest-astropy
++           python-pytest-doctestplus
++           python-setuptools
+            python-setuptools-scm
++           python-stsynphot
+            python-wheel))
+     (propagated-inputs
+      (list python-asdf
+-- 
+2.48.1
+

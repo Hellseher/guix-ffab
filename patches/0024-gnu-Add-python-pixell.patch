@@ -1,0 +1,79 @@
+From 2be7ecede63ff95cffdbfee185ffa996d56f12a2 Mon Sep 17 00:00:00 2001
+Message-ID: <2be7ecede63ff95cffdbfee185ffa996d56f12a2.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 Jan 2025 22:51:41 +0000
+Subject: [PATCH 24/27] gnu: Add python-pixell.
+
+* gnu/packages/astronomy.scm (python-pixell): New variable.
+
+Change-Id: If854e44edbfccf8dfb03b5354893196ef9b1b789
+---
+ gnu/packages/astronomy.scm | 43 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4057feac8f8..c4d7936e3dd 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -39,6 +39,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (gnu packages bash)
+   #:use-module (gnu packages bison)
+   #:use-module (gnu packages boost)
++  #:use-module (gnu packages build-tools)
+   #:use-module (gnu packages certs)
+   #:use-module (gnu packages check)
+   #:use-module (gnu packages cmake)
+@@ -2934,6 +2935,48 @@ (define-public python-holodeck
+ observationally-derived galaxy merger catalogs.")
+     (license license:expat)))
+ 
++(define-public python-pixell
++  (package
++    (name "python-pixell")
++    (version "0.28.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pixell" version))
++       (sha256
++        (base32 "11xd0ld329vr3spg5nzszn0bxzahnvkrh2akkd7qff33ndf75hkk"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list gfortran
++           meson-python
++           perl ; fortran/Makefile
++           pkg-config
++           python-cython
++           python-pytest))
++    (propagated-inputs
++     (list python-astropy
++           python-coveralls
++           python-cython ; check why it needs in installation
++           python-dateutil
++           python-ducc0
++           python-h5py
++           python-healpy
++           python-matplotlib
++           python-numba
++           python-numpy
++           python-pillow
++           python-pyyaml
++           python-scipy))
++    (home-page "https://pixell.readthedocs.io/")
++    (synopsis "Tectangular pixel map manipulation and harmonic analysis")
++    (description
++     "pixell is a library for loading, manipulating and analyzing maps stored
++in rectangular pixelization.  It is mainly intended for use with maps of the
++sky (e.g. CMB intensity and polarization maps, stacks of 21 cm intensity maps,
++binned galaxy positions or shear) in cylindrical projection, but its core
++functionality is more general.")
++    (license license:bsd-3)))
++
+ (define-public python-pvextractor
+   (package
+     (name "python-pvextractor")
+-- 
+2.47.1
+

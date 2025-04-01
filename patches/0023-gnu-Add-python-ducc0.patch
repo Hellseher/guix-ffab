@@ -1,0 +1,69 @@
+From 4fa7d61ec5875de9007751b7c2f9514c4a7ff169 Mon Sep 17 00:00:00 2001
+Message-ID: <4fa7d61ec5875de9007751b7c2f9514c4a7ff169.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 19 Jan 2025 22:24:39 +0000
+Subject: [PATCH 23/27] gnu: Add python-ducc0.
+
+* gnu/packages/maths.scm (python-ducc0): New variable.
+
+Change-Id: Icb8990b32d25f4ad9bd2391f7745b6c298758efa
+---
+ gnu/packages/maths.scm | 40 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/gnu/packages/maths.scm b/gnu/packages/maths.scm
+index ed9c7bfa0e9..f702603d3d4 100644
+--- a/gnu/packages/maths.scm
++++ b/gnu/packages/maths.scm
+@@ -4045,6 +4045,46 @@ (define-public python-cvxopt
+ programming language.")
+     (license license:gpl3+)))
+ 
++(define-public python-ducc0
++  (package
++    (name "python-ducc0")
++    (version "0.36.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://gitlab.mpcdf.mpg.de/mtr/ducc")
++             (commit (string-append
++                      "ducc0_" (string-replace-substring version "." "_")))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1pfj7k5s3d237r7diqrd7cgvf8p5zms6pp64nfdildx49kwggwab"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags #~(list "python/test")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'build 'set-env
++            (lambda _
++              (setenv "DUCC0_OPTIMIZATION" "portable-strip"))))))
++    (native-inputs
++     (list pybind11
++           python-pytest
++           python-setuptools
++           python-wheel))
++    (propagated-inputs
++     (list python-numpy))
++    (home-page "https://gitlab.mpcdf.mpg.de/mtr/ducc")
++    (synopsis "Distinctly Useful Code Collection")
++    (description
++     "This package provides a collection of basic programming tools for
++numerical computation, including Fast Fourier Transforms, Spherical Harmonic
++Transforms, non-equispaced Fourier transforms, as well as some concrete
++applications like 4pi convolution on the sphere and gridding/degridding of
++radio interferometry data.")
++    (license license:gpl2+)))
++
+ (define-public python-kiwisolver
+   (package
+     (name "python-kiwisolver")
+-- 
+2.47.1
+

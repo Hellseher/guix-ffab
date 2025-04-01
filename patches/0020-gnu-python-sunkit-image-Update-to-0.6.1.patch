@@ -1,0 +1,47 @@
+From ae33d0cb6f3418a23e0496b32c4b5fe744c19617 Mon Sep 17 00:00:00 2001
+Message-ID: <ae33d0cb6f3418a23e0496b32c4b5fe744c19617.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Mar 2025 10:44:35 +0000
+Subject: [PATCH 20/34] gnu: python-sunkit-image: Update to 0.6.1.
+
+* gnu/packages/astronomy.scm (python-sunkit-image): Update to 0.6.1.
+[native-inputs]: Remove python-pytest.
+
+Change-Id: Id83c6f125beb738ad4377030152b65efed4475ff
+---
+ gnu/packages/astronomy.scm | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 790a5f2f9e..a2140837c6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4133,13 +4133,13 @@ (define-public python-specreduce
+ (define-public python-sunkit-image
+   (package
+     (name "python-sunkit-image")
+-    (version "0.6.0")
++    (version "0.6.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunkit_image" version))
+        (sha256
+-        (base32 "0gdbg3g8jxcgkwd34ls6342zj90m6ncas4f655q9dh79lqy7hhm8"))))
++        (base32 "0x8w87vwdr78vcq0zha2y7xyfy16amc5aym4v8127xvphq1ff4v3"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4157,7 +4157,6 @@ (define-public python-sunkit-image
+               (setenv "HOME" "/tmp"))))))
+     (native-inputs
+      (list python-dask
+-           python-pytest
+            python-pytest-astropy
+            python-pytest-mpl
+            python-pytest-xdist
+-- 
+2.48.1
+

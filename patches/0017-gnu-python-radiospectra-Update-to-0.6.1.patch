@@ -1,0 +1,72 @@
+From be2b41a6d8dbeb9deff162f19b3141eb17dd7734 Mon Sep 17 00:00:00 2001
+Message-ID: <be2b41a6d8dbeb9deff162f19b3141eb17dd7734.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 16 Mar 2025 23:34:45 +0000
+Subject: [PATCH 17/34] gnu: python-radiospectra: Update to 0.6.1.
+
+* gnu/packages/astronomy.scm (python-radiospectra): Update to 0.6.1.
+[arguments] <test-flags>: Run tests in parallel, supported in upstream.
+[native-inputs]: Add python-pytest, python-pytest-doctestplus,
+python-pytest-xdist, python-setuptools, and python-wheel.
+
+Change-Id: I5bb6e46a2b92f246aae0fb5bab70834087cec08f
+---
+ gnu/packages/astronomy.scm | 19 +++++++++++++------
+ 1 file changed, 13 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0ab980b9b0..d03f0ea346 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6860,16 +6860,18 @@ (define-public python-radio-beam
+ (define-public python-radiospectra
+   (package
+     (name "python-radiospectra")
+-    (version "0.6.0")
++    (version "0.6.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "radiospectra" version))
+        (sha256
+-        (base32 "1mqdh90hpq7sc9lybmc7y33g84vswf7w0r5hs57rf3a9hzfxad90"))))
++        (base32 "14p4hp9yncyjsrbys0yjq7jbj0n9wf0x5sy67kilqrw14d1xvzch"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-home-env
+@@ -6877,16 +6879,21 @@ (define-public python-radiospectra
+               ;; Tests require HOME to be set.
+               ;;  Permission denied: '/homeless-shelter'
+               (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list python-pytest
++           python-pytest-astropy
++           python-pytest-doctestplus
++           python-pytest-xdist
++           python-setuptools
++           python-setuptools-scm
++           python-sunpy-soar
++           python-wheel))
+     (propagated-inputs
+      (list python-cdflib
+            python-matplotlib
+            python-numpy
+            python-scipy
+            python-sunpy))
+-    (native-inputs
+-     (list python-pytest-astropy
+-           python-setuptools-scm
+-           python-sunpy-soar))
+     (home-page "https://docs.sunpy.org/projects/radiospectra")
+     (synopsis "Support for radio spectra on solar physics")
+     (description
+-- 
+2.48.1
+

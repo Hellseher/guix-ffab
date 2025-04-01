@@ -1,0 +1,45 @@
+From 8c2989626168c68787bcf53da3937ab459cb040d Mon Sep 17 00:00:00 2001
+Message-ID: <8c2989626168c68787bcf53da3937ab459cb040d.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 20 Jan 2025 20:31:15 +0000
+Subject: [PATCH 08/27] gnu: python-ccdproc: Update to 2.4.3.
+
+* gnu/packages/astronomy.scm (python-ccdproc): Update to 2.4.3.
+[native-inputs]: Add python-hatch-vcs and python-hatchling.
+
+Change-Id: I28517fd7e02dbfce0655a528b6aa90ad0ef82500
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 5970421ae30..0cecabc4b8b 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1998,16 +1998,18 @@ (define-public python-casa-formats-io
+ (define-public python-ccdproc
+   (package
+     (name "python-ccdproc")
+-    (version "2.4.2")
++    (version "2.4.3")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ccdproc" version))
+        (sha256
+-        (base32 "14faivm9nihpdwzg0jx1c9zr7jk22gjfjw78raq6h63ypl10i6yx"))))
++        (base32 "1crc565n0x1krd59cjm2vnmzyi0p83yc8vpxq6hldj7vdnqgl8yq"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-memory-profiler
++     (list python-hatch-vcs
++           python-hatchling
++           python-memory-profiler
+            python-pytest-astropy))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.47.1
+

@@ -1,0 +1,58 @@
+From d66de6555bdd71b64ead7392d1a483234b7c79f4 Mon Sep 17 00:00:00 2001
+Message-ID: <d66de6555bdd71b64ead7392d1a483234b7c79f4.1740173176.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1740173176.git.sharlatanus@gmail.com>
+References: <cover.1740173176.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Feb 2025 18:11:24 +0000
+Subject: [PATCH 51/51] gnu: python-jwst-reffiles: Enable tests and
+ sanity-check.
+
+* gnu/packages/astronomy.scm (python-jwst-reffiles) [arguments]
+<tests?>: Enable them.
+<test-flags>: Skip one failing test.
+<phases>: Enable 'sanity-check.
+[native-inputs]: Remove python-stsci-stimage.
+
+Change-Id: Idcbcd4fd955ccfdfec88325d557ca979cb66a2dc
+---
+ gnu/packages/astronomy.scm | 18 +++++-------------
+ 1 file changed, 5 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 9ce7ca50f8e..65890c3e9c8 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4517,25 +4517,17 @@ (define-public python-jwst-reffiles
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      ;; FIXME: Invistigate why it failes on python-jwst side where the
+-      ;; python-tweakwcs is built just fine:
+-      ;;
+-      ;; <...>/tweakwcs/matchutils.py:18: in <module>
+-      ;; from stsci.stimage import xyxymatch
+-      ;; E   ModuleNotFoundError: No module named 'stsci.stimage'
+-      #:tests? #f
+-      #:phases
+-      #~(modify-phases %standard-phases
+-          (delete 'sanity-check))))
++      ;; One test fails with error: FileNotFoundError: [Errno 2] No such file
++      ;; or directory.
++      #:test-flags #~(list "-k" "not test_calib_prep_steps")))
++    (native-inputs
++     (list python-pytest))
+     (propagated-inputs
+      (list python-astropy
+            python-jwst
+            python-matplotlib
+            python-numpy
+            python-scipy))
+-    (native-inputs
+-     (list python-pytest
+-           python-stsci-stimage))
+     (home-page "https://github.com/spacetelescope/jwst_reffiles")
+     (synopsis "Tool for JWST's CRDS-formatted reference files creation")
+     (description
+-- 
+2.47.1
+

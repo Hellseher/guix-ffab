@@ -1,0 +1,53 @@
+From b5770015a38cf4bbd0e6e88860ba3883b0524b6a Mon Sep 17 00:00:00 2001
+Message-ID: <b5770015a38cf4bbd0e6e88860ba3883b0524b6a.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 16 Jan 2025 10:22:47 +0000
+Subject: [PATCH 05/27] gnu: python-asdf-compression: Update to
+ 0.0.1-1.7cfd07c.
+
+* gnu/packages/astronomy.scm (python-asdf-compression): Update to
+0.0.1-1.7cfd07c.
+
+Change-Id: I93c820df700dfd9360f40d90b86a81a8a21327f8
+---
+ gnu/packages/astronomy.scm | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index eda8ca325b1..a80c6fee941 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5899,8 +5899,8 @@ (define-public python-synphot
+ 
+ (define-public python-asdf-compression
+   ;; TODO: No release, change to tag when it's ready.
+-  (let ((commit "57cc7e76fb4163be3e99fb740b36b5ec5ae96e49")
+-        (revision "0"))
++  (let ((commit "7cfd07c6f789d4919e5730e0cda150fb20da4139")
++        (revision "1"))
+     (package
+       (name "python-asdf-compression")
+       (version (git-version "0.0.1" revision commit))
+@@ -5912,7 +5912,7 @@ (define-public python-asdf-compression
+                (commit commit)))
+          (file-name (git-file-name name version))
+          (sha256
+-          (base32 "1g6iiyls950k66dmd0pbqqdvz74kksc4j191n0ik6fhjnkiwifgs"))))
++          (base32 "198y3mnl9kvhva479k6g9zbynjg8apsrwy7lq26g5q6v55s16hgc"))))
+       (build-system pyproject-build-system)
+       (arguments
+        (list
+@@ -5932,7 +5932,7 @@ (define-public python-asdf-compression
+              python-blosc
+              python-lz4
+              python-zstandard))
+-      (home-page "https://github.com/asdf-format/asdf-fits-schemas")
++      (home-page "https://github.com/asdf-format/asdf-compression")
+       (synopsis "ASDF extension to support various compression algorithms")
+       (description
+        "This package includes a plugin for the Python library ASDF to add
+-- 
+2.47.1
+

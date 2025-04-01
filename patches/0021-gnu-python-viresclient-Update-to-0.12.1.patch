@@ -1,0 +1,43 @@
+From a3f248e194eb0555f86b20bca7d688345f7ca7eb Mon Sep 17 00:00:00 2001
+Message-ID: <a3f248e194eb0555f86b20bca7d688345f7ca7eb.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Jan 2025 18:58:32 +0000
+Subject: [PATCH 21/27] gnu: python-viresclient: Update to 0.12.1.
+
+* gnu/packages/astronomy.scm (python-viresclient): Update to 0.12.1.
+
+Change-Id: I3b46ba1c97e4fcda7338c1234850c52c223c62db
+---
+ gnu/packages/astronomy.scm | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 85ff0dd9322..f1ae519c25c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6467,16 +6467,17 @@ (define-public python-tweakwcs
+ (define-public python-viresclient
+   (package
+     (name "python-viresclient")
+-    (version "0.12.0")
++    (version "0.12.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "viresclient" version))
+        (sha256
+-        (base32 "1y3g59yh3ic5288f2n9r6bj7b0w3vfdfcnqfg1va0z7w9jnk55j1"))))
++        (base32 "04micg72jag8zyvszc9hhi5p0zr8j3k93chhd5gkl20bvk69l3fp"))))
+     (build-system pyproject-build-system)
+     (native-inputs
+-     (list python-flit-core python-pytest))
++     (list python-flit-core
++           python-pytest))
+     (propagated-inputs
+      (list python-cdflib
+            python-jinja2
+-- 
+2.47.1
+

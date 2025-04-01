@@ -1,0 +1,54 @@
+From f2adf3952ad8c025b8e7b38d67d8b1e9c141320e Mon Sep 17 00:00:00 2001
+Message-ID: <f2adf3952ad8c025b8e7b38d67d8b1e9c141320e.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Jan 2025 12:25:08 +0000
+Subject: [PATCH 15/27] gnu: python-rad: Update to 0.23.0.
+
+* gnu/packages/astronomy.scm (python-rad): Update to 0.23.0.
+[propagated-inputs]: Remove python-asdf-3; add python-asdf.
+[native-inputs]: Add python-pytest-doctestplus.
+
+Change-Id: I0fa85403b34024d13c668b43aa56b5046955b6e2
+---
+ gnu/packages/astronomy.scm | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4cc69af058e..dc0938fb550 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6179,13 +6179,13 @@ (define python-asdf-wcs-schemas
+ (define-public python-rad
+   (package
+     (name "python-rad")
+-    (version "0.22.0")
++    (version "0.23.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "rad" version))
+        (sha256
+-        (base32 "1p6v49gzbzishy1kdd5g8nbl97qp459s1smb6j94wvif4262zkm8"))))
++        (base32 "1c771lxj45iakj4ynjmfg332cm10yllmwniigs9zzjnb02kmaks5"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -6194,11 +6194,12 @@ (define-public python-rad
+       #:test-flags #~(list "--ignore=tests/test_schemas.py")))
+     (native-inputs
+      (list python-pytest
++           python-pytest-doctestplus
+            python-setuptools
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-     (list python-asdf-3
++     (list python-asdf
+            python-asdf-astropy))
+     (home-page "https://github.com/spacetelescope/rad")
+     (synopsis "Roman Attribute Dictionary")
+-- 
+2.47.1
+

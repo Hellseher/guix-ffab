@@ -1,0 +1,56 @@
+From 21db33dec2a120ee909136532418436194ab85c7 Mon Sep 17 00:00:00 2001
+Message-ID: <21db33dec2a120ee909136532418436194ab85c7.1737500778.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737500778.git.sharlatanus@gmail.com>
+References: <cover.1737500778.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 21 Jan 2025 12:28:43 +0000
+Subject: [PATCH 16/27] gnu: python-roman-datamodels: Update to 0.23.0.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels): Update to 0.23.0.
+[propagated-inputs]: Remove python-asdf-3 and python-psutil; add python-asdf,
+python-asdf-standard, and python-lz4.
+
+Change-Id: I7fc02f43be6eb29d3c492325628e7e759b7e8254
+---
+ gnu/packages/astronomy.scm | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index dc0938fb550..fde482f0868 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6296,13 +6296,13 @@ (define-public python-radiospectra
+ (define-public python-roman-datamodels
+   (package
+     (name "python-roman-datamodels")
+-    (version "0.22.0")
++    (version "0.23.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "roman_datamodels" version))
+        (sha256
+-        (base32 "0n50pgs7y0nmrx86qlny27mas2zgx708gm3xfkl7an2nwkdfwfld"))))
++        (base32 "1r7l93z89d93kkpfcxcy12g1ijy2q942j4g4s1d62rzdcz11gann"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -6322,12 +6322,13 @@ (define-public python-roman-datamodels
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-     (list python-asdf-3
++     (list python-asdf
+            python-asdf-astropy
++           python-asdf-standard
+            python-astropy
+            python-gwcs
++           python-lz4
+            python-numpy
+-           python-psutil
+            python-rad))
+     (home-page "https://github.com/spacetelescope/roman_datamodels")
+     (synopsis "Roman Datamodels Support")
+-- 
+2.47.1
+

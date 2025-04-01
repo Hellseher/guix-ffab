@@ -1,0 +1,47 @@
+From 28d7ae0f0376140d7a66ef04211df7366c9624e1 Mon Sep 17 00:00:00 2001
+Message-ID: <28d7ae0f0376140d7a66ef04211df7366c9624e1.1742668052.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1742668052.git.sharlatanus@gmail.com>
+References: <cover.1742668052.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 21 Mar 2025 10:47:01 +0000
+Subject: [PATCH 21/34] gnu: python-sunpy-soar: Update to 1.11.1.
+
+* gnu/packages/astronomy.scm (python-sunpy-soar): Update to 1.11.1.
+[native-inputs]: Add python-setuptools-scm-next.
+
+Change-Id: Idee2b50c22a42fa1241cd58f47e5b31bdc508b53
+---
+ gnu/packages/astronomy.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a2140837c6..2a89d2201a 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5381,13 +5381,13 @@ (define-public python-sunpy
+ (define-public python-sunpy-soar
+   (package
+     (name "python-sunpy-soar")
+-    (version "1.11.0")
++    (version "1.11.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunpy_soar" version))
+        (sha256
+-        (base32 "015pc6m7bdmgyw2inmjv84fgsjj8x90f91gphyv9ql4xn6yspnc2"))))
++        (base32 "04zdfxb0y7m94lna6bikdc4rwa8n11wh42jyha0fxc604xhy2b3l"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -5429,6 +5429,7 @@ (define-public python-sunpy-soar
+            python-pytest-doctestplus
+            python-responses
+            python-setuptools
++           python-setuptools-scm-next
+            python-wheel))
+     (propagated-inputs
+      (list python-astropy
+-- 
+2.48.1
+
