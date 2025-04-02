@@ -1701,7 +1701,9 @@ symbols in the style of Sublime Text, VSCode, IntelliJ IDEA et al.")
                 "1g3dq618mcnpfyw7q6m32dy08wjzkyvlbd0f2nvwvck682749i1j"))))
     (build-system go-build-system)
     (arguments
-     '(#:import-path "github.com/mgutz/str"))
+     (list
+      #:import-path "github.com/mgutz/str"
+      #:test-subdirs #~(list ".")))
     (home-page "https://github.com/mgutz/str")
     (synopsis "Golang extended string library")
     (description
