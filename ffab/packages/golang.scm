@@ -1820,20 +1820,25 @@ platforms.  Handles killing children of processes as well as the process itself.
 (define-public go-github-com-jesseduffield-gocui
   (package
     (name "go-github-com-jesseduffield-gocui")
-    (version "0.3.0")
+    (version "0.3.1-0.20250220081214-b376cb0857ac")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/jesseduffield/gocui")
-                    (commit (string-append "v" version))))
+                    (commit (go-version->git-ref version))))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "01xac0my3jkiykbqylfldx7yj1xcwjqhxm1d9fqy1gmy3bwwzvkg"))))
+                "17wg1ph0cl0z1q73if4ybm01fxi6avcw92s1q3mnbxs5ywliq9nv"))))
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/jesseduffield/gocui"))
-    (propagated-inputs (list go-github-com-nsf-termbox-go))
+    (native-inputs
+     (list go-github-com-stretchr-testify))
+    (propagated-inputs
+     (list go-github-com-gdamore-tcell-v2
+           go-github-com-go-errors-errors
+           go-github-com-mattn-go-runewidth))
     (home-page "https://github.com/jesseduffield/gocui")
     (synopsis
      "Minimalist Golang package aimed at creating Console User Interfaces")
