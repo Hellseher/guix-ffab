@@ -117,11 +117,20 @@ with @code{git} and your code.")
 ;; Some packages are introduced in:
 ;; - github.com/cli/cli: https://issues.guix.gnu.org/47539
 
+;; NOTE: (Sharlatan-20250402T214421+0100): Fails to build, propbaly an older
+;; golang.org/x/exp v0.0.0-20220318154914-8dddf5d87bd8 is required, where curent
+;; Guix's master provides 0.0.0-20241217172543-b2144cdd0a67.
+;;
+;; Error:
+;; src/github.com/jesseduffield/lazygit/pkg/gui/presentation/graph/graph.go:272:28:
+;; type func(a *Pipe, b *Pipe) bool of func(a, b *Pipe) bool {…} does not match
+;; inferred type func(a *Pipe, b *Pipe) int for func(a E, b E) int
+;;
 ;; 20211220T202352+0000
 (define lazygit
   (package
     (name "lazygit")
-    (version "0.42.0")
+    (version "0.48.0")
     (source
      (origin
        (method git-fetch)
@@ -130,78 +139,53 @@ with @code{git} and your code.")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "0scwm37hvgdf6k0bdhss7iz1dr224dgmh7yhkk9j8qwc5gw0p563"))
+        (base32 "1r0rr08z2qyq3a3wpigjqpskgd066xhky8rpjfn9w98j9859qwrg"))
        (modules '((guix build utils)))
-       (snippet '(for-each delete-file-recursively
-                  ;; TODO: unbundle the rest as well
-                  ;; "vendor/github.com/adrg/xdg"
-                  ;; "vendor/github.com/gookit/color"
-                  ;; "vendor/github.com/jesseduffield/generics"
-                  ;; "vendor/github.com/jesseduffield/lazycore"
-                  ;; "vendor/github.com/karimkhaleel/jsonschema"
-                  ;; "vendor/github.com/mattn/go-runewidth"
-                  ;; "vendor/github.com/mitchellh/go-ps"
-                  ;; "vendor/github.com/samber/lo"
-                  ;; "vendor/gopkg.in/ozeidan/fuzzy-patricia.v3"
-                  ;; "vendor/github.com/stefanhaller/git-todo-parser"
-                  (list "vendor/github.com/atotto/clipboard"
-                        "vendor/github.com/aybabtme/humanlog"
-                        "vendor/github.com/cloudfoundry/jibber_jabber"
-                        "vendor/github.com/creack/pty"
-                        "vendor/github.com/gdamore/tcell/v2"
-                        "vendor/github.com/go-errors/errors"
-                        "vendor/github.com/imdario/mergo"
-                        "vendor/github.com/integrii/flaggy"
-                        "vendor/github.com/jesseduffield/go-git/v5"
-                        "vendor/github.com/jesseduffield/gocui"
-                        "vendor/github.com/jesseduffield/kill"
-                        "vendor/github.com/jesseduffield/minimal/gitignore"
-                        "vendor/github.com/kardianos/osext"
-                        "vendor/github.com/kyokomi/emoji/v2"
-                        "vendor/github.com/lucasb-eyer/go-colorful"
-                        "vendor/github.com/mgutz/str"
-                        "vendor/github.com/sahilm/fuzzy"
-                        "vendor/github.com/sanity-io/litter"
-                        "vendor/github.com/sasha-s/go-deadlock"
-                        "vendor/github.com/sirupsen/logrus"
-                        "vendor/github.com/spf13/afero"
-                        "vendor/github.com/spkg/bom"
-                        "vendor/github.com/stretchr/testify"
-                        "vendor/github.com/xo/terminfo"
-                        "vendor/golang.org/x/exp"
-                        "vendor/gopkg.in/yaml.v3")))))
+       (snippet
+        #~(begin (delete-file-recursively "vendor")))))
     (build-system go-build-system)
     (arguments
      (list
-      #:go go-1.21
+      #:go go-1.22
       #:install-source? #f
       #:import-path "github.com/jesseduffield/lazygit"))
     (native-inputs
-     (list go-github-com-atotto-clipboard
+     (list go-github-com-adrg-xdg
+           go-github-com-atotto-clipboard
            go-github-com-aybabtme-humanlog
            go-github-com-cloudfoundry-jibber-jabber
            go-github-com-creack-pty
            go-github-com-gdamore-tcell-v2
            go-github-com-go-errors-errors
+           go-github-com-gookit-color
            go-github-com-imdario-mergo
            go-github-com-integrii-flaggy
+           go-github-com-jesseduffield-generics
            go-github-com-jesseduffield-go-git-v5
            go-github-com-jesseduffield-gocui
            go-github-com-jesseduffield-kill
+           go-github-com-jesseduffield-lazycore
            go-github-com-jesseduffield-minimal-gitignore
            go-github-com-kardianos-osext
+           go-github-com-karimkhaleel-jsonschema
            go-github-com-kyokomi-emoji-v2
            go-github-com-lucasb-eyer-go-colorful
+           go-github-com-mattn-go-runewidth
            go-github-com-mgutz-str
+           ;go-github-com-mitchellh-go-ps
            go-github-com-sahilm-fuzzy
+           go-github-com-samber-lo
            go-github-com-sanity-io-litter
            go-github-com-sasha-s-go-deadlock
            go-github-com-sirupsen-logrus
            go-github-com-spf13-afero
            go-github-com-spkg-bom
+           go-github-com-stefanhaller-git-todo-parser
            go-github-com-stretchr-testify
            go-github-com-xo-terminfo
            go-golang-org-x-exp
+           go-golang-org-x-sync
+           go-gopkg-in-ozeidan-fuzzy-patricia-v3
            go-gopkg-in-yaml-v3))
     (home-page "https://github.com/jesseduffield/lazygit")
     (synopsis "Terminal UI for git commands")
