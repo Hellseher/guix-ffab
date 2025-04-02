@@ -1863,16 +1863,16 @@ Highlighted features:
 (define-public go-github-com-jesseduffield-go-git-v5
   (package
     (name "go-github-com-jesseduffield-go-git-v5")
-    (version "5.1.1")
+    (version "5.1.2-0.20221018185014-fdd53fef665d")
     (source (origin
               (method git-fetch)
               (uri (git-reference
                     (url "https://github.com/jesseduffield/go-git")
-                    (commit (string-append "v" version))))
+                    (commit (go-version->git-ref version))))
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "0ks3x4qbjcg4nqgc3zg8l6b71mkg6xgs9s0rldbxrkbrf3sh36ar"))))
+                "01fpq396av09b3ijv7fxvi4id5l800awwxv7rm7js9q8pykd1p4f"))))
     (build-system go-build-system)
     (arguments
      ;; NOTE: (Sharlatan-20220813T142811+0100): Some tests require remote access
@@ -1880,16 +1880,15 @@ Highlighted features:
      ;; Disable them or find a way to make them availalbe as inputs.
      (list #:tests? #f
            #:import-path "github.com/jesseduffield/go-git"))
-    (native-inputs (list git))
     (propagated-inputs
      (list go-github-com-armon-go-socks5
            go-github-com-emirpasic-gods
            go-github-com-gliderlabs-ssh
-           go-github-com-go-git-gcfg ;Upstream fix require
+           go-github-com-go-git-gcfg
            go-github-com-go-git-go-billy-v5
            go-github-com-go-git-go-git-fixtures-v4
            go-github-com-google-go-cmp
-           ;go-github-com-imdario-mergo
+           go-github-com-imdario-mergo
            go-github-com-jbenet-go-context
            go-github-com-jessevdk-go-flags
            go-github-com-kevinburke-ssh-config
@@ -1899,9 +1898,7 @@ Highlighted features:
            go-golang-org-x-crypto
            go-golang-org-x-net
            go-golang-org-x-text
-           go-gopkg-in-check-v1
-           ;go-gopkg-in-warnings
-           ))
+           go-gopkg-in-check-v1))
     (home-page "https://github.com/jesseduffield/go-git")
     (synopsis "Git implementation in pure Go")
     (description
