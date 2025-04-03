@@ -17,8 +17,6 @@
 ;;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 (define-module (ffab packages golang)
-  #:use-module (ffab packages golang-web)
-  #:use-module (ffab packages protobuf)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
@@ -41,6 +39,16 @@
   #:use-module (guix git-download)
   #:use-module (guix packages)
   #:use-module (ice-9 match))
+
+;; 20220730T152336+0100
+;; (define-public go-github-com-gin-gonic-gin
+;; added-to-downstream-guix 60c73d0d28b2f19445ba17ca4c7d68108217f9cb
+;; CommitDate: Tue Jan 21 23:42:24 2025 +0000
+
+;; 20220731T195956+0100
+;; (define-public go-github-com-gin-contrib-sse
+;; added-to-downstream-guix 5bedf80c98b43594ced2a39a721d265e549cf2df
+;; CommitDate: Tue Jan 21 23:42:23 2025 +0000
 
 ;; 20210710T203819+0100
 ;; NOTE: (Sharlatan-20220813T152536+0100): it needs more lvoe!

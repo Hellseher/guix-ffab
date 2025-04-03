@@ -18,7 +18,6 @@
 
 (define-module (ffab packages version-control)
   #:use-module (ffab packages golang)
-  #:use-module (ffab packages protobuf)
   #:use-module ((guix licenses) #:prefix license:)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
