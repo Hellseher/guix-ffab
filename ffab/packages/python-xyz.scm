@@ -407,10 +407,12 @@ colors, etc), or overplot two different variables
            python-parameterized
            python-pyserial
            python-pytest
-           python-pytest-timeout))
+           python-pytest-timeout
+           python-setuptools
+           python-wheel))
     (propagated-inputs
      (list python-packaging
-           python-setuptools
+           python-msgpack
            python-typing-extensions
            python-wrapt))
     (home-page "https://github.com/hardbyte/python-can")
