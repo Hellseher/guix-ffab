@@ -243,6 +243,31 @@ ETA, and very cool animations!")
 ;; added-downstram-guix 2ef73c6bf5a6885153f2ab0594961878ee0dbf04
 ;; CommitDate: Fri Jan 5 00:31:36 2024 -0500
 
+;; 20250403T082934+0100
+(define-public python-exitcode
+  (package
+    (name "python-exitcode")
+    (version "0.1.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "exitcode" version))
+       (sha256
+        (base32 "01yybyi4pkvvf4382p28gh4lkxrcyl5vcx2xk95nbsb8011f37mw"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list #:tests? #f)) ; no tests in PyPI or Git
+    (native-inputs
+     (list python-poetry-core
+           python-setuptools))
+    (home-page "https://github.com/rumpelsepp/exitcode")
+    (synopsis "Preferred system exit codes as defined by sysexits.h")
+    (description
+     "This package implements a preferred system exit codes as defined by
+@url{https://man.openbsd.org/sysexits, sysexits.h}. This library is inspired by
+Rust's @url{https://docs.rs/exitcode, exitcode}.")
+    (license license:expat)))
+
 ;; 20240104T162509+0000
 (define-public python-pfzy
   (package
