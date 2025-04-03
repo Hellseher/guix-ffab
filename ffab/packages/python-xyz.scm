@@ -672,6 +672,9 @@ collection.")
       ;; Tests require Canalyst-II USB device.
       #:tests? #f))
     (build-system pyproject-build-system)
+    (native-inputs
+     (list python-setuptools
+           python-wheel))
     (propagated-inputs
      (list python-pyusb))
     (home-page "https://github.com/projectgus/python-canalystii")
