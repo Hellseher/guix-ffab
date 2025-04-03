@@ -504,49 +504,10 @@ This package provides library and binary utilities to manipulate CDF files.")
               "file://CDF_copyright.txt"
               "See CDF_copyright.txt in the distribution."))))
 
-;; TODO: (Sharlatan-20221031T194744+0000): Failed to build, failed to upgrade to
-;; the latest version due to casacore build failure, need more time to
-;; investigate.
-;;
 ;; 20220621T222748+0100
-(define python-casacore
-  (package
-    (name "python-casacore")
-    (version "3.4.0")
-    (source (origin
-              (method git-fetch)
-              ;; No tests in PyPi package
-              (uri (git-reference
-                    (url "https://github.com/casacore/python-casacore")
-                    (commit (string-append "v" version))))
-              (sha256
-               (base32
-                "12ygijs1xwb5yd9y7wsxz5bw2c2z0yyv0hr72b3sg4simplm61nh"))
-              (file-name (git-file-name name version))))
-    (build-system python-build-system)
-    (arguments
-     (list #:phases #~(modify-phases %standard-phases
-                        (add-after 'unpack 'set-ld-library-path-env
-                          (lambda _
-                            (setenv "LD_LIBRARY_PATH"
-                                    (string-append #$(this-package-input
-                                                      "casacore") "/lib" ":"
-                                                   #$(this-package-input
-                                                      "boost") "/lib"))))
-                        (replace 'check
-                          (lambda* (#:key tests? #:allow-other-keys)
-                            (when tests?
-                              (invoke "pytest" "-vv"))))
-                        (delete 'sanity-check))))
-    (native-inputs (list python-pytest))
-    (inputs (list boost casacore cfitsio wcslib))
-    (propagated-inputs (list python-future python-numpy python-six))
-    (home-page "https://github.com/casacore/python-casacore")
-    (synopsis "Python wrapper for casacore")
-    (description
-     "Python-casacore is a set of Python bindings for @code{casacore}, a c++ library used in
-radio astronomy.")
-    (license license:gpl3)))
+;; (define python-casacore
+;; added-to-downstream-guix bbde0b9d9fe9912fe911fa92f84b53e565021bd0
+;; CommitDate: Fri Feb 28 22:44:00 2025 +0000
 
 ;; 20230827T205905+0100
 ;; (define-public python-casa-formats-io
@@ -884,80 +845,14 @@ specification.")
      (list #:tests? #f))))
 
 ;; 20231202T232644+0000
-(define-public python-astropy-iers-data
-  (package
-    (name "python-astropy-iers-data")
-    ;; In case of changing the source method git-fetch, consider to check the
-    ;; tag as it's not following the PyPI version.
-    ;; See https://github.com/astropy/astropy-iers-data/issues/17
-    (version "0.2023.11.27.0.30.38")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "astropy-iers-data" version))
-       (sha256
-        (base32 "1r6ha39m6fwmj9iibrvlc224df2q66cdhdfkdhhcq8lj71j7xl93"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      ;; Dependencies cycle wit python-astropy
-      ;; See https://github.com/astropy/astropy-iers-data/issues/21
-      #:tests? #f))
-    (native-inputs
-     (list python-hypothesis
-           python-pytest
-           python-pytest-remotedata))
-    (home-page "https://docs.astropy.org/en/latest/utils/iers.html")
-    (synopsis "IERS Earth Rotation and Leap Second tables for the astropy core package")
-    (description
-     "The @code{iers} package provides access to the tables provided by the
-@acronym{International Earth Rotation and Reference Systems, IERS} service, in
-particular the
-@url{https://www.iers.org/IERS/EN/DataProducts/EarthOrientationData/eop.html,
-Earth Orientation data} allowing interpolation of published UT1-UTC and polar
-motion values for given times.  The UT1-UTC values are used in
-@url{https://docs.astropy.org/en/latest/time/index.html#astropy-time, Time and
-Dates (astropy.time)} to provide UT1 values, and the polar motions are used in
-@code{astropy.coordinates} to determine Earth orientation for
-celestial-to-terrestrial coordinate transformations.")
-    (license license:bsd-3)))
+;; (define-public python-astropy-iers-data
+;; added-to-downstream-guix bf2633a065a4079a642a8e556b66e2e7816bc3b7
+;; CommitDate: Tue Feb 27 22:51:56 2024 +0000
 
 ;; 20240102T003000+0000
-(define-public python-radiospectra
-  (package
-    (name "python-radiospectra")
-    (version "0.4.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "radiospectra" version))
-       (sha256
-        (base32 "0gq61ywk7li0gxwmp4hp2hc4zbrlqgn8zy0sz24qh55kn5l5gxjr"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'set-home-env
-            (lambda _
-              ;; Tests require HOME to be set.
-              ;;  Permission denied: '/homeless-shelter'
-              (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-cdflib
-           python-matplotlib
-           python-numpy
-           python-scipy
-           python-sunpy))
-    (native-inputs
-     (list python-pytest-astropy
-           python-setuptools-scm
-           python-sunpy-soar))
-    (home-page "https://sunpy.org")
-    (synopsis "Support for radio spectra on solar physics")
-    (description
-     "Provide support for some type of radio spectra in solar physics")
-    (license license:bsd-2)))
+;; (define-public python-radiospectra
+;; added-to-downstream-guix adb9dc2a67f57e7c2570e5cb075316b3ce2a5d28
+;; CommitDate: Tue Feb 27 22:52:00 2024 +0000
 
 ;; 20221123T230513+0000
 ;; (define-public python-reproject
@@ -965,85 +860,9 @@ celestial-to-terrestrial coordinate transformations.")
 ;; CommitDate: Fri Nov 25 10:51:52 2022 +0000
 
 ;; 20221107T133138+0000
-(define-public python-astroplan
-  (package
-    (name "python-astroplan")
-    (version "0.9.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "astroplan" version))
-       (sha256
-        (base32 "0jrgii0f11ckxvywinr9kcsljxnpnkh7hv5638wxwcb1iyjmx36r"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags
-      #~(list "astroplan/tests"
-              "-k" (string-append
-                    ;; Test requiring newer python-pytz
-                    "not test_timezone"
-                    ;; Disable tests requiring remote data.
-                    " and not test_FixedTarget_from_name"
-                    " and not test_altitude_constraint"
-                    " and not test_at_night_basic"
-                    " and not test_caches_shapes"
-                    " and not test_compare_airmass_constraint_and_observer"
-                    " and not test_compare_altitude_constraint_and_observer"
-                    " and not test_docs_example"
-                    " and not test_eclipses"
-                    " and not test_eq_observer"
-                    " and not test_event_observable"
-                    " and not test_galactic_plane_separation"
-                    " and not test_get_skycoord"
-                    " and not test_hash_observer"
-                    " and not test_is_night"
-                    " and not test_local_time_constraint_hawaii_tz"
-                    " and not test_local_time_constraint_utc"
-                    " and not test_moon_illumination"
-                    " and not test_moon_separation"
-                    " and not test_observability_table"
-                    " and not test_observer_lon_lat_el"
-                    " and not test_regression_airmass_141"
-                    " and not test_regression_shapes"
-                    " and not test_sun_separation"
-                    " and not test_tonight")
-              "--ignore=astroplan/tests/test_scheduling.py")
-      #:phases
-      #~(modify-phases %standard-phases
-          (add-before 'check 'prepare-test-environment
-            (lambda _
-              (setenv "HOME" "/tmp")
-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
-    (propagated-inputs
-     (list python-astropy
-           python-astroquery
-           python-matplotlib
-           python-numpy
-           python-pytz
-           python-six))
-    (native-inputs
-     (list python-pytest-astropy
-           python-pytest-mpl
-           python-setuptools-scm))
-    (home-page "https://github.com/astropy/astroplan")
-    (synopsis "Observation planning package for astronomers")
-    (description
-     "This package provides a flexible toolbox for observation planning and
-scheduling.  When complete, the goal is to be easy for Python beginners and new
-observers to to pick up, but powerful enough for observatories preparing nightly
-and long-term schedules.
-
-Features:
-@itemize
-@item calculate rise/set/meridian transit times, alt/az positions for targets at
-observatories anywhere on Earth
-@item built-in plotting convenience functions for standard observation planning
-plots (airmass, parallactic angle, sky maps)
-@item determining observability of sets of targets given an arbitrary set of
-constraints (i.e., altitude, airmass, moon separation/illumination, etc.)
-@end itemize")
-      (license license:bsd-3)))
+;; (define-public python-astroplan
+;; added-to-downstream-guix 632cb6aa551c74ce7d936af77f891c9fef59525e
+;; CommitDate: Fri Mar 29 15:08:11 2024 +0000
 
 ;; 20221107T134441+0000
 ;; (define-public python-specutils
@@ -1120,62 +939,13 @@ for variables with units.")
     (license license:bsd-3)))
 
 ;; 20221114T003849+0000
-(define-public python-ginga
-  (package
-    (name "python-ginga")
-    (version "4.1.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "ginga" version))
-       (sha256
-        (base32 "0w60w9d2yqhbmggp0dljj5a0sk07gywifjq8nzw3y2v47vzgwqb6"))))
-    (build-system pyproject-build-system)
-    (propagated-inputs
-     (list ;;python-exifread  ; optional, not packed yet in Guix
-           python-astropy
-           python-astroquery
-           python-dateutil
-           python-docutils
-           python-magic
-           python-matplotlib
-           python-fitsio
-           python-numpy
-           python-photutils
-           python-pillow
-           python-qtpy
-           python-scipy))
-    (native-inputs
-     (list python-attrs
-           python-pytest-astropy
-           python-semantic-version
-           python-tornado))
-    (home-page "https://ejeschke.github.io/ginga/")
-    (synopsis "Scientific image viewer and toolkit for FITS files")
-    (description "Ginga is a toolkit designed for building viewers for
-scientific image data in Python, visualizing 2D pixel data in numpy arrays. It
-can view astronomical data such as contained in files based on the
-FITS (Flexible Image Transport System) file format. It is written and is
-maintained by software engineers at the National Astronomical Observatory of
-Japan (NAOJ), the Space Telescope Science Institute (STScI), and other
-contributing entities.
+;; (define-public python-ginga
+;; added-to-downstream-guix 489bdbb87e202681757ca255c5c24859d4a0c43c
+;; CommitDate: Tue Feb 27 22:52:00 2024 +0000
 
-The Ginga toolkit centers around an image display object which supports zooming
-and panning, color and intensity mapping, a choice of several automatic cut
-levels algorithms and canvases for plotting scalable geometric forms. In
-addition to this widget, a general purpose \"reference\" FITS viewer is
-provided, based on a plugin framework. A fairly complete set of standard plugins
-are provided for features that we expect from a modern FITS viewer: panning and
-zooming windows, star catalog access, cuts, star pick/FWHM, thumbnails, etc.")
-(license license:bsd-3)))
-
-(define-public ginga-qt5
-  (package/inherit python-ginga
-    (name "ginga-qt5")
-    (inputs
-     (modify-inputs (package-inputs python-ginga)
-       (prepend python-pyqt)))
-    (synopsis "Qt5 image viewer build based on python-ginga library")))
+;; (define-public ginga-qt5
+;; added-to-downstream-guix 489bdbb87e202681757ca255c5c24859d4a0c43c
+;; CommitDate: Tue Feb 27 22:52:00 2024 +0000
 
 
 ;;+end-jobovy
@@ -1233,10 +1003,6 @@ zooming windows, star catalog access, cuts, star pick/FWHM, thumbnails, etc.")
 ;; added-to-downstream-guix 308bee5f000703f063f5fbccd1c439e8c905a09c
 ;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
 
-;; NOTE: (Sharlatan-20221105T230143+0000): 1.2.23 fails to build
-;;
-;; https://github.com/spacetelescope/spherical_geometry/issues/227
-;;
 ;;20220523T215603+0100
 ;; (define-public python-spherical-geometry
 ;; added-to-downstream-guix b12ee1ee5b8b53bf27b79ce81b1b2158cc7de484
@@ -1327,34 +1093,9 @@ zooming windows, star catalog access, cuts, star pick/FWHM, thumbnails, etc.")
 ;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
 
 ;; 20231127T013936+0000
-(define-public python-viresclient
-  (package
-    (name "python-viresclient")
-    (version "0.11.3")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "viresclient" version))
-       (sha256
-        (base32 "0v84jd3zfnfdhjidgy3synqjnwdlzm81lmabjz3gh2z7ifgbgfp1"))))
-    (build-system pyproject-build-system)
-    (native-inputs (list python-flit-core python-pytest))
-    (propagated-inputs
-     (list python-cdflib
-           python-jinja2
-           python-netcdf4
-           python-pandas
-           python-requests
-           python-tables
-           python-tqdm
-           python-xarray))
-    (home-page "https://viresclient.readthedocs.io/en/latest/")
-    (synopsis "Python client for interacting with a VirES server")
-    (description
-     "This package provides a Python client for interacting with a @code{VirES}
-server, of which there are two: VirES for @url{https://vires.services, Swarm}
-and VirES for @url{https://aeolus.services, Aeolus}")
-    (license license:expat)))
+;; (define-public python-viresclient
+;; added-to-downstream-guix fc08d71486cb7fe3aa409984377cd510515383a8
+;; CommitDate: Thu May 30 18:23:47 2024 +0400
 
 ;; 20221106T092616+0000
 ;; (define-public python-wiimatch
@@ -1362,75 +1103,14 @@ and VirES for @url{https://aeolus.services, Aeolus}")
 ;; CommitDate: Wed Jun 14 14:52:23 2023 +0300
 
 ;; 20221106T220436+0000
-(define-public python-ci-watson
-  (package
-    (name "python-ci-watson")
-    (version "0.6.1")
-    (source
-     (origin
-       ;; The source distributed on PyPI is outdated.
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/spacetelescope/ci_watson")
-             (commit version)))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "1zfysc16avxb90gfihwfbh393r6zj013fg9ca8wh3yvxqjjkhllz"))))
-    (arguments
-     (list
-      #:phases #~(modify-phases %standard-phases
-                   (add-before 'build 'set-version
-                     (lambda _
-                       ;; NOTE: (Sharlatan-20221023T220057+0100): Update
-                       ;; to valid version when release is availalbe.
-                       (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.6.1"))))))
-    (build-system pyproject-build-system)
-    (propagated-inputs (list python-astropy))
-    (native-inputs (list ;python-astropy-header
-                    python-crds
-                    python-pytest
-                    python-requests
-                    python-semantic-version
-                    python-setuptools-scm))
-    (home-page "https://ci-watson.readthedocs.io/")
-    (synopsis "CI helper for STScI Jenkins")
-    (description "Thi package provide STScI Jenkis CI/CD helper.")
-    (license license:bsd-3)))
+;; (define-public python-ci-watson
+;; added-to-downstream-guix 49a013a0ede0d8a25bf66d452fd9b5df5409e688
+;; CommitDate: Mon Sep 30 22:06:32 2024 +0100
 
 ;; 20220513T172614+0100
 ;; (define-public python-crds
 ;; added-to-downstream-guix 23bc5e12d44122991062ad68a489ab10949142aa
 ;; CommitDate: Wed Jun 14 14:52:22 2023 +0300
-
-;;+end-spacetelescope
-
-;; TODO: (Sharlatan-20221106T122819+0000): failing build or check write lib
-;;
-;;20220523T223656+0100
-(define python2-sphere
-  (let ((commit "24c99dda4621b2ad77e811e6ff197fa0697f32ba")
-        (revision "1"))
-    (package
-      (name "python2-sphere")
-      (version (git-version "0.0.0" revision commit))
-      (source (origin
-                (method git-fetch)
-                (uri (git-reference
-                      (url "https://github.com/bwesterb/py-sphere")
-                      (commit commit)))
-                (file-name (git-file-name name version))
-                (sha256
-                 (base32
-                  "1ja1dhysj04jc8q6qjak21hql9rya05xpj71x8w8c73fsyg27sqn"))))
-      (build-system python-build-system)
-      (arguments
-       (list #:python python-2)) ;not compatible with Python 3
-      (inputs (list python-numpy))
-      (home-page "https://github.com/bwesterb/py-sphere")
-      (synopsis "Python library for geometry on the sphere")
-      (description
-       "Python library for geometry on the sphere (and projective plane)")
-      (license license:gpl3))))
 
 ;; 20220513T172658+0100
 ;; (define-public python-bayesicfitting
@@ -1773,85 +1453,9 @@ can compute its position at any other time, no matter how remote.")
 ;; CommitDate: Mon Nov 14 12:31:34 2022 +0100
 
 ;; 20221101T215432+0000
-(define-public libsharp
-  (package
-    (name "libsharp")
-    (version "1.0.0")
-    ;; The location of the original sources redirects to GitHub. I've started
-    ;; from: <https://salsa.debian.org/debian-astro-team/libsharp> ->
-    ;;        <https://healpix.sourceforge.io/> ->
-    ;;         <https://sourceforge.net/projects/libsharp/> ->
-    ;;          <https://github.com/dagss/libsharp> ->
-    ;;           <https://github.com/Libsharp/libsharp>.
-    (source
-     (origin
-       (method git-fetch)
-       (uri (git-reference
-             (url "https://github.com/Libsharp/libsharp")
-             (commit (string-append "v" version))))
-       (file-name (git-file-name name version))
-       (sha256
-        (base32 "0ih13jl0ippxgia7dchrfldxnpwd84lhb64xqvv9swnail5866ij"))))
-    (build-system gnu-build-system)
-    (arguments
-     (list
-      #:make-flags
-      #~(list
-         ;; On amd64, enable libsharp's automatic dispatch to optimized routines
-         ;; based on support for amd64 instruction sets detected at runtime.
-         #$@(match (or (%current-target-system)
-                       (%current-system))
-              ((or "armhf-linux" "aarch64-linux" "riscv64")
-               '("CFLAGS+=-DMULTIARCH"))
-              (_ '())))
-      #:phases
-      #~(modify-phases %standard-phases
-          (replace 'check
-            (lambda* (#:key tests? #:allow-other-keys)
-              (when tests?
-                (invoke "make" "test" "perftest"))))
-          (replace 'install
-            ;; The Makefile lacks an ‘install’ target.
-            (lambda _
-              (let ((bin (string-append #$output "/bin"))
-                    (include (string-append #$output "/include"))
-                    (lib (string-append #$output "/lib")))
-                (mkdir-p (string-append lib "/pkgconfig"))
-                (with-output-to-file (string-append lib "/pkgconfig/libsharp.pc")
-                  (lambda _
-                    (format #t "prefix=~a~@
-                            exec_prefix=${prefix}~@
-                            libdir=${exec_prefix}/lib~@
-                            includedir=${prefix}/include~@
-                            ~@
-                            Name: libsharp~@
-                            Version: ~a~@
-                            Description: Spherical harmonic transforms revisited~@
-                            Libs: -L${libdir} -lsharp~@
-                            Cflags: -I${includedir}~%"
-                            #$output #$version)))
-                (copy-recursively "auto/bin" bin)
-                (copy-recursively "auto/include" include)
-                (copy-recursively "auto/lib" lib)))))))
-    (native-inputs
-     (list autoconf automake python-wrapper))
-    (home-page "https://arxiv.org/abs/1303.4945")
-    (synopsis "Spherical harmonic transforms revisited")
-    (description
-     "@code{libsharp} is a library for spherical harmonic transforms (SHTs),
-which evolved from the libpsht library, addressing several of its shortcomings,
-such as adding MPI support for distributed memory systems and SHTs of fields
-with arbitrary spin, but also supporting new developments in CPU instruction
-sets like the Advanced Vector Extensions (AVX) or fused
-multiply-accumulate (FMA) instructions.
-
-The library is implemented in portable C99 and provides an interface that can be
-easily accessed from other programming languages such as C++, Fortran, Python
-etc. Generally, libsharp's performance is at least on par with that of its
-predecessor; however, significant improvements were made to the algorithms for
-scalar SHTs, which are roughly twice as fast when using the same CPU
-capabilities.")
-    (license license:gpl2+)))
+;; (define-public libsharp
+;; added-to-downstream-guix f547dd668f7c23ac72ee6c084dfe405536af1d67
+;; CommitDate: Mon Sep 30 22:06:32 2024 +0100
 
 ;; 20230206T221536+0000
 (define-public stellarium-ffab
@@ -1859,61 +1463,10 @@ capabilities.")
    (inherit stellarium)
    (name "stellarium-ffab")))
 
-;; TODO: (Sharlatan-20221102T213300+0000): Failing on configure step
-;;
-;; checking for sharp_execute in -lsharp... no
-;; configure: error: could not find the libsharp library
-;;
 ;; 20221101T215432+0000
-(define healpix-cxx
-  (package
-    (name "healpix-cxx")
-    (version "3.82.0")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (string-append
-             "mirror://sourceforge/healpix/Healpix_3.82/healpix_cxx-"
-             version ".tar.gz"))
-       (sha256
-        (base32 "0ll5p8190a436ssdnbqcxfj74v7llblkmbhhxz8mjwq0ryxhn6ww"))))
-    (build-system gnu-build-system)
-    (native-inputs
-     (list autoconf automake libtool pkg-config))
-    (inputs
-     (list cfitsio libsharp zlib))
-    (home-page "https://healpix.sourceforge.io/")
-    (synopsis "Data analysis, simulations and visualization on the sphere")
-    (description "This package provides a C++ implementation of @acronim{HEALPix, Hierarchical
-Equal Area isoLatitude Pixelization}. The key features of HEALPix are:
-@itmimize
-@item Fast simulation and analysis of full-sky maps of CMB temperature and
-polarization anisotropy (sky maps preview) up to sub-arcminute angular
-resolution
-@item Filtering of sky maps with arbitrary circular window
-@item Constrained and non-Gaussian realization facilities
-@item Highly optimised Spherical Harmonics Transforms library (libsharp) used by
-all implementations for better performance
-@item Forward and backward scalar and spin-weighted Spherical Harmonics
-Transforms
-@item Programs to manage, modify and rotate spherical harmonic coefficients of
-arbitrary maps
-@item Pixelation of the sphere supported down to a pixel size of 0.4 mas
-(milli-arcseconds), corresponding to potentially 3.5 1018 pixels on the sphere
-@item Pixel queries in discs, triangles, polygons and strips
-@item Programs to search the maps for pixel neighbours and extrema of a random
-field
-@item Median filtering of sky maps
-@item Mask processing facilities
-@item Support for multi resolution maps (aka, Multi Order Coverage maps or MOC)
-@item Comprehensive documentation (PDF and HTML); web-based and email support
-@item Automated installation and build scripts
-@item Most critical routines are parallelized
-@item Facilities to output HEALPix maps into Google Earth/Google Sky compliant
-images and into DomeMaster format used in planetariums
-@item Routines to manipulate and visualize the FITS files generally used for I/O
-@end itimeze")
-    (license license:gpl2+)))
+;; (define-public healpix-cxx
+;; added-downstream-guix 213eae66c7a288ca8293065a95297c2df885454d
+;; CommitDate: Mon Sep 30 22:06:32 2024 +0100
 
 ;; 20230319T204258+0000
 ;; (define-public phd2
@@ -1936,96 +1489,13 @@ images and into DomeMaster format used in planetariums
 ;; CommitDate: Thu Oct 5 17:07:16 2023 +0200
 
 ;; 20240804T231309+0100
-(define-public python-pvextractor
-  (package
-    (name "python-pvextractor")
-    (version "0.4")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "pvextractor" version))
-       (sha256
-        (base32 "1kl33vg5rxmdwlk36pn8zqa7k7f43fb7w417fym6ygp86mci2spd"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:test-flags #~(list "--pyargs" "pvextractor")
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; See <https://github.com/radio-astro-tools/pvextractor/issues/124>.
-         (add-after 'unpack 'patch-regexp
-           (lambda _
-             (substitute* "pvextractor/pvregions.py"
-               (("coordre = re.compile.*")
-                "coordre = re.compile(\"^[a-z]*\\\\((.*)\\\\)\")\n"))))
-           (add-before 'check 'prepare-x
-             (lambda _
-               (system "Xvfb &")
-               (setenv "DISPLAY" ":0")
-               (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-astropy
-           python-matplotlib
-           python-numpy
-           python-pyqt-6
-           python-qtpy
-           python-scipy
-           python-spectral-cube))
-    (native-inputs
-     (list python-pytest-astropy
-           python-setuptools-scm
-           xorg-server-for-tests))
-    (home-page "http://pvextractor.readthedocs.io")
-    (synopsis "Position-Velocity diagram extrac")
-    (description
-     "The concept of the pvextractor package is simple - given a path defined
-in sky coordinates, and a spectral cube, extract a slice of the cube along
-that path, and along the spectral axis, producing a position-velocity or
-position-frequency slice.")
-    (license license:bsd-3)))
+;; (define-public python-pvextractor
+;; added-to-downstream-guix 80ac82d6abf6f1f73d3675c66d96185c2f02f55b
+;; CommitDate: Tue Aug 27 17:03:09 2024 +0100
 
 ;; 20240804T231529+0100
-(define-public python-glue-qt
-  (package
-    (name "python-glue-qt")
-    (version "0.3.1")
-    (source
-     (origin
-       (method url-fetch)
-       (uri (pypi-uri "glue-qt" version))
-       (sha256
-        (base32 "15ycykhg02xmsrlyv90qxckssmrq355qaqmz7p8nnqygm0gyrnx1"))))
-    (build-system pyproject-build-system)
-    (arguments
-     (list
-      #:phases
-      #~(modify-phases %standard-phases
-           (add-before 'check 'prepare-x
-             (lambda _
-               (system "Xvfb &")
-               (setenv "DISPLAY" ":0")
-               (setenv "HOME" "/tmp"))))))
-    (propagated-inputs
-     (list python-astropy
-           python-echo
-           python-glue-core
-           python-h5py ;; for python-glue-core
-           python-ipykernel
-           python-ipython
-           python-matplotlib
-           python-numpy
-           python-pvextractor
-           python-qtconsole
-           python-qtpy
-           python-scipy))
-    (native-inputs
-     (list python-objgraph
-           python-pytest
-           python-setuptools-scm
-           xorg-server-for-tests))
-    (home-page "http://glueviz.org")
-    (synopsis "Multidimensional data visualization across files")
-    (description "Multidimensional data visualization across files.")
-    (license license:bsd-3)))
+;; (define-public python-glue-qt
+;; added-to-downstream-guix fcfe95b0770cb4daeebe1730511a1d665a808c89
+;; CommitDate: Tue Aug 27 17:03:09 2024 +0100
 
 ;; End of astronomy.scm
