@@ -1,0 +1,76 @@
+From bcfd0a0609e2f423d44f6fcae9e78bec5232d8ea Mon Sep 17 00:00:00 2001
+Message-ID: <bcfd0a0609e2f423d44f6fcae9e78bec5232d8ea.1747779547.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 13 May 2025 08:48:43 +0100
+Subject: [PATCH 09/31] gnu: Add python-irispy-lmsal.
+
+* gnu/packages/astronomy.scm (python-irispy-lmsal): New variable.
+
+Change-Id: I4bbcc6b27657568592941cd80c41a9d53d5d888e
+---
+ gnu/packages/astronomy.scm | 47 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index fba3a2b575..e7816dd269 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3855,6 +3855,53 @@ (define-public python-holodeck
+ observationally-derived galaxy merger catalogs.")
+     (license license:expat)))
+ 
++(define-public python-irispy-lmsal
++  (package
++    (name "python-irispy-lmsal")
++    (version "0.2.4")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "irispy_lmsal" version))
++       (sha256
++        (base32 "0m5rjhz89235kmn30qib27w16qd3g78ygi4n1n5fpfb4rmr4y04m"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      ;; Expected:
++      ;;     np.float64(0.33)
++      ;; Got:
++      ;;     0.33
++      #~(list "--deselect=irispy/obsid.py::irispy.obsid.ObsID")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'set-home
++            (lambda _
++              ;; E PermissionError: [Errno 13] Permission denied:
++              ;; '/homeless-shelter'
++              (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list ffmpeg
++           python-pytest-astropy
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list python-dkist
++           python-ndcube
++           python-pandas
++           python-scipy
++           python-sunpy
++           python-sunraster))
++    (home-page "https://iris.lmsal.com/")
++    (synopsis "Tools to read and analyze data from the IRIS solar-observing satellite")
++    (description
++     "This package provides tools to read and analyze data from the
++@acronym{IRIS, Interface Region Imaging Spectrograph} solar-observing
++satellite.")
++    (license license:bsd-3)))
++
+ (define-public python-jwst
+   (package
+     (name "python-jwst")
+-- 
+2.49.0
+

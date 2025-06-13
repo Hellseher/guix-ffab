@@ -1,0 +1,53 @@
+From dcc3a547e8ee95aa1e6be2cc64431b6f53649627 Mon Sep 17 00:00:00 2001
+Message-ID: <dcc3a547e8ee95aa1e6be2cc64431b6f53649627.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Apr 2025 21:55:35 +0100
+Subject: [PATCH 03/32] gnu: libsep: Update to 1.4.1.
+
+* gnu/packages/astronomy.scm (libsep): Update to 1.4.1.
+(python-sep) [arguments] <phases>: Add 'relax-requirements.
+
+Change-Id: Iea5fcea4768f83293627f2071ffd02275f37a8d9
+---
+ gnu/packages/astronomy.scm | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index b8f0226363..ed51fdb2c7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1254,7 +1254,7 @@ (define-public libpasastro
+ (define-public libsep
+   (package
+     (name "libsep")
+-    (version "1.4.0")
++    (version "1.4.1")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1263,7 +1263,7 @@ (define-public libsep
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "03a9v3g8bq5sqq0ckxzkk63vij2y6ljpmymdvvvvb72q175pzpkd"))))
++        (base32 "1ni02sf3pcg438mi26csdcwsbq1v5mnxlna2aiwxj0mhq2psb1rw"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list
+@@ -6370,6 +6370,11 @@ (define-public python-sep
+       #:test-flags #~(list "test.py")
+       #:phases
+       #~(modify-phases %standard-phases
++          (add-after 'unpack 'relax-requirements
++            (lambda _
++              (substitute* "pyproject.toml"
++                ;; numpy = "^1.26.4"
++                (("1.26.4") "1.26.2"))))
+           (add-after 'unpack 'set-version
+             (lambda _
+               (setenv "SETUPTOOLS_SCM_PRETEND_VERSION"
+-- 
+2.49.0
+

@@ -1,0 +1,58 @@
+From 991739ab45ce08c29cde2d7eb36547dfb560c488 Mon Sep 17 00:00:00 2001
+Message-ID: <991739ab45ce08c29cde2d7eb36547dfb560c488.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 16:57:21 +0100
+Subject: [PATCH 21/32] gnu: python-roman-datamodels: Update to 0.24.0.
+
+* gnu/packages/astronomy.scm (python-roman-datamodels): Update to 0.24.0.
+[propagated-inputs]: Add python-pyarrow.
+[native-inputs]: Add python-pandas.
+
+Change-Id: I62fd4d5ee34284de59bc886eeb7045a134586c55
+---
+ gnu/packages/astronomy.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4352a87b1f..a2cbdc0491 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6971,13 +6971,13 @@ (define-public python-regions
+ (define-public python-roman-datamodels
+   (package
+     (name "python-roman-datamodels")
+-    (version "0.23.1")
++    (version "0.24.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "roman_datamodels" version))
+        (sha256
+-        (base32 "14awdf4ndx9rhdz70s3mayp5j8cfmn9bb37yf3cp3s4w62ydmwfi"))))
++        (base32 "1jlzfpzg13g9sq1i0dz27ymny48rwz74blp2dqhk9idynbyp5l4k"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -6989,7 +6989,8 @@ (define-public python-roman-datamodels
+             (lambda _
+               (setenv "HOME" "/tmp"))))))
+     (native-inputs
+-     (list python-pytest
++     (list python-pandas
++           python-pytest
+            python-pytest-doctestplus
+            python-pytest-env
+            python-pytest-xdist
+@@ -7004,6 +7005,7 @@ (define-public python-roman-datamodels
+            python-gwcs
+            python-lz4
+            python-numpy
++           python-pyarrow
+            python-rad))
+     (home-page "https://github.com/spacetelescope/roman_datamodels")
+     (synopsis "Roman Datamodels Support")
+-- 
+2.49.0
+

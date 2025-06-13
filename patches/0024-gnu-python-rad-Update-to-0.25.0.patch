@@ -1,0 +1,61 @@
+From 377ee4beb76fcd7f2ccbf18f2257ad8680f7c8ab Mon Sep 17 00:00:00 2001
+Message-ID: <377ee4beb76fcd7f2ccbf18f2257ad8680f7c8ab.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 May 2025 12:07:14 +0100
+Subject: [PATCH 24/31] gnu: python-rad: Update to 0.25.0.
+
+* gnu/packages/astronomy.scm (python-rad): Update to 0.25.0.
+[arguments] <test-flags>: Ignore 2 more test files.
+[native-inputs]: Remove python-setuptools; add python-semantic-version
+and python-setuptools-next.
+
+Change-Id: I06764e74f93cbd8783e7d9db68e5bd1c2809b917
+---
+ gnu/packages/astronomy.scm | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 96381acde9..f85e14358f 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7042,23 +7042,31 @@ (define-public python-pint-pulsar
+ (define-public python-rad
+   (package
+     (name "python-rad")
+-    (version "0.24.0")
++    (version "0.25.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "rad" version))
+        (sha256
+-        (base32 "0xja7dpbkgbcvgqz3c3i1j5yblccjqv8g0dga16iayzcf9ni9jbg"))))
++        (base32 "07pkz0fybhpzrlch5gcw4c90rd2y2mypli23h2lz1pa7q6gyaifd"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags
+       ;; Ignore tests requiring python-crds to break cycle:
+       ;; python-rad -> python-roman-datamodels -> python-crds -> python-rad
+-      #:test-flags #~(list "--ignore=tests/test_schemas.py")))
++      #~(list "--ignore=tests/test_schemas.py"
++              ;; E   git.exc.InvalidGitRepositoryError
++              "--ignore=tests/test_versioning.py"
++              ;; E TypeError: the JSON object must be str, bytes or bytearray,
++              ;; not NoneType
++              "--ignore=tests/test_latest.py")))
+     (native-inputs
+      (list python-pytest
++           python-pytest
+            python-pytest-doctestplus
+-           python-setuptools
++           python-semantic-version
++           python-setuptools-next
+            python-setuptools-scm
+            python-wheel))
+     (propagated-inputs
+-- 
+2.49.0
+

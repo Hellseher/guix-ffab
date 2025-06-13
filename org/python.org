@@ -1,6 +1,6 @@
 #+title: Python
 #+created: <2021-06-18 Fri 11:13:30 BST>
-#+modified: <2024-11-30 Sat 15:25:58 GMT>
+#+modified: <2025-04-01 Tue 19:04:51 BST>
 
 * Synopsis
 This workflow file contains packaging process for Python projects, structure follows
@@ -167,14 +167,6 @@ CLOSED: [2022-11-08 Tue 11:02]
   - [X] python-sphinx
   - [X] python-towncrier
 
-** TODO opencv [0/1][0%] :author:
-- https://github.com/opencv
-*** TODO python-opencv [0/4][0%] :p1:
-- https://github.com/opencv/opencv-python
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0/0]
 ** DONE osvenskan [1/1][100%] :author:
 *** DONE posix-ipc [1/1][100%]
 - https://github.com/osvenskan/posix_ipc

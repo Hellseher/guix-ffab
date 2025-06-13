@@ -1,0 +1,63 @@
+From 7150dbb097231b688ea7a1b90006cc0587b268d8 Mon Sep 17 00:00:00 2001
+Message-ID: <7150dbb097231b688ea7a1b90006cc0587b268d8.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 15 May 2025 10:19:04 +0100
+Subject: [PATCH 12/31] gnu: Add python-jwst-backgrounds.
+
+* gnu/packages/astronomy.scm (python-jwst-backgrounds): New variable.
+
+Change-Id: I855212fad78688cf6b061766416278a91a349b8c
+---
+ gnu/packages/astronomy.scm | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f783768751..73f2b65531 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4080,6 +4080,40 @@ (define-public python-jwst
+ etc.).")
+     (license license:bsd-3)))
+ 
++(define-public python-jwst-backgrounds
++  (package
++    (name "python-jwst-backgrounds")
++    (version "1.3.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "jwst_backgrounds" version))
++       (sha256
++        (base32 "14m1a6z884vg2n5ndwwhpnzpb5h28hh58a53dfjwwbjakwmixb0p"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list #:tests? #f)) ; no tests in PyPI tarball, tests requir networking
++    (native-inputs
++     (list python-setuptools
++           python-wheel))
++    (propagated-inputs
++     (list python-healpy
++           python-matplotlib
++           python-numpy
++           python-scipy))
++    (home-page "https://github.com/spacetelescope/jwst_backgrounds")
++    (synopsis "Retrieve and plot JWST background information")
++    (description
++     "This package provides a a simple program to predict the levels of
++background emission in JWST observations, for use in proposal planning.
++
++It accesses a precompiled background cache prepared by Space Telescope Science
++Institute.  The background cache is hosted by the Mikulski Archive for Space
++Telescopes (MAST), so you need internet access to run the tool with the remote
++cache.  It is possible to download the full background cache to your local
++machine.")
++    (license license:bsd-3)))
++
+ (define-public python-libstempo
+   (package
+     (name "python-libstempo")
+-- 
+2.49.0
+

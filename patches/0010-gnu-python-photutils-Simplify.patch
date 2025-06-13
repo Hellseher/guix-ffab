@@ -1,0 +1,69 @@
+From 64d9924340e59cafcbcbaf88fb6af7a470847667 Mon Sep 17 00:00:00 2001
+Message-ID: <64d9924340e59cafcbcbaf88fb6af7a470847667.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Apr 2025 22:46:07 +0100
+Subject: [PATCH 10/32] gnu: python-photutils: Simplify.
+
+* gnu/packages/astronomy.scm (python-photutils) [arguments]
+<test-flags>: Limit parallel tests up to 8 threads to improve stability.
+<phases>: Remove 'relax-requirements, create-setup.py,
+'writable-compiler, and 'build-extensions; use custom 'check.
+
+Change-Id: I82f6f792a3f88836f6b2d39b2f1ce4db2d41acea
+---
+ gnu/packages/astronomy.scm | 35 +++++++----------------------------
+ 1 file changed, 7 insertions(+), 28 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8bb18b51b9..67d406fa43 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4959,36 +4959,15 @@ (define-public python-photutils
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" (number->string (parallel-job-count)))
++      #~(list "--pyargs" "photutils"
++              "--numprocesses" (number->string (min 8 (parallel-job-count))))
+       #:phases
+       #~(modify-phases %standard-phases
+-         (add-after 'unpack 'relax-requirements
+-           (lambda _
+-             (substitute* "pyproject.toml"
+-               ;; numpy>=1.24
+-               ((">=1.24") ">=1.23"))))
+-          ;; setup.py was removed in 36c3231ce5b80ad470fa78be2e96df859d2daf41
+-          ;; for some unknown reason, which caused the package to fail to
+-          ;; build. It is being recreated based on that commit.
+-          (add-after 'unpack 'create-setup.py
+-            (lambda _
+-              (call-with-output-file "setup.py"
+-                (lambda (port)
+-                  (format port "from setuptools import setup
+-from extension_helpers import get_extensions
+-setup(ext_modules=get_extensions())")))))
+-          ;; This file is opened in both install and check phases.
+-          (add-before 'install 'writable-compiler
+-            (lambda _ (make-file-writable "photutils/_compiler.c")))
+-          (add-before 'check 'build-extensions
+-            (lambda _
+-              ;; Cython extensions have to be built before running
+-              ;; the tests. If it's not build it fails with error:
+-              ;;
+-              ;; ModuleNotFoundError: No module named
+-              ;; 'photutils.geometry.circular_overlap'
+-              (make-file-writable "photutils/_compiler.c")
+-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++          (replace 'check
++            (lambda* (#:key tests? test-flags #:allow-other-keys)
++              (when tests?
++                (with-directory-excursion "/tmp"
++                  (apply invoke "pytest" "-vv" test-flags))))))))
+     (propagated-inputs
+      (list python-astropy
+            python-bottleneck
+-- 
+2.49.0
+

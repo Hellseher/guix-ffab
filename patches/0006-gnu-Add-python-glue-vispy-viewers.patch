@@ -1,0 +1,84 @@
+From 7be3c50a258c2699561076dc804439cf8cb997d4 Mon Sep 17 00:00:00 2001
+Message-ID: <7be3c50a258c2699561076dc804439cf8cb997d4.1747779547.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 12 May 2025 08:09:42 +0100
+Subject: [PATCH 06/31] gnu: Add python-glue-vispy-viewers.
+
+* gnu/packages/astronomy.scm (python-glue-vispy-viewers): New variable.
+
+Change-Id: I9620046f72cc6fdcf202b04ca84ead3519e7bfca
+---
+ gnu/packages/astronomy.scm | 48 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ab8e558ec2..7132655ba7 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -88,6 +88,7 @@ (define-module (gnu packages astronomy)
+   #:use-module (gnu packages python-check)
+   #:use-module (gnu packages python-compression)
+   #:use-module (gnu packages python-crypto)
++  #:use-module (gnu packages python-graphics)
+   #:use-module (gnu packages python-science)
+   #:use-module (gnu packages python-web)
+   #:use-module (gnu packages python-xyz)
+@@ -3478,6 +3479,53 @@ (define-public python-glue-qt
+     (description "Multidimensional data visualization across files.")
+     (license license:bsd-3)))
+ 
++(define-public python-glue-vispy-viewers
++  (package
++    (name "python-glue-vispy-viewers")
++    (version "1.2.3")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "glue_vispy_viewers" version))
++       (sha256
++        (base32 "0i9539h55b95c1f2p79qbr0xgvg3c7mddykzqij939r0b5jabwbj"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags #~(list "--pyargs" "glue_vispy_viewers")
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'prepare-x
++            (lambda _
++              (system "Xvfb :99 -screen 0 1024x768x24 &")
++              (setenv "DISPLAY" ":99.0")
++              (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list python-mock
++           python-objgraph
++           python-pytest
++           python-pytest-cov
++           ;; python-pytest-faulthandler
++           python-setuptools
++           python-wheel
++           xorg-server-for-tests))
++    (propagated-inputs
++     (list python-echo
++           python-glfw
++           python-glue-core
++           python-imageio
++           python-matplotlib
++           python-numpy
++           python-pyopengl
++           python-scipy
++           python-vispy))
++    (home-page "https://github.com/glue-viz/glue-vispy-viewers")
++    (synopsis "Vispy-based viewers for Glue")
++    (description
++     "This package provides a Glue plugin which adds a 3D scatter plot viewer
++and a 3D volume rendering viewer.")
++    (license license:bsd-2)))
++
+ (define-public python-gw-sky
+   (package
+     (name "python-gw-sky")
+-- 
+2.49.0
+

@@ -1,0 +1,71 @@
+From 4c6556faab9dd48c949b5583fdeed1b8c8a151a2 Mon Sep 17 00:00:00 2001
+Message-ID: <4c6556faab9dd48c949b5583fdeed1b8c8a151a2.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 18 May 2025 20:41:15 +0100
+Subject: [PATCH 19/31] gnu: python-fitsio: Update to 1.2.6.
+
+* gnu/packages/astronomy.scm (python-fitsio): Update to 1.2.6.
+[arguments] <test-flags>: Provide an option to test against installed
+package.
+<phases>: Remove 'build-extensions.
+
+Change-Id: I8ad0f2555741b55b30d364dbffe88b1d1ab04452
+---
+ gnu/packages/astronomy.scm | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1626594085..b301c5d892 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3362,13 +3362,13 @@ (define-public python-fitsblender
+ (define-public python-fitsio
+   (package
+     (name "python-fitsio")
+-    (version "1.2.5")
++    (version "1.2.6")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "fitsio" version))
+        (sha256
+-        (base32 "1mnhzljaqjvslqxp4wblram7g9zbn6a29ri0phcrw8l2ry4qc7h0"))
++        (base32 "1brkkfqgfwbnl1si7hppripcixmsfjs5lpbn18yrwxziafycvc1k"))
+        (modules '((guix build utils)))
+        (snippet
+         ;; Remove the bundled cfitsio. When update the package check the
+@@ -3380,6 +3380,8 @@ (define-public python-fitsio
+     (build-system pyproject-build-system)
+     (arguments
+      (list
++      #:test-flags
++      #~(list "--pyargs" "fitsio")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'build 'set-env
+@@ -3390,16 +3392,15 @@ (define-public python-fitsio
+                        #$(this-package-input "cfitsio") "/include"))
+               (setenv "FITSIO_SYSTEM_FITSIO_LIBDIR"
+                       (string-append
+-                       #$(this-package-input "cfitsio") "/lib"))))
+-          (add-before 'check 'build-extensions
+-            (lambda _
+-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++                       #$(this-package-input "cfitsio") "/lib")))))))
+     (native-inputs
+      (list python-pytest
+            python-setuptools
+            python-wheel))
+     (inputs
+-     (list curl cfitsio zlib))
++     (list curl
++           cfitsio
++           zlib))
+     (propagated-inputs
+      (list python-numpy))
+     (home-page "https://github.com/esheldon/fitsio")
+-- 
+2.49.0
+

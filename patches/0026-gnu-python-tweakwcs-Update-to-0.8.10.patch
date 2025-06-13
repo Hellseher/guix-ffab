@@ -1,0 +1,68 @@
+From f9ec621b81b23ba1046a1a8cf1e61210da8eb136 Mon Sep 17 00:00:00 2001
+Message-ID: <f9ec621b81b23ba1046a1a8cf1e61210da8eb136.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 18:51:23 +0100
+Subject: [PATCH 26/32] gnu: python-tweakwcs: Update to 0.8.10.
+
+* gnu/packages/astronomy.scm (python-tweakwcs): Update to 0.8.10.
+[arguments] <test-flags>: Do not skip tests as issues resolved.
+
+Change-Id: I9d6e2bfa57f032f7488cbd5c676b1fe4d5e704a7
+---
+ gnu/packages/astronomy.scm | 25 ++++++++-----------------
+ 1 file changed, 8 insertions(+), 17 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index edb380acdc..4c42c98376 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7376,23 +7376,20 @@ (define-public python-sunpy
+ (define-public python-tweakwcs
+   (package
+     (name "python-tweakwcs")
+-    (version "0.8.9")
++    (version "0.8.10")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "tweakwcs" version))
+        (sha256
+-        (base32 "0a1ygsar9l6jybji9qibz6ja3picv9aiw2jmdcsqdfqhrppknqp7"))))
++        (base32 "0iiq57aympd0jvri4kjrjyxg276kysq8kfwcxwgwc56pr5v097fy"))))
+     (build-system pyproject-build-system)
+-    (arguments
+-     (list
+-      #:test-flags
+-      ;; 2 tests are not compatible with gwcs>=0.24, skip them for now
+-      ;; and enable in the next release, see
+-      ;; <https://github.com/spacetelescope/tweakwcs/pull/220>.
+-      #~(list "-k" (string-append
+-                    "not test_jwstgwcs_bad_pipelines_no_vacorr"
+-                    " and not test_jwstgwcs_bad_pipelines_with_vacorr"))))
++    (native-inputs
++     (list python-pytest
++           python-scipy
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+      (list python-astropy
+            python-gwcs
+@@ -7401,12 +7398,6 @@ (define-public python-tweakwcs
+            python-spherical-geometry
+            python-stsci-imagestats
+            python-stsci-stimage))
+-    (native-inputs
+-     (list python-pytest
+-           python-scipy
+-           python-setuptools
+-           python-setuptools-scm
+-           python-wheel))
+     (home-page "https://tweakwcs.readthedocs.io/en/latest/")
+     (synopsis
+      "Algorithms for matching and aligning catalogs and for tweaking the WCS")
+-- 
+2.49.0
+

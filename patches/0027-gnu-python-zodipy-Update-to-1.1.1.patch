@@ -1,0 +1,66 @@
+From 28b5b19ec68c23f32d3b8a858212a1ca397f555b Mon Sep 17 00:00:00 2001
+Message-ID: <28b5b19ec68c23f32d3b8a858212a1ca397f555b.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 18:58:29 +0100
+Subject: [PATCH 27/32] gnu: python-zodipy: Update to 1.1.1.
+
+* gnu/packages/astronomy.scm (python-zodipy): Update to 1.1.1.
+
+Change-Id: I9f45aefb24eb8d768f9a70334470516ab1f3b710
+---
+ gnu/packages/astronomy.scm | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4c42c98376..1f71af4577 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7676,16 +7676,18 @@ (define-public python-yt-astro-analysis
+ (define-public python-zodipy
+   (package
+     (name "python-zodipy")
+-    (version "1.1.0")
++    (version "1.1.1")
+     (source
+      (origin
+        (method git-fetch) ;; no tests in the PyPI tarball
+        (uri (git-reference
++             ;; XXX: Upstream is not stable with version style
++             ;; <https://github.com/Cosmoglobe/zodipy/issues/48>
+              (url "https://github.com/Cosmoglobe/zodipy")
+-             (commit (string-append "v." version))))
++             (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1i7qdbxb9izsaciq4l3fz9irgxbsklxcfd33ap7w1spjk86mgv6x"))))
++        (base32 "0n51bism8irj2afj4xjyx438ylcc8f1dw2x0jy8xg90x7wdh30cm"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -7694,18 +7696,16 @@ (define-public python-zodipy
+           (add-after 'unpack 'relax-requirements
+             (lambda _
+               (substitute* "pyproject.toml"
+-                ;; numpy = "^1.26.4"
+-                (("1.26.4") "1.23.2")
+                 ;; scipy = "^1.13.0"
+                 (("1.13.0") "1.12.0")))))))
++    (native-inputs
++     (list python-poetry-core
++           python-pytest))
+     (propagated-inputs
+      (list python-astropy
+            python-jplephem
+            python-numpy
+            python-scipy))
+-    (native-inputs
+-     (list python-poetry-core
+-           python-pytest))
+     (home-page "https://github.com/Cosmoglobe/zodipy")
+     (synopsis "Zodiacal emission simulations")
+     (description
+-- 
+2.49.0
+

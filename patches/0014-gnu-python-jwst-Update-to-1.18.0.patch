@@ -1,0 +1,64 @@
+From ff198a6ee4a2a262af4904860b414dbecbf19f08 Mon Sep 17 00:00:00 2001
+Message-ID: <ff198a6ee4a2a262af4904860b414dbecbf19f08.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 14:25:45 +0100
+Subject: [PATCH 14/32] gnu: python-jwst: Update to 1.18.0.
+
+* gnu/packages/astronomy.scm (python-jwst): Update to 1.18.0.
+[phases]{relax-requirements}: Remove relaxation for GWCS and NumPy;
+remove "create_data" script as no longer provided.
+
+Change-Id: I4a8144af772f39256fe28f822c298a74559067fb
+---
+ gnu/packages/astronomy.scm | 14 +++++---------
+ 1 file changed, 5 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 4ea0882c96..673856ccf0 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4626,14 +4626,13 @@ (define-public python-jplephem
+ (define-public python-jwst
+   (package
+     (name "python-jwst")
+-    (version "1.17.1")
++    (version "1.18.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "jwst" version))
+        (sha256
+-        (base32
+-         "0brlj2w0jjg9p4zwna05bk9l8nb7xkcss7p5rjdjaj3hxlskzfkq"))
++        (base32 "1r3gmlsirdf1l2m1z8sxzh6h668zvkjyr463zwp32f6wppcj286l"))
+        (modules '((guix build utils)))
+        (snippet
+         #~(begin
+@@ -4658,10 +4657,6 @@ (define-public python-jwst
+           (add-before 'build 'relax-requirements
+             (lambda _
+               (substitute* "pyproject.toml"
+-                ;; gwcs>=0.22.0,<0.23.0
+-                ((">=0.22.0,<0.23.0") ">=0.22.0")
+-                ;; numpy<2.0,>=1.25
+-                ((">=1.25,<2.0") ">=1.24,<2.0")
+                 ;; scipy>=1.14.1
+                 (("1.14.1") "1.12.0")
+                 ;; XXX: Can't detect opencv-python version. The input opencv
+@@ -4669,8 +4664,9 @@ (define-public python-jwst
+                 ((".*opencv-python-headless.*") "")
+                 ;; Remove broken scripts, see
+                 ;; <https://github.com/spacetelescope/jwst/issues/9401>.
+-                (("csvconvert = .*") "")
+-                (("asn_gather = .*") "")))))))
++                (("asn_gather = .*") "")
++                (("create_data = .*") "")
++                (("csvconvert = .*") "")))))))
+     (native-inputs
+      (list python-colorama
+            python-pytest
+-- 
+2.49.0
+

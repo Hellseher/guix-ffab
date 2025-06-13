@@ -1,0 +1,39 @@
+From af1e5606253c7b5b04147419cff87ac8a4382233 Mon Sep 17 00:00:00 2001
+Message-ID: <af1e5606253c7b5b04147419cff87ac8a4382233.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 18 May 2025 20:51:35 +0100
+Subject: [PATCH 21/31] gnu: python-glue-astronomy: Update to 0.11.0.
+
+* gnu/packages/astronomy.scm (python-glue-astronomy): Update to 0.11.0.
+
+Change-Id: I919d7f7ac0b329583e1f001fe3396ee4748d3e36
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 8cc75a2966..e45c104935 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3540,13 +3540,13 @@ (define-public ginga-qt5
+ (define-public python-glue-astronomy
+   (package
+     (name "python-glue-astronomy")
+-    (version "0.10.0")
++    (version "0.11.0")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri "glue-astronomy" version))
++       (uri (pypi-uri "glue_astronomy" version))
+        (sha256
+-        (base32 "1bra11i55g687ykzll5clp7mf3l9kc0x11wqc3gwfi98qx8fgpqz"))))
++        (base32 "0qaaf3n69ird5b00igkxnwyh80nvwffvfmaz7gbkavxnf6km940p"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.49.0
+

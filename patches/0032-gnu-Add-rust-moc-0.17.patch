@@ -1,0 +1,95 @@
+From f8063d4d399a11fb9e6f11489404c661fd1f1579 Mon Sep 17 00:00:00 2001
+Message-ID: <f8063d4d399a11fb9e6f11489404c661fd1f1579.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 10 Apr 2025 23:51:42 +0100
+Subject: [PATCH 32/32] gnu: Add rust-moc-0.17.
+
+* gnu/packages/crates-io.scm (rust-moc-0.17): New variable.
+
+Change-Id: I9fcb4ee00b1dc39a4341ed0e9ed58c279fbc561b
+---
+ gnu/packages/crates-io.scm | 66 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
+
+diff --git a/gnu/packages/crates-io.scm b/gnu/packages/crates-io.scm
+index 6c9f571326..9184527c26 100644
+--- a/gnu/packages/crates-io.scm
++++ b/gnu/packages/crates-io.scm
+@@ -43732,6 +43732,72 @@ (define-public rust-mmap-fixed-0.1
+      "This package provides a library for dealing with memory-mapped I/O.")
+     (license license:expat)))
+ 
++(define-public rust-moc-0.17
++  (package
++    (name "rust-moc")
++    (version "0.17.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (crate-uri "moc" version))
++       (file-name (string-append name "-" version ".tar.gz"))
++       (sha256
++        (base32 "1vkh0lm669lsraxbm7i8m0135ij91y9dijbj7fx72d62x8if43qx"))))
++    (build-system cargo-build-system)
++    (arguments
++     `(#:cargo-test-flags
++       ;; All of these tests fail with an error: Os { code: 2, kind: NotFound,
++       ;; message: "No such file or directory" }.
++       '("--"
++         "--skip=deser::fits::multiordermap::tests::test_mutliordermap"
++         "--skip=deser::fits::multiordermap::tests::test_mutliordermap_sum"
++         "--skip=deser::fits::skymap::tests::test_skymap_v2"
++         "--skip=deser::fits::skymap::tests::test_skymap_v3"
++         "--skip=deser::fits::skymap::tests::test_skymap_v4"
++         "--skip=deser::fits::skymap::tests::test_skymap_v5"
++         "--skip=deser::fits::tests::test_moc2d_to_fits"
++         "--skip=deser::fits::tests::test_read_v1_smoc_fits"
++         "--skip=deser::fits::tests::test_read_v2_smoc_uniq_fits"
++         "--skip=deser::fits::tests::test_read_v2_tmoc_fits"
++         "--skip=deser::fits::tests::test_write_cells_fits"
++         "--skip=deser::fits::tests::test_write_ranges2d_fits"
++         "--skip=deser::fits::tests::test_write_ranges_fits"
++         "--skip=deser::img::tests::test_img"
++         "--skip=deser::img::tests::test_img_auto_allsky"
++         "--skip=deser::json::tests::test_stmoc_from_json_large"
++         "--skip=moc2d::range::op::tests::test_union_assocdata_vsx"
++         "--skip=moc2d::range::op::tests::test_union_xmm_chandra"
++         "--skip=moc::range::op::and::tests::test_and"
++         "--skip=moc::range::op::minus::tests::test_minus"
++         "--skip=moc::range::op::or::tests::test_or"
++         "--skip=moc::range::op::overlap::tests::overlap_it"
++         "--skip=moc::range::op::xor::tests::test_xor"
++         "--skip=moc::range::tests::test_border_elementary_edges_2")
++       #:cargo-inputs
++       (("rust-byteorder" ,rust-byteorder-1)
++        ("rust-cdshealpix" ,rust-cdshealpix-0.7)
++        ("rust-flate2" ,rust-flate2-1)
++        ("rust-mapproj" ,rust-mapproj-0.3)
++        ("rust-nom" ,rust-nom-7)
++        ("rust-num" ,rust-num-0.4)
++        ("rust-png" ,rust-png-0.17)
++        ("rust-quick-error" ,rust-quick-error-2)
++        ("rust-rayon" ,rust-rayon-1)
++        ("rust-serde-json" ,rust-serde-json-1)
++        ("rust-slab" ,rust-slab-0.4)
++        ("rust-stc-s" ,rust-stc-s-0.1)
++        ("rust-thiserror" ,rust-thiserror-1))
++       #:cargo-development-inputs
++       (("rust-criterion" ,rust-criterion-0.5)
++        ("rust-rand" ,rust-rand-0.8))))
++    (home-page "https://github.com/cds-astro/cds-moc-rust")
++    (synopsis "Create and manipulate HEALPix Multi-Order Coverages maps")
++    (description
++     "This package implements a functionality to read, write, create and
++manipulate HEALPix Multi-Order Coverage maps (MOCs), i.e. discretized
++geometrical surfaces on the unit sphere.")
++    (license license:asl2.0)))
++
+ (define-public rust-modifier-0.1
+   (package
+     (name "rust-modifier")
+-- 
+2.49.0
+

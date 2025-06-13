@@ -1,0 +1,77 @@
+From 46cca6d2a45d7b6be459ac7ed8ba8e96f1b15ee9 Mon Sep 17 00:00:00 2001
+Message-ID: <46cca6d2a45d7b6be459ac7ed8ba8e96f1b15ee9.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 May 2025 12:16:08 +0100
+Subject: [PATCH 26/31] gnu: python-stcal: Update to 1.13.0.
+
+* gnu/packages/astronomy.scm (python-stcal): Update to 1.13.0.
+[arguments] <test-flags>: Add option to run tests against installed
+module.
+<phases>: Remove 'build-extensions.
+
+Change-Id: I54e7c6254fef6f8d8474588c82622c25ed6e1302
+---
+ gnu/packages/astronomy.scm | 18 +++++++-----------
+ 1 file changed, 7 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 81d1c2f73c..dfcfa8b755 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -6057,18 +6057,19 @@ (define-public python-statmorph
+ (define-public python-stcal
+   (package
+     (name "python-stcal")
+-    (version "1.12.0")
++    (version "1.13.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stcal" version))
+        (sha256
+-        (base32 "1wb1rvr0p00jhhpn2szqi9dn8vzmb8v12yb96h8x24mj08p5clwk"))))
++        (base32 "00xfx7hpcadwf3dm0lddh1raw7qnr5nrg30dclmjcrxhsp27spjg"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" (number->string (parallel-job-count))
++      #~(list "--pyargs" "stcal"
++              "--numprocesses" (number->string (parallel-job-count))
+               "-k" (string-join
+                     ;; Tests requiring network access.
+                     (list "not test_absolute_align"
+@@ -6079,7 +6080,8 @@ (define-public python-stcal
+                           "test_parse_sky_centroid"
+                           "test_relative_align[False]"
+                           "test_relative_align[True]")
+-                    " and not "))
++                    " and not ")
++              "tests")
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'patch-slope-fitter
+@@ -6093,17 +6095,11 @@ (define-public python-stcal
+             (lambda _
+               (substitute* "pyproject.toml"
+                 ;; Relax some requirements as all tests passed successfully.
+-                ;; numpy>=1.25.0
+-                (("1.25.0") "1.24.4")
+                 ;; scipy>=1.14.1
+                 (("1.14.1") "1.12.0")
+                 ;; XXX: Can't detect opencv-python version. The input opencv
+                 ;; might not set the version correctly.
+-                ((".*opencv-python-headless.*") ""))))
+-          (add-before 'check 'build-extensions
+-            (lambda _
+-              ;; Cython extensions have to be built before running the tests.
+-              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
++                ((".*opencv-python-headless.*") "")))))))
+     (native-inputs
+      (list python-cython-3
+            python-psutil
+-- 
+2.49.0
+

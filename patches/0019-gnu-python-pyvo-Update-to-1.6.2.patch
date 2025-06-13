@@ -1,0 +1,46 @@
+From cc882ce23d033ee8c678918cfba90045f01de4d4 Mon Sep 17 00:00:00 2001
+Message-ID: <cc882ce23d033ee8c678918cfba90045f01de4d4.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 16:52:47 +0100
+Subject: [PATCH 19/32] gnu: python-pyvo: Update to 1.6.2.
+
+* gnu/packages/astronomy.scm (python-pyvo): Update to 1.6.2.
+[native-inputs]: Add python-pytest-doctestplus.
+
+Change-Id: I24bee0dffdfe19380a2e9c2247a62e29195af45e
+---
+ gnu/packages/astronomy.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 13e6344bb1..8cacf179cf 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5153,19 +5153,20 @@ (define-public python-pyavm
+ (define-public python-pyvo
+   (package
+     (name "python-pyvo")
+-    (version "1.6.1")
++    (version "1.6.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "pyvo" version))
+        (sha256
+-        (base32 "0hfdsb6yqda6g987b96jqaw4kqj4qh9qz3am6inx0nl2m5y735pq"))))
++        (base32 "00kqgw0aaddlds1s47gxymp7rbxhgmgm8imzciavwf8clgr817pa"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags #~(list "--pyargs" "pyvo")))
+     (native-inputs
+      (list python-pytest-astropy
++           python-pytest-doctestplus
+            python-requests-mock
+            python-setuptools
+            python-setuptools-scm
+-- 
+2.49.0
+

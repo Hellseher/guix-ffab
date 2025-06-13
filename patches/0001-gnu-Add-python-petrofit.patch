@@ -1,0 +1,86 @@
+From 863090852b95c00f4fab1611ac7ec07c71ec739e Mon Sep 17 00:00:00 2001
+Message-ID: <863090852b95c00f4fab1611ac7ec07c71ec739e.1747779547.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 8 May 2025 22:55:44 +0100
+Subject: [PATCH 01/31] gnu: Add python-petrofit.
+
+* gnu/packages/astronomy.scm (python-petrofit): New variable.
+
+Change-Id: Ia59121ecf7700c4e57e844270d43397fbe91b08e
+---
+ gnu/packages/astronomy.scm | 57 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index ad01252cf7..fab4bbd9bf 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4066,6 +4066,63 @@ (define-public python-naima
+ Carlo.")
+     (license license:bsd-3)))
+ 
++(define-public python-petrofit
++  (package
++    (name "python-petrofit")
++    (version "0.6.0")
++    (source
++     (origin
++       (method git-fetch) ; no tests data in the PyPI tarball
++       (uri (git-reference
++             (url "https://github.com/PetroFit/petrofit")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "07dri6r6ws82nn379gqvg899g576n8skhgp5fjg3qq38rp8dgl0k"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "--numprocesses" (number->string (min 8 (parallel-job-count))))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'set-version
++            (lambda _
++              (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" #$version))))))
++    (native-inputs
++     (list python-hatch-vcs
++           python-hatchling
++           python-pytest
++           python-pytest-randomly
++           python-pytest-xdist
++           python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list jupyter
++           python-astropy
++           python-cython
++           python-extension-helpers
++           python-ipywidgets
++           python-matplotlib
++           python-notebook
++           python-numpy
++           python-photutils
++           python-pytest-astropy-header
++           python-pyyaml
++           python-regions
++           python-scikit-image
++           python-scikit-learn
++           python-scipy))
++    (home-page "https://github.com/PetroFit/petrofit")
++    (synopsis "Petrosian properties and fitting galaxy light profiles calculation")
++    (description
++     "PetroFit is a package for calculating Petrosian properties,
++such as radii and concentration indices, as well as fitting galaxy light
++profiles.  In particular, PetroFit includes tools for performing accurate
++photometry, segmentations, Petrosian profiling, and Sérsic fitting.")
++    (license license:bsd-3)))
++
+ (define-public python-pixell
+   (package
+     (name "python-pixell")
+-- 
+2.49.0
+

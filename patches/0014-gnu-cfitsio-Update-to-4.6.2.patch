@@ -1,0 +1,40 @@
+From 836836cdf4fd7e06b1f5e9f0df4e546c80996869 Mon Sep 17 00:00:00 2001
+Message-ID: <836836cdf4fd7e06b1f5e9f0df4e546c80996869.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 16 May 2025 15:28:07 +0100
+Subject: [PATCH 14/31] gnu: cfitsio: Update to 4.6.2.
+
+* gnu/packages/astronomy.scm (cfitsio): Update to 4.6.2.
+
+Change-Id: I2a4bce66ea22429b59b0e8948a89376f3709a31a
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 30b159941f..3150894234 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -612,7 +612,7 @@ (define-public celestia-gtk
+ (define-public cfitsio
+   (package
+     (name "cfitsio")
+-    (version "4.6.0")
++    (version "4.6.2")
+     (source
+      (origin
+        (method url-fetch)
+@@ -620,7 +620,7 @@ (define-public cfitsio
+              "https://heasarc.gsfc.nasa.gov/FTP/software/fitsio/c/"
+              "cfitsio-" version ".tar.gz"))
+        (sha256
+-        (base32 "1rykn2bnr9dfc1x2g4170s2yvl7xy6vy0ji92by31xbc9vdjydvw"))))
++        (base32 "1jz2bldpnfcz9pc5lfhx6sjj2m40sr30s4jbsjq9da5yq260gzb6"))))
+     (build-system gnu-build-system)
+     (arguments
+      (list
+-- 
+2.49.0
+

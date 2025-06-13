@@ -1,0 +1,69 @@
+From d3aa57369495e49319ad82f9108819eee517b2e2 Mon Sep 17 00:00:00 2001
+Message-ID: <d3aa57369495e49319ad82f9108819eee517b2e2.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 18:47:21 +0100
+Subject: [PATCH 25/32] gnu: python-sunkit-magex: Update to 1.0.0rc1.
+
+* gnu/packages/astronomy.scm (python-sunkit-magex): Update to 1.0.0rc1.
+[arguments] <test-flags>: Run test in parallel, supported upstream.
+[native-inputs]: Add python-pytest-xdist.
+
+Change-Id: I78e6ef0a201761aa67d2cc00f5534529a374d965
+---
+ gnu/packages/astronomy.scm | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index cbab2c3daf..edb380acdc 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -7241,25 +7241,26 @@ (define-public python-stwcs
+ (define-public python-sunkit-magex
+   (package
+     (name "python-sunkit-magex")
+-    (version "1.0.0")
++    (version "1.0.0rc1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "sunkit_magex" version))
+        (sha256
+-        (base32 "1jx1nvb6addnsmafq1s0wrxlcpk0p2hcp6b8ldw0q3sz2dzfpcb0"))))
++        (base32 "10lldb2q71q9gip9sx35zyzm34p9aj4xr2c7a21x176q90r3qyqq"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-k"
+-              (string-join
+-               ;; Some issue with presision in this test.
+-               (list "not test_adapt_map"
+-                     ;; NotImplementedError: is_full_sun_synoptic_map is only
+-                     ;; implemented for ['CEA', 'CAR'] projections and not
+-                     "test_car_reproject")
+-               " and not "))
++      #~(list "--numprocesses" (number->string (min 8 (parallel-job-count)))
++              "-k" (string-join
++                    ;; Some issue with presision in this test.
++                    (list "not test_adapt_map"
++                          ;; NotImplementedError: is_full_sun_synoptic_map is
++                          ;; only implemented for ['CEA', 'CAR'] projections
++                          ;; and not
++                          "test_car_reproject")
++                    " and not "))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'pre-check
+@@ -7271,6 +7272,7 @@ (define-public python-sunkit-magex
+      (list python-pytest
+            python-pytest-arraydiff
+            python-pytest-doctestplus
++           python-pytest-xdist
+            python-reproject
+            python-setuptools
+            python-setuptools-scm
+-- 
+2.49.0
+

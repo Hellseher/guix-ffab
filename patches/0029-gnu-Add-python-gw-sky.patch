@@ -1,0 +1,59 @@
+From 0581f1008744363d7d5c1c16c682935e0bf9b96e Mon Sep 17 00:00:00 2001
+Message-ID: <0581f1008744363d7d5c1c16c682935e0bf9b96e.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 15 Apr 2025 23:00:24 +0100
+Subject: [PATCH 29/32] gnu: Add python-gw-sky.
+
+* gnu/packages/astronomy.scm (python-gw-sky): New variable.
+
+Change-Id: I02be95d9266fd4b446de6dec12c7a2625eaf466f
+---
+ gnu/packages/astronomy.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 330ac5554f..af0aec7aa6 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3332,6 +3332,36 @@ (define-public python-glue-qt
+     (description "Multidimensional data visualization across files.")
+     (license license:bsd-3)))
+ 
++(define-public python-gw-sky
++  (package
++    (name "python-gw-sky")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "gw_sky" version))
++       (sha256
++        (base32 "0k2qgy6d443lgxb140w70q078hclaf2c1jl85czkzkmz77yiiblc"))))
++    (build-system pyproject-build-system)
++    (native-inputs
++     (list jupyter
++           python-pytest
++           python-healpy
++           python-nbconvert
++           python-setuptools
++           python-wheel))
++    (propagated-inputs
++     (list python-astropy
++           python-matplotlib
++           python-numpy
++           python-scipy))
++    (home-page "https://github.com/Hazboun6/gw_sky")
++    (synopsis "Gravitational wave signals visualization tool")
++    (description
++     "Python package for making visuals of gravitational wave signals,
++specifically pulsar timing array signals.")
++    (license license:expat)))
++
+ (define-public python-gwcs
+   (package
+     (name "python-gwcs")
+-- 
+2.49.0
+

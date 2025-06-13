@@ -1,0 +1,40 @@
+From 1d4ed0b66b9e2a6617c8a88361291f7379ce07f1 Mon Sep 17 00:00:00 2001
+Message-ID: <1d4ed0b66b9e2a6617c8a88361291f7379ce07f1.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 20 Apr 2025 22:41:44 +0100
+Subject: [PATCH 01/32] gnu: indi-2.0: Update to 2.1.3.
+
+* gnu/packages/astronomy.scm (indi-2.0): Update to 2.1.3.
+
+Change-Id: Iaaa35c645136968c88294e3bc60e84cdd1143bd0
+---
+ gnu/packages/astronomy.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index a024a0b550..de7756ab04 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1014,7 +1014,7 @@ (define-public imppg
+ (define-public indi-2.0
+   (package
+     (name "indi")
+-    (version "2.1.2.1")
++    (version "2.1.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1023,7 +1023,7 @@ (define-public indi-2.0
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0c0fi6n9243l3xfk84qjpk7n83w6q6k6yjj4a59zfhd8zk0fd8hi"))))
++        (base32 "13d0b7j0hsnz04j4a0l0pyv2h27ivp4ymvqvbavbflqdpaancqk3"))))
+     (build-system cmake-build-system)
+     (arguments
+      (list
+-- 
+2.49.0
+

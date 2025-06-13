@@ -1,0 +1,32 @@
+From 33ef01a8945d2b56b0b270bde6b4e2a672ff9656 Mon Sep 17 00:00:00 2001
+Message-ID: <33ef01a8945d2b56b0b270bde6b4e2a672ff9656.1747779548.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 20 May 2025 12:25:57 +0100
+Subject: [PATCH 27/31] gnu: python-jwst: Relax requirements.
+
+* gnu/packages/astronomy.scm (python-jwst):
+[phases]{relax-requirements}: Relax version constrain for stcal.
+
+Change-Id: Ic6728e6c96d2882a133a19263bac8d4c83b3589c
+---
+ gnu/packages/astronomy.scm | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index dfcfa8b755..9777df7cea 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -4062,6 +4062,8 @@ (define-public python-jwst
+           (add-before 'build 'relax-requirements
+             (lambda _
+               (substitute* "pyproject.toml"
++                ;; stcal<1.13.0,>=1.12.0
++                ((">=1.12.0,<1.13.0") "") ; main branch points to the latest commit
+                 ;; scipy>=1.14.1
+                 (("1.14.1") "1.12.0")
+                 ;; XXX: Can't detect opencv-python version. The input opencv
+-- 
+2.49.0
+

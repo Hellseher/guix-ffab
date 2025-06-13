@@ -1,0 +1,59 @@
+From 49c091f983b7fce2cf315829ed11e5e2c04925e1 Mon Sep 17 00:00:00 2001
+Message-ID: <49c091f983b7fce2cf315829ed11e5e2c04925e1.1747779547.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1747779547.git.sharlatanus@gmail.com>
+References: <cover.1747779547.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 11 May 2025 12:02:59 +0100
+Subject: [PATCH 04/31] gnu: Add python-baseband.
+
+* gnu/packages/astronomy.scm (python-baseband): New variable.
+
+Change-Id: I1296fbbfec71e922b30ccd8d4125eb04fd72ceba
+---
+ gnu/packages/astronomy.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 553da5ee21..ab8e558ec2 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -2428,6 +2428,36 @@ (define-public python-astropy-minimal
+        (delete python-matplotlib
+                python-scipy)))))
+ 
++(define-public python-baseband
++  (package
++    (name "python-baseband")
++    (version "4.3.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "baseband" version))
++       (sha256
++        (base32 "1yzgzdf8ri4blcpmnz5f3dv6in076vgbhbcqp37kjidlp4f4w05r"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      ;; FIXME: Tests are broken during collection phase, see
++      ;; <https://github.com/mhvk/baseband/issues/539>.
++      #:tests? #f))
++    (native-inputs
++     (list python-setuptools
++           python-setuptools-scm
++           python-wheel))
++    (propagated-inputs
++     (list python-astropy))
++    (home-page "https://github.com/mhvk/baseband")
++    (synopsis "Radio baseband I/O")
++    (description
++     "Baseband is a package for reading and writing @acronym{VLBI,
++Very-long-baseline interferometry} and other radio baseband files, with the
++aim of simplifying and streamlining data conversion and standardization.")
++    (license license:gpl3+)))
++
+ (define-public python-bayesicfitting
+   (package
+     (name "python-bayesicfitting")
+-- 
+2.49.0
+

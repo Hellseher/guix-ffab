@@ -1,0 +1,48 @@
+From 0317102e2894440e9c8985fae77e0bb9b60696b3 Mon Sep 17 00:00:00 2001
+Message-ID: <0317102e2894440e9c8985fae77e0bb9b60696b3.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 10:24:12 +0100
+Subject: [PATCH 12/32] gnu: python-stdatamodels: Update to 3.0.2.
+
+* gnu/packages/astronomy.scm (python-stdatamodels): Update to 3.0.2.
+[propagated-inputs]: Remove python-asdf-3; add python-asdf.
+
+Change-Id: Iafb80573a739caf7a511ab4841502b99dd149dec
+---
+ gnu/packages/astronomy.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index f764207082..eb24e39667 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -5815,13 +5815,13 @@ (define-public python-stcal
+ (define-public python-stdatamodels
+   (package
+     (name "python-stdatamodels")
+-    (version "2.2.0")
++    (version "3.0.2")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "stdatamodels" version))
+        (sha256
+-        (base32 "14720438p245ncjgwh7j37s69jd91rdk39daab8zswk9lhfbq9dx"))))
++        (base32 "0gyv07cz5f5m5hg22cfa2lpdj9lzjg2isz8pjfg22gl311ys584i"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -5836,7 +5836,7 @@ (define-public python-stdatamodels
+             (lambda _
+               (setenv "HOME" "/tmp"))))))
+     (propagated-inputs
+-     (list python-asdf-3
++     (list python-asdf
+            python-asdf-astropy
+            python-astropy
+            python-numpy))
+-- 
+2.49.0
+

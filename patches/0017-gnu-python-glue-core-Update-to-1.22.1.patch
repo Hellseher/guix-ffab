@@ -1,0 +1,64 @@
+From d0f64b8c917260efd81da31e0bf323b6b5f12d35 Mon Sep 17 00:00:00 2001
+Message-ID: <d0f64b8c917260efd81da31e0bf323b6b5f12d35.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 15:56:09 +0100
+Subject: [PATCH 17/32] gnu: python-glue-core: Update to 1.22.1.
+
+* gnu/packages/astronomy.scm (python-glue-core): Update to 1.22.1.
+[propagated-inputs]: Remove python-h5py.
+
+Change-Id: I455e8f91ea36b0cbe41c749973d6dec231640238
+---
+ gnu/packages/astronomy.scm | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 1616d4b1b3..af56fc8d6c 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3212,21 +3212,25 @@ (define-public python-glue-astronomy
+ (define-public python-glue-core
+   (package
+     (name "python-glue-core")
+-    (version "1.22.0")
++    (version "1.22.1")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "glue_core" version))
+        (sha256
+-        (base32 "0cx97zbi58fjl9j6wg8clygdiv6a95wgc2azw7ffg16y3qlqwkzs"))))
++        (base32 "1prw271rdv3alxdh5apkq45d037vmwl83ag8my081cmwfdfmnvn3"))))
+     (build-system pyproject-build-system)
++    (native-inputs
++     (list python-pytest
++           python-pytest-mpl
++           python-setuptools-scm
++           python-wheel))
+     (propagated-inputs
+      (list python-astrodendro
+            python-astropy
+            python-dill
+            python-echo
+            python-fast-histogram
+-           python-h5py
+            python-ipython
+            python-matplotlib
+            python-mpl-scatter-density
+@@ -3241,11 +3245,6 @@ (define-public python-glue-core
+            python-shapely
+            python-spectral-cube
+            python-xlrd))
+-    (native-inputs
+-     (list python-pytest
+-           python-pytest-mpl
+-           python-setuptools-scm
+-           python-wheel))
+     (home-page "http://glueviz.org")
+     (synopsis "Multidimensional data visualization project")
+     (description
+-- 
+2.49.0
+

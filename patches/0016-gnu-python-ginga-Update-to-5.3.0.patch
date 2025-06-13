@@ -1,0 +1,117 @@
+From 0774d9b84eb27cad9c9887c7bdc425e3c63b95d2 Mon Sep 17 00:00:00 2001
+Message-ID: <0774d9b84eb27cad9c9887c7bdc425e3c63b95d2.1745272461.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745272461.git.sharlatanus@gmail.com>
+References: <cover.1745272461.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 21 Apr 2025 14:54:59 +0100
+Subject: [PATCH 16/32] gnu: python-ginga: Update to 5.3.0.
+
+* gnu/packages/astronomy.scm (python-ginga): Update to 5.3.0. Fix
+indentation and style.
+[arguments] <phases>: Remove 'relax-requirments.
+[description]: Start from a new line and fix fill paragraph indentation.
+
+Change-Id: Ie9eeb41c963316cd396212195afb70ac157b0a9e
+---
+ gnu/packages/astronomy.scm | 64 ++++++++++++++++++--------------------
+ 1 file changed, 30 insertions(+), 34 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 0b5ba62b1e..1616d4b1b3 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -3094,13 +3094,13 @@ (define-public python-gatspy
+ (define-public python-ginga
+   (package
+     (name "python-ginga")
+-    (version "5.2.0")
++    (version "5.3.0")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "ginga" version))
+        (sha256
+-        (base32 "0gdb4wkz3ivizyb15x86q3z9ms7mlhpakwksp417mgy1av85wssh"))))
++        (base32 "04ag7v2srpl0scd3x27bbzkpfih98rrxhqvrsxy03l84g3zzrj6k"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -3108,17 +3108,18 @@ (define-public python-ginga
+       #:test-flags #~(list "-k" "not test_fwhm")
+       #:phases
+       #~(modify-phases %standard-phases
+-         (add-after 'unpack 'relax-requirements
+-           (lambda _
+-             (substitute* "setup.cfg"
+-               ;; packaging>=23.1
+-               ((">=23.1") ">=21.3"))))
+-         (add-before 'check 'set-home
+-           (lambda _
+-             ;; Relax matplotlib warning: ... because the default path
+-             ;; (/homeless-shelter/.config/matplotlib) is not a writable
+-             ;; directory ...
+-             (setenv "HOME" "/tmp"))))))
++          (add-before 'check 'set-home
++            (lambda _
++              ;; Relax matplotlib warning: ... because the default path
++              ;; (/homeless-shelter/.config/matplotlib) is not a writable
++              ;; directory ...
++              (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list python-attrs
++           python-docutils
++           python-pytest-astropy
++           python-pytest-astropy-header
++           python-tornado))
+     (propagated-inputs
+      (list opencv
+            python-astropy
+@@ -3137,29 +3138,24 @@ (define-public python-ginga
+            python-qtpy
+            python-scipy
+            python-tomli))
+-    (native-inputs
+-     (list python-attrs
+-           python-docutils
+-           python-pytest-astropy
+-           python-pytest-astropy-header
+-           python-tornado))
+     (home-page "https://ejeschke.github.io/ginga/")
+     (synopsis "Scientific image viewer and toolkit for FITS files")
+-    (description "Ginga is a toolkit designed for building viewers for
+-scientific image data in Python, visualizing 2D pixel data in numpy arrays.  It
+-can view astronomical data such as contained in files based on the
+-FITS (Flexible Image Transport System) file format.  It is written and is
+-maintained by software engineers at the National Astronomical Observatory of
+-Japan (NAOJ), the Space Telescope Science Institute (STScI), and other
+-contributing entities.
+-
+-The Ginga toolkit centers around an image display object which supports zooming
+-and panning, color and intensity mapping, a choice of several automatic cut
+-levels algorithms and canvases for plotting scalable geometric forms.  In
+-addition to this widget, a general purpose \"reference\" FITS viewer is
+-provided, based on a plugin framework.  A fairly complete set of standard plugins
+-are provided for features that we expect from a modern FITS viewer: panning and
+-zooming windows, star catalog access, cuts, star pick/FWHM, thumbnails, etc.")
++    (description
++     "Ginga is a toolkit designed for building viewers for scientific image
++data in Python, visualizing 2D pixel data in numpy arrays.  It can view
++astronomical data such as contained in files based on the FITS (Flexible Image
++Transport System) file format.  It is written and is maintained by software
++engineers at the National Astronomical Observatory of Japan (NAOJ), the Space
++Telescope Science Institute (STScI), and other contributing entities.
++
++The Ginga toolkit centers around an image display object which supports
++zooming and panning, color and intensity mapping, a choice of several
++automatic cut levels algorithms and canvases for plotting scalable geometric
++forms.  In addition to this widget, a general purpose \"reference\" FITS
++viewer is provided, based on a plugin framework.  A fairly complete set of
++standard plugins are provided for features that we expect from a modern FITS
++viewer: panning and zooming windows, star catalog access, cuts, star
++pick/FWHM, thumbnails, etc.")
+ (license license:bsd-3)))
+ 
+ (define-public ginga-qt5
+-- 
+2.49.0
+
