@@ -31,6 +31,7 @@
   #:use-module (gnu packages autotools)
   #:use-module (gnu packages bison)
   #:use-module (gnu packages boost)
+  #:use-module (gnu packages certs)
   #:use-module (gnu packages check)
   #:use-module (gnu packages cmake)
   #:use-module (gnu packages compression)
@@ -1086,6 +1087,94 @@ for variables with units.")
               (lambda _
                 (setenv "SETUPTOOLS_SCM_PRETEND_VERSION" "0.5.1")))))))))
 ;; - https://github.com/spacetelescope/stpipe/issues/114
+
+;; 20250613T160429+0100
+(define-public python-stpsf
+  (package
+    (name "python-stpsf")
+    (version "2.0.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "stpsf" version))
+       (sha256
+        (base32 "0x8simm1b2as4azw51h74jpdf5cn8v327rria77wa1423dk0h1lb"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      ;; These tests try to access <mast.stsci.edu>.
+      #~(list "-k" (string-join
+                    (list "not test_delta_wfe_around_time"
+                          "test_get_stpsf_data_path_invalid"
+                          "test_monthly_trending_plot_auto_opdtable"
+                          "test_monthly_trending_plot_opdtable_param")
+                    " and not "))
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'pre-check
+            (lambda _
+              ;; PermissionError: [Errno 13] Permission denied:
+              ;; '/homeless-shelter'
+              (setenv "HOME" "/tmp")
+              (setenv "STPSF_PATH"
+                      (string-append #$(this-package-input "stpsf-data")
+                                     "/share/stpsf-data")))))))
+    (native-inputs
+     (list nss-certs-for-test
+           python-pytest
+           python-pytest-astropy
+           python-setuptools
+           python-setuptools-scm
+           python-wheel))
+    (inputs
+     (list
+      ;; Required for installation, see
+      ;; <https://stpsf.readthedocs.io/en/stable/installation.html>, no licence
+      ;; provided. "To run STPSF, you must download these files and tell STPSF
+      ;; where to find them using the STPSF_PATH environment variable."
+      stpsf-data))
+    (propagated-inputs
+     (list python-astropy
+           python-astroquery
+           python-matplotlib
+           python-numpy
+           python-photutils
+           python-poppy
+           python-pysiaf
+           python-scipy
+           python-synphot))
+    (home-page "https://stpsf.readthedocs.io")
+    (synopsis "Creates simulated point spread functions for Space Telescopes)")
+    (description
+     "STPSF produces simulated PSFs for the James Webb Space Telescope, NASA's
+flagship infrared space telescope.  STPSF can simulate images for any of the four
+science instruments plus the fine guidance sensor, including both direct
+imaging, coronagraphic, and spectroscopic modes.")
+    (license license:bsd-3)))
+
+(define-public stpsf-data
+  (package
+    (name "stpsf-data")
+    (version "2.0.0")
+    (source
+     (origin
+       (method url-fetch)
+       ;; 74MiB archive
+       (uri "https://stsci.box.com/shared/static/kqfolg2bfzqc4mjkgmujo06d3iaymahv.gz")
+       (file-name (string-append name "-" version ".tar.gz"))
+       (sha256
+        (base32 "1jvv56di2l7nj9y0xmwianfyp0wj83gqk5wx7kbipkqwqnk7gn21"))))
+    (build-system copy-build-system)
+    (arguments
+     (list
+      #:install-plan #~'(("." "share/stpsf-data"))))
+    (home-page "https://stpsf.readthedocs.io/en/stable/installation.html")
+    (synopsis "JWST pupil shape, instrument throughputs, and aperture positions data files")
+    (description
+     "This package contains FIT and CSV files required for STPSF installation and
+distributed separately from it.")
+    (license license:bsd-3)))
 
 ;; 20220711T123349+0100
 ;; (define-public python-stsci-image
