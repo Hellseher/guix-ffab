@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2025-06-13 Fri 13:57:10 BST>
+#+modified: <2025-06-20 Fri 22:01:43 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -8,7 +8,7 @@ This workflow file contains packaging process for Astronomical/Astrophysical rel
 - GNU Guix :: gnu/packages/astronomy.scm
 - FFAB :: ffab/packages/astronomy.scm
 
-* Flow [11/102][10%]
+* Flow [11/103][10%]
 ** TODO amusecode [0/45][0%] :author:
 - https://www.amusecode.org/
 - https://github.com/amusecode
@@ -1058,6 +1058,24 @@ CLOSED: [2024-11-30 Sat 15:20]
 *** TODO INTER [0/0][100%] :p4:
 - synopsis :: Interactive interference characterization program. A description and user manual are
   available here.
+** TODO BenediktDiemer [1/1][100%] :author:
+*** DONE python-colossus [2/4][50%]
+CLOSED: [2025-06-13 Fri 13:48]
+- https://bitbucket.org/bdiemer/colossus/src/master/
+- synopsis :: Cosmology, halo, and large-scale structure tools
+- [X] :packed @1.3.8 <2025-05-20 Tue>
+- [X] :patch-sent <2025-05-20 Tue>
+- [X] :paptch-applied-upstream <2025-05-31 Sat>
+  - https://issues.guix.gnu.org/78517
+- [X] :inputs [8/8][100%]
+  - [X] python-astropy-minimal
+  - [X] python-jsonpickle
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-scikit-image
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-wheel
 ** TODO brandon-rhodes [1/1][100%] :author:
 - https://github.com/brandon-rhodes
 - https://rhodesmill.org/brandon/
@@ -1362,24 +1380,21 @@ CLOSED: [2025-06-13 Fri 13:53]
   - [X] python-numpy
   - [X] python-scipy
 
-** TODO BenediktDiemer [1/1][100%] :author:
-*** DONE python-colossus [2/4][50%]
-CLOSED: [2025-06-13 Fri 13:48]
-- https://bitbucket.org/bdiemer/colossus/src/master/
-- synopsis :: Cosmology, halo, and large-scale structure tools
-- [X] :packed @1.3.8 <2025-05-20 Tue>
-- [X] :patch-sent <2025-05-20 Tue>
-- [X] :paptch-applied-upstream <2025-05-31 Sat>
-  - https://issues.guix.gnu.org/78517
-- [X] :inputs [8/8][100%]
-  - [X] python-astropy-minimal
-  - [X] python-jsonpickle
-  - [X] python-numpy
-  - [X] python-pytest
-  - [X] python-scikit-image
-  - [X] python-scipy
-  - [X] python-setuptools
-  - [X] python-wheel
+** TODO dstndstn [0/2][0%] :author:
+/Dustin Lang/
+*** TODO astrometry.net [0/4][0%] :p4:
+- https://github.com/dstndstn/astrometry.net
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
+*** TODO python-tractor [/][%] :p1:
+- https://github.com/dstndstn/tractor
+- synopsis :: Measuring astronomical sources via probabilistic inference
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :patch-applied-upstream
+- [ ] :inputs [0/0][0%]
 ** TODO DuncanMacleod [/][%] :author:
 *** TODO python-gwpy [0/4][0%] :p1:
 - https://gitlab.com/gwpy/gwpy
@@ -1436,21 +1451,6 @@ CLOSED: [2025-06-13 Fri 13:48]
     - [ ] :packaged
   - [X] python-wheel
 
-** TODO dstndstn [0/2][0%] :author:
-/Dustin Lang/
-*** TODO astrometry.net [0/4][0%] :p4:
-- https://github.com/dstndstn/astrometry.net
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
-*** TODO python-tractor [/][%] :p1:
-- https://github.com/dstndstn/tractor
-- synopsis :: Measuring astronomical sources via probabilistic inference
-- [ ] :packed
-- [ ] :patch-sent
-- [ ] :patch-applied-upstream
-- [ ] :inputs [0/0][0%]
 ** TODO ericmandel [0/1][0%] :author:
 - https://github.com/ericmandel
 *** TODO funtools [2/4][50%] :p1:
@@ -2045,22 +2045,20 @@ CLOSED: [2024-10-30 Wed 19:41]
 ** TODO jobovy [0/2][0%] :author:
 - https://github.com/jobovy
 - http://astro.utoronto.ca/~bovy/
+
 *** TODO python-galpy [1/4][25%] :p1:
 - https://github.com/jobovy/galpy
 - synopsis :: Galactic Dynamics in python
 - [ ] :packed
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [X] :inputs [8/8][100%]
-  - [X] python-future
+- [X] :inputs [6/6][100%]
   - [X] python-matplotlib
   - [X] python-numpy
-  - [X] python-pytest
-  - [X] python-pynbody
-    - [X] :packed <2022-07-27 Wed>
+  - [X] python-packaging
   - [X] python-scipy
   - [X] python-setuptools
-  - [X] python-six
+  - [X] python-wheel
 
 *** TODO python-mwdust [0/4][0%] :p5:
 - synopsis :: Dust maps in the Milky Way
@@ -2068,6 +2066,36 @@ CLOSED: [2024-10-30 Wed 19:41]
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
+
+** TODO joshspeagle [0/2][0%] :author:
+/Josh Speagle/
+*** TODO python-brutus [0/4][0%] :p1:
+- https://github.com/joshspeagle/brutus
+- synopsis :: Modeling stellar photometry with "brute force" methods
+- [ ] :packed
+- [ ] :patch-sent
+- [ ] :paptch-applied-upstream
+- [ ] :inputs [0/2][0%]
+  - [ ] python-setuptools
+  - [ ] python-wheel
+
+*** WAIT python-dynesty [3/4][75%] :p3:
+- https://github.com/joshspeagle/dynesty
+- synopsis :: Dynamic Nested Sampling package for computing Bayesian posteriors and evidences
+- [X] :packed @2.1.5 <2025-06-10 Fri>
+- [X] :patch-sent <2025-06-20 Fri>
+- [ ] :paptch-applied-upstream
+  - https://codeberg.org/guix/guix/pulls/706
+- [X] :inputs [9/9][100%]
+  - [X] python-h5py
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-xdist
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-tqdm
+  - [X] python-wheel
 
 ** TODO JuliaAstro [8/35][22%] :author:
 - http://juliaastro.org/dev/index.html
@@ -2561,11 +2589,45 @@ CLOSED: [2024-06-25 Tue 22:17]
 ** TODO lenstronomy [0/1][0%] :author:
 *** TODO python-lenstronomy [0/4][0%] :p1:
 - https://github.com/lenstronomy/lenstronomy
- - synopsis :: Multi-purpose lens modeling software
-- [ ] :packed
+  - synopsis :: Multi-purpose lens modeling software
+- [ ] :packed @1.12.0
 - [ ] :patch-sent
 - [ ] :paptch-applied-upstream
-- [ ] :inputs [0/0][0%]
+- [-] :inputs [23/27][85%]
+  - [X] python-astropy
+  - [X] python-colossus
+  - [X] python-configparser
+  - [X] python-coolest
+  - [X] python-corner
+  - [X] python-dynesty
+    - [X] :packaged <2025-06-20 Fri>
+  - [X] python-emcee
+  - [X] python-h5py
+  - [X] python-matplotlib
+  - [X] python-mpmath
+  - [X] python-multiprocess
+  - [ ] python-nautilus-sampler
+    - [ ] :packaged
+  - [ ] python-nestcheck
+    - [ ] :packaged
+  - [X] python-numba
+  - [X] python-numpy
+  - [ ] python-pymultinest
+    - [ ] :packaged
+  - [X] python-pytest
+  - [X] python-pytest-xdist
+  - [X] python-pyxdg
+  - [X] python-pyyaml
+  - [X] python-schwimmbad
+  - [X] python-scikit-image
+  - [X] python-scikit-learn
+  - [X] python-scipy
+  - [X] python-slitronomy
+    - [X] :packaged <2025-06-20 Fri>
+  - [ ] python-starred-astro
+    - [ ] :packaged
+  - [X] python-zeus-mcmc
+
 ** DONE liberfa [2/2][100%] :author:
 CLOSED: [2025-05-13 Tue 08:58]
 - https://github.com/liberfa/pyerfa
@@ -3583,7 +3645,7 @@ CLOSED: [2023-12-19 Tue 00:47]
   - [ ] cdf
     - [ ] :packed
 
-** TODO SpaceTelescopeScienceInstitue [28/38][73%] :author:
+** TODO SpaceTelescopeScienceInstitue [28/39][71%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** DONE python-acstools [4/4][100%]
@@ -3602,6 +3664,7 @@ CLOSED: [2024-10-30 Wed 19:44]
   - [X] python-pytest-remotedata
   - [X] python-pyyaml
   - [X] python-requests
+
 *** DONE python-astrocut [4/4][100%]
 CLOSED: [2025-03-02 Sun 18:18]
 - https://github.com/spacetelescope/astrocut
@@ -3639,20 +3702,32 @@ CLOSED: [2025-03-02 Sun 18:18]
   - [X] python-matplotlib
   - [X] python-notebook
   - [ ] python-pyo
+    - [ ] :packaged
   - [X] python-pytest-astropy
   - [X] python-requests
   - [X] python-scipy
   - [X] python-setuptools
   - [X] python-setuptools-scm
   - [X] python-wheel
-*** TODO python-calcos [1/5][20%] :p1:
+
+*** WAIT python-calcos [3/4][75%] :p3:
 - https://github.com/spacetelescope/calcos
 - synopsis :: Calibration for HST/COS.
-- [ ] :packed
-- [ ] :patch-prepared
-- [ ] :patch-sent
+- [X] :packed @3.6.1 <2025-06-17 Tue>
+- [X] :patch-sent <2025-06-20 Fri>
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+  - https://codeberg.org/guix/guix/pulls/706
+- [X] :inputs [10/10][100%]
+  - [X] python-astropy
+  - [X] python-ci-watson
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+  - [X] python-stsci-tools
+  - [X] python-wheel
 
 *** DONE python-ci-watson [4/4][100%]
 CLOSED: [2024-10-04 Fri 14:01]
@@ -3670,13 +3745,27 @@ CLOSED: [2024-10-04 Fri 14:01]
   - [X] python-requests
   - [X] python-semantic-version
   - [X] python-setuptools-scm
-*** TODO python-costools [1/5][20%] :p1:
+
+*** WAIT python-costools [3/4][75%] :p3:
 - https://github.com/spacetelescope/costools
-- [ ] :packed
-- [ ] :patch-prepared
-- [ ] :patch-sent
+- synopsis :: Tools for Cosmic Origins Spectrograph
+- [X] :packed @1.2.6 <2025-06-17 Tue>
+- [X] :patch-sent <2025-06-20 Fri>
 - [ ] :paptch-applied-upstream
-- [X] :inputs [0/0][0%]
+  - https://codeberg.org/guix/guix/pulls/706
+- [X] :inputs [10/10][100%]
+  - [X] python-astropy
+  - [X] python-calcos
+    - [X] :packaged <2025-06-17 Tue>
+  - [X] python-codecov
+  - [X] python-numpy
+  - [X] python-pytest
+  - [X] python-pytest-cov
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+  - [X] python-stsci-tools
+  - [X] python-wheel
+
 *** DONE python-crds [5/5][100%]
 CLOSED: [2023-06-14 Wed 19:24]
 - https://github.com/spacetelescope/crds
@@ -3729,12 +3818,13 @@ CLOSED: [2023-06-14 Wed 19:25]
   - [X] python-pytest-cov
   - [X] python-setuptools-scm
 
-*** TODO python-drizzlepac [1/4][25%] :p1:
+*** WAIT python-drizzlepac [3/4][75%] :p3:
 - https://github.com/spacetelescope/drizzlepac
 - synopsis ::  AstroDrizzle for HST images.
-- [ ] :packed
-- [ ] :patch-sent
+- [X] :packed @3.7.1 <2025-06-17 Tue>
+- [X] :patch-sent <2025-06-20 Fri>
 - [ ] :paptch-applied-upstream
+  - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [24/24][100%]
   - [X] python-astrocut
   - [X] python-astropy
@@ -3765,6 +3855,7 @@ CLOSED: [2023-06-14 Wed 19:25]
   - [X] python-stwcs
     - [X] :packaged <2025-03-02 Sun>
   - [X] python-tweakwcs
+
 *** DONE python-fitsblender [4/4][100%]
 CLOSED: [2025-04-01 Tue 18:52]
 - https://github.com/spacetelescope/fitsblender
@@ -3999,6 +4090,7 @@ CLOSED: [2023-06-14 Wed 19:26]
   - [X] python-pytest-remotedata
   - [X] python-setuptools-scm
   - [X] python-six
+
 *** DONE python-rad [5/5][100%]
 CLOSED: [2023-06-14 Wed 19:27]
 - https://github.com/spacetelescope/rad
@@ -4014,6 +4106,7 @@ CLOSED: [2023-06-14 Wed 19:27]
   - [X] python-pytest-openfiles
   - [X] python-semantic-version
   - [X] python-setuptools-scm
+
 *** TODO python-romancal [0/5][0%] :p1:
 - https://github.com/spacetelescope/romancal
 - synopsis :: Python library to process science observations from the Nancy Grace Roman Space
@@ -4166,6 +4259,31 @@ CLOSED: [2023-06-14 Wed 19:28]
   - [X] python-setuptools-scm
   - [X] python-typer
   - [X] python-wheel
+
+*** WAIT python-stpsf [3/4][75%] :p3:
+- https://github.com/spacetelescope/stpsf
+- synopsis :: Space Telescope PSF Simulation Tool
+- [X] :packed @2.0.0 <2025-06-14 Sat>
+- [X] :patch-sent <2025-06-20 Fri>
+- [ ] :paptch-applied-upstream
+  - https://codeberg.org/guix/guix/pulls/706
+- [X] :inputs [16/16][100%]
+  - [X] nss-certs-for-test
+  - [X] python-astropy
+  - [X] python-astroquery
+  - [X] python-matplotlib
+  - [X] python-numpy
+  - [X] python-photutils
+  - [X] python-poppy
+  - [X] python-pysiaf
+  - [X] python-pytest
+  - [X] python-pytest-astropy
+  - [X] python-scipy
+  - [X] python-setuptools
+  - [X] python-setuptools-scm
+  - [X] python-synphot
+  - [X] python-wheel
+  - [X] stpsf-data
 
 *** DONE python-stsci-image [5/5][100%]
 CLOSED: [2023-06-14 Wed 19:28]
