@@ -25,7 +25,7 @@
   #:use-module (gnu packages golang-build)
   #:use-module (gnu packages golang-check)
   #:use-module (gnu packages golang-xyz)
-  #:use-module (gnu packages syncthing)
+  #:use-module (gnu packages version-control)
   #:use-module (gnu packages vim)
   #:use-module (guix build-system go)
   #:use-module (guix download)
@@ -126,10 +126,10 @@ with @code{git} and your code.")
 ;; inferred type func(a *Pipe, b *Pipe) int for func(a E, b E) int
 ;;
 ;; 20211220T202352+0000
-(define lazygit
+(define-public lazygit
   (package
     (name "lazygit")
-    (version "0.48.0")
+    (version "0.52.0")
     (source
      (origin
        (method git-fetch)
@@ -138,18 +138,26 @@ with @code{git} and your code.")
              (commit (string-append "v" version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "1r0rr08z2qyq3a3wpigjqpskgd066xhky8rpjfn9w98j9859qwrg"))
+        (base32 "0nijsnx9nq8kdmjcx9g2fxbj6rmx2wqy1xr5aysgzlc1ysi53cdm"))
        (modules '((guix build utils)))
        (snippet
         #~(begin (delete-file-recursively "vendor")))))
     (build-system go-build-system)
     (arguments
      (list
-      #:go go-1.22
+      #:go go-1.24
       #:install-source? #f
-      #:import-path "github.com/jesseduffield/lazygit"))
+      #:import-path "github.com/jesseduffield/lazygit"
+      #:test-flags
+      #~(list "-short"
+              "-skip" (string-join
+                       (list "TestNewTranslationSetFromConfig/auto-detection_with_LANG_set_to_nl_NL"
+                             "TestNewTranslationSetFromConfig/auto-detection_with_LANG_set_to_zh-CN")
+                       "|"))))
     (native-inputs
-     (list go-github-com-adrg-xdg
+     (list git-minimal/pinned ;; for tests
+           go-dario-cat-mergo
+           go-github-com-adrg-xdg
            go-github-com-atotto-clipboard
            go-github-com-aybabtme-humanlog
            go-github-com-cloudfoundry-jibber-jabber
@@ -157,7 +165,6 @@ with @code{git} and your code.")
            go-github-com-gdamore-tcell-v2
            go-github-com-go-errors-errors
            go-github-com-gookit-color
-           go-github-com-imdario-mergo
            go-github-com-integrii-flaggy
            go-github-com-jesseduffield-generics
            go-github-com-jesseduffield-go-git-v5
@@ -171,7 +178,7 @@ with @code{git} and your code.")
            go-github-com-lucasb-eyer-go-colorful
            go-github-com-mattn-go-runewidth
            go-github-com-mgutz-str
-           ;go-github-com-mitchellh-go-ps
+           go-github-com-mitchellh-go-ps
            go-github-com-sahilm-fuzzy
            go-github-com-samber-lo
            go-github-com-sanity-io-litter

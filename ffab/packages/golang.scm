@@ -27,6 +27,7 @@
   #:use-module (gnu packages golang-vcs)
   #:use-module (gnu packages golang-web)
   #:use-module (gnu packages golang-xyz)
+  #:use-module (gnu packages golang-vcs)
   #:use-module (gnu packages syncthing)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages version-control)
@@ -79,6 +80,30 @@ developed by the Go team. It provides IDE features to any LSP-compatible
 editor.")
     (home-page "https://pkg.go.dev/golang.org/x/tools/gopls")
     (license license:bsd-3)))
+
+;; 20250618T235314+0100
+(define-public go-github-com-mitchellh-go-ps
+  (package
+    (name "go-github-com-mitchellh-go-ps")
+    (version "1.0.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/mitchellh/go-ps")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0ipcbz66x7q8xczi7cyfq06y7n7v0syvkp730vn9jrn7s8f5ag0z"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/mitchellh/go-ps"))
+    (home-page "https://github.com/mitchellh/go-ps")
+    (synopsis "Process List Library for Go")
+    (description
+     "ps provides an API for finding and listing processes in a platform-agnostic way.")
+    (license license:expat)))
 
 ;; 20210710T203807+0100
 (define-public go-mvdan-cc-xurls-v2
@@ -1828,7 +1853,7 @@ platforms.  Handles killing children of processes as well as the process itself.
 (define-public go-github-com-jesseduffield-gocui
   (package
     (name "go-github-com-jesseduffield-gocui")
-    (version "0.3.1-0.20250220081214-b376cb0857ac")
+    (version "0.3.1-0.20250605111917-fc5387961412")
     (source (origin
               (method git-fetch)
               (uri (git-reference
@@ -1837,7 +1862,7 @@ platforms.  Handles killing children of processes as well as the process itself.
               (file-name (git-file-name name version))
               (sha256
                (base32
-                "17wg1ph0cl0z1q73if4ybm01fxi6avcw92s1q3mnbxs5ywliq9nv"))))
+                "1flddkrn1wr4y0srsxn0g465y31ijl8qdzvr7g0kl3yfgrrim745"))))
     (build-system go-build-system)
     (arguments
      '(#:import-path "github.com/jesseduffield/gocui"))
@@ -1869,50 +1894,50 @@ Highlighted features:
 
 ;; 20220813T134740+0100
 (define-public go-github-com-jesseduffield-go-git-v5
-  (package
-    (name "go-github-com-jesseduffield-go-git-v5")
-    (version "5.1.2-0.20221018185014-fdd53fef665d")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/jesseduffield/go-git")
-                    (commit (go-version->git-ref version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "01fpq396av09b3ijv7fxvi4id5l800awwxv7rm7js9q8pykd1p4f"))))
-    (build-system go-build-system)
-    (arguments
-     ;; NOTE: (Sharlatan-20220813T142811+0100): Some tests require remote access
-     ;; and tryes to download external git repositories
-     ;; Disable them or find a way to make them availalbe as inputs.
-     (list #:tests? #f
-           #:import-path "github.com/jesseduffield/go-git"))
-    (propagated-inputs
-     (list go-github-com-armon-go-socks5
-           go-github-com-emirpasic-gods
-           go-github-com-gliderlabs-ssh
-           go-github-com-go-git-gcfg
-           go-github-com-go-git-go-billy-v5
-           go-github-com-go-git-go-git-fixtures-v4
-           go-github-com-google-go-cmp
-           go-github-com-imdario-mergo
-           go-github-com-jbenet-go-context
-           go-github-com-jessevdk-go-flags
-           go-github-com-kevinburke-ssh-config
-           go-github-com-mitchellh-go-homedir
-           go-github-com-sergi-go-diff
-           go-github-com-xanzy-ssh-agent
-           go-golang-org-x-crypto
-           go-golang-org-x-net
-           go-golang-org-x-text
-           go-gopkg-in-check-v1))
-    (home-page "https://github.com/jesseduffield/go-git")
-    (synopsis "Git implementation in pure Go")
-    (description
-     "This package provides a git implementation in pure Go. It's a modified fork of
+  ;; It's a fork of <https://github.com/go-git/go-git> for Lazygit.
+  (let ((commit "e1a013310ccd3d715187e35858986f0533767fe1")
+        (revision "0"))
+    (package
+      (name "go-github-com-jesseduffield-go-git-v5")
+      (version (git-version "5.1.2" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/jesseduffield/go-git")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0fkc5p3njq19v0xp5jw7h9r21js7dqzy5miwqjywwwl21pf26kd4"))))
+      (build-system go-build-system)
+      (arguments
+       ;; NOTE: (Sharlatan-20220813T142811+0100): Some tests require remote access
+       ;; and tryes to download external git repositories
+       ;; Disable them or find a way to make them availalbe as inputs.
+       (list #:tests? #f
+             #:import-path "github.com/jesseduffield/go-git"))
+      (propagated-inputs
+       (list go-dario-cat-mergo
+             go-github-com-protonmail-go-crypto
+             go-github-com-emirpasic-gods
+             go-github-com-go-git-gcfg
+             go-github-com-go-git-go-billy-v5
+             go-github-com-golang-groupcache
+             go-github-com-jbenet-go-context
+             go-github-com-kevinburke-ssh-config
+             go-github-com-pjbgf-sha1cd
+             go-github-com-sergi-go-diff
+             go-github-com-skeema-knownhosts
+             go-github-com-xanzy-ssh-agent
+             go-golang-org-x-crypto
+             go-golang-org-x-net
+             go-golang-org-x-sys))
+      (home-page "https://github.com/jesseduffield/go-git")
+      (synopsis "Git implementation in pure Go")
+      (description
+       "This package provides a git implementation in pure Go. It's a modified fork of
 original go-git/go-git project.")
-    (license license:asl2.0)))
+      (license license:asl2.0))))
 
 ;; 20220803T215957+0100
 (define-public go-github-com-integrii-flaggy
@@ -2389,7 +2414,7 @@ visiting of items in some particular ways:
 (define-public go-github-com-jesseduffield-generics
   (package
     (name "go-github-com-jesseduffield-generics")
-    (version "0.0.0-20220320043834-727e535cbe68")
+    (version "0.0.0-20250517122708-b0b4a53a6f5c")
     (source
      (origin
        (method git-fetch)
@@ -2398,17 +2423,14 @@ visiting of items in some particular ways:
              (commit (go-version->git-ref version))))
        (file-name (git-file-name name version))
        (sha256
-        (base32 "182wdkvc57lnwli8wpyykd1jyywnlq1m6vx8l7pi2wwjp0msq1wx"))))
+        (base32 "03ncsvfk0bn30rzi7x2g7lwf9g8c24bzph1xqwdh22720bclxvkn"))))
     (build-system go-build-system)
     (arguments
      (list
+      #:skip-build? #t
       ;; XXX: Tests fail a lot: too many return values, check with upstream.
       #:tests? #f
-      #:import-path "github.com/jesseduffield/generics"
-      #:phases
-      #~(modify-phases %standard-phases
-          ;; XXX: Workaround for go-build-system's lack of Go modules support.
-          (delete 'build))))
+      #:import-path "github.com/jesseduffield/generics"))
     (propagated-inputs `(("go-golang-org-x-exp" ,go-golang-org-x-exp)))
     (home-page "https://github.com/jesseduffield/generics")
     (synopsis "Extensions on the Golang Generics packages")
