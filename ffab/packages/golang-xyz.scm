@@ -51,36 +51,6 @@
 ;; added-to-downstream-guix 5bedf80c98b43594ced2a39a721d265e549cf2df
 ;; CommitDate: Tue Jan 21 23:42:23 2025 +0000
 
-;; 20210710T203819+0100
-;; NOTE: (Sharlatan-20220813T152536+0100): it needs more lvoe!
-(define go-golang-org-x-tools-gopls
-  (package
-    (version "0.7.4")
-    (name "go-golang-org-x-tools-gopls")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://go.googlesource.com/tools")
-                    (commit (string-append "gopls/v" version))))
-              (file-name (string-append "gopls-" version))
-              (sha256
-               (base32
-                "1zzil5px8maqnx22i30rqxc3avnvw9jrb8dhw64lif6kml9694mn"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "golang.org/x/tools/gopls"
-       #:unpack-path "golang.org/x/tools"))
-    (native-inputs (list go-github-com-sergi-go-diff go-golang-org-x-xerrors
-                         go-golang.org-x-sync-errgroup go-mvdan-cc-gofumpt
-                         go-mvdan-cc-xurls-v2))
-    (synopsis "Official language server for the Go language")
-    (description
-     "@code{gopls} (pronounced \"Go please\") is the official Go language server
-developed by the Go team. It provides IDE features to any LSP-compatible
-editor.")
-    (home-page "https://pkg.go.dev/golang.org/x/tools/gopls")
-    (license license:bsd-3)))
-
 ;; 20250618T235314+0100
 (define-public go-github-com-mitchellh-go-ps
   (package
@@ -128,47 +98,6 @@ editor.")
     (synopsis "Extract urls from text")
     (description
      "Package xurls extracts urls from plain text using regular expressions.")
-    (license license:bsd-3)))
-
-;; 20220731T214206+0100
-;; NOTE: (Sharlatan-20220813T152559+0100):  https://issues.guix.gnu.org/52915
-(define go-mvdan-cc-gofumpt
-  (package
-    (name "go-mvdan-cc-gofumpt")
-    (version "0.1.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/mvdan/gofumpt")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0q97nywfs7i2zm9hdhm0df3kdaj6lrrps151j75nl1fgs0kp2wrh"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "mvdan.cc/gofumpt"
-       ;; FIXME: Test faild with:
-       ;;
-       ;; imports gopkg.in/errgo.v2/fmt/errors: cannot find package "gopkg.in/errgo.v2/fmt/errors" in any of:
-       ;; /gnu/store/...-go-1.14.15/src/gopkg.in/errgo.v2/fmt/errors (from $GOROOT)
-       ;; /tmp/guix-build-go-mvdan-cc-gofumpt-0.1.1.drv-0/src/gopkg.in/errgo.v2/fmt/errors (from $GOPATH)
-       ;;
-       ;; even if the package 'gopkg-in-errgo-fmt-errors' is in in inputs
-       #:tests? #f))
-    (native-inputs `(("gopkg-in-errgo-fmt-errors" ,gopkg-in-errgo-fmt-errors)))
-    (propagated-inputs `(("go-github-com-google-go-cmp" ,go-github-com-google-go-cmp)
-                         ("go-github-com-rogpeppe-go-internal" ,go-github-com-rogpeppe-go-internal)
-                         ("go-golang-org-x-mod" ,go-golang-org-x-mod)))
-    (home-page "https://github.com/mvdan/gofumpt")
-    (synopsis "More strict version then official gofmt")
-    (description
-     "Enforce a stricter format than @code{gofmt}, while being backwards
-compatible.  That is, @code{gofumpt} is happy with a subset of the formats that
-@code{gofmt} is happy with.
-
-The tool is a modified fork of @code{gofmt}, so it can be used as a drop-in
-replacement.  Running @code{gofmt} after @code{gofumpt} should be a no-op.")
     (license license:bsd-3)))
 
 ;; 20220731T214024+0100
@@ -353,29 +282,9 @@ too.")
 ;; (define-public go-github-com-andybalholm-brotli
 
 ;; 20211218T165950+0000
-;; NOTE: (Sharlatan-20220813T213022+0100): Can be moved to golang-web
-(define-public go-github-com-urfave-negroni
-  (package
-    (name "go-github-com-urfave-negroni")
-    (version "1.0.0")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/urfave/negroni")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1gp6j74adi1cn8fq5v3wzlzhwl4zg43n2746m4fzdcdimihk3ccp"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/urfave/negroni"))
-    (home-page "https://github.com/urfave/negroni")
-    (synopsis "Idiomatic HTTP Middleware for Golang")
-    (description
-     "Package negroni is an idiomatic approach to web middleware in Go.  It is tiny,
-non-intrusive, and encourages use of net/http Handlers.")
-    (license license:expat)))
+;; added-to-downstream-guix 6a1c669acf77af1ae247ce18fdc1feff771fd691
+;; CommitDate: Mon May 26 16:50:24 2025 +0100
+;; (define-public go-github-com-urfave-negroni
 
 ;; 20211218T170054+0000
 (define-public go-github-com-pingcap-errors
@@ -415,29 +324,9 @@ non-intrusive, and encourages use of net/http Handlers.")
     (license license:bsd-2)))
 
 ;;20211218T170204+0000
-;; ;;NOTE: (Sharlatan-20220813T150447+0100): Fix build by pack missing inputs
-(define go-github-com-labstack-echo-v4
-  (package
-    (name "go-github-com-labstack-echo-v4")
-    (version "4.6.1")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/labstack/echo")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "0j6q2axjr5aslq76xbacpl7wiimz2cx6ask1lhi7didmzmm3349g"))))
-    (build-system go-build-system)
-    (arguments
-     '(#:import-path "github.com/labstack/echo/v4"))
-    (propagated-inputs (list go-github-com-golang-jwt-jwt-v4))
-    (home-page "https://github.com/labstack/echo")
-    (synopsis "Feature Overview")
-    (description
-     "Package echo implements high performance, minimalist Go web framework.")
-    (license license:expat)))
+;; added-to-downstream-guix f8b6d1672f76005b9702624b2b2bc490a7225f42
+;; CommitDate: Tue Jan 21 23:48:00 2025 +0000
+;; (define go-github-com-labstack-echo-v4
 
 ;; 20220731T214252+0100
 (define-public go-github-com-atotto-clipboard
@@ -606,47 +495,6 @@ range of pretty terminal strings.")
      "This package provides a Go module that provides a safer alternative to
 @code{exec.LookPath()} on Windows.")
     (license license:bsd-2)))
-
-;;+end_github.com/jesseduffield
-
-;; 20220731T214415+0100
-(define go-github-com-alecaivazis-survey-v2
-  (package
-    (name "go-github-com-alecaivazis-survey-v2")
-    (version "2.3.2")
-    (source (origin
-              (method git-fetch)
-              (uri (git-reference
-                    (url "https://github.com/AlecAivazis/survey")
-                    (commit (string-append "v" version))))
-              (file-name (git-file-name name version))
-              (sha256
-               (base32
-                "1ipzr2p3j7il4rl4fdi6zsn739p81k2achsbj1s4z5vfrb3jj5kn"))))
-    (build-system go-build-system)
-    (arguments
-     ;; NOTE: (Sharlatan-20211223T223516+0000): Test requires vi in PATH wich is
-     ;; not packed in Guix https://github.com/AlecAivazis/survey/issues/396
-     '(#:tests? #f
-       #:import-path "github.com/AlecAivazis/survey"))
-    (native-inputs (list go-github-com-davecgh-go-spew
-                         go-github-com-stretchr-testify vim))
-    (propagated-inputs (list go-github-com-hinshun-vt10x
-                             go-github-com-kballard-go-shellquote
-                             go-github-com-kr-pty
-                             go-github-com-mattn-go-colorable
-                             go-github-com-mattn-go-isatty
-                             go-github-com-mgutz-ansi
-                             go-github-com-netflix-go-expect
-                             go-github-com-pmezard-go-difflib
-                             go-golang-org-x-crypto
-                             go-golang-org-x-sys
-                             go-golang-org-x-text))
-    (home-page "https://github.com/AlecAivazis/survey")
-    (synopsis "Build interactive prompts on terminals")
-    (description "This is a library for building interactive prompts on
-terminals supporting ANSI escape sequences.")
-    (license license:expat)))
 
 ;; 20220731T214428+0100
 (define-public go-github-com-hinshun-vt10x
