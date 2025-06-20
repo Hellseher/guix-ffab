@@ -1,6 +1,6 @@
 # File : Makefile
 # Created : <2022-06-18 Sat 16:42:16 BST>
-# Modified : <2025-06-13 Fri 13:58:12 BST>
+# Modified : <2025-06-20 Fri 22:18:14 BST>
 
 GET_PUBLIC := grep "define-public"
 FILTER_FLAVORS := | sed -e '/.*\..*/d' -e '/.*-next/d' -e '/.*-ffab/d'
@@ -16,11 +16,11 @@ JULIA :=			\
 ffab/packages/julia-xyz.scm	\
 ffab/packages/julia-jll.scm	\
 
-GOLANG :=					\
-ffab/packages/docker.scm			\
-ffab/packages/golang.scm			\
-ffab/packages/golang-web.scm		\
-ffab/packages/terraform.scm
+GOLANG :=						\
+ffab/packages/docker.scm		\
+ffab/packages/golang-xyz.scm	\
+ffab/packages/terraform.scm		\
+ffab/packages/version-control.scm
 
 LISP :=						\
 ffab/packages/game-development.scm	\
@@ -63,7 +63,7 @@ GUIX_LINT_FLAGS ?= $(GUIX_FLAGS)
 
 # Make sure we have reproducible build process pinned to the upstream Guix
 # commit, update on any major changes as seen in `guix describe`.
-GUIX_COMMIT ?= b5d7f7041ea67d57151a5edbd9eacf9d1a7b3af0
+GUIX_COMMIT ?= 5d6604a88e1dae62f56a196d5a8140d272f8e78c
 GUIX := guix time-machine --commit=$(GUIX_COMMIT) --
 
 ifdef CI_BUILD
