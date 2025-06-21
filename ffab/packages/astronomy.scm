@@ -1102,6 +1102,7 @@ for variables with units.")
     (build-system pyproject-build-system)
     (arguments
      (list
+      #:tests? #f ; tests are expansive for CI
       #:test-flags
       ;; These tests try to access <mast.stsci.edu>.
       #~(list "-k" (string-join
