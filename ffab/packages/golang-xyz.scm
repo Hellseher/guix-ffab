@@ -18,6 +18,7 @@
 
 (define-module (ffab packages golang-xyz)
   #:use-module ((guix licenses) #:prefix license:)
+  #:use-module (gnu packages admin)
   #:use-module (gnu packages base)
   #:use-module (gnu packages check)
   #:use-module (gnu packages golang)
@@ -25,9 +26,10 @@
   #:use-module (gnu packages golang-check)
   #:use-module (gnu packages golang-crypto)
   #:use-module (gnu packages golang-vcs)
+  #:use-module (gnu packages golang-vcs)
   #:use-module (gnu packages golang-web)
   #:use-module (gnu packages golang-xyz)
-  #:use-module (gnu packages golang-vcs)
+  #:use-module (gnu packages pkg-config)
   #:use-module (gnu packages syncthing)
   #:use-module (gnu packages terminals)
   #:use-module (gnu packages version-control)
@@ -50,6 +52,177 @@
 ;; (define-public go-github-com-gin-contrib-sse
 ;; added-to-downstream-guix 5bedf80c98b43594ced2a39a721d265e549cf2df
 ;; CommitDate: Tue Jan 21 23:42:23 2025 +0000
+
+;; 20250622T105335+0100
+(define-public go-github-com-ergochat-readline
+  (package
+    (name "go-github-com-ergochat-readline")
+    (version "0.1.3")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/ergochat/readline")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "16zyk1dzwix5l9iph61img6qn5kryq3kb03dk2lwmrwyr1xdsip3"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:go go-1.23
+      #:import-path "github.com/ergochat/readline"))
+    (propagated-inputs (list go-golang-org-x-text go-golang-org-x-sys))
+    (home-page "https://github.com/ergochat/readline")
+    (synopsis "Readline implementation in pure Go")
+    (description
+     "This package provides a pure Go implementation of functionality
+comparable to @url{https://en.wikipedia.org/wiki/GNU_Readline, GNU Readline},
+i.e.  line editing and command history for simple TUI programs.")
+    (license license:expat)))
+
+;; 20250622T105417+0100
+(define-public go-github-com-gomarkdown-markdown
+  (package
+    (name "go-github-com-gomarkdown-markdown")
+    (version "0.0.0-20250311123330-531bef5e742b")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/gomarkdown/markdown")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0lw38q8izwflfkqxpr89p0sbriqgbzr240mfzhba2fkk3365y3xs"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/gomarkdown/markdown"
+      #:test-flags #~(list "-skip" "TestRenderCodeBlock")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'remove-examples
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (delete-file-recursively "examples"))))
+          (add-after 'check 'remove-testdata
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (delete-file-recursively "testdata")))))))
+    (home-page "https://github.com/gomarkdown/markdown")
+    (synopsis "Markdown Parser and HTML Renderer for Go")
+    (description
+     "Package markdown implements markdown parser and HTML renderer.")
+    (license license:bsd-2)))
+
+;; 20250622T105703+0100
+(define-public go-github-com-gopacket-gopacket
+  (package
+    (name "go-github-com-gopacket-gopacket")
+    (version "1.3.1")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/gopacket/gopacket")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "10kjn30chywh010zys92idlsfg4kff7amnsnyv1a72mi56107jb8"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/gopacket/gopacket"
+      #:test-flags
+      #~(list "-skip" (string-join
+                       ;; Tests require network setup or root access.
+                       (list "TestEthernetHandle_Close_WithCancel"
+                             "TestEthernetHandle_Close_WithTimeout"
+                             "TestNgWriterDSB"
+                             "TestRouting")
+                       "|"))
+      ;; TODO: Full tests suite and build requires
+      ;; <https://github.com/ntop/PF_RING>>, run just top level ones.
+      #:test-subdirs #~(list ".")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-after 'unpack 'remove-examples
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (delete-file-recursively "examples"))))
+          (add-after 'check 'remove-dump-data
+            (lambda* (#:key tests? import-path #:allow-other-keys)
+              (with-directory-excursion (string-append "src/" import-path)
+                (for-each delete-file
+                          (find-files "." ".*\\.(pcamp|pcapng)$"))))))))
+    (native-inputs
+     (list go-github-com-vishvananda-netlink
+           go-github-com-vishvananda-netns))
+    (propagated-inputs
+     (list pkg-config
+           libpcap
+           ;; pf-ring ; <https://github.com/ntop/PF_RING>
+           go-golang-org-x-net
+           go-golang-org-x-sys))
+    (home-page "https://github.com/gopacket/gopacket")
+    (synopsis "Packet processing capabilities for Golang")
+    (description
+     "Package gopacket provides packet decoding for the Go language.")
+    (license license:bsd-3)))
+
+;; 20250624T142013+0100
+(define-public go-github-com-itchyny-astgen-go
+  (package
+    (name "go-github-com-itchyny-astgen-go")
+    (version "0.0.0-20250520171007-4331c963041e")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/itchyny/astgen-go")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "07hzzkczpwsnznwl46jdfqq77b4hjbcxsj1xa2qh8733yym10ap1"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/itchyny/astgen-go"))
+    (home-page "https://github.com/itchyny/astgen-go")
+    (synopsis "AST build for Golang @code{interface{}} => @code{ast.Node}")
+    (description "Build Go code from arbitrary value in Go.")
+    (license license:expat)))
+
+;; 20250624T142219+0100
+(define-public go-github-com-itchyny-go-flags
+  (package
+    (name "go-github-com-itchyny-go-flags")
+    (version "1.5.0")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/itchyny/go-flags")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0qfh7gn95aldlsigk72jl87npmwvx15kb7df1100d6j0nbakd8b5"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/itchyny/go-flags"))
+    (propagated-inputs
+     (list go-golang-org-x-sys))
+    (home-page "https://github.com/itchyny/go-flags")
+    (synopsis "Command line option parser for Golang")
+    (description
+     "Package flags provides an extensive command line option parser. The flags
+package is similar in functionality to the go built-in flag package but provides
+more options and uses reflection to provide a convenient and succinct way of
+specifying command line options. It's an alternative fork of
+https://github.com/jessevdk/go-flags.")
+    (license license:bsd-3)))
 
 ;; 20250618T235314+0100
 (define-public go-github-com-mitchellh-go-ps
@@ -74,6 +247,42 @@
     (description
      "ps provides an API for finding and listing processes in a platform-agnostic way.")
     (license license:expat)))
+
+;; 20250624T142425+0100
+(define-public go-github-com-wader-gojq
+  (hidden-package
+   (package
+     (name "go-github-com-wader-gojq")
+     (version "0.12.1-0.20250208151254-0aa7b87b2c2b")
+     (source
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+              (url "https://github.com/wader/gojq")
+              (commit (go-version->git-ref version))))
+        (file-name (git-file-name name version))
+        (sha256
+         (base32 "1byil5r5nzs6fx0si3ipanq1c8vcqbsr0rhyd5380vp7zr5j9cxl"))))
+     (build-system go-build-system)
+     (arguments
+      (list
+       #:import-path "github.com/wader/gojq"))
+     (native-inputs
+      (list go-github-com-google-go-cmp))
+     (propagated-inputs
+      (list go-github-com-itchyny-timefmt-go
+            go-github-com-mattn-go-isatty
+            go-github-com-mattn-go-runewidth
+            go-gopkg-in-yaml-v3))
+     (home-page "https://github.com/wader/gojq")
+     (synopsis "Pure Go implementation of jq")
+     (description
+      "Package gojq provides the parser and the interpreter of gojq.  Please refer to
+@url{https://github.com/itchyny/gojq#usage-as-a-library, Usage as a library} for
+introduction. It's fork of github.com/itchyny/gojq, see github.com/wader/gojq fq
+branc.")
+     (license license:expat))))
+
 
 ;; 20210710T203807+0100
 (define-public go-mvdan-cc-xurls-v2
