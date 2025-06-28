@@ -239,6 +239,57 @@ ETA, and very cool animations!")
 Rust's @url{https://docs.rs/exitcode, exitcode}.")
     (license license:expat)))
 
+;; 20250627T233721+0100
+(define-public python-kagglehub
+  (package
+    (name "python-kagglehub")
+    (version "0.3.12")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "kagglehub" version))
+       (sha256
+        (base32 "1gypw1h7pxj20rh73jmcl6zcpv3vfnrqddsfg5dn0c0acda5irs5"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      ;; E   ModuleNotFoundError: No module named 'model_signing'
+      ;; E   ModuleNotFoundError: No module named 'flask_jwt_extended'
+      ;; E   ModuleNotFoundError: No module named 'polars'
+      #:test-flags #~(list "--ignore=tests/test_dataset_load.py"
+                           "--ignore=tests/test_kaggle_token_auth.py"
+                           "--ignore=tests/test_model_upload.py"
+                           ;; Run just unit tests.
+                           "--ignore=integration_tests/")
+      #:phases
+      #~(modify-phases %standard-phases
+          (add-before 'check 'pre-check
+            (lambda _
+              ;; PermissionError: [Errno 13] Permission denied:
+              ;; '/homeless-shelter'
+              (setenv "HOME" "/tmp"))))))
+    (native-inputs
+     (list python-hatchling
+           python-openpyxl
+           ;; python-fastexcel
+           python-pytest))
+    (propagated-inputs
+     (list python-packaging
+           python-flask
+           ;; python-flask-jwt-extended
+           ;; python-polars
+           python-pyyaml
+           python-pyjwt
+           python-requests
+           python-tqdm))
+    (home-page "https://github.com/Kaggle/kagglehub")
+    (synopsis "Python library to access Kaggle resources")
+    (description
+     "The @code{kagglehub} library provides a simple way to interact with
+@url{https://www.kaggle.com, Kaggle} resources
+such as datasets, models, notebook outputs in Python.")
+    (license license:asl2.0)))
+
 ;; 20240104T162509+0000
 (define-public python-pfzy
   (package
