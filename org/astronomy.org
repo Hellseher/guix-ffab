@@ -1,6 +1,6 @@
 #+title: Astronomy and Astophysics
 #+created: <2021-01-04 Mon 23:12:53 GMT>
-#+modified: <2025-06-20 Fri 22:01:43 BST>
+#+modified: <2025-07-03 Thu 16:41:54 BST>
 
 * Synopsis
 This workflow file contains packaging process for Astronomical/Astrophysical related software.
@@ -2067,7 +2067,7 @@ CLOSED: [2024-10-30 Wed 19:41]
 - [ ] :paptch-applied-upstream
 - [ ] :inputs [0/0][0%]
 
-** TODO joshspeagle [0/2][0%] :author:
+** TODO joshspeagle [1/2][50%] :author:
 /Josh Speagle/
 *** TODO python-brutus [0/4][0%] :p1:
 - https://github.com/joshspeagle/brutus
@@ -2079,12 +2079,13 @@ CLOSED: [2024-10-30 Wed 19:41]
   - [ ] python-setuptools
   - [ ] python-wheel
 
-*** WAIT python-dynesty [3/4][75%] :p3:
+*** DONE python-dynesty [4/4][100%]
+CLOSED: [2025-07-03 Thu 16:40]
 - https://github.com/joshspeagle/dynesty
 - synopsis :: Dynamic Nested Sampling package for computing Bayesian posteriors and evidences
 - [X] :packed @2.1.5 <2025-06-10 Fri>
 - [X] :patch-sent <2025-06-20 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2025-06-30 Mon>
   - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [9/9][100%]
   - [X] python-h5py
@@ -3645,7 +3646,7 @@ CLOSED: [2023-12-19 Tue 00:47]
   - [ ] cdf
     - [ ] :packed
 
-** TODO SpaceTelescopeScienceInstitue [28/39][71%] :author:
+** TODO SpaceTelescopeScienceInstitue [32/39][82%] :author:
 - https://www.stsci.edu/
 - https://github.com/spacetelescope
 *** DONE python-acstools [4/4][100%]
@@ -3710,12 +3711,13 @@ CLOSED: [2025-03-02 Sun 18:18]
   - [X] python-setuptools-scm
   - [X] python-wheel
 
-*** WAIT python-calcos [3/4][75%] :p3:
+*** DONE python-calcos [4/4][100%]
+CLOSED: [2025-07-03 Thu 16:39]
 - https://github.com/spacetelescope/calcos
 - synopsis :: Calibration for HST/COS.
 - [X] :packed @3.6.1 <2025-06-17 Tue>
 - [X] :patch-sent <2025-06-20 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2025-06-30 Mon>
   - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [10/10][100%]
   - [X] python-astropy
@@ -3746,12 +3748,13 @@ CLOSED: [2024-10-04 Fri 14:01]
   - [X] python-semantic-version
   - [X] python-setuptools-scm
 
-*** WAIT python-costools [3/4][75%] :p3:
+*** DONE python-costools [4/4][100%]
+CLOSED: [2025-07-03 Thu 16:39]
 - https://github.com/spacetelescope/costools
 - synopsis :: Tools for Cosmic Origins Spectrograph
 - [X] :packed @1.2.6 <2025-06-17 Tue>
 - [X] :patch-sent <2025-06-20 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2025-06-30 Mon>
   - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [10/10][100%]
   - [X] python-astropy
@@ -3818,12 +3821,13 @@ CLOSED: [2023-06-14 Wed 19:25]
   - [X] python-pytest-cov
   - [X] python-setuptools-scm
 
-*** WAIT python-drizzlepac [3/4][75%] :p3:
+*** DONE python-drizzlepac [4/4][100%]
+CLOSED: [2025-07-03 Thu 16:40]
 - https://github.com/spacetelescope/drizzlepac
 - synopsis ::  AstroDrizzle for HST images.
 - [X] :packed @3.7.1 <2025-06-17 Tue>
 - [X] :patch-sent <2025-06-20 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2025-06-30 Mon>
   - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [24/24][100%]
   - [X] python-astrocut
@@ -4260,12 +4264,13 @@ CLOSED: [2023-06-14 Wed 19:28]
   - [X] python-typer
   - [X] python-wheel
 
-*** WAIT python-stpsf [3/4][75%] :p3:
+*** DONE python-stpsf [4/4][100%]
+CLOSED: [2025-07-03 Thu 16:41]
 - https://github.com/spacetelescope/stpsf
 - synopsis :: Space Telescope PSF Simulation Tool
 - [X] :packed @2.0.0 <2025-06-14 Sat>
 - [X] :patch-sent <2025-06-20 Fri>
-- [ ] :paptch-applied-upstream
+- [X] :paptch-applied-upstream <2025-07-03 Thu>
   - https://codeberg.org/guix/guix/pulls/706
 - [X] :inputs [16/16][100%]
   - [X] nss-certs-for-test

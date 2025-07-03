@@ -1,9 +1,4 @@
     Patches are sent for review:
-    astronomy.org  python-stpsf       [3/4][75%]  :p3:
-    astronomy.org  python-dynesty     [3/4][75%]  :p3:
-    astronomy.org  python-drizzlepac  [3/4][75%]  :p3:
-    astronomy.org  python-costools    [3/4][75%]  :p3:
-    astronomy.org  python-calcos      [3/4][75%]  :p3:
     
     Authors in progress with priorities:
     version-control.org    jesseduffield                                 [0/1][0%]      :author:
@@ -81,7 +76,7 @@
     astronomy.org          SunPy                                         [12/12][100%]  :author:
     astronomy.org          Starlink                                      [0/2][0%]      :author:
     astronomy.org          spedas                                        [0/1][0%]      :author:
-    astronomy.org          SpaceTelescopeScienceInstitue                 [28/39][71%]   :author:
+    astronomy.org          SpaceTelescopeScienceInstitue                 [32/39][82%]   :author:
     astronomy.org          spacepy                                       [0/1][0%]      :author:
     astronomy.org          SimonsObservatory                             [1/1][100%]    :author:
     astronomy.org          schirmermischa                                [0/1][0%]      :author:
@@ -121,7 +116,7 @@
     astronomy.org          JuliaSpace                                    [0/8][0%]      :author:
     astronomy.org          JuliaAstroSim                                 [0/9][0%]      :author:
     astronomy.org          JuliaAstro                                    [8/35][22%]    :author:
-    astronomy.org          joshspeagle                                   [0/2][0%]      :author:
+    astronomy.org          joshspeagle                                   [1/2][50%]     :author:
     astronomy.org          jobovy                                        [0/2][0%]      :author:
     astronomy.org          Javastro                                      [0/1][0%]      :author:
     astronomy.org          IRAF-community                                [1/1][100%]    :author:
@@ -518,6 +513,7 @@
     astronomy.org          python-astrocut                  [4/4][100%]    
     astronomy.org          python-astroplan                 [4/4][100%]    
     astronomy.org          python-astropy                   [4/4][100%]    
+    astronomy.org          python-calcos                    [4/4][100%]    
     astronomy.org          python-camb                      [2/4][50%]     
     astronomy.org          python-casacore                  [4/4][100%]    
     astronomy.org          python-casa-formats-io           [4/4][100%]    
@@ -525,12 +521,15 @@
     astronomy.org          python-cmyt                      [4/4][100%]    
     astronomy.org          python-colossus                  [2/4][50%]     
     astronomy.org          python-cosmopy                   [4/4][100%]    
+    astronomy.org          python-costools                  [4/4][100%]    
     astronomy.org          python-crds                      [5/5][100%]    
     astronomy.org          python-czml3                     [4/4][100%]    
     astronomy.org          python-dkist                     [2/4][50%]     
     astronomy.org          python-drizzle                   [5/5][100%]    
+    astronomy.org          python-drizzlepac                [4/4][100%]    
     astronomy.org          python-drms                      [5/5][100%]    
     astronomy.org          python-dust-extinction           [4/4][100%]    
+    astronomy.org          python-dynesty                   [4/4][100%]    
     astronomy.org          python-echo                      [4/4][100%]    
     astronomy.org          python-ewah-bool-utils           [3/4][75%]     
     astronomy.org          python-extension-helpers         [4/4][100%]    
@@ -586,6 +585,7 @@
     astronomy.org          python-stcal                     [3/3][100%]    
     astronomy.org          python-stdatamodels              [5/5][100%]    
     astronomy.org          python-stpipe                    [5/5][100%]    
+    astronomy.org          python-stpsf                     [4/4][100%]    
     astronomy.org          python-streamtracer              [4/4][100%]    
     astronomy.org          python-stsci-image               [5/5][100%]    
     astronomy.org          python-stsci-imagestats          [5/5][100%]    
