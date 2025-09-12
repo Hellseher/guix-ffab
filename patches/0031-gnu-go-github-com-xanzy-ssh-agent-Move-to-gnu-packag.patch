@@ -1,0 +1,122 @@
+From 17ceff0663116d7921ed2eeb66455bb9013ea0c0 Mon Sep 17 00:00:00 2001
+Message-ID: <17ceff0663116d7921ed2eeb66455bb9013ea0c0.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 21:33:10 +0000
+Subject: [PATCH 31/38] gnu: go-github-com-xanzy-ssh-agent: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-xanzy-ssh-agent): Move from
+here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I9eff26086b2b5e9e53e9271a64060f18b6197b3c
+---
+ gnu/packages/golang-crypto.scm   | 28 ++++++++++++++++++++++++++++
+ gnu/packages/golang.scm          | 26 --------------------------
+ gnu/packages/version-control.scm |  1 +
+ 3 files changed, 29 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 9ebe8c70a3..9c9e3d26b8 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -3,10 +3,12 @@
+ ;;; Copyright © 2019 Ricardo Wurmus <rekado@elephly.net>
+ ;;; Copyright © 2019 Vagrant Cascadian <vagrant@debian.org>
+ ;;; Copyright © 2019, 2020 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+ ;;; Copyright © 2021 Collin J. Doering <collin@rekahsoft.ca>
+ ;;; Copyright © 2021 LibreMiami <packaging-guix@libremiami.org>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
++;;; Copyright © 2021 Vagrant Cascadian <vagrant@debian.org>
+ ;;; Copyright © 2022 (unmatched-parenthesis <paren@disroot.org>
+ ;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022, 2023 Nicolas Graves <ngraves@ngraves.fr>
+@@ -799,6 +801,32 @@ (define-public go-github-com-shadowsocks-go-shadowsocks2
+ tunnel proxy protocol.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-xanzy-ssh-agent
++  (package
++    (name "go-github-com-xanzy-ssh-agent")
++    (version "0.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/xanzy/ssh-agent")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1chjlnv5d6svpymxgsr62d992m2xi6jb5lybjc5zn1h3hv1m01av"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/xanzy/ssh-agent"))
++    (native-inputs
++     (list go-golang-org-x-crypto))
++    (home-page "https://github.com/xanzy/ssh-agent/")
++    (synopsis "Control ssh-agent from Go")
++    (description "Package agent implements the ssh-agent protocol, and
++provides both a client and a server.  The client can talk to a standard
++ssh-agent that uses UNIX sockets, and one could implement an alternative
++ssh-agent process using the sample server.")
++    (license license:asl2.0)))
++
+ (define-public go-gitlab-com-yawning-edwards25519-extra
+   (let ((commit "2149dcafc266f66d2487f45b156f6397f9c4760b")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 9d3257e176..d79b351498 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8879,32 +8879,6 @@ (define-public go-github-com-kevinburke-ssh-config
+ can manipulate a @file{ssh_config} file from a program.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-xanzy-ssh-agent
+-  (package
+-    (name "go-github-com-xanzy-ssh-agent")
+-    (version "0.2.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/xanzy/ssh-agent")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1chjlnv5d6svpymxgsr62d992m2xi6jb5lybjc5zn1h3hv1m01av"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/xanzy/ssh-agent"))
+-    (native-inputs
+-     (list go-golang-org-x-crypto))
+-    (home-page "https://github.com/xanzy/ssh-agent/")
+-    (synopsis "Control ssh-agent from Go")
+-    (description "Package agent implements the ssh-agent protocol, and
+-provides both a client and a server.  The client can talk to a standard
+-ssh-agent that uses UNIX sockets, and one could implement an alternative
+-ssh-agent process using the sample server.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-alcortesm-tgz
+   (let ((commit "9c5fe88206d7765837fed3732a42ef88fc51f1a1")
+         (revision "1"))
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index a7a701629f..3949d94a3b 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -107,6 +107,7 @@ (define-module (gnu packages version-control)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages guile)
+-- 
+2.41.0
+

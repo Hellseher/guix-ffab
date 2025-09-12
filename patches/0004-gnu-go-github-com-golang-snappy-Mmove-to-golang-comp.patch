@@ -1,0 +1,167 @@
+From e96cfe4b8fbfcd5f6b88a911e2ea4a27737c7b49 Mon Sep 17 00:00:00 2001
+Message-ID: <e96cfe4b8fbfcd5f6b88a911e2ea4a27737c7b49.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 18:37:04 +0000
+Subject: [PATCH v2 04/30] gnu: go-github-com-golang-snappy: Mmove to
+ golang-compression.
+
+* gnu/packages/syncthing.scm (go-github-com-golang-snappy): Move from
+here ...
+* gnu/packages/golang-compression.scm: ... to here.
+
+* gnu/packages/golang.scm: Add (gnu packages golang-compression) module.
+* gnu/packages/high-availability.scm: As above.
+* gnu/packages/ipfs.scm: As above.
+* gnu/packages/syncthing.scm: As above.
+
+Change-Id: I936c82c127e1aa25dde20693bee70e5a871249fe
+---
+ gnu/packages/golang-compression.scm | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm             |  1 +
+ gnu/packages/high-availability.scm  |  4 ++--
+ gnu/packages/ipfs.scm               |  1 +
+ gnu/packages/syncthing.scm          | 24 +-----------------------
+ 5 files changed, 31 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 268cd16e30..670572ea90 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -1,4 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2017 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
++;;; Copyright © 2021 Efraim Flashner <efraim@flashner.co.il>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -30,6 +33,29 @@ (define-module (gnu packages golang-compression)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-golang-snappy
++  (package
++    (name "go-github-com-golang-snappy")
++    (version "0.0.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/golang/snappy")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "004cw699yz3pdpawhjhpa0y94c4w479nw1rf39zj6h6027kpwv2j"))
++       (patches (search-patches "go-github-com-golang-snappy-32bit-test.patch"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/golang/snappy"))
++    (home-page "https://github.com/golang/snappy")
++    (synopsis "Snappy compression format in the Go programming language")
++    (description "This package provides a Go implementation of the Snappy
++compression format.")
++    (license license:bsd-3)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3997f4057d..43e9024167 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -83,6 +83,7 @@ (define-module (gnu packages golang)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages lua)
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index 9760084603..ad18a39738 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -36,6 +36,7 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages golang-xyz)
+@@ -48,7 +49,6 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages pkg-config)
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages rsync)
+-  #:use-module (gnu packages syncthing)
+   #:use-module (gnu packages tls)
+   #:use-module (gnu packages valgrind)
+   #:use-module (gnu packages version-control)
+@@ -284,7 +284,7 @@ (define-public nsq
+            go-github-com-bmizerany-perks-quantile
+            go-github-com-burntsushi-toml
+            go-github-com-davecgh-go-spew
+-           go-github-com-golang-snappy ; Move to (gnu packages golang)
++           go-github-com-golang-snappy
+            go-github-com-julienschmidt-httprouter
+            go-github-com-mreiferson-go-options
+            go-github-com-mreiferson-go-svc
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index ae514cd93b..f09d0190dd 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -31,6 +31,7 @@ (define-module (gnu packages ipfs)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages python)
+diff --git a/gnu/packages/syncthing.scm b/gnu/packages/syncthing.scm
+index 4c3aa8f30b..c0270b87e5 100644
+--- a/gnu/packages/syncthing.scm
++++ b/gnu/packages/syncthing.scm
+@@ -38,6 +38,7 @@ (define-module (gnu packages syncthing)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages linux)
+   #:use-module (gnu packages python-crypto)
+@@ -398,29 +399,6 @@ (define-public go-github-com-golang-groupcache-lru
+       (home-page "https://github.com/golang/groupcache")
+       (license asl2.0))))
+ 
+-(define-public go-github-com-golang-snappy
+-  (package
+-    (name "go-github-com-golang-snappy")
+-    (version "0.0.4")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/golang/snappy")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "004cw699yz3pdpawhjhpa0y94c4w479nw1rf39zj6h6027kpwv2j"))
+-              (patches (search-patches "go-github-com-golang-snappy-32bit-test.patch"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/golang/snappy"))
+-    (synopsis "Snappy compression format in the Go programming language")
+-    (description "This package provides a Go implementation of the Snappy
+-compression format.")
+-    (home-page "https://github.com/golang/snappy")
+-    (license bsd-3)))
+-
+ (define-public go-github-com-jackpal-gateway
+   (package
+     (name "go-github-com-jackpal-gateway")
+-- 
+2.41.0
+

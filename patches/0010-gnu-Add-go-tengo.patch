@@ -1,0 +1,43 @@
+From 8437e6cdbac666f928934c240ab156413ce3821f Mon Sep 17 00:00:00 2001
+Message-ID: <8437e6cdbac666f928934c240ab156413ce3821f.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 7 Jun 2024 12:31:11 +0100
+Subject: [PATCH 10/26] gnu: Add go-tengo.
+
+* gnu/packages/golang-xyz.scm (go-tengo): New variable.
+
+Change-Id: I8fb24d0bdd4eccb2da5f584edfec9b9ba1a9c4d5
+---
+ gnu/packages/golang-xyz.scm | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index d3afae5441..0208063845 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -4659,6 +4659,20 @@ (define-public go-pixelmatch
+      "This package provides a CLI build from the
+ go-github-com-orisano-pixelmatch source.")))
+ 
++(define-public go-tengo
++  (package
++    (inherit go-github-com-d5-tengo-v2)
++    (name "tengo")
++    (arguments
++     (list
++      #:import-path "github.com/d5/tengo/cmd/tengo"
++      #:unpack-path "github.com/d5/tengo"
++      #:install-source? #f))
++    (description
++     (string-append (package-description go-github-com-d5-tengo-v2)
++                    "\nThis package provides an command line interface (CLI)
++tool."))))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+-- 
+2.41.0
+

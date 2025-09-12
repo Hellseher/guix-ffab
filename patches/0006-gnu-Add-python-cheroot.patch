@@ -1,0 +1,93 @@
+From dc069c3e42345c9fa2094923cc45c25d7558d528 Mon Sep 17 00:00:00 2001
+Message-ID: <dc069c3e42345c9fa2094923cc45c25d7558d528.1710694980.git.sharlatanus@gmail.com>
+In-Reply-To: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+References: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+From: dan <i@dan.games>
+Date: Fri, 3 Feb 2023 00:58:15 +0800
+Subject: [PATCH v3 6/7] gnu: Add python-cheroot.
+
+* gnu/packages/python-web.scm (python-cheroot): New variable.
+
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/python-web.scm | 57 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index c2bdfc8da8..f14c0a7bde 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -58,6 +58,7 @@
+ ;;; Copyright © 2022 msimonin <matthieu.simonin@inria.fr>
+ ;;; Copyright © 2022 Michael Rohleder <mike@rohleder.de>
+ ;;; Copyright © 2022 Baptiste Strazzulla <bstrazzull@hotmail.fr>
++;;; Copyright © 2023 dan <i@dan.games>
+ ;;; Copyright © 2023 John Kehayias <john.kehayias@protonmail.com>
+ ;;; Copyright © 2023 Ivan Vilata-i-Balaguer <ivan@selidor.net>
+ ;;; Copyright © 2024 Troy Figiel <troy@troyfigiel.com>
+@@ -1279,6 +1280,62 @@ (define-public python-httplib2
+ other HTTP libraries.")
+     (license license:expat)))
+ 
++(define-public python-cheroot
++  (package
++    (name "python-cheroot")
++    (version "10.0.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "cheroot" version))
++       (sha256
++        (base32
++         "1w0ind0dza9j1py56y23344piqkpyfmcm060qfrnk6gggy3s3i2r"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:test-flags
++      #~(list "--cov=cheroot"
++              ;; Tests a flaky in parallel invocation.
++              ;; "--numprocesses=auto"
++              "--doctest-modules"
++              "--showlocals"
++              ;; Disable test requiring networking.
++              "-k" "not test_tls_client_auth")
++      #:phases
++      #~(modify-phases %standard-phases
++          (replace 'check
++            (lambda* (#:key tests? test-flags #:allow-other-keys)
++              (when tests?
++                (with-directory-excursion "/tmp"
++                  (apply invoke "pytest" "-v"
++                         (append test-flags (list #$output))))))))))
++    (propagated-inputs
++     (list python-jaraco-functools
++           python-more-itertools
++           python-six))
++    (native-inputs
++     (list python-cryptography
++           python-jaraco-text
++           python-portend
++           python-pyopenssl
++           python-pypytools
++           python-pytest
++           python-pytest-cov
++           python-pytest-mock
++           python-pytest-xdist
++           python-requests
++           python-requests-toolbelt
++           python-requests-unixsocket
++           python-setuptools-scm
++           python-setuptools-scm-git-archive
++           python-trustme))
++    (home-page "https://cheroot.cherrypy.dev")
++    (synopsis "Highly-optimized, pure-python HTTP server")
++    (description
++     "Cheroot is a high-performance, pure-Python HTTP server.")
++    (license license:bsd-3)))
++
+ (define-public httpie
+   (package
+     (name "httpie")
+-- 
+2.41.0
+

@@ -1,0 +1,61 @@
+From 628be607cc460971c8e7dfbf5992e5c93375ad5e Mon Sep 17 00:00:00 2001
+Message-ID: <628be607cc460971c8e7dfbf5992e5c93375ad5e.1735936141.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1735936141.git.sharlatanus@gmail.com>
+References: <cover.1735936141.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 Jan 2025 17:10:04 +0000
+Subject: [PATCH 1/6] gnu: xsimd: Improve package style.
+
+* gnu/packages/cpp.scm (xsimd) [source] <url>: Fix redirection issue,
+<https://github.com/QuantStack/xsimd> permamently redirects to
+<https://github.com/xtensor-stack/xsimd>.
+[arguments]: Use G-expressions.
+[description]: Adjust fill column indentation.
+
+Change-Id: I8096e07c026c9f08a9d647a44f9930900b3ae1bd
+---
+ gnu/packages/cpp.scm | 17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/cpp.scm b/gnu/packages/cpp.scm
+index d3a8223a9c..5bd56e704f 100644
+--- a/gnu/packages/cpp.scm
++++ b/gnu/packages/cpp.scm
+@@ -611,25 +611,26 @@ (define-public xsimd
+      (origin
+        (method git-fetch)
+        (uri (git-reference
+-             (url "https://github.com/QuantStack/xsimd")
++             (url "https://github.com/xtensor-stack/xsimd")
+              (commit version)))
+        (sha256
+         (base32 "1fcy0djwpwvls6yqxqa82s4l4gvwkqkr8i8bibbb3dm0lqvhnw52"))
+        (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+     (arguments
+-     `(#:configure-flags (list "-DBUILD_TESTS=ON")
+-       #:test-target "xtest"))
++     (list
++      #:configure-flags #~(list "-DBUILD_TESTS=ON")
++      #:test-target "xtest"))
+     (native-inputs
+      (list googletest))
+     (home-page "https://github.com/xtensor-stack/xsimd")
+     (synopsis "C++ wrappers for SIMD intrinsics and math implementations")
+     (description
+-     "xsimd provides a unified means for using @acronym{SIMD, single instruction
+-multiple data} features for library authors.  Namely, it enables manipulation of
+-batches of numbers with the same arithmetic operators as for single values.
+-It also provides accelerated implementation of common mathematical functions
+-operating on batches.")
++     "xsimd provides a unified means for using @acronym{SIMD, single
++instruction multiple data} features for library authors.  Namely, it enables
++manipulation of batches of numbers with the same arithmetic operators as for
++single values.  It also provides accelerated implementation of common
++mathematical functions operating on batches.")
+     (license license:bsd-3)))
+ 
+ (define-public google-highway
+-- 
+2.46.0
+

@@ -1,0 +1,48 @@
+From f0d3463320e491d02ba974e867e258e5ce2f1357 Mon Sep 17 00:00:00 2001
+Message-ID: <f0d3463320e491d02ba974e867e258e5ce2f1357.1733602367.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1733602367.git.sharlatanus@gmail.com>
+References: <cover.1733602367.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Dec 2024 00:43:45 +0000
+Subject: [PATCH 2/4] gnu: Add rust-mapproj-0.3.
+
+* gnu/packages/crates-io.scm (rust-mapproj-0.3): New variable.
+
+Change-Id: Idf2f2cf69fdd38c7246fa49fdd61ffff450b891d
+---
+ gnu/packages/crates-io.scm | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/gnu/packages/crates-io.scm b/gnu/packages/crates-io.scm
+index 3ea1f014ad..cf5e80b44e 100644
+--- a/gnu/packages/crates-io.scm
++++ b/gnu/packages/crates-io.scm
+@@ -43470,6 +43470,25 @@ (define-public rust-maplit-1
+     (license (list license:asl2.0
+                    license:expat))))
+ 
++(define-public rust-mapproj-0.3
++  (package
++    (name "rust-mapproj")
++    (version "0.3.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (crate-uri "mapproj" version))
++       (file-name (string-append name "-" version ".tar.gz"))
++       (sha256
++        (base32 "08wjp6vj1w2qbz769k057pdk2w8351i26xj40p8xbxjj3wli7iz3"))))
++    (build-system cargo-build-system)
++    (home-page "https://github.com/cds-astro/cds-mapproj-rust/")
++    (synopsis "Map projections defined in the FITS World Coordinate System")
++    (description
++     "This package provides Implementation of (a part of) map projections
++defined in the FITS World Coordinate System (WCS).")
++    (license (list license:asl2.0 license:expat))))
++
+ (define-public rust-markup-proc-macro-0.13
+   (package
+     (name "rust-markup-proc-macro")
+-- 
+2.46.0
+

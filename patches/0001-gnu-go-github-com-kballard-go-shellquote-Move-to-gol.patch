@@ -1,0 +1,119 @@
+From aeae278611ba1eb27ad4e29b6d053cb9e4112560 Mon Sep 17 00:00:00 2001
+Message-ID: <aeae278611ba1eb27ad4e29b6d053cb9e4112560.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 20:54:09 +0000
+Subject: [PATCH 01/12] gnu: go-github-com-kballard-go-shellquote: Move to
+ golang-xyz.
+
+* gnu/packages/syncthing.scm (go-github-com-kballard-go-shellquote):
+Move from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+* gnu/packages/xdisorg.scm: Remove (gnu packages syncthing).
+Add (gnu packages golang-xyz).
+
+Change-Id: I3ab4cbc55d8ca0ad8b7fec0130bdb935039f2841
+---
+ gnu/packages/golang-xyz.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/syncthing.scm  | 24 ------------------------
+ gnu/packages/xdisorg.scm    |  2 +-
+ 3 files changed, 28 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index cf0b52a043..77608457f2 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1221,6 +1221,33 @@ (define-public go-github-com-k0kubun-pp
+ customized globally.")
+     (license license:expat)))
+ 
++(define-public go-github-com-kballard-go-shellquote
++  ;; No release, see <https://github.com/kballard/go-shellquote/issues/13>.
++  (let ((commit "95032a82bc518f77982ea72343cc1ade730072f0")
++        (revision "1"))
++    (package
++      (name "go-github-com-kballard-go-shellquote")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/kballard/go-shellquote")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1rspvmnsikdq95jmx3dykxd4k1rmgl98ryjrysvl0cf18hl1vq80"))))
++      (build-system go-build-system)
++      (arguments
++       (list
++        #:import-path "github.com/kballard/go-shellquote"))
++      (synopsis "Shell-style string joins and splits")
++      (description
++       "Shellquote provides utilities for joining/splitting strings using sh's
++word-splitting rules.")
++      (home-page "https://github.com/kballard/go-shellquote")
++      (license license:expat))))
++
+ (define-public go-github-com-matryer-try
+   (package
+     (name "go-github-com-matryer-try")
+diff --git a/gnu/packages/syncthing.scm b/gnu/packages/syncthing.scm
+index ebbf8b82bb..c8eb64b69e 100644
+--- a/gnu/packages/syncthing.scm
++++ b/gnu/packages/syncthing.scm
+@@ -658,30 +658,6 @@ (define-public go-github-com-petermattis-goid
+       (home-page "https://github.com/petermattis/goid")
+       (license asl2.0))))
+ 
+-(define-public go-github-com-kballard-go-shellquote
+-  (let ((commit "95032a82bc518f77982ea72343cc1ade730072f0")
+-        (revision "1"))
+-    (package
+-      (name "go-github-com-kballard-go-shellquote")
+-      (version (git-version "0.0.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                       (url "https://github.com/kballard/go-shellquote")
+-                       (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1rspvmnsikdq95jmx3dykxd4k1rmgl98ryjrysvl0cf18hl1vq80"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/kballard/go-shellquote"))
+-      (synopsis "Shell-style string joins and splits")
+-      (description "Shellquote provides utilities for joining/splitting strings
+-using sh's word-splitting rules.")
+-      (home-page "https://github.com/kballard/go-shellquote")
+-      (license expat))))
+-
+ (define-public go-github-com-syncthing-notify
+   (let ((commit "69c7a957d3e261f9744f46b3dd4d608d8480ad90")
+         (revision "5"))
+diff --git a/gnu/packages/xdisorg.scm b/gnu/packages/xdisorg.scm
+index be8623666f..b3b305a352 100644
+--- a/gnu/packages/xdisorg.scm
++++ b/gnu/packages/xdisorg.scm
+@@ -115,6 +115,7 @@ (define-module (gnu packages xdisorg)
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+@@ -140,7 +141,6 @@ (define-module (gnu packages xdisorg)
+   #:use-module (gnu packages python-check)
+   #:use-module (gnu packages qt)
+   #:use-module (gnu packages sphinx)
+-  #:use-module (gnu packages syncthing)
+   #:use-module (gnu packages tex)
+   #:use-module (gnu packages texinfo)
+   #:use-module (gnu packages tcl)
+-- 
+2.41.0
+

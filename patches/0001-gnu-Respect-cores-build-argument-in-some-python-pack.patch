@@ -1,0 +1,267 @@
+From 7e70f59d92f55b3ad70baa428a2e301a20d967d3 Mon Sep 17 00:00:00 2001
+Message-ID: <7e70f59d92f55b3ad70baa428a2e301a20d967d3.1732135585.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732135585.git.sharlatanus@gmail.com>
+References: <cover.1732135585.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 20 Nov 2024 20:33:10 +0000
+Subject: [PATCH 1/1] gnu: Respect --cores build argument in some python
+ packages.
+
+Reported by Greg Hogan <code@greghogan.com> in #74445.
+
+* gnu/packages/astronomy.scm (python-asdf-astropy, python-astropy,
+python-photutils, python-poppy, python-regions, python-reproject,
+python-sunpy, python-spectral-cube, python-stdatamodels, python-pysiaf,
+python-sbpy, python-asdf-coordinates-schemas, python-roman-datamodels,
+python-webbpsf, python-yt):
+[arguments]<test-flags>: Adjust "-n" or "--numprocess" to respect
+"--cores" build argument.
+
+* gnu/packages/check.scm (python-crosshair): Likewise.
+
+* gnu/packages/databases.scm (python-fastparquet, python-pycurl, awscli,
+python-s3transfer): Likewise.
+
+* gnu/packages/python-xyz.scm (python-glymur, python-zarr, python-dask):
+Likewise.
+
+Change-Id: Ifbc6435e4ad22b0ae822b485bccca41eaa165cc5
+---
+ gnu/packages/astronomy.scm  | 31 ++++++++++++++++---------------
+ gnu/packages/check.scm      |  2 +-
+ gnu/packages/databases.scm  |  2 +-
+ gnu/packages/python-web.scm |  6 +++---
+ gnu/packages/python-xyz.scm |  6 +++---
+ 5 files changed, 24 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/astronomy.scm b/gnu/packages/astronomy.scm
+index 6cc5142370..296ac44dbf 100644
+--- a/gnu/packages/astronomy.scm
++++ b/gnu/packages/astronomy.scm
+@@ -1653,7 +1653,7 @@ (define-public python-asdf-astropy
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases #~(modify-phases %standard-phases
+                    (add-before 'check 'set-home-env
+                      (lambda _ (setenv "HOME" "/tmp"))))))
+@@ -3034,7 +3034,7 @@ (define-public python-astropy
+      (list
+       #:test-flags
+       #~(list "--pyargs" "astropy"
+-              "--numprocesses" "auto"
++              "--numprocesses" (number->string (parallel-job-count))
+               "-k" (string-append
+                     ;; Skip tests that need remote data.
+                     "not remote_data"
+@@ -3924,7 +3924,7 @@ (define-public python-photutils
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+          (add-after 'unpack 'relax-requirements
+@@ -4085,7 +4085,7 @@ (define-public python-poppy
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")))
++      #~(list "--numprocesses" (number->string (parallel-job-count)))))
+     (propagated-inputs
+      ;; XXX: With python-synphot (marked as optional) package added to the list
+      ;; it tries to download from remote host during tests and fails. Overall
+@@ -4191,7 +4191,7 @@ (define-public python-regions
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+           ;; setup.py was removed in 84c80a280431adda00641cda5264c7de18b43b2f
+@@ -4295,7 +4295,7 @@ (define-public python-reproject
+       #:test-flags
+       #~(list "--arraydiff"
+               "--arraydiff-default-format=fits"
+-              "--numprocesses" "auto"
++              "--numprocesses" (number->string (parallel-job-count))
+               "--pyargs" "reproject")
+       #:phases
+       #~(modify-phases %standard-phases
+@@ -4399,7 +4399,7 @@ (define-public python-sunpy
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Requries SpicePy not packed in Guix yet.
+               "--ignore=sunpy/coordinates/tests/test_spice.py")
+       #:phases
+@@ -4589,7 +4589,7 @@ (define-public python-spectral-cube
+       ;; See <https://github.com/radio-astro-tools/radio-beam/issues/129>.
+       #:tests? #f
+       #:test-flags
+-      #~(list "-n" "auto")))
++      #~(list "--numprocesses" (number->string (parallel-job-count)))))
+     (propagated-inputs
+      (list python-astropy
+            ;; XXX: Currently failing in upstream as it's optional silent
+@@ -4981,7 +4981,7 @@ (define-public python-stdatamodels
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Disable tests requiring access to CRDS servers to download
+               ;; ~500MiB of data.
+               "-k" "not test_crds_selectors_vs_datamodel")
+@@ -5450,7 +5450,7 @@ (define-public python-pysiaf
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Disable 2 failing tests, see
+               ;; <https://github.com/spacetelescope/pysiaf/issues/338>
+               "-k" (string-append "not test_write_jwst_siaf_xlsx"
+@@ -5543,7 +5543,8 @@ (define-public python-sbpy
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-      #:test-flags #~(list "--numprocesses" "auto")
++      #:test-flags
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-before 'check 'set-home-env
+@@ -5835,7 +5836,7 @@ (define python-asdf-coordinates-schemas
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")))
++      #~(list "--numprocesses" (number->string (parallel-job-count)))))
+     (native-inputs
+      (list python-pytest
+            python-pytest-xdist
+@@ -6137,7 +6138,7 @@ (define-public python-roman-datamodels
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'set-env
+@@ -6295,7 +6296,7 @@ (define-public python-webbpsf
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               "-k" (string-append
+                     ;; Test requiring network access
+                     "not test_monthly_trending_plot_auto_opdtable"
+@@ -6383,7 +6384,7 @@ (define-public python-yt
+      (list
+       #:build-backend "setuptools.build_meta"
+       #:test-flags
+-      #~(list "--numprocesses" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+          (add-after 'unpack 'relax-requirements
+diff --git a/gnu/packages/check.scm b/gnu/packages/check.scm
+index 6593eadf6a..ef1c08f8f3 100644
+--- a/gnu/packages/check.scm
++++ b/gnu/packages/check.scm
+@@ -2744,7 +2744,7 @@ (define-public python-crosshair
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; check_examples_test.py contains failing tests that
+               ;; show what happens if a counterexample is found.
+               "--ignore=crosshair/examples/check_examples_test.py"
+diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
+index 5f762eb5be..142f9090c5 100644
+--- a/gnu/packages/databases.scm
++++ b/gnu/packages/databases.scm
+@@ -5203,7 +5203,7 @@ (define-public python-fastparquet
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto")
++      #~(list "--numprocesses" (number->string (parallel-job-count)))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'relax-requirements
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index c030deeb12..cf3c15857c 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -2026,7 +2026,7 @@ (define-public python-pycurl
+     (build-system pyproject-build-system)
+     (arguments
+      '(#:test-flags
+-       (list "-n" "auto"
++       (list "--n" (number->string (parallel-job-count))
+              "-k" (string-append
+                    ;; Disable hanginging tests
+                    "not test_multi_socket_select"
+@@ -4235,7 +4235,7 @@ (define-public awscli
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Tests require networking.
+               "--ignore" "tests/integration"
+               ;; It strugles to set PYTHONPATH.
+@@ -4909,7 +4909,7 @@ (define-public python-s3transfer
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Tests require networking.
+               "--ignore" "tests/integration")))
+     (native-inputs
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index ceb122e08d..3872b511a1 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -2296,7 +2296,7 @@ (define-public python-glymur
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "--numprocesses" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; Failing test due to inability of ctypes.util.find_library()
+               ;; to determine library path, which is patched above.
+               "--ignore=tests/test_config.py")
+@@ -28320,7 +28320,7 @@ (define-public python-zarr
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "-n" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               ;; This tests are flaky.  The pass several times on my laptop
+               ;; but occasionally fail.  They fail pretty reliably on the
+               ;; build farm.
+@@ -28845,7 +28845,7 @@ (define-public python-dask
+      (list
+       ;; Avoid coverage
+       #:test-flags
+-      #~(list "-n" "auto"
++      #~(list "--numprocesses" (number->string (parallel-job-count))
+               "-m" "not gpu and not slow and not network"
+               ;; These all fail with different hashes.  Doesn't seem
+               ;; problematic.
+-- 
+2.46.0
+

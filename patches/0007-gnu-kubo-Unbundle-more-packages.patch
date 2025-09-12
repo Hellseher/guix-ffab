@@ -1,0 +1,66 @@
+From 2e89095c79519b44e0bec91c6d61454bc19817e0 Mon Sep 17 00:00:00 2001
+Message-ID: <2e89095c79519b44e0bec91c6d61454bc19817e0.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 7 Mar 2024 11:11:04 +0000
+Subject: [PATCH 7/7] gnu: kubo: Unbundle more packages.
+
+* gnu/packages/ipfs.scm (kubo) [snippet]: Remove more available vendor
+packages.
+[inputs]: Add go-github-com-benbjohnson-clock and
+go-github-com-blang-semver-v4. Remove go-github-com-cheggaaa-pb-v3,
+fail over to vendor package explicitly as v3 is not required.
+
+Change-Id: I8317ea656120b034a98d180278b928f0744f5fbb
+---
+ gnu/packages/ipfs.scm | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index bad65f04a0..0a1065535b 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -241,10 +241,13 @@ (define-public kubo
+        (snippet '(for-each delete-file-recursively
+                            ;; TODO: unbundle the rest as well
+                            '("vendor/github.com/alecthomas"
+-                             ;; "vendor/github.com/blang"
++                             "vendor/github.com/benbjohnson/clock"
++                             "vendor/github.com/beorn7/perks"
++                             "vendor/github.com/blang"
+                              "vendor/github.com/cespare"
+-                             ;; TODO: Go files not found
+-                             ;; "vendor/github.com/cheggaaa"
++                             ;; TODO: kubo depends on v1.0.29 which is way too
++                             ;; hard to back port.
++                             ; "vendor/github.com/cheggaaa/pb"
+                              "vendor/github.com/davecgh"
+                              "vendor/github.com/dustin"
+                              "vendor/github.com/flynn"
+@@ -261,8 +264,6 @@ (define-public kubo
+                              ;; "vendor/github.com/ipld"
+                              "vendor/github.com/jackpal"
+                              "vendor/github.com/klauspost"
+-                             ;; TODO: Go files not found
+-                             ;; "vendor/github.com/lucas-clemente"
+                              "vendor/github.com/mattn"
+                              "vendor/github.com/mgutz"
+                              "vendor/github.com/minio"
+@@ -306,11 +307,10 @@ (define-public kubo
+                                   #~(string-append #$output "/bin/ipfs"))
+                             "commands" "completion" "bash")))))))))
+     (inputs (list go-github-com-alecthomas-units
+-                  ;; TODO: needs to be updated first
+-                  ;; go-github-com-blang-semver
++                  go-github-com-benbjohnson-clock
++                  go-github-com-blang-semver-v4
+                   go-github-com-cespare-xxhash
+                   go-github-com-cheekybits-genny
+-                  go-github-com-cheggaaa-pb-v3
+                   go-github-com-davecgh-go-spew
+                   go-github-com-dustin-go-humanize
+                   go-github-com-flynn-noise
+-- 
+2.41.0
+

@@ -1,0 +1,121 @@
+From a319ad9ef3496cf1846e3e03b58d090dd2cd9f04 Mon Sep 17 00:00:00 2001
+Message-ID: <a319ad9ef3496cf1846e3e03b58d090dd2cd9f04.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 21:23:09 +0000
+Subject: [PATCH 04/12] gnu: go-github-com-alecthomas-units: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-alecthomas-units): Move from
+here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+* gnu/packages/xdisorg.scm: Remove (gnu packages golang).
+
+Change-Id: I9a4d7da82c9ca1b3c4e0d07d97d8fcde30590e33
+---
+ gnu/packages/golang-xyz.scm | 29 +++++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 27 ---------------------------
+ gnu/packages/xdisorg.scm    |  1 -
+ 3 files changed, 29 insertions(+), 28 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index bd808d44c3..e012beabaf 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -201,6 +201,7 @@ (define-public go-github-com-alecthomas-participle-v2
+     (license license:expat)))
+ 
+ (define-public go-github-com-alecthomas-template
++  ;; No release, see <https://github.com/alecthomas/template/issues/7>.
+   (let ((commit "a0175ee3bccc567396460bf5acd36800cb10c49c")
+         (revision "0"))
+     (package
+@@ -227,6 +228,34 @@ (define-public go-github-com-alecthomas-template
+ newlines until a non-newline.")
+       (license license:bsd-3))))
+ 
++(define-public go-github-com-alecthomas-units
++  ;; No release, see <https://github.com/alecthomas/units/issues/9>.
++  (let ((commit "2efee857e7cfd4f3d0138cc3cbb1b4966962b93a")
++        (revision "0"))
++    (package
++      (name "go-github-com-alecthomas-units")
++      (version "0.0.0")
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/alecthomas/units")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1j65b91qb9sbrml9cpabfrcf07wmgzzghrl7809hjjhrmbzri5bl"))))
++      (build-system go-build-system)
++      (arguments
++       (list
++        #:import-path "github.com/alecthomas/units"))
++      (native-inputs
++       (list go-github-com-stretchr-testify))
++      (home-page "https://github.com/alecthomas/units")
++      (synopsis "Helpful unit multipliers and functions for Go")
++      (description
++       "This library provides unit multipliers and functions for Go.")
++      (license license:expat))))
++
+ (define-public go-github-com-anmitsu-go-shlex
+   (package
+     (name "go-github-com-anmitsu-go-shlex")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 18f0e6f7ac..d2f8874de6 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9609,33 +9609,6 @@ (define-public go-github-com-skratchdot-open-golang
+       (home-page "https://github.com/skratchdot/open-golang")
+       (license license:expat))))
+ 
+-(define-public go-github-com-alecthomas-units
+-  (let ((commit "2efee857e7cfd4f3d0138cc3cbb1b4966962b93a")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-alecthomas-units")
+-      (version "0.0.0")
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/alecthomas/units")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1j65b91qb9sbrml9cpabfrcf07wmgzzghrl7809hjjhrmbzri5bl"))))
+-      (build-system go-build-system)
+-      (native-inputs
+-       (list go-github-com-stretchr-testify))
+-      (arguments
+-       '(#:import-path "github.com/alecthomas/units"
+-         #:phases %standard-phases))
+-      (synopsis "Helpful unit multipliers and functions for Go")
+-      (description
+-       "This library provides unit multipliers and functions for Go.")
+-      (home-page "https://github.com/alecthomas/units")
+-      (license license:expat))))
+-
+ (define-public go-github-com-dreamacro-go-shadowsocks2
+   (package
+     (name "go-github-com-dreamacro-go-shadowsocks2")
+diff --git a/gnu/packages/xdisorg.scm b/gnu/packages/xdisorg.scm
+index b3b305a352..46c9305e65 100644
+--- a/gnu/packages/xdisorg.scm
++++ b/gnu/packages/xdisorg.scm
+@@ -114,7 +114,6 @@ (define-module (gnu packages xdisorg)
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages gl)
+   #:use-module (gnu packages glib)
+-  #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gtk)
+-- 
+2.41.0
+

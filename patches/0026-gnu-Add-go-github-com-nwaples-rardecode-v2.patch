@@ -1,0 +1,67 @@
+From 272afa5487d893d5967fcee8632322933c340211 Mon Sep 17 00:00:00 2001
+Message-ID: <272afa5487d893d5967fcee8632322933c340211.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 29 Jun 2024 20:29:48 +0100
+Subject: [PATCH 26/26] gnu: Add go-github-com-nwaples-rardecode-v2.
+
+* gnu/packages/golang-compression.scm (go-github-com-nwaples-rardecode):
+Change version to 1.1.3 for future inheritance of go-github-com-nwaples-rardecode-v2.
+(go-github-com-nwaples-rardecode-v2): New variable.
+
+Change-Id: Ifc92ac27fbcd01f7cfced9239765d41108d6f373
+---
+ gnu/packages/golang-compression.scm | 22 ++++++++++++++++++++--
+ 1 file changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 85b2e3505b..67ae28abe5 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -221,7 +221,7 @@ (define-public go-github-com-klauspost-pgzip
+ (define-public go-github-com-nwaples-rardecode
+   (package
+     (name "go-github-com-nwaples-rardecode")
+-    (version "2.0.0-beta.2")
++    (version "1.1.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -230,7 +230,7 @@ (define-public go-github-com-nwaples-rardecode
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1344mxfdgs5fps6mqxk6352arrfszi33kmq394rgmqpf4394f1y7"))))
++        (base32 "0s00b8a9gppka3yxkxh7z5wy0ahygl8wbb0fbyx2r0rj879a1c2z"))))
+     (build-system go-build-system)
+     (arguments
+      (list
+@@ -241,6 +241,24 @@ (define-public go-github-com-nwaples-rardecode
+      "This package provides a library for reading RAR archives with Golang.")
+     (license license:bsd-2)))
+ 
++(define-public go-github-com-nwaples-rardecode-v2
++  (package
++    (inherit  go-github-com-nwaples-rardecode)
++    (name "go-github-com-nwaples-rardecode-v2")
++    (version "2.0.0-beta.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/nwaples/rardecode")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1344mxfdgs5fps6mqxk6352arrfszi33kmq394rgmqpf4394f1y7"))))
++    (arguments
++     (list
++      #:import-path "github.com/nwaples/rardecode/v2"))))
++
+ (define-public go-github-com-pierrec-lz4
+   (package
+     (name "go-github-com-pierrec-lz4")
+-- 
+2.41.0
+

@@ -1,0 +1,104 @@
+From e593be8a32fe848b0fe91c8a5c83b817a99c8484 Mon Sep 17 00:00:00 2001
+Message-ID: <e593be8a32fe848b0fe91c8a5c83b817a99c8484.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:06:06 +0000
+Subject: [PATCH 08/30] gnu: go-github-com-nsqio-go-nsq: Move to (gnu packages
+ golang-xyz).
+
+* gnu/packages/golang.scm (go-github-com-nsqio-go-nsq): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: Ie718c9943dd527281b30c78ab4e23adc764289c1
+---
+ gnu/packages/golang-xyz.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 26 --------------------------
+ 2 files changed, 27 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index aefe0e0d9c..bbf72f1105 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -30,6 +30,7 @@ (define-module (gnu packages golang-xyz)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto))
+ 
+ ;;; Commentary:
+@@ -249,6 +250,32 @@ (define-public go-github-com-nats-io-nuid
+ very fast, and tries to be entropy pool friendly.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-nsqio-go-nsq
++  (package
++    (name "go-github-com-nsqio-go-nsq")
++    (version "1.1.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/nsqio/go-nsq")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1h9z3z225sdgg7fl3l7x11xn5ch6lm5flgmcj046cdp453qj2qhf"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:tests? #f                  ;tests require networking
++           #:import-path "github.com/nsqio/go-nsq"))
++    (propagated-inputs (list go-github-com-golang-snappy))
++    (home-page "https://github.com/nsqio/go-nsq")
++    (synopsis "Consumer/producer library for NSQ")
++    (description
++     "The @code{nsq} Go module provides a high-level @code{Consumer} and
++@code{Producer} types as well as low-level functions to communicate over the
++NSQ protocol @url{https://nsq.io/}.")
++    (license license:expat)))
++
+ (define-public go-go-uber-org-automaxprocs
+   (package
+     (name "go-go-uber-org-automaxprocs")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 5887d68630..b8b5a67613 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3098,32 +3098,6 @@ (define-public go-github-com-nsqio-go-diskqueue
+ queue.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-nsqio-go-nsq
+-  (package
+-    (name "go-github-com-nsqio-go-nsq")
+-    (version "1.1.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/nsqio/go-nsq")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1h9z3z225sdgg7fl3l7x11xn5ch6lm5flgmcj046cdp453qj2qhf"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:tests? #f                  ;tests require networking
+-           #:import-path "github.com/nsqio/go-nsq"))
+-    (propagated-inputs (list go-github-com-golang-snappy))
+-    (home-page "https://github.com/nsqio/go-nsq")
+-    (synopsis "Consumer/producer library for NSQ")
+-    (description
+-     "The @code{nsq} Go module provides a high-level @code{Consumer} and
+-@code{Producer} types as well as low-level functions to communicate over the
+-NSQ protocol @url{https://nsq.io/}.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-hebcal-gematriya
+   (let ((commit "fe3043f73e415eb82727701d10f2fb40f87675e9")
+         (revision "0"))
+-- 
+2.41.0
+

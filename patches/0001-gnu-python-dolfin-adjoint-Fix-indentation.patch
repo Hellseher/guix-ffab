@@ -1,0 +1,84 @@
+From 6ebbf954f399ca8347144b087fae787c2b071354 Mon Sep 17 00:00:00 2001
+Message-ID: <6ebbf954f399ca8347144b087fae787c2b071354.1720653590.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 1 Jul 2024 21:46:19 +0100
+Subject: [PATCH v2 1/4] gnu: python-dolfin-adjoint: Fix indentation.
+
+* gnu/packages/simulation.scm (python-dolfin-adjoint): Fix indentation.
+
+Change-Id: I457639a98f1ae49d43042e557352d390afc9419d
+---
+ gnu/packages/simulation.scm | 48 ++++++++++++++++++-------------------
+ 1 file changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/simulation.scm b/gnu/packages/simulation.scm
+index 4fa2e93d81..ab86e1d792 100644
+--- a/gnu/packages/simulation.scm
++++ b/gnu/packages/simulation.scm
+@@ -1180,29 +1180,29 @@ (define-public python-dolfin-adjoint
+     (name "python-dolfin-adjoint")
+     (version "2019.1.0")
+     (source
+-      (origin
+-        (method git-fetch)
+-        (uri (git-reference
+-              (url "https://github.com/dolfin-adjoint/pyadjoint")
+-              (commit version)))
+-        (file-name (git-file-name name version))
+-        (sha256
+-          (base32
+-           "0xhy76a5f33hz94wc9g2mc5qmwkxfccbbc6yxl7psm130afp8lhn"))
+-        (modules '((guix build utils)))
+-        (snippet
+-         '(begin
+-            ;; One of the migration tests attempts to call openmpi
+-            ;; recursively and fails.  See
+-            ;; https://bitbucket.org/mpi4py/mpi4py/issues/95.  Run the
+-            ;; test sequentially instead.
+-            (with-directory-excursion "tests/migration/optimal_control_mms"
+-              (substitute* "test_optimal_control_mms.py"
+-                (("\\\"mpirun\\\", \\\"-n\\\", \\\"2\\\", ") "")))
+-            ;; Result files are regenerated in the check phase.
+-            (delete-file-recursively
+-             "tests/migration/viscoelasticity/test-results")
+-            #t))))
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/dolfin-adjoint/pyadjoint")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32
++         "0xhy76a5f33hz94wc9g2mc5qmwkxfccbbc6yxl7psm130afp8lhn"))
++       (modules '((guix build utils)))
++       (snippet
++        '(begin
++           ;; One of the migration tests attempts to call openmpi
++           ;; recursively and fails.  See
++           ;; https://bitbucket.org/mpi4py/mpi4py/issues/95.  Run the
++           ;; test sequentially instead.
++           (with-directory-excursion "tests/migration/optimal_control_mms"
++             (substitute* "test_optimal_control_mms.py"
++               (("\\\"mpirun\\\", \\\"-n\\\", \\\"2\\\", ") "")))
++           ;; Result files are regenerated in the check phase.
++           (delete-file-recursively
++            "tests/migration/viscoelasticity/test-results")
++           #t))))
+     (build-system python-build-system)
+     (inputs
+      (list fenics openmpi pybind11))
+@@ -1219,7 +1219,7 @@ (define-public python-dolfin-adjoint
+      `(#:phases
+        (modify-phases %standard-phases
+          (add-after 'build 'mpi-setup
+-                    ,%openmpi-setup)
++           ,%openmpi-setup)
+          (add-after 'install 'install-doc
+            (lambda* (#:key outputs #:allow-other-keys)
+              (let* ((doc (string-append (assoc-ref outputs "out")
+
+base-commit: a1f89695560dca1ecedab131a33bb6c5f4584226
+-- 
+2.41.0
+

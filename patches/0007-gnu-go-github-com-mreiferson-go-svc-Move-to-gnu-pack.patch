@@ -1,0 +1,100 @@
+From ded24e275588ee354eb7dd0542d3db80c4fcbb4d Mon Sep 17 00:00:00 2001
+Message-ID: <ded24e275588ee354eb7dd0542d3db80c4fcbb4d.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 20:59:13 +0000
+Subject: [PATCH 07/30] gnu: go-github-com-mreiferson-go-svc: Move to (gnu
+ packages golang-xyz).
+
+* gnu/packages/golang.scm (go-github-com-mreiferson-go-svc): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: I21f1d5f651fb09a3716cbcdb48aaf7f8dd37384d
+---
+ gnu/packages/golang-xyz.scm | 28 ++++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 28 ----------------------------
+ 2 files changed, 28 insertions(+), 28 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index ebcf333b13..aefe0e0d9c 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -170,6 +170,34 @@ (define-public go-github-com-mreiferson-go-options
+ command line flags, config files, and default struct values.")
+     (license license:expat)))
+ 
++(define-public go-github-com-mreiferson-go-svc
++  ;; NSQ specific fork of github.com/judwhite/go-svc, as Guix go build system
++  ;; does not support go.mod with `replace' statement.
++  (let ((commit "7a96e00010f68d9436e3de53a70c53f209a0c244")
++        (revision "0"))
++    (package
++      (name "go-github-com-mreiferson-go-svc")
++      (version (git-version "1.2.1" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/mreiferson/go-svc")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1acgb0n3svhnraqj1fz5qc5n3b4vc5ffwyk9vfi6gcfkibm0hgmd"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path "github.com/judwhite/go-svc"))
++      (propagated-inputs (list go-golang-org-x-sys))
++      (home-page "https://github.com/mreiferson/go-svc")
++      (synopsis "Go Windows Service wrapper for GNU/Linux")
++      (description
++       "Go Windows Service wrapper compatible with GNU/Linux.  Windows tests
++@url{https://github.com/judwhite/go-svc/raw/master/svc/svc_windows_test.go,here}.")
++      (license license:expat))))
++
+ (define-public go-github-com-nats-io-nats-go
+   (package
+     (name "go-github-com-nats-io-nats-go")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 373b57c5ad..5887d68630 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5484,34 +5484,6 @@ (define-public go-github-com-mr-tron-base58
+ encoding and 8 times faster decoding.")
+       (license license:expat))))
+ 
+-(define-public go-github-com-mreiferson-go-svc
+-  ;; NSQ specific fork of github.com/judwhite/go-svc, as Guix go build system
+-  ;; does not support go.mod with `replace' statement.
+-  (let ((commit "7a96e00010f68d9436e3de53a70c53f209a0c244")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-mreiferson-go-svc")
+-      (version (git-version "1.2.1" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://github.com/mreiferson/go-svc")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1acgb0n3svhnraqj1fz5qc5n3b4vc5ffwyk9vfi6gcfkibm0hgmd"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/judwhite/go-svc"))
+-      (propagated-inputs (list go-golang-org-x-sys))
+-      (home-page "https://github.com/mreiferson/go-svc")
+-      (synopsis "Go Windows Service wrapper for GNU/Linux")
+-      (description
+-       "Go Windows Service wrapper compatible with GNU/Linux.  Windows tests
+-@url{https://github.com/judwhite/go-svc/raw/master/svc/svc_windows_test.go,here}.")
+-      (license license:expat))))
+-
+ (define-public go-github-com-spaolacci-murmur3
+   (package
+     (name "go-github-com-spaolacci-murmur3")
+-- 
+2.41.0
+

@@ -1,0 +1,35 @@
+From 809d38b9a15c91dd5723b76769a85d21202edb28 Mon Sep 17 00:00:00 2001
+Message-ID: <809d38b9a15c91dd5723b76769a85d21202edb28.1731584861.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Wed, 13 Nov 2024 18:16:18 +0100
+Subject: [PATCH v2 10/14] gnu: awscli-2: Add missing inputs.
+
+* gnu/packages/python-web.scm (awscli-2)[native-inputs]: Add
+python-poetry-core and python-pytest.
+
+Change-Id: Ia0d160eca47f9e39ba902481c7146ad85b848c2a
+---
+ gnu/packages/python-web.scm | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index ba689a8a98..a80d037bdf 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -4217,7 +4217,10 @@ (define-public awscli-2
+      '(#:tests? #f))
+     (inputs
+      (list python-importlib-resources
+-           python-executor))))
++           python-executor))
++    (native-inputs
++     (list python-poetry-core
++           python-pytest))))
+ 
+ 
+ (define-public python-wsgiproxy2
+-- 
+2.46.0
+

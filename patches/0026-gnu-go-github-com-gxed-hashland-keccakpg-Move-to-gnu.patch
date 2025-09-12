@@ -1,0 +1,95 @@
+From b12dd7d2d3d6d7b147ee6793c5bc84ff7aec2482 Mon Sep 17 00:00:00 2001
+Message-ID: <b12dd7d2d3d6d7b147ee6793c5bc84ff7aec2482.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 00:10:43 +0000
+Subject: [PATCH 26/38] gnu: go-github-com-gxed-hashland-keccakpg: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-gxed-hashland-keccakpg): Move
+from here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I000004efa349f0d7548003aeecc98c94669662de
+---
+ gnu/packages/golang-crypto.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 26 --------------------------
+ 2 files changed, 25 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 9fec753a35..7216f63014 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -272,6 +272,31 @@ (define-public go-github-com-gaukas-godicttls
+ for values.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-gxed-hashland-keccakpg
++  (let ((commit "d9f6b97f8db22dd1e090fd0bbbe98f09cc7dd0a8")
++        (revision "0"))
++    (package
++      (name "go-github-com-gxed-hashland-keccakpg")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/gxed/hashland")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1q23y4lacsz46k9gmgfw4iwwydw36j2601rbidmmswl94grpc386"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:unpack-path "github.com/gxed/hashland"
++         #:import-path "github.com/gxed/hashland/keccakpg"))
++      (home-page "https://github.com/gxed/hashland")
++      (synopsis "Implements the Keccak (SHA-3) hash algorithm in Go")
++      (description "Package @command{keccak} implements the Keccak (SHA-3)
++hash algorithm.  See http://keccak.noekeon.org.")
++      (license license:expat))))
++
+ (define-public go-github-com-jcmturner-aescts-v2
+   (package
+     (name "go-github-com-jcmturner-aescts-v2")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 87dd184053..f77185b87b 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5674,32 +5674,6 @@ (define-public go-github-com-mreiferson-go-svc
+ @url{https://github.com/judwhite/go-svc/raw/master/svc/svc_windows_test.go,here}.")
+       (license license:expat))))
+ 
+-(define-public go-github-com-gxed-hashland-keccakpg
+-  (let ((commit "d9f6b97f8db22dd1e090fd0bbbe98f09cc7dd0a8")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-gxed-hashland-keccakpg")
+-      (version (git-version "0.0.0" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/gxed/hashland")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32
+-           "1q23y4lacsz46k9gmgfw4iwwydw36j2601rbidmmswl94grpc386"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:unpack-path "github.com/gxed/hashland"
+-         #:import-path "github.com/gxed/hashland/keccakpg"))
+-      (home-page "https://github.com/gxed/hashland")
+-      (synopsis "Implements the Keccak (SHA-3) hash algorithm in Go")
+-      (description "Package @command{keccak} implements the Keccak (SHA-3)
+-hash algorithm.  See http://keccak.noekeon.org.")
+-      (license license:expat))))
+-
+ (define-public go-github-com-minio-blake2b-simd
+   (let ((commit "3f5f724cb5b182a5c278d6d3d55b40e7f8c2efb4")
+         (revision "0"))
+-- 
+2.41.0
+

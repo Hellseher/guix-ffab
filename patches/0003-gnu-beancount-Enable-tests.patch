@@ -1,0 +1,96 @@
+From 22f333c6950d102e1e0fa34dc6f25e4518a2d469 Mon Sep 17 00:00:00 2001
+Message-ID: <22f333c6950d102e1e0fa34dc6f25e4518a2d469.1710694980.git.sharlatanus@gmail.com>
+In-Reply-To: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+References: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 17 Mar 2024 16:36:41 +0000
+Subject: [PATCH v3 3/7] gnu: beancount: Enable tests.
+
+* gnu/packages/finance.scm (beancount) [source]: Swap to git checkout,
+containing all required test data files.
+[build-system]: Swap to pyproject-build-system.
+[arguments] <#:phases>: Add 'build-extensions phase.
+[propagated-inputs]: python-auth2client.
+[native-inputs]: Add gnupg and python-pdfminer-six.
+
+Change-Id: Id0c725cae8cdc677ad0c3a0a75be6eea682eee05
+---
+ gnu/packages/finance.scm | 36 ++++++++++++++++++++++++++++--------
+ 1 file changed, 28 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/finance.scm b/gnu/packages/finance.scm
+index b9be19df74..c248f614ab 100644
+--- a/gnu/packages/finance.scm
++++ b/gnu/packages/finance.scm
+@@ -37,6 +37,7 @@
+ ;;; Copyright © 2023 Foundation Devices, Inc. <hello@foundationdevices.com>
+ ;;; Copyright © 2023 Attila Lendvai <attila@lendvai.name>
+ ;;; Copyright © 2024 Saku Laesvuori <saku@laesvuori.fi>
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -1969,22 +1970,40 @@ (define-public beancount
+     (version "2.3.6")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "beancount" version))
++       (method git-fetch) ; no test data files in PyPI archive
++       (uri (git-reference
++             (url "https://github.com/beancount/beancount")
++             (commit version)))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0nj7sdh7wxc0hv8wxwqhw9v1zgx1sn4w92368ci2wzdmssz967w0"))
+-       (patches (search-patches "beancount-disable-googleapis-fonts.patch"))))
+-    (build-system python-build-system)
++        (base32 "1slxsjw29cyr2kbirdpijhpqspk55k38rpmk3zc02pr1wll62qsv"))
++       (patches (search-patches "beancount-disable-googleapis-fonts.patch"))
++       (modules '((guix build utils)))
++       (snippet
++        #~(begin
++            ;; Remove broken experiments.
++            (delete-file-recursively "experiments")
++            ;; Remove bundled packages.
++            (delete-file-recursively "third_party")))))
++    (build-system pyproject-build-system)
+     (arguments
+      (list
+-      #:tests? #f  ; Says test is missing, not sure why
++      #:test-flags
++      #~(list "-k" (string-append
++                    ;; ModuleNotFoundError: No module named 'pytest'
++                    "not test_parse_stdin"
++                    ;; AssertionError: 5 not greater than 20
++                    " and not test_setup"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'unpack 'relax-requirements
+             (lambda _
+               (substitute* "setup.py"
+                 ;; Use compatible fork, and do not fail during sanity check.
+-                (("\"pdfminer2\",") "")))))))
++                (("\"pdfminer2\",") ""))))
++          (add-before 'check 'build-extensions
++            (lambda _
++              (invoke "python" "setup.py" "build_ext" "--inplace"))))))
+     (propagated-inputs
+      (list python-beautifulsoup4
+            python-bottle
+@@ -1994,10 +2013,11 @@ (define-public beancount
+            python-google-auth-oauthlib
+            python-lxml
+            python-magic
++           python-oauth2client
+            python-ply
+            python-requests))
+     (native-inputs
+-     (list python-pytest))
++     (list gnupg python-pdfminer-six python-pytest))
+     (home-page "https://beancount.github.io/")
+     (synopsis "Command-line double-entry accounting tool")
+     (description
+-- 
+2.41.0
+

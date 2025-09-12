@@ -1,0 +1,133 @@
+From 1f8326aa79e9afa499010a7b17616c62aa717b7c Mon Sep 17 00:00:00 2001
+Message-ID: <1f8326aa79e9afa499010a7b17616c62aa717b7c.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 00:03:18 +0000
+Subject: [PATCH 24/38] gnu: go-github-com-minio-sha256-simd: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-minio-sha256-simd): Move from
+here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+* gnu/packages/backup.scm: Add (gnu packages golang-crypto) to used modules.
+
+Change-Id: I4e57a1bee0c7e19a9bb60ce5ff72ccd5e42deea5
+---
+ gnu/packages/backup.scm        |  1 +
+ gnu/packages/golang-crypto.scm | 34 ++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 34 ----------------------------------
+ 3 files changed, 35 insertions(+), 34 deletions(-)
+
+diff --git a/gnu/packages/backup.scm b/gnu/packages/backup.scm
+index 3126464347..f160efd37d 100644
+--- a/gnu/packages/backup.scm
++++ b/gnu/packages/backup.scm
+@@ -71,6 +71,7 @@ (define-module (gnu packages backup)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages gtk)
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 23c47712a5..c57c525a49 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -1,5 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre Neidhardt <mail@ambrevar.xyz>
++;;; Copyright © 2019 Ricardo Wurmus <rekado@elephly.net>
+ ;;; Copyright © 2019 Vagrant Cascadian <vagrant@debian.org>
+ ;;; Copyright © 2019, 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+@@ -379,6 +380,39 @@ (define-public go-github-com-marten-seemann-qtls
+ the Go standard library's TLS 1.3 implementation.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-minio-sha256-simd
++  (package
++    (name "go-github-com-minio-sha256-simd")
++    (version "0.1.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/minio/sha256-simd")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1j0iqsckm97g4l79vd4mc7apbmkdar23jpzqpnpdhwpfd834j8lp"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/minio/sha256-simd"))
++    (home-page "https://github.com/minio/sha256-simd")
++    (synopsis "Accelerate SHA256 computations in pure Go")
++    (description "Accelerate SHA256 computations in pure Go using AVX512 and
++AVX2 for Intel and ARM64 for ARM.  On AVX512 it provides an up to 8x
++improvement (over 3 GB/s per core) in comparison to AVX2.
++
++This package is designed as a replacement for @command{crypto/sha256}.  For
++Intel CPUs it has two flavors for AVX512 and AVX2 (AVX/SSE are also
++supported).  For ARM CPUs with the Cryptography Extensions, advantage is taken
++of the SHA2 instructions resulting in a massive performance improvement.
++
++This package uses Golang assembly.  The AVX512 version is based on the Intel's
++\"multi-buffer crypto library for IPSec\" whereas the other Intel
++implementations are described in \"Fast SHA-256 Implementations on Intel
++Architecture Processors\" by J. Guilford et al.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-multiformats-go-multihash
+   (let ((commit "97cdb562a04c6ef66d8ed40cd62f8fbcddd396d6")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 6eb14a8099..0ea028295f 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5596,40 +5596,6 @@ (define-public go-github-com-btcsuite-btclog
+ implementing the same interface.")
+       (license license:isc))))
+ 
+-(define-public go-github-com-minio-sha256-simd
+-  (package
+-    (name "go-github-com-minio-sha256-simd")
+-    (version "0.1.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/minio/sha256-simd")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "1j0iqsckm97g4l79vd4mc7apbmkdar23jpzqpnpdhwpfd834j8lp"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/minio/sha256-simd"))
+-    (home-page "https://github.com/minio/sha256-simd")
+-    (synopsis "Accelerate SHA256 computations in pure Go")
+-    (description "Accelerate SHA256 computations in pure Go using AVX512 and
+-AVX2 for Intel and ARM64 for ARM.  On AVX512 it provides an up to 8x
+-improvement (over 3 GB/s per core) in comparison to AVX2.
+-
+-This package is designed as a replacement for @command{crypto/sha256}.  For
+-Intel CPUs it has two flavors for AVX512 and AVX2 (AVX/SSE are also
+-supported).  For ARM CPUs with the Cryptography Extensions, advantage is taken
+-of the SHA2 instructions resulting in a massive performance improvement.
+-
+-This package uses Golang assembly.  The AVX512 version is based on the Intel's
+-\"multi-buffer crypto library for IPSec\" whereas the other Intel
+-implementations are described in \"Fast SHA-256 Implementations on Intel
+-Architecture Processors\" by J. Guilford et al.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-mr-tron-base58
+   (let ((commit "d724c80ecac7b49e4e562d58b2b4f4ee4ed8c312")
+         (revision "0"))
+-- 
+2.41.0
+

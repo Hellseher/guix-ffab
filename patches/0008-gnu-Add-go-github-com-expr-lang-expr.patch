@@ -1,0 +1,55 @@
+From 085e4c9d3005214f6bc8d4aafce2ff7c0f2bb222 Mon Sep 17 00:00:00 2001
+Message-ID: <085e4c9d3005214f6bc8d4aafce2ff7c0f2bb222.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 7 Jun 2024 10:06:48 +0100
+Subject: [PATCH 08/26] gnu: Add go-github-com-expr-lang-expr.
+
+* gnu/packages/golang-xyz.scm (go-github-com-expr-lang-expr): New variable.
+
+Change-Id: I580e3c664322565d506261ec789ddfe05faa764e
+---
+ gnu/packages/golang-xyz.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 7e7fcc5105..5cbe8b83fd 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1457,6 +1457,32 @@ (define-public go-github-com-elliotchance-orderedmap
+ for @code{Set}, @code{Get}, @code{Delete} and @code{Len}.")
+     (license license:expat)))
+ 
++(define-public go-github-com-expr-lang-expr
++  (package
++    (name "go-github-com-expr-lang-expr")
++    (version "1.16.9")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/expr-lang/expr")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "08p7gcxm7psgn1rzhhy2s2va59ssy77x8wd706gdp2pif7wln883"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:go go-1.21
++      #:import-path "github.com/expr-lang/expr"))
++    (home-page "https://expr-lang.org/")
++    (synopsis "Expression language and expression evaluation for Go")
++    (description
++     "The package @strong{Expr} provides a Go-centric expression language
++designed to deliver dynamic configurations with unparalleled accuracy, safety,
++and speed.")
++    (license license:expat)))
++
+ (define-public go-github-com-facette-natsort
+   (package
+     (name "go-github-com-facette-natsort")
+-- 
+2.41.0
+

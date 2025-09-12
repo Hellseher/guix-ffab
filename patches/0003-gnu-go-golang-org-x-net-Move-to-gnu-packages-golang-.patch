@@ -1,0 +1,352 @@
+From 0a4697b99150ac12d3d1000d1bb4f2829830b7f9 Mon Sep 17 00:00:00 2001
+Message-ID: <0a4697b99150ac12d3d1000d1bb4f2829830b7f9.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 5 Feb 2024 20:57:31 +0000
+Subject: [PATCH 03/30] gnu: go-golang-org-x-net: Move to (gnu packages
+ golang-build).
+
+* gnu/packages/golang.scm (go-golang-org-x-net,
+go-golang-org-x-net-0.17, go-golang-org-x-net-html): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+* gnu/packages/configuration-management.scm: Add (gnu packages golang-build) module.
+* gnu/packages/education.scm: As above ...
+* gnu/packages/file-systems.scm: As above ...
+* gnu/packages/golang-check.scm: As above ...
+* gnu/packages/golang-crypto.scm: As above ...
+* gnu/packages/golang-web.scm: As above ...
+* gnu/packages/golang-xyz.scm: As above ...
+* gnu/packages/golang.scm: As above ...
+* gnu/packages/ipfs.scm: As above ...
+* gnu/packages/messaging.scm: As above ...
+* gnu/packages/networking.scm: As above ...
+* gnu/packages/uucp.scm: As above ...
+* gnu/packages/version-control.scm: As above ...
+
+Change-Id: If009e62555ada293f17cf0f42fde82c21ef4615e
+---
+ gnu/packages/configuration-management.scm |  1 +
+ gnu/packages/education.scm                |  1 +
+ gnu/packages/file-systems.scm             |  1 +
+ gnu/packages/golang-build.scm             | 64 +++++++++++++++++++++++
+ gnu/packages/golang-check.scm             |  3 +-
+ gnu/packages/golang-crypto.scm            |  1 +
+ gnu/packages/golang-web.scm               |  1 +
+ gnu/packages/golang-xyz.scm               |  1 +
+ gnu/packages/golang.scm                   | 60 +--------------------
+ gnu/packages/ipfs.scm                     |  1 +
+ gnu/packages/messaging.scm                |  1 +
+ gnu/packages/networking.scm               |  1 +
+ gnu/packages/uucp.scm                     |  1 +
+ gnu/packages/version-control.scm          |  1 +
+ 14 files changed, 78 insertions(+), 60 deletions(-)
+
+diff --git a/gnu/packages/configuration-management.scm b/gnu/packages/configuration-management.scm
+index 296f48dcd5..6632f429e2 100644
+--- a/gnu/packages/configuration-management.scm
++++ b/gnu/packages/configuration-management.scm
+@@ -21,6 +21,7 @@ (define-module (gnu packages configuration-management)
+   #:use-module (guix build-system go)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages version-control)
+   #:use-module (gnu packages textutils)
+diff --git a/gnu/packages/education.scm b/gnu/packages/education.scm
+index 7b72ed0349..0f4a251bcc 100644
+--- a/gnu/packages/education.scm
++++ b/gnu/packages/education.scm
+@@ -47,6 +47,7 @@ (define-module (gnu packages education)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages gstreamer)
+diff --git a/gnu/packages/file-systems.scm b/gnu/packages/file-systems.scm
+index 61db3086c8..af6d1ee871 100644
+--- a/gnu/packages/file-systems.scm
++++ b/gnu/packages/file-systems.scm
+@@ -72,6 +72,7 @@ (define-module (gnu packages file-systems)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index 03fcdede80..2601dec27a 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -1,4 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2023 Artyom V. Poptsov <poptsov.artyom@gmail.com>
++;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -37,6 +40,67 @@ (define-module (gnu packages golang-build)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-golang-org-x-net
++  (let ((commit "8e0e7d8d38f2b6d21d742845570dde2902d06a1d")
++        (revision "0"))
++    (package
++      (name "go-golang-org-x-net")
++      (version (git-version "0.5.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://go.googlesource.com/net")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1fidlcn3vcz42v2lc0rpmqh3bz08bcklj6jvnmz2vvgc481ci5hy"))))
++      (build-system go-build-system)
++      (arguments
++       (list
++        #:import-path "golang.org/x/net"
++        ;; Source-only package
++        #:tests? #f
++        #:phases
++        #~(modify-phases %standard-phases
++            ;; Source-only package
++            (delete 'build))))
++      (home-page "https://go.googlesource.com/net")
++      (synopsis "Go supplemental networking libraries")
++      (description "This package provides supplemental Go networking libraries.")
++      (license license:bsd-3))))
++
++;; XXX: Not in use by any other packages, consider to remove or merge with
++;; go-golang-org-x-net.
++(define-public go-golang-org-x-net-0.17
++  (let ((commit "b225e7ca6dde1ef5a5ae5ce922861bda011cfabd")
++        (revision "0"))
++    (package
++      (inherit go-golang-org-x-net)
++      (name "go-golang-org-x-net")
++      (version (git-version "0.17.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://go.googlesource.com/net")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "17zhim2m0r8nyy18g2lsawxm4rawix2qbjyn80x9vc6jc8fv05m9")))))))
++
++(define-public go-golang-org-x-net-html
++  (package
++    (inherit go-golang-org-x-net)
++    (name "go-golang-org-x-net-html")
++    (arguments
++     '(#:import-path "golang.org/x/net/html"
++       #:unpack-path "golang.org/x/net"))
++    (home-page "https://godoc.org/golang.org/x/net/html")
++    (synopsis "HTML5-compliant tokenizer and parser")
++    (description
++     "This package provides an HTML5-compliant tokenizer and parser.")))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 912444bc8e..2decd1f664 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -41,7 +41,8 @@ (define-module (gnu packages golang-check)
+   #:use-module (guix gexp)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages)
+-  #:use-module (gnu packages golang))
++  #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build))
+ 
+ ;;; Commentary:
+ ;;;
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index bf2fc11e17..39e7412558 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -44,6 +44,7 @@ (define-module (gnu packages golang-crypto)
+   #:use-module (guix utils)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check))
+ 
+ ;;; Commentary:
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 719cb5dfeb..d7fb7dd366 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -48,6 +48,7 @@ (define-module (gnu packages golang-web)
+   #:use-module (guix utils)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-xyz)
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 8823ae21c6..33aa43357f 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -27,6 +27,7 @@ (define-module (gnu packages golang-xyz)
+   #:use-module (guix utils)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto))
+ 
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 163691a1e6..3997f4057d 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -81,6 +81,7 @@ (define-module (gnu packages golang)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+@@ -3650,65 +3651,6 @@ (define-public gopls
+ editor.")
+     (license license:bsd-3)))
+ 
+-(define-public go-golang-org-x-net
+-  (let ((commit "8e0e7d8d38f2b6d21d742845570dde2902d06a1d")
+-        (revision "0"))
+-    (package
+-      (name "go-golang-org-x-net")
+-      (version (git-version "0.5.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://go.googlesource.com/net")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1fidlcn3vcz42v2lc0rpmqh3bz08bcklj6jvnmz2vvgc481ci5hy"))))
+-      (build-system go-build-system)
+-      (arguments
+-       (list
+-        #:import-path "golang.org/x/net"
+-        ;; Source-only package
+-        #:tests? #f
+-        #:phases
+-        #~(modify-phases %standard-phases
+-            ;; Source-only package
+-            (delete 'build))))
+-      (synopsis "Go supplemental networking libraries")
+-      (description "This package provides supplemental Go networking libraries.")
+-      (home-page "https://go.googlesource.com/net")
+-      (license license:bsd-3))))
+-
+-(define-public go-golang-org-x-net-0.17
+-  (let ((commit "b225e7ca6dde1ef5a5ae5ce922861bda011cfabd")
+-        (revision "0"))
+-    (package
+-      (inherit go-golang-org-x-net)
+-      (name "go-golang-org-x-net")
+-      (version (git-version "0.17.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://go.googlesource.com/net")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "17zhim2m0r8nyy18g2lsawxm4rawix2qbjyn80x9vc6jc8fv05m9")))))))
+-
+-(define-public go-golang-org-x-net-html
+-  (package
+-    (inherit go-golang-org-x-net)
+-    (name "go-golang.org-x-net-html")
+-    (arguments
+-     '(#:import-path "golang.org/x/net/html"
+-       #:unpack-path "golang.org/x/net"))
+-    (synopsis "HTML5-compliant tokenizer and parser")
+-    (description
+-     "This package provides an HTML5-compliant tokenizer and parser.")
+-    (home-page "https://godoc.org/golang.org/x/net/html")))
+-
+ (define-public go-golang-org-x-image
+   (let ((commit "58c23975cae11f062d4b3b0c143fe248faac195d")
+         (revision "1"))
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index a1b9333066..ae514cd93b 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -29,6 +29,7 @@ (define-module (gnu packages ipfs)
+   #:use-module (guix download)
+   #:use-module (guix build-system go)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+diff --git a/gnu/packages/messaging.scm b/gnu/packages/messaging.scm
+index bb33be4872..98c1c9bf67 100644
+--- a/gnu/packages/messaging.scm
++++ b/gnu/packages/messaging.scm
+@@ -86,6 +86,7 @@ (define-module (gnu packages messaging)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gstreamer)
+diff --git a/gnu/packages/networking.scm b/gnu/packages/networking.scm
+index 8d358961a1..dc21b2fbd0 100644
+--- a/gnu/packages/networking.scm
++++ b/gnu/packages/networking.scm
+@@ -125,6 +125,7 @@ (define-module (gnu packages networking)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gstreamer)
+diff --git a/gnu/packages/uucp.scm b/gnu/packages/uucp.scm
+index 37dc27625a..8f1759556e 100644
+--- a/gnu/packages/uucp.scm
++++ b/gnu/packages/uucp.scm
+@@ -19,6 +19,7 @@
+ 
+ (define-module (gnu packages uucp)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages texinfo)
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index 8f9fae5ce2..51754245d3 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -106,6 +106,7 @@ (define-module (gnu packages version-control)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+-- 
+2.41.0
+

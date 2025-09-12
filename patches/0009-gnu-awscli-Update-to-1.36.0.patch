@@ -1,0 +1,53 @@
+From 8235ba7b9041660b411dedd7ab2ca8b94adac6a3 Mon Sep 17 00:00:00 2001
+Message-ID: <8235ba7b9041660b411dedd7ab2ca8b94adac6a3.1731584861.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Thu, 14 Nov 2024 11:15:26 +0000
+Subject: [PATCH v2 09/14] gnu: awscli: Update to 1.36.0.
+
+* gnu/packages/python-web.scm (awscli): Update to 1.36.0.
+[arguments]<test-flags>: Silent more failing tests.
+
+Co-Authored-By: Sharlatan Hellseher <sharlatanus@gmail.com>
+Change-Id: Ia06ad5128b13dbc68ec92f93dc025644605cd30c
+---
+ gnu/packages/python-web.scm | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index 1421936eb6..ba689a8a98 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -4136,7 +4136,7 @@ (define-public awscli
+   (package
+     ;; Note: updating awscli typically requires updating botocore as well.
+     (name "awscli")
+-    (version "1.35.20")
++    (version "1.36.0")
+     (source
+      (origin
+        (method git-fetch)               ; no tests in PyPI release
+@@ -4145,7 +4145,7 @@ (define-public awscli
+              (commit version)))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1hj1hj374hdwb8wq2xw20ywjyrv37s65nfsjzs6k9wa0f629alkf"))))
++        (base32 "1iwivc5kj2h5619rvbncrh4649lalxj7bxndzvrjw398vv7cixp5"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -4158,6 +4158,10 @@ (define-public awscli
+               ;; AssertionError: 'argument operation: Invalid choice, valid
+               ;; choices are:' not found in '
+               "-k" (string-append "not test_subscribe_to_shard_removed"
++                                  ;; Tests fail during mocking.
++                                  " and not test_expected_runtime_dependencies"
++                                  " and not test_expected_unbounded_runtime_dependencies"
++                                  " and not test_no_groff_or_mandoc_exists"
+                                   " and not test_start_conversation_removed"))
+       #:phases
+       #~(modify-phases %standard-phases
+-- 
+2.46.0
+

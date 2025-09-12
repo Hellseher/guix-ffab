@@ -1,0 +1,62 @@
+From 551acbb0f78a177b4a2e0a415ddf8254cb782b67 Mon Sep 17 00:00:00 2001
+Message-ID: <551acbb0f78a177b4a2e0a415ddf8254cb782b67.1707944340.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707944340.git.sharlatanus@gmail.com>
+References: <cover.1707944340.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 14 Feb 2024 18:02:11 +0000
+Subject: [PATCH 2/6] gnu: go-github-go-git: Adjust imports.
+
+* gnu/packages/version-control.scm (go-github-go-git) [native-inputs]:
+Move go-github-com-alcortesm-tgz, go-github-com-emirpasic-gods,
+go-github-com-go-git-gcfg, go-github-com-go-git-go-billy,
+go-github-com-go-git-go-git-fixtures, go-github-com-imdario-mergo,
+go-github-com-jbenet-go-context, go-github-com-kevinburke-ssh-config,
+go-github-com-mitchellh-go-homedir, go-github-com-sergi-go-diff,
+go-github-com-xanzy-ssh-agent, go-golang-org-x-crypto,
+go-golang-org-x-net, go-golang-org-x-text, go-gopkg-in-check-v1 and
+go-gopkg-in-warnings from here ...
+[propagated-inputs]: ... to here.
+
+Change-Id: I9c16fe28dcbbaf7c53e201625f56a04bceb21fcb
+---
+ gnu/packages/version-control.scm | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index 0092d932f2..715a2cfd7b 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -3620,10 +3620,12 @@ (define-public go-github-go-git
+                (invoke git-exe "config" "--global" "user.name" "GitHub Actions")
+                #t)
+              #t)))))
+-    (native-inputs
+-     (list go-github-com-emirpasic-gods
++    (propagated-inputs
++     (list go-github-com-alcortesm-tgz
++           go-github-com-emirpasic-gods
+            go-github-com-go-git-gcfg
+            go-github-com-go-git-go-billy
++           go-github-com-go-git-go-git-fixtures
+            go-github-com-imdario-mergo
+            go-github-com-jbenet-go-context
+            go-github-com-kevinburke-ssh-config
+@@ -3632,12 +3634,10 @@ (define-public go-github-go-git
+            go-github-com-xanzy-ssh-agent
+            go-golang-org-x-crypto
+            go-golang-org-x-net
+-           go-gopkg-in-warnings
+-           go-github-com-go-git-go-git-fixtures
+-           go-gopkg-in-check-v1
+-           go-github-com-alcortesm-tgz
+            go-golang-org-x-text
+-           git))
++           go-gopkg-in-check-v1
++           go-gopkg-in-warnings))
++    (native-inputs (list git))
+     (home-page "https://github.com/go-git/")
+     (synopsis "Git implementation library")
+     (description "This package provides a Git implementation library.")
+-- 
+2.41.0
+

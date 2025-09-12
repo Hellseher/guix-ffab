@@ -1,0 +1,55 @@
+From 22825f6b1572b2939347d6a322361f08991d72fd Mon Sep 17 00:00:00 2001
+Message-ID: <22825f6b1572b2939347d6a322361f08991d72fd.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 28 Feb 2024 20:53:59 +0000
+Subject: [PATCH 1/7] gnu: go-github-com-blang-semver: Update to 3.8.0.
+
+* gnu/packages/golang-xyz.scm (go-github-com-blang-semver): Update to 3.8.0.
+
+Change-Id: I5f1eec936236e4f8984d6aabbab9a9ce99e291a3
+---
+ gnu/packages/golang-xyz.scm | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 0b3db6e379..5734a50c95 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -285,20 +285,18 @@ (define-public go-github-com-bitly-timer-metrics
+     (license license:expat)))
+ 
+ (define-public go-github-com-blang-semver
+-  (let ((commit "60ec3488bfea7cca02b021d106d9911120d25fe9")
+-        (revision "0"))
+     (package
+       (name "go-github-com-blang-semver")
+-      (version (git-version "0.0.0" revision commit))
++      (version "3.8.0")
+       (source
+        (origin
+          (method git-fetch)
+          (uri (git-reference
+                (url "https://github.com/blang/semver")
+-               (commit commit)))
++               (commit (string-append "v" version))))
+          (file-name (git-file-name name version))
+          (sha256
+-          (base32 "19pli07y5592g4dyjyj0jq5rn548vc3fz0qg3624vm1j5828p1c2"))))
++          (base32 "16s66zbfkn35msmxpkiwf5dv91kzw7yzxzkcv8ma44j7lbgzx5qk"))))
+       (build-system go-build-system)
+       (arguments
+        '(#:import-path "github.com/blang/semver"))
+@@ -306,7 +304,7 @@ (define-public go-github-com-blang-semver
+       (synopsis "Semantic versioning library written in Go")
+       (description
+        "Semver is a library for Semantic versioning written in Go.")
+-      (license license:expat))))
++      (license license:expat)))
+ 
+ (define-public go-github-com-bmizerany-perks-quantile
+   (package
+-- 
+2.41.0
+

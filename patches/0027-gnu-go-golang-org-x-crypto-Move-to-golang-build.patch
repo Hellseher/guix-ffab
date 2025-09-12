@@ -1,0 +1,150 @@
+From 655064a2e27c14c8b5d7d20e0632b3b033ee8e9a Mon Sep 17 00:00:00 2001
+Message-ID: <655064a2e27c14c8b5d7d20e0632b3b033ee8e9a.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 21:39:59 +0000
+Subject: [PATCH v2 27/30] gnu: go-golang-org-x-crypto: Move to golang-build.
+
+* gnu/packages/golang.scm (go-golang-org-x-crypto): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+* gnu/packages/backup.scm: Add (gnu packages golang-build) module.
+* gnu/packages/crypto.scm: As above.
+
+Change-Id: I5daad7fe90e1507958fe73c04fc043ebbc006395
+---
+ gnu/packages/backup.scm       |  1 +
+ gnu/packages/crypto.scm       |  1 +
+ gnu/packages/golang-build.scm | 34 +++++++++++++++++++++++++++++++++-
+ gnu/packages/golang.scm       | 31 -------------------------------
+ 4 files changed, 35 insertions(+), 32 deletions(-)
+
+diff --git a/gnu/packages/backup.scm b/gnu/packages/backup.scm
+index f160efd37d..3b3b9d332a 100644
+--- a/gnu/packages/backup.scm
++++ b/gnu/packages/backup.scm
+@@ -71,6 +71,7 @@ (define-module (gnu packages backup)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+diff --git a/gnu/packages/crypto.scm b/gnu/packages/crypto.scm
+index c7145bcb0c..6857ea2075 100644
+--- a/gnu/packages/crypto.scm
++++ b/gnu/packages/crypto.scm
+@@ -60,6 +60,7 @@ (define-module (gnu packages crypto)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages kerberos)
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index b717c3ad27..8b7dca46a6 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -1,14 +1,15 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2019 Brian Leung <bkleung89@gmail.com>
++;;; Copyright © 2019, 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2020 Danny Milosavljevic <dannym@scratchpost.org>
+ ;;; Copyright © 2020 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2020 HiPhish <hiphish@posteo.de>
+-;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
+ ;;; Copyright © 2020 Vagrant Cascadian <vagrant@debian.org>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+ ;;; Copyright © 2021 Ludovic Courtès <ludo@gnu.org>
++;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2021 hackeryarn <artemchernyak@gmail.com>
+ ;;; Copyright © 2023 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+ ;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
+@@ -74,6 +75,37 @@ (define-public go-github-com-yuin-goldmark
+     (description "This package provides a markdown parser.")
+     (license license:expat)))
+ 
++(define-public go-golang-org-x-crypto
++  (package
++    (name "go-golang-org-x-crypto")
++    (version "0.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://go.googlesource.com/crypto")
++             (commit (string-append "v" version))))
++       (file-name (string-append "go.googlesource.com-crypto-"
++                                 version "-checkout"))
++       (sha256
++        (base32 "13i0yz4hvc4qdr438nmzilvl5ns73v3910bakcddny3jbzq72i2m"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "golang.org/x/crypto"
++       ;; Source-only package
++       #:tests? #f
++       #:phases
++       (modify-phases %standard-phases
++         ;; Source-only package
++         (delete 'build))))
++    (propagated-inputs
++     (list go-golang-org-x-sys))
++    (home-page "https://go.googlesource.com/crypto/")
++    (synopsis "Supplementary cryptographic libraries in Go")
++    (description "This package provides supplementary cryptographic libraries
++for the Go language.")
++    (license license:bsd-3)))
++
+ (define-public go-golang-org-x-exp
+   (package
+     (name "go-golang-org-x-exp")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 0437b4e83d..e473c0880b 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3347,37 +3347,6 @@ (define-public go-github-com-hashicorp-hcl-v2
+     (home-page "https://github.com/hashicorp/hcl")
+     (license license:mpl2.0)))
+ 
+-(define-public go-golang-org-x-crypto
+-  (package
+-    (name "go-golang-org-x-crypto")
+-    (version "0.4.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://go.googlesource.com/crypto")
+-                    (commit (string-append "v" version))))
+-              (file-name (string-append "go.googlesource.com-crypto-"
+-                                        version "-checkout"))
+-              (sha256
+-               (base32
+-                "13i0yz4hvc4qdr438nmzilvl5ns73v3910bakcddny3jbzq72i2m"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "golang.org/x/crypto"
+-       ;; Source-only package
+-       #:tests? #f
+-       #:phases
+-       (modify-phases %standard-phases
+-         ;; Source-only package
+-         (delete 'build))))
+-    (propagated-inputs
+-     (list go-golang-org-x-sys))
+-    (synopsis "Supplementary cryptographic libraries in Go")
+-    (description "This package provides supplementary cryptographic libraries
+-for the Go language.")
+-    (home-page "https://go.googlesource.com/crypto/")
+-    (license license:bsd-3)))
+-
+ (define-public govulncheck
+   (package
+     (name "govulncheck")
+-- 
+2.41.0
+

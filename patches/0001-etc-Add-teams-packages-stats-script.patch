@@ -1,0 +1,246 @@
+From bdd10b14ee47680b9840ed75d0658c6978efe3b6 Mon Sep 17 00:00:00 2001
+Message-ID: <bdd10b14ee47680b9840ed75d0658c6978efe3b6.1731100267.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731100267.git.sharlatanus@gmail.com>
+References: <cover.1731100267.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 8 Nov 2024 21:07:03 +0000
+Subject: [PATCH 1/1] etc: Add teams-packages-stats script.
+
+This is a proposal of the helper script which aims to asist in decision
+making during cascade packages refresh task in the team scope.
+
+* etc/teams-packages-stats.scm: New file.
+
+Change-Id: I4af5ce1c3cbebed1793628229b29acba1f737c9d
+---
+ etc/teams-packages-stats.scm | 218 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 218 insertions(+)
+ create mode 100755 etc/teams-packages-stats.scm
+
+diff --git a/etc/teams-packages-stats.scm b/etc/teams-packages-stats.scm
+new file mode 100755
+index 0000000000..a95d913a79
+--- /dev/null
++++ b/etc/teams-packages-stats.scm
+@@ -0,0 +1,218 @@
++#!/bin/sh
++# -*- mode: scheme; -*-
++# Extra care is taken here to ensure this script can run in most environments,
++# since it is invoked by 'git send-email'.
++pre_inst_env_maybe=
++command -v guix > /dev/null || pre_inst_env_maybe=./pre-inst-env
++exec $pre_inst_env_maybe guix repl -- "$0" "$@"
++!#
++
++;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@mgail.com>
++;;;
++;;; This file is part of GNU Guix.
++;;;
++;;; GNU Guix is free software; you can redistribute it and/or modify it
++;;; under the terms of the GNU General Public License as published by
++;;; the Free Software Foundation; either version 3 of the License, or (at
++;;; your option) any later version.
++;;;
++;;; GNU Guix is distributed in the hope that it will be useful, but
++;;; WITHOUT ANY WARRANTY; without even the implied warranty of
++;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;;; GNU General Public License for more details.
++;;;
++;;; You should have received a copy of the GNU General Public License
++;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
++
++;;; This file returns a manifest containing origins of all the packages.  The
++;;; main purpose is to allow continuous integration services to keep upstream
++;;; source code around.  It can also be passed to 'guix weather -m'.
++
++;;; Commentary:
++
++;; This code defines helpers for cascade packages refresh withing team scopes.
++;; The output may be piped to CLI commands like awk, column to compile a
++;; dataframe (e.g. JSON).
++;;
++;;     ~$ column \
++;;          --json \
++;;          --table \
++;;          --separator=, \
++;;          --table-columns=module-file-name,build-system-name,package-name,\
++;;          package-guix-version,package-upstream-version,all-inputs-count,\
++;;          dependents-count,affect-ratio \
++;;          <output> \
++;;          > <output>.json
++;;
++;; TODO:
++;; - Implement manifests per team on some gradual criterias
++;; - Add more controls via command-line options
++;; - Improve the performance of dependents calculation, it takes about 30min
++;; to provide a list for packages with python/pyproject build system
++;; - Add save as JSON,CSV data formats for father analysis
++
++
++;;; Code:
++
++(use-modules (git)
++             (gnu packages)
++             (guix build-system)
++             (guix diagnostics)
++             (guix discovery)
++             (guix gnupg)
++             (guix graph)
++             (guix hash)
++             (guix monads)
++             (guix packages)
++             (guix profiles)
++             (guix scripts graph)
++             (guix scripts)
++             (guix store)
++             (guix ui)
++             (guix upstream)
++             (guix utils)
++             (ice-9 format)
++             (ice-9 match)
++             (ice-9 rdelim)
++             (ice-9 regex)
++             (srfi srfi-1)
++             (srfi srfi-26)
++             (srfi srfi-37)
++             (srfi srfi-71)
++             (srfi srfi-9))
++
++(define* (packages-by-team #:key (team "all"))
++  "Return the list of packages for the TEAM by certain criteria or fail over
++to all packages available."
++  (cond
++    ((string=? team "go")
++     (fold-packages
++      (lambda (package result)
++        (if (or (eq? (build-system-name (package-build-system package))
++                     (quote go))
++                ;; XXX: Add other checks such Go is in inputs*.
++                )
++            (cons package result) result)) (list)))
++    ((string=? team "python")
++     (fold-packages
++      (lambda (package result)
++        (if (or (eq? (build-system-name (package-build-system package))
++                     (quote pyproject))
++                (eq? (build-system-name (package-build-system package))
++                     (quote python)))
++            (cons package result) result)) (list)))
++    ((string=? team "ruby")
++     (fold-packages
++      (lambda (package result)
++        (if (or (eq? (build-system-name (package-build-system package))
++                     (quote ruby))
++                ;; XXX: Add other checkes such Ruby is in inputs*.
++                )
++            (cons package result) result)) (list)))
++    (else
++     (fold-packages
++      (lambda (package result)
++        (if (package-superseded package)
++            result
++            (cons package result)))
++      '()
++      #:select? (const #true)))))
++
++(define (dependents-count package)
++  "Return the count of requiring rebuild packages when PACKAGE is updated."
++  (with-error-handling ;; XXX: Taken from guix scripts refresh
++    (with-store store
++      (run-with-store store
++        (mlet %store-monad ((edges
++                             (node-back-edges %bag-node-type
++                                              (package-closure (packages-by-team)))))
++          (let* ((dependents
++                  (node-transitive-edges (list package) edges)))
++            (return (length dependents))))))))
++
++(define* (stats team
++                #:key (build-systems '())
++                (check-dependents? #false)
++                (check-deprecated? #false)
++                (check-upstream-version? #false)
++                (dependents-threshold-ratio 0.001)
++                (inputs-threshold 0))
++  "Return a detailed stats for the given TEAM packages which may help to make
++a decision during cascade updates.
++
++Parameters:
++- build-system :: The optional list of build system names to select.
++
++- check-dependents? :: Whether to query or not the dependents count, it might
++take time for a long list of provided packages.
++
++- check-deprecated? :: Whether to show or not the deprecated packages.
++
++- check-upstream-version? :: Check for the latest available version on
++upstream.
++
++- dependents-threshold-ratio :: Print out only packages which dependent count
++ration is bigger or equal given threshold. (dependents/all-packages * 100.0).
++
++- inputs-threshold :: The minimum number of inputs which package needs to
++have.
++
++Returns:
++- module-file-name
++- build-system-name
++- package-name
++- package-guix-version
++- package-upstream-version
++- all-inputs-count
++- dependents-count
++- affect-ratio"
++  (let ((team-packages (packages-by-team #:team team))
++        (all-packages-count (length (packages-by-team))))
++    (map (lambda (package)
++           (let ((all-inputs-count
++                  (+ (length (package-inputs package))
++                     (length (package-native-inputs package))
++                     (length (package-propagated-inputs package))))
++                 (module-path
++                  (false-if-exception
++                   (location-file (package-definition-location package))))
++                 (build-system-name
++                  (build-system-name (package-build-system package))))
++             (if (>= all-inputs-count inputs-threshold)
++                 (let* ((dependents
++                         (if check-dependents?
++                             (dependents-count package)
++                             "nil"))
++                        (affect-ratio
++                         (if check-dependents?
++                             (* (/ dependents all-packages-count) 100.0)
++                             "nil")))
++                   (format #true "~{~a,~}~8f~%"
++                           (list
++                            (if (string? module-path)
++                                module-path
++                                "deprecated-package")
++                            build-system-name
++                            (package-name package)
++                            (package-version package)
++                            (if check-upstream-version? "TBA" "nil")
++                            all-inputs-count
++                            dependents)
++                            affect-ratio)))))
++         team-packages)))
++
++(define (main . args)
++  (match args
++    (("stats" . team-name)
++     (apply (stats (car team-name) #:check-dependents? #true)))
++    (anything
++     (format (current-error-port)
++             "Usage: etc/teams-packages-stats.scm <command> [<args>]
++
++Commands:~
++  stats <team-name>
++    get a list of packages belonging to the given <team-name> with basic
++    affect ratio, which may help to plan cascade packages refresh task.%"))))
++
++(apply main (cdr (command-line)))
+-- 
+2.46.0
+

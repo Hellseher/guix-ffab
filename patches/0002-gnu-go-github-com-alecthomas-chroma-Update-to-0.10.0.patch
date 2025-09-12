@@ -1,0 +1,56 @@
+From 31d6eafba4bbd94d06ff88945551485245ca4035 Mon Sep 17 00:00:00 2001
+Message-ID: <31d6eafba4bbd94d06ff88945551485245ca4035.1708289807.git.sharlatanus@gmail.com>
+In-Reply-To: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+References: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 16 Feb 2024 15:23:33 +0000
+Subject: [PATCH v2 02/10] gnu: go-github-com-alecthomas-chroma: Update to
+ 0.10.0.
+
+* gnu/packages/golang-xyz.scm (go-github-com-alecthomas-chroma): Update to 0.10.0.
+[native-inputs]: Remove go-github-com-alecthomas-assert,
+go-github-com-alecthomas-colour, go-github-com-alecthomas-repr,
+go-github-com-mattn-go-isatty, and go-github-com-sergi-go-diff; add
+go-github-com-stretchr-testify.
+
+Change-Id: I9d72bbdeb97a3c94545ff08d356c5e568fe173c6
+---
+ gnu/packages/golang-xyz.scm | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 024b38bd6e..662341bf93 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -79,7 +79,7 @@ (define-public go-github-com-a8m-envsubst
+ (define-public go-github-com-alecthomas-chroma
+   (package
+     (name "go-github-com-alecthomas-chroma")
+-    (version "0.8.0")
++    (version "0.10.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -88,17 +88,13 @@ (define-public go-github-com-alecthomas-chroma
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "066a6rdmf670d3v5sc7chbn7db09ldgxjympb03pcqwk644dixb1"))))
++        (base32 "0hjzb61m5lzx95xss82wil9s8f9hbw1zb3jj73ljfwkq5lqk76zq"))))
+     (build-system go-build-system)
+     (arguments
+      `(#:import-path "github.com/alecthomas/chroma"))
+     (native-inputs
+      (list go-github-com-dlclark-regexp2
+-           go-github-com-alecthomas-assert
+-           go-github-com-alecthomas-colour
+-           go-github-com-alecthomas-repr
+-           go-github-com-mattn-go-isatty
+-           go-github-com-sergi-go-diff))
++           go-github-com-stretchr-testify))
+     (home-page "https://github.com/alecthomas/chroma/")
+     (synopsis "General purpose syntax highlighter in pure Go")
+     (description
+-- 
+2.41.0
+

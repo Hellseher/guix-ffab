@@ -1,0 +1,123 @@
+From 21fae942369cff919f73bd0611d16a27e3608416 Mon Sep 17 00:00:00 2001
+Message-ID: <21fae942369cff919f73bd0611d16a27e3608416.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 21:28:17 +0000
+Subject: [PATCH 25/30] gnu: go-golang-org-x-tools: Move to (gnu
+ packages-build).
+
+* gnu/packages/golang.scm (go-golang-org-x-tools): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+Change-Id: Ib9a69a5dab73b6f9d935fd0216658f5e4f8cf1f8
+---
+ gnu/packages/golang-build.scm | 39 +++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 41 -----------------------------------
+ 2 files changed, 39 insertions(+), 41 deletions(-)
+
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index b2b2872907..87f184fb14 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -373,6 +373,45 @@ (define-public go-golang-org-x-time
+ time.")
+       (license license:bsd-3))))
+ 
++(define-public go-golang-org-x-tools
++  (package
++    (name "go-golang-org-x-tools")
++    (version "0.5.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://go.googlesource.com/tools")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "08kx2nndq3sr6xai7403mbsqvz5shxmp2icylfr2fmwagr59cb2n"))
++       (modules '((guix build utils)))
++       (snippet
++        '(begin
++           ;; gopls versions are tagged separately, and it is a
++           ;; separate Guix package.
++           (delete-file-recursively "gopls")))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "golang.org/x/tools"
++       ;; Source-only package
++       #:tests? #f
++       #:phases
++       (modify-phases %standard-phases
++         ;; Source-only package
++         (delete 'build))))
++    (propagated-inputs
++     (list go-github-com-yuin-goldmark
++           go-golang-org-x-mod
++           go-golang-org-x-net
++           go-golang-org-x-sys))
++    (home-page "https://go.googlesource.com/tools/")
++    (synopsis "Tools that support the Go programming language")
++    (description "This package provides miscellaneous tools that support the
++Go programming language.")
++    (license license:bsd-3)))
++
+ (define-public go-golang-org-x-xerrors
+   (let ((commit "5ec99f83aff198f5fbd629d6c8d8eb38a04218ca")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 22a76daef4..4c2781bf45 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3347,47 +3347,6 @@ (define-public go-github-com-hashicorp-hcl-v2
+     (home-page "https://github.com/hashicorp/hcl")
+     (license license:mpl2.0)))
+ 
+-(define-public go-golang-org-x-tools
+-  (package
+-    (name "go-golang-org-x-tools")
+-    (version "0.5.0")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://go.googlesource.com/tools")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "08kx2nndq3sr6xai7403mbsqvz5shxmp2icylfr2fmwagr59cb2n"))
+-       (modules '((guix build utils)))
+-       (snippet
+-        '(begin
+-           ;; gopls versions are tagged separately, and it is a
+-           ;; separate Guix package.
+-           (delete-file-recursively "gopls")))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "golang.org/x/tools"
+-       ;; Source-only package
+-       #:tests? #f
+-       #:phases
+-       (modify-phases %standard-phases
+-         ;; Source-only package
+-         (delete 'build))))
+-    (propagated-inputs
+-     (list
+-      go-github-com-yuin-goldmark
+-      go-golang-org-x-mod
+-      go-golang-org-x-net
+-      go-golang-org-x-sys))
+-    (synopsis "Tools that support the Go programming language")
+-    (description "This package provides miscellaneous tools that support the
+-Go programming language.")
+-    (home-page "https://go.googlesource.com/tools/")
+-    (license license:bsd-3)))
+-
+ (define-public go-golang-org-x-crypto
+   (package
+     (name "go-golang-org-x-crypto")
+-- 
+2.41.0
+

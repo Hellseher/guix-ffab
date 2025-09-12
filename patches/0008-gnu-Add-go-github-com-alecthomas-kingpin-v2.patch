@@ -1,0 +1,54 @@
+From 41cef86f4abbdb49364af199411f60ae32edfb72 Mon Sep 17 00:00:00 2001
+Message-ID: <41cef86f4abbdb49364af199411f60ae32edfb72.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 22:13:03 +0000
+Subject: [PATCH 08/12] gnu: Add go-github-com-alecthomas-kingpin-v2.
+
+* gnu/packages/golang-xyz.scm (go-github-com-alecthomas-kingpin-v2): New variable.
+* gnu/packages/golang-xyz.scm (go-github-com-kingpin): Delete variable.
+
+Change-Id: If40f318b960e29fd601602d26fd36dcc8fce9583
+---
+ gnu/packages/golang-xyz.scm | 24 ++++++++++++++++++++++--
+ 1 file changed, 22 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index e3c2d86062..f79fdda696 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -169,8 +169,28 @@ (define-public go-github-com-alecthomas-kingpin
+      "Go library provides utilities for building command line interfaces.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-kingpin
+-  (deprecated-package "go-github-com-kingpin" go-github-com-alecthomas-kingpin))
++(define-public go-github-com-alecthomas-kingpin-v2
++  (package
++    (inherit go-github-com-alecthomas-kingpin)
++    (name "go-github-com-alecthomas-kingpin-v2")
++    (version "2.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/alecthomas/kingpin")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "12xl62xzwq2h71hp1i0133403zhyqwsh95sr870fx18wmpqh8shf"))))
++    (arguments
++     (list
++      #:import-path "github.com/alecthomas/kingpin/v2"))
++    (propagated-inputs
++     (list go-github-com-alecthomas-units
++           go-github-com-xhit-go-str2duration-v2))
++    (native-inputs
++     (list go-github-com-stretchr-testify))))
+ 
+ (define-public go-github-com-alecthomas-participle-v2
+   (package
+-- 
+2.41.0
+

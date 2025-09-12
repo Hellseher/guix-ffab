@@ -1,0 +1,40 @@
+From 97712404ec58c0a71a68ece695cb7d842e93d3d3 Mon Sep 17 00:00:00 2001
+Message-ID: <97712404ec58c0a71a68ece695cb7d842e93d3d3.1730497109.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730497109.git.sharlatanus@gmail.com>
+References: <cover.1730497109.git.sharlatanus@gmail.com>
+From: Jakob Kirsch <jakob.kirsch@web.de>
+Date: Thu, 31 Oct 2024 17:18:08 +0100
+Subject: [PATCH v2 1/2] gnu: python-websockets: Update to 13.0.
+
+* gnu/packages/python-web.scm (python-websockets): Update to 13.0.
+
+Change-Id: I242cc257c779d1dba992e814ba4da68c99daff6e
+---
+ gnu/packages/python-web.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index d892e03c9d..b92ce4533a 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -6845,7 +6845,7 @@ (define-public python-warcio
+ (define-public python-websockets
+   (package
+     (name "python-websockets")
+-    (version "12.0")
++    (version "13.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -6855,7 +6855,7 @@ (define-public python-websockets
+        (file-name (git-file-name name version))
+        (sha256
+         (base32
+-         "1a587a1knjsy9zmgab9v2yncx0803pg2hfcvf7kz6vs8ixaggqmh"))))
++         "1brnaf1c4r9377p2npxpkik9ggqzmymvnnazdhw6s2wzfhlln8vv"))))
+     (build-system python-build-system)
+     (arguments
+      (list #:phases
+-- 
+2.46.0
+

@@ -1,0 +1,69 @@
+From 811c4a96a14510dd24f1879dd5244b19cb7ce060 Mon Sep 17 00:00:00 2001
+Message-ID: <811c4a96a14510dd24f1879dd5244b19cb7ce060.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 Apr 2024 20:47:16 +0100
+Subject: [PATCH 05/26] gnu: Add go-github-com-adrg-xdg.
+
+* gnu/packages/golang-xyz.scm (go-github-com-adrg-xdg): New variable.
+
+Change-Id: I6a7576d45c84e864d6db915784e32606b1008710
+---
+ gnu/packages/golang-xyz.scm | 40 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index ae3eda6936..7b92ef052f 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -316,6 +316,46 @@ (define-public go-github-com-adrg-strutil
+ similarity as well as other string utility functions.")
+     (license license:expat)))
+ 
++(define-public go-github-com-adrg-xdg
++  (package
++    (name "go-github-com-adrg-xdg")
++    (version "0.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/adrg/xdg")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1xbkb8wmr6phj2ppr75akc58jdzrv20gc3mkxa1mmb968isy8s6c"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/adrg/xdg"
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; Tests need HOME to be set: could not create any of the following
++          ;; paths: /homeless-shelter/.local/data,
++          ;; /homeless-shelter/.local/data, /usr/share
++          (add-before 'check 'set-home
++            (lambda _
++              (setenv "HOME" "/tmp"))))))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
++    (propagated-inputs
++     (list go-golang-org-x-sys))
++    (home-page "https://github.com/adrg/xdg")
++    (synopsis "XDG specification implementation for Golang")
++    (description
++     "Package xdg provides an implementation of the @acronym{XDG, X Desktop
++Group} Base Directory Specification.  The specification defines a set of
++standard paths for storing application files including data and configuration
++files.  For portability and flexibility reasons, applications should use the
++XDG defined locations instead of hardcoding paths.  The package also includes
++the locations of well known user directories.")
++    (license license:expat)))
++
+ (define-public go-github-com-alecthomas-chroma
+   (package
+     (name "go-github-com-alecthomas-chroma")
+-- 
+2.41.0
+

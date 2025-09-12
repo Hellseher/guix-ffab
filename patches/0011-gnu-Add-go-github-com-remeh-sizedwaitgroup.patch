@@ -1,0 +1,56 @@
+From d8d170cb160181ec1063c537ab734276d57d4606 Mon Sep 17 00:00:00 2001
+Message-ID: <d8d170cb160181ec1063c537ab734276d57d4606.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 7 Jun 2024 21:54:13 +0100
+Subject: [PATCH 11/26] gnu: Add go-github-com-remeh-sizedwaitgroup.
+
+* gnu/packages/golang-xyz.scm (go-github-com-remeh-sizedwaitgroup): New variable.
+
+Change-Id: Icabe407a0aefef2728e331be87e239b7683512cd
+---
+ gnu/packages/golang-xyz.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 0208063845..e7fabd6b94 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -3663,6 +3663,33 @@ (define-public go-github-com-rcrowley-go-metrics
+       (home-page "https://github.com/rcrowley/go-metrics")
+       (license license:bsd-2))))
+ 
++(define-public go-github-com-remeh-sizedwaitgroup
++  (package
++    (name "go-github-com-remeh-sizedwaitgroup")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/remeh/sizedwaitgroup")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1xwdzby27xzcghsqhli3il165iz3vkx3g4abgvkl99wysyhcvn0a"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/remeh/sizedwaitgroup"))
++    (home-page "https://github.com/remeh/sizedwaitgroup")
++    (synopsis "Goroutines limit amount implementation of standard @code{sync.WaitGroup}")
++    (description
++     "This package implements a feature of limiting the maximum number of
++concurrently started routines which has the same role and API as
++@code{sync.WaitGroup}.  It could for example be used to start multiples
++routines querying a database but without sending too much queries in order to
++not overload the given database.")
++    (license license:expat)))
++
+ (define-public go-github-com-schollz-progressbar-v3
+   (package
+     (name "go-github-com-schollz-progressbar-v3")
+-- 
+2.41.0
+

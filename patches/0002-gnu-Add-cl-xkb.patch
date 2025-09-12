@@ -1,0 +1,86 @@
+From e21141c9287df23fb4d25dd5af522eb0ed18e74b Mon Sep 17 00:00:00 2001
+Message-ID: <e21141c9287df23fb4d25dd5af522eb0ed18e74b.1730150632.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730150632.git.sharlatanus@gmail.com>
+References: <cover.1730150632.git.sharlatanus@gmail.com>
+From: Grigory Shepelev <shegeley@gmail.com>
+Date: Tue, 22 Oct 2024 11:51:03 +0300
+Subject: [PATCH v3 2/5] gnu: Add cl-xkb.
+
+* gnu/packages/lisp-xyz.scm (cl-xkb, ecl-cl-xkb, sbcl-cl-xkb): New variables.
+
+Change-Id: Iaced3e5e084cc320a076ffb81d10fd9dde6be4de
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/lisp-xyz.scm | 56 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index 429541e377..e6dfefc79b 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -31887,6 +31887,62 @@ (define-public cl-xkbcommon
+ (define-public ecl-xkbcommon
+   (sbcl-package->ecl-package sbcl-xkbcommon))
+ 
++(define-public sbcl-cl-xkb
++  (let ((commit "e69c0e85e59fd8271efa2e9659cfffa9b59d1ece")
++        (revision "0"))
++    (package
++      (name "sbcl-cl-xkb")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/malcolmstill/cl-xkb")
++               (commit commit)))
++         (file-name (git-file-name "cl-xkb" version))
++         (sha256
++          (base32 "01k4hf316xr2h149vf7sh45rrdkfppqnzakzn91i7lw46dwl57wh"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-after 'unpack 'add-xkbcommon
++              (lambda* (#:key inputs #:allow-other-keys)
++                (substitute* "cl-xkb.lisp"
++                  (("/usr/lib64/libxkbcommon.so.0")
++                   (search-input-file inputs "/lib/libxkbcommon.so"))))))))
++      (native-inputs
++       (list pkg-config))
++      (inputs
++       (list libxkbcommon
++             sbcl-cffi))
++      (home-page "https://github.com/malcolmstill/cl-xkb")
++      (synopsis "Common Lisp wrapper for @code{libxkbcommon}")
++      (description
++       "@code{cl-xkb} started development to support
++@url{https://github.com/malcolmstill/ulubis, ulubis}
++
++The library currently supports these xkb modules:
++
++@itemize
++@item Keysyms
++@item Library Context
++@item Include Paths
++@item Logging Handling
++@item Keymap Creation
++@item Keymap Components
++@item Keyboard State
++@item Compose and dead-keys support
++@end itemize")
++      (license license:bsd-3))))
++
++(define-public cl-xkb
++  (sbcl-package->cl-source-package sbcl-cl-xkb))
++
++(define-public ecl-cl-xkb
++  (sbcl-package->ecl-package sbcl-cl-xkb))
++
+ (define-public sbcl-xml-emitter
+   (package
+     (name "sbcl-xml-emitter")
+-- 
+2.46.0
+

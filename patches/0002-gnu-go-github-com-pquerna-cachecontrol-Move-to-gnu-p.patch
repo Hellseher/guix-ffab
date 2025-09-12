@@ -1,0 +1,94 @@
+From aee3f07e6c3fd66a7a5a20b1b1891a576af243fe Mon Sep 17 00:00:00 2001
+Message-ID: <aee3f07e6c3fd66a7a5a20b1b1891a576af243fe.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 22:09:05 +0000
+Subject: [PATCH 02/38] gnu: go-github-com-pquerna-cachecontrol: Move to (gnu
+ packages golang-web).
+
+* /gnu/packages/golang.scm (go-github-com-pquerna-cachecontrol): Move
+from here ...
+* /gnu/packages/golang-web.scm: ... to here.
+
+Change-Id: I0f25ffcdf142a3676e0e1fa61408cb9411326fb6
+---
+ gnu/packages/golang-web.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 25 -------------------------
+ 2 files changed, 25 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 3e60bfaf33..07b77ee673 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -1119,6 +1119,31 @@ (define-public go-github-com-opentracing-opentracing-go
+     (description "OpenTracing-Go is a Go implementation of the OpenTracing API.")
+     (license license:asl2.0)))
+ 
++(define-public go-github-com-pquerna-cachecontrol
++  (package
++    (name "go-github-com-pquerna-cachecontrol")
++    (version "0.2.0")
++    (source (origin
++              (method git-fetch)
++              (uri (git-reference
++                    (url "https://github.com/pquerna/cachecontrol")
++                    (commit (string-append "v" version))))
++              (file-name (git-file-name name version))
++              (sha256
++               (base32
++                "0d5zgv2w0sinh9m41pw3n015zzyabk7awgwwga7nmhjz452c9r5n"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:import-path "github.com/pquerna/cachecontrol"))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
++    (home-page "https://github.com/pquerna/cachecontrol")
++    (synopsis "Golang HTTP Cache-Control Parser and Interpretation")
++    (description
++     "This package implements RFC 7234 Hypertext Transfer Protocol (HTTP/1.1):
++Caching.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-puerkitobio-goquery
+   (package
+     (name "go-github-com-puerkitobio-goquery")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index e7306a585c..e51aff3a0f 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3891,31 +3891,6 @@ (define-public gopls
+ editor.")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-pquerna-cachecontrol
+-  (package
+-    (name "go-github-com-pquerna-cachecontrol")
+-    (version "0.2.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/pquerna/cachecontrol")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0d5zgv2w0sinh9m41pw3n015zzyabk7awgwwga7nmhjz452c9r5n"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:import-path "github.com/pquerna/cachecontrol"))
+-    (native-inputs
+-     (list go-github-com-stretchr-testify))
+-    (home-page "https://github.com/pquerna/cachecontrol")
+-    (synopsis "Golang HTTP Cache-Control Parser and Interpretation")
+-    (description
+-     "This package implements RFC 7234 Hypertext Transfer Protocol (HTTP/1.1):
+-Caching.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-protonmail-go-crypto
+   (package
+     (name "go-github-com-protonmail-go-crypto")
+-- 
+2.41.0
+

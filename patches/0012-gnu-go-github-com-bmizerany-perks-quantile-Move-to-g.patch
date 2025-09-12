@@ -1,0 +1,92 @@
+From 43d5ba15b0e2aac821ebf5bac374559ae0c8e486 Mon Sep 17 00:00:00 2001
+Message-ID: <43d5ba15b0e2aac821ebf5bac374559ae0c8e486.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:34:03 +0000
+Subject: [PATCH v2 12/30] gnu: go-github-com-bmizerany-perks-quantile: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-bmizerany-perks-quantile): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: I215d8f1f2710bd21ad9a251e4cb029064a0968f6
+---
+ gnu/packages/golang-xyz.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 9d2b43b86c..741023c098 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -44,6 +44,30 @@ (define-module (gnu packages golang-xyz)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-bmizerany-perks-quantile
++  (package
++    (name "go-github-com-bmizerany-perks-quantile")
++    (version "0.0.0-20230307044200-03f9df79da1e")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/bmizerany/perks")
++             (commit (go-version->git-ref version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1f2a99v3618bz2mf61iwhdjm3xi1gam6v4apqgcrz71gj7ba9943"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:unpack-path "github.com/bmizerany/perks"
++           #:import-path "github.com/bmizerany/perks/quantile"))
++    (home-page "https://github.com/bmizerany/perks")
++    (synopsis "Library for computing quantiles")
++    (description
++     "Perks contains the Go package @code{quantile} that computes approximate
++quantiles over an unbounded data stream within low memory and CPU bounds.")
++    (license license:bsd-2)))
++
+ (define-public go-github-com-burntsushi-toml
+   (package
+     (name "go-github-com-burntsushi-toml")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 5f8a550b15..60781f0172 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7923,30 +7923,6 @@ (define-public go-github-com-bmatcuk-doublestar
+ matching and globbing with support for \"doublestar\" patterns.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-bmizerany-perks-quantile
+-  (package
+-    (name "go-github-com-bmizerany-perks-quantile")
+-    (version "0.0.0-20230307044200-03f9df79da1e")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/bmizerany/perks")
+-                    (commit (go-version->git-ref version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1f2a99v3618bz2mf61iwhdjm3xi1gam6v4apqgcrz71gj7ba9943"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:unpack-path "github.com/bmizerany/perks"
+-           #:import-path "github.com/bmizerany/perks/quantile"))
+-    (home-page "https://github.com/bmizerany/perks")
+-    (synopsis "Library for computing quantiles")
+-    (description
+-     "Perks contains the Go package @code{quantile} that computes approximate
+-quantiles over an unbounded data stream within low memory and CPU bounds.")
+-    (license license:bsd-2)))
+-
+ (define-public go-github-com-dlclark-regexp2
+   (package
+     (name "go-github-com-dlclark-regexp2")
+-- 
+2.41.0
+

@@ -1,0 +1,67 @@
+From 168ffba6869b57844793d582dbf605025121e693 Mon Sep 17 00:00:00 2001
+Message-ID: <168ffba6869b57844793d582dbf605025121e693.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 18 Jun 2024 18:10:54 +0100
+Subject: [PATCH 15/26] gnu: Add go-github-com-otiai10-copy.
+
+* gnu/packages/golang-xyz.scm (go-github-com-otiai10-copy): New variable.
+
+Change-Id: Ia1e9e2180f668546a775c6d45ad316303ae310d8
+---
+ gnu/packages/golang-xyz.scm | 38 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 78bc6dd71b..944d5f93f8 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -3563,6 +3563,44 @@ (define-public go-github-com-orisano-pixelmatch
+ included in this package.")
+     (license license:expat)))
+ 
++(define-public go-github-com-otiai10-copy
++  (package
++    (name "go-github-com-otiai10-copy")
++    (version "1.14.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/otiai10/copy")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0fv4cwk4k5fsd3hq5akqxrd5qxj9qm6a2wlp6s1knblhzkm1jxzb"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:go go-1.21
++      #:import-path "github.com/otiai10/copy"
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'check 'make-test-directory-writable
++            (lambda* (#:key import-path #:allow-other-keys)
++              (with-directory-excursion (string-append "src/" import-path)
++                (for-each make-file-writable (find-files "./test")))))
++          (add-after 'check 'remove-test-data
++            (lambda* (#:key import-path #:allow-other-keys)
++              (with-directory-excursion (string-append "src/" import-path)
++                (delete-file-recursively "./test")))))))
++    (native-inputs
++     (list go-github-com-otiai10-mint))
++    (propagated-inputs
++     (list go-golang-org-x-sync go-golang-org-x-sys))
++    (home-page "https://github.com/otiai10/copy")
++    (synopsis "Go copy directory recursively")
++    (description
++     "This package implments recursive copy functinoality for directory.")
++    (license license:expat)))
++
+ (define-public go-github-com-pbnjay-memory
+   (let ((commit "7b4eea64cf580186c0eceb10dc94ba3a098af46c")
+         (revision "2"))
+-- 
+2.41.0
+

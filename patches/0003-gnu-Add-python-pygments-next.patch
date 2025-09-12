@@ -1,0 +1,45 @@
+From 728705aef93f577dc836dad4e709066908722380 Mon Sep 17 00:00:00 2001
+Message-ID: <728705aef93f577dc836dad4e709066908722380.1707833700.git.sharlatanus@gmail.com>
+In-Reply-To: <9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484.1707833700.git.sharlatanus@gmail.com>
+References: <9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484.1707833700.git.sharlatanus@gmail.com>
+From: Felix Gruber <felgru@posteo.net>
+Date: Mon, 12 Feb 2024 18:04:10 +0000
+Subject: [PATCH v4 3/8] gnu: Add python-pygments-next.
+
+* gnu/packages/python-xyz.scm (python-pygments-next): New variable.
+
+Change-Id: I12e3e0d6042f34e0375bcbb1dc90ccc9ed9ce050
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/python-xyz.scm | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 30f6f1fb3e..b3eed56d06 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -6588,6 +6588,21 @@ (define-public python-pygments
+      "Pygments is a syntax highlighting package written in Python.")
+     (license license:bsd-2)))
+ 
++(define-public python-pygments-next
++  (package
++    (inherit python-pygments)
++    (name "python-pygments-next")
++    (version "2.17.2")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pygments" version))
++       (sha256
++        (base32
++         "0ry3qi4rszkiqb20bmjlzys71dja9i746kvqi8xbxr9dzp4wwins"))))
++    (build-system pyproject-build-system)
++    (native-inputs (list python-hatchling))))
++
+ (define-public python-pygments-github-lexers
+   (package
+     (name "python-pygments-github-lexers")
+-- 
+2.41.0
+

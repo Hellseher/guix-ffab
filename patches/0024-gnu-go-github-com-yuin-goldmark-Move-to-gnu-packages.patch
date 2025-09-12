@@ -1,0 +1,93 @@
+From b84f4cdac0d7dc73ef5c9344616f01e223f08358 Mon Sep 17 00:00:00 2001
+Message-ID: <b84f4cdac0d7dc73ef5c9344616f01e223f08358.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 21:25:12 +0000
+Subject: [PATCH 24/30] gnu: go-github-com-yuin-goldmark: Move to (gnu
+ packages-build).
+
+* gnu/packages/golang.scm (go-github-com-yuin-goldmark): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+Change-Id: If553b4a00b288a913d1d54da8b5b52eab87bb277
+---
+ gnu/packages/golang-build.scm | 22 ++++++++++++++++++++++
+ gnu/packages/golang.scm       | 21 ---------------------
+ 2 files changed, 22 insertions(+), 21 deletions(-)
+
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index 325470ca4e..b2b2872907 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -3,6 +3,7 @@
+ ;;; Copyright © 2020 Danny Milosavljevic <dannym@scratchpost.org>
+ ;;; Copyright © 2020 HiPhish <hiphish@posteo.de>
+ ;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020 Ryan Prior <rprior@protonmail.com>
+ ;;; Copyright © 2020 Vagrant Cascadian <vagrant@debian.org>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+@@ -51,6 +52,27 @@ (define-module (gnu packages golang-build)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-yuin-goldmark
++  (package
++    (name "go-github-com-yuin-goldmark")
++    (version "1.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/yuin/goldmark")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "12rsnsf65drcp0jfw2jl9w589vsn3pxdk1zh3v9q908iigngrcmy"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/yuin/goldmark"))
++    (home-page "https://github.com/yuin/goldmark/")
++    (synopsis "Markdown parser")
++    (description "This package provides a markdown parser.")
++    (license license:expat)))
++
+ (define-public go-golang-org-x-exp
+   (package
+     (name "go-golang-org-x-exp")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index eb4740f91e..22a76daef4 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7925,27 +7925,6 @@ (define-public go-github-com-olekukonko-ts
+ size of the terminal.")
+       (license license:expat))))
+ 
+-(define-public go-github-com-yuin-goldmark
+-  (package
+-    (name "go-github-com-yuin-goldmark")
+-    (version "1.2.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/yuin/goldmark")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "12rsnsf65drcp0jfw2jl9w589vsn3pxdk1zh3v9q908iigngrcmy"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/yuin/goldmark"))
+-    (home-page "https://github.com/yuin/goldmark/")
+-    (synopsis "Markdown parser")
+-    (description "This package provides a markdown parser.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-charmbracelet-glamour
+   (package
+     (name "go-github-com-charmbracelet-glamour")
+-- 
+2.41.0
+

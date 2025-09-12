@@ -1,0 +1,84 @@
+From 0618ca4340787ea5b4124e8cd6576548156c7ba5 Mon Sep 17 00:00:00 2001
+Message-ID: <0618ca4340787ea5b4124e8cd6576548156c7ba5.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 23 Mar 2024 09:20:31 +0000
+Subject: [PATCH 12/12] gnu: clipman: Refresh package style.
+
+* gnu/packages/xdisorg.scm (clipman): Adjust indentation.
+[arguments] <#:phases>: Rename 'patch to 'patch-wl-copy-path phase to
+reflect the purpose.
+Revert default 'install-license-files phase.
+[native-inputs]: Remove go-github-com-alecthomas-template and
+go-github-com-alecthomas-units, they are propagated from
+go-gopkg-in-alecthomas-kingpin-v2.
+
+Change-Id: I5332906c126904ced595aa322be5f933c305c5f7
+---
+ gnu/packages/xdisorg.scm | 47 ++++++++++++++++++++--------------------
+ 1 file changed, 24 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/xdisorg.scm b/gnu/packages/xdisorg.scm
+index 025f1c5939..17a24f792d 100644
+--- a/gnu/packages/xdisorg.scm
++++ b/gnu/packages/xdisorg.scm
+@@ -3224,31 +3224,32 @@ (define-public clipman
+   (package
+     (name "clipman")
+     (version "1.6.2")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/chmouel/clipman")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256 (base32
+-                        "033l2hy46r2zjy8dllcmkjxidhnqac9kfh4wkq9hfvim9imp5a4m"))))
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/chmouel/clipman")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "033l2hy46r2zjy8dllcmkjxidhnqac9kfh4wkq9hfvim9imp5a4m"))))
+     (build-system go-build-system)
+     (arguments
+-     (list #:import-path "github.com/yory8/clipman"
+-           #:install-source? #f
+-           #:phases #~(modify-phases %standard-phases
+-                        (add-before 'build 'patch
+-                          (lambda _
+-                            (substitute* "src/github.com/yory8/clipman/main.go"
+-                              (("\"wl-copy\"")
+-                               (string-append "\"" (which "wl-copy") "\"")))))
+-                        (delete 'install-license-files))))
+-    (native-inputs (list go-github-com-alecthomas-template
+-                         go-github-com-alecthomas-units))
+-    (inputs (list go-github-com-kballard-go-shellquote
+-                  go-gopkg-in-alecthomas-kingpin-v2
+-                  libnotify
+-                  wl-clipboard))
++     (list
++      #:import-path "github.com/yory8/clipman"
++      #:install-source? #f
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-before 'build 'patch-wl-copy-path
++            (lambda _
++              (substitute* "src/github.com/yory8/clipman/main.go"
++                (("\"wl-copy\"")
++                 (string-append "\"" (which "wl-copy") "\""))))))))
++    (inputs
++     (list go-github-com-kballard-go-shellquote
++           go-gopkg-in-alecthomas-kingpin-v2
++           libnotify
++           wl-clipboard))
+     (synopsis "Basic clipboard manager with support for persisting copy buffers")
+     (description
+      "A clipboard manager for Wayland that relies on an external selector,
+-- 
+2.41.0
+

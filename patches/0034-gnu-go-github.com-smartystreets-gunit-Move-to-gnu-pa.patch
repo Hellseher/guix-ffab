@@ -1,0 +1,109 @@
+From 35531bcce9de92fcbac3300cb950d9abf58521af Mon Sep 17 00:00:00 2001
+Message-ID: <35531bcce9de92fcbac3300cb950d9abf58521af.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 22:08:20 +0000
+Subject: [PATCH 34/38] gnu: go-github.com-smartystreets-gunit: Move to (gnu
+ packages golang-check).
+
+* gnu/packages/check.scm (go-github.com-smartystreets-gunit): Move from
+here ...
+* gnu/packages/golang-check.scm: ... to here.
+
+Change-Id: I7204e118f99064027f0e10838d2b44fee212d21d
+---
+ gnu/packages/check.scm        | 30 ------------------------------
+ gnu/packages/golang-check.scm | 30 ++++++++++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 30 deletions(-)
+
+diff --git a/gnu/packages/check.scm b/gnu/packages/check.scm
+index 4de5b1c0d4..0b7acaddad 100644
+--- a/gnu/packages/check.scm
++++ b/gnu/packages/check.scm
+@@ -898,36 +898,6 @@ (define-public python-gixy
+ command.")
+       (license license:mpl2.0))))
+ 
+-(define-public go-github.com-smartystreets-gunit
+-  (package
+-    (name "go-github.com-smartystreets-gunit")
+-    (version "1.0.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/smartystreets/gunit")
+-                    (commit version)))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "00m4zg0kdj49mnpmf9klb44ba71p966xsk6zknrzqgfc8119f35z"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(;; TODO: This package depends on go-github.com-smartystreets-assertions
+-       ;; for running the tests, but go-github.com-smartystreets-assertions
+-       ;; depends on this package, so break this loop by not running the tests
+-       ;; for this package.
+-       #:tests? #f
+-       #:import-path "github.com/smartystreets/gunit"))
+-    (synopsis "Testing tool for Go, in the style of xUnit")
+-    (description
+-     "@code{gunit} allows the test author to use a struct as the scope for a
+-group of related test cases, in the style of xUnit fixtures.  This makes
+-extraction of setup/teardown behavior (as well as invoking the system under
+-test) much simpler.")
+-    (home-page "https://github.com/smartystreets/gunit")
+-    (license license:expat)))
+-
+ (define-public go-github.com-smartystreets-assertions
+   (package
+     (name "go-github.com-smartystreets-assertions")
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index ec886985d6..207e4a548f 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -1,4 +1,5 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2018 Christopher Baines <mail@cbaines.net>
+ ;;; Copyright © 2018 Pierre Neidhardt <mail@ambrevar.xyz>
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2019 Brian Leung <bkleung89@gmail.com>
+@@ -378,6 +379,35 @@ (define-public go-github-com-onsi-ginkgo
+ Gomega matcher library.")
+     (license license:expat)))
+ 
++(define-public go-github.com-smartystreets-gunit
++  (package
++    (name "go-github.com-smartystreets-gunit")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/smartystreets/gunit")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "00m4zg0kdj49mnpmf9klb44ba71p966xsk6zknrzqgfc8119f35z"))))
++    (build-system go-build-system)
++    (arguments
++     '(;; TODO: This package depends on go-github.com-smartystreets-assertions
++       ;; for running the tests, but go-github.com-smartystreets-assertions
++       ;; depends on this package, so break this loop by not running the tests
++       ;; for this package.
++       #:tests? #f
++       #:import-path "github.com/smartystreets/gunit"))
++    (home-page "https://github.com/smartystreets/gunit")
++    (synopsis "Testing tool for Go, in the style of xUnit")
++    (description "@code{gunit} allows the test author to use a struct as the
++scope for a group of related test cases, in the style of xUnit fixtures.  This
++makes extraction of setup/teardown behavior (as well as invoking the system
++under test) much simpler.")
++    (license license:expat)))
++
+ (define-public go-github-com-stretchr-testify
+   (package
+     (name "go-github-com-stretchr-testify")
+-- 
+2.41.0
+

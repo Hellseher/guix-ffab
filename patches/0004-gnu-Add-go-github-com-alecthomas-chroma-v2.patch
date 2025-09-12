@@ -1,0 +1,52 @@
+From e91a4e0981f138d6f41158ae229187b138b9966b Mon Sep 17 00:00:00 2001
+Message-ID: <e91a4e0981f138d6f41158ae229187b138b9966b.1708289807.git.sharlatanus@gmail.com>
+In-Reply-To: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+References: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 17 Feb 2024 00:19:04 +0000
+Subject: [PATCH v2 04/10] gnu: Add go-github-com-alecthomas-chroma-v2.
+
+* gnu/packages/golang-xyz.scm (go-github-com-alecthomas-chroma-v2): New variable.
+
+Change-Id: I883a1ca1a84fd35cf0d7fe946fd1caedafae3842
+---
+ gnu/packages/golang-xyz.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 60ba4c0da4..c64200d365 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -106,6 +106,29 @@ (define-public go-github-com-alecthomas-chroma
+ syntax highlighted HTML, ANSI-coloured text, etc.")
+     (license license:expat)))
+ 
++(define-public go-github-com-alecthomas-chroma-v2
++  (package
++    (inherit go-github-com-alecthomas-chroma)
++    (name "go-github-com-alecthomas-chroma-v2")
++    (version "2.12.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/alecthomas/chroma")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1j9zz77ppi4r4ncnanzj84h7bsg0qdqrhgd5kkjiv09afm31jx83"))))
++    (arguments
++     (list #:go go-1.19
++           #:import-path "github.com/alecthomas/chroma/v2"))
++    (propagated-inputs
++     (list go-github-com-dlclark-regexp2))
++    (native-inputs
++     (list go-github-com-alecthomas-assert-v2
++           go-github-com-alecthomas-repr))))
++
+ (define-public go-github-com-alecthomas-participle-v2
+   (package
+     (name "go-github-com-alecthomas-participle-v2")
+-- 
+2.41.0
+

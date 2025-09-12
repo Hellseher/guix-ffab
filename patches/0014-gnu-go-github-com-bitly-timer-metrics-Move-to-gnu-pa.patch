@@ -1,0 +1,89 @@
+From 446a908db9cf712b19faecb4d5e4bc91e8d3698f Mon Sep 17 00:00:00 2001
+Message-ID: <446a908db9cf712b19faecb4d5e4bc91e8d3698f.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:52:51 +0000
+Subject: [PATCH 14/30] gnu: go-github-com-bitly-timer-metrics: Move to (gnu
+ packages golang-xyz).
+
+* gnu/packages/golang.scm (go-github-com-bitly-timer-metrics): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: Id30d1add9ccbfbc05af114f6ccf82f353a7aa74b
+---
+ gnu/packages/golang-xyz.scm | 22 ++++++++++++++++++++++
+ gnu/packages/golang.scm     | 23 -----------------------
+ 2 files changed, 22 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 292ff10a47..a396057da9 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -45,6 +45,28 @@ (define-module (gnu packages golang-xyz)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-bitly-timer-metrics
++  (package
++    (name "go-github-com-bitly-timer-metrics")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/bitly/timer_metrics")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "02fhx8hx8126m2cgxw9fm8q2401r7zfann8b5zy5yyark1sgkrb4"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/bitly/timer_metrics"))
++    (home-page "https://github.com/bitly/timer_metrics")
++    (synopsis "Capture timings and enable periodic metrics every @var{n} events")
++    (description "This package provides an efficient way to capture timing
++information and periodically output metrics")
++    (license license:expat)))
++
+ (define-public go-github-com-blang-semver
+   (let ((commit "60ec3488bfea7cca02b021d106d9911120d25fe9")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 41adf51bfb..d594759bdf 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1906,29 +1906,6 @@ (define-public go-github-com-bitly-go-hostpool
+ robin or epsilon greedy mode, and unresponsive hosts are avoided.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-bitly-timer-metrics
+-  (package
+-    (name "go-github-com-bitly-timer-metrics")
+-    (version "1.0.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/bitly/timer_metrics")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "02fhx8hx8126m2cgxw9fm8q2401r7zfann8b5zy5yyark1sgkrb4"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/bitly/timer_metrics"))
+-    (home-page "https://github.com/bitly/timer_metrics")
+-    (synopsis "Capture timings and enable periodic metrics every @var{n} events")
+-    (description
+-     "This package provides an efficient way to capture timing information and
+-periodically output metrics")
+-    (license license:expat)))
+-
+ (define-public go-github-com-blanu-dust
+   (package
+     (name "go-github-com-blanu-dust")
+-- 
+2.41.0
+

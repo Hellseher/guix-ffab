@@ -1,0 +1,63 @@
+From 841b5e82afaa66a5192d57f81e613c4b079a1dab Mon Sep 17 00:00:00 2001
+Message-ID: <841b5e82afaa66a5192d57f81e613c4b079a1dab.1730150632.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730150632.git.sharlatanus@gmail.com>
+References: <cover.1730150632.git.sharlatanus@gmail.com>
+From: Grigory Shepelev <shegeley@gmail.com>
+Date: Tue, 22 Oct 2024 11:51:05 +0300
+Subject: [PATCH v3 4/5] gnu: Add cl-input-event-codes.
+
+* gnu/packages/lisp-xyz.scm (cl-input-event-codes,
+ecl-input-event-codes, sbcl-input-event-codes): New variables.
+
+Change-Id: I47e65729f907e46d9deeb7dc0219ac9b1ba1a291
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/lisp-xyz.scm | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index ab15e3b901..bae84e8345 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -32002,6 +32002,38 @@ (define-public cl-xkb
+ (define-public ecl-cl-xkb
+   (sbcl-package->ecl-package sbcl-cl-xkb))
+ 
++(define-public sbcl-input-event-codes
++  (package
++    (name "sbcl-input-event-codes")
++    (version "0.0.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://git.sr.ht/~shunter/input-event-codes")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "input-event-codes" version))
++       (sha256
++        (base32 "0bygspj84jzyiy06z4q64z1nzsmvvrviqxw73wzqaq2wk2p56vs6"))))
++    (build-system asdf-build-system/sbcl)
++    (native-inputs
++     (list pkg-config
++           sbcl-parachute))
++    (inputs
++     (list sbcl-trivial-features))
++    (home-page "https://git.sr.ht/~shunter/input-event-codes")
++    (synopsis "Common Lisp port of all constants from event code header file")
++    (description
++     "There is currently only support for Linux and FreeBSD.  The library
++uses trivial-features to conditionally load the appropriate constant set.")
++    (license license:expat)))
++
++(define-public cl-input-event-codes
++  (sbcl-package->cl-source-package sbcl-input-event-codes))
++
++(define-public ecl-input-event-codes
++  (sbcl-package->ecl-package sbcl-input-event-codes))
++
+ (define-public sbcl-xml-emitter
+   (package
+     (name "sbcl-xml-emitter")
+-- 
+2.46.0
+

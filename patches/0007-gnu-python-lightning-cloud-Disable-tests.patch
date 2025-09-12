@@ -1,0 +1,33 @@
+From a3fe43981b978bd24705c718dac7c27f8a0e6bf7 Mon Sep 17 00:00:00 2001
+Message-ID: <a3fe43981b978bd24705c718dac7c27f8a0e6bf7.1707833700.git.sharlatanus@gmail.com>
+In-Reply-To: <9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484.1707833700.git.sharlatanus@gmail.com>
+References: <9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484.1707833700.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 13 Feb 2024 11:01:15 +0000
+Subject: [PATCH v4 7/8] gnu: python-lightning-cloud: Disable tests.
+
+* gnu/packages/machine-learning.scm (python-lightning-cloud) [arguments]
+<#:tests?>: Set to #t as PyPI archive does not provide any.
+
+Change-Id: I406b6515441d01dc1612caa3d3e7b70fa7b2c980
+---
+ gnu/packages/machine-learning.scm | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/gnu/packages/machine-learning.scm b/gnu/packages/machine-learning.scm
+index 2e20872555..58c607418b 100644
+--- a/gnu/packages/machine-learning.scm
++++ b/gnu/packages/machine-learning.scm
+@@ -4363,6 +4363,9 @@ (define-public python-lightning-cloud
+               (sha256
+                (base32
+                 "0mqrhq3s23mn8n4i0q791pshn3dgplp0h9ny0pmmp798q0798dzs"))))
++    (arguments
++     (list
++      #:tests? #f)) ; no tests in PyPI arcvhie.
+     (build-system pyproject-build-system)
+     (propagated-inputs (list python-click
+                              python-fastapi-for-pytorch-lightning
+-- 
+2.41.0
+

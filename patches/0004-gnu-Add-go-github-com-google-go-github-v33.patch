@@ -1,0 +1,52 @@
+From 6d0fcc8748354399581cb5d616df5969c24b4f29 Mon Sep 17 00:00:00 2001
+Message-ID: <6d0fcc8748354399581cb5d616df5969c24b4f29.1707944340.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707944340.git.sharlatanus@gmail.com>
+References: <cover.1707944340.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 14 Feb 2024 20:45:58 +0000
+Subject: [PATCH 4/6] gnu: Add go-github-com-google-go-github-v33.
+
+* gnu/packages/golang-web.scm (go-github-com-google-go-github-v33): New variable.
+
+Change-Id: Ifafa71ea78b2b430f5f907912038bb03333126cf
+---
+ gnu/packages/golang-web.scm | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 673d2c2587..11c7f3179b 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -692,6 +692,29 @@ (define-public go-github-com-google-go-github
+ GitHub API v3.")
+     (license license:bsd-3)))
+ 
++;; For chezmoi-1.8.10
++(define-public go-github-com-google-go-github-v33
++  (package
++    (inherit go-github-com-google-go-github)
++    (name "go-github-com-google-go-github-v33")
++    (version "33.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/google/go-github")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1nzwgvaa9k1ky3sfynib6nhalam9dx66h5lxff334m9kk3rf5nn0"))))
++    (arguments
++     (substitute-keyword-arguments
++         (package-arguments go-github-com-google-go-github)
++       ((#:unpack-path _ "github.com/google/go-github/v26")
++        "github.com/google/go-github/v33")
++       ((#:import-path _ "github.com/google/go-github/v26/github")
++        "github.com/google/go-github/v33/github")))))
++
+ (define-public go-github-com-google-safehtml
+   (package
+     (name "go-github-com-google-safehtml")
+-- 
+2.41.0
+

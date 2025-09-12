@@ -1,0 +1,42 @@
+From 18886337fcff9af8ce50f3736db5199e86ec2eed Mon Sep 17 00:00:00 2001
+Message-ID: <18886337fcff9af8ce50f3736db5199e86ec2eed.1720090727.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1720090727.git.sharlatanus@gmail.com>
+References: <cover.1720090727.git.sharlatanus@gmail.com>
+From: Rodion Goritskov <rodion.goritskov@gmail.com>
+Date: Wed, 1 May 2024 00:42:41 +0400
+Subject: [PATCH v2 1/9] gnu: go-github-com-andybalholm-brotli: Update to
+ 1.1.0.
+
+* gnu/packages/golang-compression.scm (go-github-com-andybalholm-brotli): Update to 1.1.0.
+
+Change-Id: Iafa533051e69423bffdb9e9c4f7db4bda3c39964
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang-compression.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 67ae28abe5..a6c0410051 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -40,7 +40,7 @@ (define-module (gnu packages golang-compression)
+ (define-public go-github-com-andybalholm-brotli
+   (package
+     (name "go-github-com-andybalholm-brotli")
+-    (version "1.0.4")
++    (version "1.1.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -49,7 +49,7 @@ (define-public go-github-com-andybalholm-brotli
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1zvmj7gbnkq9xwv1bvcxk9acxl06y902148qwbd2kqwgs52wy2c0"))))
++        (base32 "1zdvcwfzxnkljyh4p7izy0bfxrwidwwmp1p5h1fydyrgbs4xacly"))))
+     (build-system go-build-system)
+     (arguments
+      `(#:import-path "github.com/andybalholm/brotli"))
+-- 
+2.41.0
+

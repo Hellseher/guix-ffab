@@ -1,0 +1,114 @@
+From 9b100535d6cacf41eb16797f0ab4f173f3829fcb Mon Sep 17 00:00:00 2001
+Message-ID: <9b100535d6cacf41eb16797f0ab4f173f3829fcb.1730150632.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730150632.git.sharlatanus@gmail.com>
+References: <cover.1730150632.git.sharlatanus@gmail.com>
+From: Grigory Shepelev <shegeley@gmail.com>
+Date: Tue, 22 Oct 2024 11:51:06 +0300
+Subject: [PATCH v3 5/5] gnu: Add cl-wayflan.
+
+* gnu/packages/lisp-xyz.scm (cl-wayflan, ecl-wayflan, sbcl-wayflan): New
+variables.
+
+Change-Id: I65982ad6f5c034f611292d4f660b15e4e42f8da0
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/lisp-xyz.scm | 83 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 83 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index bae84e8345..f2d4d640df 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -10477,6 +10477,89 @@ (define-public cl-wayland
+ (define-public ecl-cl-wayland
+   (sbcl-package->ecl-package sbcl-cl-wayland))
+ 
++(define-public sbcl-wayflan
++  (package
++    (name "sbcl-wayflan")
++    (version "0.0.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://git.sr.ht/~shunter/wayflan")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name "wayflan" version))
++       (sha256
++        (base32 "0y6hzskp1vgaigzj5b3i695sc6dn5mk7nlxs21nh5ybzmf4chhyy"))))
++    (build-system asdf-build-system/sbcl)
++    (arguments
++     (list
++      #:tests? #f ;tries to look for wayflan-client/test
++      #:asd-systems ''("wayflan-client"
++                       ;; "wayflan-client/examples" fails on
++                       ;; wayland-keyboard-demo.lisp because xkb used as
++                       ;; :xkb, not required properly
++                       "wayflan"
++                       "wayflan/common")))
++    (native-inputs
++     (list sbcl-parachute))
++    (inputs
++     (list sbcl-alexandria
++           sbcl-babel
++           sbcl-cffi
++           sbcl-cl-cairo2
++           sbcl-cl-colors
++           sbcl-cl-pango
++           sbcl-cl-xkb
++           sbcl-closer-mop
++           sbcl-input-event-codes
++           sbcl-plump
++           sbcl-posix-shm
++           wayland))
++    (home-page "https://git.sr.ht/~shunter/wayflan")
++    (synopsis "Wayland communication library for Common Lisp")
++    (description
++     "Wayflan makes a good-faith effort to mimic @code{libwayland} behavior
++not defined in the Wayland spec, to keep compatibility between the two
++libraries.
++
++Wayflan is not a compositor nor a GUI toolkit. Its purpose is to parse Wayland
++protocol XML documents and exchange Wayland messages between other processes.
++
++Wayflan is an ongoing project. Things may change to make Wayflan the best
++client for Common Lisp projects, such as iterating on a better API. If you use
++Wayflan in any projects, let me know! I'd love to give a heads up and help
++transition projects to any breaking changes I make along the way.
++
++Features:
++@itemize
++@item Client support
++@item All implementation done in Common Lisp from the socket up
++@item Enum values are translated into keywords
++@item Wayland protocol introspection
++@item ASDF component @code{:wayflan-client-impl} generates code from
++XML. ASDF's extensible components make it possible to teach your program new
++protocols for Wayland without the need of a special build system.
++@end itemize")
++    (license license:bsd-3)))
++
++(define-public cl-wayflan
++  (sbcl-package->cl-source-package sbcl-wayflan))
++
++(define-public ecl-wayflan
++  (let ((pkg (sbcl-package->ecl-package sbcl-wayflan)))
++    (package
++      (inherit pkg)
++      (outputs '("out"))
++      ;; XXX: Error detected: The function CMSG-ALIGN is undefined.An error
++      ;; occurred during initialization: COMPILE-FILE-ERROR while compiling
++      ;; #<cl-source-file "wayflan/common" "wire">.
++      (arguments
++       (substitute-keyword-arguments (package-arguments pkg)
++         ((#:phases phases)
++          `(modify-phases ,phases
++            (delete 'build)
++            (delete 'check))))))))
++
+ (define-public sbcl-cl-webkit
+   (package
+     (name "sbcl-cl-webkit")
+-- 
+2.46.0
+

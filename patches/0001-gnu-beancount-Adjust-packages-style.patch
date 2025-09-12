@@ -1,0 +1,52 @@
+From b02b0095f046dd634e8188b6ca45e208f5d6a126 Mon Sep 17 00:00:00 2001
+Message-ID: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 2 Feb 2024 22:08:31 +0000
+Subject: [PATCH v3 1/7] gnu: beancount: Adjust packages style.
+
+* gnu/packages/finance.scm (beancount) [arguments]: Use G-expressions.
+<#:phases>: Remove trailing #f from lambda.
+
+Change-Id: I3a248c0b233b0f4d73dcc01f269cfb0a12fe06ff
+---
+ gnu/packages/finance.scm | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/gnu/packages/finance.scm b/gnu/packages/finance.scm
+index 8c30bd1a30..01412b2f0a 100644
+--- a/gnu/packages/finance.scm
++++ b/gnu/packages/finance.scm
+@@ -1976,17 +1976,17 @@ (define-public beancount
+        (patches (search-patches "beancount-disable-googleapis-fonts.patch"))))
+     (build-system python-build-system)
+     (arguments
+-     `(#:tests? #f  ; Says test is missing, not sure why
+-       #:phases
+-       (modify-phases %standard-phases
+-         ;; Not importing the googleapis package for now
+-         (add-after 'unpack 'ignore-googleapis
+-           (lambda _
+-             (substitute* "setup.py"
+-               (("'google-api-python-client',") ""))
+-             #t))
+-         ;; No module named 'google_auth_oauthlib'
+-         (delete 'sanity-check))))
++     (list
++      #:tests? #f  ; Says test is missing, not sure why
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; Not importing the googleapis package for now
++          (add-after 'unpack 'ignore-googleapis
++            (lambda _
++              (substitute* "setup.py"
++                (("'google-api-python-client',") ""))))
++          ;; No module named 'google_auth_oauthlib'
++          (delete 'sanity-check))))
+     (inputs
+      (list python-beautifulsoup4
+            python-bottle
+
+base-commit: d1b6d77aaef3c2a7ecc930de1cce2b9ac20203bf
+-- 
+2.41.0
+

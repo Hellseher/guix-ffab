@@ -1,0 +1,48 @@
+From 18790b1be4728370f6cce0513059463e84d63bce Mon Sep 17 00:00:00 2001
+Message-ID: <18790b1be4728370f6cce0513059463e84d63bce.1731584861.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Thu, 14 Nov 2024 11:33:18 +0000
+Subject: [PATCH v2 11/14] gnu: awscli-2: Update to 2.3.1.
+
+* gnu/packages/python-web.scm (awscli-2): Update to 2.3.1.
+[name]: Rename to awscliv2.
+
+Change-Id: I5fcc7afe66490513c6769c19f961a5fcb497d422
+---
+ gnu/packages/python-web.scm | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index a80d037bdf..32662503a1 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -4200,18 +4200,20 @@ (define-public awscli
+ Services (AWS) API.")
+     (license license:asl2.0)))
+ 
++;; This is not an official release of awscli version 2, so it should not be
++;; named awscli.
+ (define-public awscli-2
+   (package
+     (inherit awscli)
+-    (name "awscli")
+-    (version "2.2.0")
++    (name "awscliv2")
++    (version "2.3.1")
+     (source
+      (origin
+        (method url-fetch)
+-       (uri (pypi-uri (string-append name "v2") version))
++       (uri (pypi-uri name version))
+        (sha256
+         (base32
+-         "0g1icsy2l4n540gnhliypy830dfp08hpfc3rk12dlxgc9v3ra4wl"))))
++         "1bpp6kmb75qdhgzsx69ki04345bfkzwnmg84y5x6nyfpph2g3fsz"))))
+     (arguments
+      ;; FIXME: The 'pypi' release does not contain tests.
+      '(#:tests? #f))
+-- 
+2.46.0
+

@@ -1,0 +1,264 @@
+From 6f55a41cdac3f1e46e6242c5d6d73f95599cb25f Mon Sep 17 00:00:00 2001
+Message-ID: <6f55a41cdac3f1e46e6242c5d6d73f95599cb25f.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 20:53:56 +0000
+Subject: [PATCH v2 06/30] gnu: go-golang-org-x-sys: Move to golang-build.
+
+* gnu/packages/golang.scm (go-golang-org-x-sys): Move
+from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+* gnu/packages/curl.scm: Add (gnu packages golang-build) module.
+* gnu/packages/databases.scm: As above.
+* gnu/packages/docker.scm: As above.
+* gnu/packages/golang-build.scm: As above.
+* gnu/packages/golang.scm: As above.
+* gnu/packages/irc.scm: As above.
+* gnu/packages/linux.scm: As above.
+* gnu/packages/password-utils.scm: As above.
+* gnu/packages/syncthing.scm: As above.
+* gnu/packages/textutils.scm: As above.
+* gnu/packages/vpn.scm: As above.
+* gnu/packages/weather.scm: As above.
+* gnu/packages/web.scm: As above.
+
+Change-Id: I161e89cacb9aa87b4fbb643ecd9ad32cfe49c9d7
+---
+ gnu/packages/curl.scm           |  1 +
+ gnu/packages/databases.scm      |  1 +
+ gnu/packages/docker.scm         |  1 +
+ gnu/packages/golang-build.scm   | 31 +++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm         | 31 -------------------------------
+ gnu/packages/irc.scm            |  1 +
+ gnu/packages/linux.scm          |  1 +
+ gnu/packages/password-utils.scm |  1 +
+ gnu/packages/syncthing.scm      |  1 +
+ gnu/packages/textutils.scm      |  1 +
+ gnu/packages/vpn.scm            |  1 +
+ gnu/packages/weather.scm        |  3 ++-
+ gnu/packages/web.scm            |  1 +
+ 13 files changed, 43 insertions(+), 32 deletions(-)
+
+diff --git a/gnu/packages/curl.scm b/gnu/packages/curl.scm
+index 0fb83a7a12..02a602a66d 100644
+--- a/gnu/packages/curl.scm
++++ b/gnu/packages/curl.scm
+@@ -49,6 +49,7 @@ (define-module (gnu packages curl)
+   #:use-module (gnu packages check)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages kerberos)
+   #:use-module (gnu packages logging)
+diff --git a/gnu/packages/databases.scm b/gnu/packages/databases.scm
+index 903088ed4b..dc4a91f14d 100644
+--- a/gnu/packages/databases.scm
++++ b/gnu/packages/databases.scm
+@@ -107,6 +107,7 @@ (define-module (gnu packages databases)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+diff --git a/gnu/packages/docker.scm b/gnu/packages/docker.scm
+index fbe8edeef0..0fe1f2c1c7 100644
+--- a/gnu/packages/docker.scm
++++ b/gnu/packages/docker.scm
+@@ -42,6 +42,7 @@ (define-module (gnu packages docker)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages linux)
+   #:use-module (gnu packages networking)
+   #:use-module (gnu packages pkg-config)
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index 2601dec27a..eeab951f1e 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -101,6 +101,37 @@ (define-public go-golang-org-x-net-html
+     (description
+      "This package provides an HTML5-compliant tokenizer and parser.")))
+ 
++(define-public go-golang-org-x-sys
++  (let ((commit "ca59edaa5a761e1d0ea91d6c07b063f85ef24f78")
++        (revision "0"))
++    (package
++      (name "go-golang-org-x-sys")
++      (version (git-version "0.8.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://go.googlesource.com/sys")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1p81niiin8dwyrjl2xsc95136w3vdw4kmj0w3mlh0vh5v134s4xq"))))
++      (build-system go-build-system)
++      (arguments
++       (list
++        #:import-path "golang.org/x/sys"
++        ;; Source-only package
++        #:tests? #f
++        #:phases
++        #~(modify-phases %standard-phases
++            ;; Source-only package
++            (delete 'build))))
++      (home-page "https://go.googlesource.com/sys")
++      (synopsis "Go support for low-level system interaction")
++      (description "This package provides supplemental libraries offering Go
++support for low-level interaction with the operating system.")
++      (license license:bsd-3))))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 73e7077eac..373b57c5ad 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3712,37 +3712,6 @@ (define-public go-golang-org-x-sync
+       (home-page "https://go.googlesource.com/sync/")
+       (license license:bsd-3))))
+ 
+-(define-public go-golang-org-x-sys
+-  (let ((commit "ca59edaa5a761e1d0ea91d6c07b063f85ef24f78")
+-        (revision "0"))
+-    (package
+-      (name "go-golang-org-x-sys")
+-      (version (git-version "0.8.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://go.googlesource.com/sys")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1p81niiin8dwyrjl2xsc95136w3vdw4kmj0w3mlh0vh5v134s4xq"))))
+-      (build-system go-build-system)
+-      (arguments
+-       (list
+-        #:import-path "golang.org/x/sys"
+-        ;; Source-only package
+-        #:tests? #f
+-        #:phases
+-        #~(modify-phases %standard-phases
+-            ;; Source-only package
+-            (delete 'build))))
+-      (synopsis "Go support for low-level system interaction")
+-      (description "This package provides supplemental libraries offering Go
+-support for low-level interaction with the operating system.")
+-      (home-page "https://go.googlesource.com/sys")
+-      (license license:bsd-3))))
+-
+ (define-public go-golang-org-x-text
+   (package
+     (name "go-golang-org-x-text")
+diff --git a/gnu/packages/irc.scm b/gnu/packages/irc.scm
+index 3200ccc135..c211fa6595 100644
+--- a/gnu/packages/irc.scm
++++ b/gnu/packages/irc.scm
+@@ -67,6 +67,7 @@ (define-module (gnu packages irc)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/linux.scm b/gnu/packages/linux.scm
+index b8b119e474..d798c44a8f 100644
+--- a/gnu/packages/linux.scm
++++ b/gnu/packages/linux.scm
+@@ -134,6 +134,7 @@ (define-module (gnu packages linux)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages graphviz)
+   #:use-module (gnu packages gstreamer)
+diff --git a/gnu/packages/password-utils.scm b/gnu/packages/password-utils.scm
+index 6dc257dc0e..3a2bb410f2 100644
+--- a/gnu/packages/password-utils.scm
++++ b/gnu/packages/password-utils.scm
+@@ -91,6 +91,7 @@ (define-module (gnu packages password-utils)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/syncthing.scm b/gnu/packages/syncthing.scm
+index c0270b87e5..dbca1e5e90 100644
+--- a/gnu/packages/syncthing.scm
++++ b/gnu/packages/syncthing.scm
+@@ -38,6 +38,7 @@ (define-module (gnu packages syncthing)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages linux)
+diff --git a/gnu/packages/textutils.scm b/gnu/packages/textutils.scm
+index be5cb15cb8..25de916fcb 100644
+--- a/gnu/packages/textutils.scm
++++ b/gnu/packages/textutils.scm
+@@ -67,6 +67,7 @@ (define-module (gnu packages textutils)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages java)
+diff --git a/gnu/packages/vpn.scm b/gnu/packages/vpn.scm
+index 0070eaab6f..7823ef19eb 100644
+--- a/gnu/packages/vpn.scm
++++ b/gnu/packages/vpn.scm
+@@ -71,6 +71,7 @@ (define-module (gnu packages vpn)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages guile)
+   #:use-module (gnu packages libevent)
+   #:use-module (gnu packages linux)
+diff --git a/gnu/packages/weather.scm b/gnu/packages/weather.scm
+index 6ba656017f..5a58b97a30 100644
+--- a/gnu/packages/weather.scm
++++ b/gnu/packages/weather.scm
+@@ -22,7 +22,8 @@ (define-module (gnu packages weather)
+   #:use-module (guix git-download)
+   #:use-module (guix packages)
+   #:use-module (gnu packages)
+-  #:use-module (gnu packages golang))
++  #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build))
+ 
+ (define-public wego
+   (package
+diff --git a/gnu/packages/web.scm b/gnu/packages/web.scm
+index a1039b9e0c..0c67e7d6e4 100644
+--- a/gnu/packages/web.scm
++++ b/gnu/packages/web.scm
+@@ -143,6 +143,7 @@ (define-module (gnu packages web)
+   #:use-module (gnu packages gnunet)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages gperf)
+   #:use-module (gnu packages graphviz)
+-- 
+2.41.0
+

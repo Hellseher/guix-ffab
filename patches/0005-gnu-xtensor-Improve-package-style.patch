@@ -1,0 +1,62 @@
+From 8def7467515b8fdb5acb54312a04fc8248a28e71 Mon Sep 17 00:00:00 2001
+Message-ID: <8def7467515b8fdb5acb54312a04fc8248a28e71.1735936141.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1735936141.git.sharlatanus@gmail.com>
+References: <cover.1735936141.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 Jan 2025 17:24:19 +0000
+Subject: [PATCH 5/6] gnu: xtensor: Improve package style.
+
+* gnu/packages/algebra.scm (xtensor): Shift fields order. Use
+G-expressions.
+
+Change-Id: Ica85f3e848a99eea45e07156eb659558fc6c0804
+---
+ gnu/packages/algebra.scm | 30 ++++++++++++++++--------------
+ 1 file changed, 16 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/algebra.scm b/gnu/packages/algebra.scm
+index 5da77b6318..4d84958abf 100644
+--- a/gnu/packages/algebra.scm
++++ b/gnu/packages/algebra.scm
+@@ -1164,22 +1164,24 @@ (define-public xtensor
+   (package
+     (name "xtensor")
+     (version "0.24.6")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/xtensor-stack/xtensor")
+-                    (commit version)))
+-              (sha256
+-               (base32
+-                "0gf5m5p61981pv7yh5425lcv8dci948ri37hn1zlli7xg54x0g3i"))
+-              (file-name (git-file-name name version))))
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/xtensor-stack/xtensor")
++             (commit version)))
++       (sha256
++        (base32 "0gf5m5p61981pv7yh5425lcv8dci948ri37hn1zlli7xg54x0g3i"))
++       (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+-    (native-inputs
+-     (list doctest googletest xtl))
+     (arguments
+-     `(#:configure-flags
+-       '("-DBUILD_TESTS=ON")
+-       #:test-target "xtest"))
++     (list
++      #:configure-flags #~(list "-DBUILD_TESTS=ON")
++      #:test-target "xtest"))
++    (native-inputs
++     (list doctest
++           googletest
++           xtl))
+     (home-page "https://xtensor.readthedocs.io/en/latest/")
+     (synopsis "C++ tensors with broadcasting and lazy computing")
+     (description "xtensor is a C++ library meant for numerical analysis with
+-- 
+2.46.0
+

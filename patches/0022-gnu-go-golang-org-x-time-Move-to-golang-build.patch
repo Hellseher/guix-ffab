@@ -1,0 +1,105 @@
+From 4086c330052872f3d55491747e62f9e9e3dc794f Mon Sep 17 00:00:00 2001
+Message-ID: <4086c330052872f3d55491747e62f9e9e3dc794f.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 17:44:46 +0000
+Subject: [PATCH v2 22/30] gnu: go-golang-org-x-time: Move to golang-build.
+
+* gnu/packages/golang.scm (go-golang-org-x-time): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+* gnu/packages/high-availability.scm: Add (gnu packages golang-build) module.
+
+Change-Id: I2f2704501b19d991d153c6d8636e1f9fc4cf154b
+---
+ gnu/packages/golang-build.scm | 30 ++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 31 -------------------------------
+ 2 files changed, 30 insertions(+), 31 deletions(-)
+
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index db94ad2c7b..3885701078 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -292,6 +292,36 @@ (define-public go-golang-org-x-term
+ terminals, as commonly found on Unix systems.")
+     (license license:bsd-3)))
+ 
++(define-public go-golang-org-x-time
++  (let ((commit "9d24e82272b4f38b78bc8cff74fa936d31ccd8ef")
++        (revision "2"))
++    (package
++      (name "go-golang-org-x-time")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://go.googlesource.com/time")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1f5nkr4vys2vbd8wrwyiq2f5wcaahhpxmia85d1gshcbqjqf8dkb"))))
++      (build-system go-build-system)
++      (arguments
++       `(#:import-path "golang.org/x/time"
++         ;; Source-only package
++         #:tests? #f
++         #:phases
++         (modify-phases %standard-phases
++         ;; Source-only package
++           (delete 'build))))
++      (home-page "https://godoc.org/golang.org/x/time/rate")
++      (synopsis "Supplemental Go time libraries")
++      (description "This package provides supplemental Go libraries related to
++time.")
++      (license license:bsd-3))))
++
+ (define-public go-golang-org-x-xerrors
+   (let ((commit "5ec99f83aff198f5fbd629d6c8d8eb38a04218ca")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 240c87c3ba..6c056e19a9 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3587,37 +3587,6 @@ (define-public go-golang-org-x-text
+     (home-page "https://go.googlesource.com/text")
+     (license license:bsd-3)))
+ 
+-(define-public go-golang-org-x-time
+-  (let ((commit "9d24e82272b4f38b78bc8cff74fa936d31ccd8ef")
+-        (revision "2"))
+-    (package
+-      (name "go-golang-org-x-time")
+-      (version (git-version "0.0.0" revision commit))
+-      (source (origin
+-                (method git-fetch)
+-                (uri (git-reference
+-                      (url "https://go.googlesource.com/time")
+-                      (commit commit)))
+-                (file-name (git-file-name name version))
+-                (sha256
+-                 (base32
+-                  "1f5nkr4vys2vbd8wrwyiq2f5wcaahhpxmia85d1gshcbqjqf8dkb"))))
+-      (build-system go-build-system)
+-      (arguments
+-       `(#:import-path "golang.org/x/time"
+-         ; Source-only package
+-         #:tests? #f
+-         #:phases
+-         (modify-phases %standard-phases
+-           (delete 'build))))
+-;      (propagated-inputs
+-;       `(("go-golang-org-x-net" ,go-golang-org-x-net)))
+-      (synopsis "Supplemental Go time libraries")
+-      (description "This package provides supplemental Go libraries related to
+-time.")
+-      (home-page "https://godoc.org/golang.org/x/time/rate")
+-      (license license:bsd-3))))
+-
+ (define-public go-golang-org-x-oauth2
+   (let ((commit "0f29369cfe4552d0e4bcddc57cc75f4d7e672a33")
+         (revision "1"))
+-- 
+2.41.0
+

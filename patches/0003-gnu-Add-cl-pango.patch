@@ -1,0 +1,90 @@
+From 3fa9387ba3f1415585338662ecbdd73f462e88da Mon Sep 17 00:00:00 2001
+Message-ID: <3fa9387ba3f1415585338662ecbdd73f462e88da.1730150632.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730150632.git.sharlatanus@gmail.com>
+References: <cover.1730150632.git.sharlatanus@gmail.com>
+From: Grigory Shepelev <shegeley@gmail.com>
+Date: Tue, 22 Oct 2024 11:51:04 +0300
+Subject: [PATCH v3 3/5] gnu: Add cl-pango.
+
+* gnu/packages/lisp-xyz.scm (cl-pango, ecl-cl-pango, sbcl-cl-pango): New
+variables.
+
+Change-Id: I3615ef64197e8bee5cbb733bc427a54607bae4b2
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/lisp-xyz.scm | 59 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+
+diff --git a/gnu/packages/lisp-xyz.scm b/gnu/packages/lisp-xyz.scm
+index e6dfefc79b..ab15e3b901 100644
+--- a/gnu/packages/lisp-xyz.scm
++++ b/gnu/packages/lisp-xyz.scm
+@@ -4496,6 +4496,65 @@ (define-public cl-cairo2
+ (define-public ecl-cl-cairo2
+   (sbcl-package->ecl-package sbcl-cl-cairo2))
+ 
++(define-public sbcl-cl-pango
++  (let ((commit "ee4904d19ce22d00eb2fe17a4fe42e5df8ac8701")
++        (revision "0"))
++    (package
++      (name "sbcl-cl-pango")
++      (version (git-version "0.5" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/BradWBeer/cl-pango")
++               (commit commit)))
++         (file-name (git-file-name "cl-pango" version))
++         (sha256
++          (base32 "0zkn4yn8nkkjr0x1vcy856cvbmnyhdidqz0in8xvd2i93jvw5w0i"))))
++      (build-system asdf-build-system/sbcl)
++      (arguments
++       (list
++        #:phases
++        #~(modify-phases %standard-phases
++            (add-after 'unpack 'fix-paths
++              (lambda* (#:key inputs #:allow-other-keys)
++                (substitute* "library.lisp"
++                  (("libpango-1.0.so")
++                   (search-input-file inputs "/lib/libpango-1.0.so"))
++                  (("libpangocairo-1.0.so")
++                   (search-input-file inputs "/lib/libpangocairo-1.0.so.0"))))))))
++      (inputs
++       (list pango
++             sbcl-cffi
++             sbcl-cl-cairo2
++             sbcl-xmls))
++      (home-page "https://github.com/BradWBeer/cl-pango")
++      (synopsis "Pango bindings for Common Lisp")
++      (description "Bindings to the pango text layout library")
++      (license license:expat))))
++
++(define-public cl-pango
++  (sbcl-package->cl-source-package sbcl-cl-pango))
++
++(define-public ecl-cl-pango
++  (let ((pkg (sbcl-package->ecl-package sbcl-cl-pango)))
++    (package
++      (inherit pkg)
++      (inputs
++       (list pango
++             sbcl-alexandria
++             sbcl-cffi
++             sbcl-cl-cairo2
++             sbcl-xmls))
++      ;; XXX: It tries to recompile sbcl-cl-colours for some reasone and
++      ;; failes: C library error: Permission denied.
++      (arguments
++       (substitute-keyword-arguments (package-arguments pkg)
++         ((#:phases phases)
++          `(modify-phases ,phases
++             (delete 'build)
++             (delete 'check))))))))
++
+ (define-public sbcl-cl-cffi-gtk
+   (let ((commit "1700fe672c65455c1fc33061ec92a3df84287ec7")
+         (revision "3"))
+-- 
+2.46.0
+

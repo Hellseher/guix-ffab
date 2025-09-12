@@ -1,0 +1,57 @@
+From f3e82b3c743b4cd2d39f7a3f8572fa1fc44f6f09 Mon Sep 17 00:00:00 2001
+Message-ID: <f3e82b3c743b4cd2d39f7a3f8572fa1fc44f6f09.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 12:00:44 +0100
+Subject: [PATCH 03/12] gnu: Add go-github-com-onsi-ginkgo-v2.
+
+* gnu/packages/golang-check.scm (go-github-com-onsi-ginkgo-v2): New
+variable.
+
+Change-Id: Ied8167b850d5e5262713d0858ef7160d5c3d74c2
+---
+ gnu/packages/golang-check.scm | 27 +++++++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 1558536182..6f36615ab0 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -460,6 +460,33 @@ (define-public go-github-com-onsi-ginkgo
+ Gomega matcher library.")
+     (license license:expat)))
+ 
++(define-public go-github-com-onsi-ginkgo-v2
++  (package
++    (inherit go-github-com-onsi-ginkgo)
++    (name "go-github-com-onsi-ginkgo-v2")
++    (version "2.17.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/onsi/ginkgo")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "089x6pz5563ldbxiwaqvd2g4dqfzlr25dflmas3gfq51ibwzh4vz"))))
++    (arguments
++     (list
++      #:go go-1.20
++      #:import-path "github.com/onsi/ginkgo/v2"))
++    (propagated-inputs
++     (list go-github-com-go-logr-logr
++           ;; go-github-com-google-pprof ; not packed yet in Guix, for profiling
++           go-github-com-onsi-gomega
++           go-github-com-go-task-slim-sprig
++           go-golang-org-x-net
++           go-golang-org-x-sys
++           go-golang-org-x-tools))))
++
+ (define-public go-github-com-prashantv-gostub
+   (package
+     (name "go-github-com-prashantv-gostub")
+-- 
+2.41.0
+

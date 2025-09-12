@@ -1,0 +1,82 @@
+From cd676e30f234b829cde11b61458a5894f72ded0f Mon Sep 17 00:00:00 2001
+Message-ID: <cd676e30f234b829cde11b61458a5894f72ded0f.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 22:00:38 +0000
+Subject: [PATCH 01/38] gnu: Add (gnu packages golang-crypto) module.
+
+* gnu/packages/golang-crypto.scm: New file.
+* gnu/local.mk: Add to gnu/packages/golang-crypto.scm scope.
+
+Change-Id: I92a110f31a74c5a54c59ee2a0f17373915be1b35
+---
+ gnu/local.mk                   |  1 +
+ gnu/packages/golang-crypto.scm | 43 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 gnu/packages/golang-crypto.scm
+
+diff --git a/gnu/local.mk b/gnu/local.mk
+index 34bed91fc3..07481d1de1 100644
+--- a/gnu/local.mk
++++ b/gnu/local.mk
+@@ -307,6 +307,7 @@ GNU_SYSTEM_MODULES =				\
+   %D%/packages/gobby.scm			\
+   %D%/packages/golang.scm			\
+   %D%/packages/golang-check.scm		\
++  %D%/packages/golang-crypto.scm	      	\
+   %D%/packages/golang-web.scm	        	\
+   %D%/packages/gperf.scm			\
+   %D%/packages/gpodder.scm			\
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+new file mode 100644
+index 0000000000..38ccc5ffe9
+--- /dev/null
++++ b/gnu/packages/golang-crypto.scm
+@@ -0,0 +1,43 @@
++;;; GNU Guix --- Functional package management for GNU
++;;;
++;;; This file is part of GNU Guix.
++;;;
++;;; GNU Guix is free software; you can redistribute it and/or modify it
++;;; under the terms of the GNU General Public License as published by
++;;; the Free Software Foundation; either version 3 of the License, or (at
++;;; your option) any later version.
++;;;
++;;; GNU Guix is distributed in the hope that it will be useful, but
++;;; WITHOUT ANY WARRANTY; without even the implied warranty of
++;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;;; GNU General Public License for more details.
++;;;
++;;; You should have received a copy of the GNU General Public License
++;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
++
++(define-module (gnu packages golang-crypto)
++  #:use-module ((guix licenses) #:prefix license:)
++  #:use-module (guix build-system go)
++  #:use-module (guix gexp)
++  #:use-module (guix git-download)
++  #:use-module (guix packages)
++  #:use-module (guix utils)
++  #:use-module (gnu packages)
++  #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check))
++
++;;; Commentary:
++;;;
++;;; Golang modules (libraries) related to Cryptography: encryption algorithms,
++;;; hashing functions, TLS, key management, digital signatures, password
++;;; hashing etc.
++;;;
++;;; Please: Try to add new module packages in alphabetic order.
++;;;
++;;; Code:
++
++;;;
++;;; Avoid adding new packages to the end of this file. To reduce the chances
++;;; of a merge conflict, place them above by existing packages with similar
++;;; functionality or similar names.
++;;;
+-- 
+2.41.0
+

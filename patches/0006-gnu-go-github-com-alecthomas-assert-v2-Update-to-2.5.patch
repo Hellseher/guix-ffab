@@ -1,0 +1,41 @@
+From 371be67cbd9e1ffa67cad96384e9e93c2b7d7265 Mon Sep 17 00:00:00 2001
+Message-ID: <371be67cbd9e1ffa67cad96384e9e93c2b7d7265.1708289807.git.sharlatanus@gmail.com>
+In-Reply-To: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+References: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 16 Feb 2024 23:49:22 +0000
+Subject: [PATCH v2 06/10] gnu: go-github-com-alecthomas-assert-v2: Update to
+ 2.5.0.
+
+* gnu/packages/golang-check.scm (go-github-com-alecthomas-assert-v2): Update to 2.5.0.
+
+Change-Id: Ie0a1ad0488b499092437ce56f9df83d90d1be1e9
+---
+ gnu/packages/golang-check.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 64d0c68081..aaa2de33a6 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -63,7 +63,7 @@ (define-module (gnu packages golang-check)
+ (define-public go-github-com-alecthomas-assert-v2
+   (package
+     (name "go-github-com-alecthomas-assert-v2")
+-    (version "2.2.2")
++    (version "2.5.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -72,7 +72,7 @@ (define-public go-github-com-alecthomas-assert-v2
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "055w46gr47rrn5g2hh7z6hj3x2b8advbcph8gs8szrpzlympyyz0"))))
++        (base32 "1ai26ncfcwzg47rqaigs5v1fzfz6i8p11ki75ni5429xkjs77riz"))))
+     (build-system go-build-system)
+     (arguments
+      (list #:go go-1.18
+-- 
+2.41.0
+

@@ -1,0 +1,84 @@
+From f3d6068f0e642d569e3516a46d07c9a2550692b3 Mon Sep 17 00:00:00 2001
+Message-ID: <f3d6068f0e642d569e3516a46d07c9a2550692b3.1731584860.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 4 Nov 2024 22:21:45 +0000
+Subject: [PATCH v2 03/14] gnu: python-boto3: Update to 1.35.54.
+
+* gnu/packages/python-xyz.scm (python-boto3): Update to 1.35.54. Improve
+package style.
+[bulid-system]: Swap to pyproject-build-system.
+[native-inputs]: Add python-pytest-xdist, python-setuptools, and
+python-wheel.
+
+Change-Id: I413fcfc599d0d3ccf8587136629648c8a04cd364
+---
+ gnu/packages/python-xyz.scm | 48 ++++++++++++++++++++-----------------
+ 1 file changed, 26 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index c491883431..9ddc4ea6c2 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -19400,31 +19400,35 @@ (define-public python-botocore
+ (define-public python-boto3
+   (package
+     (name "python-boto3")
+-    (version "1.21.35")
+-    (home-page "https://github.com/boto/boto3")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference (url home-page) (commit version)))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1kdyf238rpfldnpzs0rdh3nhjn6hwfym4faskyhzlgzkf1smmbg1"))))
++    (version "1.35.54")
++    (source
++     (origin
++       (method git-fetch)               ; no tests in PyPI release
++       (uri (git-reference
++             (url "https://github.com/boto/boto3")
++             (commit version)))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0w0k719i8pyzkvd2snv6z91r57k6cxkq1i3phygdpwzk0k6acvj2"))))
++    (build-system pyproject-build-system)
+     (arguments
+-     `(#:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'delete-network-tests
+-           ;; Deleting integration tests because they are trying to connect to AWS.
+-           (lambda _
+-             (delete-file-recursively "tests/integration")))
+-         (replace 'check
+-           (lambda* (#:key tests? #:allow-other-keys)
+-             (when tests?
+-               (invoke "pytest" "-v")))))))
+-    (build-system python-build-system)
++     (list
++      #:test-flags
++      #~(list "--numprocesses" "auto"
++              ;; Tests require networking.
++              "--ignore" "tests/integration")))
+     (native-inputs
+-     (list python-nose python-mock python-pytest))
++     (list python-mock
++           python-nose
++           python-pytest
++           python-pytest-xdist
++           python-setuptools
++           python-wheel))
+     (propagated-inputs
+-     (list python-botocore python-jmespath python-s3transfer))
++     (list python-botocore
++           python-jmespath
++           python-s3transfer))
++    (home-page "https://github.com/boto/boto3")
+     (synopsis "AWS SDK for Python")
+     (description
+      "Boto3 is a Python library for writing programs that interact with
+-- 
+2.46.0
+

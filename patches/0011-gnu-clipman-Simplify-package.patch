@@ -1,0 +1,43 @@
+From 5ffb8bff4b95061fc047f6322f3b24e90e966e86 Mon Sep 17 00:00:00 2001
+Message-ID: <5ffb8bff4b95061fc047f6322f3b24e90e966e86.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 22:24:17 +0000
+Subject: [PATCH 11/12] gnu: clipman: Simplify package.
+
+* gnu/packages/xdisorg.scm (clipman):
+[phases] <#:phases>: Adjust 'patch phase to relay on provided module
+import path.
+[inputs]: Remove go-github-com-alecthomas-kingpin; add
+go-gopkg-in-alecthomas-kingpin-v2.
+
+Change-Id: I3d9d82af29672ff94cdbd39b18ec4ed61b8e485f
+---
+ gnu/packages/xdisorg.scm | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/gnu/packages/xdisorg.scm b/gnu/packages/xdisorg.scm
+index 7a2395b49d..025f1c5939 100644
+--- a/gnu/packages/xdisorg.scm
++++ b/gnu/packages/xdisorg.scm
+@@ -3240,15 +3240,13 @@ (define-public clipman
+                         (add-before 'build 'patch
+                           (lambda _
+                             (substitute* "src/github.com/yory8/clipman/main.go"
+-                              (("gopkg.in/alecthomas/kingpin.v2")
+-                               "github.com/alecthomas/kingpin")
+                               (("\"wl-copy\"")
+                                (string-append "\"" (which "wl-copy") "\"")))))
+                         (delete 'install-license-files))))
+     (native-inputs (list go-github-com-alecthomas-template
+                          go-github-com-alecthomas-units))
+     (inputs (list go-github-com-kballard-go-shellquote
+-                  go-github-com-alecthomas-kingpin
++                  go-gopkg-in-alecthomas-kingpin-v2
+                   libnotify
+                   wl-clipboard))
+     (synopsis "Basic clipboard manager with support for persisting copy buffers")
+-- 
+2.41.0
+

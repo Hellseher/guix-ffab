@@ -1,0 +1,179 @@
+From f04ffeabffb65d34210b547db9704f39c609e7c5 Mon Sep 17 00:00:00 2001
+Message-ID: <f04ffeabffb65d34210b547db9704f39c609e7c5.1734488457.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 2 Dec 2024 23:07:17 +0000
+Subject: [PATCH v2 1/2] build: go-build-system: Relax build verbosity.
+
+During the build phase "-x" option forces go compiler to generate quite
+a noisy build log which does not help too much when the build is failed.
+This change makes it optional and governed by #:verbosity key passed to
+`build' procedure.
+
+* guix/build/go-build-system.scm (build): Provide a link to online
+example.  Consolidate options in GOFLAGS environment variable, make "-x"
+optional.  Add description for "-trimpath" option.
+
+Change-Id: Icf1b03eb79db8a6f79f86f3cc212a53de5aa7c1c
+---
+ guix/build/go-build-system.scm | 39 ++++++++++++++++++++++++++--------
+ 1 file changed, 30 insertions(+), 9 deletions(-)
+
+diff --git a/guix/build/go-build-system.scm b/guix/build/go-build-system.scm
+index e53d8cb53c..9f9eea3069 100644
+--- a/guix/build/go-build-system.scm
++++ b/guix/build/go-build-system.scm
+@@ -283,23 +283,44 @@ (define (go-inputs inputs)
+                 (_ #f))
+               inputs))))
+ 
+-(define* (build #:key import-path build-flags (parallel-build? #t)
++(define* (build #:key
++                build-flags
++                import-path
++                (parallel-build? #t)
++                (verbosity 1)
+                 #:allow-other-keys)
+   "Build the package named by IMPORT-PATH."
+-  (let* ((njobs (if parallel-build? (parallel-job-count) 1)))
++  (let* ((njobs (if parallel-build? (parallel-job-count) 1))
++         ;; Utilizing GOFLAGS for flexible build options passthrough, refer
++         ;; for more examples to online documentation of Golang
++         ;; <https://go.dev/src/cmd/go/testdata/script/goflags.txt>.
++         (goflags (string-join
++                   (list
++                    ;; Print the name of packages (pathes) as they are compiled.
++                    "-v"
++                    ;; Print each command as it is invoked. When enabled, it
++                    ;; generates a lot of noisy logs which makes identifying
++                    ;; build failures harder to determine.
++                    (if (> verbosity 1) "-x" "")
++                    ;; Remove all file system paths from the resulting
++                    ;; executable.  Instead of absolute file system paths, the
++                    ;; recorded file names will begin either a module
++                    ;; path@version (when using modules), or a plain import
++                    ;; path (when using the standard library, or GOPATH).
++                    "-trimpath")
++                   " ")))
++    (setenv "GOFLAGS" goflags)
+     (setenv "GOMAXPROCS" (number->string njobs)))
+ 
+   (with-throw-handler
+     #t
+     (lambda _
+       (apply invoke "go" "install"
+-              "-v" ; print the name of packages as they are compiled
+-              "-x" ; print each command as it is invoked
+-              ;; Respectively, strip the symbol table and debug
+-              ;; information, and the DWARF symbol table.
+-              "-ldflags=-s -w"
+-              "-trimpath"
+-              `(,@build-flags ,import-path)))
++             ;; Respectively, strip the symbol table and debug
++             ;; information, and the DWARF symbol table.
++             "-ldflags=-s -w"
++             `(,@build-flags ,import-path)))
++
+     (lambda (key . args)
+       (display (string-append "Building '" import-path "' failed.\n"
+                               "Here are the results of `go env`:\n"))
+
+base-commit: 0a5b060be1e8966abc45e4782df83447510a90b4
+prerequisite-patch-id: 7c60aacd825ea1fd299462d1ae31beb34902fbaf
+prerequisite-patch-id: 5136c6924ea61be099691eb9b0c227936a08954a
+prerequisite-patch-id: 47fb416de83dc133d647e3e07a5c398391336eb1
+prerequisite-patch-id: 760115bac637e5f39738d82ed16232c8792a8f82
+prerequisite-patch-id: f8b63ec4ec753bcc2c3a6022abaf47146e454a72
+prerequisite-patch-id: 2d5e20587944fe26b277509396dabd362bf8105c
+prerequisite-patch-id: 5b779f0a2442f2697cd75c089e36d276b9dafbf5
+prerequisite-patch-id: e5f81823c9ea1b93abf1f3fec60e695d16909a06
+prerequisite-patch-id: 8badae173015a65a237c45b42241e36355e9f2c1
+prerequisite-patch-id: af090660b016e08b3612bee7ca2125bb0e1d00b2
+prerequisite-patch-id: 294de506884b2b150eba248b4a1731de95d50176
+prerequisite-patch-id: 8ed8c96cf2383811b66abe15f6fa9af73689b94c
+prerequisite-patch-id: 6dd547d424e4eeb99715847136b3fad7f566d9fa
+prerequisite-patch-id: ff3892aa0acc89208f4eba1f0866f8da01d1cb21
+prerequisite-patch-id: 3a9c1b8c45bb320815892e512fdf3271ea9c8f0f
+prerequisite-patch-id: 526f9ea0e83f7479ac37679b69f9ad18c38e9234
+prerequisite-patch-id: ad91b786810c1a4c13d2d39e0eb51d0932f1060c
+prerequisite-patch-id: e74404537a20ed352985299432056116f2d8881b
+prerequisite-patch-id: 0aae6b4b352a367bd8770075b16547c060262e34
+prerequisite-patch-id: 0b485c3a7c266118cdafc3b30aebd704b1018af7
+prerequisite-patch-id: add3eb95e39cd65a47e86d74909f822e4fcbd542
+prerequisite-patch-id: 98487d900da05e0a4f39bb28036918afa76e1d9a
+prerequisite-patch-id: dedc1426c51db76f30ddd92a8ed04e1793f7839c
+prerequisite-patch-id: e7606e328c545a4db40d37ca3aa5f99c0b4287f8
+prerequisite-patch-id: 63fa87ba5ddf33561784e25199d605aa0b18133e
+prerequisite-patch-id: 04fe1403ea43cfbeeabbd87ee9b6707c64101c07
+prerequisite-patch-id: 3f7cf90125fd223507087c94a92aa16dba2662f2
+prerequisite-patch-id: e763a43853180ad952fc5eaeb60e4ef2762f6d3f
+prerequisite-patch-id: 284d08f1257d7e6c69e46b9e7fee165fa1aa5b07
+prerequisite-patch-id: 0ebe96fd52cc9140b53b17046b2aa2b6969a6e2c
+prerequisite-patch-id: 87339b708e38828f9a1769b3f2740f328a9bb59b
+prerequisite-patch-id: f3698965b06dbb73c6b702c22830a7e400b8b765
+prerequisite-patch-id: 6d464271ac1083b7f303d3ac75963a7bf91e8ce0
+prerequisite-patch-id: 93d8965a1a7a4110eb7348d43df9fb39899df5cc
+prerequisite-patch-id: 1bb520f9ad8cc64b07041ccea8ffb6ad51fea4a7
+prerequisite-patch-id: d6c45d0b7fd5a8a744f560c1ee24e90e63546196
+prerequisite-patch-id: d11dbd6a272b78c06b2373196897bd02da491e66
+prerequisite-patch-id: aa2d3d94d3cebd23780c0785098e728080a25063
+prerequisite-patch-id: 5e76884b7109e88da98532ec66c469b39335c14d
+prerequisite-patch-id: dfaa606ac8721e076b9870eca03721b731e3cc65
+prerequisite-patch-id: 26a9585f84c5be0cf6ac60eeab3f62e2c1b59a32
+prerequisite-patch-id: 790109ae7b8db35051f0532fb9820cc794f6e90e
+prerequisite-patch-id: cdcb8df8b8060543aeb46727c6097640784c5f77
+prerequisite-patch-id: cef60c111cfd4c7c77b8402196710a334ed4244a
+prerequisite-patch-id: 6801272b174236af0bb5a94be1e105887f525660
+prerequisite-patch-id: 3d03b39da9fcc5961b7672ea82784d68512cc9ef
+prerequisite-patch-id: 56410b64255826975d87f89c6bca96d96b3bddfa
+prerequisite-patch-id: 455428488cdc812b099c8a0aed3763632dbdc60c
+prerequisite-patch-id: 66d83739e60670e4a0bd3db34199da0346e84062
+prerequisite-patch-id: cb91e8091b251ad54b16ab0c26145ec1e3207cd9
+prerequisite-patch-id: 2b1d8e54b873c0c373a5c1fd3117a73c5c9df7a5
+prerequisite-patch-id: 4a31a50b43fa9275f7f7801e658d593fe48798a4
+prerequisite-patch-id: 43d9065cfb585329af82ff9b7510896ed5be6ea5
+prerequisite-patch-id: d094d34d84aa822499a7f6a94b7654816a980537
+prerequisite-patch-id: 0620608a1dfe736dc00327ee00b8bc9b24d374ae
+prerequisite-patch-id: b5c845395592759d2c8746d269c9a1e341d20fdc
+prerequisite-patch-id: 99a880d7782dbca30fafd6fc3176a2b00cc75224
+prerequisite-patch-id: 2f8fc439398bd2b8f1486a7cb17ef8fa27b2263d
+prerequisite-patch-id: 2ccfa97711a36ab124caf722e0b7a9b10cf14b11
+prerequisite-patch-id: 54d6570b4bd09dbfdc4947182adb94286e9b1fad
+prerequisite-patch-id: 7a93b50157b384d86027b672160a2e4cc742b7d1
+prerequisite-patch-id: 5d4ad58a8a082bbbd5a6e3ab3de7acf1614770ec
+prerequisite-patch-id: 7e75bcddb6ab62b3d60d29c27b2676335c8e6d33
+prerequisite-patch-id: 4382f72af6cc258342e2c386a8bfb2e58e199943
+prerequisite-patch-id: 4888f198a7315ea67423eb004d819217b1f22f8e
+prerequisite-patch-id: f01e7af38ad20787d173922e59e6288004d53e33
+prerequisite-patch-id: 4250138cba074ef5618a3f16e5cf31471904cb9c
+prerequisite-patch-id: 3215d56762bb0bc2c94a9ee58cf27c083d1e8947
+prerequisite-patch-id: abe0f7fd5838389ef509a3104c3b7929cf3436d3
+prerequisite-patch-id: b26eeb93042d8d6774c0dad43468b45c8c8644eb
+prerequisite-patch-id: d5850f4d806b61cbd7521383a07953f3221dd683
+prerequisite-patch-id: 1f641be7411c9d5900e3e5af53d8b39f773196e0
+prerequisite-patch-id: a108c9b6889b34f1a2ef3b458656ad94204b6277
+prerequisite-patch-id: a3cd37a3e65877ab005f2dab1868bbd5df7e68a1
+prerequisite-patch-id: 00319f4ad13f642b4895f652348bb468bf8554eb
+prerequisite-patch-id: 5b252fc54bdd1736c34408d35805f31b751d7bf4
+prerequisite-patch-id: e81cc6ea74f4ab12ffb46b0327c753abf61aa781
+prerequisite-patch-id: 1778bccb3f339a5a388ebd30eee5ac9b13e6e8fd
+prerequisite-patch-id: 53f18ed89cadf5fa2a3fe4d28ae3291d832ab7ff
+prerequisite-patch-id: 5500e06165d91665b677471936baf5077adc85fa
+prerequisite-patch-id: 933cb1d5f216d56f1311b2029f2bc2cf164a631e
+prerequisite-patch-id: 2ddc887e6290b316e39ef74b06ec3e155d47e377
+prerequisite-patch-id: 104dc94a30b1433c026c13efe929d7d58ccb7c86
+prerequisite-patch-id: 2c8bc99296a99be1dca6116ddc96e4a703845753
+prerequisite-patch-id: 7c9b357469813aeb9e09c1ae85bd17dca04fa96c
+prerequisite-patch-id: d225d098ac87adec37e51ae69f5e476785a2d4ef
+prerequisite-patch-id: d463ebf70d68d8fa61cc0d67dc1cb5e8d236f039
+prerequisite-patch-id: b8dffb6d3a608b6473fbfca9c9ba49e17b29f9a9
+prerequisite-patch-id: 875cbfc70f6d0835bfc6deab903494bd0d99e986
+prerequisite-patch-id: 96c5c977bbc363fee541eba249ab7b3445c7a399
+prerequisite-patch-id: 99e08cbf70a87979b53798d49e0a653e802fc3de
+prerequisite-patch-id: d2416914b318da015eedcf5e36e8a7831578fca0
+prerequisite-patch-id: a4542c7c6ba2d91c23d74680cce11a2acfdd466f
+prerequisite-patch-id: 785a78d917fbee5e539cb16f4e9b703705737edf
+prerequisite-patch-id: 564d3101f82df166da833265369835f5da1cfe17
+prerequisite-patch-id: 79616ad4f655167be47eb299467db5e8fa220a05
+-- 
+2.46.0
+

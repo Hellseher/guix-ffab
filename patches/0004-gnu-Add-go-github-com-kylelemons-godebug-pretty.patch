@@ -1,0 +1,40 @@
+From 843fcbade13af55acf931921e7270fa10b689caf Mon Sep 17 00:00:00 2001
+Message-ID: <843fcbade13af55acf931921e7270fa10b689caf.1732837202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732837202.git.sharlatanus@gmail.com>
+References: <cover.1732837202.git.sharlatanus@gmail.com>
+From: "Artyom V. Poptsov" <poptsov.artyom@gmail.com>
+Date: Sun, 24 Nov 2024 13:27:25 +0300
+Subject: [PATCH 04/15] gnu: Add go-github-com-kylelemons-godebug-pretty.
+
+* gnu/packages/golang.scm (go-github-com-kylelemons-godebug-pretty): New variable.
+
+Change-Id: Icd7d5fd70cf56d1ca74e9a2cfb929a3344128ba7
+Reviewed-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang.scm | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 4db14a5ae1..88878b6b23 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4722,6 +4722,16 @@ (define-public go-github-com-kylelemons-godebug
+ representation suitable for computing diffs.")
+     (license license:asl2.0)))
+ 
++;; TODO: Merge with go-github-com-kylelemons-godebug and provide both module;
++;; for go-team.
++(define-public go-github-com-kylelemons-godebug-pretty
++  (package
++    (inherit go-github-com-kylelemons-godebug)
++    (name "go-github-com-kylelemons-godebug-pretty")
++    (arguments
++     '(#:import-path "github.com/kylelemons/godebug/pretty"
++       #:unpack-path "github.com/kylelemons/godebug"))))
++
+ (define-public go-github-com-kr-text
+   (package
+     (name "go-github-com-kr-text")
+-- 
+2.46.0
+

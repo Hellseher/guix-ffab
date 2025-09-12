@@ -1,0 +1,34 @@
+From f08e02ce8015c93ac63a6e04303a139035b458e2 Mon Sep 17 00:00:00 2001
+Message-ID: <f08e02ce8015c93ac63a6e04303a139035b458e2.1732837202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732837202.git.sharlatanus@gmail.com>
+References: <cover.1732837202.git.sharlatanus@gmail.com>
+From: "Artyom V. Poptsov" <poptsov.artyom@gmail.com>
+Date: Sun, 24 Nov 2024 13:27:32 +0300
+Subject: [PATCH 13/15] gnu: gojq: Adjust import path.
+
+* gnu/packages/web.scm (gojq) [arguments]<import-path>: Provide path to
+the command source.
+
+Change-Id: I6a4d0cbdba385460d7ab43d62fe1897922a7c7e9
+Reviewed-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/web.scm | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/web.scm b/gnu/packages/web.scm
+index 7e355b8d77..f574c5c9bb 100644
+--- a/gnu/packages/web.scm
++++ b/gnu/packages/web.scm
+@@ -5626,7 +5626,8 @@ (define-public gojq
+     (arguments
+      (ensure-keyword-arguments
+       (package-arguments go-github-com-itchyny-gojq)
+-      (list #:install-source? #f)))))
++      (list #:import-path "github.com/itchyny/gojq/cmd/gojq"
++            #:install-source? #f)))))
+ 
+ (define-public pup
+   (let ((revision "1")
+-- 
+2.46.0
+

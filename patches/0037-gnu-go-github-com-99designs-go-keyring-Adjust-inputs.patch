@@ -1,0 +1,47 @@
+From 6f7b7569c15e170cf49da573fc962f60afaa05e0 Mon Sep 17 00:00:00 2001
+Message-ID: <6f7b7569c15e170cf49da573fc962f60afaa05e0.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 23:06:51 +0000
+Subject: [PATCH 37/38] gnu: go-github-com-99designs-go-keyring: Adjust inputs.
+
+This package does not use GPG or password-store internally and is only
+used as a dependency for aws-vault.
+
+* gnu/packages/golang-crypto.scm (go-github-com-99designs-go-keyring):
+Swap native-inputs to propagated-inputs.
+[propagated-inputs]: Remove gnupg and password-store.
+
+Change-Id: If5f57f656402058960df416bad25a76fa1b70718
+---
+ gnu/packages/golang-crypto.scm | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index a316a89a18..b4c3ecdecd 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -120,16 +120,14 @@ (define-public go-github-com-99designs-go-keyring
+        (sha256
+         (base32 "0mkvy7scyq07rkqhabfmkd8imcm4h9y7zj9palj04znpihpixa5m"))))
+     (build-system go-build-system)
+-    (native-inputs
+-     (list gnupg
+-           go-github-com-dvsekhvalnov-jose2go
++    (propagated-inputs
++     (list go-github-com-dvsekhvalnov-jose2go
+            go-github-com-godbus-dbus
+            go-github-com-gsterjov-go-libsecret
+            go-github-com-mitchellh-go-homedir
+            go-github-com-mtibben-percent
+            go-golang-org-x-sys
+-           go-golang-org-x-term
+-           password-store))
++           go-golang-org-x-term))
+     (arguments
+      '(#:import-path "github.com/99designs/keyring"
+        #:tests? #f))                              ;XXX: tests require Vagrant
+-- 
+2.41.0
+

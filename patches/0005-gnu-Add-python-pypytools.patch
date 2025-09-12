@@ -1,0 +1,50 @@
+From 729107ade5e49205d48bee281fd28bf6f74bbc06 Mon Sep 17 00:00:00 2001
+Message-ID: <729107ade5e49205d48bee281fd28bf6f74bbc06.1710694980.git.sharlatanus@gmail.com>
+In-Reply-To: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+References: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+From: dan <i@dan.games>
+Date: Fri, 3 Feb 2023 00:58:14 +0800
+Subject: [PATCH v3 5/7] gnu: Add python-pypytools.
+
+* gnu/packages/python-xyz.scm (python-pypytools): New variable.
+
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/python-xyz.scm | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 0e458fdadc..c4a5375839 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -11433,6 +11433,27 @@ (define-public python-jaraco-text
+ processing, values parsing, case insensitive comparison, and more.")
+     (license license:expat)))
+ 
++(define-public python-pypytools
++  (package
++    (name "python-pypytools")
++    (version "0.6.2")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "pypytools" version))
++       (sha256
++        (base32 "0ag5xyzagprji0m2pkqsfy8539s003mn41pl6plbmh6iwi9w0h51"))))
++    (build-system python-build-system)
++    (arguments (list #:tests? #f)) ; no tests
++    (propagated-inputs (list python-py))
++    (home-page "https://github.com/antocuni/pypytools/")
++    (synopsis
++     "Tools to use PyPy-specific features, with CPython fallbacks")
++    (description
++     "This package provides a collection of useful tools to use PyPy-specific
++features, with CPython fallbacks.")
++    (license license:x11)))
++
+ (define-public python-simplegeneric
+   (package
+     (name "python-simplegeneric")
+-- 
+2.41.0
+

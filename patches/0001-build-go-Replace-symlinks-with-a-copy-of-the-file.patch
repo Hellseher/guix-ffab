@@ -1,0 +1,161 @@
+From 870204639eb63370aae42e86364899d333064749 Mon Sep 17 00:00:00 2001
+Message-ID: <870204639eb63370aae42e86364899d333064749.1726516329.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726516329.git.sharlatanus@gmail.com>
+References: <cover.1726516329.git.sharlatanus@gmail.com>
+From: Efraim Flashner <efraim@flashner.co.il>
+Date: Mon, 16 Sep 2024 18:38:46 +0300
+Subject: [PATCH v2 1/3] build/go: Replace symlinks with a copy of the file.
+
+* guix/build/go-build-system.scm (fix-embed-files): New procedure.
+(%standard-phases): Add 'fix-embed-files after 'unpack.
+* guix/build-system/go.scm (#:embed-files): New key parameter.
+* doc/guix.texi: (go-build-system): Document a new key.
+
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+Change-Id: I27bc46fa1a3f4675ff73b6cba4ef5c3d177c22b1
+---
+ doc/guix.texi                  |  8 ++++++++
+ guix/build-system/go.scm       |  6 ++++++
+ guix/build/go-build-system.scm | 30 ++++++++++++++++++++++++++++--
+ 3 files changed, 42 insertions(+), 2 deletions(-)
+
+diff --git a/doc/guix.texi b/doc/guix.texi
+index 4abe258af0..e780bde6cf 100644
+--- a/doc/guix.texi
++++ b/doc/guix.texi
+@@ -130,6 +130,9 @@
+ Copyright @copyright{} 2024 Dariqq@*
+ Copyright @copyright{} 2024 Denis 'GNUtoo' Carikli@*
+ Copyright @copyright{} 2024 Fabio Natali@*
++Copyright @copyright{} 2024 Troy Figiel@*
++Copyright @copyright{} 2024 Sharlatan Hellseher@*
++
+ 
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License, Version 1.3 or
+@@ -9580,6 +9583,11 @@ Build Systems
+ @code{#:test-flags} parameter, default is @code{'()}.  See @code{go help
+ test} and @code{go help testflag} for more details.
+ 
++The key @code{#:embed-files}, default is @code{'()}, provides a list of
++future embedded files or regexps matching files.  They will be copied to
++build directory after @code{unpack} phase.  See
++@url{https://pkg.go.dev/embed} for more details.
++
+ @end defvar
+ 
+ @defvar glib-or-gtk-build-system
+diff --git a/guix/build-system/go.scm b/guix/build-system/go.scm
+index e6e8b84e48..97581a14c6 100644
+--- a/guix/build-system/go.scm
++++ b/guix/build-system/go.scm
+@@ -6,6 +6,8 @@
+ ;;; Copyright © 2021, 2023 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2024 Christina O'Donnell <cdo@mutix.org>
++;;; Copyright © 2024 Troy Figiel <troy@troyfigiel.com>
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -197,6 +199,7 @@ (define* (go-build name inputs
+                    (outputs '("out"))
+                    (search-paths '())
+                    (install-source? #t)
++                   (embed-files ''())
+                    (import-path "")
+                    (unpack-path "")
+                    (build-flags ''())
+@@ -226,6 +229,7 @@ (define* (go-build name inputs
+                     #:substitutable? #$substitutable?
+                     #:goarch #$goarch
+                     #:goos #$goos
++                    #:embed-files #$embed-files
+                     #:search-paths '#$(sexp->gexp
+                                        (map search-path-specification->sexp
+                                             search-paths))
+@@ -264,6 +268,7 @@ (define* (go-cross-build name
+                          (system (%current-system))
+                          (goarch (first (go-target target)))
+                          (goos (last (go-target target)))
++                         (embed-files ''())
+                          (guile #f)
+                          (imported-modules %go-build-system-modules)
+                          (modules '((guix build go-build-system)
+@@ -297,6 +302,7 @@ (define* (go-cross-build name
+                     #:target #$target
+                     #:goarch #$goarch
+                     #:goos #$goos
++                    #:embed-files #$embed-files
+                     #:inputs %build-target-inputs
+                     #:native-inputs %build-host-inputs
+                     #:search-paths '#$(map search-path-specification->sexp
+diff --git a/guix/build/go-build-system.scm b/guix/build/go-build-system.scm
+index 3f0f5700a1..14cb5ae687 100644
+--- a/guix/build/go-build-system.scm
++++ b/guix/build/go-build-system.scm
+@@ -4,10 +4,12 @@
+ ;;; Copyright © 2019 Maxim Cournoyer <maxim.cournoyer@gmail.com>
+ ;;; Copyright © 2020 Jack Hill <jackhill@jackhill.us>
+ ;;; Copyright © 2020 Jakub Kądziołka <kuba@kadziolka.net>
+-;;; Copyright © 2020, 2021, 2023 Efraim Flashner <efraim@flashner.co.il>
++;;; Copyright © 2020, 2021, 2023, 2024 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+ ;;; Copyright © 2024 Ekaitz Zarraga <ekaitz@elenq.tech>
+ ;;; Copyright © 2024 Picnoir <picnoir@alternativebit.fr>
++;;; Copyright © 2024 Troy Figiel <troy@troyfigiel.com>
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -28,8 +30,9 @@ (define-module (guix build go-build-system)
+   #:use-module ((guix build gnu-build-system) #:prefix gnu:)
+   #:use-module (guix build union)
+   #:use-module (guix build utils)
+-  #:use-module (ice-9 match)
++  #:use-module (ice-9 format)
+   #:use-module (ice-9 ftw)
++  #:use-module (ice-9 match)
+   #:use-module (srfi srfi-1)
+   #:use-module (rnrs io ports)
+   #:use-module (rnrs bytevectors)
+@@ -201,6 +204,28 @@ (define* (setup-go-environment #:key inputs outputs goos goarch #:allow-other-ke
+     (delete-file-recursively tmpdir))
+   #t)
+ 
++(define* (fix-embed-files #:key embed-files #:allow-other-keys)
++  "Golang can't determine the valid directory of the module of embed file
++which is symlinked during setup environment phase, but easy resolved after
++coping file from the store to the build directory of the current package. Take
++a list of files or regexps matching files from EMBED-FILES paramter, failover
++to 'editions_defaults.binpb' which is a part of <github.com/golang/protobuf>."
++  ;; see details in Golang source:
++  ;;
++  ;; - URL: <https://github.com/golang/go/blob/>
++  ;; - commit: 82c14346d89ec0eeca114f9ca0e88516b2cda454
++  ;; - file: src/cmd/go/internal/load/pkg.go#L2059
++  (let ((embed-files (format #f "^(~{~a|~}~a)$"
++                             embed-files
++                             "editions_defaults.binpb")))
++    (for-each (lambda (file)
++                (when (eq? (stat:type (lstat file))
++                           'symlink)
++                  (let ((file-store-path (readlink file)))
++                    (delete-file file)
++                    (copy-recursively file-store-path file))))
++              (find-files "src" embed-files))))
++
+ (define* (unpack #:key source import-path unpack-path #:allow-other-keys)
+   "Relative to $GOPATH, unpack SOURCE in UNPACK-PATH, or IMPORT-PATH when
+ UNPACK-PATH is unset.  If the SOURCE archive has a single top level directory,
+@@ -321,6 +346,7 @@ (define %standard-phases
+     (delete 'patch-generated-file-shebangs)
+     (add-before 'unpack 'setup-go-environment setup-go-environment)
+     (replace 'unpack unpack)
++    (add-after 'unpack 'fix-embed-files fix-embed-files)
+     (replace 'build build)
+     (replace 'check check)
+     (replace 'install install)
+-- 
+2.46.0
+

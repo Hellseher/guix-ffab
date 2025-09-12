@@ -1,0 +1,139 @@
+From 738bfdf889ad773577d6fac378ad65bd881ecacb Mon Sep 17 00:00:00 2001
+Message-ID: <738bfdf889ad773577d6fac378ad65bd881ecacb.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:28:03 +0000
+Subject: [PATCH v2 11/30] gnu: go-github-com-burntsushi-toml: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-burntsushi-toml): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+* gnu/packages/golang-check.scm: Add (gnu packages golang-xyz) module.
+* gnu/packages/golang.scm: As above.
+* gnu/packages/shellutils.scm: As above.
+
+Change-Id: If8a645431a1fb17159681daae70db49fd21b37c1
+---
+ gnu/packages/golang-check.scm |  3 ++-
+ gnu/packages/golang-xyz.scm   | 26 ++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 24 +-----------------------
+ gnu/packages/shellutils.scm   |  1 +
+ 4 files changed, 30 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index c5e30f7fe1..8ce85421e9 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -42,7 +42,8 @@ (define-module (gnu packages golang-check)
+   #:use-module (guix git-download)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
+-  #:use-module (gnu packages golang-build))
++  #:use-module (gnu packages golang-build)
++  #:use-module (gnu packages golang-xyz))
+ 
+ ;;; Commentary:
+ ;;;
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 1999aab7fb..9d2b43b86c 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1,5 +1,8 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
++;;; Copyright © 2019 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2023 Benjamin <benjamin@uvy.fr>
++;;; Copyright © 2023 Katherine Cox-Buday <cox.katherine.e@gmail.com>
+ ;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2023 Thomas Ieong <th.ieong@free.fr>
+ ;;; Copyright © 2024 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+@@ -41,6 +44,29 @@ (define-module (gnu packages golang-xyz)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-burntsushi-toml
++  (package
++    (name "go-github-com-burntsushi-toml")
++    (version "1.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/BurntSushi/toml")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1v9czq4hsyvdz7yx70y6sgq77wmrgfmn09r9cj4w85z38jqnamv7"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/BurntSushi/toml"))
++    (home-page "https://github.com/BurntSushi/toml")
++    (synopsis "Toml parser and encoder for Go")
++    (description
++     "This package is toml parser and encoder for Go.  The interface is
++similar to Go's standard library @code{json} and @code{xml} package.")
++    (license license:expat)))
++
+ (define-public go-github-com-djherbis-atime
+   (package
+     (name "go-github-com-djherbis-atime")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 903f2126c4..5f8a550b15 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -86,6 +86,7 @@ (define-module (gnu packages golang)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages lua)
+   #:use-module (gnu packages mail)
+   #:use-module (gnu packages mp3)
+@@ -3807,29 +3808,6 @@ (define-public go-golang-org-x-mod
+ loading algorithms.")
+       (license license:bsd-3))))
+ 
+-(define-public go-github-com-burntsushi-toml
+-  (package
+-    (name "go-github-com-burntsushi-toml")
+-    (version "1.2.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/BurntSushi/toml")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1v9czq4hsyvdz7yx70y6sgq77wmrgfmn09r9cj4w85z38jqnamv7"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/BurntSushi/toml"))
+-    (home-page "https://github.com/BurntSushi/toml")
+-    (synopsis "Toml parser and encoder for Go")
+-    (description
+-     "This package is toml parser and encoder for Go.  The interface
+-is similar to Go's standard library @code{json} and @code{xml} package.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-hashicorp-go-uuid
+   (package
+     (name "go-github-com-hashicorp-go-uuid")
+diff --git a/gnu/packages/shellutils.scm b/gnu/packages/shellutils.scm
+index 00352dc327..48c5250c8c 100644
+--- a/gnu/packages/shellutils.scm
++++ b/gnu/packages/shellutils.scm
+@@ -51,6 +51,7 @@ (define-module (gnu packages shellutils)
+   #:use-module (gnu packages check)
+   #:use-module (gnu packages flex)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages libunistring)
+   #:use-module (gnu packages ncurses)
+   #:use-module (gnu packages pcre)
+-- 
+2.41.0
+

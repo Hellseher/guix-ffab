@@ -1,0 +1,41 @@
+From d45987e15c1fe85b11869edcbce06c66b5548ba1 Mon Sep 17 00:00:00 2001
+Message-ID: <d45987e15c1fe85b11869edcbce06c66b5548ba1.1706010234.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1706010234.git.sharlatanus@gmail.com>
+References: <cover.1706010234.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 23 Jan 2024 10:41:41 +0000
+Subject: [PATCH 1/2] gnu: python-trimesh: Update to 4.0.10.
+
+* gnu/packages/python-science.scm (python-trimesh): Update to 4.0.10.
+[build-system]: Swap to pyproject-build-system.
+
+Change-Id: I757b4c27db9969d42021434883a057debbbc83fd
+---
+ gnu/packages/python-science.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/python-science.scm b/gnu/packages/python-science.scm
+index ef65ed537a..7212cafe16 100644
+--- a/gnu/packages/python-science.scm
++++ b/gnu/packages/python-science.scm
+@@ -393,14 +393,14 @@ (define-public python-tdda
+ (define-public python-trimesh
+   (package
+     (name "python-trimesh")
+-    (version "3.23.5")
++    (version "4.0.10")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "trimesh" version))
+        (sha256
+-        (base32 "08967axlnmfv98n05dhrkynyrmcc814hl8184gzzmcy4rjg6dzdx"))))
+-    (build-system python-build-system)
++        (base32 "1p3cnkajh2zmp6zwn23q3c73jcjlkq61h3r53ys0bmg58l8kpqrn"))))
++    (build-system pyproject-build-system)
+     (propagated-inputs
+      (list python-numpy))
+     (native-inputs
+-- 
+2.41.0
+

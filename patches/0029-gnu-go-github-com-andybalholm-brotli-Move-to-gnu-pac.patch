@@ -1,0 +1,103 @@
+From ee3d762fefd7c8e8777f850859cdcd0688f7a790 Mon Sep 17 00:00:00 2001
+Message-ID: <ee3d762fefd7c8e8777f850859cdcd0688f7a790.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 22:27:29 +0000
+Subject: [PATCH 29/30] gnu: go-github-com-andybalholm-brotli: Move to (gnu
+ packages-compression).
+
+* gnu/packages/golang.scm (go-github-com-andybalholm-brotli): Move from here ...
+* gnu/packages/golang-compression.scm: ... to here.
+
+Change-Id: I820b0211b1fe4d90643e82fc32a99d8e8b6a9b0f
+---
+ gnu/packages/golang-compression.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm             | 26 --------------------------
+ 2 files changed, 27 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 5aacc34a66..6a556daa25 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -2,6 +2,7 @@
+ ;;; Copyright © 2017 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+ ;;; Copyright © 2021 Efraim Flashner <efraim@flashner.co.il>
++;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -33,6 +34,32 @@ (define-module (gnu packages golang-compression)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-andybalholm-brotli
++  (package
++    (name "go-github-com-andybalholm-brotli")
++    (version "1.0.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/andybalholm/brotli")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1zvmj7gbnkq9xwv1bvcxk9acxl06y902148qwbd2kqwgs52wy2c0"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/andybalholm/brotli"))
++    (home-page "https://github.com/andybalholm/brotli")
++    (synopsis "Pure Go Brotli encoder and decoder")
++    (description
++     "This package is a brotli compressor and decompressor implemented in Go.
++It was translated from the reference implementation
++(@url{https://github.com/google/brotli,https://github.com/google/brotli}) with
++the @code{c2go} tool at
++@url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
++    (license license:expat)))
++
+ (define-public go-github-com-golang-snappy
+   (package
+     (name "go-github-com-golang-snappy")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 24ca39fc58..644121a761 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3722,32 +3722,6 @@ (define-public go-github-com-google-cadvisor
+ containers.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-andybalholm-brotli
+-  (package
+-    (name "go-github-com-andybalholm-brotli")
+-    (version "1.0.4")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/andybalholm/brotli")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32 "1zvmj7gbnkq9xwv1bvcxk9acxl06y902148qwbd2kqwgs52wy2c0"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/andybalholm/brotli"))
+-    (home-page "https://github.com/andybalholm/brotli")
+-    (synopsis "Pure Go Brotli encoder and decoder")
+-    (description
+-     "This package is a brotli compressor and decompressor implemented in Go.
+-It was translated from the reference implementation
+-(@url{https://github.com/google/brotli,https://github.com/google/brotli}) with
+-the @code{c2go} tool at
+-@url{https://github.com/andybalholm/c2go,https://github.com/andybalholm/c2go}.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-jonboulle-clockwork
+   (let ((commit "e3653ace2d63753697e0e5b07b9393971c0bba9d")
+         (revision "0"))
+-- 
+2.41.0
+

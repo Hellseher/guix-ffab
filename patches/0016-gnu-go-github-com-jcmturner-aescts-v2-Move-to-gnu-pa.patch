@@ -1,0 +1,116 @@
+From 1ec5676fb54eccf645f3406f90f2f1974cc10159 Mon Sep 17 00:00:00 2001
+Message-ID: <1ec5676fb54eccf645f3406f90f2f1974cc10159.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 23:27:45 +0000
+Subject: [PATCH 16/38] gnu: go-github-com-jcmturner-aescts-v2: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-jcmturner-aescts-v2): Move from
+here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+* gnu/packages/golang-web.scm: Add (gnu packages golang-crypto) to used
+modules.
+
+Change-Id: Ie8f74e09ae50db4e4b0c9292d049cc46c033d6a6
+---
+ gnu/packages/golang-crypto.scm | 25 ++++++++++++++++++++++++-
+ gnu/packages/golang-web.scm    |  1 +
+ gnu/packages/golang.scm        | 24 ------------------------
+ 3 files changed, 25 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index eac4fc8139..860ee82727 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -2,7 +2,7 @@
+ ;;; Copyright © 2018 Pierre Neidhardt <mail@ambrevar.xyz>
+ ;;; Copyright © 2019, 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+-;;; Copyright © 2022 Nicolas Graves <ngraves@ngraves.fr>
++;;; Copyright © 2022, 2023 Nicolas Graves <ngraves@ngraves.fr>
+ ;;; Copyright © 2023 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+ ;;; Copyright © 2023 Clément Lassieur <clement@lassieur.org>
+ ;;;
+@@ -115,6 +115,29 @@ (define-public go-github-com-gaukas-godicttls
+ for values.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-jcmturner-aescts-v2
++  (package
++    (name "go-github-com-jcmturner-aescts-v2")
++    (version "2.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/jcmturner/aescts")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0yrdiisdhcqfs8jpicc30dfmbqzxhkmbayn902xrgwkndky8w7l1"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/jcmturner/aescts/v2"))
++    (propagated-inputs (list go-github-com-stretchr-testify))
++    (home-page "https://github.com/jcmturner/aescts")
++    (synopsis "Encrypt and decrypt data in Go using AES CipherText Stealing")
++    (description "This package provides AES Cipher Block Chaining CipherText
++Stealing encryption and decryption methods.")
++    (license license:asl2.0)))
++
+ (define-public go-github-com-libp2p-go-libp2p-crypto
+   (let ((commit "7240b40a3ddc47c4d17c15baabcbe45e5219171b")
+         (revision "0"))
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index 07b77ee673..dfa1f862dc 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -47,6 +47,7 @@ (define-module (gnu packages golang-web)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages tls)
+   #:use-module (gnu packages web))
+ 
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index c1727c0e84..c17dc5b16d 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1477,30 +1477,6 @@ (define-public go-github-com-jacobsa-reqtrace
+        "Package reqtrace contains a very simple request tracing framework.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-jcmturner-aescts-v2
+-  (package
+-    (name "go-github-com-jcmturner-aescts-v2")
+-    (version "2.0.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/jcmturner/aescts")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0yrdiisdhcqfs8jpicc30dfmbqzxhkmbayn902xrgwkndky8w7l1"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/jcmturner/aescts/v2"))
+-    (propagated-inputs (list go-github-com-stretchr-testify))
+-    (home-page "https://github.com/jcmturner/aescts")
+-    (synopsis "Encrypt and decrypt data in Go using AES CipherText Stealing")
+-    (description
+-     "This package provides AES Cipher Block Chaining CipherText Stealing
+-encryption and decryption methods.")
+-    (license license:asl2.0)))
+-
+ (define-public go-github-com-jcmturner-gofork
+   (package
+     (name "go-github-com-jcmturner-gofork")
+-- 
+2.41.0
+

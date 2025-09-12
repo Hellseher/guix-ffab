@@ -1,0 +1,54 @@
+From b14b7aff499a59f1932af6d1700fb50651a763b4 Mon Sep 17 00:00:00 2001
+Message-ID: <b14b7aff499a59f1932af6d1700fb50651a763b4.1710694980.git.sharlatanus@gmail.com>
+In-Reply-To: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+References: <b02b0095f046dd634e8188b6ca45e208f5d6a126.1710694980.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 17 Mar 2024 15:37:50 +0000
+Subject: [PATCH v3 2/7] gnu: beancount: Enable sanity check.
+
+Inputs was swapped to propagated-inputs to allow other packages
+depending on `beancount` to pass sanity check.
+
+* gnu/packages/finance.scm (beancount) [arguments] <#:phases>: Remove
+'ignore-googleapis phase. Add 'relax-requirements phase, disabling check
+for "pdfminer2".
+[propagated-inputs]: Add python-google-api-client and
+python-google-auth-oauthlib.
+
+Change-Id: I15af4cd9cdbf5d522b9c5570e3ba60ad4d29e231
+---
+ gnu/packages/finance.scm | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/finance.scm b/gnu/packages/finance.scm
+index 01412b2f0a..b9be19df74 100644
+--- a/gnu/packages/finance.scm
++++ b/gnu/packages/finance.scm
+@@ -1980,18 +1980,18 @@ (define-public beancount
+       #:tests? #f  ; Says test is missing, not sure why
+       #:phases
+       #~(modify-phases %standard-phases
+-          ;; Not importing the googleapis package for now
+-          (add-after 'unpack 'ignore-googleapis
++          (add-after 'unpack 'relax-requirements
+             (lambda _
+               (substitute* "setup.py"
+-                (("'google-api-python-client',") ""))))
+-          ;; No module named 'google_auth_oauthlib'
+-          (delete 'sanity-check))))
+-    (inputs
++                ;; Use compatible fork, and do not fail during sanity check.
++                (("\"pdfminer2\",") "")))))))
++    (propagated-inputs
+      (list python-beautifulsoup4
+            python-bottle
+            python-chardet
+            python-dateutil
++           python-google-api-client
++           python-google-auth-oauthlib
+            python-lxml
+            python-magic
+            python-ply
+-- 
+2.41.0
+

@@ -1,0 +1,97 @@
+From fc8db1c05b0ab7cc8b5df90bcd2a37a360df0edc Mon Sep 17 00:00:00 2001
+Message-ID: <fc8db1c05b0ab7cc8b5df90bcd2a37a360df0edc.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 18:51:20 +0000
+Subject: [PATCH v2 05/30] gnu: go-github-com-mreiferson-go-options: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-mreiferson-go-options): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: Ia5cf19a48812b56b0b38ed80246a65c345454c79
+---
+ gnu/packages/golang-xyz.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 23 -----------------------
+ 2 files changed, 24 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 33aa43357f..ebcf333b13 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1,5 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2023 Benjamin <benjamin@uvy.fr>
++;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2023 Thomas Ieong <th.ieong@free.fr>
+ ;;; Copyright © 2024 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+ ;;;
+@@ -146,6 +147,29 @@ (define-public go-github-com-matryer-try
+     (description "This package provides an idiomatic Go retry module.")
+     (license license:expat)))
+ 
++(define-public go-github-com-mreiferson-go-options
++  (package
++    (name "go-github-com-mreiferson-go-options")
++    (version "1.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/mreiferson/go-options")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1pxs9ybrh196qy14ijn4zn51h2z28lj31y6vxrz2xxhgvpmfmxyl"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/mreiferson/go-options"))
++    (home-page "https://github.com/mreiferson/go-options")
++    (synopsis "Go package to structure and resolve options")
++    (description
++     "The @code{options} Go package resolves configuration values set via
++command line flags, config files, and default struct values.")
++    (license license:expat)))
++
+ (define-public go-github-com-nats-io-nats-go
+   (package
+     (name "go-github-com-nats-io-nats-go")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 43e9024167..73e7077eac 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5515,29 +5515,6 @@ (define-public go-github-com-mr-tron-base58
+ encoding and 8 times faster decoding.")
+       (license license:expat))))
+ 
+-(define-public go-github-com-mreiferson-go-options
+-  (package
+-    (name "go-github-com-mreiferson-go-options")
+-    (version "1.0.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/mreiferson/go-options")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1pxs9ybrh196qy14ijn4zn51h2z28lj31y6vxrz2xxhgvpmfmxyl"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/mreiferson/go-options"))
+-    (home-page "https://github.com/mreiferson/go-options")
+-    (synopsis "Go package to structure and resolve options")
+-    (description
+-     "The @code{options} Go package resolves configuration values set via
+-command line flags, config files, and default struct values.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-mreiferson-go-svc
+   ;; NSQ specific fork of github.com/judwhite/go-svc, as Guix go build system
+   ;; does not support go.mod with `replace' statement.
+-- 
+2.41.0
+

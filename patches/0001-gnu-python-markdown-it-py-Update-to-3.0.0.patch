@@ -1,0 +1,59 @@
+From 9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484 Mon Sep 17 00:00:00 2001
+Message-ID: <9c3d89f5eb0359dc6493dfc0d24667d2a5c6b484.1707833700.git.sharlatanus@gmail.com>
+From: Felix Gruber <felgru@posteo.net>
+Date: Mon, 12 Feb 2024 18:04:08 +0000
+Subject: [PATCH v4 1/8] gnu: python-markdown-it-py: Update to 3.0.0.
+
+* gnu/packages/python-xyz.scm (python-markdown-it-py): Update to 3.0.0.
+[propagated-inputs]: Remove python-typing-extensions; add python-commonmark,
+python-linkify-it-py, python-markdown, python-mistletoe,
+python-mistune, python-panflute, python-psutil, and python-pyyaml.
+[native-inputs]: Remove python-flit; add python-flit-core.
+
+Change-Id: I5dc06b163ddbec0a32a9d7c3da2c834b2e74cd74
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/python-xyz.scm | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index a645c45a4c..6a28836acf 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -5881,19 +5881,26 @@ (define-public python-makefun
+ (define-public python-markdown-it-py
+   (package
+     (name "python-markdown-it-py")
+-    (version "2.1.0")
++    (version "3.0.0")
+     (source (origin
+               (method url-fetch)
+               (uri (pypi-uri "markdown-it-py" version))
+               (sha256
+                (base32
+-                "1nh75i72584r70alhqc479gys04s5m5g3vq601yf2njbs7z5jzng"))))
++                "1swgvyiavak0nmfb31lq5zck5chwhmyf6qb6qwpcav86zaa0mxp3"))))
+     (build-system pyproject-build-system)
+     (arguments (list #:tests? #f))      ;pypi source does not contains tests
+-    (native-inputs (list python-flit))
++    (native-inputs (list python-flit-core))
+     (propagated-inputs
+-     (list python-mdurl
+-           python-typing-extensions))
++     (list python-commonmark
++           python-linkify-it-py
++           python-markdown
++           python-mdurl
++           python-mistletoe
++           python-mistune
++           python-panflute
++           python-psutil
++           python-pyyaml))
+     (home-page "https://github.com/executablebooks/markdown-it-py")
+     (synopsis "Python port of markdown-it")
+     (description
+
+base-commit: e9a6c7094822bc859d0694eeaf8f434317219367
+-- 
+2.41.0
+

@@ -1,0 +1,61 @@
+From 9894a20af993d2e79aabba9e05bc0d47d333c3c4 Mon Sep 17 00:00:00 2001
+Message-ID: <9894a20af993d2e79aabba9e05bc0d47d333c3c4.1706005796.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 21 Jan 2024 22:40:09 +0000
+Subject: [PATCH v2 1/2] gnu: Add python-cppheaderparser.
+
+* gnu/packages/python-xyz.scm (python-cppheaderparser): New variable.
+
+Change-Id: I3c57c31a0b63212e43e1ab387b5d329c04ed0e31
+---
+ gnu/packages/python-xyz.scm | 25 ++++++++++++++++++++++++-
+ 1 file changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index b23108fbf4..93e7571f78 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -94,7 +94,7 @@
+ ;;; Copyright © 2020, 2021 Zheng Junjie <873216071@qq.com>
+ ;;; Copyright © 2020 EuAndreh <eu@euandre.org>
+ ;;; Copyright © 2021, 2022 Morgan Smith <Morgan.J.Smith@outlook.com>
+-;;; Copyright © 2021-2023 Sharlatan Hellseher <sharlatanus@gmail.com>
++;;; Copyright © 2021-2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;; Copyright © 2021 Ellis Kenyő <me@elken.dev>
+ ;;; Copyright © 2021 LibreMiami <packaging-guix@libremiami.org>
+ ;;; Copyright © 2021 Xinglu Chen <public@yoctocell.xyz>
+@@ -8810,6 +8810,29 @@ (define-public python-cplot
+ complex-valued functions.")
+     (license license:gpl3+)))
+ 
++(define-public python-cppheaderparser
++  (package
++    (name "python-cppheaderparser")
++    (version "2.7.4")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "CppHeaderParser" version))
++       (sha256
++        (base32 "0hncwd9y5ayk8wa6bqhp551mcamcvh84h89ba3labc4mdm0k0arq"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:tests? #f))     ;test suite not included in the release
++    (propagated-inputs (list python-ply))
++    (home-page "http://senexcanis.com/open-source/cppheaderparser/")
++    (synopsis
++     "Parse C++ header files and generate a data structure representing the class")
++    (description
++     "CppHeaderParser is a pure python module that will parse C++ header files
++and generate a data structure representing the class﻿.")
++    (license license:bsd-3)))
++
+ (define-public python-cppy
+   (package
+     (name "python-cppy")
+
+base-commit: ffc5fefce370f5fc01091869e13fdf525be1e0c0
+-- 
+2.41.0
+

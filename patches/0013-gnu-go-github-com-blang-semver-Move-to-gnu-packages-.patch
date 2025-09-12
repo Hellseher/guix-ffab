@@ -1,0 +1,129 @@
+From 2d5800e356c7c2b3abed8c001a5d0fdd4163460a Mon Sep 17 00:00:00 2001
+Message-ID: <2d5800e356c7c2b3abed8c001a5d0fdd4163460a.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:49:43 +0000
+Subject: [PATCH 13/30] gnu: go-github-com-blang-semver: Move to (gnu packages
+ golang-xyz).
+
+* gnu/packages/golang.scm (go-github-com-blang-semver): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+* gnu/packages/education.scm: Add (gnu packages golang-xyz) module.
+* gnu/packages/ipfs.scm: As above.
+
+Change-Id: I620543088661512bcc8135922a454c5f2dc73119
+---
+ gnu/packages/education.scm  |  1 +
+ gnu/packages/golang-xyz.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 24 ------------------------
+ gnu/packages/ipfs.scm       |  1 +
+ 4 files changed, 27 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/education.scm b/gnu/packages/education.scm
+index 0f4a251bcc..c3009537e9 100644
+--- a/gnu/packages/education.scm
++++ b/gnu/packages/education.scm
+@@ -49,6 +49,7 @@ (define-module (gnu packages education)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages gstreamer)
+   #:use-module (gnu packages image)
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 741023c098..292ff10a47 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1,6 +1,7 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2019 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2020 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2023 Benjamin <benjamin@uvy.fr>
+ ;;; Copyright © 2023 Katherine Cox-Buday <cox.katherine.e@gmail.com>
+ ;;; Copyright © 2023 Sharlatan Hellseher <sharlatanus@gmail.com>
+@@ -44,6 +45,30 @@ (define-module (gnu packages golang-xyz)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-blang-semver
++  (let ((commit "60ec3488bfea7cca02b021d106d9911120d25fe9")
++        (revision "0"))
++    (package
++      (name "go-github-com-blang-semver")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/blang/semver")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "19pli07y5592g4dyjyj0jq5rn548vc3fz0qg3624vm1j5828p1c2"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path "github.com/blang/semver"))
++      (home-page "https://github.com/blang/semver")
++      (synopsis "Semantic versioning library written in Go")
++      (description
++       "Semver is a library for Semantic versioning written in Go.")
++      (license license:expat))))
++
+ (define-public go-github-com-bmizerany-perks-quantile
+   (package
+     (name "go-github-com-bmizerany-perks-quantile")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 60781f0172..41adf51bfb 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -4020,30 +4020,6 @@ (define-public go-github-com-tomnomnom-gron
+ absolute \"path\" to it.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-blang-semver
+-  (let ((commit "60ec3488bfea7cca02b021d106d9911120d25fe9")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-blang-semver")
+-      (version (git-version "0.0.0" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/blang/semver")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32
+-           "19pli07y5592g4dyjyj0jq5rn548vc3fz0qg3624vm1j5828p1c2"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/blang/semver"))
+-      (home-page "https://github.com/blang/semver")
+-      (synopsis "Semantic versioning library written in Go")
+-      (description "Semver is a library for Semantic versioning written in Go.")
+-      (license license:expat))))
+-
+ (define-public go-github-com-google-cadvisor
+   (let ((commit "2ed7198f77395ee9a172878a0a7ab92ab59a2cfd")
+         (revision "0"))
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index f09d0190dd..830e2ccd32 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -34,6 +34,7 @@ (define-module (gnu packages ipfs)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages python)
+   #:use-module (gnu packages shells)
+   #:use-module (gnu packages syncthing))
+-- 
+2.41.0
+

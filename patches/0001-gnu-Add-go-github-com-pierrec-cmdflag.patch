@@ -1,0 +1,54 @@
+From b46619323cf3f14900fec804b2df0f20e2cab4d7 Mon Sep 17 00:00:00 2001
+Message-ID: <b46619323cf3f14900fec804b2df0f20e2cab4d7.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 11:15:28 +0100
+Subject: [PATCH 01/12] gnu: Add go-github-com-pierrec-cmdflag.
+
+* gnu/packages/golang-xyz.scm (go-github-com-pierrec-cmdflag): New
+variable.
+
+Change-Id: If57b49b0497b622200dc82bbb921461c739ead29
+---
+ gnu/packages/golang-xyz.scm | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index e1ac32273c..7fe750f59e 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1897,6 +1897,30 @@ (define-public go-github-com-orisano-pixelmatch
+ included in this package.")
+     (license license:expat)))
+ 
++(define-public go-github-com-pierrec-cmdflag
++  (package
++    (name "go-github-com-pierrec-cmdflag")
++    (version "0.0.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/pierrec/cmdflag")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0nxmqkjwd7i3blmspvxib352vm6167h2ffqy4m9zc3fb9srvrpqc"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/pierrec/cmdflag"))
++    (home-page "https://github.com/pierrec/cmdflag")
++    (synopsis "Augment the flag package with commands")
++    (description
++     "Package @code{cmdflag} provides simple command line commands processing
++on top of the standard library @code{flag} package.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-prometheus-client-model
+   (let ((commit "14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016")
+         (revision "2"))
+-- 
+2.41.0
+

@@ -1,0 +1,56 @@
+From c4069e80755c59a57a47c6069d0f15d176cb4644 Mon Sep 17 00:00:00 2001
+Message-ID: <c4069e80755c59a57a47c6069d0f15d176cb4644.1726516329.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726516329.git.sharlatanus@gmail.com>
+References: <cover.1726516329.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 16 Sep 2024 20:47:38 +0100
+Subject: [PATCH v2 2/3] gnu: go-github-com-prometheus-statsd-exporter: Remove
+ redundant phase.
+
+* gnu/packages/prometheus.scm (go-github-com-prometheus-statsd-exporter)
+[arguments]: <#:phases>: Remove 'fix-embed-files and relay on standard
+one.
+
+Change-Id: I1bc965c65bcd40fcaef7d0ace9943a01ef08bdd3
+---
+ gnu/packages/prometheus.scm | 24 +-----------------------
+ 1 file changed, 1 insertion(+), 23 deletions(-)
+
+diff --git a/gnu/packages/prometheus.scm b/gnu/packages/prometheus.scm
+index fe2fa18e95..a81932f62b 100644
+--- a/gnu/packages/prometheus.scm
++++ b/gnu/packages/prometheus.scm
+@@ -572,29 +572,7 @@ (define-public go-github-com-prometheus-statsd-exporter
+     (arguments
+      (list
+       #:import-path "github.com/prometheus/statsd_exporter"
+-      #:phases
+-      #~(modify-phases %standard-phases
+-          ;; TODO: Implement it in go-build-system.
+-          ;;
+-          ;; This happens due to Golang can't determine the valid directory of
+-          ;; the module of embed file which is symlinked during setup
+-          ;; environment phase, but easy resolved after coping file from the
+-          ;; store to the build directory of the current package, see details
+-          ;; in Golang source:
+-          ;;
+-          ;; - URL: <https://github.com/golang/go/blob/>
+-          ;; - commit: 82c14346d89ec0eeca114f9ca0e88516b2cda454
+-          ;; - file: src/cmd/go/internal/load/pkg.go#L2059
+-          (add-before 'build 'fix-embed-files
+-            (lambda _
+-              (for-each (lambda (file)
+-                          (let ((file-store-path (readlink file)))
+-                            (delete-file file)
+-                            (copy-recursively file-store-path file)))
+-                        (find-files "src" (string-append
+-                                           ".*(editions_defaults.binpb"
+-                                           "|landing_page.css"
+-                                           "|landing_page.html)$"))))))))
++      #:embed-files #~(list "landing_page.css" "landing_page.html")))
+     (native-inputs
+      (list go-github-com-stvp-go-udp-testing))
+     (propagated-inputs
+-- 
+2.46.0
+

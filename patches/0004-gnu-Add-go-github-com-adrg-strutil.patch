@@ -1,0 +1,55 @@
+From c8705f6053480d5df4c35822a6d1657cc5f77858 Mon Sep 17 00:00:00 2001
+Message-ID: <c8705f6053480d5df4c35822a6d1657cc5f77858.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 Apr 2024 20:40:32 +0100
+Subject: [PATCH 04/26] gnu: Add go-github-com-adrg-strutil.
+
+* gnu/packages/golang-xyz.scm (go-github-com-adrg-strutil): New variable.
+
+Change-Id: I86addc399471f4766a3beb7725832b6b13435fce
+---
+ gnu/packages/golang-xyz.scm | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index dafa4b2904..ae3eda6936 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -290,6 +290,32 @@ (define-public go-github-com-a8m-envsubst
+ substitution.")
+     (license license:expat)))
+ 
++(define-public go-github-com-adrg-strutil
++  (package
++    (name "go-github-com-adrg-strutil")
++    (version "0.3.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/adrg/strutil")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0xkjzjllv8b2m3lgn66cb09b0f5xqy2bk8ny3lkn4z0ywlchawj9"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/adrg/strutil"))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
++    (home-page "https://github.com/adrg/strutil")
++    (synopsis "Golang string utility functions")
++    (description
++     "Package strutil provides string metrics for calculating string
++similarity as well as other string utility functions.")
++    (license license:expat)))
++
+ (define-public go-github-com-alecthomas-chroma
+   (package
+     (name "go-github-com-alecthomas-chroma")
+-- 
+2.41.0
+

@@ -1,0 +1,50 @@
+From e5fe2c958f1bdadddd3458949c3a973bf064a9ae Mon Sep 17 00:00:00 2001
+Message-ID: <e5fe2c958f1bdadddd3458949c3a973bf064a9ae.1726516329.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1726516329.git.sharlatanus@gmail.com>
+References: <cover.1726516329.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 16 Sep 2024 20:48:52 +0100
+Subject: [PATCH v2 3/3] gnu: go-github-com-golang-protobuf: Remove redundant
+ phase.
+
+* gnu/packages/packages/golang-build.scm (go-github-com-golang-protobuf)
+[arguments]: <#:phases>: Remove 'fix-embed-files and relay on standard
+one.
+
+Change-Id: Ife4d86e8072588d562364534a66d41ff01851361
+---
+ gnu/packages/golang-build.scm | 18 ------------------
+ 1 file changed, 18 deletions(-)
+
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index 8fdd652b63..7049acf8c2 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -103,24 +103,6 @@ (define-public go-github-com-golang-protobuf
+       #:import-path "github.com/golang/protobuf"
+       #:phases
+       #~(modify-phases %standard-phases
+-          ;; TODO: Implement it in go-build-system.
+-          ;;
+-          ;; This happens due to Golang can't determine the valid directory of
+-          ;; the module of embed file which is symlinked during setup
+-          ;; environment phase, but easy resolved after coping file from the
+-          ;; store to the build directory of the current package, see details
+-          ;; in Golang source:
+-          ;;
+-          ;; - URL: <https://github.com/golang/go/blob/>
+-          ;; - commit: 82c14346d89ec0eeca114f9ca0e88516b2cda454
+-          ;; - file: src/cmd/go/internal/load/pkg.go#L2059
+-          (add-after 'unpack 'fix-embed-files
+-            (lambda _
+-              (for-each (lambda (file)
+-                          (let ((file-store-path (readlink file)))
+-                            (delete-file file)
+-                            (copy-recursively file-store-path file)))
+-                        (find-files "src" ".*(editions_defaults.binpb)$"))))
+           ;; XXX: Workaround for go-build-system's lack of Go modules
+           ;; support.
+           (delete 'build)
+-- 
+2.46.0
+

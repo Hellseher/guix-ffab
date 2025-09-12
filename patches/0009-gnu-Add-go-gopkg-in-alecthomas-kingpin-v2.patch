@@ -1,0 +1,36 @@
+From 73b5585fd6d6a7c2d3ce62d060ede2ee1fd96a92 Mon Sep 17 00:00:00 2001
+Message-ID: <73b5585fd6d6a7c2d3ce62d060ede2ee1fd96a92.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 22:15:11 +0000
+Subject: [PATCH 09/12] gnu: Add go-gopkg-in-alecthomas-kingpin-v2.
+
+* gnu/packages/golang-xyz.scm (go-gopkg-in-alecthomas-kingpin-v2): New variable.
+
+Change-Id: I35a0919b30a191000e922882619e778187b5a0da
+---
+ gnu/packages/golang-xyz.scm | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index f79fdda696..3e20061223 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -2138,6 +2138,13 @@ (define-public go-go-uber-org-zap
+ Go.")
+     (license license:expat)))
+ 
++(define-public go-gopkg-in-alecthomas-kingpin-v2
++  (package
++    (inherit go-github-com-alecthomas-kingpin)
++    (arguments
++     (list
++      #:import-path "gopkg.in/alecthomas/kingpin.v2"))))
++
+ (define-public go-gopkg-in-op-go-logging-v1
+   (package
+     (inherit go-github-com-op-go-logging)
+-- 
+2.41.0
+

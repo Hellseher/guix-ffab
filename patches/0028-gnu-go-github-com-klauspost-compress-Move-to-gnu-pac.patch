@@ -1,0 +1,153 @@
+From e2fe342565663d5aee18181c207b9ad8d622da23 Mon Sep 17 00:00:00 2001
+Message-ID: <e2fe342565663d5aee18181c207b9ad8d622da23.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 22:06:15 +0000
+Subject: [PATCH 28/30] gnu: go-github-com-klauspost-compress: Move to (gnu
+ packages-compression).
+
+* gnu/packages/golang.scm (go-github-com-klauspost-compress): Move from here ...
+* gnu/packages/golang-compression.scm: ... to here.
+
+* gnu/packages/golang-compression.scm: Add (gnu packages
+golang-compression) module.
+* gnu/packages/golang-crypto.scm: As above.
+* gnu/packages/golang-web.scm: As above.
+* gnu/packages/uucp.scm: As above.
+
+Change-Id: Ia99f1e6aae7f75940fc150eb02862c0b3e9f3325
+---
+ gnu/packages/golang-compression.scm | 31 ++++++++++++++++++++++++++++
+ gnu/packages/golang-crypto.scm      |  3 ++-
+ gnu/packages/golang-web.scm         |  1 +
+ gnu/packages/golang.scm             | 32 -----------------------------
+ gnu/packages/uucp.scm               |  1 +
+ 5 files changed, 35 insertions(+), 33 deletions(-)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 670572ea90..5aacc34a66 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -56,6 +56,37 @@ (define-public go-github-com-golang-snappy
+ compression format.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-klauspost-compress
++  (package
++    (name "go-github-com-klauspost-compress")
++    (version "1.13.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/klauspost/compress")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0ydnf9rizlhm8rilh14674qqx272sbwbkjx06xn9pqvy6mmn2r3r"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/klauspost/compress"
++       #:phases
++       (modify-phases %standard-phases
++         (add-before 'reset-gzip-timestamps 'fix-permissions
++           (lambda* (#:key outputs #:allow-other-keys)
++             ;; Provide write permissions on gzip files so that
++             ;; reset-gzip-timestamps has sufficient permissions.
++             (for-each make-file-writable
++                       (find-files (assoc-ref outputs "out") ".gz$")))))))
++    (propagated-inputs
++     (list go-github-com-golang-snappy))
++    (home-page "https://github.com/klauspost/compress")
++    (synopsis "Go compression library")
++    (description "@code{compress} provides various compression algorithms.")
++    (license license:bsd-3)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 39e7412558..58fd9cb250 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -45,7 +45,8 @@ (define-module (gnu packages golang-crypto)
+   #:use-module (gnu packages)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+-  #:use-module (gnu packages golang-check))
++  #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression))
+ 
+ ;;; Commentary:
+ ;;;
+diff --git a/gnu/packages/golang-web.scm b/gnu/packages/golang-web.scm
+index d7fb7dd366..28a9fad113 100644
+--- a/gnu/packages/golang-web.scm
++++ b/gnu/packages/golang-web.scm
+@@ -50,6 +50,7 @@ (define-module (gnu packages golang-web)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages tls)
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index e473c0880b..24ca39fc58 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9477,38 +9477,6 @@ (define-public go-github-com-dustin-go-humanize
+ back.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-klauspost-compress
+-  (package
+-    (name "go-github-com-klauspost-compress")
+-    (version "1.13.1")
+-    (source
+-      (origin
+-        (method git-fetch)
+-        (uri (git-reference
+-               (url "https://github.com/klauspost/compress")
+-               (commit (string-append "v" version))))
+-        (file-name (git-file-name name version))
+-        (sha256
+-          (base32
+-            "0ydnf9rizlhm8rilh14674qqx272sbwbkjx06xn9pqvy6mmn2r3r"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/klauspost/compress"
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-before 'reset-gzip-timestamps 'fix-permissions
+-           (lambda* (#:key outputs #:allow-other-keys)
+-             ;; Provide write permissions on gzip files so that
+-             ;; reset-gzip-timestamps has sufficient permissions.
+-             (for-each make-file-writable
+-                       (find-files (assoc-ref outputs "out") ".gz$")))))))
+-    (propagated-inputs
+-     (list go-github-com-golang-snappy))
+-    (home-page "https://github.com/klauspost/compress")
+-    (synopsis "Go compression library")
+-    (description "@code{compress} provides various compression algorithms.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-oneofone-xxhash
+   (package
+     (name "go-github-com-oneofone-xxhash")
+diff --git a/gnu/packages/uucp.scm b/gnu/packages/uucp.scm
+index 8f1759556e..8e47834fef 100644
+--- a/gnu/packages/uucp.scm
++++ b/gnu/packages/uucp.scm
+@@ -20,6 +20,7 @@
+ (define-module (gnu packages uucp)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages texinfo)
+-- 
+2.41.0
+

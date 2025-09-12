@@ -1,0 +1,38 @@
+From e9ecccf8273f3e53b82553fa6e5f3e4bd9b0a92f Mon Sep 17 00:00:00 2001
+Message-ID: <e9ecccf8273f3e53b82553fa6e5f3e4bd9b0a92f.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 22:21:35 +0000
+Subject: [PATCH 10/12] gnu: go-github-com-alecthomas-kingpin: Adjust inputs.
+
+gnu/packages/golang-xyz.scm (go-github-com-alecthomas-kingpin)
+[native-inputs]: Move go-github-com-alecthomas-units and
+go-github-com-alecthomas-template from here ...
+[propagated-inputs]: ... to here.
+
+Change-Id: I841ea8cf29ef49008d7a725c9db96b963f263f7f
+---
+ gnu/packages/golang-xyz.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 3e20061223..9a586fcf37 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -160,9 +160,10 @@ (define-public go-github-com-alecthomas-kingpin
+      (list
+       #:import-path "github.com/alecthomas/kingpin"))
+     (native-inputs
++     (list go-github-com-stretchr-testify))
++    (propagated-inputs
+      (list go-github-com-alecthomas-template
+-           go-github-com-alecthomas-units
+-           go-github-com-stretchr-testify))
++           go-github-com-alecthomas-units))
+     (home-page "https://github.com/alecthomas/kingpin")
+     (synopsis "Go library provides utilities for building command line interfaces")
+     (description
+-- 
+2.41.0
+

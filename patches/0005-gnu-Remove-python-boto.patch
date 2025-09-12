@@ -1,0 +1,56 @@
+From 2d224fb43666ceb9efc58c15c8f489ebc0a447d6 Mon Sep 17 00:00:00 2001
+Message-ID: <2d224fb43666ceb9efc58c15c8f489ebc0a447d6.1731584860.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 4 Nov 2024 21:55:39 +0000
+Subject: [PATCH v2 05/14] gnu: Remove python-boto.
+
+* gnu/packages/python-xyz.scm (python-boto): Delete variable.
+
+Change-Id: I4ff3f200734bce027334383d1f56c28134808a9d
+---
+ gnu/packages/python-xyz.scm | 27 ---------------------------
+ 1 file changed, 27 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 9ddc4ea6c2..ebf7e89225 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -19332,33 +19332,6 @@ (define-public python-bokeh
+ browser from Python.")
+     (license license:bsd-3)))
+ 
+-(define-public python-boto
+-  (package
+-    (name "python-boto")
+-    (version "2.49.0")
+-    (source (origin
+-              (method url-fetch)
+-              (uri (pypi-uri "boto" version))
+-              (sha256
+-               (base32
+-                "0njy09c4wjx7ipxhwi6vv404nflyiasl78vwwxxpclnql903n3ga"))))
+-    (build-system python-build-system)
+-    (arguments
+-     ;; XXX: This package is unmaintained and has problems with newer versions
+-     ;; of Python 3 as well as test libraries.  'python-moto' still uses a
+-     ;; subset of this library, so keep it around for now, but disable tests.
+-     '(#:tests? #f))
+-    (propagated-inputs
+-     (list python-paramiko python-requests))
+-    (home-page "https://github.com/boto/boto")
+-    (synopsis "Python interfaces for Amazon Web Services")
+-    (description
+-     "This package provides various facilities for interacting with Amazon
+-Web Services through Python.
+-
+-This software is unmaintained, and new projects should use @code{boto3} instead.")
+-    (license license:expat)))
+-
+ (define-public python-botocore
+   ;; Note: When updating botocore, also make sure that boto3 and awscli
+   ;; are compatible.
+-- 
+2.46.0
+

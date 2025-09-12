@@ -1,0 +1,60 @@
+From 5d047928a4b8e40e2a397096d3f6654084df7dfb Mon Sep 17 00:00:00 2001
+Message-ID: <5d047928a4b8e40e2a397096d3f6654084df7dfb.1732837202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732837202.git.sharlatanus@gmail.com>
+References: <cover.1732837202.git.sharlatanus@gmail.com>
+From: "Artyom V. Poptsov" <poptsov.artyom@gmail.com>
+Date: Sun, 24 Nov 2024 13:27:27 +0300
+Subject: [PATCH 06/15] gnu: Add go-github-com-charmbracelet-x-ansi.
+
+* gnu/packages/golang-xyz.scm (go-github-com-charmbracelet-x-ansi): New variable.
+
+Change-Id: I1451ae9953bc87475413b83bb636a2df14ddc70c
+Reviewed-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang-xyz.scm | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 2ff995bb14..d3b478dab0 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1559,6 +1559,36 @@ (define-public go-github-com-cheggaaa-pb-v3
+      (modify-inputs (package-propagated-inputs go-github-com-cheggaaa-pb)
+        (append go-github-com-vividcortex-ewma)))))
+ 
++(define-public go-github-com-charmbracelet-x-ansi
++  (package
++    (name "go-github-com-charmbracelet-x-ansi")
++    (version "0.5.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/charmbracelet/x")
++             (commit (go-version->git-ref version
++                                          #:subdir "ansi"))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "016s67690dr3w3an6m24q6f4vrmwpk0qd4akvvh1dzpfyf4khxd4"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/charmbracelet/x/ansi"
++      #:unpack-path "github.com/charmbracelet/x"))
++    (propagated-inputs
++     (list go-github-com-lucasb-eyer-go-colorful
++           go-github-com-rivo-uniseg))
++    (home-page "https://github.com/charmbracelet/x")
++    (synopsis "ANSI escape sequence parser and definitions")
++    (description
++     "@code{ansi} defines common ANSI escape sequences based on the
++@url{https://ecma-international.org/publications-and-standards/standards/ecma-48/,
++ECMA-48} specs.")
++    (license license:expat)))
++
+ (define-public go-github-com-chzyer-logex
+   (package
+     (name "go-github-com-chzyer-logex")
+-- 
+2.46.0
+

@@ -1,0 +1,59 @@
+From c94c96f82d3bef27ef28c5e5bfa8fcb29b7f190d Mon Sep 17 00:00:00 2001
+Message-ID: <c94c96f82d3bef27ef28c5e5bfa8fcb29b7f190d.1735936141.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1735936141.git.sharlatanus@gmail.com>
+References: <cover.1735936141.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 Jan 2025 17:19:56 +0000
+Subject: [PATCH 2/6] gnu: xsimd: Update to 11.0.0.
+
+* gnu/packages/cpp.scm (xsimd): Update to 11.0.0.
+[native-inputs]: Add doctest.
+
+Change-Id: I8c49ff34288cdf5429034668ddd496c345ddfb34
+---
+ gnu/packages/cpp.scm | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/cpp.scm b/gnu/packages/cpp.scm
+index 5bd56e704f..151b01f7e5 100644
+--- a/gnu/packages/cpp.scm
++++ b/gnu/packages/cpp.scm
+@@ -42,6 +42,7 @@
+ ;;; Copyright © 2024 dan <i@dan.games>
+ ;;; Copyright © 2024 Peepo Froggings <peepofroggings@tutanota.de>
+ ;;; Copyright © 2024 Jakob Kirsch <jakob.kirsch@web.de>
++;;; Copyright © 2025 Sharlatan Hellseher <sharlatanus@gmail.com>
+ 
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -606,7 +607,7 @@ (define-public debug-assert
+ (define-public xsimd
+   (package
+     (name "xsimd")
+-    (version "9.0.1")
++    (version "11.0.0")
+     (source
+      (origin
+        (method git-fetch)
+@@ -614,7 +615,7 @@ (define-public xsimd
+              (url "https://github.com/xtensor-stack/xsimd")
+              (commit version)))
+        (sha256
+-        (base32 "1fcy0djwpwvls6yqxqa82s4l4gvwkqkr8i8bibbb3dm0lqvhnw52"))
++        (base32 "148wylv88vp31rz7l357ch7k0l50apfk4x31qdqk9y4d2hj6ld3f"))
+        (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+     (arguments
+@@ -622,7 +623,8 @@ (define-public xsimd
+       #:configure-flags #~(list "-DBUILD_TESTS=ON")
+       #:test-target "xtest"))
+     (native-inputs
+-     (list googletest))
++     (list doctest
++           googletest))
+     (home-page "https://github.com/xtensor-stack/xsimd")
+     (synopsis "C++ wrappers for SIMD intrinsics and math implementations")
+     (description
+-- 
+2.46.0
+

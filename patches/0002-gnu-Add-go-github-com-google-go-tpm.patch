@@ -1,0 +1,72 @@
+From b7344da1d328e2e2934fd19e305a2638da8664a0 Mon Sep 17 00:00:00 2001
+Message-ID: <b7344da1d328e2e2934fd19e305a2638da8664a0.1720090727.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1720090727.git.sharlatanus@gmail.com>
+References: <cover.1720090727.git.sharlatanus@gmail.com>
+From: Rodion Goritskov <rodion.goritskov@gmail.com>
+Date: Wed, 1 May 2024 00:42:42 +0400
+Subject: [PATCH v2 2/9] gnu: Add go-github-com-google-go-tpm.
+
+* gnu/packages/golang-crypto.scm (go-github-com-google-go-tpm-legacy-tpm2): New variable.
+* gnu/packages/golang-crypto.scm (go-github-com-google-go-tpm-tpmutil): New variable.
+
+Change-Id: Ib7b640dcb4ea6b87fca1d320f044315620f7e5f3
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang-crypto.scm | 41 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index ddeb79badf..5dbc9a6ae4 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -578,6 +578,47 @@ (define-public go-github-com-golang-jwt-jwt-v5
+       #:go go-1.18
+       #:import-path "github.com/golang-jwt/jwt/v5"))))
+ 
++(define-public go-github-com-google-go-tpm
++  (package
++    (name "go-github-com-google-go-tpm")
++    (version "0.9.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/google/go-tpm")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1c5j5cvwl45ka93nknmv454ivd7kp9n8yql19gr6z01z0s1ph7sg"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:go go-1.22
++      #:import-path "github.com/google/go-tpm"
++      #:phases
++      #~(modify-phases %standard-phases
++          ;; XXX: Break cycle:
++          ;; github.com/google/go-tpm/tpm2/transport/simulator/simulator.go ->
++          ;; github.com/google/go-tpm-tools -> github.com/google/go-tpm.
++          ;; Consider to add required inputs on dependent package.
++          (delete 'build)
++          (delete 'check))))
++    (home-page "https://github.com/google/go-tpm")
++    (synopsis "Go-TPM Legacy TPM 2.0 library")
++    (description
++     "Go-TPM is a Go library that communicates directly with a
++@acronym{Trusted Platform Module, TPM} device.  The libraries don't implement
++the entire spec for neither 1.2 nor 2.0.  This package provides following
++submodules:
++@itemize
++@item @code{tpm} - TPM 1.2 client library
++@item @code{tpm2} - TPM 2.0 client library.
++@item @code{direct} - the prototype \"TPMDirect\" TPM 2.0 API, which is
++intended to (eventually) be 1:1 with the TPM 2.0 spec
++@end itemize")
++    (license license:asl2.0)))
++
+ ;; It's not public for purpose, as it contains a lot of golang modules which
+ ;; may be inherited from the single source, but the package itself does not
+ ;; have to be installed directly or linked to other packages..
+-- 
+2.41.0
+

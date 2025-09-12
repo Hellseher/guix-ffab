@@ -1,0 +1,57 @@
+From 5337a784d1ae48db97e7acd3aad8bf6437de77d8 Mon Sep 17 00:00:00 2001
+Message-ID: <5337a784d1ae48db97e7acd3aad8bf6437de77d8.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 29 Feb 2024 08:15:46 +0000
+Subject: [PATCH 5/7] gnu: go-github-com-beorn7-perks-quantile: Update to
+ 1.0.1.
+
+* gnu/packages/syncthing.scm (go-github-com-beorn7-perks-quantile):
+Update to 1.0.1.
+
+Change-Id: Ie8c864dbc15b3aef3e4575337b940b625d6f9bbf
+---
+ gnu/packages/syncthing.scm | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/gnu/packages/syncthing.scm b/gnu/packages/syncthing.scm
+index d09b03bcdb..4d1e1c9ada 100644
+--- a/gnu/packages/syncthing.scm
++++ b/gnu/packages/syncthing.scm
+@@ -707,20 +707,18 @@ (define-public go-github-com-syncthing-notify
+       (license expat))))
+ 
+ (define-public go-github-com-beorn7-perks-quantile
+-  (let ((commit "4c0e84591b9aa9e6dcfdf3e020114cd81f89d5f9")
+-        (revision "0"))
+     (package
+       (name "go-github-com-beorn7-perks-quantile")
+-      (version (git-version "0.0.0" revision commit))
++      (version "1.0.1")
+       (source (origin
+                 (method git-fetch)
+                 (uri (git-reference
+                        (url "https://github.com/beorn7/perks")
+-                       (commit commit)))
++                       (commit (string-append "v" version))))
+                 (file-name (git-file-name name version))
+                 (sha256
+                  (base32
+-                  "1hrybsql68xw57brzj805xx2mghydpdiysv3gbhr7f5wlxj2514y"))))
++                  "17n4yygjxa6p499dj3yaqzfww2g7528165cl13haj97hlx94dgl7"))))
+       (build-system go-build-system)
+       (arguments
+        '(#:import-path "github.com/beorn7/perks/quantile"
+@@ -730,7 +728,7 @@ (define-public go-github-com-beorn7-perks-quantile
+ approximate quantiles over an unbounded data stream within low memory and CPU
+ bounds.")
+       (home-page "https://github.com/beorn7/perks")
+-      (license expat))))
++      (license expat)))
+ 
+ (define-public go-github-com-matttproud-golang-protobuf-extensions-pbutil
+   (let ((commit "c12348ce28de40eed0136aa2b644d0ee0650e56c")
+-- 
+2.41.0
+

@@ -1,0 +1,119 @@
+From 0d36a93b30f85ad0e77ce00ab5b480b53e830a1a Mon Sep 17 00:00:00 2001
+Message-ID: <0d36a93b30f85ad0e77ce00ab5b480b53e830a1a.1706010234.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1706010234.git.sharlatanus@gmail.com>
+References: <cover.1706010234.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 23 Jan 2024 11:31:04 +0000
+Subject: [PATCH 2/2] gnu: python-trimesh: Enable tests.
+
+* gnu/packages/python-science.scm (python-trimesh): Enable tests and
+apply new package style.
+[source]: Use git checkout which has working test suit.
+[arguments]<#:test-flags>: Disable tests requiring optional Python
+modules.
+[propagated-inputs]: Add python-chardet, python-colorlog python-httpx
+python-jsonschema python-lxml python-networkx python-pillow
+python-requests python-rtree python-scipy python-setuptools
+python-shapely python-sympy and python-xxhash.
+
+Change-Id: I1aa363053c2d736bc44b8f9071c637256cc2d952
+---
+ gnu/packages/python-science.scm | 68 +++++++++++++++++++++++++--------
+ 1 file changed, 53 insertions(+), 15 deletions(-)
+
+diff --git a/gnu/packages/python-science.scm b/gnu/packages/python-science.scm
+index 7212cafe16..50b59b7daa 100644
+--- a/gnu/packages/python-science.scm
++++ b/gnu/packages/python-science.scm
+@@ -50,6 +50,7 @@ (define-module (gnu packages python-science)
+   #:use-module (gnu packages cpp)
+   #:use-module (gnu packages crypto)
+   #:use-module (gnu packages databases)
++  #:use-module (gnu packages digest)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages geo)
+   #:use-module (gnu packages image)
+@@ -396,28 +397,65 @@ (define-public python-trimesh
+     (version "4.0.10")
+     (source
+      (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "trimesh" version))
++       (method git-fetch) ; no tests in PyPI
++       (uri (git-reference
++             (url "https://github.com/mikedh/trimesh")
++             (commit version)))
++       (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1p3cnkajh2zmp6zwn23q3c73jcjlkq61h3r53ys0bmg58l8kpqrn"))))
++        (base32 "0ry04qaw0pb3hkxv4gmna87jwk97aqangd21wbr2dr4xshmkbyyb"))))
+     (build-system pyproject-build-system)
+-    (propagated-inputs
+-     (list python-numpy))
++    (arguments
++     (list
++      #:test-flags
++      #~(list "-k" (string-append
++                    ;; XXX: When more optional modules are available review
++                    ;; disabled tests once again.
++                    ;;
++                    ;; Disable tests requiring optional, not packed modules.
++                    "not test_material_round"
++                    " and not test_bezier_example"
++                    " and not test_discrete"
++                    " and not test_dxf"
++                    " and not test_layer"
++                    " and not test_multi_nodupe"
++                    " and not test_obj_roundtrip"
++                    " and not test_roundtrip"
++                    " and not test_scene"
++                    " and not test_slice_onplane"
++                    " and not test_svg"
++                    " and not test_svg"))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'fix-build
++            (lambda _
++              (substitute* "trimesh/resources/templates/blender_boolean.py.tmpl"
++                (("\\$MESH_PRE")
++                 "'$MESH_PRE'")))))))
+     (native-inputs
+      (list python-coveralls
+            python-pyinstrument
+            python-pytest
+            python-pytest-cov))
+-    (arguments
+-     `(;; TODO: Get tests to work.
+-       #:tests? #f
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-after 'unpack 'fix-build
+-           (lambda _
+-             (substitute* "trimesh/resources/templates/blender_boolean.py.tmpl"
+-               (("\\$MESH_PRE")
+-                "'$MESH_PRE'")))))))
++    (propagated-inputs
++     (list python-chardet
++           python-colorlog
++           python-httpx
++           python-jsonschema
++           python-lxml
++           python-networkx
++           python-numpy
++           python-pillow
++           ;; python-pycollada   ; not packed yet, optional
++           ;; python-pyglet      ; not packed yet, optional
++           python-requests
++           python-rtree
++           python-scipy
++           python-setuptools
++           python-shapely
++           ;; python-svg-path   ; not packed yet, optional
++           python-sympy
++           python-xxhash))
+     (home-page "https://github.com/mikedh/trimesh")
+     (synopsis "Python library for loading and using triangular meshes")
+     (description
+-- 
+2.41.0
+

@@ -1,0 +1,40 @@
+From 5ce7f036220f8c6a1ca3a5a037e07cc09b0ca72e Mon Sep 17 00:00:00 2001
+Message-ID: <5ce7f036220f8c6a1ca3a5a037e07cc09b0ca72e.1735936141.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1735936141.git.sharlatanus@gmail.com>
+References: <cover.1735936141.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 3 Jan 2025 20:02:40 +0000
+Subject: [PATCH 4/6] gnu: xtl: Update to 0.7.7.
+
+* gnu/packages/cpp.scm (xtl): Update to 0.7.7.
+
+Change-Id: Ifeaf490093ea6af0f7341a3fd3f73acf8cf5e06f
+---
+ gnu/packages/cpp.scm | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/cpp.scm b/gnu/packages/cpp.scm
+index 121cc64f17..f8971b9616 100644
+--- a/gnu/packages/cpp.scm
++++ b/gnu/packages/cpp.scm
+@@ -1060,7 +1060,7 @@ (define-public tomlplusplus
+ (define-public xtl
+   (package
+     (name "xtl")
+-    (version "0.7.5")
++    (version "0.7.7")
+     (source
+      (origin
+        (method git-fetch)
+@@ -1068,7 +1068,7 @@ (define-public xtl
+              (url "https://github.com/xtensor-stack/xtl")
+              (commit version)))
+        (sha256
+-        (base32 "1llfy6pkzqx2va74h9xafjylyvw6839a843mqc05n6x6wll5bkam"))
++        (base32 "1b42mjxchinsf2ylbvhyypfysg5sfphxqby53vlg82wvr23rijkz"))
+        (file-name (git-file-name name version))))
+     (build-system cmake-build-system)
+     (arguments
+-- 
+2.46.0
+

@@ -1,0 +1,87 @@
+From 2d1922efa170de0fbe1cf90b341977d41133df66 Mon Sep 17 00:00:00 2001
+Message-ID: <2d1922efa170de0fbe1cf90b341977d41133df66.1745851028.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1745851028.git.sharlatanus@gmail.com>
+References: <cover.1745851028.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 28 Apr 2025 15:31:54 +0100
+Subject: [PATCH 1/1] gnu: xapian: Update to 1.4.29.
+
+As omega and python-xapian-bindings inherit the same version as xapian,
+update them in a single commit.
+
+* gnu/packages/search.scm (xapian): Update to 1.4.29.
+(python-xapian-bindings): Update to 1.4.29.
+(omega): Update to 1.4.29.
+[inputs]: Remove pcre:bin; add file, pcre2, perl, xapian, and zlib.
+[native-inputs]: Add pkg-config.
+
+Change-Id: I9a6103135b7b9a116370b211b3ca4eb15a9bff4f
+---
+ gnu/packages/search.scm | 14 +++++++++-----
+ 1 file changed, 9 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/search.scm b/gnu/packages/search.scm
+index 08f0278194..406a97d9df 100644
+--- a/gnu/packages/search.scm
++++ b/gnu/packages/search.scm
+@@ -15,6 +15,7 @@
+ ;;; Copyright © 2023 Adam Faiz <adam.faiz@disroot.org>
+ ;;; Copyright © 2023 David Pflug <david@pflug.io>
+ ;;; Copyright © 2024, 2025 Ashish SHUKLA <ashish.is@lostca.se>
++;;; Copyright © 2025 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -53,6 +54,7 @@ (define-module (gnu packages search)
+   #:use-module (gnu packages databases)
+   #:use-module (gnu packages ebook)
+   #:use-module (gnu packages freedesktop)
++  #:use-module (gnu packages file)
+   #:use-module (gnu packages gawk)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages glib)
+@@ -82,7 +84,7 @@ (define-module (gnu packages search)
+ (define-public xapian
+   (package
+     (name "xapian")
+-    (version "1.4.19")
++    (version "1.4.29")
+     ;; Note: When updating Xapian, remember to update omega and
+     ;; python-xapian-bindings below.
+     (source (origin
+@@ -90,7 +92,7 @@ (define-public xapian
+               (uri (string-append "https://oligarchy.co.uk/xapian/" version
+                                   "/xapian-core-" version ".tar.xz"))
+               (sha256
+-               (base32 "1hx92kbqdl38gsrwzvbqgf2jc4wwzsad2gd99g62cdfclvy4ijhz"))))
++               (base32 "1g11wps45rgh7a7z0zmsvk6vg2i1ih4cmbwf44nfrlrsc749np65"))))
+     (build-system gnu-build-system)
+     (inputs (list zlib
+                   `(,util-linux "lib")))
+@@ -129,10 +131,12 @@ (define-public omega
+                            "/xapian-omega-" version ".tar.xz"))
+        (sha256
+         (base32
+-         "136dsna6jvq48j4x4rr5y9nxmgrif9kvf4ybl5a6gpsmgqlfzcp4"))))
++         "0gpq1k1fanx2vpj0xrmkdafacn2r5qsf57201ax4skkb96flxfjg"))))
+     (build-system gnu-build-system)
++    (native-inputs
++     (list pkg-config))
+     (inputs
+-     (list (list pcre "bin") perl xapian zlib))
++     (list file pcre2 perl xapian zlib))
+     (home-page "https://xapian.org/")
+     (synopsis "Search engine built on Xapian")
+     (description
+@@ -157,7 +161,7 @@ (define-public python-xapian-bindings
+                                   "/xapian-bindings-" version ".tar.xz"))
+               (sha256
+                (base32
+-                "0gc8l9cn8jdma0p73jl14z17yizp6dax5zsycvgprajii6j8bhwi"))))
++                "1kn8dw0zrlxvc417wmqmdkqz76kw3f5802wsv5kyyl38pckyjh0p"))))
+     (build-system gnu-build-system)
+     (arguments
+      `(#:configure-flags '("--with-python3")
+-- 
+2.49.0
+

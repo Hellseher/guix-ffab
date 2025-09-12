@@ -1,0 +1,57 @@
+From 429ca43f14c6ff44e0465e4abd1209ff455bb08f Mon Sep 17 00:00:00 2001
+Message-ID: <429ca43f14c6ff44e0465e4abd1209ff455bb08f.1721399836.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721399836.git.sharlatanus@gmail.com>
+References: <cover.1721399836.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 19 Jul 2024 12:52:42 +0100
+Subject: [PATCH 2/7] gnu: Add go-github-com-xi2-xz.
+
+* gnu/packages/golang-compression.scm (go-github-com-xi2-xz): New variable.
+
+Change-Id: I794886d82f532a626599ca6f07a1ce7e694bea04
+---
+ gnu/packages/golang-compression.scm | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index a6c0410051..c4465f1bcd 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -331,6 +331,34 @@ (define-public go-github-com-ulikunitz-xz
+ any dependency on any C code.")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-xi2-xz
++  (package
++    (name "go-github-com-xi2-xz")
++    (version "0.0.0-20171230120015-48954b6210f8")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/xi2/xz")
++             (commit (go-version->git-ref version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "178r0fa2dpzxf0sabs7dn0c8fa7vs87zlxk6spkn374ls9pir7nq"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/xi2/xz"))
++    (home-page "https://github.com/xi2/xz")
++    (synopsis "Native Golang XZ decompression package")
++    (description
++     "This package implements a native XZ decompression in Golang.")
++    ;; This package is a modified version of XZ Embedded
++    ;; <http://tukaani.org/xz/embedded.html>: 0BSD
++    ;;
++    ;; The contents of the testdata directory are modified versions of the
++    ;; test files from XZ Utils <http://tukaani.org/xz/>: 0BSD
++    (license license:public-domain)))
++
+ ;;;
+ ;;; Executables:
+ ;;;
+-- 
+2.41.0
+

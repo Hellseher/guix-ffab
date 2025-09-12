@@ -1,0 +1,105 @@
+From cb3c7b5bb2137493e290e3fffe573589e850fc18 Mon Sep 17 00:00:00 2001
+Message-ID: <cb3c7b5bb2137493e290e3fffe573589e850fc18.1734488457.git.sharlatanus@gmail.com>
+In-Reply-To: <f04ffeabffb65d34210b547db9704f39c609e7c5.1734488457.git.sharlatanus@gmail.com>
+References: <f04ffeabffb65d34210b547db9704f39c609e7c5.1734488457.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 3 Dec 2024 00:37:46 +0000
+Subject: [PATCH v2 2/2] build-system/go: Add test-subdirs option key.
+
+Golang projects may contain subdirectories with test files, which can't
+be reached by providing just IMPORT-PATH to the test runner.  This
+change implements a TEST-SUBDIRS key parameter which is by default set
+to "import-path/..." to run all available tests in the project, and may
+be limited to particular subdirs list.
+
+* guix/build-system/go.scm (go-build, go-cross-build): Add "test-subdirs"
+key parameter.
+* guix/build/go-build-system.scm (check): Add "test-subdirs" key
+parameter and adjust test invokation accordingly.
+
+Change-Id: Ibc107deea060f0d71e6f4e1e37c81d3b7c9992f5
+---
+ guix/build-system/go.scm       |  4 ++++
+ guix/build/go-build-system.scm | 18 ++++++++++++++++--
+ 2 files changed, 20 insertions(+), 2 deletions(-)
+
+diff --git a/guix/build-system/go.scm b/guix/build-system/go.scm
+index 97581a14c6..66cb5e8b05 100644
+--- a/guix/build-system/go.scm
++++ b/guix/build-system/go.scm
+@@ -205,6 +205,7 @@ (define* (go-build name inputs
+                    (build-flags ''())
+                    (tests? #t)
+                    (test-flags ''())
++                   (test-subdirs ''("..."))
+                    (parallel-build? #t)
+                    (parallel-tests? #t)
+                    (allow-go-reference? #f)
+@@ -239,6 +240,7 @@ (define* (go-build name inputs
+                     #:build-flags #$build-flags
+                     #:tests? #$tests?
+                     #:test-flags #$test-flags
++                    #:test-subdirs #$test-subdirs
+                     #:parallel-build? #$parallel-build?
+                     #:parallel-tests? #$parallel-tests?
+                     #:allow-go-reference? #$allow-go-reference?
+@@ -264,6 +266,7 @@ (define* (go-cross-build name
+                          (build-flags ''())
+                          (tests? #f)              ; nothing can be done
+                          (test-flags ''())
++                         (test-subdirs ''("..."))
+                          (allow-go-reference? #f)
+                          (system (%current-system))
+                          (goarch (first (go-target target)))
+@@ -316,6 +319,7 @@ (define* (go-cross-build name
+                     #:build-flags #$build-flags
+                     #:tests? #$tests?
+                     #:test-flags #$test-flags
++                    #:test-subdirs #$test-subdirs
+                     #:make-dynamic-linker-cache? #f ;cross-compiling
+                     #:allow-go-reference? #$allow-go-reference?
+                     #:inputs %build-inputs))))
+diff --git a/guix/build/go-build-system.scm b/guix/build/go-build-system.scm
+index 9f9eea3069..a785118018 100644
+--- a/guix/build/go-build-system.scm
++++ b/guix/build/go-build-system.scm
+@@ -98,6 +98,10 @@ (define-module (guix build go-build-system)
+ ;; * Remove module packages, only offering the full Git repos? This is
+ ;; more idiomatic, I think, because Go downloads Git repos, not modules.
+ ;; What are the trade-offs?
++;; * Figurie out how to passthrough --verbosity option to "build" and "check"
++;; procedures.
++;; * Implement test-backend option, which would be similar to pyproject's
++;; one, allowing to provide custom test runner.
+ ;;
+ ;; [0] `go build`:
+ ;; https://golang.org/cmd/go/#hdr-Compile_packages_and_dependencies
+@@ -326,13 +330,23 @@ (define* (build #:key
+                               "Here are the results of `go env`:\n"))
+       (invoke "go" "env"))))
+ 
+-(define* (check #:key tests? import-path test-flags (parallel-tests? #t)
++(define* (check #:key
++                tests?
++                import-path
++                test-flags
++                test-subdirs
++                (parallel-tests? #t)
+                 #:allow-other-keys)
+   "Run the tests for the package named by IMPORT-PATH."
+   (when tests?
+     (let* ((njobs (if parallel-tests? (parallel-job-count) 1)))
+       (setenv "GOMAXPROCS" (number->string njobs)))
+-    (apply invoke "go" "test" `(,import-path ,@test-flags)))
++    (apply invoke "go" "test"
++           `(,@(map (lambda (dir)
++                      (format #f "~a~:[/~;~]~a"
++                              import-path (string-null? dir) dir))
++                    test-subdirs)
++             ,@test-flags)))
+   #t)
+ 
+ (define* (install #:key install-source? outputs import-path unpack-path #:allow-other-keys)
+-- 
+2.46.0
+

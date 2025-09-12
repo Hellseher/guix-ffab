@@ -1,0 +1,44 @@
+From fdf5a63d43e94d5f7087fbdfbca77274a458f907 Mon Sep 17 00:00:00 2001
+Message-ID: <fdf5a63d43e94d5f7087fbdfbca77274a458f907.1730497109.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730497109.git.sharlatanus@gmail.com>
+References: <cover.1730497109.git.sharlatanus@gmail.com>
+From: Jakob Kirsch <jakob.kirsch@web.de>
+Date: Thu, 31 Oct 2024 17:18:08 +0100
+Subject: [PATCH v2 2/2] gnu: yt-dlp: Update to 2024.10.22.
+
+* gnu/packages/video.scm (yt-dlp): Update to 2024.10.22.
+
+Change-Id: Ifd83fd76ffdb2d2ddab0c9577278a308a3f03cb5
+---
+ gnu/packages/video.scm | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/video.scm b/gnu/packages/video.scm
+index ff5dcd8daa..12e321e96c 100644
+--- a/gnu/packages/video.scm
++++ b/gnu/packages/video.scm
+@@ -3171,7 +3171,7 @@ (define-public youtube-dl
+ (define-public yt-dlp
+   (package
+     (name "yt-dlp")
+-    (version "2024.08.06")
++    (version "2024.10.22")
+     (source
+      (origin
+        (method git-fetch)
+@@ -3179,8 +3179,11 @@ (define-public yt-dlp
+              (url "https://github.com/yt-dlp/yt-dlp/")
+              (commit version)))
+        (file-name (git-file-name name version))
++       (modules '((guix build utils)))
++       (snippet '(substitute* "pyproject.toml"
++                   (("^.*Programming Language :: Python :: 3\\.13.*$") "")))
+        (sha256
+-        (base32 "0k44p1a9nckj7m6gxz7zggci0iihflivxvkh9l8wwbnsfvqhyfrn"))))
++        (base32 "1gw19f4h71vlchljg08g5l8sd60gmflbdpxz2vsinxzkmqvrqnra"))))
+     (build-system pyproject-build-system)
+     (arguments
+      `(#:tests? ,(not (%current-target-system))
+-- 
+2.46.0
+

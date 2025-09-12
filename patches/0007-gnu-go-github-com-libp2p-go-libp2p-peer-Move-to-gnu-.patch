@@ -1,0 +1,113 @@
+From 5b2a2356bea964baf55f749e1d27c798a1c9a0d7 Mon Sep 17 00:00:00 2001
+Message-ID: <5b2a2356bea964baf55f749e1d27c798a1c9a0d7.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 22:52:29 +0000
+Subject: [PATCH 07/38] gnu: go-github-com-libp2p-go-libp2p-peer: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-libp2p-go-libp2p-peer): Move
+from here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I7c372e17f03c9dc18027572582aa8416d59c2cba
+---
+ gnu/packages/golang-crypto.scm | 34 +++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 35 ----------------------------------
+ 2 files changed, 34 insertions(+), 35 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 859d490787..b2c9c98b44 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -67,6 +67,40 @@ (define-public go-github-com-libp2p-go-libp2p-crypto
+       (description "Various cryptographic utilities used by IPFS")
+       (license license:expat))))
+ 
++(define-public go-github-com-libp2p-go-libp2p-peer
++  (let ((commit "993d742bc29dcf4894b7730ba610fd78900be76c")
++        (revision "0"))
++    (package
++      (name "go-github-com-libp2p-go-libp2p-peer")
++      (version (git-version "2.3.8" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/libp2p/go-libp2p-peer")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "1h96qjdi0i1wbr0jliap2903mycphas3ny0zdrm77yca9plcnphh"))))
++      (build-system go-build-system)
++      (arguments
++       '(#:import-path "github.com/libp2p/go-libp2p-peer"))
++      (native-inputs
++       (list go-github-com-btcsuite-btcd-btcec
++             go-github-com-gogo-protobuf
++             go-github-com-gxed-hashland-keccakpg
++             go-github-com-libp2p-go-libp2p-crypto
++             go-github-com-minio-blake2b-simd
++             go-github-com-minio-sha256-simd
++             go-github-com-mr-tron-base58
++             go-github-com-multiformats-go-multihash
++             go-github-com-spaolacci-murmur3
++             go-golang-org-x-crypto))
++      (home-page "https://github.com/libp2p/go-libp2p-peer")
++      (synopsis "PKI based identities for use in go-libp2p")
++      (description "PKI based identities for use in @command{go-libp2p}.")
++      (license license:expat))))
++
+ (define-public go-github-com-multiformats-go-multihash
+   (let ((commit "97cdb562a04c6ef66d8ed40cd62f8fbcddd396d6")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index a47345cc1e..3abb4a2918 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -6058,41 +6058,6 @@ (define-public go-github-com-twmb-murmur3
+ required by Go's standard Hash interface.")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-libp2p-go-libp2p-peer
+-  (let ((commit "993d742bc29dcf4894b7730ba610fd78900be76c")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-libp2p-go-libp2p-peer")
+-      (version (git-version "2.3.8" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/libp2p/go-libp2p-peer")
+-               (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32
+-           "1h96qjdi0i1wbr0jliap2903mycphas3ny0zdrm77yca9plcnphh"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/libp2p/go-libp2p-peer"))
+-      (native-inputs
+-       (list go-github-com-libp2p-go-libp2p-crypto
+-             go-github-com-gogo-protobuf
+-             go-github-com-minio-sha256-simd
+-             go-github-com-minio-blake2b-simd
+-             go-github-com-btcsuite-btcd-btcec
+-             go-github-com-mr-tron-base58
+-             go-github-com-multiformats-go-multihash
+-             go-github-com-gxed-hashland-keccakpg
+-             go-github-com-spaolacci-murmur3
+-             go-golang-org-x-crypto))
+-      (home-page "https://github.com/libp2p/go-libp2p-peer")
+-      (synopsis "PKI based identities for use in go-libp2p")
+-      (description "PKI based identities for use in @command{go-libp2p}.")
+-      (license license:expat))))
+-
+ (define-public go-github-com-libp2p-go-libp2p-protocol
+   (let ((commit "b29f3d97e3a2fb8b29c5d04290e6cb5c5018004b")
+         (revision "0"))
+-- 
+2.41.0
+

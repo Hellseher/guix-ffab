@@ -1,0 +1,135 @@
+From 178825daa3ef225c9dc1c8b7cf2a86b7786db0ed Mon Sep 17 00:00:00 2001
+Message-ID: <178825daa3ef225c9dc1c8b7cf2a86b7786db0ed.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:20:36 +0000
+Subject: [PATCH 10/30] gnu: go-github-com-davecgh-go-spew: Move to (gnu
+ packages golang-check).
+
+* gnu/packages/golang.scm (go-github-com-davecgh-go-spew): Move
+from here ...
+* gnu/packages/golang-check.scm: ... to here.
+
+* gnu/packages/high-availability.scm: Add (gnu packages golang-check) module.
+
+Change-Id: I935006c3656b7bf18b91e529296778672338f094
+---
+ gnu/packages/golang-check.scm      | 38 ++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm            | 38 ------------------------------
+ gnu/packages/high-availability.scm |  1 +
+ 3 files changed, 39 insertions(+), 38 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 2decd1f664..c5e30f7fe1 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -124,6 +124,44 @@ (define-public go-github-com-cheekybits-is
+ @end itemize\n")
+       (license license:expat))))
+ 
++(define-public go-github-com-davecgh-go-spew
++  (package
++    (name "go-github-com-davecgh-go-spew")
++    (version "1.1.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/davecgh/go-spew")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0hka6hmyvp701adzag2g26cxdj47g21x6jz4sc6jjz1mn59d474y"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:unpack-path "github.com/davecgh/go-spew"
++       #:import-path "github.com/davecgh/go-spew/spew"))
++    (home-page "https://github.com/davecgh/go-spew")
++    (synopsis "Deep pretty printer for Go data structures to aid in debugging")
++    (description "Package @command{spew} implements a deep pretty printer
++for Go data structures to aid in debugging.
++
++A quick overview of the additional features spew provides over the built-in
++printing facilities for Go data types are as follows:
++
++@itemize
++@item Pointers are dereferenced and followed.
++@item Circular data structures are detected and handled properly.
++@item Custom Stringer/error interfaces are optionally invoked, including on
++unexported types.
++@item Custom types which only implement the Stringer/error interfaces via a
++pointer receiver are optionally invoked when passing non-pointer variables.
++@item Byte arrays and slices are dumped like the hexdump -C command which
++includes offsets, byte values in hex, and ASCII output (only when using Dump
++style).
++@end itemize")
++    (license license:isc)))
++
+ (define-public go-github-com-frankban-quicktest
+   (package
+     (name "go-github-com-frankban-quicktest")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 599fdf9f2d..903f2126c4 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -5344,44 +5344,6 @@ (define-public go-github-com-libp2p-go-flow-metrics
+ that's a lot faster (and only does simple bandwidth metrics).")
+       (license license:expat))))
+ 
+-(define-public go-github-com-davecgh-go-spew
+-  (package
+-    (name "go-github-com-davecgh-go-spew")
+-    (version "1.1.1")
+-    (source
+-     (origin
+-       (method git-fetch)
+-       (uri (git-reference
+-             (url "https://github.com/davecgh/go-spew")
+-             (commit (string-append "v" version))))
+-       (file-name (git-file-name name version))
+-       (sha256
+-        (base32
+-         "0hka6hmyvp701adzag2g26cxdj47g21x6jz4sc6jjz1mn59d474y"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:unpack-path "github.com/davecgh/go-spew"
+-       #:import-path "github.com/davecgh/go-spew/spew"))
+-    (home-page "https://github.com/davecgh/go-spew")
+-    (synopsis "Deep pretty printer for Go data structures to aid in debugging")
+-    (description "Package @command{spew} implements a deep pretty printer
+-for Go data structures to aid in debugging.
+-
+-A quick overview of the additional features spew provides over the built-in printing facilities for Go data types are as follows:
+-
+-@itemize
+-@item Pointers are dereferenced and followed.
+-@item Circular data structures are detected and handled properly.
+-@item Custom Stringer/error interfaces are optionally invoked, including on
+-unexported types.
+-@item Custom types which only implement the Stringer/error interfaces via a
+-pointer receiver are optionally invoked when passing non-pointer variables.
+-@item Byte arrays and slices are dumped like the hexdump -C command which
+-includes offsets, byte values in hex, and ASCII output (only when using Dump
+-style).
+-@end itemize\n")
+-    (license license:isc)))
+-
+ (define-public go-github-com-btcsuite-btclog
+   (let ((commit "84c8d2346e9fc8c7b947e243b9c24e6df9fd206a")
+         (revision "0"))
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index ad18a39738..0678edaf4e 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -36,6 +36,7 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+-- 
+2.41.0
+

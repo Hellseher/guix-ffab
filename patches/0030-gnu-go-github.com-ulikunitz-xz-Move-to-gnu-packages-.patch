@@ -1,0 +1,123 @@
+From 664cadcc7212c886524fa94bf498f9594ea66082 Mon Sep 17 00:00:00 2001
+Message-ID: <664cadcc7212c886524fa94bf498f9594ea66082.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 22:32:10 +0000
+Subject: [PATCH 30/30] gnu: go-github.com-ulikunitz-xz: Move to (gnu
+ packages-compression).
+
+* gnu/packages/golang.scm (go-github.com-ulikunitz-xz): Move from here ...
+* gnu/packages/golang-compression.scm: ... to here.
+
+* gnu/packages/admin.scm: Add (gnu packages golang-compression) module.
+* gnu/packages/bioinformatics.scm: As above.
+
+Change-Id: I1901e67ac4336efd356085332572b3f09de90f7a
+---
+ gnu/packages/admin.scm              |  1 +
+ gnu/packages/bioinformatics.scm     |  1 +
+ gnu/packages/golang-compression.scm | 23 +++++++++++++++++++++++
+ gnu/packages/golang.scm             | 22 ----------------------
+ 4 files changed, 25 insertions(+), 22 deletions(-)
+
+diff --git a/gnu/packages/admin.scm b/gnu/packages/admin.scm
+index c595e1270f..11f69e57a4 100644
+--- a/gnu/packages/admin.scm
++++ b/gnu/packages/admin.scm
+@@ -131,6 +131,7 @@ (define-module (gnu packages admin)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/bioinformatics.scm b/gnu/packages/bioinformatics.scm
+index 08683bc8e9..bcfe3c2656 100644
+--- a/gnu/packages/bioinformatics.scm
++++ b/gnu/packages/bioinformatics.scm
+@@ -95,6 +95,7 @@ (define-module (gnu packages bioinformatics)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages graph)
+   #:use-module (gnu packages graphics)
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+index 6a556daa25..568fdd12b9 100644
+--- a/gnu/packages/golang-compression.scm
++++ b/gnu/packages/golang-compression.scm
+@@ -1,5 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2017 Leo Famulari <leo@famulari.name>
++;;; Copyright © 2020 Danny Milosavljevic <dannym@scratchpost.org>
+ ;;; Copyright © 2021 Arun Isaac <arunisaac@systemreboot.net>
+ ;;; Copyright © 2021 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022 Sharlatan Hellseher <sharlatanus@gmail.com>
+@@ -114,6 +115,28 @@ (define-public go-github-com-klauspost-compress
+     (description "@code{compress} provides various compression algorithms.")
+     (license license:bsd-3)))
+ 
++(define-public go-github.com-ulikunitz-xz
++  (package
++    (name "go-github.com-ulikunitz-xz")
++    (version "0.5.8")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/ulikunitz/xz.git")
++             (commit (string-append "v" version))))
++       (file-name (string-append name "-" version "-checkout"))
++       (sha256
++        (base32 "1xnsymi5fmmm734bi4c6z57p5cvnyxlpi29yxs4v21w5k763aypd"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/ulikunitz/xz"))
++    (home-page "https://github.com/ulikunitz/xz")
++    (synopsis "Read and write xz compressed streams in Go")
++    (description "This package provides a library to read and write xz
++compressed streams in Go.")
++    (license license:bsd-3)))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 644121a761..7d1ae9699b 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -8968,28 +8968,6 @@ (define-public go-github-com-tekwizely-go-parsing
+ parsers, and related tools.")
+       (license license:expat))))
+ 
+-(define-public go-github.com-ulikunitz-xz
+-  (package
+-    (name "go-github.com-ulikunitz-xz")
+-    (version "0.5.8")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/ulikunitz/xz.git")
+-                    (commit (string-append "v" version))))
+-              (file-name (string-append name "-" version "-checkout"))
+-              (sha256
+-               (base32
+-                "1xnsymi5fmmm734bi4c6z57p5cvnyxlpi29yxs4v21w5k763aypd"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/ulikunitz/xz"))
+-    (synopsis "Read and write xz compressed streams in Go")
+-    (description "This package provides a library to read and write xz
+-compressed streams in Go.")
+-    (home-page "https://github.com/ulikunitz/xz")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-songmu-gitconfig
+   (package
+     (name "go-github-com-songmu-gitconfig")
+-- 
+2.41.0
+

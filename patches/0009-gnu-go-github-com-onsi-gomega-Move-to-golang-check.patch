@@ -1,0 +1,106 @@
+From 397b362c1c189c1f85d861b74818c26b985723b4 Mon Sep 17 00:00:00 2001
+Message-ID: <397b362c1c189c1f85d861b74818c26b985723b4.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 12:12:16 +0100
+Subject: [PATCH 09/12] gnu: go-github-com-onsi-gomega: Move to golang-check.
+
+* gnu/packages/golang.scm (go-github-com-onsi-gomega): Move from here ...
+* gnu/packages/golang-check.scm: ... to here.
+
+Change-Id: Ia9a7d0e88ebda2fcfb3fe623163e270756900e94
+---
+ gnu/packages/golang-check.scm | 33 +++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 31 -------------------------------
+ 2 files changed, 33 insertions(+), 31 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 8ea0c45ff8..dd91bf23bc 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -487,6 +487,39 @@ (define-public go-github-com-onsi-ginkgo-v2
+            go-golang-org-x-sys
+            go-golang-org-x-tools))))
+ 
++(define-public go-github-com-onsi-gomega
++  (package
++    (name "go-github-com-onsi-gomega")
++    (version "1.19.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/onsi/gomega")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "092phwk97sk4sv0nbx5pfhqs6x3x1lnrjwyda1m6b6zwrfmq5c6i"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:import-path "github.com/onsi/gomega"
++           ;; Unless we disable the tests, we have a circular dependency on
++           ;; ginkgo/v2.
++           #:tests? #f))
++    (propagated-inputs
++     (list go-github-com-golang-protobuf-proto
++           go-golang-org-x-net
++           go-golang-org-x-sys
++           go-golang-org-x-text
++           go-google-golang-org-protobuf
++           go-gopkg-in-yaml-v2))
++    (home-page "https://github.com/onsi/gomega")
++    (synopsis "Matcher library for Ginkgo")
++    (description
++     "Gomega is the preferred matcher/assertion library for the Ginkgo test
++framework.")
++    (license license:expat)))
++
+ (define-public go-github-com-prashantv-gostub
+   (package
+     (name "go-github-com-prashantv-gostub")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 711c007138..3c3d9c7222 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -10271,37 +10271,6 @@ (define-public go-github-com-lithammer-fuzzysearch
+ library bevacqua/fuzzysearch.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-onsi-gomega
+-  (package
+-    (name "go-github-com-onsi-gomega")
+-    (version "1.19.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/onsi/gomega")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "092phwk97sk4sv0nbx5pfhqs6x3x1lnrjwyda1m6b6zwrfmq5c6i"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:import-path "github.com/onsi/gomega"
+-           ;; Unless we disable the tests, we have a circular dependency on
+-           ;; ginkgo/v2.
+-           #:tests? #f))
+-    (propagated-inputs (list go-github-com-golang-protobuf-proto
+-                             go-golang-org-x-net
+-                             go-golang-org-x-sys
+-                             go-golang-org-x-text
+-                             go-google-golang-org-protobuf
+-                             go-gopkg-in-yaml-v2))
+-    (home-page "https://github.com/onsi/gomega")
+-    (synopsis "Matcher library for Ginkgo")
+-    (description
+-     "Gomega is the preferred matcher library for the Ginkgo test framework.")
+-    (license license:expat)))
+-
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+-- 
+2.41.0
+

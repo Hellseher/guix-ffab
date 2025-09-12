@@ -1,0 +1,58 @@
+From fa66fbe4336f44541cf71643290ae76e08fb88fc Mon Sep 17 00:00:00 2001
+Message-ID: <fa66fbe4336f44541cf71643290ae76e08fb88fc.1732837202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732837202.git.sharlatanus@gmail.com>
+References: <cover.1732837202.git.sharlatanus@gmail.com>
+From: "Artyom V. Poptsov" <poptsov.artyom@gmail.com>
+Date: Sun, 24 Nov 2024 13:27:23 +0300
+Subject: [PATCH 02/15] gnu: Add go-github-com-aymanbagabas-go-udiff.
+
+* gnu/packages/golang-xyz.scm (go-github-com-aymanbagabas-go-udiff): New variable.
+
+Change-Id: Icac934589b041c9b3b5db0114173d25d0c3f4c34
+Reviewed-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang-xyz.scm | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 63ac100349..561b82af11 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -1136,6 +1136,34 @@ (define-public go-github-com-aymanbagabas-go-osc52-v2
+ clipboard.")
+     (license license:expat)))
+ 
++(define-public go-github-com-aymanbagabas-go-udiff
++  (package
++    (name "go-github-com-aymanbagabas-go-udiff")
++    (version "0.2.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/aymanbagabas/go-udiff")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "09p17r8s5flhq6p69z08345q0y99dpb0yyashlwpgxn45xir7y6g"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/aymanbagabas/go-udiff"))
++    (home-page "https://github.com/aymanbagabas/go-udiff")
++    (synopsis "Diffing library for Golang")
++    (description
++     "@code{udiff} (micro-diff, or µDiff) is a library that implements the
++@url{http://www.xmailserver.org/diff2.pdf, Myers' diffing algorithm}.  It aims to
++provide a minimal API to compute and apply diffs with zero dependencies.  It also
++supports generating diffs in the
++@url{https://www.gnu.org/software/diffutils/manual/html_node/Unified-Format.html,
++Unified Format}.")
++    (license license:expat)))
++
+ (define-public go-github-com-benbjohnson-clock
+   (package
+     (name "go-github-com-benbjohnson-clock")
+-- 
+2.46.0
+

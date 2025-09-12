@@ -1,0 +1,60 @@
+From 37afe904015124d64226e5b55c0d70488d2cceba Mon Sep 17 00:00:00 2001
+Message-ID: <37afe904015124d64226e5b55c0d70488d2cceba.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 29 Apr 2024 20:34:40 +0100
+Subject: [PATCH 03/26] gnu: Add go-github-com-shopspring-decimal.
+
+* gnu/packages/golang-maths.scm (go-github-com-shopspring-decimal): New variable.
+
+Change-Id: I52ba58d05be9f631e5c53ccf7c30a977d7fe66b3
+---
+ gnu/packages/golang-maths.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/golang-maths.scm b/gnu/packages/golang-maths.scm
+index dfb29abea4..2348255119 100644
+--- a/gnu/packages/golang-maths.scm
++++ b/gnu/packages/golang-maths.scm
+@@ -57,6 +57,37 @@ (define-public go-github-com-montanaflynn-stats
+      "This package provides a statistical library for Golang.")
+     (license license:expat)))
+ 
++(define-public go-github-com-shopspring-decimal
++  (package
++    (name "go-github-com-shopspring-decimal")
++    (version "1.4.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/shopspring/decimal")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1p1iz0ybsjvc8k3w6lf92drs51fgrcbz0ib1p4ihp3gmdq5rnzjk"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/shopspring/decimal"))
++    (home-page "https://github.com/shopspring/decimal")
++    (synopsis "Arbitrary-precision fixed-point decimal numbers in Golang")
++    (description
++     "Package decimal implements an arbitrary precision fixed-point decimal.
++Features:
++@itemize
++@item the zero-value is 0, and is safe to use without initialization
++@item addition, subtraction, multiplication with no loss of precision
++@item division with specified precision
++@item database/sql serialization/deserialization
++@item JSON and XML serialization/deserialization
++@end itemize")
++    (license license:expat)))
++
+ ;;;
+ ;;; Executables:
+ ;;;
+-- 
+2.41.0
+

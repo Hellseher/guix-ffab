@@ -1,0 +1,68 @@
+From 03988e68eab5fd487fccaaae2f1fae4e46e9b9c3 Mon Sep 17 00:00:00 2001
+Message-ID: <03988e68eab5fd487fccaaae2f1fae4e46e9b9c3.1708289807.git.sharlatanus@gmail.com>
+In-Reply-To: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+References: <b6807bf457aa3debcd60c49908ebd1b147744e20.1708289807.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 17 Feb 2024 00:54:54 +0000
+Subject: [PATCH v2 10/10] gnu: ghq: Fix build.
+
+Fix build as seen in <https://ci.guix.gnu.org/build/3490264/details>.
+
+* gnu/packages/version-control.scm (ghq): Use G-expressions.
+[arguments] <#:go>: Use go-1.21.
+<#:phases>: Remove trailing #t from lambda.
+
+Change-Id: Ifb1e133a2570dcd04212ef43b46c8b41c3507c88
+---
+ gnu/packages/version-control.scm | 35 ++++++++++++++++----------------
+ 1 file changed, 18 insertions(+), 17 deletions(-)
+
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index 242c2bf093..3c43effbd1 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -3720,23 +3720,24 @@ (define-public ghq
+                 "155sfmhmh4ia3iinm1s8fk7fxyn5dxdryad9xkbg7mr3i3ikqjwh"))))
+     (build-system go-build-system)
+     (arguments
+-     '(#:install-source? #f
+-       #:import-path "github.com/x-motemen/ghq"
+-       #:phases
+-       (modify-phases %standard-phases
+-         (add-after 'install 'install-completions
+-           (lambda* (#:key outputs import-path #:allow-other-keys)
+-             (let* ((out (assoc-ref outputs "out"))
+-                    (bash-completion (string-append out "/etc/bash_completion.d"))
+-                    (zsh-completion (string-append out "/share/zsh/site-functions")))
+-               (with-directory-excursion (string-append "src/" import-path)
+-                 (mkdir-p bash-completion)
+-                 (copy-file "misc/bash/_ghq"
+-                            (string-append bash-completion "/ghq"))
+-                 (mkdir-p zsh-completion)
+-                 (copy-file "misc/zsh/_ghq"
+-                            (string-append zsh-completion "/_ghq"))))
+-             #t)))))
++     (list
++      #:install-source? #f
++      #:go go-1.21
++      #:import-path "github.com/x-motemen/ghq"
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'install 'install-completions
++            (lambda* (#:key outputs import-path #:allow-other-keys)
++              (let* ((out #$output)
++                     (bash-completion (string-append out "/etc/bash_completion.d"))
++                     (zsh-completion (string-append out "/share/zsh/site-functions")))
++                (with-directory-excursion (string-append "src/" import-path)
++                  (mkdir-p bash-completion)
++                  (copy-file "misc/bash/_ghq"
++                             (string-append bash-completion "/ghq"))
++                  (mkdir-p zsh-completion)
++                  (copy-file "misc/zsh/_ghq"
++                             (string-append zsh-completion "/_ghq")))))))))
+     (native-inputs
+      (list git-minimal))
+     (inputs
+-- 
+2.41.0
+

@@ -1,0 +1,90 @@
+From 80cbd7d4d80eccf95ee88d0c5e15780a5f9e8156 Mon Sep 17 00:00:00 2001
+Message-ID: <80cbd7d4d80eccf95ee88d0c5e15780a5f9e8156.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 23:20:36 +0000
+Subject: [PATCH 14/38] gnu: go-github-com-gaukas-godicttls: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-gaukas-godicttls): Move from
+here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I19e4a52a213469174ab2a7048abeff6dbf7f715c
+---
+ gnu/packages/golang-crypto.scm | 23 +++++++++++++++++++++++
+ gnu/packages/golang.scm        | 23 -----------------------
+ 2 files changed, 23 insertions(+), 23 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 36475ce9d4..22593aff19 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -91,6 +91,29 @@ (define-public go-github-com-aead-chacha20
+ is standardized in RFC 7539.")
+       (license license:expat))))
+ 
++(define-public go-github-com-gaukas-godicttls
++  (package
++    (name "go-github-com-gaukas-godicttls")
++    (version "0.0.4")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/gaukas/godicttls")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0n9i0b9nbwq7ms36r34kfc346prrif78hhp55gmbkvlgvsc3m2af"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/gaukas/godicttls"))
++    (home-page "https://github.com/gaukas/godicttls")
++    (synopsis "Dictionary for TLS")
++    (description "This package provides a dictionary for TLS written in Go
++providing bidirectional mapping values to their names, plus enum convenience
++for values.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-libp2p-go-libp2p-crypto
+   (let ((commit "7240b40a3ddc47c4d17c15baabcbe45e5219171b")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 7da82299ad..784bfe40d7 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7115,29 +7115,6 @@ (define-public go-github-com-quic-go-qtls-go1-20
+     (home-page "https://github.com/quic-go/qtls-go1-20")
+     (license license:expat)))
+ 
+-(define-public go-github-com-gaukas-godicttls
+-  (package
+-    (name "go-github-com-gaukas-godicttls")
+-    (version "0.0.4")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/gaukas/godicttls")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0n9i0b9nbwq7ms36r34kfc346prrif78hhp55gmbkvlgvsc3m2af"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/gaukas/godicttls"))
+-    (home-page "https://github.com/gaukas/godicttls")
+-    (synopsis "dictionary for TLS")
+-    (description "This package provides a dictionary for TLS written in Go
+-providing bidirectional mapping values to their names, plus enum convenience
+-for values.")
+-    (license license:bsd-3)))
+-
+ (define-public go-github-com-quic-go-qpack
+   (package
+     (name "go-github-com-quic-go-qpack")
+-- 
+2.41.0
+

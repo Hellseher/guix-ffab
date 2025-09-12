@@ -1,0 +1,98 @@
+From 0e781dafb98ed1510fe22c3e97ade26ca53846ae Mon Sep 17 00:00:00 2001
+Message-ID: <0e781dafb98ed1510fe22c3e97ade26ca53846ae.1707944340.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707944340.git.sharlatanus@gmail.com>
+References: <cover.1707944340.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 12 Jan 2024 23:15:36 +0000
+Subject: [PATCH 5/6] gnu: chezmoi: Sort inputs alphabetically.
+
+* gnu/packages/configuration-management.scm (chezmoi) [native-inputs]:
+Sort alphabetically to ease maintenance.
+
+Change-Id: I22b82ce7163db696c4d9e8484fbe72da086a4139
+---
+ gnu/packages/configuration-management.scm | 42 +++++++++++------------
+ 1 file changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/gnu/packages/configuration-management.scm b/gnu/packages/configuration-management.scm
+index 6632f429e2..c1874fef2d 100644
+--- a/gnu/packages/configuration-management.scm
++++ b/gnu/packages/configuration-management.scm
+@@ -50,40 +50,42 @@ (define-public chezmoi
+        ;; We don't need to install the source code for end-user applications.
+        #:install-source? #f))
+     (native-inputs
+-     (list go-github-com-masterminds-sprig
+-           go-github-com-masterminds-goutils
+-           go-github-com-masterminds-semver
+-           go-github-com-google-uuid
+-           go-github-com-huandu-xstrings
+-           go-github-com-imdario-mergo
+-           go-github-com-mitchellh-reflectwalk
+-           go-github-com-mitchellh-copystructure
++     (list go-etcd-io-bbolt
++           go-github-com-alecthomas-chroma
++           go-github-com-aymerick-douceur
+            go-github-com-bmatcuk-doublestar
+            go-github-com-charmbracelet-glamour
+-           go-github-com-alecthomas-chroma
++           go-github-com-chris-ramon-douceur
+            go-github-com-coreos-go-semver
+            go-github-com-danwakefield-fnmatch
+            go-github-com-dlclark-regexp2
+-           go-github-go-git
++           go-github-com-godbus-dbus
+            go-github-com-google-go-github
+            go-github-com-google-go-querystring
++           go-github-com-google-goterm
+            go-github-com-google-renameio
+-           go-github-com-microcosm-cc-bluemonday
+-           go-github-com-aymerick-douceur
+-           go-github-com-chris-ramon-douceur
++           go-github-com-google-uuid
+            go-github-com-gorilla-css
++           go-github-com-huandu-xstrings
++           go-github-com-imdario-mergo
++           go-github-com-lucasb-eyer-go-colorful
++           go-github-com-masterminds-goutils
++           go-github-com-masterminds-semver
++           go-github-com-masterminds-sprig
++           go-github-com-mattn-go-isatty
++           go-github-com-mattn-go-runewidth
++           go-github-com-microcosm-cc-bluemonday
++           go-github-com-mitchellh-copystructure
++           go-github-com-mitchellh-reflectwalk
+            go-github-com-muesli-reflow-ansi
+-           go-github-com-muesli-reflow-wordwrap
+            go-github-com-muesli-reflow-indent
+            go-github-com-muesli-reflow-padding
++           go-github-com-muesli-reflow-wordwrap
+            go-github-com-muesli-termenv
+-           go-github-com-google-goterm
+-           go-github-com-lucasb-eyer-go-colorful
+-           go-github-com-mattn-go-isatty
+-           go-github-com-mattn-go-runewidth
+            go-github-com-olekukonko-tablewriter
+            go-github-com-pelletier-go-toml
+            go-github-com-pkg-diff
++           go-github-com-rogpeppe-go-internal
+            go-github-com-sergi-go-diff
+            go-github-com-spf13-cobra
+            go-github-com-spf13-viper
+@@ -93,12 +95,10 @@ (define-public chezmoi
+            go-github-com-twpayne-go-xdg
+            go-github-com-yuin-goldmark
+            go-github-com-zalando-go-keyring
+-           go-github-com-godbus-dbus
+-           go-etcd-io-bbolt
++           go-github-go-git
+            go-golang-org-x-crypto
+            go-golang-org-x-net
+            go-golang-org-x-oauth2
+-           go-github-com-rogpeppe-go-internal
+            go-gopkg-in-errgo-fmt-errors))
+     (home-page "https://www.chezmoi.io/")
+     (synopsis "Personal configuration files manager")
+-- 
+2.41.0
+

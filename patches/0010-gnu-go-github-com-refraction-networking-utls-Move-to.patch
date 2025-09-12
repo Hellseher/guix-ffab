@@ -1,0 +1,124 @@
+From dae48e6f56959274aea4c190464e500e184557ec Mon Sep 17 00:00:00 2001
+Message-ID: <dae48e6f56959274aea4c190464e500e184557ec.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 23:06:45 +0000
+Subject: [PATCH 10/38] gnu: go-github-com-refraction-networking-utls: Move to
+ (gnu packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-refraction-networking-utls):
+Move from here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I5d27ca70b36e8fae044e54927caab9ffec23347e
+---
+ gnu/packages/golang-crypto.scm | 37 ++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 36 ---------------------------------
+ 2 files changed, 37 insertions(+), 36 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 93123b547b..324e65c1ae 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -2,6 +2,7 @@
+ ;;; Copyright © 2018 Pierre Neidhardt <mail@ambrevar.xyz>
+ ;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
++;;; Copyright © 2023 Clément Lassieur <clement@lassieur.org>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -181,6 +182,42 @@ (define-public go-github-com-multiformats-go-multihash
+       (description "Multihash implementation in Go.")
+       (license license:expat))))
+ 
++(define-public go-github-com-refraction-networking-utls
++  (package
++    (name "go-github-com-refraction-networking-utls")
++    (version "1.6.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/refraction-networking/utls")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1iywar5vqsml4b177k2nkcxmjm8mw92g3p112yjsrpmikiwpwpyw"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "github.com/refraction-networking/utls"
++       #:go ,go-1.20
++       #:tests? #f))                    ;requires internet access
++    (propagated-inputs
++     (list go-github-com-andybalholm-brotli
++           go-github-com-cloudflare-circl
++           go-github-com-gaukas-godicttls
++           go-github-com-klauspost-compress
++           go-github-com-quic-go-quic-go
++           go-golang-org-x-crypto
++           go-golang-org-x-net
++           go-golang-org-x-sys))
++    (home-page "https://github.com/refraction-networking/utls")
++    (synopsis "Fork of the Go standard TLS library, providing low-level access
++to the ClientHello for mimicry purposes")
++    (description "uTLS is a fork of “crypto/tls”, which provides ClientHello
++fingerprinting resistance, low-level access to handshake, fake session tickets
++and some other features.  Handshake is still performed by “crypto/tls”, this
++library merely changes ClientHello part of it and provides low-level access.")
++    (license license:bsd-3)))
++
+ (define-public go-github-com-riobard-go-bloom
+   (let ((commit "cdc8013cb5b3eb0efebec85f0e904efccac42df9")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index ab6bba3697..41bc99b146 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3667,42 +3667,6 @@ (define-public go-golang-org-x-crypto
+     (home-page "https://go.googlesource.com/crypto/")
+     (license license:bsd-3)))
+ 
+-(define-public go-github-com-refraction-networking-utls
+-  (package
+-    (name "go-github-com-refraction-networking-utls")
+-    (version "1.6.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/refraction-networking/utls")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1iywar5vqsml4b177k2nkcxmjm8mw92g3p112yjsrpmikiwpwpyw"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "github.com/refraction-networking/utls"
+-       #:go ,go-1.20
+-       #:tests? #f))                    ;requires internet access
+-    (propagated-inputs
+-     (list go-github-com-andybalholm-brotli
+-           go-github-com-cloudflare-circl
+-           go-github-com-gaukas-godicttls
+-           go-github-com-klauspost-compress
+-           go-github-com-quic-go-quic-go
+-           go-golang-org-x-crypto
+-           go-golang-org-x-net
+-           go-golang-org-x-sys))
+-    (home-page "https://github.com/refraction-networking/utls")
+-    (synopsis "Fork of the Go standard TLS library, providing low-level access
+-to the ClientHello for mimicry purposes")
+-    (description "uTLS is a fork of “crypto/tls”, which provides ClientHello
+-fingerprinting resistance, low-level access to handshake, fake session tickets
+-and some other features.  Handshake is still performed by “crypto/tls”, this
+-library merely changes ClientHello part of it and provides low-level access.")
+-    (license license:bsd-3)))
+-
+ (define-public govulncheck
+   (package
+     (name "govulncheck")
+-- 
+2.41.0
+

@@ -1,0 +1,147 @@
+From 16f7c613eef9d08f5d7fdddede4ac8e156f4f366 Mon Sep 17 00:00:00 2001
+Message-ID: <16f7c613eef9d08f5d7fdddede4ac8e156f4f366.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 21:14:55 +0000
+Subject: [PATCH v2 23/30] gnu: go-golang-org-x-text: Move to golang-build.
+
+* gnu/packages/golang.scm (go-golang-org-x-text): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+* gnu/packages/admin.scm: Add (gnu packages golang-build) module.
+* gnu/packages/bioinformatics.scm: As above.
+* gnu/packages/mail.scm: As above.
+
+Change-Id: Ifd15b35b460ae30c5c1d677551e95842b322b246
+---
+ gnu/packages/admin.scm          |  1 +
+ gnu/packages/bioinformatics.scm |  1 +
+ gnu/packages/golang-build.scm   | 29 +++++++++++++++++++++++++++++
+ gnu/packages/golang.scm         | 28 ----------------------------
+ gnu/packages/mail.scm           |  1 +
+ 5 files changed, 32 insertions(+), 28 deletions(-)
+
+diff --git a/gnu/packages/admin.scm b/gnu/packages/admin.scm
+index 2dbb604fa9..c595e1270f 100644
+--- a/gnu/packages/admin.scm
++++ b/gnu/packages/admin.scm
+@@ -130,6 +130,7 @@ (define-module (gnu packages admin)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages groff)
+   #:use-module (gnu packages gtk)
+   #:use-module (gnu packages guile)
+diff --git a/gnu/packages/bioinformatics.scm b/gnu/packages/bioinformatics.scm
+index 554df0b42f..08683bc8e9 100644
+--- a/gnu/packages/bioinformatics.scm
++++ b/gnu/packages/bioinformatics.scm
+@@ -93,6 +93,7 @@ (define-module (gnu packages bioinformatics)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gd)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages graph)
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index 3885701078..325470ca4e 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -1,4 +1,5 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2019 Brian Leung <bkleung89@gmail.com>
+ ;;; Copyright © 2020 Danny Milosavljevic <dannym@scratchpost.org>
+ ;;; Copyright © 2020 HiPhish <hiphish@posteo.de>
+ ;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
+@@ -292,6 +293,34 @@ (define-public go-golang-org-x-term
+ terminals, as commonly found on Unix systems.")
+     (license license:bsd-3)))
+ 
++(define-public go-golang-org-x-text
++  (package
++    (name "go-golang-org-x-text")
++    (version "0.3.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://go.googlesource.com/text")
++             (commit (string-append "v" version))))
++       (file-name (string-append "go.googlesource.com-text-"
++                                 version "-checkout"))
++       (sha256
++        (base32 "0flv9idw0jm5nm8lx25xqanbkqgfiym6619w575p7nrdh0riqwqh"))))
++    (build-system go-build-system)
++    (arguments
++     `(#:import-path "golang.org/x/text"
++       ;; Source-only package
++       #:tests? #f
++       #:phases
++       (modify-phases %standard-phases
++         (delete 'build))))
++    (home-page "https://go.googlesource.com/text")
++    (synopsis "Supplemental Go text processing libraries")
++    (description "This package provides supplemental Go libraries for text
++processing.")
++    (license license:bsd-3)))
++
+ (define-public go-golang-org-x-time
+   (let ((commit "9d24e82272b4f38b78bc8cff74fa936d31ccd8ef")
+         (revision "2"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 6c056e19a9..eb4740f91e 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3559,34 +3559,6 @@ (define-public go-golang-org-x-image
+ processing.")
+       (license license:bsd-3))))
+ 
+-(define-public go-golang-org-x-text
+-  (package
+-    (name "go-golang-org-x-text")
+-    (version "0.3.2")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://go.googlesource.com/text")
+-                    (commit (string-append "v" version))))
+-              (file-name (string-append "go.googlesource.com-text-"
+-                                        version "-checkout"))
+-              (sha256
+-               (base32
+-                "0flv9idw0jm5nm8lx25xqanbkqgfiym6619w575p7nrdh0riqwqh"))))
+-    (build-system go-build-system)
+-    (arguments
+-     `(#:import-path "golang.org/x/text"
+-       ; Source-only package
+-       #:tests? #f
+-       #:phases
+-       (modify-phases %standard-phases
+-         (delete 'build))))
+-    (synopsis "Supplemental Go text processing libraries")
+-    (description "This package provides supplemental Go libraries for text
+-    processing.")
+-    (home-page "https://go.googlesource.com/text")
+-    (license license:bsd-3)))
+-
+ (define-public go-golang-org-x-oauth2
+   (let ((commit "0f29369cfe4552d0e4bcddc57cc75f4d7e672a33")
+         (revision "1"))
+diff --git a/gnu/packages/mail.scm b/gnu/packages/mail.scm
+index 76f379a710..4a439d2f8f 100644
+--- a/gnu/packages/mail.scm
++++ b/gnu/packages/mail.scm
+@@ -108,6 +108,7 @@ (define-module (gnu packages mail)
+   #:use-module (gnu packages gnome)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages golang-web)
+-- 
+2.41.0
+

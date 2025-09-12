@@ -1,0 +1,58 @@
+From d5a7866dc65b5a36d717a028c7ff5bfbb2b36d3d Mon Sep 17 00:00:00 2001
+Message-ID: <d5a7866dc65b5a36d717a028c7ff5bfbb2b36d3d.1711630844.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 28 Mar 2024 12:51:57 +0000
+Subject: [PATCH] gnu: rust-xkbcommon-dl: Fix loading of libxkbcommon-x11.so.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+This to resolve Alacritty segmentation fault reported in #68243, attemp
+to fix in #69797.
+
+* gnu/packages/crates-graphics.scm (rust-xkbcommon-dl) [arguments]:
+Handle libxkbcommon-x11.so in the ‘add-absolute-library-references’
+phase.
+
+Change-Id: Ib724775210cfad7dedaa454f0f456c0dded67dcc
+---
+ gnu/packages/crates-graphics.scm | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/gnu/packages/crates-graphics.scm b/gnu/packages/crates-graphics.scm
+index f95a4a65cd..117b4f5603 100644
+--- a/gnu/packages/crates-graphics.scm
++++ b/gnu/packages/crates-graphics.scm
+@@ -15,6 +15,7 @@
+ ;;; Copyright © 2022 Marius Bakke <marius@gnu.org>
+ ;;; Copyright © 2023, 2024 Jaeme Sifat <jaeme@runbox.com>
+ ;;; Copyright © 2024 Troy Figiel <troy@troyfigiel.com>
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -5745,7 +5746,18 @@ (define-public rust-xkbcommon-dl-0.4
+                        ("rust-dlib" ,rust-dlib-0.5)
+                        ("rust-log" ,rust-log-0.4)
+                        ("rust-once-cell" ,rust-once-cell-1)
+-                       ("rust-xkeysym" ,rust-xkeysym-0.2))))
++                       ("rust-xkeysym" ,rust-xkeysym-0.2))
++       #:phases
++       (modify-phases %standard-phases
++         (add-after 'configure 'add-absolute-library-references
++           (lambda* (#:key inputs vendor-dir #:allow-other-keys)
++             (substitute* (find-files vendor-dir "\\.rs$")
++               (("libxkbcommon-x11\\.so")
++                (search-input-file inputs "lib/libxkbcommon-x11.so"))
++               (("libxkbcommon\\.so")
++                (search-input-file inputs "lib/libxkbcommon.so"))))))))
++    (inputs
++     (list libxkbcommon))
+     (home-page "https://github.com/rust-windowing/xkbcommon-dl")
+     (synopsis "Dynamically loaded xkbcommon and xkbcommon-x11 Rust bindings")
+     (description
+
+base-commit: fb9549164520ad993c2fbbaedc899844d57baabc
+-- 
+2.41.0
+

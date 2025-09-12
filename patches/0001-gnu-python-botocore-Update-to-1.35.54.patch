@@ -1,0 +1,73 @@
+From b7be49f8445b232111aa9b6b967e1d24ff121c29 Mon Sep 17 00:00:00 2001
+Message-ID: <b7be49f8445b232111aa9b6b967e1d24ff121c29.1731584860.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 4 Nov 2024 21:55:49 +0000
+Subject: [PATCH v2 01/14] gnu: python-botocore: Update to 1.35.54.
+
+* gnu/packages/python-xyz.scm (python-botocore): Update to 1.35.54.
+[arguments]<tests>: Enable tests. <test-flags>: Disable some failing
+tests.
+[native-inputs]: Add python-jsonschema, python-pytest,
+python-pytest-xdist, python-setuptools, and python-wheel.
+
+Change-Id: I7730f85d5ace5b8643f8e9201ea46e6723b1a022
+---
+ gnu/packages/python-xyz.scm | 31 ++++++++++++++++++++++---------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 5083473c08..c491883431 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -19364,24 +19364,37 @@ (define-public python-botocore
+   ;; are compatible.
+   (package
+     (name "python-botocore")
+-    (version "1.24.35")
++    (version "1.35.54")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "botocore" version))
+        (sha256
+-        (base32
+-         "0rv8mvhq5s373zdjs2yb45hzvqcqdh2lp2rbb21jjc8ciwnl5d9n"))))
+-    (build-system python-build-system)
++        (base32 "0xhsi4gfmzh1r96zlaa55p9i3kvh5lj4grp866dr72lwwnfba6qk"))))
++    (build-system pyproject-build-system)
+     (arguments
+-     ;; FIXME: Many tests are failing.
+-     '(#:tests? #f))
++     (list
++      #:test-flags
++      #~(list "--numprocesses" "auto"
++              ;; It strugles to find 'botocore'.
++              "--ignore" "tests/functional/leak/test_resource_leaks.py"
++              ;; Tests require networking.
++              "--ignore" "tests/integration")))
++    (native-inputs
++     (list python-jsonschema
++           python-pytest
++           python-pytest-xdist
++           python-setuptools
++           python-wheel))
+     (propagated-inputs
+-     (list python-dateutil python-jmespath python-urllib3))
++     (list python-dateutil
++           python-jmespath
++           python-urllib3))
+     (home-page "https://github.com/boto/botocore")
+     (synopsis "Low-level interface to AWS")
+-    (description "Botocore is a Python library that provides a low-level
+-interface to the Amazon Web Services (AWS) API.")
++    (description
++     "Botocore is a Python library that provides a low-level interface to the
++Amazon Web Services (AWS) API.")
+     (license license:asl2.0)))
+ 
+ (define-public python-boto3
+-- 
+2.46.0
+

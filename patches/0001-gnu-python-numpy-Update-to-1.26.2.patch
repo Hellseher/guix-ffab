@@ -1,0 +1,78 @@
+From da3c2619ebddee646fee6ba4044e839df99dd9e2 Mon Sep 17 00:00:00 2001
+Message-ID: <da3c2619ebddee646fee6ba4044e839df99dd9e2.1737705452.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1737705452.git.sharlatanus@gmail.com>
+References: <cover.1737705452.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 24 Jan 2025 07:55:02 +0000
+Subject: [PATCH python-team 1/2] gnu: python-numpy: Update to 1.26.2.
+
+* gnu/packages/python-xyz.scm (python-numpy): Update to 1.26.2.
+[arguments] <phases>: Add 'hide-gfortran.
+[native-inputs]: Remove python-cython.
+
+Change-Id: I1f02d45dd5c5bc7ad248dbbdc63a8e6a7a21ca9f
+---
+ gnu/packages/python-xyz.scm | 26 +++++++++++++++++++-------
+ 1 file changed, 19 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 4b311cc9b1..88e1796143 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -9224,11 +9224,12 @@ (define-public python-cython-3
+ (define-public python-numpy
+   (package
+     (name "python-numpy")
+-    ;; XXX: Any other versions up to 1.26.4 failed to build with error similar
+-    ;; to: 'fenv_t' has not been declared in '::' 58 | using ::fenv_t;
+-    ;; See <https://github.com/numpy/numpy/issues/21075#issuecomment-1047976197>,
+-    ;; <https://github.com/numpy/numpy/issues/24318>.
+-    (version "1.24.4")
++    ;; XXX: Shipped with vendored-meson which is needed for SIMD and
++    ;; BLAS/LAPACK features that are not yet available in upstream Meson.
++    ;; See <https://raw.githubusercontent.com/numpy/numpy/
++    ;; 2f3549c9d7c5048621568e431c86bc7530742723/doc/source/building/
++    ;; understanding_meson.rst>
++    (version "1.26.2")
+     (source
+      (origin
+        (method url-fetch)
+@@ -9237,7 +9238,7 @@ (define-public python-numpy
+              version "/numpy-" version ".tar.gz"))
+        (sha256
+         (base32
+-         "0qwldmkq5bns561ppkz7psphc4jqfj5j1x4dhq0i8r4qwjjf7xc0"))))
++         "1snknqb4hmv6b720nsaz21g7h6z1ikdvnsqyy5vmgavnfr23hmzn"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+@@ -9246,6 +9247,18 @@ (define-public python-numpy
+                   (ice-9 format))
+       #:phases
+       #~(modify-phases %standard-phases
++          ;; XXX: istl/test/matrixtest.cc includes <fenv.h> and fails to find
++          ;; the stdlib types when the gfortran header is used.  Remove
++          ;; gfortran from CPLUS_INCLUDE_PATH as a workaround.
++          ;; Taken from <https://issues.guix.gnu.org/73439#45>.
++          (add-after 'set-paths 'hide-gfortran
++            (lambda* (#:key inputs #:allow-other-keys)
++              (let ((gfortran (assoc-ref inputs "gfortran")))
++                (setenv "CPLUS_INCLUDE_PATH"
++                        (string-join
++                         (delete (string-append gfortran "/include/c++")
++                                 (string-split (getenv "CPLUS_INCLUDE_PATH") #\:))
++                         ":")))))
+           (add-before 'build 'parallelize-build
+             (lambda _
+               (setenv "NPY_NUM_BUILD_JOBS"
+@@ -9328,7 +9341,6 @@ (define-public python-numpy
+      (list gfortran
+            meson-python
+            pkg-config
+-           python-cython ;; overwrite Cython from meson-python
+            python-hypothesis
+            python-mypy
+            python-pytest
+-- 
+2.47.1
+

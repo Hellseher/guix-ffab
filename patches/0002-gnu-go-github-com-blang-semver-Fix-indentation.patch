@@ -1,0 +1,70 @@
+From 9a4ede206c28424127aa37e0fd49d190edd100c4 Mon Sep 17 00:00:00 2001
+Message-ID: <9a4ede206c28424127aa37e0fd49d190edd100c4.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 28 Feb 2024 20:54:38 +0000
+Subject: [PATCH 2/7] gnu: go-github-com-blang-semver: Fix indentation.
+
+* gnu/packages/golang-xyz.scm (go-github-com-blang-semver): Fix
+indentation.
+
+Change-Id: I9b5e792f2ef859ad7a9d799ba1e369f96e53294b
+---
+ gnu/packages/golang-xyz.scm | 40 ++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 5734a50c95..425a6f15af 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -285,26 +285,26 @@ (define-public go-github-com-bitly-timer-metrics
+     (license license:expat)))
+ 
+ (define-public go-github-com-blang-semver
+-    (package
+-      (name "go-github-com-blang-semver")
+-      (version "3.8.0")
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri (git-reference
+-               (url "https://github.com/blang/semver")
+-               (commit (string-append "v" version))))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32 "16s66zbfkn35msmxpkiwf5dv91kzw7yzxzkcv8ma44j7lbgzx5qk"))))
+-      (build-system go-build-system)
+-      (arguments
+-       '(#:import-path "github.com/blang/semver"))
+-      (home-page "https://github.com/blang/semver")
+-      (synopsis "Semantic versioning library written in Go")
+-      (description
+-       "Semver is a library for Semantic versioning written in Go.")
+-      (license license:expat)))
++  (package
++    (name "go-github-com-blang-semver")
++    (version "3.8.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/blang/semver")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "16s66zbfkn35msmxpkiwf5dv91kzw7yzxzkcv8ma44j7lbgzx5qk"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/blang/semver"))
++    (home-page "https://github.com/blang/semver")
++    (synopsis "Semantic versioning library written in Go")
++    (description
++     "Semver is a library for Semantic versioning written in Go.")
++    (license license:expat)))
+ 
+ (define-public go-github-com-bmizerany-perks-quantile
+   (package
+-- 
+2.41.0
+

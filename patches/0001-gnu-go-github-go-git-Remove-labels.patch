@@ -1,0 +1,64 @@
+From 531675b328b3dab3347d3d08203000f1625456a5 Mon Sep 17 00:00:00 2001
+Message-ID: <531675b328b3dab3347d3d08203000f1625456a5.1707944340.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707944340.git.sharlatanus@gmail.com>
+References: <cover.1707944340.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 14 Feb 2024 17:53:47 +0000
+Subject: [PATCH 1/6] gnu: go-github-go-git: Remove labels.
+
+* gnu/packages/version-control.scm (go-github-go-git) [native-inputs]:
+Remove labels.
+
+Change-Id: Icf5eb3902a520e8f1306d72c7cbc533ff45d8cf4
+---
+ gnu/packages/version-control.scm | 34 ++++++++++++++++----------------
+ 1 file changed, 17 insertions(+), 17 deletions(-)
+
+diff --git a/gnu/packages/version-control.scm b/gnu/packages/version-control.scm
+index 51754245d3..0092d932f2 100644
+--- a/gnu/packages/version-control.scm
++++ b/gnu/packages/version-control.scm
+@@ -3621,23 +3621,23 @@ (define-public go-github-go-git
+                #t)
+              #t)))))
+     (native-inputs
+-     `(("go-github-com-emirpasic-gods" ,go-github-com-emirpasic-gods)
+-       ("go-github-com-go-git-gcfg" ,go-github-com-go-git-gcfg)
+-       ("go-github-com-go-git-go-billy" ,go-github-com-go-git-go-billy)
+-       ("go-github-com-imdario-mergo" ,go-github-com-imdario-mergo)
+-       ("go-github-com-jbenet-go-context" ,go-github-com-jbenet-go-context)
+-       ("go-github-com-kevinburke-ssh-config" ,go-github-com-kevinburke-ssh-config)
+-       ("go-github-com-mitchellh-go-homedir" ,go-github-com-mitchellh-go-homedir)
+-       ("go-github-com-sergi-go-diff" ,go-github-com-sergi-go-diff)
+-       ("go-github-com-xanzy-ssh-agentf" ,go-github-com-xanzy-ssh-agent)
+-       ("go-golang-org-x-crypto" ,go-golang-org-x-crypto)
+-       ("go-golang-org-x-net" ,go-golang-org-x-net)
+-       ("go-gopkg-in-warnings" ,go-gopkg-in-warnings)
+-       ("go-github-com-go-git-go-git-fixtures" ,go-github-com-go-git-go-git-fixtures)
+-       ("go-gopkg-in-check-v1" ,go-gopkg-in-check-v1)
+-       ("go-github-com-alcortesm-tgz" ,go-github-com-alcortesm-tgz)
+-       ("go-golang-org-x-text" ,go-golang-org-x-text)
+-       ("git" ,git)))
++     (list go-github-com-emirpasic-gods
++           go-github-com-go-git-gcfg
++           go-github-com-go-git-go-billy
++           go-github-com-imdario-mergo
++           go-github-com-jbenet-go-context
++           go-github-com-kevinburke-ssh-config
++           go-github-com-mitchellh-go-homedir
++           go-github-com-sergi-go-diff
++           go-github-com-xanzy-ssh-agent
++           go-golang-org-x-crypto
++           go-golang-org-x-net
++           go-gopkg-in-warnings
++           go-github-com-go-git-go-git-fixtures
++           go-gopkg-in-check-v1
++           go-github-com-alcortesm-tgz
++           go-golang-org-x-text
++           git))
+     (home-page "https://github.com/go-git/")
+     (synopsis "Git implementation library")
+     (description "This package provides a Git implementation library.")
+-- 
+2.41.0
+

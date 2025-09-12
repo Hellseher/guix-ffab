@@ -1,0 +1,41 @@
+From 620b006eb0955797ed3e529bc8fbf6b14ad5017e Mon Sep 17 00:00:00 2001
+Message-ID: <620b006eb0955797ed3e529bc8fbf6b14ad5017e.1731584860.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 5 Nov 2024 07:44:52 +0000
+Subject: [PATCH v2 06/14] gnu: Remove python-colorama-for-awscli.
+
+* gnu/packages/python-xyz.scm (python-colorama-for-awscli): Delete variable.
+
+Change-Id: Idb10200319c71fde3fcb78f1b4b0d6f9554166a0
+---
+ gnu/packages/python-xyz.scm | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index ebf7e89225..73b645b1a1 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -18914,18 +18914,6 @@ (define-public python-colorama
+    (home-page "https://pypi.org/project/colorama/")
+    (license license:bsd-3)))
+ 
+-;; awscli and botocore do not accept version 0.4.4
+-(define-public python-colorama-for-awscli
+-  (package
+-    (inherit python-colorama)
+-    (version "0.4.3")
+-    (source
+-     (origin
+-       (method url-fetch)
+-       (uri (pypi-uri "colorama" version))
+-       (sha256
+-        (base32 "189n8hpijy14jfan4ha9f5n06mnl33cxz7ay92wjqgkr639s0vg9"))))))
+-
+ (define-public python-monthdelta
+   (package
+     (name "python-monthdelta")
+-- 
+2.46.0
+

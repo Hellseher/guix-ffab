@@ -1,0 +1,54 @@
+From 3ed67f81b7a93d06484822244a346624804d2cb5 Mon Sep 17 00:00:00 2001
+Message-ID: <3ed67f81b7a93d06484822244a346624804d2cb5.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 28 Feb 2024 21:18:35 +0000
+Subject: [PATCH 3/7] gnu: Add go-github-com-blang-semver-v4.
+
+* gnu/packages/golang-xyz.scm (go-github-com-blang-semver-v4): New variable.
+
+Change-Id: I87132b1b727b7e6ef4d46bb08dc5ad509db4e2e4
+---
+ gnu/packages/golang-xyz.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 425a6f15af..2b0aa97f99 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -306,6 +306,31 @@ (define-public go-github-com-blang-semver
+      "Semver is a library for Semantic versioning written in Go.")
+     (license license:expat)))
+ 
++(define-public go-github-com-blang-semver-v4
++  (package
++    (inherit go-github-com-blang-semver)
++    (name "go-github-com-blang-semver-v4")
++    (version "4.0.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/blang/semver")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "14h9ys4n4kx9cbj42lkdf4i5k3nkll6sd62jcvl7cs565v6fiknz"))))
++    (arguments
++     (list
++      #:import-path "github.com/blang/semver/v4"
++      #:unpack-path "github.com/blang/semver"
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'remove-examples
++            (lambda* (#:key import-path #:allow-other-keys)
++              (delete-file-recursively
++               (string-append "src/" import-path "/examples")))))))))
++
+ (define-public go-github-com-bmizerany-perks-quantile
+   (package
+     (name "go-github-com-bmizerany-perks-quantile")
+-- 
+2.41.0
+

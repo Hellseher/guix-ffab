@@ -1,0 +1,63 @@
+From 1a53f626e1f543fc2ac7bb7dfd6e47bc60995ca3 Mon Sep 17 00:00:00 2001
+Message-ID: <1a53f626e1f543fc2ac7bb7dfd6e47bc60995ca3.1720653590.git.sharlatanus@gmail.com>
+In-Reply-To: <6ebbf954f399ca8347144b087fae787c2b071354.1720653590.git.sharlatanus@gmail.com>
+References: <6ebbf954f399ca8347144b087fae787c2b071354.1720653590.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Thu, 11 Jul 2024 00:16:37 +0100
+Subject: [PATCH v2 4/4] gnu: python-dolfin-adjoint:; Disable failing tests,
+ fix build.
+
+* gnu/packages/simulation.scm (python-dolfin-adjoint) [arguments]:
+<#:test-flags>: Explicitly ignore failing tests during collection phase
+and some tests during runt test phase.
+<#:phases>: Change HOME env to GETCWD in 'set-environment-variable phase.
+
+Change-Id: Ibee5e45052a3828b4522752a87c97367d7caec65
+---
+ gnu/packages/simulation.scm | 25 ++++++++++++++++++++-----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/simulation.scm b/gnu/packages/simulation.scm
+index ad9f0080cc..99bd107c94 100644
+--- a/gnu/packages/simulation.scm
++++ b/gnu/packages/simulation.scm
+@@ -1205,16 +1205,31 @@ (define-public python-dolfin-adjoint
+     (arguments
+      (list
+       #:test-flags
+-      #~(list "tests/fenics_adjoint"
+-              "tests/migration"
+-              "tests/pyadjoint"
+-              "-k" "not test_read_checkpoint")
++      #~(list
++         ;; Ignore tests which require missing packages and/or failed during
++         ;; tests collection.
++         "--ignore=tests/firedrake_adjoint/test_assignment.py"
++         "--ignore=tests/firedrake_adjoint/test_burgers_newton.py"
++         "--ignore=tests/firedrake_adjoint/test_dynamic_meshes.py"
++         "--ignore=tests/firedrake_adjoint/test_hessian.py"
++         "--ignore=tests/firedrake_adjoint/test_reduced_functional.py"
++         "--ignore=tests/firedrake_adjoint/test_shape_derivatives.py"
++         "--ignore=tests/firedrake_adjoint/test_solving.py"
++         "--ignore=tests/firedrake_adjoint/test_tlm.py"
++         "--ignore=tests/migration/burgers_newton/test_burgers_newton.py"
++         "--ignore=tests/migration/linear_solver/test_linear_solver.py"
++         "--ignore=tests/migration/optimization_scipy/test_optimization_scipy.py"
++         "--ignore=tests/migration/projection/test_projection.py"
++         "--ignore=tests/migration/reduced_functional/test_reduced_functional.py"
++         "--ignore=tests/migration/split/test_split.py"
++         "-k" (string-append "not test_read_checkpoint"
++                             " and not test_krylov_solver_preconditioner_function_ctrl"))
+       #:phases
+       #~(modify-phases %standard-phases
+           (add-after 'build 'mpi-setup #$%openmpi-setup)
+           (add-before 'check 'set-environment-variables
+             (lambda _
+-              (setenv "HOME" "/tmp")))
++              (setenv "HOME" (getcwd))))
+           (add-after 'install 'install-doc
+             (lambda _
+               (let* ((doc (string-append #$output "/share/doc/" #$name "-" #$version))
+-- 
+2.41.0
+

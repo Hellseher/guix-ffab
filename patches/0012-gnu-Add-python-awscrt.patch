@@ -1,0 +1,110 @@
+From 7dd6a5b3584d0f73267319c3838fa7c550e30e0d Mon Sep 17 00:00:00 2001
+Message-ID: <7dd6a5b3584d0f73267319c3838fa7c550e30e0d.1731584861.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Wed, 13 Nov 2024 18:16:20 +0100
+Subject: [PATCH v2 12/14] gnu: Add python-awscrt.
+
+* gnu/packages/python-web.scm (python-awscrt): New variable.
+
+Change-Id: I1c08a06fdb1ea9811c183d3711f092edd12cdca7
+---
+ gnu/packages/python-web.scm | 74 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index 32662503a1..eab9a7efc5 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -100,6 +100,7 @@ (define-module (gnu packages python-web)
+   #:use-module (gnu packages bash)
+   #:use-module (gnu packages certs)
+   #:use-module (gnu packages check)
++  #:use-module (gnu packages cmake)
+   #:use-module (gnu packages compression)
+   #:use-module (gnu packages crates-io)
+   #:use-module (gnu packages crates-web)
+@@ -4132,6 +4133,79 @@ (define-public python-urllib3-next
+ supports url redirection and retries, and also gzip and deflate decoding.")
+     (license license:expat)))
+ 
++(define-public python-awscrt
++  (package
++    (name "python-awscrt")
++    (version "0.23.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "awscrt" version))
++       (sha256
++        (base32 "0a669xxfmgw3g6xpcnm64pbmlrbxw5wf3jcrivixscl2glapdxgx"))))
++    (build-system pyproject-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'disable-broken-tests
++            (lambda _
++              ;; Disable broken tests.  These tests fail because the
++              ;; certificate bundle at the default location does not exist.
++              (substitute* "test/test_auth.py"
++                (("def test_default_provider")
++                 "def _test_default_provider"))
++              (substitute* "test/test_http_client.py"
++                (("def test_h2_client")
++                 "def _test_h2_client"))
++              (substitute* "test/test_s3.py"
++                (("def test_sanity")
++                 "def _test_sanity")
++                (("def test_sanity_secure")
++                 "def _test_sanity_secure")
++                (("def test_wait_shutdown")
++                 "def _test_wait_shutdown"))))
++          (add-after 'unpack 'override-cert-bundle-location
++            (lambda* (#:key inputs #:allow-other-keys)
++              (let ((bundle (search-input-file inputs
++                                               "/etc/ssl/certs/ca-certificates.crt")))
++                (setenv "SSL_CERT_FILE" bundle)
++                (substitute* "awscrt/io.py"
++                  (("( +)opt = TlsContextOptions\\(\\)" m indent)
++                   (string-append m "\n"
++                                  indent "import os\n"
++                                  indent "\
++opt.override_default_trust_store_from_path(None, os.getenv('SSL_CERT_FILE')) if os.getenv('SSL_CERT_FILE') else None\n")))
++                (substitute* "test/appexit_http.py"
++                  (("( +)tls_ctx_opt = awscrt.io.TlsContextOptions.*" m indent)
++                   (string-append m indent
++                                  "tls_ctx_opt.override_default_trust_store_from_path(None, '"
++                                  bundle "')\n")))
++                (substitute* "test/test_io.py"
++                  (("( +)opt = TlsContextOptions\\(\\).*" m indent)
++                   (string-append m indent
++                                  "opt.override_default_trust_store_from_path(None, '"
++                                  bundle "')\n"))))))
++          (add-after 'unpack 'use-system-libraries
++            (lambda _
++              (setenv "AWS_CRT_BUILD_USE_SYSTEM_LIBCRYPTO" "1")))
++          (replace 'check
++            (lambda* (#:key tests? #:allow-other-keys)
++              (when tests?
++                (invoke "python3" "-m" "unittest"
++                        "discover" "--verbose")))))))
++    (inputs (list openssl))
++    (native-inputs (list cmake-minimal
++                         ;; For tests only
++                         nss-certs-for-test
++                         python-boto3
++                         python-websockets))
++    (home-page "https://github.com/awslabs/aws-crt-python")
++    (synopsis "Common runtime for AWS Python projects")
++    (description
++     "This package provides a common runtime for AWS Python projects.")
++    (license license:asl2.0)))
++
+ (define-public awscli
+   (package
+     ;; Note: updating awscli typically requires updating botocore as well.
+-- 
+2.46.0
+

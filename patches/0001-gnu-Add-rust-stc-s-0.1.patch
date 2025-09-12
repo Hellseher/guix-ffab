@@ -1,0 +1,61 @@
+From 999c4ac458527a560aed38ba855d3391b09d65db Mon Sep 17 00:00:00 2001
+Message-ID: <999c4ac458527a560aed38ba855d3391b09d65db.1733602367.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1733602367.git.sharlatanus@gmail.com>
+References: <cover.1733602367.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 7 Dec 2024 00:38:55 +0000
+Subject: [PATCH 1/4] gnu: Add rust-stc-s-0.1.
+
+* gnu/packages/crates-io.scm (rust-stc-s-0.1): New variable.
+
+Change-Id: Ic6cb2c8f598219126a1d55ed979f42f0cca3e524
+---
+ gnu/packages/crates-io.scm | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/gnu/packages/crates-io.scm b/gnu/packages/crates-io.scm
+index db4edce680..3ea1f014ad 100644
+--- a/gnu/packages/crates-io.scm
++++ b/gnu/packages/crates-io.scm
+@@ -45,6 +45,7 @@
+ ;;; Copyright © 2024 Aaron Covrig <aaron.covrig.us@ieee.org>
+ ;;; Copyright © 2024 Nguyễn Gia Phong <mcsinyx@disroot.org>
+ ;;; Copyright © 2024 Jordan Moore <lockbox@struct.foo>
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -77928,6 +77929,30 @@ (define-public rust-stb-truetype-0.3
+ in @code{stb_truetype.h} from C to Rust.")
+     (license (list license:expat license:asl2.0))))
+ 
++(define-public rust-stc-s-0.1
++  (package
++    (name "rust-stc-s")
++    (version "0.1.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (crate-uri "stc-s" version))
++       (file-name (string-append name "-" version ".tar.gz"))
++       (sha256
++        (base32 "0mcvhd50qqysqvd5jqd5ydjyqs3rp2x6irk518lrqn7xlx3cz04p"))))
++    (build-system cargo-build-system)
++    (arguments
++     `(#:cargo-inputs
++       (("rust-nom" ,rust-nom-7)
++        ("rust-serde" ,rust-serde-1)
++        ("rust-serde-json" ,rust-serde-json-1))))
++    (home-page "https://github.com/cds-astro/cds-stc-rust/")
++    (synopsis "STC-S serializer/deserializer with JSON support")
++    (description
++     "This package provides Rust implementation of a @acronym{Space-Time
++Coordinate,STC-S} serializer/deserializer with JSON support.")
++    (license (list license:asl2.0 license:expat))))
++
+ (define-public rust-std-prelude-0.2
+   (package
+     (name "rust-std-prelude")
+-- 
+2.46.0
+

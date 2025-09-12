@@ -1,0 +1,104 @@
+From bedd2d99caba68c399582fbdd35251b7e746ca08 Mon Sep 17 00:00:00 2001
+Message-ID: <bedd2d99caba68c399582fbdd35251b7e746ca08.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 10 Feb 2024 16:24:01 +0000
+Subject: [PATCH 16/30] gnu: go-golang-org-x-exp: Move to (gnu packages
+ golang-build).
+
+* gnu/packages/golang.scm (go-golang-org-x-exp): Move from here ...
+* gnu/packages/golang-build.scm: ... to here.
+
+Change-Id: I2253ac166a8830662360b14cec0fa301686dac22
+---
+ gnu/packages/golang-build.scm | 27 +++++++++++++++++++++++++++
+ gnu/packages/golang.scm       | 27 ---------------------------
+ 2 files changed, 27 insertions(+), 27 deletions(-)
+
+diff --git a/gnu/packages/golang-build.scm b/gnu/packages/golang-build.scm
+index eeab951f1e..ffedc946c2 100644
+--- a/gnu/packages/golang-build.scm
++++ b/gnu/packages/golang-build.scm
+@@ -2,6 +2,7 @@
+ ;;; Copyright © 2020 Leo Famulari <leo@famulari.name>
+ ;;; Copyright © 2023 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+ ;;; Copyright © 2023 Felix Lechner <felix.lechner@lease-up.com>
++;;; Copyright © 2023 Katherine Cox-Buday <cox.katherine.e@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -40,6 +41,32 @@ (define-module (gnu packages golang-build)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-golang-org-x-exp
++  (package
++    (name "go-golang-org-x-exp")
++    (version "0.0.0-20221004215720-b9f4876ce741")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://go.googlesource.com/exp")
++             (commit (go-version->git-ref version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "030b929xyg8dpp6f4qbyg63msi6zgzj9sqmvnyphfcrjkqf7nr41"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "golang.org/x/exp"
++       ;; Source-only package
++       #:tests? #f
++       #:phases (modify-phases %standard-phases
++                  (delete 'build))))
++    (home-page "https://golang.org/x/exp")
++    (synopsis "Experimental and deprecated Go packages")
++    (description "This subrepository holds experimental and deprecated (in the
++@code{old} directory) packages.")
++    (license license:bsd-3)))
++
+ (define-public go-golang-org-x-net
+   (let ((commit "8e0e7d8d38f2b6d21d742845570dde2902d06a1d")
+         (revision "0"))
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 4a8e9dbc78..dd0ac7e3e8 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3347,33 +3347,6 @@ (define-public go-github-com-hashicorp-hcl-v2
+     (home-page "https://github.com/hashicorp/hcl")
+     (license license:mpl2.0)))
+ 
+-(define-public go-golang-org-x-exp
+-  (package
+-    (name "go-golang-org-x-exp")
+-    (version "0.0.0-20221004215720-b9f4876ce741")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://go.googlesource.com/exp")
+-                    (commit (go-version->git-ref version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "030b929xyg8dpp6f4qbyg63msi6zgzj9sqmvnyphfcrjkqf7nr41"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "golang.org/x/exp"
+-       ;; Source-only package
+-       #:tests? #f
+-       #:phases (modify-phases %standard-phases
+-                  (delete 'build))))
+-    (home-page "https://golang.org/x/exp")
+-    (synopsis "Experimental and deprecated Go packages")
+-    (description
+-     "This subrepository holds experimental and deprecated (in the @code{old}
+-directory) packages.")
+-    (license license:bsd-3)))
+-
+ (define-public go-golang-org-x-tools
+   (package
+     (name "go-golang-org-x-tools")
+-- 
+2.41.0
+

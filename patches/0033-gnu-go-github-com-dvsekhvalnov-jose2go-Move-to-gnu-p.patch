@@ -1,0 +1,95 @@
+From 5626cf52988a5c89f71926c3c833775a4fb21f08 Mon Sep 17 00:00:00 2001
+Message-ID: <5626cf52988a5c89f71926c3c833775a4fb21f08.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 21:46:58 +0000
+Subject: [PATCH 33/38] gnu: go-github-com-dvsekhvalnov-jose2go: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-dvsekhvalnov-jose2go): Move
+from here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+Change-Id: I4c368c9005fd079078726b9165dff380b5092405
+---
+ gnu/packages/golang-crypto.scm | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 26 --------------------------
+ 2 files changed, 25 insertions(+), 26 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 7dede78874..a316a89a18 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -300,6 +300,31 @@ (define-public go-github-com-cloudflare-circl
+ Cryptography (ECC).")
+     (license license:bsd-3)))
+ 
++(define-public go-github-com-dvsekhvalnov-jose2go
++  (package
++    (name "go-github-com-dvsekhvalnov-jose2go")
++    (version "1.5.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/dvsekhvalnov/jose2go")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1pzfmv2dxb3m455bi1ks4q3i0dcw1sazxk8k96wrgpkwgglyxj3n"))))
++    (build-system go-build-system)
++    (native-inputs
++     (list go-gopkg-in-check-v1))
++    (arguments
++     '(#:import-path "github.com/dvsekhvalnov/jose2go"))
++    (home-page "https://github.com/dvsekhvalnov/jose2go")
++    (synopsis "Go implementation of Javascript Object Signing and Encryption spec")
++    (description "This package provides a Go library for generating, decoding,
++and encrypting JSON Web Tokens (JWT).  It relies only on the standard
++library.")
++    (license license:expat)))
++
+ (define-public go-github-com-emersion-go-pgpmail
+   (package
+     (name "go-github-com-emersion-go-pgpmail")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 245de0dc32..0a55e1ba05 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -10622,32 +10622,6 @@ (define-public go-github-com-mtibben-percent
+ (define-public go-github-com-percent
+   (deprecated-package "go-github-com-percent" go-github-com-mtibben-percent))
+ 
+-(define-public go-github-com-dvsekhvalnov-jose2go
+-  (package
+-    (name "go-github-com-dvsekhvalnov-jose2go")
+-    (version "1.5.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/dvsekhvalnov/jose2go")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1pzfmv2dxb3m455bi1ks4q3i0dcw1sazxk8k96wrgpkwgglyxj3n"))))
+-    (build-system go-build-system)
+-    (native-inputs
+-     (list go-gopkg-in-check-v1))
+-    (arguments
+-     '(#:import-path "github.com/dvsekhvalnov/jose2go"
+-       #:phases %standard-phases))
+-    (synopsis "Go implementation of Javascript Object Signing and Encryption spec")
+-    (description
+-     "This package provides a Go library for generating, decoding, and
+-encrypting JSON Web Tokens (JWT).  It relies only on the standard library.")
+-    (home-page "https://github.com/dvsekhvalnov/jose2go")
+-    (license license:expat)))
+-
+ (define-public aws-vault
+   (package
+     (name "aws-vault")
+-- 
+2.41.0
+

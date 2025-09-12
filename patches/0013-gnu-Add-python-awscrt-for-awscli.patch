@@ -1,0 +1,40 @@
+From bd42df91fc3b2f5e5f7e1db241c142d95ec6a7aa Mon Sep 17 00:00:00 2001
+Message-ID: <bd42df91fc3b2f5e5f7e1db241c142d95ec6a7aa.1731584861.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Wed, 13 Nov 2024 18:16:21 +0100
+Subject: [PATCH v2 13/14] gnu: Add python-awscrt-for-awscli.
+
+* gnu/packages/python-web.scm (python-awscrt-for-awscli): New variable.
+
+Change-Id: Iea7f6467d01eee447d6605390be1066589537aae
+---
+ gnu/packages/python-web.scm | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/gnu/packages/python-web.scm b/gnu/packages/python-web.scm
+index eab9a7efc5..d3ef984a07 100644
+--- a/gnu/packages/python-web.scm
++++ b/gnu/packages/python-web.scm
+@@ -4206,6 +4206,17 @@ (define-public python-awscrt
+      "This package provides a common runtime for AWS Python projects.")
+     (license license:asl2.0)))
+ 
++(define-public python-awscrt-for-awscli
++  (package
++    (inherit python-awscrt)
++    (version "0.22.0")
++    (source
++     (origin
++       (method url-fetch)
++       (uri (pypi-uri "awscrt" version))
++       (sha256
++        (base32 "0w6pw42jbznrxh92cd97p96dg2nz698mcbfy7md3zw18jfsb18jc"))))))
++
+ (define-public awscli
+   (package
+     ;; Note: updating awscli typically requires updating botocore as well.
+-- 
+2.46.0
+

@@ -1,0 +1,49 @@
+From 834964486162cfc072739dc57ad3c27bce78404a Mon Sep 17 00:00:00 2001
+Message-ID: <834964486162cfc072739dc57ad3c27bce78404a.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 11:33:46 +0100
+Subject: [PATCH 08/12] gnu: go-github-com-onsi-ginkgo: Refresh package style.
+
+* gnu/packages/golang-check.scm (go-github-com-onsi-ginkgo)
+[arguments]: Place <#:import-path> on new line.
+[propagated-inputs]: Sort inputs alphabetically.
+
+Change-Id: I70b7f1838c8d8fc6744ad724ed4b79fdd645f6c4
+---
+ gnu/packages/golang-check.scm | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/gnu/packages/golang-check.scm b/gnu/packages/golang-check.scm
+index 6f36615ab0..8ea0c45ff8 100644
+--- a/gnu/packages/golang-check.scm
++++ b/gnu/packages/golang-check.scm
+@@ -441,17 +441,17 @@ (define-public go-github-com-onsi-ginkgo
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32
+-         "1hh6n7q92y0ai8k6rj2yzw6wwxikhyiyk4j92zgvf1zad0gmqqmz"))))
++        (base32 "1hh6n7q92y0ai8k6rj2yzw6wwxikhyiyk4j92zgvf1zad0gmqqmz"))))
+     (build-system go-build-system)
+     (arguments
+-     (list #:import-path "github.com/onsi/ginkgo"))
++     (list
++      #:import-path "github.com/onsi/ginkgo"))
+     (propagated-inputs
+-     (list go-golang-org-x-sys
+-           go-golang-org-x-tools
+-           go-github-com-go-task-slim-sprig
++     (list go-github-com-go-task-slim-sprig
+            go-github-com-nxadm-tail
+-           go-github-com-onsi-gomega))
++           go-github-com-onsi-gomega
++           go-golang-org-x-sys
++           go-golang-org-x-tools))
+     (home-page "https://github.com/onsi/ginkgo")
+     (synopsis "BDD-style testing framework for Go")
+     (description
+-- 
+2.41.0
+

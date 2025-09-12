@@ -1,0 +1,79 @@
+From e944d097e0dc9b34338ea7500c7fd93d669e6193 Mon Sep 17 00:00:00 2001
+Message-ID: <e944d097e0dc9b34338ea7500c7fd93d669e6193.1721399836.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721399836.git.sharlatanus@gmail.com>
+References: <cover.1721399836.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 19 Jul 2024 14:27:15 +0100
+Subject: [PATCH 4/7] gnu: go-github-com-jdkato-twine: Enable tests.
+
+* gnu/packages/golang-xyz.scm (go-github-com-jdkato-twine) [source]: Add
+snippet adjusting changed upstream module import path.
+[arguments]: <#:phases>: Remove 'build and 'patch-module-import-path
+phases. Add 'disable-failing-tests phase. Use custom 'check phase.
+
+Change-Id: I8553705ca0b812c772005460b242ce47b0c65ced
+---
+ gnu/packages/golang-xyz.scm | 40 ++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 159f2dd44e..6b6c953a1d 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -2644,33 +2644,33 @@ (define-public go-github-com-jdkato-twine
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "1hbpxcrcsbi975lklrhzyzk0fzn79pxicvfyf2sckmd2n6jb4ayy"))))
++        (base32 "1hbpxcrcsbi975lklrhzyzk0fzn79pxicvfyf2sckmd2n6jb4ayy"))
++       (modules '((guix build utils)))
++       (snippet
++        #~(begin
++            ;; Module name has been changed upstream.
++            (substitute* (find-files "." "\\.go$")
++              (("gopkg.in/neurosnap/sentences.v1")
++               "github.com/neurosnap/sentences"))))))
+     (build-system go-build-system)
+     (arguments
+      (list
+-      ;; FIXME: Adjust tests sute or check with upstram:
+-      ;; === Failed
+-      ;; === FAIL: nlp/segment TestGoldenRules (0.00s)
+-      ;;     segment_test.go:143: 25. Double quotations inside sentence
+-      ;;     segment_test.go:144: Actual: [She turned to him, "This is great." she said.]
+-      ;;     segment_test.go:145: Actual: 2, Expected: 1
+-      ;;     segment_test.go:146: ===
+-      #:tests? #f
+       #:import-path "github.com/jdkato/twine"
+       #:phases
+       #~(modify-phases %standard-phases
+-          (add-after 'unpack 'patch-module-import-path
+-            (lambda* (#:key import-path #:allow-other-keys)
+-              (with-directory-excursion (string-append "src/" import-path)
+-                (substitute* (find-files "." "\\.go$")
+-                  (("gopkg.in/neurosnap/sentences.v1")
+-                   "github.com/neurosnap/sentences")))))
+-          (replace 'build
+-            (lambda* (#:key import-path #:allow-other-keys)
++          (add-after 'unpack 'disable-failing-tests
++            (lambda* (#:key tests? import-path #:allow-other-keys)
+               (with-directory-excursion (string-append "src/" import-path)
+-                (invoke "go" "build" "-v" "-x" "-ldflags=-s -w" "-trimpath" "./...")))))))
+-    (native-inputs
+-     (list gotestsum))
++                (substitute* "nlp/segment/segment_test.go"
++                  (("TestGoldenRules") "OffTestGoldenRules")))))
++          ;; XXX: Workaround for go-build-system's lack of Go modules
++          ;; support.
++          (delete 'build)
++          (replace 'check
++            (lambda* (#:key tests? import-path #:allow-other-keys)
++              (when tests?
++                (with-directory-excursion (string-append "src/" import-path)
++                  (invoke "go" "test" "-v" "./..."))))))))
+     (propagated-inputs
+      (list go-github-com-montanaflynn-stats
+            go-github-com-neurosnap-sentences
+-- 
+2.41.0
+

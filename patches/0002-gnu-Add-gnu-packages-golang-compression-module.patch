@@ -1,0 +1,76 @@
+From e23a7afa5e34c5bf3b1d4de4d928d17db804b45c Mon Sep 17 00:00:00 2001
+Message-ID: <e23a7afa5e34c5bf3b1d4de4d928d17db804b45c.1707763691.git.sharlatanus@gmail.com>
+In-Reply-To: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+References: <e6295f25eabb9fcc8765561825ab7c9b124c1568.1707763691.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 17:08:13 +0000
+Subject: [PATCH v2 02/30] gnu: Add (gnu packages golang-compression) module.
+
+* gnu/packages/golang-compression.scm: New file.
+* gnu/local.mk: Add to gnu/packages/golang-compression.scm scope.
+
+Change-Id: I1c68a3f6f9b3d6a316cba560b7fc81e707376417
+---
+ gnu/local.mk                        |  1 +
+ gnu/packages/golang-compression.scm | 37 +++++++++++++++++++++++++++++
+ 2 files changed, 38 insertions(+)
+ create mode 100644 gnu/packages/golang-compression.scm
+
+diff --git a/gnu/local.mk b/gnu/local.mk
+index e40be7fb46..bb62c87bb6 100644
+--- a/gnu/local.mk
++++ b/gnu/local.mk
+@@ -309,6 +309,7 @@ GNU_SYSTEM_MODULES =				\
+   %D%/packages/golang.scm			\
+   %D%/packages/golang-build.scm		\
+   %D%/packages/golang-check.scm		\
++  %D%/packages/golang-compression.scm		\
+   %D%/packages/golang-crypto.scm	      	\
+   %D%/packages/golang-web.scm	        	\
+   %D%/packages/golang-xyz.scm	        	\
+diff --git a/gnu/packages/golang-compression.scm b/gnu/packages/golang-compression.scm
+new file mode 100644
+index 0000000000..268cd16e30
+--- /dev/null
++++ b/gnu/packages/golang-compression.scm
+@@ -0,0 +1,37 @@
++;;; GNU Guix --- Functional package management for GNU
++;;;
++;;; This file is part of GNU Guix.
++;;;
++;;; GNU Guix is free software; you can redistribute it and/or modify it
++;;; under the terms of the GNU General Public License as published by
++;;; the Free Software Foundation; either version 3 of the License, or (at
++;;; your option) any later version.
++;;;
++;;; GNU Guix is distributed in the hope that it will be useful, but
++;;; WITHOUT ANY WARRANTY; without even the implied warranty of
++;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++;;; GNU General Public License for more details.
++;;;
++;;; You should have received a copy of the GNU General Public License
++;;; along with GNU Guix.  If not, see <http://www.gnu.org/licenses/>.
++
++(define-module (gnu packages golang-compression)
++  #:use-module ((guix licenses) #:prefix license:)
++  #:use-module (guix build-system go)
++  #:use-module (guix gexp)
++  #:use-module (guix git-download)
++  #:use-module (guix packages)
++  #:use-module (guix utils)
++  #:use-module (gnu packages))
++
++;;; Commentary:
++;;;
++;;; Please: Try to add new module packages in alphabetic order.
++;;;
++;;; Code:
++
++;;;
++;;; Avoid adding new packages to the end of this file. To reduce the chances
++;;; of a merge conflict, place them above by existing packages with similar
++;;; functionality or similar names.
++;;;
+-- 
+2.41.0
+

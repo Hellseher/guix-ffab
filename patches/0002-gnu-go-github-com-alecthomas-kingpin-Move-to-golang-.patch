@@ -1,0 +1,116 @@
+From e92d7b979c11477e01c79bd62d35d857d7717132 Mon Sep 17 00:00:00 2001
+Message-ID: <e92d7b979c11477e01c79bd62d35d857d7717132.1711239854.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711239854.git.sharlatanus@gmail.com>
+References: <cover.1711239854.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 22 Mar 2024 21:11:51 +0000
+Subject: [PATCH 02/12] gnu: go-github-com-alecthomas-kingpin: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-alecthomas-kingpin): Move from
+here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: Ib7609a82c96683809f81479f4eb13f43d85d4a2f
+---
+ gnu/packages/golang-xyz.scm | 33 ++++++++++++++++++++++++++++++++-
+ gnu/packages/golang.scm     | 29 -----------------------------
+ 2 files changed, 32 insertions(+), 30 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 77608457f2..fb3c31a38e 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -4,10 +4,11 @@
+ ;;; Copyright © 2018 Pierre-Antoine Rouby <pierre-antoine.rouby@inria.fr>
+ ;;; Copyright © 2019 Brian Leung <bkleung89@gmail.com>
+ ;;; Copyright © 2019 Leo Famulari <leo@famulari.name>
+-;;; Copyright © 2019, 2020, 2021 Efraim Flashner <efraim@flashner.co.il>
++;;; Copyright © 2019-2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2020 Joseph LaFreniere <joseph@lafreniere.xyz>
+ ;;; Copyright © 2020 Oleg Pykhalov <go.wigust@gmail.com>
+ ;;; Copyright © 2020, 2021 raingloom <raingloom@riseup.net>
++;;; Copyright © 2021 Collin J. Doering <collin@rekahsoft.ca>
+ ;;; Copyright © 2021 Guillaume Le Vaillant <glv@posteo.net>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+ ;;; Copyright © 2021 Sarah Morgensen <iskarian@mgsn.dev>
+@@ -141,6 +142,36 @@ (define-public go-github-com-alecthomas-chroma-v2
+      (list go-github-com-alecthomas-assert-v2
+            go-github-com-alecthomas-repr))))
+ 
++(define-public go-github-com-alecthomas-kingpin
++  (package
++    (name "go-github-com-alecthomas-kingpin")
++    (version "2.2.6")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/alecthomas/kingpin")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0mndnv3hdngr3bxp7yxfd47cas4prv98sqw534mx7vp38gd88n5r"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/alecthomas/kingpin"))
++    (native-inputs
++     (list go-github-com-alecthomas-template
++           go-github-com-alecthomas-units
++           go-github-com-stretchr-testify))
++    (home-page "https://github.com/alecthomas/kingpin")
++    (synopsis "Go library provides utilities for building command line interfaces")
++    (description
++     "Go library provides utilities for building command line interfaces.")
++    (license license:expat)))
++
++(define-public go-github-com-kingpin
++  (deprecated-package "go-github-com-kingpin" go-github-com-alecthomas-kingpin))
++
+ (define-public go-github-com-alecthomas-participle-v2
+   (package
+     (name "go-github-com-alecthomas-participle-v2")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 6533914f80..062985c0ce 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9609,35 +9609,6 @@ (define-public go-github-com-skratchdot-open-golang
+       (home-page "https://github.com/skratchdot/open-golang")
+       (license license:expat))))
+ 
+-(define-public go-github-com-alecthomas-kingpin
+-  (package
+-    (name "go-github-com-alecthomas-kingpin")
+-    (version "2.2.6")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/alecthomas/kingpin")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "0mndnv3hdngr3bxp7yxfd47cas4prv98sqw534mx7vp38gd88n5r"))))
+-    (build-system go-build-system)
+-    (native-inputs
+-     (list go-github-com-alecthomas-template go-github-com-alecthomas-units
+-           go-github-com-stretchr-testify))
+-    (arguments
+-     '(#:import-path "github.com/alecthomas/kingpin"
+-       #:phases %standard-phases))
+-    (synopsis "Go library provides utilities for building command line interfaces")
+-    (description
+-     "Go library provides utilities for building command line interfaces.")
+-    (home-page "https://github.com/alecthomas/kingpin")
+-    (license license:expat)))
+-
+-(define-public go-github-com-kingpin
+-  (deprecated-package "go-github-com-kingpin" go-github-com-alecthomas-kingpin))
+-
+ (define-public go-github-com-alecthomas-template
+   (let ((commit "a0175ee3bccc567396460bf5acd36800cb10c49c")
+         (revision "0"))
+-- 
+2.41.0
+

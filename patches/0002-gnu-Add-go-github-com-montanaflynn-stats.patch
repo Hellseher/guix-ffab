@@ -1,0 +1,58 @@
+From 0b982611aca08b18aabcce7740ce689eba57418b Mon Sep 17 00:00:00 2001
+Message-ID: <0b982611aca08b18aabcce7740ce689eba57418b.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 13 Apr 2024 23:58:31 +0100
+Subject: [PATCH 02/26] gnu: Add go-github-com-montanaflynn-stats.
+
+* gnu/packages/golang-maths.scm (go-github-com-montanaflynn-stats): New variable.
+
+Change-Id: I1e131cb4ceece61e5b822178831014ed27189d9e
+---
+ gnu/packages/golang-maths.scm | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
+
+diff --git a/gnu/packages/golang-maths.scm b/gnu/packages/golang-maths.scm
+index f7fc58ae2f..dfb29abea4 100644
+--- a/gnu/packages/golang-maths.scm
++++ b/gnu/packages/golang-maths.scm
+@@ -1,4 +1,5 @@
+ ;;; GNU Guix --- Functional package management for GNU
++;;; Copyright © 2024 Sharlatan Hellseher <sharlatanus@gmail.com>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -33,6 +34,29 @@ (define-module (gnu packages golang-maths)
+ ;;; Libraries:
+ ;;;
+ 
++(define-public go-github-com-montanaflynn-stats
++  (package
++    (name "go-github-com-montanaflynn-stats")
++    (version "0.7.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/montanaflynn/stats")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0y38cvp7r6fb6291k82j781dbykx00mxw8ca0v9d0fijzc1x81fi"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/montanaflynn/stats"))
++    (home-page "https://github.com/montanaflynn/stats")
++    (synopsis "Statistics library for Golang")
++    (description
++     "This package provides a statistical library for Golang.")
++    (license license:expat)))
++
+ ;;;
+ ;;; Executables:
+ ;;;
+-- 
+2.41.0
+

@@ -1,0 +1,60 @@
+From 854c8b073f800f2fd001388daed9d5ada622e812 Mon Sep 17 00:00:00 2001
+Message-ID: <854c8b073f800f2fd001388daed9d5ada622e812.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Mon, 24 Jun 2024 21:29:29 +0100
+Subject: [PATCH 22/26] gnu: Add go-atomicgo-dev-keyboard.
+
+* gnu/packages/golang-xyz.scm (go-atomicgo-dev-keyboard): New variable.
+
+Change-Id: I335f43f06009d188c4e3278ea00a1568a3be9235
+---
+ gnu/packages/golang-xyz.scm | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index f836449d54..7033618295 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -111,6 +111,37 @@ (define-public go-atomicgo-dev-cursor
+ any kind.")
+     (license license:expat)))
+ 
++(define-public go-atomicgo-dev-keyboard
++  (package
++    (name "go-atomicgo-dev-keyboard")
++    (version "0.2.9")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/atomicgo/keyboard")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "0axhs1ji87szirv91vvwy0l0h5f468pllp8zap2dpcy05krmi9jf"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      ;; Cycle: go-github-com-pterm-pterm -> go-github-com-marvinjwendt-testza
++      ;; -> go-atomicgo-dev-keyboard -> go-github-com-pterm-pterm
++      #:tests? #f
++      #:import-path "atomicgo.dev/keyboard"))
++    (propagated-inputs
++     (list go-github-com-containerd-console))
++    (home-page "https://atomicgo.dev/keyboard")
++    (synopsis "Read keyboard events in CLI applications")
++    (description
++     "This package provides a functionality to read key presses from the keyboard,
++while in a terminal application, which may be combined to check for ctrl+c,
++alt+4, ctrl-shift, alt+ctrl+right, etc.  It can also be used to
++simulate (mock) keypresses for CI testing.")
++    (license license:expat)))
++
+ (define-public go-atomicgo-dev-schedule
+   (package
+     (name "go-atomicgo-dev-schedule")
+-- 
+2.41.0
+

@@ -1,0 +1,39 @@
+From f94fc853c14cbc69bec5439ac31e76c773c4c3ca Mon Sep 17 00:00:00 2001
+Message-ID: <f94fc853c14cbc69bec5439ac31e76c773c4c3ca.1731584860.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1731584860.git.sharlatanus@gmail.com>
+References: <cover.1731584860.git.sharlatanus@gmail.com>
+From: Ricardo Wurmus <rekado@elephly.net>
+Date: Wed, 13 Nov 2024 18:16:15 +0100
+Subject: [PATCH v2 07/14] gnu: python-botocore: Update to 1.35.59.
+
+* gnu/packages/python-xyz.scm (python-botocore): Update to 1.35.59.
+
+Change-Id: Iee873e6a84d582271fcbcd39e78521583574fb40
+---
+ gnu/packages/python-xyz.scm | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/python-xyz.scm b/gnu/packages/python-xyz.scm
+index 73b645b1a1..da945e12fe 100644
+--- a/gnu/packages/python-xyz.scm
++++ b/gnu/packages/python-xyz.scm
+@@ -19325,13 +19325,14 @@ (define-public python-botocore
+   ;; are compatible.
+   (package
+     (name "python-botocore")
+-    (version "1.35.54")
++    (version "1.35.59")
+     (source
+      (origin
+        (method url-fetch)
+        (uri (pypi-uri "botocore" version))
+        (sha256
+-        (base32 "0xhsi4gfmzh1r96zlaa55p9i3kvh5lj4grp866dr72lwwnfba6qk"))))
++        (base32
++         "161wp1ribgkc23w6wcfs6zzig2j84ava7ylxhs3jrh6zzrayc36y"))))
+     (build-system pyproject-build-system)
+     (arguments
+      (list
+-- 
+2.46.0
+

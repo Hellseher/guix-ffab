@@ -1,0 +1,38 @@
+From 5fe9bdf40ede4b358b12514778c4981d86493c92 Mon Sep 17 00:00:00 2001
+Message-ID: <5fe9bdf40ede4b358b12514778c4981d86493c92.1721399836.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1721399836.git.sharlatanus@gmail.com>
+References: <cover.1721399836.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Fri, 19 Jul 2024 15:27:50 +0100
+Subject: [PATCH 5/7] gnu: go-github-com-spf13-viper: Disable tests.
+
+* gnu/packages/golang.scm (go-github-com-spf13-viper): Disable tests.
+
+Change-Id: Id2a5eff6203c0c9907a188cfcda1fe2accfdf786
+---
+ gnu/packages/golang.scm | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3ea153978f..698dfe0120 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -3610,6 +3610,7 @@ (define-public go-github-com-spf13-pflag
+ (define-public go-github-com-spf13-viper
+   (package
+     (name "go-github-com-spf13-viper")
++    ;; Refreshing to a newer version requires long chain of missing packages.
+     (version "1.7.0")
+     (source
+      (origin
+@@ -3624,6 +3625,7 @@ (define-public go-github-com-spf13-viper
+     (build-system go-build-system)
+     (arguments
+      (list
++      #:tests? #f
+       #:import-path "github.com/spf13/viper"))
+     (propagated-inputs
+      (list go-github-com-fsnotify-fsnotify
+-- 
+2.41.0
+

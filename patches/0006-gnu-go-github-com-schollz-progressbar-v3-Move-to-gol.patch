@@ -1,0 +1,157 @@
+From 530d717215631a614f3a485111845b63d8debefb Mon Sep 17 00:00:00 2001
+Message-ID: <530d717215631a614f3a485111845b63d8debefb.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 11:23:47 +0100
+Subject: [PATCH 06/12] gnu: go-github-com-schollz-progressbar-v3: Move to
+ golang-xyz.
+
+* gnu/packages/golang.scm (go-github-com-schollz-progressbar-v3): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+* gnu/packages/android.scm: Add (gnu packages golang-xyz) module.
+
+Change-Id: Id40397b4f3323670847d8e46f5d8fc6ffea61c84
+---
+ gnu/packages/android.scm    |  1 +
+ gnu/packages/golang-xyz.scm | 46 +++++++++++++++++++++++++++++++++++++
+ gnu/packages/golang.scm     | 45 ------------------------------------
+ 3 files changed, 47 insertions(+), 45 deletions(-)
+
+diff --git a/gnu/packages/android.scm b/gnu/packages/android.scm
+index 902bc31faf..b6f37732b4 100644
+--- a/gnu/packages/android.scm
++++ b/gnu/packages/android.scm
+@@ -50,6 +50,7 @@ (define-module (gnu packages android)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages gnupg)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages image)
+   #:use-module (gnu packages java)
+   #:use-module (gnu packages linux)
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 415233b100..c62fab949f 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -20,6 +20,7 @@
+ ;;; Copyright © 2023 Hilton Chain <hako@ultrarare.space>
+ ;;; Copyright © 2023 Katherine Cox-Buday <cox.katherine.e@gmail.com>
+ ;;; Copyright © 2023 Nicolas Graves <ngraves@ngraves.fr>
++;;; Copyright © 2023 Sergey Trofimov <sarg@sarg.org.ru>
+ ;;; Copyright © 2023 Thomas Ieong <th.ieong@free.fr>
+ ;;; Copyright © 2023 Timo Wilken <guix@twilken.net>
+ ;;; Copyright © 2024 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+@@ -2048,6 +2049,51 @@ (define-public go-github-com-rcrowley-go-metrics
+       (home-page "https://github.com/rcrowley/go-metrics")
+       (license license:bsd-2))))
+ 
++(define-public go-github-com-schollz-progressbar-v3
++  (package
++    (name "go-github-com-schollz-progressbar-v3")
++    (version "3.13.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/schollz/progressbar")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1hjahr5r52i7w6iyvl3rpzr46iignhfdh4694fl7m2b4gkaw9gd6"))))
++    (build-system go-build-system)
++    (arguments
++     (list #:import-path "github.com/schollz/progressbar/v3"
++           #:phases
++           #~(modify-phases %standard-phases
++               (add-after 'unpack 'remove-examples
++                 (lambda* (#:key import-path #:allow-other-keys)
++                   (delete-file-recursively
++                    (string-append "src/" import-path "/examples"))))
++               (replace 'check
++                 (lambda* (#:key tests? import-path #:allow-other-keys)
++                   (when tests?
++                     ;; The full test suite requires Internet access, so only
++                     ;; run the short tests.
++                     (invoke "go" "test" "-test.short" import-path)))))))
++    (propagated-inputs
++     (list go-github-com-davecgh-go-spew
++           go-github-com-mattn-go-isatty
++           go-github-com-mattn-go-runewidth
++           go-github-com-mitchellh-colorstring
++           go-github-com-stretchr-testify
++           go-golang-org-x-term))
++    (home-page "https://github.com/schollz/progressbar")
++    (synopsis "Simple command-line interface (CLI) progress bar")
++    (description
++     "This package provides a very simple thread-safe progress bar.  The
++@code{progressbar} implements an @code{io.Writer} so it can automatically
++detect the number of bytes written to a stream, so you can use it as a
++@code{progressbar} for an @code{io.Reader}.  When @code{progressbar}'s length
++is undetermined, a customizable spinner is shown.")
++    (license license:expat)))
++
+ (define-public go-github-com-shirou-gopsutil
+   (package
+     (name "go-github-com-shirou-gopsutil")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 385da42eda..711c007138 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -9640,51 +9640,6 @@ (define-public go-github-com-mitchellh-colorstring
+      "Colorstring provides functions for colorizing strings for terminal output.")
+     (license license:expat)))
+ 
+-(define-public go-github-com-schollz-progressbar-v3
+-  (package
+-    (name "go-github-com-schollz-progressbar-v3")
+-    (version "3.13.1")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/schollz/progressbar")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1hjahr5r52i7w6iyvl3rpzr46iignhfdh4694fl7m2b4gkaw9gd6"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list #:import-path "github.com/schollz/progressbar/v3"
+-           #:phases
+-           #~(modify-phases %standard-phases
+-               (add-after 'unpack 'remove-examples
+-                 (lambda* (#:key import-path #:allow-other-keys)
+-                   (delete-file-recursively
+-                    (string-append "src/" import-path "/examples"))))
+-               (replace 'check
+-                 (lambda* (#:key tests? import-path #:allow-other-keys)
+-                   (when tests?
+-                     ;; The full test suite requires Internet access, so only
+-                     ;; run the short tests.
+-                     (invoke "go" "test" "-test.short" import-path)))))))
+-    (propagated-inputs
+-     (list go-golang-org-x-term
+-           go-github-com-stretchr-testify
+-           go-github-com-mitchellh-colorstring
+-           go-github-com-mattn-go-runewidth
+-           go-github-com-mattn-go-isatty
+-           go-github-com-davecgh-go-spew))
+-    (home-page "https://github.com/schollz/progressbar")
+-    (synopsis "Simple command-line interface (CLI) progress bar")
+-    (description
+-     "This package provides a very simple thread-safe progress bar.  The
+-@code{progressbar} implements an @code{io.Writer} so it can automatically
+-detect the number of bytes written to a stream, so you can use it as a
+-@code{progressbar} for an @code{io.Reader}.  When @code{progressbar}'s length
+-is undetermined, a customizable spinner is shown.")
+-    (license license:expat)))
+-
+ (define-public go-git-sr-ht-emersion-go-scfg
+   (package
+     (name "go-git-sr-ht-emersion-go-scfg")
+-- 
+2.41.0
+

@@ -1,0 +1,62 @@
+From 2e6b3bc6c6d9f14f2c50e00baa9c4ff8a939a669 Mon Sep 17 00:00:00 2001
+Message-ID: <2e6b3bc6c6d9f14f2c50e00baa9c4ff8a939a669.1709812934.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1709812934.git.sharlatanus@gmail.com>
+References: <cover.1709812934.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 28 Feb 2024 22:27:01 +0000
+Subject: [PATCH 4/7] gnu: kubo: Sort inputs alphabetically.
+
+* gnu/packages/ipfs.scm (kudo) [inputs]: Sort alphabetically to ease
+maintenance.
+
+Change-Id: Icb95464b5b8cf7d6e26285628198cfcd5c90e695
+---
+ gnu/packages/ipfs.scm | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/gnu/packages/ipfs.scm b/gnu/packages/ipfs.scm
+index 36eed11802..bad65f04a0 100644
+--- a/gnu/packages/ipfs.scm
++++ b/gnu/packages/ipfs.scm
+@@ -317,9 +317,9 @@ (define-public kubo
+                   go-github-com-francoispqt-gojay
+                   go-github-com-fsnotify-fsnotify
+                   go-github-com-gogo-protobuf
+-                  go-github-com-google-uuid
+                   go-github-com-golang-groupcache-lru
+                   go-github-com-golang-snappy
++                  go-github-com-google-uuid
+                   go-github-com-gorilla-mux
+                   go-github-com-gorilla-websocket
+                   go-github-com-jackpal-go-nat-pmp
+@@ -344,12 +344,11 @@ (define-public kubo
+                   go-github-com-spaolacci-murmur3
+                   go-github-com-stretchr-testify
+                   go-github-com-syndtr-goleveldb
+-                  go-gopkg-in-yaml-v2
+-                  go-gopkg-in-yaml-v3
+                   go-go-uber-org-atomic
+                   go-go-uber-org-multierr
+                   go-go-uber-org-zap
+                   go-golang-org-x-crypto
++                  go-golang-org-x-exp
+                   go-golang-org-x-lint
+                   go-golang-org-x-mod
+                   go-golang-org-x-net
+@@ -357,10 +356,11 @@ (define-public kubo
+                   go-golang-org-x-sync
+                   go-golang-org-x-sys
+                   go-golang-org-x-term
++                  go-golang-org-x-text
+                   go-golang-org-x-tools
+                   go-golang-org-x-xerrors
+-                  go-golang-org-x-exp
+-                  go-golang-org-x-text
++                  go-gopkg-in-yaml-v2
++                  go-gopkg-in-yaml-v3
+                   go-lukechampine-com-blake3))
+     (native-inputs
+      (append (if (%current-target-system)
+-- 
+2.41.0
+

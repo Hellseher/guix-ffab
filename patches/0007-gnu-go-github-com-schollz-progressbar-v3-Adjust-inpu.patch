@@ -1,0 +1,43 @@
+From ed67c774cbcdafa3474512f3f93bf8abd38a2766 Mon Sep 17 00:00:00 2001
+Message-ID: <ed67c774cbcdafa3474512f3f93bf8abd38a2766.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 21:01:46 +0100
+Subject: [PATCH 07/12] gnu: go-github-com-schollz-progressbar-v3: Adjust
+ inputs.
+
+* gnu/packages/golang-xyz.scm (go-github-com-schollz-progressbar-v3):
+Adjust inputs.
+[propagated-inputs]: Remove go-github-com-davecgh-go-spew,
+go-github-com-mattn-go-isatty, and go-github-com-stretchr-testify.
+[native-inputs]: Add go-github-com-stretchr-testify.
+
+Change-Id: I8a1e24d6570ce36812d08e196f415b81e8ec7bda
+---
+ gnu/packages/golang-xyz.scm | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index c62fab949f..9b0f67de6f 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -2077,12 +2077,11 @@ (define-public go-github-com-schollz-progressbar-v3
+                      ;; The full test suite requires Internet access, so only
+                      ;; run the short tests.
+                      (invoke "go" "test" "-test.short" import-path)))))))
++    (native-inputs
++     (list go-github-com-stretchr-testify))
+     (propagated-inputs
+-     (list go-github-com-davecgh-go-spew
+-           go-github-com-mattn-go-isatty
+-           go-github-com-mattn-go-runewidth
++     (list go-github-com-mattn-go-runewidth
+            go-github-com-mitchellh-colorstring
+-           go-github-com-stretchr-testify
+            go-golang-org-x-term))
+     (home-page "https://github.com/schollz/progressbar")
+     (synopsis "Simple command-line interface (CLI) progress bar")
+-- 
+2.41.0
+

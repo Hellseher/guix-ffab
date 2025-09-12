@@ -1,0 +1,126 @@
+From 042d6a994d0f217975f58fd24d338605c88cc042 Mon Sep 17 00:00:00 2001
+Message-ID: <042d6a994d0f217975f58fd24d338605c88cc042.1705743628.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 17 Jan 2024 00:38:15 +0000
+Subject: [PATCH 29/38] gnu: go-github-com-cespare-xxhash: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/syncthing.scm (go-github-com-cespare-xxhash): Move from here ...
+* gnu/packages/golang-crypto.scm: ... to here.
+
+* gnu/packages/textutils.scm: Add (gnu packages golang-crypto) to used
+modules.
+
+Change-Id: Ic72cf6c4770cd3f03cc2e27c3455632ee16e7c09
+---
+ gnu/packages/golang-crypto.scm | 32 ++++++++++++++++++++++++++++++++
+ gnu/packages/syncthing.scm     | 31 -------------------------------
+ gnu/packages/textutils.scm     |  1 +
+ 3 files changed, 33 insertions(+), 31 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 00a6f51313..187f47b8eb 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -7,6 +7,7 @@
+ ;;; Copyright © 2021 LibreMiami <packaging-guix@libremiami.org>
+ ;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+ ;;; Copyright © 2022 (unmatched-parenthesis <paren@disroot.org>
++;;; Copyright © 2022 Efraim Flashner <efraim@flashner.co.il>
+ ;;; Copyright © 2022, 2023 Nicolas Graves <ngraves@ngraves.fr>
+ ;;; Copyright © 2023 Artyom V. Poptsov <poptsov.artyom@gmail.com>
+ ;;; Copyright © 2023 Clément Lassieur <clement@lassieur.org>
+@@ -165,6 +166,37 @@ (define-public go-github-com-btcsuite-btcd-btcec
+ needing to use secp256k1 elliptic curve cryptography.")
+       (license license:isc))))
+ 
++(define-public go-github-com-cespare-xxhash
++  (package
++    (name "go-github-com-cespare-xxhash")
++    (version "2.1.2")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/cespare/xxhash")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1f3wyr9msnnz94szrkmnfps9wm40s5sp9i4ak0kl92zcrkmpy29a"))))
++    (build-system go-build-system)
++    (arguments
++     (list
++      #:import-path "github.com/cespare/xxhash"
++      #:phases
++      #~(modify-phases %standard-phases
++          (replace 'check
++            (lambda* (#:key inputs #:allow-other-keys #:rest args)
++              (unless
++                  ;; The tests fail when run with gccgo.
++                  (false-if-exception (search-input-file inputs "/bin/gccgo"))
++                (apply (assoc-ref %standard-phases 'check) args)))))))
++    (home-page "https://github.com/cespare/xxhash/")
++    (synopsis "Go implementation of xxHash")
++    (description "This package provides of Go implementation of the 64-bit
++xxHash algorithm (XXH64).")
++    (license license:expat)))
++
+ (define-public go-github-com-cloudflare-circl
+   (package
+     (name "go-github-com-cloudflare-circl")
+diff --git a/gnu/packages/syncthing.scm b/gnu/packages/syncthing.scm
+index 7598b46824..e3c0593aee 100644
+--- a/gnu/packages/syncthing.scm
++++ b/gnu/packages/syncthing.scm
+@@ -1006,34 +1006,3 @@ (define-public go-github-com-ccding-go-stun
+ and RFC 5389).")
+       (home-page "https://github.com/ccding/go-stun")
+       (license asl2.0))))
+-
+-(define-public go-github-com-cespare-xxhash
+-  (package
+-    (name "go-github-com-cespare-xxhash")
+-    (version "2.1.2")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                     (url "https://github.com/cespare/xxhash")
+-                     (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1f3wyr9msnnz94szrkmnfps9wm40s5sp9i4ak0kl92zcrkmpy29a"))))
+-    (build-system go-build-system)
+-    (arguments
+-     (list
+-       #:import-path "github.com/cespare/xxhash"
+-       #:phases
+-       #~(modify-phases %standard-phases
+-           (replace 'check
+-             (lambda* (#:key inputs #:allow-other-keys #:rest args)
+-               (unless
+-                 ;; The tests fail when run with gccgo.
+-                 (false-if-exception (search-input-file inputs "/bin/gccgo"))
+-                 (apply (assoc-ref %standard-phases 'check) args)))))))
+-    (synopsis "Go implementation of xxHash")
+-    (description "This package provides of Go implementation of the 64-bit
+-xxHash algorithm (XXH64).")
+-    (home-page "https://github.com/cespare/xxhash/")
+-    (license expat)))
+diff --git a/gnu/packages/textutils.scm b/gnu/packages/textutils.scm
+index 494e6b5ef5..96bc2e56cc 100644
+--- a/gnu/packages/textutils.scm
++++ b/gnu/packages/textutils.scm
+@@ -65,6 +65,7 @@ (define-module (gnu packages textutils)
+   #:use-module (gnu packages gcc)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-crypto)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages java)
+   #:use-module (gnu packages ncurses)
+-- 
+2.41.0
+

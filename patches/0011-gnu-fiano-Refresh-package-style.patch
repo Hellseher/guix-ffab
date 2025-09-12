@@ -1,0 +1,75 @@
+From 58c0c7e846eaadbb1806dc2a2443576648a4b122 Mon Sep 17 00:00:00 2001
+Message-ID: <58c0c7e846eaadbb1806dc2a2443576648a4b122.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 09:19:56 +0100
+Subject: [PATCH 11/12] gnu: fiano: Refresh package style.
+
+* gnu/packages/admin.scm (fiano): Refresh package style.
+[source]: Remove trailing #t from the snippet.
+[arguments]: Use list style.
+[inputs]: Remove labels and use list style.
+[home-page]: Place before synopsis.
+
+Change-Id: I896c59d4be14c7ed16bc1978e0d9996bd7b93c17
+---
+ gnu/packages/admin.scm | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/admin.scm b/gnu/packages/admin.scm
+index 2b94b1e17a..78e5e355d6 100644
+--- a/gnu/packages/admin.scm
++++ b/gnu/packages/admin.scm
+@@ -5160,7 +5160,7 @@ (define-public atop
+      `((release-monitoring-url . "https://www.atoptool.nl/downloadatop.php")))
+     (license license:gpl2+)))
+ 
+-;; TODO: Unvendor u-root (pkg: forth, golang, testutil).
++;; TODO: Pack u-root for: forth, and some tests.
+ (define fiano
+   (package
+     (name "fiano")
+@@ -5170,28 +5170,26 @@ (define fiano
+               (uri (git-reference
+                     (url "https://github.com/linuxboot/fiano.git")
+                     (commit (string-append "v" version))))
+-              (file-name (string-append name "-" version "-checkout"))
++              (file-name (git-file-name name version))
+               (sha256
+                (base32
+                 "03ihdwwhb7g6bihx141cn0924sjs5ps6q3ps58pk1cg0g0srrr9h"))
+               (modules '((guix build utils)))
+               (snippet
+-               '(begin
+-                  (delete-file-recursively "vendor/golang.org")
+-                  (delete-file-recursively "vendor/github.com")
+-                  #t))))
++               #~(begin
++                   ;; Remove all vendored sources.
++                   (delete-file-recursively "vendor")))))
+     (build-system go-build-system)
+     (arguments
+-     `(#:import-path "github.com/linuxboot/fiano"
+-       #:unpack-path "github.com/linuxboot/fiano"))
+-    (native-inputs
+-     `())
++     (list
++      #:import-path "github.com/linuxboot/fiano"
++      #:unpack-path "github.com/linuxboot/fiano"))
+     (inputs
+-     `(("go-golang-org-x-text" ,go-golang-org-x-text)
+-       ("go-github-com-ulikunitz-xz" ,go-github-com-ulikunitz-xz)))
+-    (synopsis "UEFI image editor")
+-    (description "This package provides a command-line UEFI image editor.")
++     (list go-golang-org-x-text go-github-com-ulikunitz-xz))
+     (home-page "https://github.com/linuxboot/fiano")
++    (synopsis "UEFI image editor")
++    (description
++     "This package provides a command-line UEFI image editor.")
+     (license license:bsd-3)))
+ 
+ (define-public fiano-utk
+-- 
+2.41.0
+

@@ -1,0 +1,106 @@
+From 81918de85fa99cb5da4b4602f6410e6039b5458e Mon Sep 17 00:00:00 2001
+Message-ID: <81918de85fa99cb5da4b4602f6410e6039b5458e.1707944340.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707944340.git.sharlatanus@gmail.com>
+References: <cover.1707944340.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 14 Feb 2024 20:52:17 +0000
+Subject: [PATCH 6/6] gnu: chezmoi: Update to 1.8.10.
+
+* gnu/packages/configuration-management.scm (chezmoi): Update to 1.8.10.
+[arguments] <#:phases>: Add 'remove-failing-test-scripts phase, deleting
+testdata scripts requiring additional programs.
+[native-inputs]: Remove go-github-com-bmatcuk-doublestar and
+go-github-com-google-go-github; add
+go-github-com-bmatcuk-doublestar-v2,
+go-github-com-google-go-github-v33, and go-golang-org-x-term.
+
+Change-Id: Ia0b9b7e4dd00e99bc8150816c46b456cc272b25c
+---
+ gnu/packages/configuration-management.scm | 44 ++++++++++++++++++-----
+ 1 file changed, 36 insertions(+), 8 deletions(-)
+
+diff --git a/gnu/packages/configuration-management.scm b/gnu/packages/configuration-management.scm
+index c1874fef2d..34b7876138 100644
+--- a/gnu/packages/configuration-management.scm
++++ b/gnu/packages/configuration-management.scm
+@@ -32,9 +32,7 @@ (define-module (gnu packages configuration-management)
+ (define-public chezmoi
+   (package
+     (name "chezmoi")
+-    ;; XXX: Make sure 7f238faa61e46d79b54d4d0ea8f0b5fc27db84b2 applied before
+-    ;; version update, which should fix @code{password-store} integration.
+-    (version "1.8.1")
++    (version "1.8.10")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -43,24 +41,53 @@ (define-public chezmoi
+               (file-name (git-file-name name version))
+               (sha256
+                (base32
+-                "1b8y0wq3myhvjdnwl0i4x85iil7i7kmsjajvbw1a47afm83jkbaw"))))
++                "0ildvlq7v8vnw74y4fgnv3hpq49bpl6zh1wmakfh46crwg7ffmjb"))))
+     (build-system go-build-system)
+     (arguments
+      `(#:import-path "github.com/twpayne/chezmoi"
+-       ;; We don't need to install the source code for end-user applications.
+-       #:install-source? #f))
++       #:install-source? #f
++       #:phases
++       (modify-phases %standard-phases
++       ;; Remove test script which expect additional user's programs available
++       ;; in the PATH. The testdata directory is removed in the latest version
++       ;; (2.46.1) of the program.
++         (add-after 'unpack 'remove-failing-test-scripts
++           (lambda* (#:key import-path #:allow-other-keys)
++             (for-each (lambda (f)
++                         (delete-file (string-append "src/" import-path "/testdata/scripts/" f)))
++                       '("bitwarden.txt"
++                         "cd.txt"
++                         "cd_unix.txt"
++                         "completion.txt"
++                         "diff.txt"
++                         "edit.txt"
++                         "editconfig.txt"
++                         "git.txt"
++                         "gopass.txt"
++                         "keepassxc.txt"
++                         "lastpass.txt"
++                         "onepassword.txt"
++                         "pass.txt"
++                         "runscriptdir_unix.txt"
++                         "script_unix.txt"
++                         "secretgeneric.txt"
++                         "secretgopass.txt"
++                         "secretkeepassxc.txt"
++                         "secretlastpass.txt"
++                         "secretonepassword.txt"
++                         "secretpass.txt")))))))
+     (native-inputs
+      (list go-etcd-io-bbolt
+            go-github-com-alecthomas-chroma
+            go-github-com-aymerick-douceur
+-           go-github-com-bmatcuk-doublestar
++           go-github-com-bmatcuk-doublestar-v2
+            go-github-com-charmbracelet-glamour
+            go-github-com-chris-ramon-douceur
+            go-github-com-coreos-go-semver
+            go-github-com-danwakefield-fnmatch
+            go-github-com-dlclark-regexp2
+            go-github-com-godbus-dbus
+-           go-github-com-google-go-github
++           go-github-com-google-go-github-v33
+            go-github-com-google-go-querystring
+            go-github-com-google-goterm
+            go-github-com-google-renameio
+@@ -99,6 +126,7 @@ (define-public chezmoi
+            go-golang-org-x-crypto
+            go-golang-org-x-net
+            go-golang-org-x-oauth2
++           go-golang-org-x-term
+            go-gopkg-in-errgo-fmt-errors))
+     (home-page "https://www.chezmoi.io/")
+     (synopsis "Personal configuration files manager")
+-- 
+2.41.0
+

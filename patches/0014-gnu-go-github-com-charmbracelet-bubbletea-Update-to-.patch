@@ -1,0 +1,100 @@
+From 6da494a57195d49df08d160de94f03df1b7b554c Mon Sep 17 00:00:00 2001
+Message-ID: <6da494a57195d49df08d160de94f03df1b7b554c.1732837202.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1732837202.git.sharlatanus@gmail.com>
+References: <cover.1732837202.git.sharlatanus@gmail.com>
+From: "Artyom V. Poptsov" <poptsov.artyom@gmail.com>
+Date: Sun, 24 Nov 2024 13:27:36 +0300
+Subject: [PATCH 14/15] gnu: go-github-com-charmbracelet-bubbletea: Update to
+ 1.2.3.
+
+* gnu/packages/golang.scm (go-github-com-charmbracelet-bubbletea): Update to 1.2.3.
+[propagated-inputs]: Add go-github-com-muesli-ansi,
+go-github-com-muesli-cancelreader, go-github-com-charmbracelet-lipgloss,
+go-github-com-charmbracelet-x-term, go-github-com-charmbracelet-x-ansi, and
+go-golang-org-x-sync.  Sort inputs alphabetically.
+[arguments] <phases>: Fix tests that are failing due to newer version of
+"go-github-com-charmbracelet-x-ansi" package.
+
+Change-Id: Ifdb3074f342b34c07c0e7ab47341b159d1eea0c2
+Reviewed-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/golang.scm | 47 +++++++++++++++++++++++++++++------------
+ 1 file changed, 33 insertions(+), 14 deletions(-)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 88878b6b23..b3d0c59b3e 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -7032,7 +7032,7 @@ (define-public go-github-com-rivo-uniseg
+ (define-public go-github-com-charmbracelet-bubbletea
+   (package
+     (name "go-github-com-charmbracelet-bubbletea")
+-    (version "0.13.2")
++    (version "1.2.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -7042,28 +7042,47 @@ (define-public go-github-com-charmbracelet-bubbletea
+        (file-name (git-file-name name version))
+        (sha256
+         (base32
+-         "1105cggi5fwqx69m0vrhgwx6kaw82w4ahn58sj0a81603c4yvrk0"))))
++         "0ggkl29qixgin5av1mbnwfbb31kmwpczh8pgpjsx9z277fs55mph"))))
+     (build-system go-build-system)
+     (arguments
+      (list
+       #:import-path "github.com/charmbracelet/bubbletea"
+-      #:phases #~(modify-phases %standard-phases
+-                   (add-after 'unpack 'remove-examples
+-                     (lambda* (#:key import-path #:allow-other-keys)
+-                       (with-directory-excursion (string-append "src/" import-path)
+-                         (for-each delete-file-recursively
+-                                   '("examples" "tutorials"))))))))
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack 'remove-examples
++            (lambda* (#:key import-path #:allow-other-keys)
++              (with-directory-excursion (string-append "src/" import-path)
++                (for-each delete-file-recursively
++                          '("examples" "tutorials")))))
++          (add-before 'check 'fix-tests
++            (lambda _
++              ;; XXX: The package requires
++              ;; "go-github-com-charmbracelet-x-ansi" version 0.4.5; with the
++              ;; newer version of "ansi", some "bubbletea" screen tests fail
++              ;; as "ansi" 0.5.2 handles escape sequences a little bit
++              ;; differently.
++              (substitute* "src/github.com/charmbracelet/bubbletea/screen_test.go"
++                (("x1b\\[0K")
++                 "x1b[K")
++                (("x1b\\[2;0H")
++                 "x1b[2;H")))))))
+     (propagated-inputs
+-     (list go-github-com-mattn-go-isatty
+-           go-github-com-muesli-termenv
++     (list go-github-com-charmbracelet-lipgloss
++           go-github-com-charmbracelet-x-ansi
++           go-github-com-charmbracelet-x-term
++           go-github-com-containerd-console
++           go-github-com-lucasb-eyer-go-colorful
++           go-github-com-mattn-go-isatty
++           go-github-com-mattn-go-isatty
+            go-github-com-mattn-go-runewidth
++           go-github-com-muesli-ansi
++           go-github-com-muesli-cancelreader
+            go-github-com-muesli-reflow
+-           go-github-com-lucasb-eyer-go-colorful
+-           go-github-com-containerd-console
++           go-github-com-muesli-termenv
+            go-golang-org-x-crypto
++           go-golang-org-x-sync
+            go-golang-org-x-sys
+-           go-golang-org-x-term
+-           go-github-com-mattn-go-isatty))
++           go-golang-org-x-term))
+     (home-page "https://github.com/charmbracelet/bubbletea")
+     (synopsis "Powerful little TUI framework")
+     (description
+-- 
+2.46.0
+

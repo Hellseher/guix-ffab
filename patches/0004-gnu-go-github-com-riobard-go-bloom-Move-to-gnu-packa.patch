@@ -1,0 +1,98 @@
+From 646b7b698f1aa758bd89a919a63542e2d7f02551 Mon Sep 17 00:00:00 2001
+Message-ID: <646b7b698f1aa758bd89a919a63542e2d7f02551.1705743627.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1705743627.git.sharlatanus@gmail.com>
+References: <cover.1705743627.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Tue, 16 Jan 2024 22:31:35 +0000
+Subject: [PATCH 04/38] gnu: go-github-com-riobard-go-bloom: Move to (gnu
+ packages golang-crypto).
+
+* gnu/packages/golang.scm (go-github-com-riobard-go-bloom): Move from
+here ...
+* gnu/packages/golang-crypto.go: ... to here.
+
+Change-Id: I5ec63d8d9d90690348f494cb538ec2c4587a7557
+---
+ gnu/packages/golang-crypto.scm | 24 ++++++++++++++++++++++++
+ gnu/packages/golang.scm        | 24 ------------------------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
+
+diff --git a/gnu/packages/golang-crypto.scm b/gnu/packages/golang-crypto.scm
+index 96e12a1194..da331ceb3b 100644
+--- a/gnu/packages/golang-crypto.scm
++++ b/gnu/packages/golang-crypto.scm
+@@ -1,5 +1,6 @@
+ ;;; GNU Guix --- Functional package management for GNU
+ ;;; Copyright © 2018 Pierre Neidhardt <mail@ambrevar.xyz>
++;;; Copyright © 2021 Raghav Gururajan <rg@raghavgururajan.name>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -67,6 +68,29 @@ (define-public go-github-com-multiformats-go-multihash
+       (description "Multihash implementation in Go.")
+       (license license:expat))))
+ 
++(define-public go-github-com-riobard-go-bloom
++  (let ((commit "cdc8013cb5b3eb0efebec85f0e904efccac42df9")
++        (revision "0"))
++    (package
++      (name "go-github-com-riobard-go-bloom")
++      (version (git-version "0.0.0" revision commit))
++      (source
++       (origin
++         (method git-fetch)
++         (uri (git-reference
++               (url "https://github.com/riobard/go-bloom")
++               (commit commit)))
++         (file-name (git-file-name name version))
++         (sha256
++          (base32 "10a8ixh6zw52df2imxrzgxi82zc1j5hqnv5smjp818qwdn1a1rhj"))))
++      (build-system go-build-system)
++      (arguments
++       `(#:import-path "github.com/riobard/go-bloom"))
++      (home-page "https://github.com/riobard/go-bloom")
++      (synopsis "Bloom filter in Go")
++      (description "Go-Bloom implements bloom filter using double hashing.")
++      (license license:asl2.0))))
++
+ ;;;
+ ;;; Avoid adding new packages to the end of this file. To reduce the chances
+ ;;; of a merge conflict, place them above by existing packages with similar
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 7924670675..7cd0a35280 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1859,30 +1859,6 @@ (define-public go-github-com-savsgio-gotils
+        "Golang utilities to make your life easier with zero allocations.")
+       (license license:asl2.0))))
+ 
+-(define-public go-github-com-riobard-go-bloom
+-  (let ((commit "cdc8013cb5b3eb0efebec85f0e904efccac42df9")
+-        (revision "0"))
+-    (package
+-      (name "go-github-com-riobard-go-bloom")
+-      (version (git-version "0.0.0" revision commit))
+-      (source
+-       (origin
+-         (method git-fetch)
+-         (uri
+-          (git-reference
+-           (url "https://github.com/riobard/go-bloom")
+-           (commit commit)))
+-         (file-name (git-file-name name version))
+-         (sha256
+-          (base32 "10a8ixh6zw52df2imxrzgxi82zc1j5hqnv5smjp818qwdn1a1rhj"))))
+-      (build-system go-build-system)
+-      (arguments
+-       `(#:import-path "github.com/riobard/go-bloom"))
+-      (home-page "https://github.com/riobard/go-bloom")
+-      (synopsis "Bloom filter in Go")
+-      (description "Go-Bloom implements bloom filter using double hashing.")
+-      (license license:asl2.0))))
+-
+ (define-public go-github-com-aead-chacha20
+   (let ((commit "8b13a72661dae6e9e5dea04f344f0dc95ea29547")
+         (revision "0"))
+-- 
+2.41.0
+

@@ -1,0 +1,104 @@
+From 9c415a5288a9a5826b2d41e18dbaaeb3c79753d9 Mon Sep 17 00:00:00 2001
+Message-ID: <9c415a5288a9a5826b2d41e18dbaaeb3c79753d9.1720090727.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1720090727.git.sharlatanus@gmail.com>
+References: <cover.1720090727.git.sharlatanus@gmail.com>
+From: Rodion Goritskov <rodion.goritskov@gmail.com>
+Date: Wed, 1 May 2024 00:42:46 +0400
+Subject: [PATCH v2 8/9] gnu: miniflux: Update to 2.1.3.
+
+* gnu/packages/web.scm (miniflux): Update to 2.1.3.
+[arguments]: <#:go>: Use go-1.22. <#:import-path>: Reflect present
+go.mod. <#:build-flags>: Likewise. <#:phases>: Delete phase
+'disable-cgo.
+[inputs]: Remove go-github-com-go-telegram-bot-api-telegram-bot-api,
+go-github-com-matrix-org-gomatrix and go-github-com-rylans-getlang. Add
+go-github-com-abadojack-whatlanggo, go-github-com-andybalholm-brotli,
+go-github-com-go-webauthn-webauthn go-golang-org-x-crypto,
+go-golang-org-x-net, go-golang-org-x-oauth2, and go-golang-org-x-text.
+
+Change-Id: I51a93f290b6a625a2c1db9959871396c0f67f5e5
+Signed-off-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/web.scm | 29 ++++++++++++++++-------------
+ 1 file changed, 16 insertions(+), 13 deletions(-)
+
+diff --git a/gnu/packages/web.scm b/gnu/packages/web.scm
+index 90f7330f2b..d6eb508e9b 100644
+--- a/gnu/packages/web.scm
++++ b/gnu/packages/web.scm
+@@ -148,6 +148,7 @@ (define-module (gnu packages web)
+   #:use-module (gnu packages golang)
+   #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
++  #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages golang-xyz)
+   #:use-module (gnu packages gperf)
+@@ -338,7 +339,7 @@ (define-public httpd/pinned
+ (define-public miniflux
+   (package
+     (name "miniflux")
+-    (version "2.0.46")
++    (version "2.1.3")
+     (source (origin
+               (method git-fetch)
+               (uri (git-reference
+@@ -347,20 +348,18 @@ (define-public miniflux
+               (file-name (git-file-name name version))
+               (sha256
+                (base32
+-                "1qv95kipjlg374kiq6gssh5jsb5arahq4jsb7vkg3njnx0ldwvkb"))))
++                "0cb0fkjzbjrhgmx1s8jv1drdgfaddkyj9j9z451qswgvz6xyp3a3"))))
+     (build-system go-build-system)
+     (arguments
+-     (list #:go go-1.19
++     (list #:go go-1.22
+            #:install-source? #f
+-           #:import-path "miniflux.app"
++           #:import-path "miniflux.app/v2"
+            #:build-flags
+            #~(list (string-append
+-                    "-ldflags= -X miniflux.app/version.Version=" #$version))
++                    "-ldflags= -X miniflux.app/v2/internal/version.Version="
++                    #$version))
+            #:phases
+            #~(modify-phases %standard-phases
+-               (add-before 'build 'disable-cgo
+-                 (lambda _
+-                   (setenv "CGO_ENABLED" "0")))
+                (add-after 'install 'install-manpage
+                  (lambda* (#:key import-path #:allow-other-keys)
+                    (let ((man1 (string-append #$output "/share/man/man1/"))
+@@ -369,20 +368,24 @@ (define-public miniflux
+                (add-after 'install-manpage 'rename-binary
+                  (lambda _
+                    (let ((bindir (string-append #$output "/bin/")))
+-                     (rename-file (string-append bindir "miniflux.app")
++                     (rename-file (string-append bindir "v2")
+                                   (string-append bindir "miniflux"))))))))
+     (inputs
+-     (list go-github-com-coreos-go-oidc-v3
+-           go-github-com-go-telegram-bot-api-telegram-bot-api
++     (list go-github-com-abadojack-whatlanggo
++           go-github-com-andybalholm-brotli
++           go-github-com-coreos-go-oidc-v3
++           go-github-com-go-webauthn-webauthn
+            go-github-com-gorilla-mux
+            go-github-com-lib-pq
+-           go-github-com-matrix-org-gomatrix
+            go-github-com-prometheus-client-golang
+            go-github-com-puerkitobio-goquery
+-           go-github-com-rylans-getlang
+            go-github-com-tdewolff-minify-v2
+            go-github-com-yuin-goldmark
++           go-golang-org-x-crypto
++           go-golang-org-x-net
++           go-golang-org-x-oauth2
+            go-golang-org-x-term
++           go-golang-org-x-text
+            go-mvdan-cc-xurls))
+     (home-page "https://miniflux.app/")
+     (synopsis "Minimalist and opinionated feed reader")
+-- 
+2.41.0
+

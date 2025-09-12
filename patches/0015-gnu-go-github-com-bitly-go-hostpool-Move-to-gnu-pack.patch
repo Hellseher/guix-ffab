@@ -1,0 +1,107 @@
+From e84bac076fc1c2a5e9d796f4c7db59a8fc7200e9 Mon Sep 17 00:00:00 2001
+Message-ID: <e84bac076fc1c2a5e9d796f4c7db59a8fc7200e9.1707646257.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1707646257.git.sharlatanus@gmail.com>
+References: <cover.1707646257.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Wed, 7 Feb 2024 21:55:26 +0000
+Subject: [PATCH 15/30] gnu: go-github-com-bitly-go-hostpool: Move to (gnu
+ packages golang-xyz).
+
+* gnu/packages/golang.scm (go-github-com-bitly-go-hostpool): Move
+from here ...
+* gnu/packages/golang-xyz.scm: ... to here.
+
+Change-Id: Ia314e6134f229c004f23d99a9c42dbd0adf105f8
+---
+ gnu/packages/golang-xyz.scm        | 25 +++++++++++++++++++++++++
+ gnu/packages/golang.scm            | 25 -------------------------
+ gnu/packages/high-availability.scm |  1 +
+ 3 files changed, 26 insertions(+), 25 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index a396057da9..f3087149e7 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -45,6 +45,31 @@ (define-module (gnu packages golang-xyz)
+ ;;;
+ ;;; Code:
+ 
++(define-public go-github-com-bitly-go-hostpool
++  (package
++    (name "go-github-com-bitly-go-hostpool")
++    (version "0.1.0")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/bitly/go-hostpool")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1iibj7dwymczw7cknrh6glc6sdpp4yap2plnyr8qphynwrzlz73w"))))
++    (build-system go-build-system)
++    (arguments
++     '(#:import-path "github.com/bitly/go-hostpool"))
++    (native-inputs (list go-github-com-stretchr-testify))
++    (home-page "https://github.com/bitly/go-hostpool")
++    (synopsis "Pool among multiple hosts from Golang")
++    (description
++     "This package provides a Go package to intelligently and flexibly pool among
++multiple hosts from your Go application.  Host selection can operate in round
++robin or epsilon greedy mode, and unresponsive hosts are avoided.")
++    (license license:expat)))
++
+ (define-public go-github-com-bitly-timer-metrics
+   (package
+     (name "go-github-com-bitly-timer-metrics")
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index d594759bdf..4a8e9dbc78 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1881,31 +1881,6 @@ (define-public go-github-com-dhowett-go-plist
+ types.")
+       (license license:giftware))))
+ 
+-(define-public go-github-com-bitly-go-hostpool
+-  (package
+-    (name "go-github-com-bitly-go-hostpool")
+-    (version "0.1.0")
+-    (source (origin
+-              (method git-fetch)
+-              (uri (git-reference
+-                    (url "https://github.com/bitly/go-hostpool")
+-                    (commit (string-append "v" version))))
+-              (file-name (git-file-name name version))
+-              (sha256
+-               (base32
+-                "1iibj7dwymczw7cknrh6glc6sdpp4yap2plnyr8qphynwrzlz73w"))))
+-    (build-system go-build-system)
+-    (arguments
+-     '(#:import-path "github.com/bitly/go-hostpool"))
+-    (native-inputs (list go-github-com-stretchr-testify))
+-    (home-page "https://github.com/bitly/go-hostpool")
+-    (synopsis "Pool among multiple hosts from Golang")
+-    (description
+-     "This package provides a Go package to intelligently and flexibly pool among
+-multiple hosts from your Go application.  Host selection can operate in round
+-robin or epsilon greedy mode, and unresponsive hosts are avoided.")
+-    (license license:expat)))
+-
+ (define-public go-github-com-blanu-dust
+   (package
+     (name "go-github-com-blanu-dust")
+diff --git a/gnu/packages/high-availability.scm b/gnu/packages/high-availability.scm
+index 0678edaf4e..b0e6631389 100644
+--- a/gnu/packages/high-availability.scm
++++ b/gnu/packages/high-availability.scm
+@@ -36,6 +36,7 @@ (define-module (gnu packages high-availability)
+   #:use-module (gnu packages gettext)
+   #:use-module (gnu packages glib)
+   #:use-module (gnu packages golang)
++  #:use-module (gnu packages golang-build)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
+-- 
+2.41.0
+

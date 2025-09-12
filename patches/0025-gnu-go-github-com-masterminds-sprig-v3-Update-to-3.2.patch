@@ -1,0 +1,58 @@
+From 171087d3e86a7373dddf907a72da18ce1114b9b0 Mon Sep 17 00:00:00 2001
+Message-ID: <171087d3e86a7373dddf907a72da18ce1114b9b0.1719691458.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1719691458.git.sharlatanus@gmail.com>
+References: <cover.1719691458.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sat, 29 Jun 2024 19:16:29 +0100
+Subject: [PATCH 25/26] gnu: go-github-com-masterminds-sprig-v3: Update to
+ 3.2.3.
+
+* gnu/packages/golang-xyz.scm (go-github-com-masterminds-sprig-v3):
+Update to 3.2.3.
+
+Change-Id: I95c42ca42a09e0c5e79d5c631606d8e48ceafe43
+---
+ gnu/packages/golang-xyz.scm | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/gnu/packages/golang-xyz.scm b/gnu/packages/golang-xyz.scm
+index 80d68f2fd3..54b9c45ed6 100644
+--- a/gnu/packages/golang-xyz.scm
++++ b/gnu/packages/golang-xyz.scm
+@@ -69,6 +69,7 @@ (define-module (gnu packages golang-xyz)
+   #:use-module (gnu packages golang-check)
+   #:use-module (gnu packages golang-compression)
+   #:use-module (gnu packages golang-crypto)
++  #:use-module (gnu packages golang-maths)
+   #:use-module (gnu packages golang-web)
+   #:use-module (gnu packages linux)
+   #:use-module (gnu packages specifications))
+@@ -2876,7 +2877,7 @@ (define-public go-github-com-masterminds-semver-v3
+ (define-public go-github-com-masterminds-sprig-v3
+   (package
+     (name "go-github-com-masterminds-sprig-v3")
+-    (version "3.1.0")
++    (version "3.2.3")
+     (source
+      (origin
+        (method git-fetch)
+@@ -2885,7 +2886,7 @@ (define-public go-github-com-masterminds-sprig-v3
+              (commit (string-append "v" version))))
+        (file-name (git-file-name name version))
+        (sha256
+-        (base32 "0wwi8n2adjc5jlga25lqq0hrz4jcgd5vpll68y2dfji034caaq18"))))
++        (base32 "1gkwalx8j8h1jdhk6dz8bq8zp7vivxvcivr83dcq0h6nrn4xjqnl"))))
+     (build-system go-build-system)
+     (arguments
+      (list
+@@ -2908,6 +2909,7 @@ (define-public go-github-com-masterminds-sprig-v3
+            go-github-com-masterminds-semver-v3
+            go-github-com-mitchellh-copystructure
+            go-github-com-mitchellh-reflectwalk
++           go-github-com-shopspring-decimal
+            go-github-com-spf13-cast
+            go-golang-org-x-crypto))
+     (home-page "https://github.com/Masterminds/sprig/")
+-- 
+2.41.0
+

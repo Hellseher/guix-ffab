@@ -1,0 +1,49 @@
+From bcd02650b3ebc4d7801619dba5235fd0a2392d05 Mon Sep 17 00:00:00 2001
+Message-ID: <bcd02650b3ebc4d7801619dba5235fd0a2392d05.1711915492.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1711915492.git.sharlatanus@gmail.com>
+References: <cover.1711915492.git.sharlatanus@gmail.com>
+From: Sharlatan Hellseher <sharlatanus@gmail.com>
+Date: Sun, 31 Mar 2024 20:24:44 +0100
+Subject: [PATCH 10/12] gnu: go-github.com-jessevdk-go-flags: Adjust variable
+ name.
+
+* gnu/packages/golang.scm (go-github.com-jessevdk-go-flags): Rename to
+go-github-com-jessevdk-go-flags to follow go import naming convention.
+
+* gnu/packages/golang.scm (go-github-com-dhowett-go-plist)
+[inputs]: Remove go-github.com-jessevdk-go-flags, add
+go-github-com-jessevdk-go-flags.
+
+Change-Id: I6fc977b11e5044b8e6cab2baa4c107967baedb59
+---
+ gnu/packages/golang.scm | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnu/packages/golang.scm b/gnu/packages/golang.scm
+index 3c3d9c7222..0f36c6b696 100644
+--- a/gnu/packages/golang.scm
++++ b/gnu/packages/golang.scm
+@@ -1881,7 +1881,7 @@ (define-public go-github-com-dhowett-go-plist
+       (build-system go-build-system)
+       (arguments `(#:import-path "howett.net/plist"))
+       (inputs
+-       (list go-github.com-jessevdk-go-flags go-github-com-kr-pretty
++       (list go-github-com-jessevdk-go-flags go-github-com-kr-pretty
+              go-gopkg-in-check-v1 go-gopkg-in-yaml-v2))
+       (home-page "https://github.com/DHowett/go-plist")
+       (synopsis "Apple property list transcoder")
+@@ -2839,9 +2839,9 @@ (define-public go-github-com-leodido-go-urn
+ specified by @uref{https://tools.ietf.org/html/rfc2141, IETF RFC 2141}.")
+     (license license:expat)))
+ 
+-(define-public go-github.com-jessevdk-go-flags
++(define-public go-github-com-jessevdk-go-flags
+   (package
+-    (name "go-github.com-jessevdk-go-flags")
++    (name "go-github-com-jessevdk-go-flags")
+     (version "1.5.0")
+     (source (origin
+               (method git-fetch)
+-- 
+2.41.0
+

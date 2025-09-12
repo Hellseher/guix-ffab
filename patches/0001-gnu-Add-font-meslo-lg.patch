@@ -1,0 +1,85 @@
+From c8f4fcf08881adde6acef97875453f39e8a7009c Mon Sep 17 00:00:00 2001
+Message-ID: <c8f4fcf08881adde6acef97875453f39e8a7009c.1730672227.git.sharlatanus@gmail.com>
+In-Reply-To: <cover.1730672227.git.sharlatanus@gmail.com>
+References: <cover.1730672227.git.sharlatanus@gmail.com>
+From: Luis Guilherme Coelho <lgcoelho@disroot.org>
+Date: Sun, 24 Dec 2023 19:00:25 +0000
+Subject: [PATCH v2 1/1] gnu: Add font-meslo-lg.
+
+* gnu/packages/fonts.scm (font-meslo-lg, font-meslo-lg-dz): New variables.
+
+Change-Id: I90ce642c60931c368e70c1d4b4cd57ee4f1e3c4d
+Co-authored-by: Sharlatan Hellseher <sharlatanus@gmail.com>
+---
+ gnu/packages/fonts.scm | 48 ++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/gnu/packages/fonts.scm b/gnu/packages/fonts.scm
+index 65232db3b8..4afd950fc9 100644
+--- a/gnu/packages/fonts.scm
++++ b/gnu/packages/fonts.scm
+@@ -60,6 +60,7 @@
+ ;;; Copyright © 2023 chris <chris@bumblehead.com>
+ ;;; Copyright © 2023, 2024 Luis Felipe López Acevedo <sirgazil@zoho.com>
+ ;;; Copyright © 2024 Christina O'Donnell <cdo@mutix.org>
++;;; Copyright © 2023 Luis Guilherme Coelho <lgcoelho@disroot.org>
+ ;;;
+ ;;; This file is part of GNU Guix.
+ ;;;
+@@ -1569,6 +1570,53 @@ (define-public font-adobe-source-serif-pro
+ Sans Pro family.")
+     (license license:silofl1.1)))
+ 
++(define-public font-meslo-lg
++  (package
++    (name "font-meslo-lg")
++    (version "1.2.1")
++    (source
++     (origin
++       (method git-fetch)
++       (uri (git-reference
++             (url "https://github.com/andreberg/Meslo-Font")
++             (commit (string-append "v" version))))
++       (file-name (git-file-name name version))
++       (sha256
++        (base32 "1594lxdk6788bb3i3c2fh74z4pwpzcp2r1xl3cz8cz77nrcjkl8m"))))
++    (build-system font-build-system)
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack chdir
++            (lambda* (#:key source #:allow-other-keys)
++              (chdir (string-append "dist/v" #$version))
++              (invoke "unzip"
++                      (string-append "Meslo LG v" #$version ".zip")))))))
++    (native-inputs
++     (list unzip))
++    (home-page "https://github.com/andreberg/Meslo-Font")
++    (synopsis "Font for dyslexics and high readability")
++    (description
++     "Meslo LG is a customized version of Apple’s Menlo-Regular font
++(which is a customized Bitstream Vera Sans Mono).")
++    (license license:asl2.0)))
++
++(define-public font-meslo-lg-dz
++  (package
++    (inherit font-meslo-lg)
++    (name "font-meslo-lg-dz")
++    (version "1.2.1")
++    (arguments
++     (list
++      #:phases
++      #~(modify-phases %standard-phases
++          (add-after 'unpack chdir
++            (lambda* (#:key source #:allow-other-keys)
++              (chdir (string-append "dist/v" #$version))
++              (invoke "unzip"
++                      (string-append "Meslo LG DZ v" #$version ".zip")))))))))
++
+ (define-public font-microsoft-cascadia
+   (package
+     (name "font-microsoft-cascadia")
+-- 
+2.46.0
+
