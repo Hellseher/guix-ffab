@@ -1,0 +1,301 @@
+#+title: Python Team 20241122123737
+
+- [-] evaluations [0/0]
+  - https://ci.guix.gnu.org/eval/1834538
+  - https://ci.guix.gnu.org/eval/1837639
+  - https://ci.guix.gnu.org/eval/1838261
+  - https://ci.guix.gnu.org/eval/1838443
+  - https://ci.guix.gnu.org/eval/1864513
+- [-] fix-build [19/82][23%]
+  - [ ] python-ads
+  - [X] python-anaconda-client
+  - [X] python-asttokens
+  - [ ] python-brian2
+  - [ ] python-bx-python
+  - [ ] python-cattrs
+  - [ ] python-construct
+  - [ ] python-coveralls
+  - [ ] python-cssutils
+  - [ ] python-dictpath
+  - [ ] python-django-rest-framework
+  - [ ] python-docrepr
+  - [ ] python-ecdsa
+  - [ ] python-eventlet
+  - [ ] python-face
+  - [ ] python-fenics-fiat
+  - [ ] python-flake8-bugbear
+  - [X] python-flake8-implicit-str-concat
+  - [X] python-flake8-isort
+  - [X] python-flake8-pie
+  - [X] python-flake8-print
+  - [X] python-flake8-pyi
+  - [X] python-flake8-quotes
+  - [ ] python-flask-babel
+  - [ ] python-flask-basicauth
+  - [ ] python-flask-httpauth
+  - [ ] python-flask-misaka
+  - [ ] python-flask-seasurf
+  - [ ] python-flask-sqlalchemy
+  - [ ] python-flask-wtf
+  - [ ] python-gamera
+  - [ ] python-jaraco-packaging
+  - [ ] python-joblib
+  - [ ] python-jupyter-core
+  - [ ] python-launchpadlib
+  - [ ] python-libneuroml
+  - [ ] python-nbstripout
+  - [ ] python-networkx
+  - [ ] python-numba
+  - [ ] python-numcodecs
+  - [ ] python-parsley
+  - [ ] python-path
+  - [X] python-prettytable
+  - [ ] python-pydantic
+  - [X] python-pylint
+  - [ ] python-pynetbox
+  - [ ] python-pynetdicom
+  - [X] python-pypdf
+  - [X] python-pytest-doctestplus
+  - [ ] python-pytest-exploratory
+  - [X] python-pytest-flake8
+  - [X] python-pytest-flask
+  - [X] python-pytest-metadata
+  - [X] python-pytest-random-order
+  - [X] python-pytest-remotedata
+  - [ ] python-pytest-vcr
+  - [ ] python-pyzmq
+  - [ ] python-rdflib
+  - [ ] python-redis
+  - [ ] python-robotframework-requests
+  - [ ] python-screed
+  - [ ] python-sentry-sdk
+  - [ ] python-slotscheck
+  - [ ] python-sphinx
+  - [ ] python-stdio-mgo
+  - [X] python-stdio-mgr
+  - [ ] python-sybil
+  - [ ] python-tempora
+  - [X] python-termcolor
+  - [ ] python-terminado
+  - [ ] python-textdistance
+  - [ ] python-tinycss2
+  - [ ] python-tox
+  - [ ] python-tqdm
+  - [ ] python-trio-websocket
+  - [ ] python-typeguard
+  - [ ] python-vine
+  - [ ] python-webassets
+  - [ ] python-werkzeug
+  - [ ] python-wsgi-intercept
+  - [ ] python-xarray
+  - [ ] python-xdoctest
+- [-] remove [1/5][20%]
+  - [ ] https://github.com/schlamar/cov-core
+  - [X] pytest pytest-catchlog <https://github.com/eisensheng/pytest-catchlog>
+    It's not maintained, failing to build.
+  - [ ] https://github.com/tvorog/pytest-lazy-fixture python-pytest-lazy-fixture
+  - [ ] python-pytest-toolbox <https://github.com/samuelcolvin/pytest-toolbox>
+  - [ ] python-pytest-vcr <https://github.com/ktosiek/pytest-vcr>
+- [ ] misc
+  - [ ] python-pytest-pycodestyle
+  - [ ] python-watchgod 0.8.1->0.24.0 new Rust chain on maturin
+  - [ ] python-asyncua tests failing a lot
+
+
+(define-public python-asyncua
+  (package
+    (name "python-asyncua")
+    (version "1.1.4")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/FreeOpcUa/opcua-asyncio")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1l08w3djls4qdnw6mbhkbqrbnc3ym42q0bs2hxrsr14lc1sysz99"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      #~(list "-k" (string-join
+                    ;; Tests requiring network setup.
+                    (list "not test_anonymous_rejection"
+                          "test_certificate_handling_success"
+                          "test_encrypted_private_key_handling_success"
+                          "test_encrypted_private_key_handling_success_with_cert_props"
+                          "test_encrypted_private_key_handling_failure")
+                    " and not "))))
+    (native-inputs
+     (list python-asynctest
+           python-pytest-asyncio-0.21
+           python-pytest-mock
+           python-setuptools
+           python-wheel))
+    (propagated-inputs
+     (list python-aiofiles
+           python-aiosqlite
+           python-cryptography
+           python-dateutil
+           python-importlib-metadata
+           python-pyopenssl
+           python-pytz
+           python-sortedcontainers))
+    (home-page "https://freeopcua.github.io/")
+    (synopsis "OPC UA / IEC 62541 client and server library")
+    (description
+     "This package provides an OPC UA / IEC 62541 client and server for Python
+and pypy3.")
+    (license license:lgpl3+)))
+
+
+(define-public python-pytest-asyncio-0.21
+  (package
+    (inherit python-pytest-asyncio)
+    (version "0.21.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pytest-asyncio" version))
+       (sha256
+        (base32 "06sy8471s3xylzv66f7wfs9apq8i7qqyqmvmx2q5cvzmmsba8f1b"))))
+    (native-inputs
+     (modify-inputs (package-native-inputs python-pytest-asyncio)
+       (append python-pytest-trio)))))
+
++ bpython
+chirp - long
+gandi.cli
+python-ansicolors
+python-bidict
+python-ddlparse
+python-django-extensions
+python-flask-htpasswd
+python-halo
+python-harmony
+python-honcho
+python-jsonargparse
+python-log-symbols
+python-lunr
+python-marshmallow-jsonapi
+python-metacells
+python-omnipath
+python-papermill
+python-sanic
+python-scikit-survival
+python-shshsh
+python-spinners
+python-virtualenv-clone
+tailon
+txt2tags
+
+
+
+abe
+avro-cpp
+icedove-l10n
+libcorrect
+
+e42e8001f8 * gnu: Add python-platformio.
+
+
+
+(define-public chirp
+  (let ((commit "2560148fe8a36eb407f9c8ac4a5a294b434567b3")
+        (revision "2"))
+    (package
+      (name "chirp")
+      (version (git-version "0.4.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/kk7ds/chirp")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1b1fb9bi53lwlj70iqd2bka4pjv6kq8ihzsnk17fjpw1mkvp7iv0"))))
+      (build-system pyproject-build-system)
+      (arguments
+       (list
+        #:test-flags
+        #~(list "--numprocesses" (number->string (parallel-job-count))
+                 (format #f "--deselect={~%s~}"
+                  ;; Tests failing with error: "TypeError: 'NoneType' object is
+                  ;; not callable", can't be excluded with "-k" option.
+                  (list "tests/test_banks.py::TestCaseBanks::test_bank_index"
+                        "tests/test_banks.py::TestCaseBanks::test_bank_names"
+                        "tests/test_banks.py::TestCaseBanks::test_bank_names_no_trailing_whitespace"
+                        "tests/test_banks.py::TestCaseBanks::test_bank_names_toolong"
+                        "tests/test_banks.py::TestCaseBanks::test_bank_store"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_cross"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_dtcs"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_duplex"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_mode"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_skip"
+                        "tests/test_brute_force.py::TestCaseBruteForce::test_tone"
+                        "tests/test_clone.py::TestCaseClone::test_clone_serial_error"
+                        "tests/test_clone.py::TestCaseClone::test_clone_serial_garbage"
+                        "tests/test_clone.py::TestCaseClone::test_clone_serial_none"
+                        "tests/test_clone.py::TestCaseClone::test_clone_serial_short_garbage"
+                        "tests/test_copy_all.py::TestCaseCopyAll::test_copy"
+                        "tests/test_detect.py::TestCaseDetect::test_detect"
+                        "tests/test_detect.py::TestCaseDetect::test_match_model_is_quiet_no_match"
+                        "tests/test_detect.py::TestCaseDetect::test_match_model_is_quiet_with_match"
+                        "tests/test_edges.py::TestBitwiseStrict::test_bitwise_errors"
+                        "tests/test_edges.py::TestCaseEdges::test_badname"
+                        "tests/test_edges.py::TestCaseEdges::test_bandedges"
+                        "tests/test_edges.py::TestCaseEdges::test_check_regular_not_special"
+                        "tests/test_edges.py::TestCaseEdges::test_delete_memory"
+                        "tests/test_edges.py::TestCaseEdges::test_empty_to_not"
+                        "tests/test_edges.py::TestCaseEdges::test_get_memory_name_trailing_whitespace"
+                        "tests/test_edges.py::TestCaseEdges::test_get_set_specials"
+                        "tests/test_edges.py::TestCaseEdges::test_longname"
+                        "tests/test_edges.py::TestCaseEdges::test_memory_name_stripped"
+                        "tests/test_edges.py::TestCaseEdges::test_oddsteps"
+                        "tests/test_features.py::TestCaseFeatures::test_prompts"
+                        "tests/test_settings.py::TestCaseSettings::test_get_settings"
+                        "tests/test_settings.py::TestCaseSettings::test_has_settings"
+                        "tests/test_settings.py::TestCaseSettings::test_memory_extra_flat"
+                        "tests/test_settings.py::TestCaseSettings::test_memory_extra_frozen"
+                        "tests/test_settings.py::TestCaseSettings::test_same_settings"))
+                "-k" (string-join
+                      ;; They try to access <www.repeaterbook.com>.
+                      (list "not test_marc_works"
+                            "test_get_australia"
+                            "test_get_oregon"
+                            "test_get_oregon_gmrs"
+                            "test_get_wyoming")
+                      " and not "))
+        #:phases
+        #~(modify-phases %standard-phases
+            (add-after 'build 'set-home-for-tests
+              (lambda _
+                (setenv "HOME" "/tmp"))))))
+      (native-inputs
+       (list nss-certs-for-test
+             python-ddt
+             python-mock
+             python-mox3
+             python-pytest
+             python-pytest-mock
+             python-pytest-xdist
+             python-pyyaml
+             python-setuptools
+             python-wheel))
+      (inputs
+       (list python-future
+             python-importlib-resources
+             python-pyserial
+             python-requests
+             python-six
+             python-suds
+             python-wxpython
+             python-yattag))
+      (synopsis "Cross-radio programming tool")
+      (description "Chirp is a cross-radio programming tool.  It supports a
+growing list of radios across several manufacturers and allows transferring of
+memory contents between them.")
+      (home-page "https://chirp.danplanet.com")
+      (license license:gpl3+))))

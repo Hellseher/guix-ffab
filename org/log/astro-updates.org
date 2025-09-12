@@ -1,6 +1,6 @@
 #+title: Astro Updates
 
-* Monthly Updates [25/26][96%]
+* Monthly Updates [28/29][96%]
 ** DONE updates-2023-05 [3/35][8%]
 CLOSED: [2023-11-22 Wed 00:25]
 - date-time :: 20230516T203501+0100
@@ -1089,17 +1089,18 @@ CLOSED: [2025-06-13 Fri 13:42]
   - [ ] python-pynbody :: would be upgraded from 1.6.0.post0 to 2.1.1; majore update, depends on NumPy 2+
   - [ ] python-stwcs :: would be upgraded from 1.7.3 to 1.7.4; sanity check fails requiring NumPy 2.0+
   - [ ] python-webbpsf :: would be upgraded from 1.5.0 to 2.0.0; project in migration to https://github.com/spacetelescope/stpsf
-** TODO updates-2025-06 [1/2][50%]
-CLOSED: [2025-06-13 Fri 13:42]
+** DONE updates-2025-06 [1/2][50%]
+CLOSED: [2025-07-03 Thu 16:45]
 - date-time :: 20250613T134537+0100
 - commit :: a448e58326a..5bd60fd7bd0
 - pull-request :: https://codeberg.org/guix/guix/pulls/706
-- [X] quick [34/34][100%]
+- [X] quick [35/35][100%]
   - [X] add go-codeberg-org-astronexus-brahe :: Read and use data from the Augmented Tycho-HYG (AT-HYG) star catalog
   - [X] add python-calcos :: Calibration for HST/COS.
   - [X] add python-costools :: Tools for Cosmic Origins Spectrograph
   - [X] add python-drizzlepac :: AstroDrizzle for HST images
   - [X] add python-dynesty :: Dynamic nested sampling computing Bayesian posteriors and evidences
+  - [X] add python-jwst-backgrounds :: Retrieve and plot JWST background information
   - [X] add python-slitronomy :: Sparse Linear Inversion Technique for lenstronomy
   - [X] add python-stpsf :: Space Telescope PSF Simulation Tool.
     - [X] python-webbpsf :: Deprecate
@@ -1141,3 +1142,158 @@ CLOSED: [2025-06-13 Fri 13:42]
     use python-numpy-2 failed: module that was compiled using NumPy 1.x cannot be run in NumPy 2.2.2
     as it may crash. To support both 1.x and 2.x versions of NumPy, modules must be compiled with
     NumPy 2.0. Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+** DONE updates-2025-07 [1/2][50%]
+CLOSED: [2025-07-31 Thu 22:24]
+- date-time :: 20250703T164622+0100
+- commit :: da70edee1a3..9a40b61de9b
+- pull-request :: https://codeberg.org/guix/guix/pulls/1502
+- [X] quick [36/36][100%]
+  - [X] add python-stpreview :: Build downsampled previews of STScI
+  - [X] add python-space-dolphin :: Automated pipeline for lens modeling based on lenstronomy
+    - [X] add python-gdown :: Google Drive Public File/Folder Downloader
+  - [X] add python-romancal :: Nancy Grace Roman Space Telescope observations processing library
+  - [X] add python-pyhalo :: Render populations of dark matter halos
+    - [X] python-mcfit :: Multiplicatively convolutional fast integral transforms
+  - [X] add python-py-bobyqa :: Derivative-free solver for general objective minimization
+  - [X] add python-nautilus-sampler :: Neural Network-Boosted Importance Sampling for Bayesian Statistics
+  - [X] add python-linetools :: Quasar and galaxy spectra 1-D analysis tool
+  - [X] add python-lenstronomy :: Multi-purpose lens modeling software
+  - [X] add python-hierarc :: Hierarchical analysis of strong lensing systems
+  - [X] add python-cobaya :: Code for Bayesian analysis in Cosmology
+  - [X] calcmysky :: would be upgraded from 0.3.4 to 0.3.5
+  - [X] splas2h :: would be upgraded from 3.11.3 to 3.11.4
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2025.6.16.0.38.47 to 0.2025.7.21.0.41.39
+  - [X] python-asdf :: would be upgraded from 4.2.0 to 4.3.0
+  - [X] python-gwcs :: would be upgraded from 0.24.0 to 0.25.1
+  - [X] python-mpl-animators :: would be upgraded from 1.2.3 to 1.2.4
+  - [X] python-specutils :: would be upgraded from 1.19.0 to 2.0.0
+  - [X] python-synphot :: would be upgraded from 1.5.0 to 1.6.0
+  - [X] python-rad :: would be upgraded from 0.25.0 to 0.26.0
+  - [X] python-roman-datamodels :: would be upgraded from 0.25.0 to 0.26.0
+  - [X] python-crds :: would be upgraded from 12.1.10 to 12.1.11
+  - [X] python-drizzle :: would be upgraded from 2.0.1 to 2.1.0
+  - [X] python-yt :: would be upgraded from 4.4.0 to 4.4.1
+  - [X] python-stpipe :: would be upgraded from 0.9.0 to 0.10.0
+  - [X] python-stdatamodels :: would be upgraded from 3.1.0 to 4.0.1
+  - [X] python-stcal :: would be upgraded from 1.13.0 to 1.14.1
+  - [X] python-jwst :: would be upgraded from 1.18.1 to 1.19.1
+  - [X] python-dkist :: would be upgraded from 1.13.0 to 1.14.0
+  - [X] python-czml3 :: would be upgraded from 2.3.4 to 2.3.5
+  - [X] python-ccdproc :: would be upgraded from 2.4.3 to 2.5.1
+  - [X] python-statmorph :: would be upgraded from 0.6.1 to 0.7.0
+  - [X] python-regularizepsf :: would be upgraded from 1.0.2 to 1.1.0
+  - [X] python-glue-astronomy :: would be upgraded from 0.11.0 to 0.12.0
+  - [X] python-camb :: would be upgraded from 1.6.0 to 1.6.2
+  - [X] python-asdf-compression :: from 0.0.1-2.68ed09f to 0.0.1-3.579c153
+  - [X] stuff :: from 2.0.1 to 2.0.1-0.9cf3632
+- [ ] issues [0/9][0%]
+  - [ ] python-cesium :: would be upgraded from 0.12.1 to 0.12.4; NumPy 2 is requried
+  - [ ] python-drizzlepac :: would be upgraded from 3.7.1 to 3.10.0; NumPY 2 is requied
+  - [ ] python-jplephem :: would be upgraded from 2.22 to 2.23; Astropy tests fail
+  - [ ] python-stwcs :: would be upgraded from 1.7.3 to 1.7.4; sanity check fails requiring NumPy 2.0+
+  - [ ] python-naima :: would be upgraded from 0.10.0 to 0.10.2; NumPy 2+ is requried. Attempt to
+    use python-numpy-2 failed: module that was compiled using NumPy 1.x cannot be run in NumPy 2.2.2
+    as it may crash. To support both 1.x and 2.x versions of NumPy, modules must be compiled with
+    NumPy 2.0. Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+  - [ ] python-sunpy :: would be upgraded from 6.1.1 to 7.0.0; build fails
+    - /gnu/store/3nnkbl90qk9l7a757ldxjdxyz73p0b9c-python-3.11.11/include/python3.11/cpython/object.h:148:8: error: redefinition of ‘struct _typeobject’
+    - /gnu/store/3nnkbl90qk9l7a757ldxjdxyz73p0b9c-python-3.11.11/include/python3.11/object.h:770:17: error: ‘PyTypeObject’ {aka ‘struct _typeobject’} has no member named ‘tp_flags’
+  - [ ] stellarium :: would be upgraded from 25.1-2.045915b to 25.2; would need the latest version
+    of exiv2 which triggers 64 rebuilds, will update separatly with migration to Qt6.
+  - [ ] sunclock This is not original source: <https://directory.fsf.org/wiki/Sunclock> ->
+    <https://github.com/mdoege/Sunclock> dead link ->
+    <http://www.arvernes.com/wiki/index.php/Sunclock> dead link
+    <https://github.com/nongiach/Sunclock> is unmaintained, maybe use Debian's fork instead <https://salsa.debian.org/debian/sunclock>
+
+/mnt/library/code/guix/gnu/packages/astronomy.scm:9650:5: warning: no tags were found for stuff
+
+jq --argjson thisPkgs '["python-asdf", "python-gwcs", "python-mpl-animators", "python-specutils", "python-synphot", "python-rad", "python-roman-datamodels", "python-crds", "python-drizzle", "python-yt", "python-stpipe", "python-stdatamodels", "python-stcal", "python-jwst", "python-statmorph", "python-camb"]' '.[] | select([.package_name] | inside($thisPkgs)) | [.affect_ratio, .package_name] | @tsv' python-team-stats.json
+** DONE updates-2025-08 [1/2][50%]
+CLOSED: [2025-09-10 Wed 15:47]
+- date-time :: 20250813T135241+0100
+- commit :: 8d7c6d4591..19f2030b3c
+- pull-request :: https://codeberg.org/guix/guix/pulls/2187
+- [X] quick [33/33][100%]
+  - [X] alfa :: would be upgraded from 2.2 to 2.3
+  - [X] ginga :: would be upgraded from 5.3.0 to 5.4.0
+  - [X] indi :: would be upgraded from 2.1.4 to 2.1.5
+  - [X] python-asdf :: would be upgraded from 4.3.0 to 4.4.0
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2025.7.21.0.41.39 to 0.2025.8.18.0.40.14
+  - [X] python-astropy :: would be upgraded from 7.0.1 to 7.2.0
+    - [X] add python-uncompresspy :: Uncompressing LZW files in Python
+  - [X] python-bayesicfitting :: would be upgraded from 3.2.3 to 3.2.4
+  - [X] python-cdflib :: would be upgraded from 1.3.4 to 1.3.6
+  - [X] python-czml3 :: would be upgraded from 2.3.5 to 2.3.6
+  - [X] python-dkist :: would be upgraded from 1.14.0 to 1.15.0
+  - [X] python-drizzle :: would be upgraded from 2.1.0 to 2.1.1
+  - [X] python-dust-extinction :: would be upgraded from 1.5 to 1.6
+  - [X] python-extension-helpers :: would be upgraded from 1.2.0 to 1.4.0
+  - [X] python-extinction :: would be upgraded from 0.4.7 to 0.4.8
+  - [X] python-glue-core :: would be upgraded from 1.22.2 to 1.23.0
+  - [X] python-glue-qt :: would be upgraded from 0.3.3 to 0.4.0
+  - [X] python-glymur :: would be upgraded from 0.13.6 to 0.14.3
+  - [X] python-gwcs :: would be upgraded from 0.25.1 to 0.25.2
+  - [X] python-irispy-lmsal :: would be upgraded from 0.3.0 to 0.3.1
+  - [X] python-pint-pulsar :: would be upgraded from 1.1.3 to 1.1.4
+  - [X] python-pyhalo :: would be upgraded from 1.4.1 to 1.4.3
+  - [X] python-rad :: would be upgraded from 0.26.0 to 0.27.0
+  - [X] python-romancal :: would be upgraded from 0.19.0-0.ae864a4 to 0.20.2
+  - [X] python-roman-datamodels :: would be upgraded from 0.26.0 to 0.27.0
+  - [X] python-sgp4 :: would be upgraded from 2.24 to 2.25
+  - [X] python-space-dolphin :: would be upgraded from 1.1.2 to 1.1.3
+  - [X] python-specutils :: would be upgraded from 2.0.0 to 2.1.0
+  - [X] python-stcal :: would be upgraded from 1.14.1 to 1.15.0
+  - [X] python-stsci-skypac :: would be upgraded from 1.0.10 to 1.0.11
+  - [X] python-sunpy :: would be upgraded from 6.1.1 to 7.0.1
+  - [X] python-sunraster :: would be upgraded from 0.6.0 to 0.6.1
+  - [X] stellarium :: would be upgraded from 25.1-2.045915b to 25.2
+  - [X] uraniborg :: would be upgraded from 0.0.8 to 0.0.10
+- [ ] issues [0/7][0%]
+  - [ ] python-cesium :: would be upgraded from 0.12.1 to 0.12.4; NumPy 2 is requried
+  - [ ] python-drizzlepac :: would be upgraded from 3.7.1 to 3.10.0; NumPY 2 is requied
+  - [ ] python-jplephem :: would be upgraded from 2.22 to 2.23; Something has been changed with
+    tests one of 49 fails with error: OSError: [Errno 30] Read-only file system:
+    '/gnu/store/3nnkbl90qk9l7a757ldxjdxyz73p0b9c-python-3.11.11/lib/python3.11/@test_43_tmpæ.pyc'
+  - [ ] python-naima :: would be upgraded from 0.10.0 to 0.10.3; NumPy 2+ is requried.
+  - [ ] python-pynbody :: would be upgraded from 1.6.0.post0 to 2.3.0; major update, depends on NumPy 2+
+  - [ ] python-reproject :: would be upgraded from 0.14.1 to 0.15.0; Fails to build on comile time, a lot of errirs in "reproject/spherical_intersect"
+  - [ ] python-stwcs :: would be upgraded from 1.7.3 to 1.7.5; NumPY 2 is requied
+
+/mnt/library/code/guix/gnu/packages/astronomy.scm:199:7: warning: no tags were found for aocommon
+/mnt/library/code/guix/gnu/packages/astronomy.scm:3357:7: warning: no tags were found for python-colossus
+/mnt/library/code/guix/gnu/packages/astronomy.scm:2011:7: warning: no tags were found for python-asdf-compression
+/mnt/library/code/guix/gnu/packages/astronomy.scm:9729:7: warning: no tags were found for stuff
+/mnt/library/code/guix/gnu/packages/astronomy.scm:6694:7: warning: no tags were found for python-so-noise-models
+/mnt/library/code/guix/gnu/packages/astronomy.scm:10081:7: warning: no tags were found for uranimator
+
+astropy.cosmology._utils
+
+** TODO updates-2025-09 [0/2][0%]
+- date-time ::
+- commit ::
+- pull-request ::
+- [-] quick [2/22][9%]
+  - [ ] indi :: would be upgraded from 2.1.5 to 2.1.5.1
+  - [ ] python-asdf-standard :: would be upgraded from 1.3.0 to 1.4.0
+  - [ ] python-asdf :: would be upgraded from 4.4.0 to 4.5.0
+  - [ ] python-astroml :: would be upgraded from 1.0.2.post1 to 1.0a1
+  - [X] python-astropy-iers-data :: would be upgraded from 0.2025.8.18.0.40.14 to 0.2025.9.8.0.36.17
+  - [ ] python-astroquery :: would be upgraded from 0.4.10 to 0.4.dev5750
+  - [ ] python-camb :: would be upgraded from 1.6.2 to 1.6.4
+  - [ ] python-cesium :: would be upgraded from 0.12.1 to 0.12.4
+  - [ ] python-crds :: would be upgraded from 12.1.11 to 13.0.3
+  - [ ] python-drizzlepac :: would be upgraded from 3.7.1 to 3.10.0
+  - [ ] python-healpy :: would be upgraded from 1.18.1 to github-devel
+  - [ ] python-irispy-lmsal :: would be upgraded from 0.3.1 to 0.4.0
+  - [ ] python-jplephem :: would be upgraded from 2.22 to 2.23
+  - [ ] python-linetools :: would be upgraded from 0.3.2 to 0.3.dev2231
+  - [ ] python-naima :: would be upgraded from 0.10.0 to 0.10.3
+  - [ ] python-pixell :: would be upgraded from 0.29.0 to 0.30.0
+  - [ ] python-pynbody :: would be upgraded from 1.6.0.post0 to 2.3.0
+  - [ ] python-reproject :: would be upgraded from 0.14.1 to 0.15.0
+  - [ ] python-space-dolphin :: would be upgraded from 1.1.3 to 1.2.0
+  - [ ] python-stwcs :: would be upgraded from 1.7.3 to 1.7.5
+  - [ ] python-sunraster :: would be upgraded from 0.6.1 to 0.6.2
+  - [X] splash :: would be upgraded from 3.11.4 to 3.11.5
+- [ ] issues [0/0][0%]
+  - Remove celestia-gtk https://codeberg.org/guix/guix/issues/2338

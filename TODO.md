@@ -6,6 +6,7 @@
     python.org             SunPy                                         [1/3][33%]     :author:
     python.org             StdCarrot                                     [0/1][0%]      :author:
     python.org             scoder                                        [0/1][0%]      :author:
+    python.org             optimagic                                     [0/0][100%]    :author:
     python.org             OpenAstronomy                                 [0/1][0%]      :author:
     python.org             niltonvolpato                                 [0/1][0%]      :author:
     python.org             lzkelley                                      [1/2][50%]     :author:
@@ -76,20 +77,22 @@
     astronomy.org          SunPy                                         [12/12][100%]  :author:
     astronomy.org          Starlink                                      [0/2][0%]      :author:
     astronomy.org          spedas                                        [0/1][0%]      :author:
-    astronomy.org          SpaceTelescopeScienceInstitue                 [32/39][82%]   :author:
+    astronomy.org          SpaceTelescopeScienceInstitue                 [35/40][87%]   :author:
     astronomy.org          spacepy                                       [0/1][0%]      :author:
     astronomy.org          SimonsObservatory                             [1/1][100%]    :author:
+    astronomy.org          sibirrer                                      [1/2][50%]     :author:
     astronomy.org          schirmermischa                                [0/1][0%]      :author:
     astronomy.org          SARAO                                         [0/0][100%]    :author:
     astronomy.org          SAOImageDS9                                   [0/1][0%]      :author:
     astronomy.org          rwesson                                       [1/2][50%]     :author:
     astronomy.org          ruven                                         [0/1][0%]      :author:
-    astronomy.org          rlancasteAstro                                [/][%]         :author:
+    astronomy.org          rlancasteAstro                                [0/0][0%]      :author:
     astronomy.org          revoltek                                      [1/1][100%]    :author:
     astronomy.org          radio-astro-tools                             [4/4]          :author:
     astronomy.org          QuatroPe                                      [1/2][50%]     :author:
     astronomy.org          pysat                                         [1/10][10%]    :author:
     astronomy.org          poliastro                                     [2/2][100%]    :author:
+    astronomy.org          PixInsight                                    [0/0][100%]    :author:
     astronomy.org          PetroFit                                      [1/1][100%]    :author:
     astronomy.org          PaulMcMillan-Astro                            [0/1][0%]      :author:
     astronomy.org          OxfordSKA                                     [0/1][0%]      :author:
@@ -102,13 +105,12 @@
     astronomy.org          MPCDF                                         [0/0][100%]    :author:
     astronomy.org          mgckind                                       [0/1][0%]      :author:
     astronomy.org          MAVENSDC                                      [1/3][33%]     :author:
-    astronomy.org          mattyowl                                      [/][%]         :author:
+    astronomy.org          mattyowl                                      [0/1][0%]      :author:
     astronomy.org          lzkelley                                      [1/1][100%]    :author:
     astronomy.org          LOFAR-telescope                               [0/2][0%]      :author:
     astronomy.org          LockheedMartinSolarAndAstrophysicsLaboratory  [2/2][100%]    :author:
     astronomy.org          linguider                                     [0/4][0%]      :author:
-    astronomy.org          LibreSpaceFoundation                          [/][%]         :author:
-    astronomy.org          lenstronomy                                   [0/1][0%]      :author:
+    astronomy.org          LibreSpaceFoundation                          [0/0][100%]    :author:
     astronomy.org          kgrandis                                      [1/1][100%]    :author:
     astronomy.org          kbarbary                                      [2/2][100%]    :author:
     astronomy.org          karllark                                      [1/2][50%]     :author:
@@ -117,6 +119,7 @@
     astronomy.org          JuliaAstroSim                                 [0/9][0%]      :author:
     astronomy.org          JuliaAstro                                    [8/35][22%]    :author:
     astronomy.org          joshspeagle                                   [1/2][50%]     :author:
+    astronomy.org          johannesulf                                   [0/1][0%]      :author:
     astronomy.org          jobovy                                        [0/2][0%]      :author:
     astronomy.org          Javastro                                      [0/1][0%]      :author:
     astronomy.org          IRAF-community                                [1/1][100%]    :author:
@@ -133,15 +136,16 @@
     astronomy.org          esheldon                                      [0/3][0%]      :author:
     astronomy.org          ESA                                           [1/1][100%]    :author:
     astronomy.org          ericmandel                                    [0/1][0%]      :author:
-    astronomy.org          DuncanMacleod                                 [/][%]         :author:
+    astronomy.org          DuncanMacleod                                 [0/1][0%]      :author:
     astronomy.org          dstndstn                                      [0/2][0%]      :author:
     astronomy.org          dokester                                      [0/1][0%]      :author:
     astronomy.org          DKISTDataCenter                               [1/1][100%]    :author:
     astronomy.org          demorest                                      [0/0][0%]      :author:
     astronomy.org          danieljprice                                  [1/3][33%]     :author:
-    astronomy.org          CTAO                                          [/][%]         :author:
+    astronomy.org          dangilman                                     [1/1][100%]    :author:
+    astronomy.org          CTAO                                          [0/0][100%]    :author:
     astronomy.org          cpinte                                        [0/0][0%]      :author:
-    astronomy.org          COSMOGRAIL                                    [/][%]         :author:
+    astronomy.org          COSMOGRAIL                                    [0/1][0%]      :author:
     astronomy.org          C-Munipack-library                            [0/0][0%]      :author:
     astronomy.org          cmbant                                        [1/1][100%]    :author:
     astronomy.org          CIAO                                          [0/0][100%]    :author:
@@ -157,10 +161,11 @@
     astronomy.org          aroffringa                                    [2/3][66%]     :author:
     astronomy.org          ap-i                                          [1/7][14%]     :author:
     astronomy.org          amusecode                                     [0/45][0%]     :author:
+    astronomy.org          ajshajib                                      [1/3][33%]     :author:
     
     Projects in progress with priorities:
     version-control.org    lazygit                        [0/4][0%]    :p5:
-    pascal.org             voc                            [/][%]       :p5:
+    pascal.org             voc                            [0/4][0%]    :p5:
     maths.org              netlib                         [0/1][0%]    :p5:
     lisp.org               cl-zorm                        [0/4][0%]    :p5:
     lisp.org               cl-soil                        [0/4][0%]    :p5:
@@ -175,14 +180,14 @@
     astronomy.org          Xspec                          [0/4][0%]    :p5:
     astronomy.org          virtualplanet                  [0/4][0%]    :p5:
     astronomy.org          virtualmoon                    [0/4][0%]    :p5:
-    astronomy.org          stellarsolver                  [/][%]       :p5:
     astronomy.org          sofa-c                         [0/4][0%]    :p5:
     astronomy.org          python-sdmpy                   [0/4][0%]    :p5:
     astronomy.org          python-mwdust                  [0/4][0%]    :p5:
+    astronomy.org          python-lightcone               [0/4][0%]    :p5:
     astronomy.org          python-enterprise              [0/4][0%]    :p5:
     astronomy.org          python-discovery               [0/4][0%]    :p5:
-    astronomy.org          python-astrowidgets            [0/5][0%]    :p5:
-    astronomy.org          python-astlib                  [0/4][0%]    :p5:
+    astronomy.org          python-astrowidgets            [0/4][0%]    :p5:
+    astronomy.org          PCL                            [0/4][0%]    :p5:
     astronomy.org          OSKAR                          [0/4][0%]    :p5:
     astronomy.org          mcfost                         [0/4][0%]    :p5:
     astronomy.org          kepler-project                 [0/4][0%]    :p5:
@@ -380,9 +385,9 @@
     astronomy.org          rust-moc                       [2/4][50%]   :p2:
     astronomy.org          python-sirilic                 [1/4][25%]   :p2:
     astronomy.org          python-pysiril                 [2/4][50%]   :p2:
-    astronomy.org          python-jwst-backgrounds        [2/5][40%]   :p2:
     python.org             python-sphinx-changelog        [1/4][25%]   :p1:
     python.org             python-sphinx-automodapi       [1/4][25%]   :p1:
+    python.org             python-optimagic               [2/4][50%]   :p1:
     python.org             python-fastrlock               [1/3][33%]   :p1:
     lisp.org               cl-qtools                      [0/4][0%]    :p1:
     lisp.org               cl-feedback                    [0/4][0%]    :p1:
@@ -396,24 +401,26 @@
     astronomy.org          Torus                          [1/4][25%]   :p1:
     astronomy.org          toast                          [/][%]       :p1:
     astronomy.org          tenmon                         [1/4][25%]   :p1:
+    astronomy.org          stellarsolver                  [0/4][0%]    :p1:
     astronomy.org          SAOImageDS9                    [0/4][0%]    :p1:
     astronomy.org          python-visiomatic              [0/4][0%]    :p1:
     astronomy.org          python-tractor                 [/][%]       :p1:
     astronomy.org          python-topsy                   [0/4][0%]    :p1:
     astronomy.org          python-tangos                  [0/4][0%]    :p1:
-    astronomy.org          python-stpreview               [1/5][20%]   :p1:
     astronomy.org          python-startlink-pyast         [0/4][0%]    :p1:
     astronomy.org          python-starred-astro           [0/4][0%]    :p1:
     astronomy.org          python-ssph                    [1/4][25%]   :p1:
+    astronomy.org          python-squirrel                [0/4][0%]    :p1:
     astronomy.org          python-spacepy                 [0/4][0%]    :p1:
     astronomy.org          python-sdasws                  [0/4][0%]    :p1:
-    astronomy.org          python-romancal                [0/5][0%]    :p1:
+    astronomy.org          python-romanisim               [0/4][0%]    :p1:
+    astronomy.org          python-raccoon                 [0/4][0%]    :p1:
     astronomy.org          python-pytplot                 [1/4][25%]   :p1:
     astronomy.org          python-pyspedas                [0/4][0%]    :p1:
     astronomy.org          python-pysat-cdf               [0/4][0%]    :p1:
     astronomy.org          python-pydl                    [0/4][0%]    :p1:
-    astronomy.org          python-mocpy                   [/][%]       :p1:
-    astronomy.org          python-lenstronomy             [0/4][0%]    :p1:
+    astronomy.org          python-nautilus-sampler        [2/4][50%]   :p1:
+    astronomy.org          python-mocpy                   [0/0][100%]  :p1:
     astronomy.org          python-imexam                  [0/5][0%]    :p1:
     astronomy.org          python-gwpy                    [0/4][0%]    :p1:
     astronomy.org          python-glue-wwt                [0/4][0%]    :p1:
@@ -422,18 +429,20 @@
     astronomy.org          python-glue-geospatial         [0/4][0%]    :p1:
     astronomy.org          python-glue-ar                 [0/4][0%]    :p1:
     astronomy.org          python-galpy                   [1/4][25%]   :p1:
-    astronomy.org          python-cdshealpix              [/][%]       :p1:
+    astronomy.org          python-ctapipe                 [0/4][0%]    :p1:
+    astronomy.org          python-cdshealpix              [0/4][0%]    :p1:
     astronomy.org          python-brutus                  [0/4][0%]    :p1:
     astronomy.org          python-astronify               [0/4][0%]    :p1:
+    astronomy.org          python-astlib                  [1/4][25%]   :p1:
     astronomy.org          phantom                        [0/4][0%]    :p1:
     astronomy.org          pal                            [0/4][0%]    :p1:
     astronomy.org          OpenSpace                      [0/4][0%]    :p1:
     astronomy.org          julia-skycoords                [0/4][0%]    :p1:
-    astronomy.org          java-jsofa                     [0/4][0%]    :p1:
+    astronomy.org          java-jsofa                     [0/5][0%]    :p1:
     astronomy.org          IIPImage                       [1/4][25%]   :p1:
     astronomy.org          funtools                       [2/4][50%]   :p1:
     astronomy.org          FITSVERIFY                     [0/4][0%]    :p1:
-    astronomy.org          EveryBeam                      [1/4][25%]   :p1:
+    astronomy.org          EveryBeam                      [0/4][0%]    :p1:
     astronomy.org          aladin                         [0/4][0%]    :p1:
     services.org           prometheus                     [/][%]       
     services.org           pacemaker                      [/][%]       
@@ -463,7 +472,6 @@
     golang.org             hashicorp/terraform            [0/4][0%]    
     golang.org             hashicorp/nomad                [0/4][0%]    
     golang.org             gin-gonic/gin                  [1/4][25%]   
-    astro-updates.org      updates-2025-06                [1/2][50%]   
     astronomy.org          rust-cdshealpix                [2/4][50%]   
     astronomy.org          BayesicFitting                 [2/4][50%]   
     
@@ -543,12 +551,15 @@
     astronomy.org          python-gw-sky                    [4/4][100%]    
     astronomy.org          python-halotools                 [4/4][100%]    
     astronomy.org          python-hasasia                   [4/4][100%]    
+    astronomy.org          python-hierarc                   [4/4][100%]    
     astronomy.org          python-holodeck                  [4/4][100%]    
     astronomy.org          python-hvpy                      [4/4][100%]    
     astronomy.org          python-irispy-lmsal              [4/4][100%]    
     astronomy.org          python-jplephem                  [4/4][100%]    
     astronomy.org          python-jwst                      [4/4][100%]    
+    astronomy.org          python-jwst-backgrounds          [5/5][100%]    
     astronomy.org          python-jwst-reffiles             [5/5][100%]    
+    astronomy.org          python-lenstronomy               [4/4][100%]    
     astronomy.org          python-libstempo                 [0/4][0%]      
     astronomy.org          python-losoto                    [3/4][75%]     
     astronomy.org          python-mapsims                   [4/4][100%]    
@@ -564,6 +575,7 @@
     astronomy.org          python-pvextractor               [4/4][100%]    
     astronomy.org          python-pyavm                     [4/4][100%]    
     astronomy.org          python-pyerfa                    [4/4][100%]    
+    astronomy.org          python-pyhalo                    [4/4][100%]    
     astronomy.org          python-pynbody                   [4/4][100%]    
     astronomy.org          python-pyregion                  [4/4][100%]    
     astronomy.org          python-pysat                     [4/4][100%]    
@@ -575,9 +587,11 @@
     astronomy.org          python-radio-beam                [4/4][100%]    
     astronomy.org          python-radiospectra              [4/4][100%]    
     astronomy.org          python-reproject                 [4/4][100%]    
+    astronomy.org          python-romancal                  [4/4][100%]    
     astronomy.org          python-roman-datamodels          [5/5][100%]    
     astronomy.org          python-sep                       [4/4][100%]    
     astronomy.org          python-skyfield                  [4/4][100%]    
+    astronomy.org          python-space-dolphin             [4/4][100%]    
     astronomy.org          python-spectral-cube             [4/4][100%]    
     astronomy.org          python-specutils                 [4/4][100%]    
     astronomy.org          python-spherical-geometry        [4/4][100%]    
@@ -585,6 +599,7 @@
     astronomy.org          python-stcal                     [3/3][100%]    
     astronomy.org          python-stdatamodels              [5/5][100%]    
     astronomy.org          python-stpipe                    [5/5][100%]    
+    astronomy.org          python-stpreview                 [4/4][100%]    
     astronomy.org          python-stpsf                     [4/4][100%]    
     astronomy.org          python-streamtracer              [4/4][100%]    
     astronomy.org          python-stsci-image               [5/5][100%]    
@@ -620,31 +635,6 @@
     astronomy.org          swarp                            [3/3][100%]    
     astronomy.org          tempo                            [4/4][100%]    
     astronomy.org          weightwatcher                    [3/3][100%]    
-    astro-updates.org      updates-2023-05                  [3/35][8%]     
-    astro-updates.org      updates-2023-06                  [2/2][100%]    
-    astro-updates.org      updates-2023-07                  [0/1][0%]      
-    astro-updates.org      updates-2023-08                  [1/2][50%]     
-    astro-updates.org      updates-2023-09                  [1/2][50%]     
-    astro-updates.org      updates-2023-10                  [1/3][33%]     
-    astro-updates.org      updates-2023-11                  [2/3][66%]     
-    astro-updates.org      updates-2023-12                  [1/3][33%]     
-    astro-updates.org      updates-2024-01                  [2/3][66%]     
-    astro-updates.org      updates-2024-02                  [2/3][66%]     
-    astro-updates.org      updates-2024-03                  [2/3][66%]     
-    astro-updates.org      updates-2024-04                  [2/3][66%]     
-    astro-updates.org      updates-2024-05                  [1/3][33%]     
-    astro-updates.org      updates-2024-06                  [1/3][33%]     
-    astro-updates.org      updates-2024-07                  [1/3][33%]     
-    astro-updates.org      updates-2024-08                  [1/3][33%]     
-    astro-updates.org      updates-2024-09                  [1/3][33%]     
-    astro-updates.org      updates-2024-10                  [1/3][33%]     
-    astro-updates.org      updates-2024-11                  [1/3][33%]     
-    astro-updates.org      updates-2024-12                  [1/3][33%]     
-    astro-updates.org      updates-2025-01                  [2/3][66%]     
-    astro-updates.org      updates-2025-02                  [2/3][66%]     
-    astro-updates.org      updates-2025-03                  [1/2][50%]     
-    astro-updates.org      updates-2025-04                  [1/2][50%]     
-    astro-updates.org      updates-2025-05                  [3/4][75%]     
     audio.org              libmixed                         [4/4][100%]    
     cran.org               opencpu                          [4/4][100%]    
     databases.org          pgloader                                        
@@ -763,6 +753,7 @@
     astronomy.org          gnudatalanguage                  [1/1][100%]    :author:
     astronomy.org          GreatAttractor                   [2/2][100%]    :author:
     astronomy.org          Hazboun6                         [2/2][100%]    :author:
+    astronomy.org          lenstronomy                      [1/1][100%]    :author:
     astronomy.org          liberfa                          [2/2][100%]    :author:
     astronomy.org          OpenPHDGuiding                   [1/1][100%]    :author:
     astronomy.org          pynbody                          [1/3][33%]     :author:

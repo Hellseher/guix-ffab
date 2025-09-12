@@ -1,0 +1,1403 @@
+#+title: Milestones
+
+#+created: 2024-01-19 Fri 13:40:27 GMT
+#+modified: <2025-09-05 Fri 22:17:10 BST>
+
+* TODO On the way to pyproject-build-system everywhere [1/7][14%]
+- https://codeberg.org/guix/guix/milestone/20775
+** DONE Refresh gnu/packages/python-build.scm module
+CLOSED: [2025-07-17 Thu 13:05]
+Refresh all packages in the module to the latest versions where posible and switch to
+pyproject-build-system.
+** TODO Switch packages which affect ration >= 1% pyproject [91/126][72%]
+- [X] cmdtest - removed
+- [X] gi-docgen
+- [X] mallard-ducktype
+- [ ] meson
+- [X] python-aniso8601
+- [X] python-appdirs
+- [X] python-argon2-cffi
+- [X] python-async-generator
+- [X] python-autocommand
+- [X] python-bcrypt
+- [X] python-betamax
+- [X] python-bottle
+- [X] python-brotli
+- [ ] python-chai - removed
+- [X] python-charset-normalizer
+- [X] python-cliapp 0.0
+- [X] python-cmarkgfm
+- [ ] python-colorlog
+- [X] python-commonmark
+- [X] python-coverage-test-runner 0.00563
+- [X] python-cycler
+- [X] python-debugpy
+- [X] python-decorator
+- [ ] python-distro
+- [X] python-docopt
+- [X] python-dotenv
+- [ ] python-editdistance
+- [X] python-elementpath
+- [X] python-entrypoints
+- [X] python-et-xmlfile
+- [ ] python-extras
+- [X] python-factory-boy
+- [ ] python-fixtures-bootstrap
+- [X] python-flex
+- [X] python-hpack
+- [X] python-html5lib
+- [X] python-httptools
+- [X] python-hyperframe
+- [X] python-idna
+- [X] python-importlib-metadata
+- [ ] python-ipython-genutils
+- [ ] python-jdcal
+- [X] python-json-spec
+- [X] python-jupyterlab-pygments
+- [X] python-libxml2
+- [X] python-lxml
+- [X] python-markdown
+- [X] python-matplotlib-inline
+- [ ] python-mimeparse
+- [X] python-mpmath
+- [ ] python-msgpack
+- [ ] python-natsort
+- [ ] python-nest-asyncio
+- [ ] python-nose
+- [X] python-nose2
+- [X] python-olefile
+- [X] python-outcome
+- [ ] python-pandocfilters
+- [X] python-panflute
+- [X] python-pathtools - removed
+- [ ] python-pbr
+- [ ] python-pbr-minimal
+- [ ] python-prometheus-client
+- [X] python-prompt-toolkit
+- [ ] python-pyaml
+- [X] python-pyasn1
+- [X] python-pyasn1-modules
+- [X] python-pycairo
+- [ ] python-pycparser
+- [X] python-py-cpuinfo
+- [X] python-pyfakefs
+- [ ] python-pygments-github-lexers
+- [ ] python-pyicu
+- [X] python-pymongo
+- [X] python-pyqt5-sip
+- [X] python-pysocks
+- [ ] python-pytest-aiohttp
+- [X] python-pytest-benchmark
+- [X] python-pytest-cache - removed
+- [X] python-pytest-console-scripts
+- [X] python-pytest-datadir
+- [X] python-pytest-randomly
+- [X] python-pytz
+- [X] python-pyzmq
+- [X] python-random2 - removed
+- [X] python-re-assert
+- [X] python-regex
+- [X] python-rfc3339-validator
+- [X] python-rfc3986
+- [X] python-rfc3987
+- [ ] python-rich-click
+- [X] python-scour
+- [ ] python-secretstorage
+- [X] python-sh
+- [X] python-simplejson
+- [X] python-smartypants
+- [X] python-socksio
+- [ ] python-soupsieve
+- [X] python-sphinxcontrib-applehelp
+- [X] python-sphinxcontrib-devhelp
+- [X] python-sphinxcontrib-github-alt
+- [X] python-sphinxcontrib-htmlhelp
+- [X] python-sphinxcontrib-jsmath
+- [X] python-sphinxcontrib-qthelp
+- [X] python-sphinxcontrib-websupport
+- [X] python-sqlparse
+- [ ] python-strict-rfc3339
+- [ ] python-subunit-bootstrap
+- [ ] python-tappy
+- [X] python-terminado
+- [ ] python-testrepository-bootstrap
+- [ ] python-testresources-bootstrap
+- [ ] python-testscenarios-bootstrap
+- [ ] python-tomlkit
+- [X] python-tornado
+- [ ] python-ttystatus
+- [X] python-typogrify
+- [X] python-ukpostcodeparser
+- [X] python-untangle
+- [X] python-webencodings
+- [X] python-wurlitzer
+- [X] python-xlrd
+- [X] python-xmlschema
+- [ ] python-zope-event
+- [X] python-zope-interface
+- [X] python-zstandard
+** TODO Set Cython 3 as a default
+*** TODO Pin some packages to python-cython-0
+** TODO Deprecate non maintained packages
+- [X] python-unittest2 [4/4][100%]
+  - [X] python-codecov
+  - [X] python-contexttimer - removed
+  - [X] python-deprecation
+  - [X] python-pyfxa
+- [-] python-nose [14/85][16%]
+  Not maintained task runner, Pytest is the replacement
+  - [ ] aacircuit
+  - [ ] binwalk
+  - [ ] ciri-long
+  - [ ] clipper-peak
+  - [ ] crossmap
+  - [ ] didjvu
+  - [ ] hungrycat
+  - [ ] hydrus-network
+  - [ ] lightgbm
+  - [ ] mercurial
+  - [ ] ocrodjvu
+  - [ ] python-androguard
+  - [ ] python-annoy
+  - [ ] python-args
+  - [ ] python-blessings
+  - [ ] python-case
+  - [ ] python-clf
+  - [ ] python-climin
+  - [ ] python-colorspacious
+  - [ ] python-d2to1
+  - [ ] python-django-assets
+  - [ ] python-djvulibre
+  - [ ] python-dogtail
+  - [ ] python-epc
+  - [ ] python-flask-cors
+  - [ ] python-flask-markdown
+  - [ ] python-flask-principal
+  - [ ] python-forbiddenfruit
+  - [X] python-gitpython
+  - [ ] python-graphtools
+  - [ ] python-grequests
+  - [ ] python-gssapi
+  - [ ] python-halo
+  - [ ] python-hdbscan
+  - [ ] python-hkdf
+  - [ ] python-http-ece
+  - [ ] python-hyperopt
+  - [ ] python-ifaddr
+  - [ ] python-iml
+  - [ ] python-jaconv
+  - [ ] python-jupyter-console
+  - [ ] python-ldap3
+  - [ ] python-log-symbols
+  - [X] python-markdown
+  - [ ] python-minio
+  - [ ] python-mohawk
+  - [ ] python-mygpoclient
+  - [ ] python-norns
+  - [ ] python-nose-exclude
+  - [ ] python-nose-random
+  - [ ] python-nose-timer
+  - [ ] python-nosexcover
+  - [ ] python-ofxparse
+  - [ ] python-parsedatetime
+  - [X] python-passlib
+  - [ ] python-pdf2image
+  - [X] python-pypugjs
+  - [X] python-pyrfc3339
+  - [ ] python-pytimeparse
+  - [X] python-pyxdg
+  - [X] python-repoze-lru
+  - [ ] python-restructuredtext-lint
+  - [ ] python-s3transfer
+  - [ ] python-slugid
+  - [X] python-smartypants
+  - [ ] python-spectra
+  - [ ] python-spinners
+  - [ ] python-sre-yield
+  - [X] python-stdnum
+  - [ ] python-toolshed
+  - [ ] python-traittypes
+  - [X] python-transaction
+  - [X] python-typogrify
+  - [ ] python-url
+  - [ ] python-voluptuous
+  - [ ] python-webassets
+  - [X] python-webob
+  - [ ] python-woob
+  - [ ] python-xlwt
+  - [X] python-xmltodict
+  - [ ] python-zipstream-new
+  - [X] python-zope-interface
+  - [ ] rseqc
+  - [ ] seqmagick
+  - [ ] vigra
+- [ ] python-ipython-genutils [0/6][0%]
+  - [ ] python-ipydatawidgets
+  - [ ] python-ipympl
+  - [ ] python-ipython-sql
+  - [ ] python-jupytext
+  - [ ] python-nbclassic
+  - [ ] python-notebook
+- [ ] python-trezor [0/2][0%]
+  - [ ] electron-cash
+  - [ ] trezor-agent
+- [ ] python-flask-combo-jsonapi
+- [ ] python-httpbin [0/3][0%]
+  - [ ] python-pytest-httpbin
+  - [ ] python-treq
+  - [ ] python-warcio
+- [ ] python-nose-timer [0/1][0%]
+  - [ ] python-androguard
+- [ ] python-validate-email [0/1]
+  - [ ] python-flex
+- [X] python-contextvars [1/1][100%]
+  - [X] python-anyio
+- [ ] python-ipaddress [0/1][0%]
+  - [ ] python-trustme
+- [X] python-nose-exclude
+- [ ] python-extras [0/4][0%]
+  - [ ] python-fixtures
+  - [ ] python-fixtures-bootstrap
+  - [ ] python-subunit
+  - [ ] python-subunit-bootstrap
+- [-] python-six [6/222][2%]
+  - [ ] 389-ds-base
+  - [ ] cmakelang
+  - [ ] conan
+  - [ ] deluge
+  - [ ] docker-compose
+  - [ ] dstat
+  - [ ] graphite-web
+  - [ ] gr-iqbal
+  - [ ] gr-osmosdr
+  - [ ] gr-satellites
+  - [ ] hydrus-network
+  - [ ] liblinphone
+  - [ ] magic-wormhole-mailbox-server
+  - [ ] nnpack
+  - [ ] onnx
+  - [ ] pagekite
+  - [ ] presentty
+  - [ ] pwntools
+  - [ ] python-ads
+  - [ ] python-alchemy-mock
+  - [ ] python-apscheduler
+  - [ ] python-astunparse
+  - [ ] python-azure-core
+  - [ ] python-bcbio-gff
+  - [X] python-bcrypt
+  - [ ] python-bigfloat
+  - [ ] python-blessed
+  - [ ] python-blessings
+  - [ ] python-bson
+  - [ ] python-canonicaljson
+  - [ ] python-case
+  - [ ] python-ccm
+  - [ ] python-conda-package-handling
+  - [ ] python-configobj
+  - [ ] python-configshell-fb
+  - [ ] python-consul
+  - [X] python-cycler
+  - [ ] python-daiquiri
+  - [ ] python-databricks-cli
+  - [ ] python-dateutil
+  - [ ] python-ddt
+  - [ ] python-debian
+  - [ ] python-deepdish
+  - [ ] python-django-contrib-comments
+  - [ ] python-django-debug-toolbar-alchemy
+  - [ ] python-django-extensions
+  - [ ] python-django-logging-json
+  - [ ] python-django-netfields
+  - [ ] python-django-simple-math-captcha
+  - [ ] python-django-url-filter
+  - [ ] python-dlmanager
+  - [ ] python-dockerpty
+  - [ ] python-docker-pycreds
+  - [ ] python-docrep
+  - [ ] python-dropbox
+  - [ ] python-ebooklib
+  - [ ] python-ecdsa
+  - [ ] python-executor
+  - [ ] python-fiona
+  - [ ] python-fixtures
+  - [ ] python-fixtures-bootstrap
+  - [ ] python-flake8-continuation
+  - [ ] python-flasgger
+  - [ ] python-flask-combo-jsonapi
+  - [ ] python-flask-cors
+  - [ ] python-flask-restful-swagger
+  - [ ] python-flatten-json
+  - [ ] python-flex
+  - [ ] python-fs
+  - [ ] python-funcparserlib
+  - [ ] python-furl
+  - [ ] python-genshi
+  - [ ] python-geomet
+  - [ ] python-gixy
+  - [ ] python-gixy-ng
+  - [ ] python-google-api-client
+  - [ ] python-google-auth-httplib2
+  - [ ] python-google-pasta
+  - [ ] python-gpy
+  - [X] python-graphene
+  - [ ] python-graphql-core
+  - [ ] python-grpcio
+  - [ ] python-gssapi
+  - [ ] python-gyp
+  - [ ] python-h5py
+  - [ ] python-halo
+  - [ ] python-hdlmake
+  - python-html5lib - six is still hard requirement
+  - [ ] python-htsget
+  - [ ] python-httpbin
+  - [X] python-httplib2
+  - [ ] python-hyperopt
+  - [ ] python-iocapture
+  - [ ] python-ipython-cluster-helper
+  - [ ] python-ipython-sql
+  - [ ] python-jose
+  - [ ] python-jsbeautifier
+  - [ ] python-junit-xml
+  - [ ] python-k5test
+  - [ ] python-kalepy
+  - [ ] python-kazoo
+  - [ ] python-keras
+  - [ ] python-keras-preprocessing
+  - [ ] python-keystoneauth1
+  - [ ] python-keystoneclient
+  - [ ] python-lambda-4dn
+  - [ ] python-latexcodec
+  - [ ] python-lazr-restfulclient
+  - [ ] python-ld
+  - [ ] python-lightning-cloud
+  - [ ] python-livereload
+  - [ ] python-mando
+  - [ ] python-markdownify
+  - [ ] python-markdown-strings
+  - [ ] python-mastodon-py
+  - [ ] python-mechanize
+  - [ ] python-memcached
+  - [ ] python-mock
+  - [ ] python-mohawk
+  - [ ] python-multipledispatch
+  - [ ] python-mwclient
+  - [ ] python-nbval
+  - [ ] python-ngesh
+  - [ ] python-oauth2client
+  - [ ] python-ofxparse
+  - [ ] python-onetimepass
+  - [ ] python-openapi-core
+  - [ ] python-openid-cla
+  - [ ] python-openid-teams
+  - [ ] python-orderedmultidict
+  - [ ] python-oslo-i18n
+  - [ ] python-oslotest
+  - [ ] python-packaging
+  - [ ] python-parallel
+  - [ ] python-paramz
+  - [ ] python-parse-type
+  - [ ] python-pathlib2
+  - [ ] python-pbr
+  - [ ] python-peachpy
+  - [ ] python-pecan
+  - [ ] python-ppft
+  - [ ] python-proselint
+  - [ ] python-protobuf
+  - [ ] python-pubmed-parser
+  - [ ] python-purl
+  - [ ] python-pyactiveresource
+  - [ ] python-pyannotate
+  - [ ] python-pyarrow
+  - [ ] python-pybbi
+  - [ ] python-pybtex
+  - [ ] python-pydocstyle
+  - [ ] python-pyfxa
+  - [ ] python-pyicu
+  - [ ] python-pymacaroons
+  - [ ] python-pymodbus
+  - [ ] python-pynacl
+  - [X] python-pypugjs
+  - [ ] python-pyrsistent
+  - [ ] python-pysaml2
+  - [ ] python-pystray
+  - [ ] python-pysynphot
+  - [ ] python-pytest-assume
+  - [ ] python-pytest-check-links
+  - [ ] python-pytest-csv
+  - [ ] python-pytest-httpbin
+  - [ ] python-pytest-shutil
+  - [ ] python-pyu2f
+  - [ ] python-pyudev
+  - [ ] python-pywinrm
+  - [ ] python-querystring-parser
+  - [ ] python-rchitect
+  - [ ] python-requests-file
+  - [ ] python-requests-mock
+  - [ ] python-resampy
+  - [ ] python-retrying
+  - python-rfc3339-validator - six is still hard requirement
+  - [ ] python-robot-detection
+  - [ ] python-rpy2
+  - [ ] python-rst.linker
+  - [ ] python-schematics
+  - python-scour - six is still hard requirement
+  - [ ] python-service-identity
+  - [ ] python-setuptools
+  - [ ] python-shopifyapi
+  - [ ] python-singledispatch
+  - [ ] python-socksipychain
+  - [ ] python-sphinxcontrib-autoprogram
+  - [ ] python-sqlalchemy-utils
+  - [ ] python-stone
+  - [ ] python-tempest-lib
+  - [ ] python-tmx
+  - [ ] python-traceback2
+  - [ ] python-translate-toolkit
+  - [X] python-translation-finder
+  - [ ] python-treelib
+  - [ ] python-txamqp
+  - [ ] python-unittest2
+  - [ ] python-urlgrabber
+  - [ ] python-vaex-core
+  - [ ] python-validators
+  - [ ] python-visdom
+  - [ ] python-webtest
+  - [ ] python-whisper
+  - [ ] python-woob
+  - [ ] python-wsgi-intercept
+  - [ ] python-wsgiproxy2
+  - [ ] python-wxpython
+  - [ ] python-xcffib
+  - [ ] python-xdo
+  - python-xlib - six is still hard requirement
+  - [ ] python-zope-i18nmessageid
+  - [ ] python-zope-testrunner
+  - [ ] python-zope-testrunner-bootstrap
+  - [ ] python-zulip
+  - [ ] qgis
+  - [ ] qtwebengine
+  - [ ] renpy
+  - [ ] rtv
+  - [ ] spice-gtk
+  - [ ] sugar-toolkit-gtk3
+  - [ ] synapse
+  - [ ] tensorflow
+  - [ ] trash-cli
+  - [ ] tuir
+  - [ ] xapers
+  - [ ] xkeysnail
+- [-] python-pytest-runner [7/69][10%]
+  - [ ] cpplint
+  - [ ] cwltool
+  - [ ] datasette
+  - [ ] duplicity
+  - [ ] khmer
+  - [ ] onnx
+  - [ ] onnx-optimizer
+  - [X] python-aiostream
+  - [X] python-allpairspy
+  - [ ] python-apache-libcloud
+  - [ ] python-cairocffi
+  - [ ] python-cairosvg
+  - [ ] python-can
+  - [ ] python-compreffor
+  - [ ] python-cssselect2
+  - [ ] python-cu2qu
+  - [ ] python-cwl-utils
+  - [X] python-dask
+  - [ ] python-datrie
+  - [ ] python-defcon
+  - [ ] python-defcon-bootstrap
+  - [ ] python-dictdiffer
+  - [ ] python-docrep
+  - [ ] python-duckdb
+  - [ ] python-entrypoint2
+  - [ ] python-falcon
+  - [ ] python-ffmpeg-python
+  - [ ] python-flask-combo-jsonapi
+  - [ ] python-fontmath
+  - [ ] python-fontpens
+  - [ ] python-grako
+  - [ ] python-grandalf
+  - [X] python-hupper
+  - [ ] python-jose
+  - [ ] python-keyutils
+  - [ ] python-logzero
+  - [ ] python-mastodon-py
+  - [ ] python-matrix-client
+  - [ ] python-mwclient
+  - [ ] python-mwparserfromhell
+  - [ ] python-numpy-groupies
+  - [ ] python-parsedatetime
+  - [ ] python-pastedeploy
+  - [ ] python-polling2
+  - [ ] python-pyarrow
+  - [ ] python-pyclipper
+  - [ ] python-pyrsistent
+  - [ ] python-pyshp
+  - [ ] python-pyte
+  - [ ] python-pytest-xvfb
+  - [ ] python-pyvirtualdisplay
+  - [ ] python-reflink
+  - [ ] python-regions
+  - [X] python-rfc3339-validator
+  - [X] python-rfc3986-validator
+  - [ ] python-schema-salad
+  - [ ] python-spython
+  - [ ] python-stone
+  - [ ] python-tldr
+  - [X] python-translation-finder
+  - [ ] python-upsetplot
+  - [ ] python-venusian
+  - [ ] sshuttle
+  - [ ] stargate
+  - [ ] temper-exporter
+  - [ ] terminator
+  - [ ] todoman
+  - [ ] vorta
+  - [ ] yle-dl
+- [-] python-py [1/7][14%]
+  - [ ] python-devpi-server
+  - [ ] python-nox
+  - [ ] python-pypytools
+  - [X] python-pytest-cache
+  - [ ] python-pytest-pycodestyle
+  - [ ] python-pytest-random-order
+  - [ ] python-retry
+- [-] python-pytest-forked [2/4][50%]
+  - [ ] ansible-core
+  - [X] python-httplib2
+  - [ ] python-pep-adapter
+  - [X] python-sentry-sdk
+- [-] python-nose2 [1/12][8%]
+  - [X] python-dpath - hard dependencies on nose2
+  - [ ] python-flufl-bounce
+  - [ ] python-graphtools
+  - [ ] python-mailman-hyperkitty
+  - [ ] python-pika
+  - [ ] python-pygame-menu
+  - [ ] python-semantic-version
+  - [ ] python-symengine
+  - [ ] python-tasklogger
+  - [ ] qgis
+  - [ ] tombo
+  - [ ] websockify
+- [ ] cmdtest [0/1][0%]
+  - [ ] xauth
+** TODO Reduce closure size by excluding optional or not required native-inputs
+** TODO Remove development inputs from clousure
+- https://issues.guix.gnu.org/70858
+- [ ] python-black [0/35][0%]
+  - [ ] datasette
+  - [ ] emacs-blacken
+  - [ ] emacs-elpy
+  - [ ] ptpython
+  - [ ] python-altair
+  - [ ] python-archspec
+  - [ ] python-black-macchiato
+  - [ ] python-captum
+  - [ ] python-doubletdetection
+  - [ ] python-eliot
+  - [ ] python-funsor
+  - [ ] python-graphtools
+  - [ ] python-hyperopt
+  - [ ] python-hypothesmith
+  - [ ] python-imageio
+  - [ ] python-imbalanced-learn
+  - [ ] python-inline-snapshot
+  - [ ] python-isort
+  - [ ] python-liana-py
+  - [ ] python-lsp-black
+  - [ ] python-metacells
+  - [ ] python-minikanren
+  - [ ] python-ngesh
+  - [ ] python-ovh
+  - [ ] python-papermill
+  - [ ] python-pygam
+  - [ ] python-pytest-black
+  - [ ] python-pytest-examples
+  - [ ] python-schema-salad
+  - [ ] python-scikit-survival
+  - [ ] python-starsessions
+  - [ ] python-trezor
+  - [ ] python-update-checker
+  - [ ] python-uqbar
+  - [ ] scvelo
+- [-] python-codecov [1/8][12%]
+  - [ ] python-androguard
+  - [ ] python-can
+  - [ ] python-ddlparse
+  - [ ] python-geopandas
+  - [ ] python-papermill
+  - [ ] python-throttler
+  - [X] python-translation-finder
+  - [ ] python-wiimatch
+- [-] python-coverage [11/115][9%]
+  - [ ] binwalk
+  - [ ] conda
+  - [ ] cpplint
+  - [ ] gpodder
+  - [ ] onnx
+  - [ ] onnx-optimizer
+  - [ ] pre-commit
+  - [ ] python-aioitertools
+  - [ ] python-aiosqlite
+  - [ ] python-anaconda-client
+  - [ ] python-androguard
+  - [X] python-argcomplete
+  - [ ] python-bagit
+  - [ ] python-bcj-cffi
+  - [ ] python-can
+  - [ ] python-case
+  - [ ] python-codecov
+  - [ ] python-colorful
+  - [ ] python-cooler
+  - [ ] python-cov-core
+  - [ ] python-covdefaults
+  - [ ] python-coverage-test-runner
+  - [ ] python-coveralls
+  - [ ] python-cram
+  - [ ] python-daemux
+  - [X] python-dask-image
+  - [ ] python-django-contact-form
+  - [ ] python-django-haystack
+  - [ ] python-dolfin-adjoint
+  - [ ] python-ega-download-client
+  - [ ] python-eliot
+  - [ ] python-emcee
+  - [ ] python-flask-combo-jsonapi
+  - [ ] python-forbiddenfruit
+  - [ ] python-gevent
+  - [ ] python-graphtools
+  - [ ] python-green
+  - [ ] python-hacking
+  - [ ] python-halo
+  - [ ] python-http-ece
+  - [ ] python-identify
+  - [ ] python-jupyter-packaging
+  - [ ] python-legacy-api-wrap
+  - [ ] python-lightning-utilities
+  - [ ] python-log-symbols
+  - [ ] python-lsp-jsonrpc
+  - [ ] python-lunr
+  - [ ] python-mamba
+  - [ ] python-minikanren
+  - [ ] python-multivolumefile
+  - [ ] python-mygpoclient
+  - [ ] python-nbclassic
+  - [ ] python-nbval
+  - [ ] python-nodeenv
+  - [ ] python-nosexcover
+  - [ ] python-notebook
+  - [ ] python-numcodecs
+  - [ ] python-openid
+  - [ ] python-oslo-context
+  - [ ] python-ovh
+  - [X] python-panflute
+  - [ ] python-papermill
+  - [ ] python-param
+  - [ ] python-pem
+  - [ ] python-pikepdf
+  - [ ] python-pillow
+  - [ ] python-pillow
+  - [ ] python-pillow-heif
+  - [ ] python-pillow-simd
+  - [ ] python-poliastro
+  - [ ] python-ppmd-cffi
+  - [ ] python-py7zr
+  - [ ] python-pybcj
+  - [ ] python-pygsp
+  - [ ] python-pyjwt
+  - [ ] python-pykakasi
+  - [ ] python-pylast
+  - [ ] python-pynetdicom
+  - [ ] python-pyppmd
+  - [X] python-pypugjs
+  - [ ] python-pytest-cov
+  - [ ] python-pytest-flakes
+  - [X] python-pytest-randomly
+  - [ ] python-pytest-testmon
+  - [ ] python-python3-saml
+  - [ ] python-pytorch-lightning
+  - [ ] python-radian
+  - [ ] python-rangehttpserver
+  - [X] python-re-assert
+  - [X] python-repoze-lru
+  - [ ] python-rpy2
+  - [ ] python-scikit-bio
+  - [ ] python-scikit-build
+  - [ ] python-scikit-survival
+  - [X] python-sh
+  - [ ] python-spinners
+  - [ ] python-structlog
+  - [ ] python-tasklogger
+  - [ ] python-torchmetrics
+  - [X] python-transaction
+  - [ ] python-twisted
+  - [ ] python-typer
+  - [ ] python-url
+  - [ ] python-verspec
+  - [ ] python-waitress
+  - [ ] python-watchfiles
+  - [ ] python-woob
+  - [X] python-xmltodict
+  - [ ] python-yq
+  - [ ] python-zope-hookable
+  - [ ] python-zope-i18nmessageid
+  - [X] python-zope-interface
+  - [ ] rtv
+  - [ ] tuir
+  - [ ] u-boot-tools
+- [ ] python-coveralls [0/16][0%]
+  - [ ] python-affine
+  - [ ] python-ddlparse
+  - [ ] python-django-pipeline
+  - [ ] python-flask-combo-jsonapi
+  - [ ] python-graphtools
+  - [ ] python-minikanren
+  - [ ] python-multivolumefile
+  - [ ] python-pixell
+  - [ ] python-py7zr
+  - [ ] python-pygsp
+  - [ ] python-rangehttpserver
+  - [ ] python-tasklogger
+  - [ ] python-trimesh
+  - [ ] rtv
+  - [ ] tgcli
+  - [ ] tuir
+- [-] python-flake8 [4/72][5%]
+  - synopsis :: python tool that glues together pycodestyle, pyflakes, mccabe, and third-party
+    plugins to check the style and quality of some python code
+  - [ ] calibre
+  - [ ] emacs-elpy
+  - [ ] mdpo
+  - [ ] python-affine
+  - [ ] python-aioitertools
+  - [ ] python-archspec
+  - [ ] python-biom-format
+  - [ ] python-captum
+  - [ ] python-colorful
+  - [ ] python-daemux
+  - [X] python-dask-image
+  - [ ] python-dateparser
+  - [ ] python-dolfin-adjoint
+  - [ ] python-doubletdetection
+  - [ ] python-eliot
+  - [ ] python-flake8-bugbear
+  - [ ] python-flake8-builtins
+  - [ ] python-flake8-class-newline
+  - [ ] python-flake8-comprehensions
+  - [ ] python-flake8-continuation
+  - [ ] python-flake8-debugger
+  - [ ] python-flake8-deprecated
+  - [ ] python-flake8-docstrings
+  - [ ] python-flake8-import-order
+  - [ ] python-flake8-isort
+  - [ ] python-flake8-print
+  - [ ] python-flake8-pyi
+  - [ ] python-flake8-quotes
+  - [ ] python-fpylll
+  - [ ] python-funsor
+  - [ ] python-furl
+  - [ ] python-hacking
+  - [ ] python-http-ece
+  - [X] python-httplib2
+  - [ ] python-imageio
+  - [ ] python-imbalanced-learn
+  - [ ] python-importlib-resources
+  - [ ] python-jinja2-cli
+  - [ ] python-lsp-server
+  - [ ] python-metacells
+  - [ ] python-mt-940
+  - [ ] python-mutagen
+  - [ ] python-ngesh
+  - [ ] python-orderedmultidict
+  - [ ] python-ovh
+  - [ ] python-pandas-vet
+  - [X] python-panflute
+  - [ ] python-pep8-naming
+  - [ ] python-pure-protobuf
+  - [ ] python-pyct
+  - [ ] python-pygam
+  - [ ] python-pygsp
+  - [ ] python-pymanopt
+  - [ ] python-pymd4c
+  - [X] python-pypugjs
+  - [ ] python-pyro-api
+  - [ ] python-pytest-flake8
+  - [ ] python-pytest-flake8-path
+  - [ ] python-python3-saml
+  - [ ] python-qemu-qmp
+  - [ ] python-seaborn
+  - [ ] python-simple-websocket
+  - [ ] python-starsessions
+  - [ ] python-statsmodels
+  - [ ] python-throttler
+  - [ ] python-update-checker
+  - [ ] python-verspec
+  - [ ] python-woob
+  - [ ] python-yq
+  - [ ] qtile
+  - [ ] scvelo
+  - [ ] sshuttle
+- [ ] python-isort [0/19][0%]
+  - [ ] aerich
+  - [ ] emacs-py-isort
+  - [ ] mdpo
+  - [ ] postorius
+  - [ ] python-archspec
+  - [ ] python-cooler
+  - [ ] python-flake8-isort
+  - [ ] python-funsor
+  - [ ] python-hyperkitty
+  - [ ] python-metacells
+  - [ ] python-ovh
+  - [ ] python-pure-protobuf
+  - [ ] python-pylint
+  - [ ] python-pymanopt
+  - [ ] python-pytest-isort
+  - [ ] python-qemu-qmp
+  - [ ] python-statsmodels
+  - [ ] python-trezor
+  - [ ] scvelo
+- [-] python-mypy [1/45][2%]
+  - [ ] cura
+  - [ ] fava
+  - [ ] kalamine
+  - [ ] python-aioitertools
+  - [ ] python-aiosqlite
+  - [ ] python-apispec
+  - [X] python-argcomplete
+  - [ ] python-asgiref
+  - [ ] python-captum
+  - [ ] python-catalogue
+  - [ ] python-crosshair
+  - [ ] python-cryptography
+  - [ ] python-dulwich
+  - [ ] python-green
+  - [ ] python-huggingface-hub
+  - [ ] python-icontract
+  - [ ] python-imbalanced-learn
+  - [ ] python-immutables
+  - [ ] python-matrix-nio
+  - [ ] python-metacells
+  - [ ] python-msgspec
+  - [ ] python-nptyping
+  - [ ] python-numpy
+  - [ ] python-numpy
+  - [ ] python-oslo-context
+  - [ ] python-pep440
+  - [ ] python-poliastro
+  - [ ] python-psycopg
+  - [ ] python-pylsp-mypy
+  - [ ] python-pynetdicom
+  - [ ] python-pytest-mypy
+  - [ ] python-pytest-mypy-plugins
+  - [ ] python-pytest-mypy-testing
+  - [ ] python-sanic
+  - [ ] python-schema-salad
+  - [ ] python-scipy
+  - [ ] python-scrapy
+  - [ ] python-seaborn
+  - [ ] python-sqlalchemy-stubs
+  - [ ] python-starsessions
+  - [ ] python-sybil
+  - [ ] python-torchmetrics
+  - [ ] python-traitlets
+  - [ ] python-verspec
+  - [ ] uranium
+- [ ] python-nox [0/1][0%]
+  - [ ] python-pybadges
+- [-] python-pip [2/22][9%]
+  - [ ] datasette
+  - [ ] httpie
+  - [ ] poetry
+  - [ ] python-argparse-manpage
+  - [ ] python-django-auth-ldap
+  - [ ] python-extension-helpers
+  - [ ] python-illumina-utils
+  - [ ] python-isort
+  - [ ] python-jsonschema
+  - [X] python-jupyter-core
+  - [ ] python-lambda-4dn
+  - [ ] python-milc
+  - [ ] python-pypandoc
+  - [ ] python-pytest-perf
+  - [ ] python-requests
+  - [ ] python-requests
+  - [X] python-rfc3986-validator
+  - [ ] python-rope
+  - [ ] python-scikit-build-core
+  - [ ] python-toolchain
+  - [ ] spdk
+  - [ ] xonsh
+- [-] python-pre-commit [1/4][25%]
+  - [X] python-jupyter-core
+  - [ ] python-pillow-heif
+  - [ ] python-pytest-qt
+  - [ ] python-rope
+- [ ] python-pycodestyle [0/16][0%]
+  - [ ] python-autopep8
+  - [ ] python-diff-cover
+  - [ ] python-flake8
+  - [ ] python-flake8-blind-except
+  - [ ] python-flake8-continuation
+  - [ ] python-flake8-debugger
+  - [ ] python-flake8-import-order
+  - [ ] python-flake8-print
+  - [ ] python-flake8-todo
+  - [ ] python-fuzzywuzzy
+  - [ ] python-lsp-jsonrpc
+  - [ ] python-lsp-server
+  - [ ] python-orderedmultidict
+  - [ ] python-pylama
+  - [ ] python-pytest-pycodestyle
+  - [ ] python-scipy
+- [ ] python-pyflakes [0/11][0%]
+  - [ ] emacs-pyimport
+  - [ ] go-github-com-rhysd-actionlint
+  - [ ] python-autoflake
+  - [ ] python-autoflake8
+  - [ ] python-diff-cover
+  - [ ] python-flake8
+  - [ ] python-flake8-pyi
+  - [ ] python-lsp-jsonrpc
+  - [ ] python-pylama
+  - [ ] python-pytest-flakes
+  - [ ] python-twisted
+- [ ] python-pylint [0/19][0%]
+  - [ ] open-adventure
+  - [ ] python-archspec
+  - [ ] python-clingraph
+  - [ ] python-diff-cover
+  - [ ] python-halo
+  - [ ] python-log-symbols
+  - [ ] python-lsp-jsonrpc
+  - [ ] python-lsp-server
+  - [ ] python-mediapy
+  - [ ] python-metacells
+  - [ ] python-minikanren
+  - [ ] python-ml-collections
+  - [ ] python-pillow-heif
+  - [ ] python-pytest-pylint
+  - [ ] python-qemu-qmp
+  - [ ] python-setuptools-lint
+  - [ ] python-spinners
+  - [ ] rtv
+  - [ ] tuir
+- [-] python-pytest-black [6/7][85%]
+  - [X] python-importlib-resources
+  - [X] python-jaraco-collections
+  - [X] python-jaraco-text
+  - [X] python-path
+  - [X] python-pip-run
+  - [X] python-pytest-enabler
+  - [ ] python-pytest-perf
+- [-] python-pytest-cov [8/267][2%]
+  - [ ] abjad-ext-rmakers
+  - [ ] anonip
+  - [ ] autokey
+  - [ ] beets
+  - [ ] borgmatic
+  - [ ] conda
+  - [ ] cpplint
+  - [ ] cwltool
+  - [ ] dynaconf
+  - [ ] fava
+  - [ ] gandi-cli
+  - [ ] gpodder
+  - [ ] gunicorn
+  - [ ] gunicorn
+  - [ ] hypercorn
+  - [ ] mbed-tools
+  - [ ] mdpo
+  - [ ] meson-python
+  - [ ] pass-git-helper
+  - [ ] psautohint
+  - [ ] pwclient
+  - [ ] python-affine
+  - [ ] python-aiapy
+  - [ ] python-aioftp
+  - [ ] python-aiohappyeyeballs
+  - [ ] python-aiohttp
+  - [ ] python-aiohttp-client-cache
+  - [ ] python-aiosignal
+  - [ ] python-aiosmtpd
+  - python-aiostream - pytest-cov in options
+  - [X] python-ansicolors
+  - [ ] python-anytree
+  - [ ] python-apiron
+  - [ ] python-apscheduler
+  - [ ] python-archspec
+  - [ ] python-arrow
+  - [ ] python-astroml
+  - [ ] python-async-lru
+  - [ ] python-atpublic
+  - [ ] python-babel
+  - [ ] python-bcj-cffi
+  - [ ] python-bed-reader
+  - [ ] python-biom-format
+  - [ ] python-cairocffi
+  - [ ] python-calcos
+  - [ ] python-can
+  - [ ] python-canmatrix
+  - [ ] python-captum
+  - [ ] python-casa-formats-io
+  - [ ] python-cbor2
+  - [ ] python-cdflib
+  - [ ] python-certauth
+  - [ ] python-cheroot
+  - [ ] python-click-repl
+  - [ ] python-cligj
+  - [ ] python-cloud-init
+  - [ ] python-cmd2
+  - [ ] python-colorcet
+  - [ ] python-conda-package-handling
+  - [ ] python-contourpy
+  - [ ] python-cookiecutter
+  - [ ] python-cooler
+  - [ ] python-costools
+  - [ ] python-cryptography
+  - [ ] python-cssselect2
+  - [X] python-dask-image
+  - [ ] python-dateutil
+  - [ ] python-ddlparse
+  - [X] python-debugpy
+  - [ ] python-devpi-process
+  - [ ] python-diskcache
+  - [ ] python-django-cleanup
+  - [ ] python-django-extensions
+  - [ ] python-django-redis
+  - [ ] python-dkist
+  - [ ] python-docstring-to-markdown
+  - [ ] python-echo
+  - [ ] python-elasticsearch
+  - [ ] python-emcee
+  - [ ] python-expandvars
+  - [ ] python-extension-helpers
+  - [ ] python-feedgenerator
+  - [ ] python-fenics-dijitso
+  - [ ] python-fiona
+  - [ ] python-fitsblender
+  - [ ] python-flasgger
+  - [ ] python-flask-babel
+  - [ ] python-flexcache
+  - [ ] python-flexparser
+  - [ ] python-flit
+  - [ ] python-flufl-i18n
+  - [ ] python-flufl-lock
+  - [ ] python-geopandas
+  - [ ] python-glue-vispy-viewers
+  - [ ] python-graphviz
+  - [ ] python-hatch-jupyter-builder
+  - [ ] python-httpcore
+  - [X] python-httplib2
+  - [ ] python-huggingface-hub
+  - [ ] python-hupper
+  - [ ] python-hypothesmith
+  - [ ] python-imageio
+  - [ ] python-imbalanced-learn
+  - [ ] python-iocapture
+  - [ ] python-ipydatawidgets
+  - [ ] python-ipykernel
+  - [ ] python-ipywidgets
+  - [ ] python-janus
+  - [ ] python-jose
+  - [ ] python-jsonpickle
+  - [X] python-jupyter-core
+  - [ ] python-jupyter-packaging
+  - [ ] python-jupyterlab-server
+  - [ ] python-jupyterlite-core
+  - [ ] python-jwst
+  - [ ] python-keras
+  - [ ] python-keras-applications
+  - [ ] python-keras-preprocessing
+  - [ ] python-liana-py
+  - [ ] python-libensemble
+  - [ ] python-librosa
+  - [ ] python-lsp-jsonrpc
+  - [ ] python-manimpango
+  - [ ] python-mastodon-py
+  - [ ] python-matrix-nio
+  - [ ] python-mechanicalsoup
+  - [ ] python-metacells
+  - [ ] python-minikanren
+  - [ ] python-mir-eval
+  - [ ] python-mizani
+  - [ ] python-modin
+  - [ ] python-mpl-scatter-density
+  - [ ] python-multidict
+  - [ ] python-multipart
+  - [ ] python-multivolumefile
+  - [ ] python-mwclient
+  - [ ] python-natsort
+  - [ ] python-nb-clean
+  - [ ] python-nbclassic
+  - [ ] python-nbclient
+  - [ ] python-nbval
+  - [ ] python-notebook
+  - [ ] python-numcodecs
+  - [ ] python-numpydoc
+  - [ ] python-oauthlib
+  - [ ] python-opt-einsum
+  - [X] python-outcome
+  - [ ] python-ovh
+  - [ ] python-pairtools
+  - [ ] python-pandarallel
+  - [ ] python-pandas-vet
+  - [X] python-panflute
+  - [ ] python-papermill
+  - [ ] python-parfive
+  - [ ] python-patsy
+  - [ ] python-pep440
+  - [ ] python-persim
+  - [ ] python-pikepdf
+  - [ ] python-pillow
+  - [ ] python-pillow
+  - [ ] python-pillow-simd
+  - [ ] python-pingouin
+  - [ ] python-platformdirs
+  - [ ] python-plotille
+  - [ ] python-plotnine
+  - [ ] python-poliastro
+  - [ ] python-portalocker
+  - [ ] python-ppmd-cffi
+  - [ ] python-prettytable
+  - [ ] python-propcache
+  - [ ] python-property-manager
+  - [ ] python-pubmed-parser
+  - [ ] python-pure-protobuf
+  - [ ] python-py7zr
+  - [ ] python-pyan3
+  - [ ] python-pybcj
+  - [ ] python-pyfaidx
+  - [ ] python-pygam
+  - [ ] python-pyhamcrest
+  - [ ] python-pymanopt
+  - [ ] python-pymarshal
+  - [ ] python-pymc
+  - [ ] python-pymemcache
+  - [ ] python-pymodbus
+  - [ ] python-pynetdicom
+  - [ ] python-pyogrio
+  - [ ] python-pyppmd
+  - [ ] python-pyproject-api
+  - [ ] python-pyqtgraph
+  - [ ] python-pyquery
+  - [ ] python-pyscss
+  - [ ] python-pysnptools
+  - [ ] python-pytest-astropy
+  - [ ] python-pytest-enabler
+  - [ ] python-pytest-filter-subpackage
+  - [ ] python-pytest-nunit
+  - [ ] python-pytest-perf
+  - [ ] python-pytorch-geometric
+  - [ ] python-pyts
+  - [ ] python-qtpy
+  - [ ] python-rasterio
+  - [ ] python-rchitect
+  - [ ] python-rdflib
+  - [ ] python-rdflib
+  - [ ] python-redis
+  - [ ] python-resampy
+  - [ ] python-rich-tables
+  - [ ] python-robotframework-pythonlibcore
+  - [ ] python-rope
+  - [ ] python-rpy2
+  - [ ] python-salib
+  - [ ] python-scikit-build
+  - [ ] python-scikit-learn-extra
+  - [ ] python-scikit-misc
+  - [ ] python-scikit-rf
+  - [ ] python-scipy
+  - [ ] python-scooby
+  - [ ] python-seaborn
+  - [ ] python-semver
+  - [ ] python-sentry-sdk
+  - [ ] python-shtab
+  - [ ] python-simple-websocket
+  - [ ] python-siosocks
+  - [ ] python-sniffio
+  - [ ] python-sparse
+  - [ ] python-sphinx-design
+  - [ ] python-sphinx-gallery
+  - [ ] python-sure
+  - [ ] python-sybil
+  - [ ] python-tablib
+  - [ ] python-tensorly
+  - [ ] python-termcolor
+  - [ ] python-test2ref
+  - [ ] python-testfixtures
+  - [ ] python-throttler
+  - [ ] python-tibanna
+  - [ ] python-tinycss2
+  - [ ] python-torchmetrics
+  - [X] python-translation-finder
+  - [ ] python-trustme
+  - [ ] python-tzlocal
+  - [ ] python-upsetplot
+  - [ ] python-uqbar
+  - [ ] python-url-normalize
+  - [ ] python-urwid
+  - [ ] python-urwid
+  - [ ] python-validate-pyproject
+  - [ ] python-vcrpy
+  - [ ] python-venusian
+  - [ ] python-waitress
+  - [ ] python-warcio
+  - [ ] python-watchdog
+  - [ ] python-watchfiles
+  - [ ] python-wcwidth
+  - [ ] python-wiimatch
+  - [ ] python-wsgiprox
+  - [ ] python-xdoctest
+  - [ ] python-yarl
+  - [ ] python-zeep
+  - [ ] python-zipstream-ng
+  - [ ] qtile
+  - [ ] radicale
+  - [ ] sshuttle
+  - [ ] stargate
+  - [ ] tgcli
+  - [ ] todoman
+  - [ ] vdirsyncer
+  - [ ] zulip-term
+- [-] python-pytest-flake8 [1/10][10%]
+  - synopsis :: pytest plugin to run flake8
+  - [ ] c-vise
+  - [ ] python-cairosvg
+  - [X] python-dask-image
+  - [ ] python-docstring-to-markdown
+  - [ ] python-matrix-nio
+  - [ ] python-mechanicalsoup
+  - [ ] python-muon
+  - [ ] python-pytest-csv
+  - [ ] python-pytest-perf
+  - [ ] radicale
+- [ ] python-pytest-isort [0/3][0%]
+  - [ ] python-cairosvg
+  - [ ] python-pytest-pycodestyle
+  - [ ] radicale
+- [ ] python-pytest-mypy [0/6][0%]
+  - [ ] python-multiscale-spatial-image
+  - [ ] python-poliastro
+  - [ ] python-portalocker
+  - [ ] python-pytest-perf
+  - [ ] python-spatial-image
+  - [ ] python-typeguard
+- [-] python-tox [1/22][4%]
+  - [ ] emacs-jedi
+  - [X] python-ansicolors
+  - [ ] python-audioread
+  - [ ] python-ddlparse
+  - [ ] python-django-extensions
+  - [ ] python-django-pipeline
+  - [ ] python-flask-htpasswd
+  - [ ] python-halo
+  - [ ] python-harmony
+  - [ ] python-log-symbols
+  - [ ] python-lunr
+  - [ ] python-metacells
+  - [ ] python-nox
+  - [ ] python-omnipath
+  - [ ] python-papermill
+  - [ ] python-pytest-qt
+  - [ ] python-scikit-survival
+  - [ ] python-shshsh
+  - [ ] python-simple-websocket
+  - [ ] python-spinners
+  - [ ] tailon
+  - [ ] txt2tags
+- [-] python-twine [2/16][12%]
+  - synopsis :: Collection of utilities for interacting with PyPI
+  - [ ] fava
+  - [ ] mdpo
+  - [ ] python-cftime
+  - [X] python-dask-image
+  - [ ] python-eliot
+  - [ ] python-eventlet
+  - [ ] python-halo
+  - [ ] python-hatch-jupyter-builder
+  - [ ] python-metacells
+  - [ ] python-ngesh
+  - [ ] python-papermill
+  - [ ] python-pyahocorasick
+  - [ ] python-scikit-misc
+  - [ ] python-syrupy
+  - [ ] python-testfixtures
+  - [X] python-translation-finder
+** TODO Set NumPy 2 as a default
+** TODO Fails [14/66]
+ - [ ] calcos
+ - [ ] ginga-qt5
+ - [ ] llama-cpp
+ - [ ] python-absl-py
+ - [ ] python-acstools
+ - [ ] python-aplpy
+ - [ ] python-asgi-csrf
+ - [ ] python-astroalign
+ - [ ] python-astropy
+ - [X] python-aws-xray-sdk: Use python-pytest-asyncio-0.26
+ - [ ] python-botorch
+ - [ ] python-captum
+ - [ ] python-cleanlab
+ - [ ] python-deepxde
+ - [ ] python-dust-extinction
+ - [X] python-flexcache
+ - [ ] python-geomloss
+ - [ ] python-glue-qt
+ - [X] python-hupper
+ - [X] python-imageio-ffmpeg: 0.5.1->0.6.0
+ - [ ] python-jwst
+ - [ ] python-linear-operator
+ - [ ] python-ndcube
+ - [ ] python-pgmpy
+ - [ ] python-pint-pulsar
+ - [ ] python-pixell
+ - [ ] python-pot
+ - [ ] python-pvextractor
+ - [ ] python-pyro-ppl
+ - [X] python-pytest-datadir: 1.3.1->1.7.2
+ - [ ] python-pytest-rerunfailures-17
+ - [X] python-pythran: Disable tests.
+ - [ ] python-pytorch
+ - [ ] python-pytorch-lightning
+ - [ ] python-pyxsim
+ - [X] python-pyzmq: Use python-pytest-asyncio-0.26
+ - [ ] python-radio-beam
+ - [ ] python-regularizepsf
+ - [ ] python-roman-datamodels
+ - [ ] python-safetensors
+ - [ ] python-sbpy
+ - [ ] python-scikit-opt
+ - [ ] python-sentence-transformers
+ - [ ] python-sncosmo
+ - [ ] python-spherical-geometry
+ - [ ] python-spisea
+ - [ ] python-stcal
+ - [ ] python-stpsf
+ - [ ] python-stsci-skypac
+ - [ ] python-stsynphot
+ - [ ] python-sunkit-image
+ - [ ] python-sunpy-soar
+ - [ ] python-sunraster
+ - [ ] python-synphot
+ - [ ] python-torchdiffeq
+ - [ ] python-torchmetrics
+ - [ ] python-torchvision
+ - [ ] python-transformers
+ - [X] python-twine: 5.1.1->6.1.0
+ - [X] python-types-requests: 2.30.0.0->2.32.4.20250611
+ - [X] python-types-urllib3: 1.26.25.12->1.26.25.14
+ - [X] python-unidecode: 1.3.8->1.4.0
+ - [X] python-uvicorn: Use python-pytest-asyncio-0.26
+ - [X] python-websockets: Set test backend
+ - [X] python-zope-testing: 5.0.1->5.1
+ - [ ] scamp
+
+** TODO Removes [2/3]
+ - [X] python-setuptools-scm-git-archive: This repository was archived by the owner on May 5, 2024.
+   It is now read-only.
+ - [X] python-nosexcover: Unmaintained fork, no updates since 2018
+ - [ ] python-pytest-perf
