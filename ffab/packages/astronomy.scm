@@ -1631,6 +1631,6 @@ can compute its position at any other time, no matter how remote.")
      "Package Raccoon cleans the \"wiggles\" (i.e., low-frequency sinusoidal
 artifacts) in the JWST-NIRSpec IFS (integral field spectroscopy) data.  These
 wiggles are caused by resampling noise or aliasing artifacts.")
-    (license license:expat)))
+    (license license:bsd-3)))
 
 ;; End of astronomy.scm
