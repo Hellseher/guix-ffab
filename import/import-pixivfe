@@ -1,0 +1,85 @@
+(define-public go-codeberg-org-pixivfe-pixivfe
+  (package
+    (name "go-codeberg-org-pixivfe-pixivfe")
+    (version "3.0.3")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://codeberg.org/pixivfe/pixivfe.git")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "164nazwpjrazn4z9pbfficbr5p4cmgysh8hi5wib27qnczq4870c"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:go #{go-#f}#
+      #:import-path "codeberg.org/pixivfe/pixivfe/v3"
+      #:unpack-path "codeberg.org/pixivfe/pixivfe"))
+    (propagated-inputs (list go-golang-org-x-time
+                             go-golang-org-x-sync
+                             go-golang-org-x-net
+                             go-github-com-timandy-routine
+                             go-github-com-tidwall-gjson
+                             go-github-com-soluble-ai-go-jnode
+                             go-github-com-rs-zerolog
+                             go-github-com-mattn-go-isatty
+                             go-github-com-goccy-go-yaml
+                             go-github-com-a-h-templ ; packaged
+                             go-github-com-puerkitobio-goquery))
+    (home-page "https://codeberg.org/pixivfe/pixivfe")
+    (synopsis "Why should I use it?")
+    (description
+     "Package main is an open-source alternative front-end for pixiv.")
+    (license license:agpl3)))
+
+(define-public go-github-com-a-h-htmlformat
+  (package
+    (name "go-github-com-a-h-htmlformat")
+    (version "0.0.0-20250209132643-c2a3d62ad1fc")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/a-h/htmlformat")
+             (commit (go-version->git-ref version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0y9jq3d8s3g12lrjianm4crb2ny3ankgl72gd8vx7kfr3cs30rhq"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/a-h/htmlformat"))
+    (propagated-inputs (list go-github-com-google-go-cmp go-golang-org-x-net))
+    (home-page "https://github.com/a-h/htmlformat")
+    (synopsis "htmlformat")
+    (description
+     "htmlformat is a Go package and CLI tool used to format HTML.")
+    (license license:expat)))
+
+(define-public go-github-com-timandy-routine
+  (package
+    (name "go-github-com-timandy-routine")
+    (version "1.1.5")
+    (source
+     (origin
+       (method git-fetch)
+       (uri (git-reference
+             (url "https://github.com/timandy/routine")
+             (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "0m1cs8r9blzhm5m95qi68qii05z7rgxyy8w6i2lgxq1xrjn6x77z"))))
+    (build-system go-build-system)
+    (arguments
+     (list
+      #:import-path "github.com/timandy/routine"))
+    (propagated-inputs (list go-github-com-stretchr-testify))
+    (home-page "https://github.com/timandy/routine")
+    (synopsis "routine")
+    (description
+     "@@code{routine} encapsulates and provides some easy-to-use, non-competitive,
+high-performance @@code{goroutine} context access interfaces, which can help you
+access coroutine context information more gracefully.")
+    (license license:asl2.0)))

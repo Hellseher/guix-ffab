@@ -1,0 +1,225 @@
+(define-public python-repoze-lru
+  (package
+    (name "python-repoze-lru")
+    (version "0.7")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "repoze.lru" version))
+       (sha256
+        (base32 "0xzz1aw2smy8hdszrq8yhnklx6w1r1mf55061kalw3iq35gafa84"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-coverage python-nose python-setuptools
+                         python-wheel))
+    (home-page "http://www.repoze.org")
+    (synopsis "A tiny LRU cache implementation and decorator")
+    (description
+     "This package provides a tiny LRU cache implementation and decorator.")
+    (license #f)))
+
+(define-public python-pyramid-tm
+  (package
+    (name "python-pyramid-tm")
+    (version "2.6")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_tm" version))
+       (sha256
+        (base32 "173hg16hldfh5n3mn482xx64nldk308dzri31jd0qa4528cx4j41"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-pyramid python-transaction))
+    (native-inputs (list python-coverage
+                         python-pytest
+                         python-pytest-cov
+                         python-setuptools
+                         python-webtest
+                         python-wheel))
+    (home-page "https://github.com/Pylons/pyramid_tm")
+    (synopsis
+     "A package which allows Pyramid requests to join the active transaction")
+    (description
+     "This package provides a package which allows Pyramid requests to join the active
+transaction.")
+    (license #f)))
+
+(define-public python-pyramid-retry
+  (package
+    (name "python-pyramid-retry")
+    (version "2.1.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_retry" version))
+       (sha256
+        (base32 "1jf07v6zhli0abgm2qajzfwg68bl9zy4xygjwl4svawbwrm2ga5s"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-pyramid python-zope-interface))
+    (native-inputs (list python-pytest python-pytest-cov python-setuptools
+                         python-webtest python-wheel))
+    (home-page "https://github.com/Pylons/pyramid_retry")
+    (synopsis
+     "An execution policy for Pyramid that supports retrying requests after certain failure exceptions.")
+    (description
+     "An execution policy for Pyramid that supports retrying requests after certain
+failure exceptions.")
+    (license #f)))
+
+(define-public python-pyramid-mako
+  (package
+    (name "python-pyramid-mako")
+    (version "1.1.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_mako" version))
+       (sha256
+        (base32 "1qj0m091mnii86j2q1d82yir22nha361rvhclvg3s70z8iiwhrh0"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-mako python-pyramid))
+    (native-inputs (list python-coverage python-nose python-setuptools
+                         python-webtest python-wheel))
+    (home-page "https://github.com/Pylons/pyramid_mako")
+    (synopsis "Mako template bindings for the Pyramid web framework")
+    (description "Mako template bindings for the Pyramid web framework.")
+    (license #f)))
+
+(define-public python-pyramid-jinja2
+  (package
+    (name "python-pyramid-jinja2")
+    (version "2.10.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_jinja2" version))
+       (sha256
+        (base32 "0xqnqbqhx9bkrg2ic3blflsk8xc8kh7i2dm2kha9apqkbjrqql4c"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-jinja2 python-markupsafe python-pyramid
+                             python-zope-deprecation))
+    (native-inputs (list python-coverage
+                         python-pytest
+                         python-pytest-cov
+                         python-setuptools
+                         python-webtest
+                         python-wheel))
+    (home-page "https://github.com/Pylons/pyramid_jinja2")
+    (synopsis "Jinja2 template bindings for the Pyramid web framework")
+    (description "Jinja2 template bindings for the Pyramid web framework.")
+    (license #f)))
+
+(define-public python-chameleon
+  (package
+    (name "python-chameleon")
+    (version "4.5.4")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "Chameleon" version))
+       (sha256
+        (base32 "1w82pf3l136j6jihni74rf4hx40ivxm28aqq0v0xr34f43hldxj2"))))
+    (build-system pyproject-build-system)
+    (native-inputs (list python-setuptools python-wheel))
+    (home-page "https://chameleon.readthedocs.io")
+    (synopsis "Fast HTML/XML Template Compiler.")
+    (description "Fast HTML/XML Template Compiler.")
+    (license #f)))
+
+(define-public python-pyramid-chameleon
+  (package
+    (name "python-pyramid-chameleon")
+    (version "0.3")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_chameleon" version))
+       (sha256
+        (base32 "05whxy6081cygg8vpkm5m6glil3v9ardjjxlcmw5s0gba0m7jxni"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-chameleon python-pyramid))
+    (native-inputs (list python-coverage python-nose python-setuptools
+                         python-virtualenv python-wheel))
+    (home-page "https://github.com/Pylons/pyramid_chameleon")
+    (synopsis "pyramid_chameleon")
+    (description "pyramid_chameleon.")
+    (license #f)))
+
+(define-public python-pyramid-debugtoolbar
+  (package
+    (name "python-pyramid-debugtoolbar")
+    (version "4.12.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyramid_debugtoolbar" version))
+       (sha256
+        (base32 "0gdlc7vcga4vzma53h5csnhh4gwfmv3w8v9y5fhwqpy8979qis3i"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-pyramid
+                             python-pyramid-chameleon
+                             python-pyramid-debugtoolbar
+                             python-pyramid-jinja2
+                             python-pyramid-mako
+                             python-selenium
+                             python-sqlalchemy
+                             python-waitress))
+    (native-inputs (list python-setuptools python-wheel))
+    (home-page
+     "https://docs.pylonsproject.org/projects/pyramid-debugtoolbar/en/latest/")
+    (synopsis
+     "A package which provides an interactive HTML debugger for Pyramid application development")
+    (description
+     "This package provides a package which provides an interactive HTML debugger for
+Pyramid application development.")
+    (license license:bsd-3)))
+
+(define-public python-tangos
+  (package
+    (name "python-tangos")
+    (version "1.9.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "tangos" version))
+       (sha256
+        (base32 "1rgl0vamf93jpgkd2sb2lsrcwjsa30l8za943am2kfj3arbk60kd"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-hupper
+                             python-matplotlib
+                             python-more-itertools
+                             python-numpy
+                             python-pastedeploy
+                             python-plaster
+                             python-plaster-pastedeploy
+                             python-pyparsing
+                             python-pyramid
+                             python-pyramid-debugtoolbar
+                             python-pyramid-jinja2
+                             python-pyramid-retry
+                             python-pyramid-tm
+                             python-repoze-lru
+                             python-scipy
+                             python-setuptools
+                             python-sqlalchemy
+                             python-tblib
+                             python-tqdm
+                             python-translationstring
+                             python-venusian
+                             python-waitress
+                             python-webob
+                             python-zope-deprecation
+                             python-zope-interface
+                             python-zope-sqlalchemy))
+    (native-inputs (list python-pymysql
+                         python-pynbody
+                         python-pyquery
+                         python-pytest
+                         python-setuptools
+                         python-webtest
+                         python-wheel
+                         python-yt))
+    (home-page "")
+    (synopsis "TANGOS, the agile numerical galaxy organisation system")
+    (description "TANGOS, the agile numerical galaxy organisation system.")
+    (license license:bsd-3)))
+

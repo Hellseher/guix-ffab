@@ -1,0 +1,154 @@
+(define-public python-flake8-docstrings
+  (package
+    (name "python-flake8-docstrings")
+    (version "1.7.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "flake8_docstrings" version))
+       (sha256
+        (base32 "1bs1m5kqw25sn68f06571q5s3aaxd06mv7k952bqdrhnvi4cg32c"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-flake8 python-pydocstyle))
+    (native-inputs (list python-setuptools python-wheel))
+    (home-page "https://github.com/pycqa/flake8-docstrings")
+    (synopsis "Extension for flake8 which uses pydocstyle to check docstrings")
+    (description
+     "Extension for flake8 which uses pydocstyle to check docstrings.")
+    (license license:expat)))
+
+(define-public python-geospacepy
+  (package
+    (name "python-geospacepy")
+    (version "0.2.2")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "geospacepy" version))
+       (sha256
+        (base32 "04zqa7k82rbyh2z5d935xgqcqnq0x9xlm2zvx4nf1ygs68pxc8kg"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-matplotlib python-numpy))
+    (native-inputs (list python-setuptools python-wheel))
+    (home-page "https://github.com/lkilcommons/geospacepy-lite")
+    (synopsis "A small library for geospace data analysis")
+    (description
+     "This package provides a small library for geospace data analysis.")
+    (license #f)))
+
+(define-public python-pyephem
+  (package
+    (name "python-pyephem")
+    (version "9.99")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pyephem" version))
+       (sha256
+        (base32 "07wbc0gc3cfxjkjx4dk8zyhd803qv58vf0p1rwgyy93qmdz6v0vh"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-ephem))
+    (native-inputs (list python-setuptools python-wheel))
+    (home-page "http://rhodesmill.org/pyephem/")
+    (synopsis "Empty package that depends on \"ephem\"")
+    (description "Empty package that depends on \"ephem\".")
+    (license #f)))
+
+(define-public python-pysat
+  (package
+    (name "python-pysat")
+    (version "3.2.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pysat" version))
+       (sha256
+        (base32 "0j25wnh6q23axjxmjm7zjb388alhh9mf3zn1zq7waijlf5604sj8"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-dask
+                             python-netcdf4
+                             python-numpy
+                             python-pandas
+                             python-portalocker
+                             python-pytest
+                             python-scipy
+                             python-toolz
+                             python-xarray))
+    (native-inputs (list python-flake8
+                         python-flake8-docstrings
+                         python-hacking
+                         python-pip
+                         python-pysatspaceweather
+                         python-pytest-cov
+                         python-pytest-ordering
+                         python-setuptools
+                         python-wheel))
+    (home-page null)
+    (synopsis "Supports science analysis across disparate data platforms")
+    (description "Supports science analysis across disparate data platforms.")
+    (license #f)))
+
+(define-public python-pysatmissions
+  (package
+    (name "python-pysatmissions")
+    (version "0.3.5")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pysatMissions" version))
+       (sha256
+        (base32 "07qp26q36rf1f3lnwrafw4is5ncd6is5r1rh0krij9yh8vz0jjj3"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-geospacepy
+                             python-numpy
+                             python-pandas
+                             python-pyephem
+                             python-pysat
+                             python-sgp4
+                             python-skyfield))
+    (native-inputs (list python-coveralls
+                         python-flake8
+                         python-flake8-docstrings
+                         python-hacking
+                         python-pip
+                         python-pytest
+                         python-pytest-cov
+                         python-pytest-ordering
+                         python-setuptools
+                         python-wheel))
+    (home-page null)
+    (synopsis "Mission Planning toolkit for pysat")
+    (description "Mission Planning toolkit for pysat.")
+    (license #f)))
+
+(define-public python-pysatspaceweather
+  (package
+    (name "python-pysatspaceweather")
+    (version "0.2.1")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "pysatspaceweather" version))
+       (sha256
+        (base32 "0jbqyc6dsy5408z61lg052592jz69qxa2snp18csklg6j45p7mir"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-netcdf4
+                             python-numpy
+                             python-packaging
+                             python-pandas
+                             python-pysat
+                             python-requests
+                             python-xarray))
+    (native-inputs (list python-flake8
+                         python-flake8-docstrings
+                         python-hacking
+                         python-pip
+                         python-pytest
+                         python-pytest-cov
+                         python-pytest-ordering
+                         python-setuptools
+                         python-wheel))
+    (home-page null)
+    (synopsis "pysat support for Space Weather Indices")
+    (description "pysat support for Space Weather Indices.")
+    (license #f)))
