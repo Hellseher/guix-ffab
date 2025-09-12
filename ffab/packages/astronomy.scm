@@ -80,6 +80,7 @@
   #:use-module (gnu packages shells)
   #:use-module (gnu packages sphinx)
   #:use-module (gnu packages sqlite)
+  #:use-module (gnu packages statistics)
   #:use-module (gnu packages swig)
   #:use-module (gnu packages tcl)
   #:use-module (gnu packages textutils)
@@ -1587,5 +1588,49 @@ can compute its position at any other time, no matter how remote.")
 ;; (define-public python-glue-qt
 ;; added-to-downstream-guix fcfe95b0770cb4daeebe1730511a1d665a808c89
 ;; CommitDate: Tue Aug 27 17:03:09 2024 +0100
+
+;; 20250912T210804+0100
+(define-public python-raccoon
+  (package
+    (name "python-raccoon")
+    (version "1.0.0")
+    (source
+     (origin
+       ;; PyPi tarball lacks tests.
+       (method git-fetch)
+       (uri (git-reference
+              (url "https://github.com/ajshajib/raccoon")
+              (commit (string-append "v" version))))
+       (file-name (git-file-name name version))
+       (sha256
+        (base32 "1hn8g7zxga47yhk4y9nrbnz0n7apflczlaszr79h4lg6b4v4h9f4"))))
+    (build-system pyproject-build-system)
+    (arguments
+     (list
+      #:test-flags
+      #~(list "-k" (string-join
+                    ;; Three tests fail with error: AttributeError: module
+                    ;; 'numpy' has no attribute 'trapezoid'.
+                    (list "not test_clean_cube"
+                          "test_clean_cube_with_min_n_amplitude_and_min_n_f"
+                          "test_clean_cube_with_wiggle_detection_thresholds")
+                    " and not "))))
+    (native-inputs
+     (list python-pytest
+           python-setuptools-next))
+    (propagated-inputs
+     (list python-astropy
+           python-matplotlib
+           python-numpy
+           python-scipy
+           python-statsmodels
+           python-tqdm))
+    (home-page "https://github.com/ajshajib/raccoon")
+    (synopsis "Clean modulation due to resampling noise in the JWST/NIRSpec IFS spectra")
+    (description
+     "Package Raccoon cleans the \"wiggles\" (i.e., low-frequency sinusoidal
+artifacts) in the JWST-NIRSpec IFS (integral field spectroscopy) data.  These
+wiggles are caused by resampling noise or aliasing artifacts.")
+    (license license:expat)))
 
 ;; End of astronomy.scm
