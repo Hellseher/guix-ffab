@@ -1589,6 +1589,59 @@ can compute its position at any other time, no matter how remote.")
 ;; added-to-downstream-guix fcfe95b0770cb4daeebe1730511a1d665a808c89
 ;; CommitDate: Tue Aug 27 17:03:09 2024 +0100
 
+;; 20250916T135454+0100
+(define-public fitsverify
+  (package
+    (name "fitsverify")
+    (version "4.22")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (string-append "https://heasarc.gsfc.nasa.gov/docs/software/ftools/"
+                           name "/" name "-" version ".tar.gz"))
+       (sha256
+        (base32 "1d0qvgmrpv09qm4vi4n26frx4qb3mrdn261rs6vvrvg0lw1yhibc"))))
+    (build-system gnu-build-system)
+    (arguments
+     (list
+      #:tests? #f ;no tests
+      #:phases
+      #~(modify-phases %standard-phases
+          (delete 'configure) ; no configure
+          (replace 'build
+            (lambda* _
+              ;; Build steps are taken from Debian's package definition.
+              (invoke #$(cc-for-target) "-o" #$name
+                      "ftverify.c"
+                      "fvrf_data.c"
+                      "fvrf_file.c"
+                      "fvrf_head.c"
+                      "fvrf_key.c"
+                      "fvrf_misc.c"
+                      "-DSTANDALONE"
+                      "-lcfitsio"
+                      "-lm")))
+          (replace 'install
+            (lambda _
+              (install-file #$name (string-append #$output "/bin")))))))
+    (inputs
+     (list cfitsio))
+    (home-page "https://heasarc.gsfc.nasa.gov/docs/software/ftools/fitsverify/index.html")
+    (synopsis "FITS File Format-Verification Tool")
+    (description
+     "Fitsverify is a computer program that rigorously checks whether a
+@acronym{FITS, Flexible Image Transport System} data file conforms to the
+requirements defined in Version 3.0 of the
+@url{http://fits.gsfc.nasa.gov/fits_documentation.html, FITS Standard
+document}.")
+    (properties
+     '((release-monitoring-url .
+        "https://heasarc.gsfc.nasa.gov/docs/software/ftools/fitsverify/")))
+    ;; The license is the same as for CFITSIO, see
+    ;; <https://salsa.debian.org/debian-astro-team/fitsverify/blob/master/debian/copyright>
+    (license (license:non-copyleft "file://License.txt"
+                                   "See License.txt in the distribution."))))
+
 ;; 20250916T130155+0100
 (define-public python-pydl
   (package
