@@ -1,15 +1,15 @@
 #+title: Milestones
 
 #+created: 2024-01-19 Fri 13:40:27 GMT
-#+modified: <2025-09-05 Fri 22:17:10 BST>
+#+modified: <2025-09-25 Thu 12:19:46 BST>
 
-* TODO On the way to pyproject-build-system everywhere [1/7][14%]
+* TODO On the way to pyproject-build-system everywhere [1/9][11%]
 - https://codeberg.org/guix/guix/milestone/20775
 ** DONE Refresh gnu/packages/python-build.scm module
 CLOSED: [2025-07-17 Thu 13:05]
 Refresh all packages in the module to the latest versions where posible and switch to
 pyproject-build-system.
-** TODO Switch packages which affect ration >= 1% pyproject [91/126][72%]
+** TODO Switch packages which affect ration is >= 0.7% to pyproject [126/130][96%]
 - [X] cmdtest - removed
 - [X] gi-docgen
 - [X] mallard-ducktype
@@ -27,62 +27,65 @@ pyproject-build-system.
 - [X] python-charset-normalizer
 - [X] python-cliapp 0.0
 - [X] python-cmarkgfm
-- [ ] python-colorlog
+- [X] python-colorlog
 - [X] python-commonmark
+- [X] python-constantly
 - [X] python-coverage-test-runner 0.00563
 - [X] python-cycler
 - [X] python-debugpy
 - [X] python-decorator
-- [ ] python-distro
+- [X] python-distro
 - [X] python-docopt
 - [X] python-dotenv
-- [ ] python-editdistance
+- [X] python-editdistance - removed
 - [X] python-elementpath
 - [X] python-entrypoints
 - [X] python-et-xmlfile
-- [ ] python-extras
+- [X] python-extras - removed
 - [X] python-factory-boy
-- [ ] python-fixtures-bootstrap
+- [X] python-fixtures-bootstrap
 - [X] python-flex
+- [X] python-future
 - [X] python-hpack
 - [X] python-html5lib
 - [X] python-httptools
 - [X] python-hyperframe
 - [X] python-idna
 - [X] python-importlib-metadata
-- [ ] python-ipython-genutils
-- [ ] python-jdcal
+- [X] python-ipython-genutils
+- [X] python-jdcal - removed
 - [X] python-json-spec
 - [X] python-jupyterlab-pygments
 - [X] python-libxml2
 - [X] python-lxml
 - [X] python-markdown
 - [X] python-matplotlib-inline
-- [ ] python-mimeparse
+- [X] python-mimeparse
 - [X] python-mpmath
-- [ ] python-msgpack
-- [ ] python-natsort
-- [ ] python-nest-asyncio
+- [X] python-msgpack
+- [X] python-natsort
+- [X] python-nest-asyncio
 - [ ] python-nose
 - [X] python-nose2
 - [X] python-olefile
 - [X] python-outcome
-- [ ] python-pandocfilters
+- [X] python-pandocfilters
 - [X] python-panflute
 - [X] python-pathtools - removed
-- [ ] python-pbr
-- [ ] python-pbr-minimal
-- [ ] python-prometheus-client
+- [X] python-pbr
+- [X] python-pbr-minimal - removed
+- [X] python-prometheus-client
 - [X] python-prompt-toolkit
-- [ ] python-pyaml
+- [X] python-pyaml
 - [X] python-pyasn1
 - [X] python-pyasn1-modules
 - [X] python-pycairo
-- [ ] python-pycparser
+- [X] python-pycparser
 - [X] python-py-cpuinfo
 - [X] python-pyfakefs
-- [ ] python-pygments-github-lexers
-- [ ] python-pyicu
+- [X] python-pygments-github-lexers - removed
+- [X] python-pyhamcrest
+- [X] python-pyicu
 - [X] python-pymongo
 - [X] python-pyqt5-sip
 - [X] python-pysocks
@@ -100,14 +103,14 @@ pyproject-build-system.
 - [X] python-rfc3339-validator
 - [X] python-rfc3986
 - [X] python-rfc3987
-- [ ] python-rich-click
+- [X] python-rich-click
 - [X] python-scour
-- [ ] python-secretstorage
+- [X] python-secretstorage
 - [X] python-sh
 - [X] python-simplejson
 - [X] python-smartypants
 - [X] python-socksio
-- [ ] python-soupsieve
+- [X] python-soupsieve
 - [X] python-sphinxcontrib-applehelp
 - [X] python-sphinxcontrib-devhelp
 - [X] python-sphinxcontrib-github-alt
@@ -116,35 +119,68 @@ pyproject-build-system.
 - [X] python-sphinxcontrib-qthelp
 - [X] python-sphinxcontrib-websupport
 - [X] python-sqlparse
-- [ ] python-strict-rfc3339
-- [ ] python-subunit-bootstrap
-- [ ] python-tappy
+- [X] python-strict-rfc3339
+- [X] python-subunit-bootstrap - removed
+- [X] python-tappy
 - [X] python-terminado
-- [ ] python-testrepository-bootstrap
-- [ ] python-testresources-bootstrap
-- [ ] python-testscenarios-bootstrap
-- [ ] python-tomlkit
+- [X] python-testrepository-bootstrap - remvoed
+- [X] python-testresources-bootstrap - removed
+- [X] python-testscenarios-bootstrap
+- [X] python-tomlkit
 - [X] python-tornado
-- [ ] python-ttystatus
+- [X] python-ttystatus - delete
 - [X] python-typogrify
 - [X] python-ukpostcodeparser
 - [X] python-untangle
 - [X] python-webencodings
+- [X] python-webtest
 - [X] python-wurlitzer
 - [X] python-xlrd
 - [X] python-xmlschema
-- [ ] python-zope-event
+- [X] python-zope-event
 - [X] python-zope-interface
 - [X] python-zstandard
 ** TODO Set Cython 3 as a default
-*** TODO Pin some packages to python-cython-0
-** TODO Deprecate non maintained packages
-- [X] python-unittest2 [4/4][100%]
-  - [X] python-codecov
-  - [X] python-contexttimer - removed
-  - [X] python-deprecation
-  - [X] python-pyfxa
-- [-] python-nose [14/85][16%]
+Cython 3 became the main supported version in upstream, set it as default in Guix.
+- https://mail.python.org/pipermail/cython-devel/2023-July/005437.html
+*** TODO Pin some packages to python-cython-0 [0/1][0%]
+- [ ] python-scipy
+** TODO Deprecate non maintained packages [7/23][30%]
+A list of packages development of which was stopped or maintener arhhchived the source, they are
+candidates to for removal when listed child packages are updated.
+- [X] cmdtest [1/1][100%]
+  - [X] xauth
+- [ ] python-pyaes [0/5][0%]
+  - [ ] electron-cash
+  - [ ] electrum
+  - [ ] mycli
+  - [ ] python-duniterpy
+  - [ ] python-telethon
+- [X] python-contextvars [1/1][100%]
+  - [X] python-anyio
+- [X] python-extras [4/4][100%]
+  - [X] python-fixtures
+  - [X] python-fixtures-bootstrap
+  - [X] python-subunit
+  - [X] python-subunit-bootstrap
+- [ ] python-flask-combo-jsonapi
+- [ ] python-httpbin [0/3][0%]
+  - [ ] python-pytest-httpbin
+  - [ ] python-treq
+  - [ ] python-warcio
+- [ ] python-ipaddress [0/1][0%]
+  - [ ] python-trustme
+- [ ] python-ipython-genutils [0/6][0%]
+  - [ ] python-ipydatawidgets
+  - [ ] python-ipympl
+  - [ ] python-ipython-sql
+  - [ ] python-jupytext
+  - [ ] python-nbclassic
+  - [ ] python-notebook
+- [X] python-jschema-to-python [2/2][100%]
+  - [X] python-bandit
+  - [X] python-cfn-lint
+- [-] python-nose [18/85][21%]
   Not maintained task runner, Pytest is the replacement
   - [ ] aacircuit
   - [ ] binwalk
@@ -158,7 +194,7 @@ pyproject-build-system.
   - [ ] mercurial
   - [ ] ocrodjvu
   - [ ] python-androguard
-  - [ ] python-annoy
+  - [X] python-annoy
   - [ ] python-args
   - [ ] python-blessings
   - [ ] python-case
@@ -170,14 +206,14 @@ pyproject-build-system.
   - [ ] python-djvulibre
   - [ ] python-dogtail
   - [ ] python-epc
-  - [ ] python-flask-cors
+  - [X] python-flask-cors
   - [ ] python-flask-markdown
   - [ ] python-flask-principal
   - [ ] python-forbiddenfruit
   - [X] python-gitpython
   - [ ] python-graphtools
   - [ ] python-grequests
-  - [ ] python-gssapi
+  - [X] python-gssapi
   - [ ] python-halo
   - [ ] python-hdbscan
   - [ ] python-hkdf
@@ -208,7 +244,7 @@ pyproject-build-system.
   - [X] python-pyxdg
   - [X] python-repoze-lru
   - [ ] python-restructuredtext-lint
-  - [ ] python-s3transfer
+  - [X] python-s3transfer
   - [ ] python-slugid
   - [X] python-smartypants
   - [ ] python-spectra
@@ -231,38 +267,118 @@ pyproject-build-system.
   - [ ] rseqc
   - [ ] seqmagick
   - [ ] vigra
-- [ ] python-ipython-genutils [0/6][0%]
-  - [ ] python-ipydatawidgets
-  - [ ] python-ipympl
-  - [ ] python-ipython-sql
-  - [ ] python-jupytext
-  - [ ] python-nbclassic
-  - [ ] python-notebook
-- [ ] python-trezor [0/2][0%]
-  - [ ] electron-cash
-  - [ ] trezor-agent
-- [ ] python-flask-combo-jsonapi
-- [ ] python-httpbin [0/3][0%]
-  - [ ] python-pytest-httpbin
-  - [ ] python-treq
-  - [ ] python-warcio
+- [-] python-nose2 [1/12][8%]
+  - [X] python-dpath - hard dependencies on nose2
+  - [ ] python-flufl-bounce
+  - [ ] python-graphtools
+  - [ ] python-mailman-hyperkitty
+  - [ ] python-pika
+  - [ ] python-pygame-menu
+  - [ ] python-semantic-version
+  - [ ] python-symengine
+  - [ ] python-tasklogger
+  - [ ] qgis
+  - [ ] tombo
+  - [ ] websockify
+- [X] python-nose-exclude
 - [ ] python-nose-timer [0/1][0%]
   - [ ] python-androguard
-- [ ] python-validate-email [0/1]
-  - [ ] python-flex
-- [X] python-contextvars [1/1][100%]
-  - [X] python-anyio
-- [ ] python-ipaddress [0/1][0%]
-  - [ ] python-trustme
-- [X] python-nose-exclude
-- [ ] python-extras [0/4][0%]
-  - [ ] python-fixtures
-  - [ ] python-fixtures-bootstrap
-  - [ ] python-subunit
-  - [ ] python-subunit-bootstrap
-- [-] python-six [6/222][2%]
+- [-] python-py [1/6][16%]
+  - python-devpi-server - python-py is still hard runtime dependency
+  - [ ] python-nox
+  - [ ] python-pypytools
+  - [X] python-pytest-cache
+  - [ ] python-pytest-pycodestyle
+  - [ ] python-pytest-random-order
+  - [ ] python-retry
+- [-] python-pytest-forked [2/4][50%]
+  - [ ] ansible-core
+  - [X] python-httplib2
+  - [ ] python-pep-adapter
+  - [X] python-sentry-sdk
+- [-] python-pytest-runner [11/69][15%]
+  - [ ] cpplint
+  - [ ] cwltool
+  - [ ] datasette
+  - [ ] duplicity
+  - [ ] khmer
+  - [ ] onnx
+  - [ ] onnx-optimizer
+  - [X] python-aiostream
+  - [X] python-allpairspy
+  - [ ] python-apache-libcloud
+  - [ ] python-cairocffi
+  - [X] python-cairosvg
+  - [ ] python-can
+  - [X] python-compreffor
+  - [ ] python-cssselect2
+  - [ ] python-cu2qu
+  - [ ] python-cwl-utils
+  - [X] python-dask
+  - [ ] python-datrie
+  - [ ] python-defcon
+  - [X] python-defcon-bootstrap
+  - [ ] python-dictdiffer
+  - [ ] python-docrep
+  - [ ] python-duckdb
+  - [ ] python-entrypoint2
+  - [ ] python-falcon
+  - [ ] python-ffmpeg-python
+  - [ ] python-flask-combo-jsonapi
+  - [ ] python-fontmath
+  - [ ] python-fontpens
+  - [ ] python-grako
+  - [ ] python-grandalf
+  - [X] python-hupper
+  - [ ] python-jose
+  - [ ] python-keyutils
+  - [ ] python-logzero
+  - [ ] python-mastodon-py
+  - [ ] python-matrix-client
+  - [ ] python-mwclient
+  - [ ] python-mwparserfromhell
+  - [ ] python-numpy-groupies
+  - [ ] python-parsedatetime
+  - [ ] python-pastedeploy
+  - [ ] python-polling2
+  - [ ] python-pyarrow
+  - [X] python-pyclipper
+  - [ ] python-pyrsistent
+  - [ ] python-pyshp
+  - [ ] python-pyte
+  - [ ] python-pytest-xvfb
+  - [ ] python-pyvirtualdisplay
+  - [ ] python-reflink
+  - [ ] python-regions
+  - [X] python-rfc3339-validator
+  - [X] python-rfc3986-validator
+  - [ ] python-schema-salad
+  - [ ] python-spython
+  - [ ] python-stone
+  - [ ] python-tldr
+  - [X] python-translation-finder
+  - [ ] python-upsetplot
+  - [ ] python-venusian
+  - [ ] sshuttle
+  - [ ] stargate
+  - [ ] temper-exporter
+  - [ ] terminator
+  - [ ] todoman
+  - [ ] vorta
+  - [ ] yle-dl
+- [X] python-sarif-om [1/1][100%]
+  - [X] python-cfn-lint
+- [ ] python-setuptools-git [0/6][0%]
+  - [ ] clipper-peak
+  - [ ] python-pdoc3
+  - [ ] python-pytest-shutil
+  - [ ] python-pytest-virtualenv
+  - [ ] python-screenkey
+  - [ ] vorta
+- [-] python-six [17/220][7%]
   - [ ] 389-ds-base
   - [ ] cmakelang
+  - python-langdetect - six is still hard requirement
   - [ ] conan
   - [ ] deluge
   - [ ] docker-compose
@@ -320,12 +436,12 @@ pyproject-build-system.
   - [ ] python-ecdsa
   - [ ] python-executor
   - [ ] python-fiona
-  - [ ] python-fixtures
+  - [X] python-fixtures
   - [ ] python-fixtures-bootstrap
   - [ ] python-flake8-continuation
   - [ ] python-flasgger
   - [ ] python-flask-combo-jsonapi
-  - [ ] python-flask-cors
+  - [X] python-flask-cors
   - [ ] python-flask-restful-swagger
   - [ ] python-flatten-json
   - [ ] python-flex
@@ -337,16 +453,16 @@ pyproject-build-system.
   - [ ] python-gixy
   - [ ] python-gixy-ng
   - [ ] python-google-api-client
-  - [ ] python-google-auth-httplib2
+  - [X] python-google-auth-httplib2
   - [ ] python-google-pasta
   - [ ] python-gpy
   - [X] python-graphene
   - [ ] python-graphql-core
   - [ ] python-grpcio
-  - [ ] python-gssapi
+  - [X] python-gssapi
   - [ ] python-gyp
   - [ ] python-h5py
-  - [ ] python-halo
+  - python-halo - six is still hard requirement
   - [ ] python-hdlmake
   - python-html5lib - six is still hard requirement
   - [ ] python-htsget
@@ -359,7 +475,7 @@ pyproject-build-system.
   - [ ] python-jose
   - [ ] python-jsbeautifier
   - [ ] python-junit-xml
-  - [ ] python-k5test
+  - [X] python-k5test
   - [ ] python-kalepy
   - [ ] python-kazoo
   - [ ] python-keras
@@ -372,7 +488,7 @@ pyproject-build-system.
   - [ ] python-ld
   - [ ] python-lightning-cloud
   - [ ] python-livereload
-  - [ ] python-mando
+  - [X] python-mando
   - [ ] python-markdownify
   - [ ] python-markdown-strings
   - [ ] python-mastodon-py
@@ -409,11 +525,11 @@ pyproject-build-system.
   - [ ] python-pyactiveresource
   - [ ] python-pyannotate
   - [ ] python-pyarrow
-  - [ ] python-pybbi
+  - [X] python-pybbi
   - [ ] python-pybtex
   - [ ] python-pydocstyle
   - [ ] python-pyfxa
-  - [ ] python-pyicu
+  - python-pyicu - six is still hard requirement
   - [ ] python-pymacaroons
   - [ ] python-pymodbus
   - [ ] python-pynacl
@@ -423,7 +539,7 @@ pyproject-build-system.
   - [ ] python-pystray
   - [ ] python-pysynphot
   - [ ] python-pytest-assume
-  - [ ] python-pytest-check-links
+  - [X] python-pytest-check-links
   - [ ] python-pytest-csv
   - [ ] python-pytest-httpbin
   - [ ] python-pytest-shutil
@@ -433,12 +549,12 @@ pyproject-build-system.
   - [ ] python-querystring-parser
   - [ ] python-rchitect
   - [ ] python-requests-file
-  - [ ] python-requests-mock
+  - [X] python-requests-mock
   - [ ] python-resampy
   - [ ] python-retrying
   - python-rfc3339-validator - six is still hard requirement
   - [ ] python-robot-detection
-  - [ ] python-rpy2
+  - [X] python-rpy2
   - [ ] python-rst.linker
   - [ ] python-schematics
   - python-scour - six is still hard requirement
@@ -462,12 +578,12 @@ pyproject-build-system.
   - [ ] python-vaex-core
   - [ ] python-validators
   - [ ] python-visdom
-  - [ ] python-webtest
+  - [X] python-webtest
   - [ ] python-whisper
   - [ ] python-woob
   - [ ] python-wsgi-intercept
   - [ ] python-wsgiproxy2
-  - [ ] python-wxpython
+  - python-wxpython - 4.2.2 hard requires
   - [ ] python-xcffib
   - [ ] python-xdo
   - python-xlib - six is still hard requirement
@@ -487,108 +603,30 @@ pyproject-build-system.
   - [ ] tuir
   - [ ] xapers
   - [ ] xkeysnail
-- [-] python-pytest-runner [7/69][10%]
-  - [ ] cpplint
-  - [ ] cwltool
-  - [ ] datasette
-  - [ ] duplicity
-  - [ ] khmer
-  - [ ] onnx
-  - [ ] onnx-optimizer
-  - [X] python-aiostream
-  - [X] python-allpairspy
-  - [ ] python-apache-libcloud
-  - [ ] python-cairocffi
-  - [ ] python-cairosvg
-  - [ ] python-can
-  - [ ] python-compreffor
-  - [ ] python-cssselect2
-  - [ ] python-cu2qu
-  - [ ] python-cwl-utils
-  - [X] python-dask
-  - [ ] python-datrie
-  - [ ] python-defcon
-  - [ ] python-defcon-bootstrap
-  - [ ] python-dictdiffer
-  - [ ] python-docrep
-  - [ ] python-duckdb
-  - [ ] python-entrypoint2
-  - [ ] python-falcon
-  - [ ] python-ffmpeg-python
-  - [ ] python-flask-combo-jsonapi
-  - [ ] python-fontmath
-  - [ ] python-fontpens
-  - [ ] python-grako
-  - [ ] python-grandalf
-  - [X] python-hupper
-  - [ ] python-jose
-  - [ ] python-keyutils
-  - [ ] python-logzero
-  - [ ] python-mastodon-py
-  - [ ] python-matrix-client
-  - [ ] python-mwclient
-  - [ ] python-mwparserfromhell
-  - [ ] python-numpy-groupies
-  - [ ] python-parsedatetime
-  - [ ] python-pastedeploy
-  - [ ] python-polling2
-  - [ ] python-pyarrow
-  - [ ] python-pyclipper
-  - [ ] python-pyrsistent
-  - [ ] python-pyshp
-  - [ ] python-pyte
-  - [ ] python-pytest-xvfb
-  - [ ] python-pyvirtualdisplay
-  - [ ] python-reflink
-  - [ ] python-regions
-  - [X] python-rfc3339-validator
-  - [X] python-rfc3986-validator
-  - [ ] python-schema-salad
-  - [ ] python-spython
-  - [ ] python-stone
-  - [ ] python-tldr
-  - [X] python-translation-finder
-  - [ ] python-upsetplot
-  - [ ] python-venusian
-  - [ ] sshuttle
-  - [ ] stargate
-  - [ ] temper-exporter
-  - [ ] terminator
-  - [ ] todoman
-  - [ ] vorta
-  - [ ] yle-dl
-- [-] python-py [1/7][14%]
-  - [ ] python-devpi-server
-  - [ ] python-nox
-  - [ ] python-pypytools
-  - [X] python-pytest-cache
-  - [ ] python-pytest-pycodestyle
-  - [ ] python-pytest-random-order
-  - [ ] python-retry
-- [-] python-pytest-forked [2/4][50%]
-  - [ ] ansible-core
-  - [X] python-httplib2
-  - [ ] python-pep-adapter
-  - [X] python-sentry-sdk
-- [-] python-nose2 [1/12][8%]
-  - [X] python-dpath - hard dependencies on nose2
-  - [ ] python-flufl-bounce
-  - [ ] python-graphtools
-  - [ ] python-mailman-hyperkitty
-  - [ ] python-pika
-  - [ ] python-pygame-menu
-  - [ ] python-semantic-version
-  - [ ] python-symengine
-  - [ ] python-tasklogger
-  - [ ] qgis
-  - [ ] tombo
-  - [ ] websockify
-- [ ] cmdtest [0/1][0%]
-  - [ ] xauth
+- [-] python-timeout-decorator [1/2][50%]
+  - [X] python-readability-lxml
+  - [ ] python-requests-cache  https://github.com/requests-cache/requests-cache/pull/1111
+- [ ] python-trezor [0/2][0%]
+  - [ ] electron-cash
+  - [ ] trezor-agent
+- [X] python-unittest2 [4/4][100%]
+  - [X] python-codecov
+  - [X] python-contexttimer - removed
+  - [X] python-deprecation
+  - [X] python-pyfxa
+- [ ] python-validate-email [0/1]
+  - [ ] python-flex
 ** TODO Reduce closure size by excluding optional or not required native-inputs
-** TODO Remove development inputs from clousure
+*** TODO Remove inputs for documentation where it is not built
+Packages such python-sphinx may be omitted where documentation is not build.
+*** TODO Remove development inputs from clousure [0/24][0%]
+Python packages which are meant to be used only during project development to perform linting, spell
+checks, formatting and similar do not need to be included in inputs at all. By dropping them we may
+reduce closure size of the package dramatically.
 - https://issues.guix.gnu.org/70858
-- [ ] python-black [0/35][0%]
+- [-] python-black [2/35][5%]
+  - synopsys :: Python code formatter
+  - URL :: https://github.com/psf/black
   - [ ] datasette
   - [ ] emacs-blacken
   - [ ] emacs-elpy
@@ -598,7 +636,7 @@ pyproject-build-system.
   - [ ] python-black-macchiato
   - [ ] python-captum
   - [ ] python-doubletdetection
-  - [ ] python-eliot
+  - [X] python-eliot
   - [ ] python-funsor
   - [ ] python-graphtools
   - [ ] python-hyperopt
@@ -618,22 +656,27 @@ pyproject-build-system.
   - [ ] python-pytest-black
   - [ ] python-pytest-examples
   - [ ] python-schema-salad
-  - [ ] python-scikit-survival
+  - [X] python-scikit-survival
   - [ ] python-starsessions
   - [ ] python-trezor
   - [ ] python-update-checker
   - [ ] python-uqbar
   - [ ] scvelo
-- [-] python-codecov [1/8][12%]
+- [-] python-codecov [2/8][25%]
+  - synopsys :: Python report uploader for Codecov
+  - note :: It's deprecated: "This uploader is being deprecated by the Codecov team."
+  - URL :: https://github.com/codecov/codecov-python
   - [ ] python-androguard
   - [ ] python-can
-  - [ ] python-ddlparse
+  - [X] python-ddlparse
   - [ ] python-geopandas
   - [ ] python-papermill
   - [ ] python-throttler
   - [X] python-translation-finder
   - [ ] python-wiimatch
-- [-] python-coverage [11/115][9%]
+- [-] python-coverage [16/115][13%]
+  - synopsys :: Tests code coverage measurement for Python
+  - URL :: https://github.com/nedbat/coveragepy
   - [ ] binwalk
   - [ ] conda
   - [ ] cpplint
@@ -664,7 +707,7 @@ pyproject-build-system.
   - [ ] python-django-haystack
   - [ ] python-dolfin-adjoint
   - [ ] python-ega-download-client
-  - [ ] python-eliot
+  - [X] python-eliot
   - [ ] python-emcee
   - [ ] python-flask-combo-jsonapi
   - [ ] python-forbiddenfruit
@@ -672,7 +715,7 @@ pyproject-build-system.
   - [ ] python-graphtools
   - [ ] python-green
   - [ ] python-hacking
-  - [ ] python-halo
+  - [X] python-halo
   - [ ] python-http-ece
   - [ ] python-identify
   - [ ] python-jupyter-packaging
@@ -724,10 +767,10 @@ pyproject-build-system.
   - [ ] python-rangehttpserver
   - [X] python-re-assert
   - [X] python-repoze-lru
-  - [ ] python-rpy2
+  - [X] python-rpy2
   - [ ] python-scikit-bio
-  - [ ] python-scikit-build
-  - [ ] python-scikit-survival
+  - [X] python-scikit-build
+  - [X] python-scikit-survival
   - [X] python-sh
   - [ ] python-spinners
   - [ ] python-structlog
@@ -749,10 +792,12 @@ pyproject-build-system.
   - [ ] rtv
   - [ ] tuir
   - [ ] u-boot-tools
-- [ ] python-coveralls [0/16][0%]
+- [-] python-coveralls [2/16][12%]
+  - synopsis :: Show coverage stats online via coveralls.io
+  - URL :: https://github.com/TheKevJames/coveralls-python
   - [ ] python-affine
-  - [ ] python-ddlparse
-  - [ ] python-django-pipeline
+  - [X] python-ddlparse
+  - [X] python-django-pipeline
   - [ ] python-flask-combo-jsonapi
   - [ ] python-graphtools
   - [ ] python-minikanren
@@ -766,9 +811,10 @@ pyproject-build-system.
   - [ ] rtv
   - [ ] tgcli
   - [ ] tuir
-- [-] python-flake8 [4/72][5%]
+- [-] python-flake8 [6/72][8%]
   - synopsis :: python tool that glues together pycodestyle, pyflakes, mccabe, and third-party
     plugins to check the style and quality of some python code
+  - URL :: https://github.com/PyCQA/flake8
   - [ ] calibre
   - [ ] emacs-elpy
   - [ ] mdpo
@@ -783,7 +829,7 @@ pyproject-build-system.
   - [ ] python-dateparser
   - [ ] python-dolfin-adjoint
   - [ ] python-doubletdetection
-  - [ ] python-eliot
+  - [X] python-eliot
   - [ ] python-flake8-bugbear
   - [ ] python-flake8-builtins
   - [ ] python-flake8-class-newline
@@ -830,7 +876,7 @@ pyproject-build-system.
   - [ ] python-python3-saml
   - [ ] python-qemu-qmp
   - [ ] python-seaborn
-  - [ ] python-simple-websocket
+  - [X] python-simple-websocket
   - [ ] python-starsessions
   - [ ] python-statsmodels
   - [ ] python-throttler
@@ -842,6 +888,8 @@ pyproject-build-system.
   - [ ] scvelo
   - [ ] sshuttle
 - [ ] python-isort [0/19][0%]
+  - synopsis :: A Python utility / library to sort imports.
+  - URL :: https://github.com/PyCQA/isort
   - [ ] aerich
   - [ ] emacs-py-isort
   - [ ] mdpo
@@ -861,7 +909,11 @@ pyproject-build-system.
   - [ ] python-statsmodels
   - [ ] python-trezor
   - [ ] scvelo
-- [-] python-mypy [1/45][2%]
+- [-] python-mypy [1/47][2%]
+  - synopsys ::  Optional static typing for Python
+  - URL :: https://github.com/python/mypy
+  - note :: In most of the cases MyPy is only required during development of the package to type
+    check and does not provide package regresion during chec phase.
   - [ ] cura
   - [ ] fava
   - [ ] kalamine
@@ -907,31 +959,37 @@ pyproject-build-system.
   - [ ] python-traitlets
   - [ ] python-verspec
   - [ ] uranium
-- [ ] python-nox [0/1][0%]
-  - [ ] python-pybadges
-- [-] python-pip [2/22][9%]
-  - [ ] datasette
-  - [ ] httpie
-  - [ ] poetry
-  - [ ] python-argparse-manpage
-  - [ ] python-django-auth-ldap
-  - [ ] python-extension-helpers
-  - [ ] python-illumina-utils
-  - [ ] python-isort
-  - [ ] python-jsonschema
-  - [X] python-jupyter-core
-  - [ ] python-lambda-4dn
-  - [ ] python-milc
-  - [ ] python-pypandoc
-  - [ ] python-pytest-perf
-  - [ ] python-requests
-  - [ ] python-requests
-  - [X] python-rfc3986-validator
-  - [ ] python-rope
-  - [ ] python-scikit-build-core
-  - [ ] python-toolchain
-  - [ ] spdk
-  - [ ] xonsh
+  - [ ] python-nox [0/1][0%]
+    - [ ] python-pybadges
+  - [-] python-pip [2/22][9%]
+    - [ ] datasette
+    - [ ] httpie
+    - [ ] poetry
+    - [ ] python-argparse-manpage
+    - [ ] python-django-auth-ldap
+    - [ ] python-extension-helpers
+    - [ ] python-illumina-utils
+    - [ ] python-isort
+    - [ ] python-jsonschema
+    - [X] python-jupyter-core
+    - [ ] python-lambda-4dn
+    - [ ] python-milc
+    - [ ] python-pypandoc
+    - [ ] python-pytest-perf
+    - [ ] python-requests
+    - [ ] python-requests
+    - [X] python-rfc3986-validator
+    - [ ] python-rope
+    - [ ] python-scikit-build-core
+    - [ ] python-toolchain
+    - [ ] spdk
+    - [ ] xonsh
+- [-] poetry [0/0][0%]
+Poetry is a stand alone package manager try to use poetry-core for build backend.
+  - [ ] python-flexmock
+  - [ ] python-nanopb
+  - [ ] python-poetry-dynamic-versioning
+  - [ ] python-pynixutil
 - [-] python-pre-commit [1/4][25%]
   - [X] python-jupyter-core
   - [ ] python-pillow-heif
@@ -966,12 +1024,12 @@ pyproject-build-system.
   - [ ] python-pylama
   - [ ] python-pytest-flakes
   - [ ] python-twisted
-- [ ] python-pylint [0/19][0%]
-  - [ ] open-adventure
+- [-] python-pylint [1/18][5%]
+  - open-adventure - hard dependencies in checks
   - [ ] python-archspec
   - [ ] python-clingraph
   - [ ] python-diff-cover
-  - [ ] python-halo
+  - [X] python-halo
   - [ ] python-log-symbols
   - [ ] python-lsp-jsonrpc
   - [ ] python-lsp-server
@@ -994,7 +1052,7 @@ pyproject-build-system.
   - [X] python-pip-run
   - [X] python-pytest-enabler
   - [ ] python-pytest-perf
-- [-] python-pytest-cov [8/267][2%]
+- [-] python-pytest-cov [3/94][3%]
   - [ ] abjad-ext-rmakers
   - [ ] anonip
   - [ ] autokey
@@ -1090,7 +1148,7 @@ pyproject-build-system.
   - [ ] python-geopandas
   - [ ] python-glue-vispy-viewers
   - [ ] python-graphviz
-  - [ ] python-hatch-jupyter-builder
+- [-] python-hatch-jupyter-builder
   - [ ] python-httpcore
   - [X] python-httplib2
   - [ ] python-huggingface-hub
@@ -1131,7 +1189,7 @@ pyproject-build-system.
   - [ ] python-multipart
   - [ ] python-multivolumefile
   - [ ] python-mwclient
-  - [ ] python-natsort
+  - [X] python-natsort
   - [ ] python-nb-clean
   - [ ] python-nbclassic
   - [ ] python-nbclient
@@ -1173,7 +1231,7 @@ pyproject-build-system.
   - [ ] python-pybcj
   - [ ] python-pyfaidx
   - [ ] python-pygam
-  - [ ] python-pyhamcrest
+  - [X] python-pyhamcrest
   - [ ] python-pymanopt
   - [ ] python-pymarshal
   - [ ] python-pymc
@@ -1204,9 +1262,9 @@ pyproject-build-system.
   - [ ] python-rich-tables
   - [ ] python-robotframework-pythonlibcore
   - [ ] python-rope
-  - [ ] python-rpy2
+  - [X] python-rpy2
   - [ ] python-salib
-  - [ ] python-scikit-build
+  - [X] python-scikit-build
   - [ ] python-scikit-learn-extra
   - [ ] python-scikit-misc
   - [ ] python-scikit-rf
@@ -1216,7 +1274,7 @@ pyproject-build-system.
   - [ ] python-semver
   - [ ] python-sentry-sdk
   - [ ] python-shtab
-  - [ ] python-simple-websocket
+  - [X] python-simple-websocket
   - [ ] python-siosocks
   - [ ] python-sniffio
   - [ ] python-sparse
@@ -1228,7 +1286,7 @@ pyproject-build-system.
   - [ ] python-tensorly
   - [ ] python-termcolor
   - [ ] python-test2ref
-  - [ ] python-testfixtures
+  - [X] python-testfixtures
   - [ ] python-throttler
   - [ ] python-tibanna
   - [ ] python-tinycss2
@@ -1263,10 +1321,10 @@ pyproject-build-system.
   - [ ] todoman
   - [ ] vdirsyncer
   - [ ] zulip-term
-- [-] python-pytest-flake8 [1/10][10%]
+- [-] python-pytest-flake8 [2/10][20%]
   - synopsis :: pytest plugin to run flake8
   - [ ] c-vise
-  - [ ] python-cairosvg
+  - [X] python-cairosvg
   - [X] python-dask-image
   - [ ] python-docstring-to-markdown
   - [ ] python-matrix-nio
@@ -1275,8 +1333,8 @@ pyproject-build-system.
   - [ ] python-pytest-csv
   - [ ] python-pytest-perf
   - [ ] radicale
-- [ ] python-pytest-isort [0/3][0%]
-  - [ ] python-cairosvg
+- [-] python-pytest-isort [1/3][33%]
+  - [X] python-cairosvg
   - [ ] python-pytest-pycodestyle
   - [ ] radicale
 - [ ] python-pytest-mypy [0/6][0%]
@@ -1286,15 +1344,15 @@ pyproject-build-system.
   - [ ] python-pytest-perf
   - [ ] python-spatial-image
   - [ ] python-typeguard
-- [-] python-tox [1/22][4%]
+- [-] python-tox [10/22][45%]
   - [ ] emacs-jedi
   - [X] python-ansicolors
-  - [ ] python-audioread
-  - [ ] python-ddlparse
-  - [ ] python-django-extensions
-  - [ ] python-django-pipeline
-  - [ ] python-flask-htpasswd
-  - [ ] python-halo
+  - [X] python-audioread
+  - [X] python-ddlparse
+  - [X] python-django-extensions
+  - [X] python-django-pipeline
+  - [X] python-flask-htpasswd - remvoed
+  - [X] python-halo
   - [ ] python-harmony
   - [ ] python-log-symbols
   - [ ] python-lunr
@@ -1303,101 +1361,55 @@ pyproject-build-system.
   - [ ] python-omnipath
   - [ ] python-papermill
   - [ ] python-pytest-qt
-  - [ ] python-scikit-survival
+  - [X] python-scikit-survival
   - [ ] python-shshsh
-  - [ ] python-simple-websocket
-  - [ ] python-spinners
+  - [X] python-simple-websocket
+  - [X] python-spinners
   - [ ] tailon
   - [ ] txt2tags
-- [-] python-twine [2/16][12%]
-  - synopsis :: Collection of utilities for interacting with PyPI
-  - [ ] fava
-  - [ ] mdpo
-  - [ ] python-cftime
-  - [X] python-dask-image
-  - [ ] python-eliot
-  - [ ] python-eventlet
-  - [ ] python-halo
-  - [ ] python-hatch-jupyter-builder
-  - [ ] python-metacells
-  - [ ] python-ngesh
-  - [ ] python-papermill
-  - [ ] python-pyahocorasick
-  - [ ] python-scikit-misc
-  - [ ] python-syrupy
-  - [ ] python-testfixtures
-  - [X] python-translation-finder
+- [-] python-twine [5/16][31%]
+    - synopsis :: Collection of utilities for interacting with PyPI
+    - [ ] fava
+    - [ ] mdpo
+    - [ ] python-cftime
+    - [X] python-dask-image
+    - [X] python-eliot
+    - [ ] python-eventlet
+    - [X] python-halo
+    - [ ] python-hatch-jupyter-builder
+    - [ ] python-metacells
+    - [ ] python-ngesh
+    - [ ] python-papermill
+    - [ ] python-pyahocorasick
+    - [ ] python-scikit-misc
+    - [ ] python-syrupy
+    - [X] python-testfixtures
+    - [X] python-translation-finder
+** TODO Make sure that all *-bootstrap package are hidden
 ** TODO Set NumPy 2 as a default
-** TODO Fails [14/66]
- - [ ] calcos
- - [ ] ginga-qt5
- - [ ] llama-cpp
- - [ ] python-absl-py
- - [ ] python-acstools
- - [ ] python-aplpy
- - [ ] python-asgi-csrf
- - [ ] python-astroalign
- - [ ] python-astropy
- - [X] python-aws-xray-sdk: Use python-pytest-asyncio-0.26
- - [ ] python-botorch
- - [ ] python-captum
- - [ ] python-cleanlab
- - [ ] python-deepxde
- - [ ] python-dust-extinction
- - [X] python-flexcache
- - [ ] python-geomloss
- - [ ] python-glue-qt
- - [X] python-hupper
- - [X] python-imageio-ffmpeg: 0.5.1->0.6.0
- - [ ] python-jwst
- - [ ] python-linear-operator
- - [ ] python-ndcube
- - [ ] python-pgmpy
- - [ ] python-pint-pulsar
- - [ ] python-pixell
- - [ ] python-pot
- - [ ] python-pvextractor
- - [ ] python-pyro-ppl
- - [X] python-pytest-datadir: 1.3.1->1.7.2
- - [ ] python-pytest-rerunfailures-17
- - [X] python-pythran: Disable tests.
- - [ ] python-pytorch
- - [ ] python-pytorch-lightning
- - [ ] python-pyxsim
- - [X] python-pyzmq: Use python-pytest-asyncio-0.26
- - [ ] python-radio-beam
- - [ ] python-regularizepsf
- - [ ] python-roman-datamodels
- - [ ] python-safetensors
- - [ ] python-sbpy
- - [ ] python-scikit-opt
- - [ ] python-sentence-transformers
- - [ ] python-sncosmo
- - [ ] python-spherical-geometry
- - [ ] python-spisea
- - [ ] python-stcal
- - [ ] python-stpsf
- - [ ] python-stsci-skypac
- - [ ] python-stsynphot
- - [ ] python-sunkit-image
- - [ ] python-sunpy-soar
- - [ ] python-sunraster
- - [ ] python-synphot
- - [ ] python-torchdiffeq
- - [ ] python-torchmetrics
- - [ ] python-torchvision
- - [ ] python-transformers
- - [X] python-twine: 5.1.1->6.1.0
- - [X] python-types-requests: 2.30.0.0->2.32.4.20250611
- - [X] python-types-urllib3: 1.26.25.12->1.26.25.14
- - [X] python-unidecode: 1.3.8->1.4.0
- - [X] python-uvicorn: Use python-pytest-asyncio-0.26
- - [X] python-websockets: Set test backend
- - [X] python-zope-testing: 5.0.1->5.1
- - [ ] scamp
-
 ** TODO Removes [2/3]
  - [X] python-setuptools-scm-git-archive: This repository was archived by the owner on May 5, 2024.
    It is now read-only.
  - [X] python-nosexcover: Unmaintained fork, no updates since 2018
  - [ ] python-pytest-perf
+** TODO New
+(define-public python-jsonpath-ng
+  (package
+    (name "python-jsonpath-ng")
+    (version "1.7.0")
+    (source
+     (origin
+       (method url-fetch)
+       (uri (pypi-uri "jsonpath-ng" version))
+       (sha256
+        (base32 "0g5bpq02pl9mv7mbqixvnagq8f9v0jab6wqmbxw9rxsz9vyzgxgn"))))
+    (build-system pyproject-build-system)
+    (propagated-inputs (list python-ply))
+    (home-page "https://github.com/h2non/jsonpath-ng")
+    (synopsis
+     "A final implementation of JSONPath for Python that aims to be standard compliant, including arithmetic and binary comparison operators and providing clear AST for metaprogramming.")
+    (description
+     "This package provides a final implementation of JSONPath for Python that aims to
+be standard compliant, including arithmetic and binary comparison operators and
+providing clear AST for metaprogramming.")
+    (license license:asl2.0)))
